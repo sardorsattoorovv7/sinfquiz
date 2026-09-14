@@ -26,7 +26,17 @@ export async function getFirebase(){
  });
  return sdkPromise;
 }
-
+console.table({
+  API_KEY: Boolean(import.meta.env.VITE_FIREBASE_API_KEY),
+  AUTH_DOMAIN: Boolean(import.meta.env.VITE_FIREBASE_AUTH_DOMAIN),
+  PROJECT_ID: Boolean(import.meta.env.VITE_FIREBASE_PROJECT_ID),
+  STORAGE_BUCKET: Boolean(import.meta.env.VITE_FIREBASE_STORAGE_BUCKET),
+  MESSAGING_SENDER_ID: Boolean(
+    import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID
+  ),
+  APP_ID: Boolean(import.meta.env.VITE_FIREBASE_APP_ID),
+  ADMIN_EMAIL: Boolean(import.meta.env.VITE_FIREBASE_ADMIN_EMAIL),
+});
 export async function waitForAuth(){
  const sdk=await getFirebase();
  await new Promise(resolve=>{const stop=sdk.onAuthStateChanged(sdk.auth,()=>{stop();resolve()})});
