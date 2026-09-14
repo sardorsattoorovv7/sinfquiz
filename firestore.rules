@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /admins/{uid} {
+      allow read: if request.auth.uid == uid;
+      allow create: if request.auth.uid == uid
+                    && request.auth.token.email == 'admin@sinfquiz.uz'
+                    && request.resource.data.email == request.auth.token.email;
+      allow update, delete: if false;
+    }
+
+    match /quizzes/{quizId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.status == 'active');
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /players/{playerId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow update: if isAdmin() || (signedIn()
+                    && resource.data.uid == request.auth.uid
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.quizId == resource.data.quizId);
+      allow delete: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+    }
+
+    match /live/race {
+      allow read: if signedIn();
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (signedIn()
+                    && resource.data.active == true
+                    && request.resource.data.active == true
+                    && request.resource.data.id == resource.data.id
+                    && request.resource.data.questions == resource.data.questions
+                    && request.resource.data.racers.size() <= 2);
+    }
+
+    match /settings/app {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /typingResults/{resultId} {
+      allow read: if isAdmin();
+      allow create: if signedIn()
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.stages.size() == 5;
+      allow update: if signedIn()
+                    && resource.data.uid == request.auth.uid
+                    && request.resource.data.uid == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

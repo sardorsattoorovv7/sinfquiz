@@ -1,0 +1,1 @@
+try{const saved=localStorage.getItem('sq_theme');const theme=['dark','light'].includes(saved)?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme}catch{}

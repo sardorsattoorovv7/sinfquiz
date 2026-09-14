@@ -1,0 +1,9 @@
+import React from 'react';
+const modifiers=['Ctrl','Alt','Shift'];
+const rows=[['Esc','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12'],['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L'],['Z','X','C','V','B','N','M'],['1','2','3','4','5','6','7','8','9','0','Enter','Delete']];
+export default function ShortcutInput({value,onChange,disabled}){
+ const keys=value.split('+').filter(Boolean);
+ const choose=k=>{const mods=keys.filter(v=>modifiers.includes(v));if(modifiers.includes(k)){onChange([...mods.filter(v=>v!==k),...(!mods.includes(k)?[k]:[]),...keys.filter(v=>!modifiers.includes(v))].join('+'))}else onChange([...mods,k].join('+'))};
+ const capture=e=>{if(e.key==='Tab')return;if(disabled)return;e.preventDefault();if(['Control','Alt','Shift','Meta'].includes(e.key))return;const key=e.key==='Escape'?'Esc':e.key.length===1?e.key.toUpperCase():e.key;onChange([e.ctrlKey&&'Ctrl',e.altKey&&'Alt',e.shiftKey&&'Shift',e.metaKey&&'Meta',key].filter(Boolean).join('+'))};
+ return <section className="shortcut-lab"><div className="shortcut-display" tabIndex={disabled?-1:0} role="group" aria-label="Tugmalarni bosish maydoni" onKeyDown={capture} aria-disabled={disabled}>{keys.length?keys.map(k=><kbd key={k}>{k}</kbd>):<span>Shu yerni bosing, keyin kombinatsiyani kiriting</span>}</div><p>Windows / Office (English). Klaviaturada bosing yoki pastdagi tugmalarni tanlang. Tab bilan maydondan chiqasiz.</p><div className="virtual-keyboard"><div>{modifiers.map(k=><button disabled={disabled} aria-pressed={keys.includes(k)} className={keys.includes(k)?'pressed':''} key={k} onClick={()=>choose(k)}>{k}</button>)}<button disabled={disabled} onClick={()=>onChange('')}>Tozalash</button></div>{rows.map((row,i)=><div key={i}>{row.map(k=><button disabled={disabled} className={keys.includes(k)?'pressed':''} key={k} onClick={()=>choose(k)}>{k}</button>)}</div>)}</div></section>
+}

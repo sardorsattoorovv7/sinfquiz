@@ -1,0 +1,12 @@
+import {dirname,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {existsSync} from 'node:fs';
+import {createQuizServer} from './server/app.js';
+const root=dirname(fileURLToPath(import.meta.url));
+if(existsSync(join(root,'.env')))process.loadEnvFile(join(root,'.env'));
+const port=Number(process.env.PORT||3000);
+const origin=process.env.APP_ORIGIN||`http://localhost:${port}`;
+const parsed=new URL(origin);
+if(parsed.origin!==origin||(!origin.startsWith('https://')&&!['localhost','127.0.0.1','[::1]'].includes(parsed.hostname)))throw Error('APP_ORIGIN HTTPS bo‘lishi kerak (localhost bundan mustasno).');
+const server=createQuizServer({root,dataDir:process.env.SINFQUIZ_DATA_DIR||join(root,'data'),config:{origin,adminUsername:process.env.ADMIN_USERNAME||'admin',adminPassword:process.env.ADMIN_PASSWORD||'admin123',adminName:process.env.ADMIN_NAME||'Administrator'}});
+server.httpServer.listen(port,'0.0.0.0',()=>console.log(`SinfQuiz: ${origin}\nAdmin login tayyor. Xavfsizlik uchun .env ichida standart parolni almashtiring.`));

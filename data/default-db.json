@@ -1,0 +1,636 @@
+{
+  "quizzes": [
+    {
+      "id": "word-lab",
+      "title": "Word: hujjat ustasi",
+      "subject": "Word",
+      "color": "blue",
+      "pin": "110101",
+      "group": "8-A",
+      "status": "active",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "type": "test",
+          "text": "Microsoft Word asosan qanday ish uchun ishlatiladi?",
+          "options": [
+            "Matnli hujjat yaratish va tahrirlash",
+            "Video montaj",
+            "Dastur kompilyatsiyasi",
+            "Audio yozish"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "word-lab-1",
+          "subject": "Word"
+        },
+        {
+          "type": "shortcut",
+          "text": "Word’da tanlangan matnni qalin (Bold) qilish tugmalarini kiriting.",
+          "answer": "Ctrl+B",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "word-lab-2",
+          "subject": "Word"
+        },
+        {
+          "type": "test",
+          "text": "Insert → Table buyrug‘i nima qo‘shadi?",
+          "options": [
+            "Jadval",
+            "Yangi dastur",
+            "Parol",
+            "Audio drayver"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "word-lab-3",
+          "subject": "Word"
+        },
+        {
+          "type": "practical",
+          "text": "Word hujjatining odatiy zamonaviy fayl kengaytmasini nuqta bilan yozing.",
+          "answer": ".docx",
+          "acceptedAnswers": [],
+          "points": 150,
+          "time": 75,
+          "id": "word-lab-4",
+          "subject": "Word"
+        },
+        {
+          "type": "shortcut",
+          "text": "Word’da hujjatni saqlash kombinatsiyasini kiriting.",
+          "answer": "Ctrl+S",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "word-lab-5",
+          "subject": "Word"
+        },
+        {
+          "type": "test",
+          "text": "Hujjatga rasm qo‘shish uchun qaysi bo‘lim mos?",
+          "options": [
+            "Insert → Pictures",
+            "Review → Spelling",
+            "Home → Copy",
+            "File → Close"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "word-lab-6",
+          "subject": "Word"
+        }
+      ]
+    },
+    {
+      "id": "excel-lab",
+      "title": "Excel: formula laboratoriyasi",
+      "subject": "Excel",
+      "color": "green",
+      "pin": "220202",
+      "group": "8-A",
+      "status": "active",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "type": "test",
+          "text": "Excel’dagi formula odatda qaysi belgi bilan boshlanadi?",
+          "options": [
+            "=",
+            "#",
+            "@",
+            "?"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "excel-lab-1",
+          "subject": "Excel"
+        },
+        {
+          "type": "practical",
+          "text": "Inglizcha Excel’da A1 dan A5 gacha kataklar yig‘indisini SUM funksiyasi bilan yozing.",
+          "answer": "=SUM(A1:A5)",
+          "acceptedAnswers": [],
+          "points": 150,
+          "time": 75,
+          "id": "excel-lab-2",
+          "subject": "Excel"
+        },
+        {
+          "type": "test",
+          "text": "B3 manzili nimani bildiradi?",
+          "options": [
+            "B ustun, 3-qator",
+            "3-ustun, B varaq",
+            "B fayl, 3-sahifa",
+            "B va 3 sonlar yig‘indisi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "excel-lab-3",
+          "subject": "Excel"
+        },
+        {
+          "type": "shortcut",
+          "text": "Excel’da faol katak mazmunini tahrirlash tugmasini kiriting.",
+          "answer": "F2",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "excel-lab-4",
+          "subject": "Excel"
+        },
+        {
+          "type": "practical",
+          "text": "A1 va B1 kataklaridagi sonlarni ko‘paytirish formulasini yozing.",
+          "answer": "=A1*B1",
+          "acceptedAnswers": [
+            "=B1*A1"
+          ],
+          "points": 150,
+          "time": 75,
+          "id": "excel-lab-5",
+          "subject": "Excel"
+        },
+        {
+          "type": "test",
+          "text": "AVERAGE funksiyasi nimani hisoblaydi?",
+          "options": [
+            "O‘rtacha arifmetik qiymat",
+            "Faqat eng katta son",
+            "Matn uzunligi",
+            "Qatorlar rangi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "excel-lab-6",
+          "subject": "Excel"
+        }
+      ]
+    },
+    {
+      "id": "ppt-lab",
+      "title": "PowerPoint: taqdimot yarating",
+      "subject": "PowerPoint",
+      "color": "orange",
+      "pin": "330303",
+      "group": "8-A",
+      "status": "active",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "type": "test",
+          "text": "PowerPoint’da taqdimotning bitta sahifasi qanday ataladi?",
+          "options": [
+            "Slayd",
+            "Katak",
+            "Papka",
+            "Qator"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "ppt-lab-1",
+          "subject": "PowerPoint"
+        },
+        {
+          "type": "shortcut",
+          "text": "Windows PowerPoint’da taqdimotni boshidan namoyish qilish tugmasini kiriting.",
+          "answer": "F5",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "ppt-lab-2",
+          "subject": "PowerPoint"
+        },
+        {
+          "type": "test",
+          "text": "Transitions va Animations orasidagi farq qaysi?",
+          "options": [
+            "Transitions slaydlar o‘tishiga, Animations slayddagi obyektlarga tegishli",
+            "Ikkalasi ham faqat matn rangini o‘zgartiradi",
+            "Animations faylni saqlaydi",
+            "Transitions faqat ovozni o‘chiradi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "ppt-lab-3",
+          "subject": "PowerPoint"
+        },
+        {
+          "type": "practical",
+          "text": "PowerPoint taqdimotining odatiy zamonaviy kengaytmasini nuqta bilan yozing.",
+          "answer": ".pptx",
+          "acceptedAnswers": [],
+          "points": 150,
+          "time": 75,
+          "id": "ppt-lab-4",
+          "subject": "PowerPoint"
+        },
+        {
+          "type": "shortcut",
+          "text": "Windows PowerPoint’da yangi slayd qo‘shish kombinatsiyasini kiriting.",
+          "answer": "Ctrl+M",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "ppt-lab-5",
+          "subject": "PowerPoint"
+        },
+        {
+          "type": "test",
+          "text": "Sinfga ko‘rsatiladigan slayd uchun qaysi usul qulay?",
+          "options": [
+            "Qisqa fikrlar va o‘qilishi oson katta matn",
+            "Bir slaydga butun kitobni joylash",
+            "Fon va matnni bir rang qilish",
+            "Har bir so‘zni alohida aylantirish"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "ppt-lab-6",
+          "subject": "PowerPoint"
+        }
+      ]
+    },
+    {
+      "id": "keyboard-lab",
+      "title": "Keyboard shortcuts: tezkor qo‘llar",
+      "subject": "Keyboard shortcuts",
+      "color": "violet",
+      "pin": "440404",
+      "group": "8-A",
+      "status": "passive",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "type": "shortcut",
+          "text": "Tanlangan matndan nusxa olish kombinatsiyasini kiriting.",
+          "answer": "Ctrl+C",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "keyboard-lab-1",
+          "subject": "Keyboard shortcuts"
+        },
+        {
+          "type": "test",
+          "text": "Ctrl+Z odatda nima qiladi?",
+          "options": [
+            "Oxirgi amalni bekor qiladi",
+            "Faylni chop etadi",
+            "Kompyuterni o‘chiradi",
+            "Shriftni qalin qiladi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "keyboard-lab-2",
+          "subject": "Keyboard shortcuts"
+        },
+        {
+          "type": "shortcut",
+          "text": "Nusxalangan matnni joylashtirish kombinatsiyasini kiriting.",
+          "answer": "Ctrl+V",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "keyboard-lab-3",
+          "subject": "Keyboard shortcuts"
+        },
+        {
+          "type": "shortcut",
+          "text": "Tanlangan matnni kesib olish kombinatsiyasini kiriting.",
+          "answer": "Ctrl+X",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "keyboard-lab-4",
+          "subject": "Keyboard shortcuts"
+        },
+        {
+          "type": "test",
+          "text": "Ctrl+A matn muharririda odatda nimani bajaradi?",
+          "options": [
+            "Barcha matnni tanlaydi",
+            "Yangi rasm yaratadi",
+            "Fayl nomini o‘zgartiradi",
+            "Harfni kichraytiradi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "keyboard-lab-5",
+          "subject": "Keyboard shortcuts"
+        },
+        {
+          "type": "shortcut",
+          "text": "Hujjatni chop etish oynasini ochish kombinatsiyasini kiriting.",
+          "answer": "Ctrl+P",
+          "points": 150,
+          "time": 45,
+          "explanation": "Bu kombinatsiya Windows tizimidagi Office dasturining inglizcha interfeysi uchun berilgan.",
+          "id": "keyboard-lab-6",
+          "subject": "Keyboard shortcuts"
+        }
+      ]
+    },
+    {
+      "id": "prompt-lab",
+      "title": "Prompt engineering: aniq topshiriq",
+      "subject": "Prompt engineering",
+      "color": "pink",
+      "pin": "550505",
+      "group": "8-A",
+      "status": "passive",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "type": "test",
+          "text": "Prompt nima?",
+          "options": [
+            "AI modeliga beriladigan ko‘rsatma yoki so‘rov",
+            "Faqat kompyuter paroli",
+            "Microsoft fayl kengaytmasi",
+            "Internet tezligi birligi"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "prompt-lab-1",
+          "subject": "Prompt engineering"
+        },
+        {
+          "type": "prompt",
+          "text": "AI’dan 8-sinf uchun Excel’dagi SUM haqida izoh so‘rang. Promptda mavzu, auditoriya, bitta misol va qisqa javob talabini yozing.",
+          "answer": "8-sinf o‘quvchisi uchun Excel SUM funksiyasini qisqa tushuntir va bitta misol keltir.",
+          "criteria": [
+            {
+              "label": "Mavzu: Excel va SUM",
+              "keywords": [
+                "sum"
+              ]
+            },
+            {
+              "label": "Auditoriya: 8-sinf",
+              "keywords": [
+                "8-sinf",
+                "8 sinf"
+              ]
+            },
+            {
+              "label": "Misol talabi",
+              "keywords": [
+                "misol",
+                "namuna"
+              ]
+            },
+            {
+              "label": "Qisqa javob talabi",
+              "keywords": [
+                "qisqa",
+                "ixcham",
+                "100 so‘z",
+                "100 ta so‘z"
+              ]
+            }
+          ],
+          "points": 200,
+          "time": 150,
+          "explanation": "Bu mashq kalit so‘zlar orqali baholanadi. Mazmun va sifatni o‘qituvchi alohida ko‘rib chiqishi mumkin.",
+          "id": "prompt-lab-2",
+          "subject": "Prompt engineering"
+        },
+        {
+          "type": "test",
+          "text": "Qaysi prompt natija shaklini aniq belgilaydi?",
+          "options": [
+            "Word va Excel farqlarini 3 qatorli jadvalda yoz",
+            "Dasturlar haqida yoz",
+            "Biror narsa tushuntir",
+            "Yaxshi javob ber"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "prompt-lab-3",
+          "subject": "Prompt engineering"
+        },
+        {
+          "type": "prompt",
+          "text": "AI’dan informatika o‘qituvchisi sifatida Word bo‘yicha 5 ta test, har biriga 4 ta variant va to‘g‘ri javob tayyorlashini so‘rang.",
+          "answer": "Informatika o‘qituvchisi sifatida Word bo‘yicha 5 ta test tuz. Har savolda 4 ta variant bo‘lsin va to‘g‘ri javobni belgila.",
+          "criteria": [
+            {
+              "label": "Rol",
+              "keywords": [
+                "o‘qituvchi",
+                "o'qituvchi",
+                "ustoz"
+              ]
+            },
+            {
+              "label": "Mavzu",
+              "keywords": [
+                "word"
+              ]
+            },
+            {
+              "label": "Testlar soni",
+              "keywords": [
+                "5 ta",
+                "beshta"
+              ]
+            },
+            {
+              "label": "Variantlar soni",
+              "keywords": [
+                "4 ta",
+                "to‘rtta",
+                "to'rtta"
+              ]
+            },
+            {
+              "label": "Javob kaliti",
+              "keywords": [
+                "to‘g‘ri javob",
+                "to'g'ri javob",
+                "javob kaliti"
+              ]
+            }
+          ],
+          "points": 200,
+          "time": 150,
+          "explanation": "Bu mashq kalit so‘zlar orqali baholanadi. Mazmun va sifatni o‘qituvchi alohida ko‘rib chiqishi mumkin.",
+          "id": "prompt-lab-4",
+          "subject": "Prompt engineering"
+        },
+        {
+          "type": "test",
+          "text": "AI javobida shubhali fakt uchrasa nima qilish kerak?",
+          "options": [
+            "Ishonchli manbadan tekshirish",
+            "Darhol haqiqat deb qabul qilish",
+            "Har doim ko‘chirib tarqatish",
+            "Savolni yashirish"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "prompt-lab-5",
+          "subject": "Prompt engineering"
+        },
+        {
+          "type": "test",
+          "text": "Promptni yaxshilashning foydali usuli qaysi?",
+          "options": [
+            "Maqsad, kontekst va kerakli formatni aniqlashtirish",
+            "Faqat katta harflarda yozish",
+            "Ko‘p undov belgisi qo‘yish",
+            "Topshiriqni butunlay olib tashlash"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 35,
+          "explanation": "",
+          "id": "prompt-lab-6",
+          "subject": "Prompt engineering"
+        }
+      ]
+    },
+    {
+      "id": "html-demo",
+      "title": "HTML asoslari",
+      "group": "8-A",
+      "subject": "Informatika",
+      "status": "active",
+      "pin": "483921",
+      "color": "violet",
+      "createdAt": 1789185600000,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "test",
+          "text": "HTML nimaning qisqartmasi?",
+          "options": [
+            "HyperText Markup Language",
+            "HighText Machine Language",
+            "Hyper Transfer Main Link",
+            "Home Tool Markup Language"
+          ],
+          "correct": 0,
+          "points": 100,
+          "time": 30
+        },
+        {
+          "id": "q2",
+          "type": "practical",
+          "text": "“Salom Dunyo” yozuvini h1 tegi ichida yozing.",
+          "answer": "<h1>Salom Dunyo</h1>",
+          "points": 150,
+          "time": 60
+        },
+        {
+          "id": "q3",
+          "type": "test",
+          "text": "Rasm joylashtirish uchun qaysi teg ishlatiladi?",
+          "options": [
+            "<p>",
+            "<img>",
+            "<a>",
+            "<div>"
+          ],
+          "correct": 1,
+          "points": 100,
+          "time": 30
+        },
+        {
+          "id": "q4",
+          "type": "test",
+          "text": "CSS asosan nima uchun ishlatiladi?",
+          "options": [
+            "Ma’lumotlar bazasi",
+            "Sahifa dizayni",
+            "Server yaratish",
+            "Fayl yuklash"
+          ],
+          "correct": 1,
+          "points": 100,
+          "time": 30
+        },
+        {
+          "id": "q5",
+          "type": "practical",
+          "text": "Python’da 1 dan 5 gacha sonlarni chiqaruvchi kod yozing.",
+          "answer": "for i in range(1, 6):\n    print(i)",
+          "points": 150,
+          "time": 90
+        }
+      ]
+    },
+    {
+      "id": "python-demo",
+      "title": "Python: 1-modul",
+      "group": "9-B",
+      "subject": "Informatika",
+      "status": "passive",
+      "pin": "728104",
+      "color": "blue",
+      "createdAt": 1789099200000,
+      "questions": [
+        {
+          "id": "p1",
+          "type": "test",
+          "text": "Python’da matn qaysi tipda saqlanadi?",
+          "options": [
+            "int",
+            "str",
+            "bool",
+            "float"
+          ],
+          "correct": 1,
+          "points": 100,
+          "time": 30
+        },
+        {
+          "id": "p2",
+          "type": "practical",
+          "text": "“Assalomu alaykum” matnini ekranga chiqaring.",
+          "answer": "print('Assalomu alaykum')",
+          "points": 150,
+          "time": 60
+        }
+      ]
+    }
+  ],
+  "players": [],
+  "typing": {
+    "active": false,
+    "results": []
+  },
+  "contentVersion": 7
+}
