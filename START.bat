@@ -1,6 +1,6 @@
 @echo off
 cd /d "%~dp0"
-title SinfQuiz 4.8 - Vercel va Firebase
+title SinfQuiz 4.8.1 - Vercel va Firebase
 where node >nul 2>nul
 if errorlevel 1 (
   echo Node.js topilmadi. Node.js 22.12+ yoki 24 LTS o'rnating.

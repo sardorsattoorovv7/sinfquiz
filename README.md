@@ -1,4 +1,4 @@
-# SinfQuiz 4.8 — Vercel + Firebase
+# SinfQuiz 4.8.1 — Vercel + Firebase
 
 Informatika darslari uchun React/Vite platformasi. Alohida Express server, Socket.IO yoki doimiy kompyuter kerak emas. Sayt Vercel’da, ma’lumot va real-time yangilanishlar Firebase Firestore’da ishlaydi.
 
@@ -15,6 +15,7 @@ Informatika darslari uchun React/Vite platformasi. Alohida Express server, Socke
 - avvalgi 5 bosqichli uzun matn Typing, yakunda 300–500 so‘z;
 - typing tezligi, aniqligi, darajasi va admin natijalari;
 - dark/light va mobil dizayn.
+- sekin internetda so‘rov va login kutish chegarasi, avtomatik qayta urinish va yengil polling.
 
 O‘quvchi ro‘yxatdan o‘tmaydi. Firebase Anonymous Auth avtomatik ishlaydi. Admin Firebase Email/Password orqali himoyalanadi.
 

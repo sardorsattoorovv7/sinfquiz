@@ -36,10 +36,11 @@ function App(){
   const [user,setUser]=useState(null);const [authReady,setAuthReady]=useState(false);
   const [entry,setEntry]=useState(null);const [game,setGame]=useState(null);const [raceGame,setRaceGame]=useState(null);const [typingGame,setTypingGame]=useState(null);const [toast,setToast]=useState('');const [connection,setConnection]=useState('');
   const notify=message=>setToast(message);
-  const reload=async()=>{const next=await api('/api/quizzes');setDb(next);return next};
-  const applyGame=next=>{setPlayerCsrf(next.csrf);setGame(next);setView(next.finished?'result':'play');location.hash='play'};
-  const applyRace=next=>{setRaceCsrf(next.csrf);setRaceGame(next);setView('race');location.hash='race'};
-  const applyTyping=next=>{setTypingCsrf(next.csrf);setTypingGame(next);setView('typing');location.hash='typing'};
+  const reload=async()=>{const next=await api('/api/quizzes');setConnection('');setDb(next);return next};
+  const applyGame=next=>{setConnection('');setPlayerCsrf(next.csrf);setGame(next);setView(next.finished?'result':'play');location.hash='play'};
+  const applyRace=next=>{setConnection('');setRaceCsrf(next.csrf);setRaceGame(next);setView('race');location.hash='race'};
+  const applyTyping=next=>{setConnection('');setTypingCsrf(next.csrf);setTypingGame(next);setView('typing');location.hash='typing'};
+  useEffect(()=>{const online=()=>setConnection(''),offline=()=>setConnection('Internet aloqasi uzildi. Tugmalar aloqa qaytgach yana ishlaydi.');window.addEventListener('online',online);window.addEventListener('offline',offline);if(!navigator.onLine)offline();return()=>{window.removeEventListener('online',online);window.removeEventListener('offline',offline)}},[]);
   useEffect(()=>{
     if(!deploymentReady){setAuthReady(true);return}
     localStorage.removeItem('sinfquiz_v1');sessionStorage.removeItem('sq_admin');
@@ -83,8 +84,8 @@ function Arena(props){return <React.Suspense fallback={<div className="solo-aren
 
 function Landing({onJoin,onRace,onTyping}){
   const [pin,setPin]=useState(''); const [error,setError]=useState('');const [busy,setBusy]=useState(false);const [race,setRace]=useState(null);const [typing,setTyping]=useState(null);
-  useEffect(()=>{let alive=true;const load=()=>api('/api/race/active').then(data=>{if(alive)setRace(data.active?data:null)}).catch(()=>{});load();const timer=setInterval(load,2000);return()=>{alive=false;clearInterval(timer)}},[]);
-  useEffect(()=>{let alive=true;const load=()=>api('/api/typing/active').then(data=>{if(alive)setTyping(data.active?data:null)}).catch(()=>{});load();const timer=setInterval(load,2500);return()=>{alive=false;clearInterval(timer)}},[]);
+  useEffect(()=>{let alive=true,timer;const load=async()=>{try{const data=await api('/api/race/active');if(alive)setRace(data.active?data:null)}catch{}finally{if(alive)timer=setTimeout(load,5000)}};load();return()=>{alive=false;clearTimeout(timer)}},[]);
+  useEffect(()=>{let alive=true,timer;const load=async()=>{try{const data=await api('/api/typing/active');if(alive)setTyping(data.active?data:null)}catch{}finally{if(alive)timer=setTimeout(load,6500)}};load();return()=>{alive=false;clearTimeout(timer)}},[]);
   const joinPin=async e=>{e.preventDefault();if(busy)return;if(!/^\d{6}$/.test(pin)){setError('O‘qituvchi bergan 6 xonali kodni kiriting.');return}setBusy(true);setError('');try{onJoin(await api('/api/resolve',{method:'POST',data:{pin}}))}catch(err){setError(err instanceof TypeError?'Server bilan aloqa yo‘q. Qayta urinib ko‘ring.':err.message)}finally{setBusy(false)}};
   return <main className="landing">
     <section className="hero">
@@ -254,7 +255,7 @@ function LocalRaceScreen({game,onUpdate,onLeave}){
  const {race,questions=[],playerIds=[]}=game;const [selected,setSelected]=useState([null,null]);const [busy,setBusy]=useState([false,false]);const [errors,setErrors]=useState(['','']);const [now,setNow]=useState(Date.now());const inflight=useRef([false,false]);
  useEffect(()=>{setSelected([null,null]);setErrors(['',''])},[questions.map(question=>question?.id||'').join('|')]);
  useEffect(()=>{const timer=setInterval(()=>setNow(Date.now()),100);return()=>clearInterval(timer)},[]);
- useEffect(()=>{let alive=true;const timer=setInterval(()=>api('/api/race/session').then(next=>{if(alive)onUpdate(next)}).catch(()=>{}),500);return()=>{alive=false;clearInterval(timer)}},[]);
+ useEffect(()=>{let alive=true,timer;const poll=async()=>{try{const next=await api('/api/race/session');if(alive)onUpdate(next)}catch{}finally{if(alive)timer=setTimeout(poll,race.phase==='countdown'?700:1800)}};poll();return()=>{alive=false;clearTimeout(timer)}},[race.phase]);
  const answer=async lane=>{if(inflight.current[lane]||selected[lane]===null)return;inflight.current[lane]=true;setBusy(value=>value.map((item,index)=>index===lane?true:item));setErrors(value=>value.map((item,index)=>index===lane?'':item));try{const next=await api('/api/race/answer',{method:'POST',role:'race',data:{playerId:playerIds[lane],questionId:questions[lane]?.id,value:selected[lane]}}),feedback=next.feedbackByPlayer?.[playerIds[lane]];playSound(feedback?.correct?'correct':'wrong');if(next.race.phase==='finished')playSound('finish');onUpdate(next)}catch(error){setErrors(value=>value.map((item,index)=>index===lane?error.message:item))}finally{inflight.current[lane]=false;setBusy(value=>value.map((item,index)=>index===lane?false:item))}};
  const countdown=Math.max(1,Math.ceil(((race.startsAt||now)-now)/1000)),winner=race.racers.find(player=>player.id===race.winnerId);
  return <main className="race-page local-race-page"><header className="race-header"><div><span><Flag/> LOCAL 1V1 · BITTA MONITOR</span><h1>{race.title}</h1><p>Chap va o‘ng yo‘lak mustaqil ishlaydi · har to‘g‘ri javob — bir qadam</p></div><button className="btn btn-outline" onClick={()=>{if(race.phase==='finished'||confirm('Poygadan chiqilsinmi?'))onLeave()}}><ArrowLeft/> Chiqish</button></header><RaceTrack race={race} playerId={null}/>
@@ -268,7 +269,7 @@ function RemoteRaceScreen({game,onUpdate,onLeave}){
  const {race,playerId,question}=game;const mine=race.racers.find(player=>player.id===playerId);const [selected,setSelected]=useState(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[now,setNow]=useState(Date.now());const inflight=useRef(false);
  useEffect(()=>{setSelected(null);setError('')},[question?.id,game.feedback?.at]);
  useEffect(()=>{const timer=setInterval(()=>setNow(Date.now()),100);return()=>clearInterval(timer)},[]);
- useEffect(()=>{let alive=true;const timer=setInterval(()=>api('/api/race/session').then(next=>{if(alive)onUpdate(next)}).catch(()=>{}),1500);return()=>{alive=false;clearInterval(timer)}},[playerId]);
+ useEffect(()=>{let alive=true,timer;const poll=async()=>{try{const next=await api('/api/race/session');if(alive)onUpdate(next)}catch{}finally{if(alive)timer=setTimeout(poll,race.phase==='countdown'?900:2500)}};poll();return()=>{alive=false;clearTimeout(timer)}},[playerId,race.phase]);
  const action=async(path,data)=>{if(inflight.current)return;inflight.current=true;setBusy(true);setError('');try{const next=await api(path,{method:'POST',role:'race',data});if(path.endsWith('/answer'))playSound(next.feedback?.correct?'correct':'wrong');if(next.race.phase==='finished')playSound('finish');onUpdate(next)}catch(e){setError(e.message)}finally{inflight.current=false;setBusy(false)}};
  const countdown=Math.max(1,Math.ceil(((race.startsAt||now)-now)/1000)),retrying=game.feedback&&!game.feedback.correct&&game.feedback.retryAt>now;const winner=race.racers.find(player=>player.id===race.winnerId);
  return <main className="race-page"><header className="race-header"><div><span><Flag/> 1V1 BILIM POYGASI</span><h1>{race.title}</h1><p>Bir xil 10 savol · har to‘g‘ri javob — bir qadam oldinga</p></div><button className="btn btn-outline" onClick={()=>{if(race.phase==='finished'||confirm('Poygadan chiqilsinmi?'))onLeave()}}><ArrowLeft/> Chiqish</button></header><RaceTrack race={race} playerId={playerId}/>
