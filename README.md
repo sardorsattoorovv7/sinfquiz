@@ -1,4 +1,4 @@
-# SinfQuiz 4.6 — Vercel + Firebase
+# SinfQuiz 4.8 — Vercel + Firebase
 
 Informatika darslari uchun React/Vite platformasi. Alohida Express server, Socket.IO yoki doimiy kompyuter kerak emas. Sayt Vercel’da, ma’lumot va real-time yangilanishlar Firebase Firestore’da ishlaydi.
 
@@ -8,13 +8,17 @@ Informatika darslari uchun React/Vite platformasi. Alohida Express server, Socke
 - 45 ta tayyor informatika savoli va test muharriri;
 - oddiy testga 6 xonali kod orqali kirish;
 - ACTIVE/PASSIVE, ball va jonli reyting;
-- ikki o‘quvchilik kodsiz 1v1 yugurish poygasi;
+- bitta kompyuter va bitta monitorda split-screen 1v1 poyga;
 - tayyor `Running` 3D animation clip va SFX;
-- o‘zbekcha 5 bosqichli typing mashqi;
-- typing tezligi, aniqligi, xatosi va admin natijalari;
+- 192 savollik bankdan 10 ta adaptiv A1–B2 daraja testi;
+- inglizcha audio, sekin talaffuz, tarjima, vocabulary va to‘liq gap terish;
+- avvalgi 5 bosqichli uzun matn Typing, yakunda 300–500 so‘z;
+- typing tezligi, aniqligi, darajasi va admin natijalari;
 - dark/light va mobil dizayn.
 
 O‘quvchi ro‘yxatdan o‘tmaydi. Firebase Anonymous Auth avtomatik ishlaydi. Admin Firebase Email/Password orqali himoyalanadi.
+
+Inglizcha talaffuz brauzerning Web Speech funksiyasi orqali ishlaydi. Alohida audio serveri yoki API kaliti talab qilinmaydi. Eng yaxshi natija uchun Chrome yoki Edge ishlating.
 
 ## Vercel’ga joylash
 

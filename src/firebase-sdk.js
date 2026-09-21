@@ -1,91 +1,40 @@
-const FIREBASE_VERSION = '12.19.0';
-const base = `https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}`;
+const FIREBASE_VERSION='12.19.0';
+const base=`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}`;
+let sdkPromise;
 
-let sdkPromise = null;
-
-/*
- Firebase Console:
- Project Settings → General → Your apps → Config
- bo‘limidagi qiymatlarni quyidagi joylarga kiriting.
-*/
-export const firebaseConfig = {
-  apiKey: 'AIzaSyCZG3oGYGNR2U3oRerzPewMCVryyMwdh0A',
-  authDomain: 'sinfquiz-c8522.firebaseapp.com',
-  projectId: 'sinfquiz-c8522',
-  storageBucket: 'sinfquiz-c8522.firebasestorage.app',
-  messagingSenderId: '1060458952701',
-  appId: '1:1060458952701:web:55f69da8e8f165e15f0b94',
+export const firebaseConfig={
+ apiKey:import.meta.env.VITE_FIREBASE_API_KEY,
+ authDomain:import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+ projectId:import.meta.env.VITE_FIREBASE_PROJECT_ID,
+ storageBucket:import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+ messagingSenderId:import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+ appId:import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const ADMIN_EMAIL = 'admin@sinfquiz.uz';
+export const firebaseReady=()=>Object.values(firebaseConfig).every(Boolean)&&!!import.meta.env.VITE_FIREBASE_ADMIN_EMAIL;
+export const adminEmail=()=>import.meta.env.VITE_FIREBASE_ADMIN_EMAIL||'';
 
-function hasValue(value) {
-  return typeof value === 'string' && value.trim().length > 0;
+export async function getFirebase(){
+ if(!firebaseReady())throw Error('Firebase sozlanmagan. Vercel Environment Variables qiymatlarini kiriting.');
+ if(!sdkPromise)sdkPromise=Promise.all([
+  import(/* @vite-ignore */`${base}/firebase-app.js`),
+  import(/* @vite-ignore */`${base}/firebase-auth.js`),
+  import(/* @vite-ignore */`${base}/firebase-firestore.js`),
+ ]).then(([appSdk,authSdk,storeSdk])=>{
+  const app=appSdk.getApps().length?appSdk.getApp():appSdk.initializeApp(firebaseConfig);
+  return {...authSdk,...storeSdk,app,auth:authSdk.getAuth(app),db:storeSdk.getFirestore(app)};
+ });
+ return sdkPromise;
 }
 
-export function firebaseReady() {
-  return Object.values(firebaseConfig).every(hasValue) &&
-    hasValue(ADMIN_EMAIL);
+export async function waitForAuth(){
+ const sdk=await getFirebase();
+ await new Promise(resolve=>{const stop=sdk.onAuthStateChanged(sdk.auth,()=>{stop();resolve()})});
+ return sdk;
 }
 
-export function adminEmail() {
-  return ADMIN_EMAIL;
-}
-
-export async function getFirebase() {
-  if (!firebaseReady()) {
-    throw new Error(
-      'Firebase konfiguratsiyasi to‘liq kiritilmagan.'
-    );
-  }
-
-  if (!sdkPromise) {
-    sdkPromise = Promise.all([
-      import(/* @vite-ignore */ `${base}/firebase-app.js`),
-      import(/* @vite-ignore */ `${base}/firebase-auth.js`),
-      import(/* @vite-ignore */ `${base}/firebase-firestore.js`),
-    ])
-      .then(([appSdk, authSdk, storeSdk]) => {
-        const app = appSdk.getApps().length
-          ? appSdk.getApp()
-          : appSdk.initializeApp(firebaseConfig);
-
-        return {
-          ...authSdk,
-          ...storeSdk,
-          app,
-          auth: authSdk.getAuth(app),
-          db: storeSdk.getFirestore(app),
-        };
-      })
-      .catch((error) => {
-        sdkPromise = null;
-        throw error;
-      });
-  }
-
-  return sdkPromise;
-}
-
-export async function waitForAuth() {
-  const sdk = await getFirebase();
-
-  await new Promise((resolve) => {
-    const stop = sdk.onAuthStateChanged(sdk.auth, () => {
-      stop();
-      resolve();
-    });
-  });
-
-  return sdk;
-}
-
-export async function ensureAnonymous() {
-  const sdk = await waitForAuth();
-
-  if (!sdk.auth.currentUser) {
-    await sdk.signInAnonymously(sdk.auth);
-  }
-
-  return sdk;
+export async function ensureAnonymous(){
+ const sdk=await waitForAuth();
+ if(!sdk.auth.currentUser)await sdk.signInAnonymously(sdk.auth);
+ return sdk;
 }

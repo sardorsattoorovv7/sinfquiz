@@ -8,7 +8,7 @@ const root=dirname(dirname(fileURLToPath(import.meta.url))),read=name=>readFileS
 
 test('Vercel build is static and Firebase-backed without Express or Socket.IO',()=>{
  const pkg=JSON.parse(read('package.json')),vercel=JSON.parse(read('vercel.json')),env=read('.env.example'),app=read('src/App.jsx'),data=read('src/firebase-data.js'),sdk=read('src/firebase-sdk.js'),rules=read('firestore.rules');
- assert.equal(pkg.version,'4.6.0');
+ assert.equal(pkg.version,'4.8.0');
  assert.equal(pkg.scripts.dev,'vite');
  assert.equal(pkg.dependencies.express,undefined);
  assert.equal(pkg.dependencies['socket.io'],undefined);
