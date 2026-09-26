@@ -1,5 +1,5 @@
-import {firebaseReady} from './firebase-sdk.js';
-import {firebaseApi,subscribeFirebase} from './firebase-data.js';
+import {supabaseReady} from './supabase-sdk.js';
+import {supabaseApi,subscribeSupabase} from './supabase-data.js';
 
 let teacherCsrf='',playerCsrf='',raceCsrf='',typingCsrf='';
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -12,10 +12,10 @@ export function setRaceCsrf(value){raceCsrf=value||''}
 export function setTypingCsrf(value){typingCsrf=value||''}
 export async function api(path,{method='GET',data,role='teacher'}={}){
  if(typeof navigator!=='undefined'&&navigator.onLine===false)throw Error('Internet aloqasi yo‘q. Ulanishni tekshirib, qayta urinib ko‘ring.');
- if(firebaseReady()){
+ if(supabaseReady()){
   const timeout=method==='GET'?10000:18000;
-  try{return await withTimeout(firebaseApi(path,{method,data,role}),timeout)}catch(error){
-   if(method==='GET'&&transient(error)){await wait(450);return withTimeout(firebaseApi(path,{method,data,role}),timeout)}
+  try{return await withTimeout(supabaseApi(path,{method,data,role}),timeout)}catch(error){
+   if(method==='GET'&&transient(error)){await wait(450);return withTimeout(supabaseApi(path,{method,data,role}),timeout)}
    throw error;
   }
  }
@@ -26,6 +26,6 @@ export async function api(path,{method='GET',data,role='teacher'}={}){
 }
 
 export function subscribeRealtime(handlers){
- if(firebaseReady())return subscribeFirebase(handlers);
+ if(supabaseReady())return subscribeSupabase(handlers);
  return null;
 }

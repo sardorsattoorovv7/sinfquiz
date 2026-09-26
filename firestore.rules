@@ -1,66 +1,65 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() {
-      return request.auth != null;
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.email == 'admin@sinfquiz.uz'; }
+    function isTeacher() { return isAdmin() || (signedIn() && exists(/databases/$(database)/documents/profiles/$(request.auth.uid)) && get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.role == 'teacher'); }
+    function owns(data) { return isTeacher() && data.ownerId == request.auth.uid; }
+
+    match /profiles/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+      allow create: if signedIn() && request.auth.uid == uid && ((request.resource.data.role in ['student', 'teacher']) || (isAdmin() && request.resource.data.role == 'admin'));
+      allow update: if signedIn() && request.auth.uid == uid && (request.resource.data.role == resource.data.role || (isAdmin() && request.resource.data.role == 'admin'));
+      allow delete: if false;
     }
 
-    function isAdmin() {
-      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
-    }
-
-    match /admins/{uid} {
-      allow read: if request.auth.uid == uid;
-      allow create: if request.auth.uid == uid
-                    && request.auth.token.email == 'admin@sinfquiz.uz'
-                    && request.resource.data.email == request.auth.token.email;
-      allow update, delete: if false;
+    match /userActivity/{uid} {
+      allow read: if isAdmin();
+      allow create, update: if signedIn() && request.auth.uid == uid && request.resource.data.uid == request.auth.uid;
+      allow delete: if false;
     }
 
     match /quizzes/{quizId} {
-      allow read: if isAdmin() || (signedIn() && resource.data.status == 'active');
-      allow create, update, delete: if isAdmin();
+      allow read: if signedIn() && (resource.data.visibility == 'public' || resource.data.status == 'active' || owns(resource.data));
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid;
+      allow update: if owns(resource.data) && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if owns(resource.data);
+    }
+
+    match /lessons/{lessonId} {
+      allow read: if signedIn() && (resource.data.visibility == 'public' || owns(resource.data));
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid;
+      allow update: if owns(resource.data) && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if owns(resource.data);
     }
 
     match /players/{playerId} {
       allow read: if signedIn();
       allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
-      allow update: if isAdmin() || (signedIn()
-                    && resource.data.uid == request.auth.uid
-                    && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.quizId == resource.data.quizId);
-      allow delete: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow update: if signedIn() && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid && request.resource.data.quizId == resource.data.quizId && request.resource.data.ownerId == resource.data.ownerId;
+      allow delete: if signedIn() && (resource.data.uid == request.auth.uid || (isTeacher() && resource.data.ownerId == request.auth.uid));
     }
 
     match /live/race {
       allow read: if signedIn();
-      allow create, delete: if isAdmin();
-      allow update: if isAdmin() || (signedIn()
-                    && resource.data.active == true
-                    && request.resource.data.active == true
-                    && request.resource.data.id == resource.data.id
-                    && request.resource.data.questions == resource.data.questions
-                    && request.resource.data.racers.size() <= 2);
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if isTeacher() && resource.data.ownerId == request.auth.uid;
+      allow update: if (isTeacher() && resource.data.ownerId == request.auth.uid) || (signedIn() && resource.data.active == true && request.resource.data.active == true && request.resource.data.id == resource.data.id && request.resource.data.ownerId == resource.data.ownerId && request.resource.data.questionsByLane == resource.data.questionsByLane && request.resource.data.questionCount == resource.data.questionCount && request.resource.data.racers.size() <= 2);
     }
 
     match /settings/app {
       allow read: if signedIn();
-      allow create, update, delete: if isAdmin();
+      allow create, update: if isTeacher();
+      allow delete: if false;
     }
 
     match /typingResults/{resultId} {
-      allow read: if isAdmin();
-      allow create: if signedIn()
-                    && request.resource.data.uid == request.auth.uid
-                    && request.resource.data.stages.size() == 5;
-      allow update: if signedIn()
-                    && resource.data.uid == request.auth.uid
-                    && request.resource.data.uid == request.auth.uid;
-      allow delete: if isAdmin();
+      allow read: if signedIn() && (resource.data.uid == request.auth.uid || (isTeacher() && resource.data.ownerId == request.auth.uid));
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid && request.resource.data.stages.size() == 5;
+      allow update: if signedIn() && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid && request.resource.data.ownerId == resource.data.ownerId;
+      allow delete: if isTeacher() && resource.data.ownerId == request.auth.uid;
     }
 
-    match /{document=**} {
-      allow read, write: if false;
-    }
+    match /{document=**} { allow read, write: if false; }
   }
 }

@@ -535,7 +535,12 @@
         "id": "keyboard-mouse-1",
         "type": "test",
         "text": "Klaviaturaning asosiy vazifasi nima?",
-        "options": ["Tasvirni monitorga chiqarish", "Harf, raqam, belgi va buyruqlarni kiritish", "Internet tezligini oshirish", "Ovozni yozib olish"],
+        "options": [
+          "Tasvirni monitorga chiqarish",
+          "Harf, raqam, belgi va buyruqlarni kiritish",
+          "Internet tezligini oshirish",
+          "Ovozni yozib olish"
+        ],
         "correct": 1,
         "points": 100,
         "time": 30,
@@ -546,7 +551,12 @@
         "id": "keyboard-mouse-2",
         "type": "test",
         "text": "Enter tugmasi odatda qanday vazifani bajaradi?",
-        "options": ["Kursor chapidagi belgini o‘chiradi", "Bo‘sh joy qo‘yadi", "Buyruqni tasdiqlaydi yoki yangi qatorga o‘tadi", "Barcha matnni belgilaydi"],
+        "options": [
+          "Kursor chapidagi belgini o‘chiradi",
+          "Bo‘sh joy qo‘yadi",
+          "Buyruqni tasdiqlaydi yoki yangi qatorga o‘tadi",
+          "Barcha matnni belgilaydi"
+        ],
         "correct": 2,
         "points": 100,
         "time": 30,
@@ -557,7 +567,12 @@
         "id": "keyboard-mouse-3",
         "type": "test",
         "text": "Backspace tugmasi qaysi belgini o‘chiradi?",
-        "options": ["Kursorning chap tomonidagi belgini", "Kursorning o‘ng tomonidagi belgini", "Faqat raqamlarni", "Butun hujjatni"],
+        "options": [
+          "Kursorning chap tomonidagi belgini",
+          "Kursorning o‘ng tomonidagi belgini",
+          "Faqat raqamlarni",
+          "Butun hujjatni"
+        ],
         "correct": 0,
         "points": 100,
         "time": 30,
@@ -568,7 +583,12 @@
         "id": "keyboard-mouse-4",
         "type": "test",
         "text": "Delete tugmasining Backspace’dan farqli vazifasi qaysi?",
-        "options": ["Yangi qator ochadi", "Katta harf yozadi", "Faylni saqlaydi", "Kursor o‘ngidagi belgi yoki tanlangan obyektni o‘chiradi"],
+        "options": [
+          "Yangi qator ochadi",
+          "Katta harf yozadi",
+          "Faylni saqlaydi",
+          "Kursor o‘ngidagi belgi yoki tanlangan obyektni o‘chiradi"
+        ],
         "correct": 3,
         "points": 100,
         "time": 35,
@@ -579,7 +599,12 @@
         "id": "keyboard-mouse-5",
         "type": "test",
         "text": "Tab tugmasi nima uchun ishlatiladi?",
-        "options": ["Kompyuterni o‘chirish uchun", "Keyingi maydonga o‘tish yoki chekinish yaratish uchun", "Matnni nusxalash uchun", "Oynani yopish uchun"],
+        "options": [
+          "Kompyuterni o‘chirish uchun",
+          "Keyingi maydonga o‘tish yoki chekinish yaratish uchun",
+          "Matnni nusxalash uchun",
+          "Oynani yopish uchun"
+        ],
         "correct": 1,
         "points": 100,
         "time": 30,
@@ -590,7 +615,12 @@
         "id": "keyboard-mouse-6",
         "type": "test",
         "text": "Sichqonchaning o‘ng tugmasini bir marta bosish odatda nima qiladi?",
-        "options": ["Sahifani pastga siljitadi", "Obyektni sudrab ko‘chiradi", "Qo‘shimcha kontekst menyusini ochadi", "Barcha fayllarni belgilaydi"],
+        "options": [
+          "Sahifani pastga siljitadi",
+          "Obyektni sudrab ko‘chiradi",
+          "Qo‘shimcha kontekst menyusini ochadi",
+          "Barcha fayllarni belgilaydi"
+        ],
         "correct": 2,
         "points": 100,
         "time": 30,
@@ -601,7 +631,12 @@
         "id": "keyboard-mouse-7",
         "type": "test",
         "text": "Drag & Drop amalini to‘g‘ri ta’riflang.",
-        "options": ["Obyektni bosib ushlab, boshqa joyga sudrab ko‘chirish", "G‘ildirakni ikki marta aylantirish", "O‘ng tugmani uzoq bosish", "Klaviaturada tez yozish"],
+        "options": [
+          "Obyektni bosib ushlab, boshqa joyga sudrab ko‘chirish",
+          "G‘ildirakni ikki marta aylantirish",
+          "O‘ng tugmani uzoq bosish",
+          "Klaviaturada tez yozish"
+        ],
         "correct": 0,
         "points": 100,
         "time": 35,
@@ -612,7 +647,12 @@
         "id": "keyboard-mouse-8",
         "type": "test",
         "text": "Belgilangan matnni nusxalash uchun qaysi shortcut ishlatiladi?",
-        "options": ["Ctrl+V", "Ctrl+X", "Ctrl+P", "Ctrl+C"],
+        "options": [
+          "Ctrl+V",
+          "Ctrl+X",
+          "Ctrl+P",
+          "Ctrl+C"
+        ],
         "correct": 3,
         "points": 100,
         "time": 25,
@@ -623,7 +663,12 @@
         "id": "keyboard-mouse-9",
         "type": "test",
         "text": "Belgilangan matnni kesish uchun qaysi shortcut kerak?",
-        "options": ["Ctrl+F", "Ctrl+X", "Ctrl+S", "Ctrl+N"],
+        "options": [
+          "Ctrl+F",
+          "Ctrl+X",
+          "Ctrl+S",
+          "Ctrl+N"
+        ],
         "correct": 1,
         "points": 100,
         "time": 25,
@@ -634,7 +679,12 @@
         "id": "keyboard-mouse-10",
         "type": "test",
         "text": "Oxirgi bajarilgan amalni bekor qilish uchun nima bosiladi?",
-        "options": ["Ctrl+Y", "Ctrl+A", "Ctrl+Z", "Ctrl+O"],
+        "options": [
+          "Ctrl+Y",
+          "Ctrl+A",
+          "Ctrl+Z",
+          "Ctrl+O"
+        ],
         "correct": 2,
         "points": 100,
         "time": 25,
@@ -645,7 +695,12 @@
         "id": "keyboard-mouse-11",
         "type": "test",
         "text": "Ctrl+Z bilan bekor qilingan amalni qayta tiklash uchun qaysi tugmalar ishlatiladi?",
-        "options": ["Ctrl+Y", "Ctrl+W", "Ctrl+B", "Ctrl+P"],
+        "options": [
+          "Ctrl+Y",
+          "Ctrl+W",
+          "Ctrl+B",
+          "Ctrl+P"
+        ],
         "correct": 0,
         "points": 100,
         "time": 30,
@@ -656,7 +711,12 @@
         "id": "keyboard-mouse-12",
         "type": "test",
         "text": "Ochiq oynalar orasida tez almashish uchun qaysi shortcut ishlatiladi?",
-        "options": ["Win+D", "Ctrl+W", "Alt+F4", "Alt+Tab"],
+        "options": [
+          "Win+D",
+          "Ctrl+W",
+          "Alt+F4",
+          "Alt+Tab"
+        ],
         "correct": 3,
         "points": 100,
         "time": 30,
@@ -667,7 +727,12 @@
         "id": "keyboard-mouse-13",
         "type": "test",
         "text": "Windows’da File Explorer’ni tez ochadigan tugmalar qaysi?",
-        "options": ["Win+L", "Win+E", "Win+D", "Ctrl+E"],
+        "options": [
+          "Win+L",
+          "Win+E",
+          "Win+D",
+          "Ctrl+E"
+        ],
         "correct": 1,
         "points": 100,
         "time": 30,
@@ -678,7 +743,12 @@
         "id": "keyboard-mouse-14",
         "type": "test",
         "text": "Ekranning faqat kerakli qismini screenshot qilish uchun qaysi shortcut mos?",
-        "options": ["Ctrl+Shift+S", "Win+P", "Win+Shift+S", "Alt+S"],
+        "options": [
+          "Ctrl+Shift+S",
+          "Win+P",
+          "Win+Shift+S",
+          "Alt+S"
+        ],
         "correct": 2,
         "points": 100,
         "time": 35,
@@ -689,12 +759,283 @@
         "id": "keyboard-mouse-15",
         "type": "test",
         "text": "Kompyuterda xavfsiz ishlash odati qaysi?",
-        "options": ["Noma’lum link va fayllarni ochishdan oldin tekshirish", "Parolni sinfdoshlar bilan bo‘lishish", "Elektr kabelini tortib uzish", "Kompyuter yoniga suyuqlik qo‘yish"],
+        "options": [
+          "Noma’lum link va fayllarni ochishdan oldin tekshirish",
+          "Parolni sinfdoshlar bilan bo‘lishish",
+          "Elektr kabelini tortib uzish",
+          "Kompyuter yoniga suyuqlik qo‘yish"
+        ],
         "correct": 0,
         "points": 100,
         "time": 35,
         "subject": "Kompyuter xavfsizligi",
         "explanation": "Noma’lum link va fayllarni ochishda ehtiyot bo‘lish xavfsiz ishlashning muhim qoidasidir."
+      }
+    ]
+  },
+  {
+    "id": "python-basics",
+    "title": "Python: boshlang‘ich 15 savol",
+    "subject": "Python",
+    "color": "blue",
+    "pin": "110108",
+    "group": "Boshlang‘ich",
+    "status": "passive",
+    "questions": [
+      {
+        "id": "python-basics-1",
+        "type": "test",
+        "text": "IDE nima?",
+        "options": [
+          "Faqat rasm chizadigan dastur",
+          "Internet tezligini o‘lchaydigan qurilma",
+          "Python ma’lumot turi",
+          "Kod yozish, ishga tushirish va xatolarni topishga yordam beradigan dasturlash muhiti"
+        ],
+        "correct": 3,
+        "points": 100,
+        "time": 45,
+        "explanation": "IDE dastur yozish uchun kerakli vositalarni bitta muhitda birlashtiradi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/idle.html"
+      },
+      {
+        "id": "python-basics-2",
+        "type": "test",
+        "text": "print() funksiyasining asosiy vazifasi nima?",
+        "options": [
+          "Matnni har doim butun songa aylantirish",
+          "O‘zgaruvchini o‘chirish",
+          "Ma’lumotni ekranga chiqarish",
+          "Qiymat turini aniqlash"
+        ],
+        "correct": 2,
+        "points": 100,
+        "time": 45,
+        "explanation": "print() berilgan qiymatlarni standart chiqishga, odatda terminalga yozadi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-3",
+        "type": "test",
+        "text": "Ushbu kod nimani chiqaradi?\n\nprint(\"Salom\")",
+        "options": [
+          "Xato",
+          "Salom",
+          "\"Salom\"",
+          "print(Salom)"
+        ],
+        "correct": 1,
+        "points": 100,
+        "time": 45,
+        "explanation": "Qo‘shtirnoqlar matn chegarasini belgilaydi; odatiy print natijasida ular chiqmaydi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-4",
+        "type": "test",
+        "text": "Kod natijasini tanlang.\n\nprint(type(25))",
+        "options": [
+          "<class 'int'>",
+          "<class 'str'>",
+          "<class 'bool'>",
+          "25"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 45,
+        "explanation": "25 — butun son. type() uning turini qaytaradi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-5",
+        "type": "test",
+        "text": "Qo‘shtirnoq ichidagi qiymatning turi qanday?\n\nprint(type(\"25\"))",
+        "options": [
+          "<class 'int'>",
+          "<class 'bool'>",
+          "<class 'float'>",
+          "<class 'str'>"
+        ],
+        "correct": 3,
+        "points": 100,
+        "time": 45,
+        "explanation": "Raqamlardan iborat bo‘lsa ham, qo‘shtirnoq ichidagi \"25\" matndir.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-6",
+        "type": "test",
+        "text": "Ushbu kod nimani chiqaradi?\n\nprint(int(\"12\") + 3)",
+        "options": [
+          "12",
+          "Xato",
+          "15",
+          "123"
+        ],
+        "correct": 2,
+        "points": 100,
+        "time": 45,
+        "explanation": "int(\"12\") matnni 12 butun soniga aylantiradi; 12 + 3 = 15.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-7",
+        "type": "test",
+        "text": "Matnga aylantirishdan keyingi natija qaysi?\n\nprint(str(7) + \"3\")",
+        "options": [
+          "Xato",
+          "73",
+          "10",
+          "<class 'int'>"
+        ],
+        "correct": 1,
+        "points": 100,
+        "time": 45,
+        "explanation": "str(7) — \"7\". Ikki matn + operatori bilan birlashtiriladi: \"7\" + \"3\" = \"73\".",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-8",
+        "type": "test",
+        "text": "bool(0) qanday qiymat beradi?\n\nprint(bool(0))",
+        "options": [
+          "False",
+          "True",
+          "0.0",
+          "\"False\""
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 45,
+        "explanation": "Nol soni mantiqiy tekshiruvda yolg‘on qiymat hisoblanadi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-9",
+        "type": "test",
+        "text": "Bo‘sh matn uchun natija nima?\n\nprint(bool(\"\"))",
+        "options": [
+          "True",
+          "None",
+          "Xato",
+          "False"
+        ],
+        "correct": 3,
+        "points": 100,
+        "time": 45,
+        "explanation": "Bo‘sh satr \"\" mantiqiy tekshiruvda False bo‘ladi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-10",
+        "type": "test",
+        "text": "Bo‘sh bo‘lmagan matn uchun natija nima?\n\nprint(bool(\"0\"))",
+        "options": [
+          "0",
+          "Xato",
+          "True",
+          "False"
+        ],
+        "correct": 2,
+        "points": 100,
+        "time": 45,
+        "explanation": "\"0\" bo‘sh matn emas. Shuning uchun bool(\"0\") True; bu int(0) bilan bir xil emas.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+      },
+      {
+        "id": "python-basics-11",
+        "type": "test",
+        "text": "Amallar tartibiga ko‘ra natija qaysi?\n\nprint(2 + 3 * 4)",
+        "options": [
+          "24",
+          "14",
+          "20",
+          "10"
+        ],
+        "correct": 1,
+        "points": 100,
+        "time": 45,
+        "explanation": "Avval ko‘paytirish: 3 × 4 = 12. Keyin 2 + 12 = 14.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+      },
+      {
+        "id": "python-basics-12",
+        "type": "test",
+        "text": "// operatori ishlatilgan kod natijasi nima?\n\nprint(7 // 2)",
+        "options": [
+          "3",
+          "3.5",
+          "1",
+          "4"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 45,
+        "explanation": "// bo‘lish natijasini pastga qarab butunlashtiradi. 7 // 2 = 3.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+      },
+      {
+        "id": "python-basics-13",
+        "type": "test",
+        "text": "% operatori ishlatilgan kod natijasi nima?\n\nprint(7 % 2)",
+        "options": [
+          "3",
+          "3.5",
+          "14",
+          "1"
+        ],
+        "correct": 3,
+        "points": 100,
+        "time": 45,
+        "explanation": "% bo‘lishdan qolgan qoldiqni beradi: 7 = 2 × 3 + 1.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+      },
+      {
+        "id": "python-basics-14",
+        "type": "test",
+        "text": "== operatori bu yerda qanday natija beradi?\n\nprint(5 == 5)",
+        "options": [
+          "10",
+          "Xato",
+          "True",
+          "False"
+        ],
+        "correct": 2,
+        "points": 100,
+        "time": 45,
+        "explanation": "== ikkita qiymat tengligini tekshiradi. = esa qiymat berish operatoridir.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+      },
+      {
+        "id": "python-basics-15",
+        "type": "test",
+        "text": "Mantiqiy ifoda natijasi nima?\n\nprint((3 > 2) and not False)",
+        "options": [
+          "2",
+          "True",
+          "False",
+          "3"
+        ],
+        "correct": 1,
+        "points": 100,
+        "time": 45,
+        "explanation": "3 > 2 — True; not False — True. True and True natijasi True.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
       }
     ]
   }

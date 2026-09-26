@@ -1,0 +1,272 @@
+[
+  {
+    "id": "python-basics-1",
+    "type": "choice",
+    "group": "python",
+    "text": "IDE nima?",
+    "code": null,
+    "options": [
+      "Faqat rasm chizadigan dastur",
+      "Internet tezligini o‘lchaydigan qurilma",
+      "Python ma’lumot turi",
+      "Kod yozish, ishga tushirish va xatolarni topishga yordam beradigan dasturlash muhiti"
+    ],
+    "answer": "Kod yozish, ishga tushirish va xatolarni topishga yordam beradigan dasturlash muhiti",
+    "explanation": "IDE dastur yozish uchun kerakli vositalarni bitta muhitda birlashtiradi.",
+    "topic": "IDE",
+    "sourceUrl": "https://docs.python.org/3/library/idle.html",
+    "sourceReference": "IDE"
+  },
+  {
+    "id": "python-basics-2",
+    "type": "choice",
+    "group": "python",
+    "text": "print() funksiyasining asosiy vazifasi nima?",
+    "code": null,
+    "options": [
+      "Matnni har doim butun songa aylantirish",
+      "O‘zgaruvchini o‘chirish",
+      "Ma’lumotni ekranga chiqarish",
+      "Qiymat turini aniqlash"
+    ],
+    "answer": "Ma’lumotni ekranga chiqarish",
+    "explanation": "print() berilgan qiymatlarni standart chiqishga, odatda terminalga yozadi.",
+    "topic": "print",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "print"
+  },
+  {
+    "id": "python-basics-3",
+    "type": "choice",
+    "group": "python",
+    "text": "Ushbu kod nimani chiqaradi?",
+    "code": "print(\"Salom\")",
+    "options": [
+      "Xato",
+      "Salom",
+      "\"Salom\"",
+      "print(Salom)"
+    ],
+    "answer": "Salom",
+    "explanation": "Qo‘shtirnoqlar matn chegarasini belgilaydi; odatiy print natijasida ular chiqmaydi.",
+    "topic": "print",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "print"
+  },
+  {
+    "id": "python-basics-4",
+    "type": "choice",
+    "group": "python",
+    "text": "Kod natijasini tanlang.",
+    "code": "print(type(25))",
+    "options": [
+      "<class 'int'>",
+      "<class 'str'>",
+      "<class 'bool'>",
+      "25"
+    ],
+    "answer": "<class 'int'>",
+    "explanation": "25 — butun son. type() uning turini qaytaradi.",
+    "topic": "type",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "type"
+  },
+  {
+    "id": "python-basics-5",
+    "type": "choice",
+    "group": "python",
+    "text": "Qo‘shtirnoq ichidagi qiymatning turi qanday?",
+    "code": "print(type(\"25\"))",
+    "options": [
+      "<class 'int'>",
+      "<class 'bool'>",
+      "<class 'float'>",
+      "<class 'str'>"
+    ],
+    "answer": "<class 'str'>",
+    "explanation": "Raqamlardan iborat bo‘lsa ham, qo‘shtirnoq ichidagi \"25\" matndir.",
+    "topic": "str",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "str"
+  },
+  {
+    "id": "python-basics-6",
+    "type": "choice",
+    "group": "python",
+    "text": "Ushbu kod nimani chiqaradi?",
+    "code": "print(int(\"12\") + 3)",
+    "options": [
+      "12",
+      "Xato",
+      "15",
+      "123"
+    ],
+    "answer": "15",
+    "explanation": "int(\"12\") matnni 12 butun soniga aylantiradi; 12 + 3 = 15.",
+    "topic": "int",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "int"
+  },
+  {
+    "id": "python-basics-7",
+    "type": "choice",
+    "group": "python",
+    "text": "Matnga aylantirishdan keyingi natija qaysi?",
+    "code": "print(str(7) + \"3\")",
+    "options": [
+      "Xato",
+      "73",
+      "10",
+      "<class 'int'>"
+    ],
+    "answer": "73",
+    "explanation": "str(7) — \"7\". Ikki matn + operatori bilan birlashtiriladi: \"7\" + \"3\" = \"73\".",
+    "topic": "str",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "str"
+  },
+  {
+    "id": "python-basics-8",
+    "type": "choice",
+    "group": "python",
+    "text": "bool(0) qanday qiymat beradi?",
+    "code": "print(bool(0))",
+    "options": [
+      "False",
+      "True",
+      "0.0",
+      "\"False\""
+    ],
+    "answer": "False",
+    "explanation": "Nol soni mantiqiy tekshiruvda yolg‘on qiymat hisoblanadi.",
+    "topic": "bool",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "bool"
+  },
+  {
+    "id": "python-basics-9",
+    "type": "choice",
+    "group": "python",
+    "text": "Bo‘sh matn uchun natija nima?",
+    "code": "print(bool(\"\"))",
+    "options": [
+      "True",
+      "None",
+      "Xato",
+      "False"
+    ],
+    "answer": "False",
+    "explanation": "Bo‘sh satr \"\" mantiqiy tekshiruvda False bo‘ladi.",
+    "topic": "bool",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "bool"
+  },
+  {
+    "id": "python-basics-10",
+    "type": "choice",
+    "group": "python",
+    "text": "Bo‘sh bo‘lmagan matn uchun natija nima?",
+    "code": "print(bool(\"0\"))",
+    "options": [
+      "0",
+      "Xato",
+      "True",
+      "False"
+    ],
+    "answer": "True",
+    "explanation": "\"0\" bo‘sh matn emas. Shuning uchun bool(\"0\") True; bu int(0) bilan bir xil emas.",
+    "topic": "bool",
+    "sourceUrl": "https://docs.python.org/3/library/functions.html",
+    "sourceReference": "bool"
+  },
+  {
+    "id": "python-basics-11",
+    "type": "choice",
+    "group": "python",
+    "text": "Amallar tartibiga ko‘ra natija qaysi?",
+    "code": "print(2 + 3 * 4)",
+    "options": [
+      "24",
+      "14",
+      "20",
+      "10"
+    ],
+    "answer": "14",
+    "explanation": "Avval ko‘paytirish: 3 × 4 = 12. Keyin 2 + 12 = 14.",
+    "topic": "Arifmetik operator",
+    "sourceUrl": "https://docs.python.org/3/library/stdtypes.html",
+    "sourceReference": "Arifmetik operator"
+  },
+  {
+    "id": "python-basics-12",
+    "type": "choice",
+    "group": "python",
+    "text": "// operatori ishlatilgan kod natijasi nima?",
+    "code": "print(7 // 2)",
+    "options": [
+      "3",
+      "3.5",
+      "1",
+      "4"
+    ],
+    "answer": "3",
+    "explanation": "// bo‘lish natijasini pastga qarab butunlashtiradi. 7 // 2 = 3.",
+    "topic": "Bo‘lish",
+    "sourceUrl": "https://docs.python.org/3/library/stdtypes.html",
+    "sourceReference": "Bo‘lish"
+  },
+  {
+    "id": "python-basics-13",
+    "type": "choice",
+    "group": "python",
+    "text": "% operatori ishlatilgan kod natijasi nima?",
+    "code": "print(7 % 2)",
+    "options": [
+      "3",
+      "3.5",
+      "14",
+      "1"
+    ],
+    "answer": "1",
+    "explanation": "% bo‘lishdan qolgan qoldiqni beradi: 7 = 2 × 3 + 1.",
+    "topic": "Qoldiq",
+    "sourceUrl": "https://docs.python.org/3/library/stdtypes.html",
+    "sourceReference": "Qoldiq"
+  },
+  {
+    "id": "python-basics-14",
+    "type": "choice",
+    "group": "python",
+    "text": "== operatori bu yerda qanday natija beradi?",
+    "code": "print(5 == 5)",
+    "options": [
+      "10",
+      "Xato",
+      "True",
+      "False"
+    ],
+    "answer": "True",
+    "explanation": "== ikkita qiymat tengligini tekshiradi. = esa qiymat berish operatoridir.",
+    "topic": "Taqqoslash",
+    "sourceUrl": "https://docs.python.org/3/library/stdtypes.html",
+    "sourceReference": "Taqqoslash"
+  },
+  {
+    "id": "python-basics-15",
+    "type": "choice",
+    "group": "python",
+    "text": "Mantiqiy ifoda natijasi nima?",
+    "code": "print((3 > 2) and not False)",
+    "options": [
+      "2",
+      "True",
+      "False",
+      "3"
+    ],
+    "answer": "True",
+    "explanation": "3 > 2 — True; not False — True. True and True natijasi True.",
+    "topic": "Mantiqiy operator",
+    "sourceUrl": "https://docs.python.org/3/library/stdtypes.html",
+    "sourceReference": "Mantiqiy operator"
+  }
+]

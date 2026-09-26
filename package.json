@@ -1,7 +1,7 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "4.8.1",
+  "version": "7.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.1.1",
+    "@supabase/supabase-js": "^2.57.4",
     "lucide-react": "1.45.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",

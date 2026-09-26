@@ -8,8 +8,8 @@ import {placementBank,placementLevels,randomPlacementQuestion} from '../data/pla
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
 const lessons=JSON.parse(readFileSync(join(root,'data/english-typing-lessons.json'),'utf8'));
 
-test('English typing bank has five complete lessons for every A1-B2 level',()=>{
- for(const level of ['A1','A2','B1','B2']){
+test('English typing bank has five complete lessons for every A1-C2 level',()=>{
+ for(const level of ['A1','A2','B1','B2','C1','C2']){
   const course=lessons.filter(item=>item.englishLevel===level);
   assert.equal(course.length,5);
   course.forEach((item,index)=>{
@@ -22,11 +22,24 @@ test('English typing bank has five complete lessons for every A1-B2 level',()=>{
  }
 });
 
-test('Adaptive placement bank has 192 unique A1-B2 questions',()=>{
- assert.equal(placementBank.length,192);
- assert.equal(new Set(placementBank.map(item=>item.id)).size,192);
- for(const level of placementLevels)assert.equal(placementBank.filter(item=>item.level===level).length,48);
- const used=[];for(let index=0;index<10;index++){const question=randomPlacementQuestion('A1',used);assert.ok(!used.includes(question.id));used.push(question.id)}
+test('Adaptive placement bank has 276 unique A1-C2 questions including reading',()=>{
+ assert.deepEqual(placementLevels,['A1','A2','B1','B2','C1','C2']);
+ assert.equal(placementBank.length,276);
+ assert.equal(new Set(placementBank.map(item=>item.id)).size,276);
+ for(const level of placementLevels){
+  const expected=['C1','C2'].includes(level)?30:54;
+  assert.equal(placementBank.filter(item=>item.level===level).length,expected);
+  assert.equal(placementBank.filter(item=>item.level===level&&item.kind==='reading').length,6);
+ }
+ assert.equal(placementBank.filter(item=>item.kind==='reading').length,36);
+ const used=[];
+ for(let index=0;index<15;index++){
+  const kind=[2,5,8,11,14].includes(index)?'reading':'language';
+  const question=randomPlacementQuestion(placementLevels[index%6],used,kind);
+  assert.equal(question.kind,kind);
+  assert.ok(!used.includes(question.id));
+  used.push(question.id);
+ }
 });
 
 test('Long-text typing course remains available through the 300-500 word stage',()=>{

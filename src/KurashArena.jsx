@@ -25,10 +25,10 @@ export default function KurashArena({state='idle',compact=false,label}){
 
   const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x08111f,7,15);
   const camera=new THREE.PerspectiveCamera(34,1,.1,30);camera.position.set(3.8,2.7,6.2);camera.lookAt(0,1.05,0);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;host.current.appendChild(renderer.domElement);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.35));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;host.current.appendChild(renderer.domElement);
 
   scene.add(new THREE.HemisphereLight(0xdceaff,0x172033,2.3));
-  const key=new THREE.DirectionalLight(0xffedcf,4.8);key.position.set(-3,6,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
+  const key=new THREE.DirectionalLight(0xffedcf,4.8);key.position.set(-3,6,4);key.castShadow=true;key.shadow.mapSize.set(512,512);scene.add(key);
   const blue=new THREE.SpotLight(0x4e8dff,22,14,.34,.7);blue.position.set(-3.5,5,-2);blue.target.position.set(0,1,0);scene.add(blue,blue.target);
   const green=new THREE.SpotLight(0x42d99a,18,14,.34,.7);green.position.set(3.5,5,-2);green.target.position.set(0,1,0);scene.add(green,green.target);
 
@@ -56,13 +56,13 @@ export default function KurashArena({state='idle',compact=false,label}){
    mixer=new THREE.AnimationMixer(model);for(const clip of gltf.animations)actions.set(clip.name,mixer.clipAction(clip));play(live.current);setStatus('ready');
   },undefined,()=>{if(!disposed)setStatus('fallback')});
 
-  const observer=new ResizeObserver(()=>{if(!host.current)return;const {width,height}=host.current.getBoundingClientRect();if(width&&height){renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix()}});observer.observe(host.current);
+  let visible=true;const observer=new ResizeObserver(()=>{if(!host.current)return;const {width,height}=host.current.getBoundingClientRect();if(width&&height){renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix()}});observer.observe(host.current);const visibility=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting!==false},{rootMargin:'120px'});visibility.observe(host.current);
   const lost=event=>{event.preventDefault();setStatus('fallback')};renderer.domElement.addEventListener('webglcontextlost',lost);
-  renderer.setAnimationLoop(()=>{if(document.hidden)return;play(live.current);if(mixer)mixer.update(Math.min(clock.getDelta(),.05));renderer.render(scene,camera)});
-  return()=>{disposed=true;observer.disconnect();renderer.setAnimationLoop(null);renderer.domElement.removeEventListener('webglcontextlost',lost);if(model)scene.remove(model);const geometries=new Set(),materials=new Set();scene.traverse(object=>{if(object.geometry)geometries.add(object.geometry);if(object.material)for(const material of(Array.isArray(object.material)?object.material:[object.material]))materials.add(material)});geometries.forEach(item=>item.dispose());materials.forEach(item=>item.dispose());renderer.dispose();renderer.domElement.remove()};
+  renderer.setAnimationLoop(()=>{if(document.hidden||!visible)return;play(live.current);if(mixer)mixer.update(Math.min(clock.getDelta(),.05));renderer.render(scene,camera)});
+  return()=>{disposed=true;observer.disconnect();visibility.disconnect();renderer.setAnimationLoop(null);renderer.domElement.removeEventListener('webglcontextlost',lost);if(model)scene.remove(model);const geometries=new Set(),materials=new Set();scene.traverse(object=>{if(object.geometry)geometries.add(object.geometry);if(object.material)for(const material of(Array.isArray(object.material)?object.material:[object.material]))materials.add(material)});geometries.forEach(item=>item.dispose());materials.forEach(item=>item.dispose());renderer.dispose();renderer.domElement.remove()};
  },[]);
 
- return <div className={`solo-arena ${compact?'compact':''} state-${state}`} ref={host} role="img" aria-label="Tayyor animation clip ishlatayotgan 3D arena qahramoni">
+ return <div className={`solo-arena ${compact?'compact':''} state-${state}`} ref={host} role="img" aria-label="Harakatlanuvchi 3D arena qahramoni">
   <div className="solo-arena-brand" aria-hidden="true"><b>BILIM ARENA</b><span>READY-MADE 3D MOTION</span></div>
   <div className="solo-arena-state" aria-hidden="true"><i/><span>{label||labels[state]||labels.idle}</span></div>
   {status==='loading'&&<div className="arena-loader"><i/><span>3D qahramon yuklanmoqda…</span></div>}

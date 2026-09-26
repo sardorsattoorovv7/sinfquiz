@@ -14,15 +14,23 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
  globalThis.__SINFQUIZ_LEGACY_TEST__=true;
  const React=(await import('react')).default;const {render,screen,cleanup,within}=await import('@testing-library/react');const user=(await import('@testing-library/user-event')).default.setup();
  const vite=await createServer({root,server:{middlewareMode:true},appType:'custom'});
- const bank=JSON.parse(readFileSync(join(root,'data/question-bank.json'))),typingLessons=JSON.parse(readFileSync(join(root,'data/english-typing-lessons.json')));let account=null,records=[],stage=0,raceActive=false,raceModel=null,typingActive=false,typingModel=null;const calls=[];
+ const bank=JSON.parse(readFileSync(join(root,'data/question-bank.json'))),typingLessons=JSON.parse(readFileSync(join(root,'data/english-typing-lessons.json')));let account=null,records=[{...bank[0],id:'seed-quiz',pin:'654321',ownerId:'local-admin'}],stage=0,raceActive=false,raceModel=null,typingActive=false,typingModel=null,nationalModel=null;const calls=[];
  const q={id:'ui-q',type:'test',text:'Word nimaga kerak?',options:['Matn yozish','Video','Ovoz','Server'],time:30,points:100,subject:'Word'};
  const player={id:'ui-player',quizId:'ui-quiz',name:'Sinov',avatar:'🤖',score:0,answers:0,correct:0,startedAt:Date.now()};
  const raceQuestion={...q,id:'race-q'};
  const game=()=>({quiz:{id:'ui-quiz',title:'Word darsi',questionCount:1,subject:'Word',group:'8-A'},player:{...player,score:stage?100:0,correct:stage?1:0,answers:stage?1:0,lastEarned:stage?100:0},question:stage===2?null:q,index:0,deadline:Date.now()+30000,serverNow:Date.now(),csrf:'player-test',finished:stage===2,feedback:stage?{ratio:1,earned:100,correct:true,checks:[],correctIndex:0}:null,ranking:[{...player,score:stage?100:0}]});
  globalThis.fetch=async(path,options={})=>{const data=options.body?JSON.parse(options.body):{};calls.push({path,data});let value={},status=200;
   if(path==='/auth/session')value={user:account,csrf:account?'teacher-test':null};
-  else if(path==='/auth/login'){if(data.username==='admin'&&data.password==='admin123'){account={id:'local-admin',name:'Administrator',username:'admin'};value={user:account,csrf:'teacher-test'}}else{status=401;value={error:'Login yoki parol noto‘g‘ri.'}}}
-  else if(path==='/api/quizzes'&&(!options.method||options.method==='GET'))value={quizzes:records,players:[],race:raceModel?.race||null,typing:{active:typingActive,stageCount:5,studentCount:typingModel?1:0,results:[]}};
+  else if(path==='/auth/login'){if(data.username==='admin'&&data.password==='admin123'){account={id:'local-admin',role:'teacher',name:'O‘qituvchi',username:'admin'};value={user:account,csrf:'teacher-test'}}else{status=401;value={error:'Login yoki parol noto‘g‘ri.'}}}
+  else if(path==='/api/catalog')value={quizzes:[],lessons:[]};
+  else if(path==='/api/national')value={sections:[{id:'fixture-national',title:'Aralash variant',subject:'Matematika',description:'Regression fixture',visibility:'public',approvalStatus:'approved',questionCount:30,durationMinutes:60}]}
+  else if(path==='/api/national/start'){nationalModel={section:{id:'fixture-national',title:'Aralash variant',subject:'Matematika',questionCount:30},index:0,answers:Array(30).fill(null),selected:null,question:{...q,text:'National fixture'},startedAt:Date.now(),endsAt:Date.now()+3600000,finished:false};value=nationalModel}
+  else if(path==='/api/national/answer'){nationalModel={...nationalModel,selected:data.value,answers:nationalModel.answers.map((v,i)=>i===nationalModel.index?true:v)};value=nationalModel}
+  else if(path==='/api/national/navigate'){nationalModel={...nationalModel,index:data.index,selected:null};value=nationalModel}
+  else if(path==='/api/national/finish'){nationalModel={...nationalModel,finished:true,result:{correct:0,total:30,score:0,scaleMax:75,level:'Mashq',method:'Regression fixture'},review:[{id:'r1',number:1,text:'Review fixture',topic:'Test topic',selected:1,selectedText:'Incorrect fixture',correctText:'Correct fixture',correct:false,explanation:'Explanation fixture'},{id:'r2',number:2,text:'Correct question',topic:'Test topic',selected:0,selectedText:'Correct fixture',correctText:'Correct fixture',correct:true,explanation:'Second explanation'}]};value=nationalModel}
+  else if(path==='/api/national/session')value=nationalModel
+  else if(path==='/api/national/leave'){nationalModel=null;value={ok:true}}
+  else if(path==='/api/quizzes'&&(!options.method||options.method==='GET'))value={quizzes:records,publicQuizzes:[],lessons:[],players:[],race:raceModel?.race||null,typing:{active:typingActive,stageCount:5,studentCount:typingModel?1:0,results:[]}};
   else if(path==='/api/quizzes'&&options.method==='POST'){const quiz={...data,id:'new-quiz',ownerId:'local-admin'};records=[quiz];value={quiz}}
   else if(path==='/api/quizzes/new-quiz'){records=[{...data,id:'new-quiz',ownerId:'local-admin'}];value={quiz:records[0]}}
   else if(path==='/api/resolve'){if(data.pin==='123456')value={quiz:game().quiz,ticket:'fixture-ticket'};else{status=404;value={error:'Kod topilmadi yoki test hali ochilmagan.'}}}
@@ -47,36 +55,88 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
  };
  try{
   const {default:App}=await vite.ssrLoadModule('/src/App.jsx');render(React.createElement(App));
-  await screen.findByRole('button',{name:'Admin kirishi'});
+  assert.ok((await screen.findAllByRole('button',{name:'Kirish'})).length>=1);
   assert.equal(screen.queryByText(/Google/),null);
   assert.equal(screen.queryByText(/Faol testlar/),null);
-  assert.ok(screen.getByText(/akkaunt ham, parol ham kerak emas/i));
-  const nav=screen.getByRole('navigation',{name:'Asosiy navigatsiya'});assert.ok(within(nav).getByRole('button',{name:'Dark rejimga o‘tish'}));
-  await user.click(screen.getByRole('button',{name:'Dark rejimga o‘tish'}));assert.equal(document.documentElement.dataset.theme,'dark');
-  await user.click(screen.getByRole('button',{name:'Admin kirishi'}));await screen.findByRole('heading',{name:'Login va parol bilan kirish'});
-  assert.ok(screen.getByText(/Parol Firebase Authentication’da yaratiladi/));
-  await user.type(screen.getByLabelText('Parol'),'wrong');await user.click(screen.getByRole('button',{name:'Admin paneliga kirish'}));await screen.findByText('Login yoki parol noto‘g‘ri.');
-  await user.clear(screen.getByLabelText('Parol'));await user.type(screen.getByLabelText('Parol'),'admin123');await user.click(screen.getByRole('button',{name:'Admin paneliga kirish'}));await screen.findByRole('heading',{name:'Testlar boshqaruvi'});
+  assert.equal(document.querySelector('.active-lessons'),null);
+  assert.equal(document.querySelector('.nav-brand').tagName,'SPAN');
+  assert.equal(within(screen.getByRole('navigation',{name:'Asosiy navigatsiya'})).queryByText('CEFR Mock'),null);
+  assert.ok(screen.getByText(/Faqat o‘qituvchi bergan kod yetarli/i));
+  const nav=screen.getByRole('navigation',{name:'Asosiy navigatsiya'});assert.ok(within(nav).getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));
+  await user.click(screen.getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));assert.equal(document.documentElement.dataset.theme,'dark');
+  await user.click(within(nav).getByRole('button',{name:'Kirish'}));await screen.findByRole('heading',{name:'Tizimga kirish'});
+  assert.ok(screen.getByText(/Parol Supabase Authentication’da belgilanadi/));
+  await user.type(screen.getByLabelText('Parol'),'wrong');await user.click(screen.getAllByRole('button',{name:'Kirish'}).at(-1));await screen.findByText('Login yoki parol noto‘g‘ri.');
+  await user.clear(screen.getByLabelText('Parol'));await user.type(screen.getByLabelText('Parol'),'admin123');await user.click(screen.getAllByRole('button',{name:'Kirish'}).at(-1));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});
   assert.equal(document.documentElement.dataset.theme,'dark');
-  await user.click(screen.getByRole('button',{name:'1v1 poyga'}));await screen.findByRole('heading',{name:'Ikki o‘quvchi, bir xil 10 savol'});await user.click(screen.getByRole('button',{name:/Poygani yoqish/}));await screen.findByText('O‘quvchilar kutilmoqda');
-  await user.click(screen.getByRole('button',{name:'Typing mashqi'}));await screen.findByRole('heading',{name:'Ikki rejimli Typing Akademiyasi'});await user.click(screen.getByRole('button',{name:'PASSIVE'}));await screen.findByRole('button',{name:'ACTIVE'});
-  await user.click(screen.getByRole('button',{name:'Testlar'}));await user.click(screen.getByRole('button',{name:'Word',exact:true}));await screen.findByRole('heading',{name:'Testni tahrirlash'});await user.click(screen.getByRole('button',{name:'Saqlash',exact:true}));await screen.findByRole('heading',{name:'Testlar boshqaruvi'});assert.equal(records[0].status,'passive');
+  await user.click(screen.getByRole('button',{name:'1v1 poyga'}));await screen.findByRole('heading',{name:'Savollarni o‘zingiz tanlang'});await user.click(screen.getByRole('button',{name:/Poygani ochish/}));await screen.findByText('O‘quvchilar kutilmoqda');
+  await user.click(screen.getByRole('button',{name:'Matn terish'}));await screen.findByRole('heading',{name:'Ikki yo‘nalishdagi amaliy mashqlar'});await user.click(screen.getByRole('button',{name:'YOPIQ'}));await screen.findByRole('button',{name:'OCHIQ'});
+  await user.click(screen.getByRole('button',{name:'Sinf testlarim'}));await user.click(screen.getByRole('button',{name:'Word',exact:true}));await screen.findByRole('heading',{name:'Testni tahrirlash'});await user.click(screen.getByRole('button',{name:'Saqlash',exact:true}));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});assert.equal(records[0].status,'passive');
+  await user.click(screen.getByRole('button',{name:'Python',exact:true}));await screen.findByRole('heading',{name:'Testni tahrirlash'});await user.click(screen.getByRole('button',{name:'Saqlash',exact:true}));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});assert.equal(records[0].questions.length,15);assert.equal(records[0].status,'passive');
 
   cleanup();account=null;stage=0;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByLabelText('O‘YIN KODI');
   await user.type(screen.getByLabelText('O‘YIN KODI'),'123456');await user.click(screen.getByRole('button',{name:'Qo‘shilish'}));
-  await screen.findByRole('heading',{name:'O‘yinga qo‘shiling'});await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Sinov');await user.click(screen.getByRole('button',{name:'Avatar 3',exact:true}));await user.click(screen.getByRole('button',{name:'Maydonga kirish',exact:true}));
-  await screen.findByRole('heading',{name:q.text});assert.ok(await screen.findByRole('img',{name:/Tayyor animation clip/}));assert.ok(screen.getByText('3D BILIM ARENA'));
+  await screen.findByRole('heading',{name:'Testga tayyorlaning'});await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Sinov');await user.click(screen.getByRole('button',{name:'Avatar 3',exact:true}));await user.click(screen.getByRole('button',{name:'Testni boshlash',exact:true}));
+  await screen.findByRole('heading',{name:q.text});assert.ok(await screen.findByRole('img',{name:/Harakatlanuvchi 3D arena/}));assert.ok(screen.getByText('BILIM MAYDONI'));
+  await user.click(document.querySelector('.nav-brand'));assert.ok(screen.getByRole('heading',{name:q.text}));
+  assert.equal(screen.queryByRole('button',{name:'Tizimdan chiqish'}),null);
+  assert.equal(sessionStorage.getItem('sq_active_hash'),'#play');
   await user.click(screen.getByRole('button',{name:'A Matn yozish'}));await user.click(screen.getByRole('button',{name:'Javobni yuborish'}));await screen.findByText('Ajoyib! To‘g‘ri javob');
   assert.deepEqual(Object.keys(calls.find(call=>call.path==='/api/play/answer').data).sort(),['questionId','value']);
-  await user.click(screen.getByRole('button',{name:'Yakunlash'}));assert.ok((await screen.findAllByText('TEST YAKUNLANDI')).length>=1);assert.ok((await screen.findAllByRole('img',{name:/Tayyor animation clip/})).length);
+  await user.click(screen.getByRole('button',{name:'Yakunlash'}));assert.ok((await screen.findAllByText('TEST YAKUNLANDI')).length>=1);assert.ok((await screen.findAllByRole('img',{name:/Harakatlanuvchi 3D arena/})).length);
   cleanup();stage=0;history.replaceState(null,'',location.pathname);render(React.createElement(App));
-  await screen.findByRole('button',{name:/Poygaga qo‘shilish/});await user.click(screen.getByRole('button',{name:/Poygaga qo‘shilish/}));await screen.findByRole('heading',{name:'Bitta ekranda 1v1'});
-  await user.type(screen.getByPlaceholderText('1-o‘quvchi ismi'),'Ali');await user.type(screen.getByPlaceholderText('2-o‘quvchi ismi'),'Vali');await user.click(screen.getByRole('button',{name:'Split poygani boshlash'}));assert.equal(screen.getAllByRole('img',{name:/Tayyor animation clip/}).length,2);
+  await screen.findByRole('button',{name:/Poygaga kirish/});await user.click(screen.getByRole('button',{name:/Poygaga kirish/}));await screen.findByRole('heading',{name:'1v1 poygaga tayyorlaning'});
+  await user.type(screen.getByPlaceholderText('1-o‘quvchi ismi'),'Ali');await user.type(screen.getByPlaceholderText('2-o‘quvchi ismi'),'Vali');await user.click(screen.getByRole('button',{name:'Poygani boshlash'}));assert.ok(screen.getAllByText('Yugurmoqda').length>=2);
   assert.equal((await screen.findAllByRole('heading',{name:raceQuestion.text})).length,2);
   await user.click(screen.getAllByRole('button',{name:'A Matn yozish'})[0]);
-  await user.click(screen.getAllByRole('button',{name:'Javobni yuborish'})[0]);
+  await user.click(screen.getAllByRole('button',{name:'Javob berish'})[0]);
   await screen.findByRole('heading',{name:'Ali g‘olib!'});
-  cleanup();raceActive=false;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByRole('button',{name:/Mashqni boshlash/});await user.click(screen.getByRole('button',{name:/Mashqni boshlash/}));await screen.findByRole('heading',{name:'Typing rejimini tanlang'});await user.click(screen.getByRole('button',{name:/Darajani tanlash/}));await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Malika');await user.click(screen.getByRole('button',{name:'A1 mashqiga kirish'}));await screen.findByRole('heading',{name:'School routine',level:1});await user.click(screen.getByRole('button',{name:'Tinglash va boshlash'}));const typingBox=await screen.findByPlaceholderText('Masalan: I go to school every day.');await user.type(typingBox,typingLessons[0].text);await user.click(screen.getByRole('button',{name:/Gapni tekshirish/}));await screen.findByRole('heading',{name:'Barakalla, Malika!'});
+  cleanup();raceActive=false;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByRole('button',{name:/Mashqni boshlash/});await user.click(screen.getByRole('button',{name:/Mashqni boshlash/}));await screen.findByRole('heading',{name:'Mashq turini tanlang'});await user.click(screen.getByRole('button',{name:/Darajani o‘zim tanlayman/}));await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Malika');await user.click(screen.getByRole('button',{name:'A1 darajasini boshlash'}));await screen.findByRole('heading',{name:'School routine',level:1});await user.click(screen.getByRole('button',{name:'Gapni tinglash'}));const typingBox=await screen.findByPlaceholderText('Masalan: I go to school every day.');await user.type(typingBox,typingLessons[0].text);await user.click(screen.getByRole('button',{name:/Javobni tekshirish/}));await screen.findByRole('heading',{name:'Barakalla, Malika!'});
+  cleanup();account={id:'regression-student',role:'student',name:'Student'};typingModel=null;typingActive=false;raceActive=false;history.replaceState(null,'',location.pathname);render(React.createElement(App));
+  await screen.findByRole('button',{name:/Milliy test/});await user.click(screen.getByRole('button',{name:/Milliy test/}));await screen.findByRole('heading',{name:'Fan va bo‘limni tanlang'});await user.click(screen.getByRole('button',{name:'Testni boshlash'}));await screen.findByRole('heading',{name:'National fixture'});
+  assert.equal(screen.queryByRole('button',{name:'Tizimdan chiqish'}),null);assert.equal(sessionStorage.getItem('sq_active_hash'),'#national-test');
+  await user.click(document.querySelector('.nav-brand'));assert.ok(screen.getByRole('heading',{name:'National fixture'}));
+  await user.click(screen.getByRole('button',{name:'B Video'}));globalThis.confirm=()=>true;
+  await user.click(screen.getByRole('button',{name:'Testni tugatish'}));await screen.findByRole('heading',{name:'Xatolar tahlili'});
+  assert.ok(screen.getByText('Incorrect fixture'));assert.ok(screen.getByText('Correct fixture'));assert.ok(screen.getByText('Explanation fixture'));assert.equal(screen.queryByText('Correct question'),null);
+  await user.click(screen.getByRole('button',{name:'Barcha javoblar'}));assert.ok(screen.getByText('Correct question'));
+  await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(screen.getByRole('button',{name:'Bosh sahifaga chiqish'}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
+  // Native sourced reading: no upload or external redirect is required.
+  await user.click(screen.getByRole('button',{name:/CEFR \/ Multilevel/}));
+  await screen.findByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'});
+  assert.equal(document.querySelector('input[type=file]'),null);
+  await user.click(screen.getByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'}));
+  await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Boshlash',exact:true}));
+  await screen.findByRole('heading',{name:'Who is the 2004 Teacher of the Year? Where does she live?'});
+  assert.ok(screen.getByText(/A teacher of English as a second language is the two-thousand-four/));
+  await user.click(screen.getByRole('radio',{name:/Kathy Mellor, Rhode Island/}));
+  await user.click(screen.getByRole('button',{name:'Keyin ko‘rish'}));
+  assert.equal(sessionStorage.getItem('sq_active_hash'),'#open-exam');
+  let saved=JSON.parse(localStorage.getItem('sq_open_attempt_regression-student'));
+  assert.equal(saved.answers['teacher-1'],'Kathy Mellor, Rhode Island');assert.equal(saved.flags['teacher-1'],true);
+  assert.equal(screen.queryByRole('button',{name:'Tizimdan chiqish'}),null);
+  await user.click(document.querySelector('.nav-brand'));assert.ok(document.querySelector('.nx-workspace'));
+  cleanup();render(React.createElement(App));
+  await screen.findByRole('heading',{name:'Who is the 2004 Teacher of the Year? Where does she live?'});
+  assert.ok(screen.getByRole('radio',{name:/Kathy Mellor, Rhode Island/}).checked);
+  await user.click(screen.getByRole('button',{name:'Tugatish',exact:true}));
+  await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Davom ettirish'}));
+  assert.ok(document.querySelector('.nx-workspace'));
+  await user.click(screen.getByRole('button',{name:'Tugatish',exact:true}));
+  await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Ha, tugatish'}));
+  await screen.findByRole('heading',{name:'Javoblar tahlili'});assert.ok(screen.getByText('1/30'));
+  await user.click(screen.getByRole('button',{name:'Testlarga qaytish'}));
+  await user.click(screen.getByRole('button',{name:'Python',exact:true}));
+  await user.click(screen.getByRole('button',{name:'Boshlash: Python asoslari'}));
+  await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Boshlash',exact:true}));
+  await screen.findByRole('heading',{name:'IDE nima?'});
+  await user.click(screen.getByRole('radio',{name:/Kod yozish, ishga tushirish/}));
+  await user.click(screen.getByRole('button',{name:'Tugatish',exact:true}));
+  await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Ha, tugatish'}));
+  await screen.findByRole('heading',{name:'Javoblar tahlili'});assert.ok(screen.getByText('1/15'));
+  assert.equal(sessionStorage.getItem('sq_active_hash'),null);
+  await user.click(screen.getByRole('button',{name:'Barchasi',exact:true}));
+  assert.ok(screen.getByText(/IDE dastur yozish uchun/));
   console.log('UI checks: local admin, code-only quiz, no-code 1v1 race, split runners, typing ACTIVE/PASSIVE, typing join, answer, winner, theme, 3D fallback and result.');
  }finally{cleanup();delete globalThis.__SINFQUIZ_LEGACY_TEST__;await vite.close();dom.window.close()}
 });
