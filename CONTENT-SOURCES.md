@@ -47,3 +47,11 @@ Tarjima va yechim izohlari SinfQuiz tomonidan yozilgan. Bu to‘plam O‘zbekist
 - https://docs.python.org/3/library/idle.html
 
 Hujjatlardan uzun parchalar ko‘chirilmagan. Kod chiqishlari testda Python 3 interpreteri bilan tekshiriladi. Savollar: `data/python-basics.json`; matn va kalit: `PYTHON-15-TEST.md`.
+
+## Milliy katalogdagi admin variantlari (7.5)
+
+`data/national-ready.js` yuqoridagi 30 algebra va 30 VOA Reading savolini milliy mashqning to‘rt variantli ko‘rinishiga o‘tkazadi. Matematika natijalarining sonlari va matnlar Boyden kitobidagi masalalarga tayanadi; chalg‘ituvchi sonlar SinfQuiz tomonidan tuzilgan. Ingliz tilidagi 5 ta qisqa javob mashqi uchun to‘rt variant yozilgan. Reading matnlari o‘quvchiga savol yonida beriladi; manba va nashr sanasi savollar bilan saqlanadi. Ushbu 60 savol yangi noyob savollar sifatida sanalmaydi, mavjud savollarning yana bir ishlash rejimidir. Baho rasmiy milliy sertifikatning Rash bahosi emas.
+
+## CEFR / Multilevel mashq variantlari (7.7)
+
+Formatga yo‘nalish: Bilim va malakalarni baholash agentligining [test formatlari](https://uzbmb.uz/page/test_sinovlari_formati) va [Speaking formati](https://uzbmb.uz/upload/file/pdf/phone/Speaking_format.pdf). Platformadagi savollar, vaziyatlar, suhbatlar, matnlar, javob variantlari va izohlar SinfQuiz uchun original yozilgan; rasmiy savollar ko‘chirilmagan. 10 ta mavzu `data/cefr-ready-cases.js` da, jami 810 topshiriq `data/cefr-ready-bank.json` da. Listening matnlari `data/cefr-audio-scripts.json` da; 60 ta MP3 mahalliy flite sintezida yaratilgan, inson ovozi yozuvi emas. Tayyorlash kodi `scripts/generate-cefr-ready.mjs` va `scripts/generate-cefr-audio.py` da. Imtihonda aynan shu savollar tushishi kafolatlanmaydi.

@@ -13,7 +13,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
  Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});globalThis.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});window.matchMedia=globalThis.matchMedia;window.scrollTo=()=>{};globalThis.IS_REACT_ACT_ENVIRONMENT=true;
  globalThis.__SINFQUIZ_LEGACY_TEST__=true;
  const React=(await import('react')).default;const {render,screen,cleanup,within}=await import('@testing-library/react');const user=(await import('@testing-library/user-event')).default.setup();
- const vite=await createServer({root,server:{middlewareMode:true},appType:'custom'});
+ const vite=await createServer({root,server:{middlewareMode:true,hmr:false},appType:'custom'});
  const bank=JSON.parse(readFileSync(join(root,'data/question-bank.json'))),typingLessons=JSON.parse(readFileSync(join(root,'data/english-typing-lessons.json')));let account=null,records=[{...bank[0],id:'seed-quiz',pin:'654321',ownerId:'local-admin'}],stage=0,raceActive=false,raceModel=null,typingActive=false,typingModel=null,nationalModel=null;const calls=[];
  const q={id:'ui-q',type:'test',text:'Word nimaga kerak?',options:['Matn yozish','Video','Ovoz','Server'],time:30,points:100,subject:'Word'};
  const player={id:'ui-player',quizId:'ui-quiz',name:'Sinov',avatar:'🤖',score:0,answers:0,correct:0,startedAt:Date.now()};
@@ -24,7 +24,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   else if(path==='/auth/login'){if(data.username==='admin'&&data.password==='admin123'){account={id:'local-admin',role:'teacher',name:'O‘qituvchi',username:'admin'};value={user:account,csrf:'teacher-test'}}else{status=401;value={error:'Login yoki parol noto‘g‘ri.'}}}
   else if(path==='/api/catalog')value={quizzes:[],lessons:[]};
   else if(path==='/api/national')value={sections:[{id:'fixture-national',title:'Aralash variant',subject:'Matematika',description:'Regression fixture',visibility:'public',approvalStatus:'approved',questionCount:30,durationMinutes:60}]}
-  else if(path==='/api/national/start'){nationalModel={section:{id:'fixture-national',title:'Aralash variant',subject:'Matematika',questionCount:30},index:0,answers:Array(30).fill(null),selected:null,question:{...q,text:'National fixture'},startedAt:Date.now(),endsAt:Date.now()+3600000,finished:false};value=nationalModel}
+  else if(path==='/api/national/start'){nationalModel={section:{id:'fixture-national',title:'Aralash variant',subject:'Matematika',questionCount:30},index:0,answers:Array(30).fill(null),selected:null,question:{...q,text:'National fixture',passage:'A public-domain reading passage for this question.'},startedAt:Date.now(),endsAt:Date.now()+3600000,finished:false};value=nationalModel}
   else if(path==='/api/national/answer'){nationalModel={...nationalModel,selected:data.value,answers:nationalModel.answers.map((v,i)=>i===nationalModel.index?true:v)};value=nationalModel}
   else if(path==='/api/national/navigate'){nationalModel={...nationalModel,index:data.index,selected:null};value=nationalModel}
   else if(path==='/api/national/finish'){nationalModel={...nationalModel,finished:true,result:{correct:0,total:30,score:0,scaleMax:75,level:'Mashq',method:'Regression fixture'},review:[{id:'r1',number:1,text:'Review fixture',topic:'Test topic',selected:1,selectedText:'Incorrect fixture',correctText:'Correct fixture',correct:false,explanation:'Explanation fixture'},{id:'r2',number:2,text:'Correct question',topic:'Test topic',selected:0,selectedText:'Correct fixture',correctText:'Correct fixture',correct:true,explanation:'Second explanation'}]};value=nationalModel}
@@ -93,7 +93,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await screen.findByRole('heading',{name:'Ali g‘olib!'});
   cleanup();raceActive=false;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByRole('button',{name:/Mashqni boshlash/});await user.click(screen.getByRole('button',{name:/Mashqni boshlash/}));await screen.findByRole('heading',{name:'Mashq turini tanlang'});await user.click(screen.getByRole('button',{name:/Darajani o‘zim tanlayman/}));await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Malika');await user.click(screen.getByRole('button',{name:'A1 darajasini boshlash'}));await screen.findByRole('heading',{name:'School routine',level:1});await user.click(screen.getByRole('button',{name:'Gapni tinglash'}));const typingBox=await screen.findByPlaceholderText('Masalan: I go to school every day.');await user.type(typingBox,typingLessons[0].text);await user.click(screen.getByRole('button',{name:/Javobni tekshirish/}));await screen.findByRole('heading',{name:'Barakalla, Malika!'});
   cleanup();account={id:'regression-student',role:'student',name:'Student'};typingModel=null;typingActive=false;raceActive=false;history.replaceState(null,'',location.pathname);render(React.createElement(App));
-  await screen.findByRole('button',{name:/Milliy test/});await user.click(screen.getByRole('button',{name:/Milliy test/}));await screen.findByRole('heading',{name:'Fan va bo‘limni tanlang'});await user.click(screen.getByRole('button',{name:'Testni boshlash'}));await screen.findByRole('heading',{name:'National fixture'});
+  await screen.findByRole('button',{name:/Milliy test/});await user.click(screen.getByRole('button',{name:/Milliy test/}));await screen.findByRole('heading',{name:'Fan va bo‘limni tanlang'});await user.click(screen.getByRole('button',{name:'Testni boshlash'}));await screen.findByRole('heading',{name:'National fixture'});assert.ok(screen.getByText('A public-domain reading passage for this question.'));
   assert.equal(screen.queryByRole('button',{name:'Tizimdan chiqish'}),null);assert.equal(sessionStorage.getItem('sq_active_hash'),'#national-test');
   await user.click(document.querySelector('.nav-brand'));assert.ok(screen.getByRole('heading',{name:'National fixture'}));
   await user.click(screen.getByRole('button',{name:'B Video'}));globalThis.confirm=()=>true;
@@ -102,7 +102,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await user.click(screen.getByRole('button',{name:'Barcha javoblar'}));assert.ok(screen.getByText('Correct question'));
   await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(screen.getByRole('button',{name:'Bosh sahifaga chiqish'}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
   // Native sourced reading: no upload or external redirect is required.
-  await user.click(screen.getByRole('button',{name:/CEFR \/ Multilevel/}));
+  await user.click(screen.getByRole('button',{name:/Tayyor testlar/}));
   await screen.findByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'});
   assert.equal(document.querySelector('input[type=file]'),null);
   await user.click(screen.getByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'}));

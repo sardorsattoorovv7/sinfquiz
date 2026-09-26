@@ -1,11 +1,11 @@
-# SinfQuiz 7.3 ni Supabase va Vercel’da sozlash
+# SinfQuiz 7.6 ni Supabase va Vercel’da sozlash
 
 ## 1. Supabase loyihasi
 
 1. Supabase Dashboard’da yangi loyiha yarating.
 2. **SQL Editor → New query** bo‘limini oching.
-3. ZIP ichidagi `supabase-schema.sql` faylining hamma kodini joylashtiring. Oldin RUN qilgan bo‘lsangiz ham 7.0 dagi milliy test bo‘limlari va admin tasdiqlash himoyasi uchun yana bir marta bajaring; mavjud testlar o‘chmaydi.
-4. **RUN** tugmasini bosing. Keyin alohida so‘rovda `supabase-migration-7.2.sql` faylini ham RUN qiling.
+3. Yangi loyiha uchun ZIP ichidagi `supabase-schema.sql` faylining hamma kodini joylashtiring va **RUN** bosing. Keyin alohida so‘rovda `supabase-migration-7.2.sql`, so‘ng `supabase-migration-7.4.sql` fayllarini RUN qiling.
+4. Agar 7.5 bazasi allaqachon ishlayotgan bo‘lsa, faqat `supabase-migration-7.6.sql` faylini SQL Editor’da RUN qiling. Keyin 7.6 sayt kodini deploy qiling. Mavjud ma’lumotlar saqlanadi.
 5. **Authentication → Providers → Anonymous Sign-Ins** imkoniyatini yoqing.
 6. Email orqali ro‘yxatdan o‘tganda darhol kirish kerak bo‘lsa, Auth sozlamasida **Confirm email** talabini o‘chiring.
 
@@ -43,6 +43,6 @@ SUPABASE_SERVICE_ROLE_KEY=service_role_key
 ## 6. Muammo chiqsa
 
 - “Supabase sozlanmagan” — Vercel env qiymatlarini tekshirib, qayta deploy qiling.
-- “row-level security” — `supabase-schema.sql` faylini SQL Editor’da to‘liq RUN qiling.
+- “row-level security” — mavjud loyihada `supabase-migration-7.6.sql` ni, yangi loyihada `supabase-schema.sql` ni SQL Editor’da RUN qiling.
 - O‘quvchi kod bilan kira olmasa — Anonymous Sign-Ins yoqilganini tekshiring.
 - Realtime yangilanmasa — Database → Replication bo‘limida `documents` jadvali yoqilganini tekshiring; SQL fayli odatda buni avtomatik bajaradi.

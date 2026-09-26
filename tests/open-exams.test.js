@@ -5,7 +5,7 @@ import {spawnSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {newAttempt,validAttempt,updateAttempt,finishAttempt,attemptReview,correctAnswer} from '../src/open-exam-engine.js';
 test('Source exercises: unique questions, full passages, valid answers and 30-question mixed papers',async()=>{
- const vite=await createServer({server:{middlewareMode:true},appType:'custom'});
+ const vite=await createServer({server:{middlewareMode:true,hmr:false},appType:'custom'});
  try{
   const {openExams,openQuestions,openGroups}=await vite.ssrLoadModule('/data/open-exams.js');
   assert.equal(openQuestions.length,75);assert.equal(new Set(openQuestions.map(q=>q.id)).size,75);

@@ -45,7 +45,7 @@ const artifacts=process.env.QA_ARTIFACT_DIR||path.join(require('node:os').tmpdir
   assert.ok(await page.getByText('Review fixture explanation').isVisible());
   await page.screenshot({path:path.join(artifacts,'qa-v73-review.png'),fullPage:true});
   await page.getByRole('button',{name:'Bo‘limlarga qaytish'}).click();await page.getByRole('button',{name:'Bosh sahifaga chiqish'}).click();
-  await page.getByRole('button',{name:/CEFR/}).click();
+  await page.getByRole('button',{name:/Tayyor testlar/}).click();
   await page.getByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'}).click();
   await page.getByRole('dialog').getByRole('button',{name:'Boshlash',exact:true}).click();
   await page.getByRole('radio',{name:/Kathy Mellor, Rhode Island/}).check();

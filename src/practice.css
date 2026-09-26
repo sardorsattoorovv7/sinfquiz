@@ -24,3 +24,7 @@ html[data-theme=dark] .source-page a,html[data-theme=dark] .source-resources a,h
 .native-entry{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid #cbded8;background:#eff8f4;border-radius:16px;padding:26px;margin:22px 0;color:#173c33}.native-entry small{font-size:10px;letter-spacing:1.4px;font-weight:800}.native-entry h2{font-size:24px;margin:8px 0}.native-entry p{font-size:14px;line-height:1.6;margin:0;color:#47675e}.native-entry button{flex-shrink:0}
 [data-theme=dark] .native-entry{background:#203830;border-color:#425d52;color:#e4f4ed}[data-theme=dark] .native-entry p{color:#bfd3c8}
 @media(max-width:640px){.study-menu{grid-template-columns:1fr}.native-entry{flex-direction:column;align-items:flex-start;padding:20px}}
+.national-reading{border:1px solid var(--border);border-radius:14px;margin:18px 0;background:var(--surface);overflow:hidden}
+.national-reading summary{cursor:pointer;padding:13px 16px;font-weight:700;color:var(--text)}
+.national-reading>div{padding:0 16px 16px;max-height:360px;overflow-y:auto;white-space:pre-wrap;color:var(--text);line-height:1.75}
+.national-reading p{margin:0 0 1em}

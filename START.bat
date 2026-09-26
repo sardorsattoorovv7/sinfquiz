@@ -1,6 +1,6 @@
 @echo off
 cd /d "%~dp0"
-title SinfQuiz 7.3 - CEFR Multilevel va Milliy test
+title SinfQuiz 7.5 - CEFR Multilevel va Milliy test
 where node >nul 2>nul
 if errorlevel 1 (
   echo Node.js topilmadi. Node.js 22.12+ yoki 24 LTS o'rnating.

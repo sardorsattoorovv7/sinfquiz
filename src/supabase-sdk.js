@@ -40,12 +40,20 @@ function onSnapshot(ref,onNext,onError=()=>{}){
  return()=>{stopped=true;clearTimeout(timer);supabase.removeChannel(channel)};
 }
 
+function onChanges(collection,onNext,onError=()=>{}){
+ const supabase=getClient(),name=`sq-change-${collection}-${++channelCounter}`;
+ const channel=supabase.channel(name).on('postgres_changes',
+   {event:'*',schema:'public',table:'documents',filter:`collection=eq.${collection}`},
+   onNext).subscribe(status=>{if(status==='CHANNEL_ERROR'||status==='TIMED_OUT')onError(Error('Jonli aloqa uzildi.'))});
+ return()=>{supabase.removeChannel(channel)};
+}
+
 const auth={currentUser:null};
 async function syncAuth(){const {data,error}=await getClient().auth.getSession();fail(error);auth.currentUser=mapUser(data.session?.user);authLoaded=true;return auth.currentUser}
 
 export async function getSupabase(){
  const supabase=getClient();if(!authLoaded)await syncAuth();
- return {app:supabase,db:supabase,auth,doc:(_db,collection,id)=>docRef(collection,id),collection:(_db,collection)=>collectionRef(collection),query,where,getDoc,getDocs,setDoc,updateDoc,deleteDoc,writeBatch:()=>writeBatch(),runTransaction,onSnapshot,
+ return {app:supabase,db:supabase,auth,doc:(_db,collection,id)=>docRef(collection,id),collection:(_db,collection)=>collectionRef(collection),query,where,getDoc,getDocs,setDoc,updateDoc,deleteDoc,writeBatch:()=>writeBatch(),runTransaction,onSnapshot,onChanges,
   onAuthStateChanged:(_auth,callback,error)=>{let active=true;syncAuth().then(()=>active&&callback(auth.currentUser)).catch(error);const {data}=supabase.auth.onAuthStateChange((_event,session)=>{auth.currentUser=mapUser(session?.user);active&&callback(auth.currentUser)});return()=>{active=false;data.subscription.unsubscribe()}},
   signInWithEmailAndPassword:async(_auth,email,password)=>{const {data,error}=await supabase.auth.signInWithPassword({email,password});fail(error);auth.currentUser=mapUser(data.user);return {user:auth.currentUser}},
   createUserWithEmailAndPassword:async(_auth,email,password)=>{const {data,error}=await supabase.auth.signUp({email,password});fail(error);if(!data.session)throw Error('Email tasdiqlash yoqilgan. Supabase Auth sozlamasida Confirm email’ni o‘chiring yoki emailni tasdiqlang.');auth.currentUser=mapUser(data.user);return {user:auth.currentUser}},
