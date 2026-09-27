@@ -1,11 +1,11 @@
-# SinfQuiz 7.6 ni Supabase va Vercel’da sozlash
+# SinfQuiz 7.8 ni Supabase va Vercel’da sozlash
 
 ## 1. Supabase loyihasi
 
 1. Supabase Dashboard’da yangi loyiha yarating.
 2. **SQL Editor → New query** bo‘limini oching.
-3. Yangi loyiha uchun ZIP ichidagi `supabase-schema.sql` faylining hamma kodini joylashtiring va **RUN** bosing. Keyin alohida so‘rovda `supabase-migration-7.2.sql`, so‘ng `supabase-migration-7.4.sql` fayllarini RUN qiling.
-4. Agar 7.5 bazasi allaqachon ishlayotgan bo‘lsa, faqat `supabase-migration-7.6.sql` faylini SQL Editor’da RUN qiling. Keyin 7.6 sayt kodini deploy qiling. Mavjud ma’lumotlar saqlanadi.
+3. **Integrations → Cron** modulini yoqing. Yangi loyiha uchun `supabase-schema.sql` faylini **RUN** qiling. Keyin alohida so‘rovlarda `supabase-migration-7.2.sql`, `supabase-migration-7.4.sql`, `supabase-migration-7.7.sql`, `supabase-migration-7.8.sql` fayllarini ketma-ket RUN qiling.
+4. Mavjud 7.7 bazada faqat `supabase-migration-7.8.sql` ni RUN qiling. Qadamlar `UPDATE-7.8.md` da. Eski ma’lumotlar saqlanadi.
 5. **Authentication → Providers → Anonymous Sign-Ins** imkoniyatini yoqing.
 6. Email orqali ro‘yxatdan o‘tganda darhol kirish kerak bo‘lsa, Auth sozlamasida **Confirm email** talabini o‘chiring.
 

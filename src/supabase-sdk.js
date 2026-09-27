@@ -6,6 +6,8 @@ const ADMIN_EMAIL='admin@sinfquiz.uz';
 let client=null;
 let channelCounter=0;
 let authLoaded=false;
+let authLoadPromise=null;
+let anonymousPromise=null;
 let transactionQueue=Promise.resolve();
 
 const fail=error=>{if(error)throw Error(error.message||String(error))};
@@ -52,7 +54,7 @@ const auth={currentUser:null};
 async function syncAuth(){const {data,error}=await getClient().auth.getSession();fail(error);auth.currentUser=mapUser(data.session?.user);authLoaded=true;return auth.currentUser}
 
 export async function getSupabase(){
- const supabase=getClient();if(!authLoaded)await syncAuth();
+ const supabase=getClient();if(!authLoaded){if(!authLoadPromise)authLoadPromise=syncAuth().finally(()=>{authLoadPromise=null});await authLoadPromise}
  return {app:supabase,db:supabase,auth,doc:(_db,collection,id)=>docRef(collection,id),collection:(_db,collection)=>collectionRef(collection),query,where,getDoc,getDocs,setDoc,updateDoc,deleteDoc,writeBatch:()=>writeBatch(),runTransaction,onSnapshot,onChanges,
   onAuthStateChanged:(_auth,callback,error)=>{let active=true;syncAuth().then(()=>active&&callback(auth.currentUser)).catch(error);const {data}=supabase.auth.onAuthStateChange((_event,session)=>{auth.currentUser=mapUser(session?.user);active&&callback(auth.currentUser)});return()=>{active=false;data.subscription.unsubscribe()}},
   signInWithEmailAndPassword:async(_auth,email,password)=>{const {data,error}=await supabase.auth.signInWithPassword({email,password});fail(error);auth.currentUser=mapUser(data.user);return {user:auth.currentUser}},
@@ -62,7 +64,10 @@ export async function getSupabase(){
 }
 
 export async function waitForAuth(){return getSupabase()}
-export async function ensureAnonymous(){const sdk=await getSupabase();if(!sdk.auth.currentUser)await sdk.signInAnonymously(sdk.auth);return sdk}
+export async function ensureAnonymous(){
+ if(!anonymousPromise)anonymousPromise=(async()=>{const sdk=await getSupabase();if(!sdk.auth.currentUser)await sdk.signInAnonymously(sdk.auth);return sdk})().finally(()=>{anonymousPromise=null});
+ return anonymousPromise;
+}
 
 export async function signInWithTelegram(telegram,role){const response=await fetch('/api/telegram-auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({telegram,role})});const result=await response.json().catch(()=>({}));if(!response.ok)throw Error(result.error||'Telegram orqali kirib bo‘lmadi.');const sdk=await getSupabase(),credential=await sdk.signInWithEmailAndPassword(sdk.auth,result.email,result.password);return {...result.profile,uid:credential.user.uid}}
 export async function signInWithEmail(email,password){const sdk=await getSupabase(),credential=await sdk.signInWithEmailAndPassword(sdk.auth,email.trim(),password);if(credential.user.email?.toLowerCase()===ADMIN_EMAIL)await sdk.setDoc(sdk.doc(sdk.db,'profiles',credential.user.uid),{uid:credential.user.uid,email:credential.user.email,name:credential.user.displayName||'Administrator',role:'admin',provider:'email',updatedAt:Date.now()},{merge:true});return credential.user}

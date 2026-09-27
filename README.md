@@ -1,4 +1,16 @@
-# SinfQuiz 7.7
+# SinfQuiz 7.8
+
+## Darslik o‘qilishi va shaxsiy chat
+
+O‘quvchi hisobida darslik ochilgach 4,5 soniya o‘tganda bir marta o‘qilgan deb belgilanadi. Bitta o‘quvchi qayta ochsa, son oshmaydi. O‘quvchi va ustoz darslik kartalarida nechta noyob o‘quvchi o‘qiganini ko‘radi; ustoz sahifasida sanog‘i besh soniyada bitta so‘rov bilan yangilanadi.
+
+Chat **bosh sahifada ko‘rsatilmaydi**. O‘quvchi darslikda “Ustozga yozish”ni, ustoz esa panelda “O‘quvchilar bilan chat”ni ochadi. Matn, emoji va 15 soniyagacha ovozli xabar yuborish mumkin. Bir suhbatda faqat o‘sha o‘quvchi va darslik muallifi yozishadi; begona hisoblar xabar va ovozni o‘qimaydi. Bloklash, shikoyat va adminning shikoyat bo‘yicha suhbatni to‘xtatish amallari bor. Xabarlar mahalliy doimiy xotiraga yozilmaydi. Bazadagi matn va ovoz 24 soatdan keyin ko‘rsatilmaydi va Cron har daqiqada o‘chiradi.
+
+**Mavjud baza:** Supabase’da Cron modulini yoqing, `supabase-migration-7.8.sql` ni RUN qiling, so‘ng saytni deploy qiling. Bu yangi SQL zarur. Qadamlar va saqlash muddati chegaralari `UPDATE-7.8.md` da.
+
+## O‘quvchilar uchun hisob ochish shart emas
+
+6 xonali kodli sinf testi, ustoz faollashtirgan typing va bitta monitordagi 1v1 poygaga o‘quvchi **email yoki Telegramsiz** qo‘shiladi. Kodli testda kodni, keyin ism va avatarni kiritadi. Typing va 1v1 tugmalari faqat ustoz ularni ochganida ko‘rinadi; o‘quvchi ism va avatarni tanlaydi. Supabase fon rejimida anonim sessiya ochadi, shuning uchun **Auth → Anonymous Sign-Ins** yoqilgan bo‘lishi kerak. Ustoz/admin paneli, darsliklar, milliy test va CEFR uchun odatiy hisob kirishi saqlanadi. Bazaga yangi migratsiya talab qilinmaydi; 7.7 SQL hali bajarilmagan bo‘lsa, `UPDATE-7.7.md` qadamlarini bajaring.
 
 ## 10 ta tayyor CEFR / Multilevel mock
 
