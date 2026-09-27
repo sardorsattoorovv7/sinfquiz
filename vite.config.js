@@ -1,6 +1,6 @@
 import {defineConfig} from 'vite';
 export default defineConfig({
- server:{host:process.env.VITE_HOST||'0.0.0.0'},
+ server:{host:process.env.VITE_HOST||'0.0.0.0',strictPort:true},
  build:{
   chunkSizeWarningLimit:650,
   rolldownOptions:{output:{codeSplitting:{groups:[

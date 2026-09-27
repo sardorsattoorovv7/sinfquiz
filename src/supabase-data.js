@@ -16,6 +16,10 @@ const seedNational=async(sdk,profile)=>{
  const {ensureNationalDefaults}=await import('./national-defaults.js');
  return ensureNationalDefaults(sdk,profile);
 };
+const seedComputerCourse=async(sdk,profile)=>{
+ const {ensureComputerCourse}=await import('./computer-course-seed.js');
+ return ensureComputerCourse(sdk,profile);
+};
 const key=name=>`sinfquiz_supabase_${name}`;
 const randomId=()=>globalThis.crypto?.randomUUID?.()||`${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
 const load=name=>{try{return JSON.parse(sessionStorage.getItem(key(name))||'null')}catch{return null}};
@@ -61,7 +65,11 @@ async function seedQuizzes(sdk){
 async function adminState(sdk){
  await seedQuizzes(sdk);
  const uid=sdk.auth.currentUser.uid,profile=await userProfile(sdk),isAdmin=profile?.role==='admin';
- if(isAdmin)await seedNational(sdk,profile).catch(()=>{});
+ let courseSeedError=null;
+ if(isAdmin){
+  await seedNational(sdk,profile).catch(()=>{});
+  try{await seedComputerCourse(sdk,profile)}catch(error){courseSeedError=error.message||'Darsliklarni saqlab bo‘lmadi.'}
+ }
  const [quizSnap,playerSnap,raceSnap,settingsSnap,resultSnap,lessonSnap,publicQuizSnap,nationalSnap]=await Promise.all([
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid))),
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'players'),sdk.where('ownerId','==',uid))),
@@ -75,7 +83,7 @@ async function adminState(sdk){
  const settings=settingsSnap.data()||{},race=raceSnap.exists()?raceSnap.data():null;
  let analytics=null;
  if(isAdmin){const [profilesSnap,activitySnap]=await Promise.all([sdk.getDocs(sdk.collection(sdk.db,'profiles')),sdk.getDocs(sdk.collection(sdk.db,'userActivity'))]),profiles=queryData(profilesSnap),activity=queryData(activitySnap),activityMap=new Map(activity.map(item=>[item.uid,item])),now=Date.now(),users=profiles.map(item=>({...item,activity:activityMap.get(item.uid)||null})).sort((a,b)=>(b.activity?.lastSeenAt||0)-(a.activity?.lastSeenAt||0));analytics={users,totalUsers:users.length,activeUsers:users.filter(item=>now-(item.activity?.lastSeenAt||0)<5*60*1000).length,totalLogins:activity.reduce((sum,item)=>sum+(item.loginCount||0),0),totalLogouts:activity.reduce((sum,item)=>sum+(item.logoutCount||0),0),teachers:users.filter(item=>item.role==='teacher').length,students:users.filter(item=>item.role==='student').length,generatedAt:now}}
- return {quizzes:queryData(quizSnap),publicQuizzes:queryData(publicQuizSnap),lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race:raceSummary(race),typing:{active:!!settings.typingActive,activatedAt:settings.typingActivatedAt||null,studentCount:0,stageCount:5,results:queryData(resultSnap).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)},analytics};
+ return {quizzes:queryData(quizSnap),publicQuizzes:queryData(publicQuizSnap),lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),courseSeedError,nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race:raceSummary(race),typing:{active:!!settings.typingActive,activatedAt:settings.typingActivatedAt||null,studentCount:0,stageCount:5,results:queryData(resultSnap).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)},analytics};
 }
 
 async function ranking(sdk,quizId){
@@ -139,7 +147,7 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
    const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('Telegram orqali kirish kerak.');const snap=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'lessons'),sdk.where(profile.role==='teacher'?'ownerId':'visibility','==',profile.role==='teacher'?sdk.auth.currentUser.uid:'public')));return {lessons:queryData(snap).sort((a,b)=>b.updatedAt-a.updatedAt)};
   }
   if((path==='/api/lessons'&&method==='POST')||lessonMatch){
-   const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('Darslik yaratish uchun o‘qituvchi bo‘lib kiring.');const uid=sdk.auth.currentUser.uid,existing=lessonMatch?docData(await sdk.getDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]))):null;if(existing&&existing.ownerId!==uid)fail('Faqat o‘zingiz yaratgan darslikni o‘zgartira olasiz.');if(method==='DELETE'){await sdk.deleteDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]));return {ok:true}}if(!data.title?.trim()||!data.content?.trim())fail('Darslik sarlavhasi va matnini kiriting.');const profile=await userProfile(sdk),id=lessonMatch?.[1]||randomId(),lesson={id,title:data.title.trim(),subject:(data.subject||'Informatika').trim(),summary:(data.summary||'').trim(),content:data.content.trim(),cover:data.cover||'📘',visibility:data.visibility==='private'?'private':'public',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'lessons',id),lesson);return {lesson};
+   const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('Darslik yaratish uchun o‘qituvchi bo‘lib kiring.');const uid=sdk.auth.currentUser.uid,existing=lessonMatch?docData(await sdk.getDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]))):null;if(existing&&existing.ownerId!==uid)fail('Faqat o‘zingiz yaratgan darslikni o‘zgartira olasiz.');if(method==='DELETE'){await sdk.deleteDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]));return {ok:true}}if(!data.title?.trim()||!data.content?.trim())fail('Darslik sarlavhasi va matnini kiriting.');const profile=await userProfile(sdk),id=lessonMatch?.[1]||randomId(),lesson={...(existing||{}),id,title:data.title.trim(),subject:(data.subject||'Informatika').trim(),summary:(data.summary||'').trim(),content:data.content.trim(),cover:data.cover||'📘',visibility:data.visibility==='private'?'private':'public',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'lessons',id),lesson);return {lesson};
   }
 
   if(path==='/api/national'&&method==='GET'){

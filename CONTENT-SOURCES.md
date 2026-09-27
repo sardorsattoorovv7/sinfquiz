@@ -55,3 +55,16 @@ Hujjatlardan uzun parchalar ko‘chirilmagan. Kod chiqishlari testda Python 3 in
 ## CEFR / Multilevel mashq variantlari (7.7)
 
 Formatga yo‘nalish: Bilim va malakalarni baholash agentligining [test formatlari](https://uzbmb.uz/page/test_sinovlari_formati) va [Speaking formati](https://uzbmb.uz/upload/file/pdf/phone/Speaking_format.pdf). Platformadagi savollar, vaziyatlar, suhbatlar, matnlar, javob variantlari va izohlar SinfQuiz uchun original yozilgan; rasmiy savollar ko‘chirilmagan. 10 ta mavzu `data/cefr-ready-cases.js` da, jami 810 topshiriq `data/cefr-ready-bank.json` da. Listening matnlari `data/cefr-audio-scripts.json` da; 60 ta MP3 mahalliy flite sintezida yaratilgan, inson ovozi yozuvi emas. Tayyorlash kodi `scripts/generate-cefr-ready.mjs` va `scripts/generate-cefr-audio.py` da. Imtihonda aynan shu savollar tushishi kafolatlanmaydi.
+
+## Kompyuter savodxonligi darslari
+
+`data/computer-course.js` dagi 28 dars va amaliy mashqlar SinfQuiz uchun original yozilgan. Word, Excel va PowerPoint amallarining umumiy yo‘nalishi Microsoft’ning quyidagi qo‘llanmalariga solishtirildi; ulardan matn ko‘chirilmagan:
+
+- Word: https://support.microsoft.com/en-us/word/basic-tasks-in-word
+- Excel: https://support.microsoft.com/en-US/Excel/basic-tasks-in-excel
+- Formulalar: https://support.microsoft.com/en-us/excel/get-started/overview-of-formulas-in-excel
+- PowerPoint: https://support.microsoft.com/en-us/powerpoint/basic-tasks-for-creating-a-powerpoint-presentation
+
+Menyularning joylashuvi Microsoft 365, boshqa versiyalar va tizim tiliga qarab farq qilishi mumkin. Darslar maktabda mashq qilish uchun tuzilgan, Microsoft’ning rasmiy sertifikat kursi emas.
+
+Ko‘rgazmali v2 qo‘llanma `data/course-guides.js` da: 28 ta bosqichli amaliy topshiriq, kutiladigan natijalar, ko‘p uchraydigan xatolar va 56 ta izohli savol. `public/course-visuals/` dagi 28 ta mahalliy SVG sxema `scripts/generate-course-visuals.mjs` bilan yaratiladi. Ular dastur ekranining aynan suratlari emas, original tushuntiruvchi chizmalar; uchinchi tomon rasmlari ko‘chirilmagan. Dastur oynasi va ayrim menyu nomlari versiyaga qarab farqlanishi mumkin.

@@ -1,5 +1,13 @@
 # SinfQuiz 7.8
 
+## Administratorning kompyuter savodxonligi kursi
+
+Administrator hisobiga kirilganda 28 ta tayyor darslik uning nomidan ommaga e’lon qilinadi: 5 ta kompyuter/klaviatura/sichqoncha/internet, 8 ta Word, 9 ta Excel va 6 ta PowerPoint darsi. Har birida original tushuntiruvchi SVG sxema, mavzu matni, ketma-ket amaliy mashq, kutilgan natija, xatolar va javobi izohlangan 2 ta tekshirish savoli bor. Dars oxiridagi tugma keyingi darsni ochadi. **Administrator paneli → Darsliklarim** bo‘limida ularni ko‘rish, bo‘limga ajratish va matnini tahrirlash mumkin. O‘quvchilar **Darsliklar** kabinetida mashqlarni saytdan chiqmasdan o‘qiydi. Eski 7.8 bazasida admin paneliga kirilganda mavjud darslar v2 ko‘rgazmali qo‘llanma bilan boyitiladi; tahrirlangan matnlar, qoralama holati va o‘chirilgan darslar saqlanadi. Boshqa ustozlarning darsliklariga tegilmaydi. Yangi SQL migratsiyasi talab qilinmaydi; mavjud baza 7.8 holatida bo‘lishi kerak.
+
+## Kompyuterda ishga tushirish
+
+Windows’da `START.bat` ni oching yoki VS Code terminalida `npm install` va `npm run dev` ni bajaring. Terminal oynasini yopmang; brauzerda terminal ko‘rsatgan `Local` manzilini oching. `ERR_CONNECTION_REFUSED` yoki `Failed to fetch dynamically imported module` chiqsa, dev server to‘xtagan: terminaldagi xatoni tekshirib qayta ishga tushiring va sahifani yangilang. Server ishlayotganida `ClassroomChat.jsx` va `OpenExamHub.jsx` modullari yuklanadi.
+
 ## Darslik o‘qilishi va shaxsiy chat
 
 O‘quvchi hisobida darslik ochilgach 4,5 soniya o‘tganda bir marta o‘qilgan deb belgilanadi. Bitta o‘quvchi qayta ochsa, son oshmaydi. O‘quvchi va ustoz darslik kartalarida nechta noyob o‘quvchi o‘qiganini ko‘radi; ustoz sahifasida sanog‘i besh soniyada bitta so‘rov bilan yangilanadi.
