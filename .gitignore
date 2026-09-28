@@ -5,3 +5,7 @@ dist/
 !.env.example
 data/db.json
 data/db.json.tmp
+
+.env
+.env.*
+!.env.example
