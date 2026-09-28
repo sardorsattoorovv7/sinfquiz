@@ -2,6 +2,7 @@ import React,{useEffect,useRef,useState} from 'react';
 import {ArrowLeft,ArrowRight,BookOpen,Check,Clock3,Code2,Flag,GraduationCap,Search,X,Download} from 'lucide-react';
 import {openExams,getOpenExam,getOpenGroup} from '../data/open-exams.js';
 import {newAttempt,validAttempt,finishAttempt,updateAttempt,attemptReview} from './open-exam-engine.js';
+import {savePracticeResult} from './profile-service.js';
 import './open-exam.css';
 
 const subjects={all:'Barchasi',english:'Ingliz tili',math:'Matematika',python:'Python'};
@@ -33,6 +34,7 @@ export default function OpenExamHub({user,onBack,onStatus,initialSubject='all'})
   if(!attempt?.finished||!exam)return;
   const id=attempt.examId+':'+attempt.startedAt,review=attemptReview(attempt,exam),row={id,examId:exam.id,title:exam.title,correct:review.filter(q=>q.correct).length,total:review.length,at:attempt.finishedAt};
   setResults(old=>{const next=[row,...old.filter(r=>r.id!==id)].slice(0,30);try{localStorage.setItem(historyKey,JSON.stringify(next))}catch{setError('Natijalar tarixini saqlab bo‘lmadi. Natijani yuklab oling.')}return next});
+  savePracticeResult(row).catch(()=>setError('Natija shu brauzerda saqlandi. Profilga yuklash uchun bazadagi 7.9 yangilanishini tekshiring.'));
  },[attempt?.finished,attempt?.startedAt]);
  const change=data=>persist(updateAttempt(ref.current,data));
  const returnCatalog=()=>{setAttempt(null);ref.current=null;setError('');try{localStorage.removeItem(key)}catch{setError('Oldingi sessiyani xotiradan tozalab bo‘lmadi.')}history.replaceState(null,'',location.pathname+location.search)};

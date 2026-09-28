@@ -1,0 +1,11 @@
+.admin-shell>aside{height:100dvh;max-height:100dvh;min-height:0;overflow:hidden}
+.admin-shell>aside .aside-brand{flex:none}
+.admin-shell>aside nav{min-height:0;flex:1 1 auto;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#a78bfa #2b1d4b;padding-right:4px;padding-bottom:12px}
+.admin-shell>aside .aside-bottom{flex:none;margin-top:0;background:#21143f}
+.reset-link{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:8px;background:var(--surface);color:var(--accent);font-weight:700;white-space:nowrap;cursor:pointer}
+.password-modal-backdrop{position:fixed;inset:0;z-index:250;background:#150f27b8;display:flex;align-items:center;justify-content:center;padding:18px}
+.password-modal{width:min(480px,100%);background:var(--surface);color:var(--text);border-radius:17px;padding:26px;box-shadow:0 22px 70px #0005;display:flex;flex-direction:column;gap:12px}
+.password-modal h2{font-size:22px;margin:0}.password-modal p{margin:0;line-height:1.6;color:var(--text-secondary);overflow-wrap:anywhere}
+.password-modal code{display:block;overflow-wrap:anywhere;background:var(--surface-soft);border:1px solid var(--border);border-radius:9px;padding:13px;font-size:19px;letter-spacing:1px;color:var(--text)}
+.password-modal>.btn{align-self:flex-start}.password-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+@media(max-width:600px){.site-nav .nav-actions>button.btn.profile-link{display:inline-flex}.site-nav .nav-actions>button.btn:nth-of-type(3){display:none}}

@@ -1,4 +1,8 @@
-# SinfQuiz 7.8
+# SinfQuiz 7.9
+
+## O‘quvchi profili va parollar
+
+O‘quvchi **Profilim** sahifasida ismi, maktabi va sinfi haqida ma’lumot kiritadi, email bilan kirgan bo‘lsa joriy parolini tasdiqlab yangi parol qo‘yadi. Natijalar tarixida hisobga bog‘langan sinf testi, typing, milliy test, CEFR, mustaqil mashq va 1v1 poyga ko‘rinadi. Administrator **Foydalanuvchilar** jadvalida email hisobli o‘quvchi yoki o‘qituvchi parolini server orqali tasodifiy yangi parolga almashtira oladi. Admin paneli chap menyusi kichik ekranda ichida aylantiriladi. `UPDATE-7.9.md` dagi SQL va deploy qadamlarini bajaring.
 
 ## Administratorning kompyuter savodxonligi kursi
 
