@@ -1,4 +1,6 @@
-export const questionTypes = {test:'Test', practical:'Amaliy yozish', shortcut:'Tugmalar', prompt:'Prompt yozish'};
+import {gradeOffice} from './office-lab-model.js';
+
+export const questionTypes = {test:'Test', practical:'Qisqa javob', office:'Office amaliyoti', python:'Python kodi', shortcut:'Tugmalar', prompt:'Prompt yozish'};
 export function normalize(value='') { return String(value).trim().toLowerCase().replace(/[“”‘’`ʻʼ]/g,"'").replace(/\s+/g,' '); }
 export function normalizeShortcut(value='') {
   const keys=String(value).toLowerCase().split('+').map(k=>k.trim()).filter(Boolean).map(k=>({control:'ctrl',command:'meta',cmd:'meta',escape:'esc'}[k]||k));
@@ -8,6 +10,13 @@ export function gradeAnswer(q, value, seconds) {
   let ratio=0; let checks=[];
   if(q.type==='test') ratio=value===q.correct?1:0;
   else if(q.type==='shortcut') ratio=normalizeShortcut(value)===normalizeShortcut(q.answer)?1:0;
+  else if(q.type==='office'){const result=gradeOffice(q,value);ratio=result.ratio;checks=result.checks}
+  else if(q.type==='python'){
+    let submission;try{submission=typeof value==='string'&&value.length<16000?JSON.parse(value):null}catch{submission=null}
+    const code=typeof submission?.code==='string'?submission.code:'',output=typeof submission?.output==='string'?submission.output:'';
+    checks=[{label:'Kod yozilgan',passed:code.trim().length>=5&&code.length<=8000},{label:'Dastur natijasi',passed:!!output.trim()&&normalize(output)===normalize(q.answer)}];
+    ratio=checks.every(item=>item.passed)?1:0;
+  }
   else if(q.type==='prompt') {
     const answer=normalize(value);
     checks=(q.criteria||[]).map(c=>({...c,passed:c.keywords.some(k=>normalize(k).length>0&&answer.includes(normalize(k)))}));

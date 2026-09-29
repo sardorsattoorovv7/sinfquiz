@@ -1,7 +1,7 @@
 import {createClient} from '@supabase/supabase-js';
 
-const SUPABASE_URL=import.meta.env.VITE_SUPABASE_URL||'';
-const SUPABASE_ANON_KEY=import.meta.env.VITE_SUPABASE_ANON_KEY||'';
+const SUPABASE_URL=String(import.meta.env.VITE_SUPABASE_URL||'').trim().replace(/\/+$/,'');
+const SUPABASE_ANON_KEY=String(import.meta.env.VITE_SUPABASE_ANON_KEY||'').trim();
 const ADMIN_EMAIL='admin@sinfquiz.uz';
 let client=null;
 let channelCounter=0;
@@ -28,7 +28,7 @@ const applyFilters=(builder,filters=[])=>filters.reduce((query,item)=>item.op===
 async function getDoc(ref){const {data,error}=await getClient().from('documents').select('id,data').eq('collection',ref.collection).eq('id',ref.id).maybeSingle();fail(error);return snapshotDoc(ref,data)}
 async function getDocs(ref){let builder=getClient().from('documents').select('id,data').eq('collection',ref.collection);builder=applyFilters(builder,ref.filters);const {data,error}=await builder.limit(ref.limit||500);fail(error);return snapshotQuery(ref,data)}
 async function setDoc(ref,value,options={}){let next=value;if(options.merge){const current=await getDoc(ref);next={...(current.data()||{}),...value}}const {error}=await getClient().from('documents').upsert({collection:ref.collection,id:ref.id,data:next,updated_at:new Date().toISOString()},{onConflict:'collection,id'});fail(error)}
-async function updateDoc(ref,value){const current=await getDoc(ref);if(!current.exists())throw Error('Ma’lumot topilmadi.');return setDoc(ref,{...current.data(),...value})}
+async function updateDoc(ref,value){const current=await getDoc(ref);if(!current.exists())throw Error('Ma’lumot topilmadi.');const {data,error}=await getClient().from('documents').update({data:{...current.data(),...value},updated_at:new Date().toISOString()}).eq('collection',ref.collection).eq('id',ref.id).select('id').maybeSingle();fail(error);if(!data)throw Error('Ma’lumotni yangilashga ruxsat yo‘q yoki u o‘chirilgan.')}
 async function deleteDoc(ref){const {error}=await getClient().from('documents').delete().eq('collection',ref.collection).eq('id',ref.id);fail(error)}
 function writeBatch(){const operations=[];return {set:(ref,value,options)=>operations.push(()=>setDoc(ref,value,options)),update:(ref,value)=>operations.push(()=>updateDoc(ref,value)),delete:ref=>operations.push(()=>deleteDoc(ref)),commit:async()=>{for(let index=0;index<operations.length;index+=8)await Promise.all(operations.slice(index,index+8).map(operation=>operation()))}}}
 async function runTransaction(_db,callback){const execute=async()=>{const operations=[],transaction={get:getDoc,set:(ref,value,options)=>operations.push(()=>setDoc(ref,value,options)),update:(ref,value)=>operations.push(()=>updateDoc(ref,value)),delete:ref=>operations.push(()=>deleteDoc(ref))};const result=await callback(transaction);for(const operation of operations)await operation();return result};const current=transactionQueue.then(execute,execute);transactionQueue=current.catch(()=>{});return current}

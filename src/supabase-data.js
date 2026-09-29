@@ -12,6 +12,10 @@ import {adminEmail,ensureAnonymous,getSupabase,waitForAuth} from './supabase-sdk
 const avatars=['🧑‍💻','👩‍🚀','🤖','🥷','🧙','🦸','👾','🦊','🐼','🦁','🐯','🐸'];
 const runtime={ticket:null,game:null,race:null,typing:null,national:null,cefr:null};
 const seededTeachers=new Set();
+// v7.9 and earlier shipped one identical 15-question Python template.
+// Replace only its untouched question array; never overwrite teacher edits.
+const templateHash=value=>{let hash=2166136261;for(const char of JSON.stringify(value)){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619)}return (hash>>>0).toString(16)};
+const originalClassroomTemplates={Word:['a038fcd6'],Excel:['ec7a63f6'],PowerPoint:['f8187d4d'],Python:['61fedcfd','52633651']};
 const seedNational=async(sdk,profile)=>{
  const {ensureNationalDefaults}=await import('./national-defaults.js');
  return ensureNationalDefaults(sdk,profile);
@@ -29,7 +33,7 @@ for(const name of ['game','race','typing','national','cefr'])runtime[name]=typeo
 const fail=message=>{throw Error(message)};
 const clean=value=>JSON.parse(JSON.stringify(value));
 const publicPlayer=player=>{const {responses,...safe}=player;return safe};
-const safeQuestion=question=>{if(!question)return null;const {correct,answer,acceptedAnswers,criteria,...safe}=question;return safe};
+const safeQuestion=question=>{if(!question)return null;const {correct,answer,acceptedAnswers,criteria,officeRubric,...safe}=question;return safe};
 const quizInfo=quiz=>({id:quiz.id,title:quiz.title,group:quiz.group,subject:quiz.subject,questionCount:quiz.questions.length,visibility:quiz.visibility||'private',ownerName:quiz.ownerName||'O‘qituvchi'});
 const rankRows=players=>players.sort((a,b)=>b.score-a.score||(a.finishedAt||Infinity)-(b.finishedAt||Infinity)||a.startedAt-b.startedAt);
 const docData=snapshot=>snapshot.exists()?{id:snapshot.id,...snapshot.data()}:null;
@@ -55,10 +59,17 @@ async function isTeacher(sdk,user=sdk.auth.currentUser){return ['teacher','admin
 
 async function seedQuizzes(sdk){
  const uid=sdk.auth.currentUser.uid;if(seededTeachers.has(uid))return;
- const current=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid)));if(!current.empty){seededTeachers.add(uid);return}
+ const current=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid)));if(!current.empty){
+  for(const snapshot of current.docs){const quiz=snapshot.data();const source=bank.find(item=>item.subject===quiz?.subject);
+   if(source&&originalClassroomTemplates[quiz.subject]?.includes(templateHash(quiz.questions))){
+    await sdk.updateDoc(snapshot.ref,{questions:clean(source.questions),title:source.title,version:3});
+   }
+  }
+  seededTeachers.add(uid);return;
+ }
  const profile=await userProfile(sdk),ownerName=profile?.name||'O‘qituvchi';
  const batch=sdk.writeBatch(sdk.db),used=new Set();
- for(const source of bank){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:1})}
+ for(const source of bank){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:3})}
  await batch.commit();seededTeachers.add(uid);
 }
 
@@ -147,7 +158,7 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
    const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('Telegram orqali kirish kerak.');const snap=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'lessons'),sdk.where(profile.role==='teacher'?'ownerId':'visibility','==',profile.role==='teacher'?sdk.auth.currentUser.uid:'public')));return {lessons:queryData(snap).sort((a,b)=>b.updatedAt-a.updatedAt)};
   }
   if((path==='/api/lessons'&&method==='POST')||lessonMatch){
-   const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('Darslik yaratish uchun o‘qituvchi bo‘lib kiring.');const uid=sdk.auth.currentUser.uid,existing=lessonMatch?docData(await sdk.getDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]))):null;if(existing&&existing.ownerId!==uid)fail('Faqat o‘zingiz yaratgan darslikni o‘zgartira olasiz.');if(method==='DELETE'){await sdk.deleteDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]));return {ok:true}}if(!data.title?.trim()||!data.content?.trim())fail('Darslik sarlavhasi va matnini kiriting.');const profile=await userProfile(sdk),id=lessonMatch?.[1]||randomId(),lesson={...(existing||{}),id,title:data.title.trim(),subject:(data.subject||'Informatika').trim(),summary:(data.summary||'').trim(),content:data.content.trim(),cover:data.cover||'📘',visibility:data.visibility==='private'?'private':'public',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'lessons',id),lesson);return {lesson};
+   const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('Darslik yaratish uchun o‘qituvchi bo‘lib kiring.');const uid=sdk.auth.currentUser.uid,existing=lessonMatch?docData(await sdk.getDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]))):null;if(existing&&existing.ownerId!==uid)fail('Faqat o‘zingiz yaratgan darslikni o‘zgartira olasiz.');if(method==='DELETE'){await sdk.deleteDoc(sdk.doc(sdk.db,'lessons',lessonMatch[1]));return {ok:true}}if(!data.title?.trim()||!data.content?.trim())fail('Darslik sarlavhasi va matnini kiriting.');const profile=await userProfile(sdk),id=lessonMatch?.[1]||randomId(),lesson={...(existing||{}),id,title:data.title.trim(),subject:(data.subject||'Informatika').trim(),summary:(data.summary||'').trim(),content:data.content.trim(),cover:'DARS',visibility:data.visibility==='private'?'private':'public',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'lessons',id),lesson);return {lesson};
   }
 
   if(path==='/api/national'&&method==='GET'){

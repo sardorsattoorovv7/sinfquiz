@@ -11,7 +11,7 @@ test('Keyboard and mouse lesson contains 15 valid multiple-choice questions',()=
  for(const question of pack.questions){assert.equal(question.type,'test');assert.equal(question.options.length,4);assert.ok(Number.isInteger(question.correct)&&question.correct>=0&&question.correct<4);assert.ok(question.options[question.correct])}
 });
 test('All supplied non-test sample answers receive full credit',()=>{
- for(const q of packs.flatMap(p=>p.questions).filter(q=>q.type!=='test')) assert.equal(gradeAnswer(q,q.answer,q.time).earned,q.points,q.id);
+ for(const q of packs.flatMap(p=>p.questions).filter(q=>!['test','office','python'].includes(q.type))) assert.equal(gradeAnswer(q,q.answer,q.time).earned,q.points,q.id);
 });
 test('Shortcut modifiers are order/case independent; extra modifiers are incorrect',()=>{
  const q={type:'shortcut',answer:'Ctrl+S',time:30,points:100};

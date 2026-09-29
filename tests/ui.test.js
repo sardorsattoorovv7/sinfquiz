@@ -5,6 +5,7 @@ import {createServer} from 'vite';
 import {readFileSync} from 'node:fs';
 import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {pythonCourse,pythonGuides,pythonLessonContent} from '../data/python-course.js';
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
 
 test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and result',async()=>{
@@ -54,7 +55,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   return new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json'}});
  };
  try{
-  const {default:App}=await vite.ssrLoadModule('/src/App.jsx');render(React.createElement(App));
+  const {default:App,StudentCatalog,LessonReader}=await vite.ssrLoadModule('/src/App.jsx');render(React.createElement(App));
   assert.ok((await screen.findAllByRole('button',{name:'Kirish'})).length>=1);
   assert.equal(screen.queryByText(/Google/),null);
   assert.equal(screen.queryByText(/Faol testlar/),null);
@@ -73,6 +74,16 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await user.click(screen.getByRole('button',{name:'Matn terish'}));await screen.findByRole('heading',{name:'Ikki yo‘nalishdagi amaliy mashqlar'});await user.click(screen.getByRole('button',{name:'YOPIQ'}));await screen.findByRole('button',{name:'OCHIQ'});
   await user.click(screen.getByRole('button',{name:'Sinf testlarim'}));await user.click(screen.getByRole('button',{name:'Word',exact:true}));await screen.findByRole('heading',{name:'Testni tahrirlash'});await user.click(screen.getByRole('button',{name:'Saqlash',exact:true}));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});assert.equal(records[0].status,'passive');
   await user.click(screen.getByRole('button',{name:'Python',exact:true}));await screen.findByRole('heading',{name:'Testni tahrirlash'});await user.click(screen.getByRole('button',{name:'Saqlash',exact:true}));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});assert.equal(records[0].questions.length,15);assert.equal(records[0].status,'passive');
+
+  const {default:OfficeLab}=await vite.ssrLoadModule('/src/OfficeLab.jsx');let officeAnswer='';
+  const officeRender=render(React.createElement(OfficeLab,{question:bank[0].questions.find(item=>item.officeTemplate==='word-report'),onChange:value=>officeAnswer=value}));
+  await user.type(within(officeRender.container).getByLabelText('Word sarlavhasi'),'Maktab kutubxonasi');
+  await user.type(within(officeRender.container).getByLabelText('Word hujjati matni'),'Yangi kitoblar va jadval mavjud.');
+  await user.click(within(officeRender.container).getByRole('button',{name:'Jadval qo‘shish'}));
+  await user.click(within(officeRender.container).getByRole('button',{name:'Namuna rasm'}));
+  await user.selectOptions(within(officeRender.container).getByLabelText('Rasmni matnga o‘rash'),'right');
+  assert.equal(JSON.parse(officeAnswer).wrap,'right');assert.equal(JSON.parse(officeAnswer).table.length,2);
+  officeRender.unmount();
 
   cleanup();account=null;stage=0;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByLabelText('O‘YIN KODI');
   await user.type(screen.getByLabelText('O‘YIN KODI'),'123456');await user.click(screen.getByRole('button',{name:'Qo‘shilish'}));
@@ -129,14 +140,25 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await user.click(screen.getByRole('button',{name:'Python',exact:true}));
   await user.click(screen.getByRole('button',{name:'Boshlash: Python asoslari'}));
   await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Boshlash',exact:true}));
-  await screen.findByRole('heading',{name:'IDE nima?'});
-  await user.click(screen.getByRole('radio',{name:/Kod yozish, ishga tushirish/}));
+  await screen.findByRole('heading',{name:/Kod yozgan o‘quvchi uni ishga tushirib/});
+  await user.click(screen.getByRole('radio',{name:/Dasturlash muhiti/}));
   await user.click(screen.getByRole('button',{name:'Tugatish',exact:true}));
   await user.click(within(screen.getByRole('dialog')).getByRole('button',{name:'Ha, tugatish'}));
   await screen.findByRole('heading',{name:'Javoblar tahlili'});assert.ok(screen.getByText('1/15'));
   assert.equal(sessionStorage.getItem('sq_active_hash'),null);
   await user.click(screen.getByRole('button',{name:'Barchasi',exact:true}));
-  assert.ok(screen.getByText(/IDE dastur yozish uchun/));
+  assert.ok(screen.getByText(/IDE kodni yozish, ishga tushirish/));
+  cleanup();
+  const source=pythonCourse[0],lesson={id:'python-ui',ownerId:'admin-id',ownerName:'Administrator',subject:'Python',title:source.title,summary:source.summary,content:pythonLessonContent(source),guide:pythonGuides[source.slug],courseOrder:1,courseTotal:20,updatedAt:Date.now(),readCount:0};
+  render(React.createElement(StudentCatalog,{catalog:{lessons:[lesson],quizzes:[]},onBack:()=>{},onJoinPin:()=>{},onLesson:()=>{},onChats:()=>{}}));
+  assert.ok(screen.getByRole('heading',{name:source.title}));
+  assert.ok(!document.querySelector('.lesson-card').textContent.includes('📘'));
+  await user.click(screen.getByRole('button',{name:'Video darslar'}));
+  assert.ok(screen.getByRole('heading',{name:'Video darslar tez orada qo‘shiladi'}));
+  cleanup();render(React.createElement(LessonReader,{lesson,onBack:()=>{},onRead:()=>{},onChat:()=>{}}));
+  assert.ok(screen.getAllByText('Salom, sinf!').length>=1);
+  assert.equal(document.querySelectorAll('.lesson-code').length,2);
+  assert.ok(screen.getByText(/1\/20-dars/));
   console.log('UI checks: local admin, code-only quiz, no-code 1v1 race, split runners, typing ACTIVE/PASSIVE, typing join, answer, winner, theme, 3D fallback and result.');
  }finally{cleanup();delete globalThis.__SINFQUIZ_LEGACY_TEST__;await vite.close();dom.window.close()}
 });

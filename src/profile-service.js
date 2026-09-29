@@ -39,9 +39,13 @@ export async function changeOwnPassword(currentPassword,nextPassword){
 export async function adminResetPassword(uid){
  const sdk=await getSupabase(),token=await sdk.auth.currentUser?.getIdToken();
  if(!token)throw Error('Qayta tizimga kiring.');
- const response=await fetch('/api/admin-reset-password',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${token}`},body:JSON.stringify({uid}),cache:'no-store'});
+ let response;
+ try{response=await fetch('/api/admin-reset-password',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${token}`},body:JSON.stringify({uid}),cache:'no-store'})}
+ catch{throw Error('Lokal serverga ulanib bo‘lmadi. npm run dev serveri ishlayotganini tekshiring.')}
+ if(!response.headers.get('content-type')?.includes('application/json'))throw Error('Admin API topilmadi. Yangilangan loyihani npm run dev bilan qayta ishga tushiring.');
  const body=await response.json().catch(()=>({}));
  if(!response.ok)throw Error(body.error||'Parolni yangilab bo‘lmadi.');
+ if(typeof body.password!=='string')throw Error('Server javobi noto‘g‘ri. Parol holatini tekshiring.');
  return body;
 }
 

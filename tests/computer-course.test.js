@@ -2,8 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {computerCourse,computerCourseModules} from '../data/computer-course.js';
 import {courseGuides} from '../data/course-guides.js';
+import {pythonCourse,pythonGuides,pythonLessonContent} from '../data/python-course.js';
 import {ensureComputerCourse} from '../src/computer-course-seed.js';
 import {readFile} from 'node:fs/promises';
+import {mkdtempSync,rmSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 
 function mockDatabase(uid){
  const rows=new Map();
@@ -29,10 +34,10 @@ test('admin course seeds once, remains public, and preserves edits and deletions
  assert.equal(rows.size,0);
  assert.equal(await ensureComputerCourse(sdk,profile),true);
  const lessons=[...rows].filter(([k])=>k.startsWith('lessons/'));
- assert.equal(lessons.length,28);
- assert.equal(new Set(lessons.map(([,value])=>value.id)).size,28);
+ assert.equal(lessons.length,48);
+ assert.equal(new Set(lessons.map(([,value])=>value.id)).size,48);
  assert.ok(lessons.every(([,value])=>value.ownerId===uid&&value.visibility==='public'));
- assert.ok(lessons.every(([,value])=>value.guide?.steps.length>=4&&value.courseVersion===2));
+ assert.ok(lessons.every(([,value])=>value.guide?.steps.length>=4&&value.courseVersion>=2));
  const firstKey=lessons[0][0],deletedKey=lessons[1][0];
  rows.set(firstKey,{...rows.get(firstKey),content:'Admin tahriri'});
  rows.delete(deletedKey);
@@ -41,7 +46,7 @@ test('admin course seeds once, remains public, and preserves edits and deletions
  assert.equal(rows.has(deletedKey),false);
  sdk.auth.currentUser.uid=other;
  assert.equal(await ensureComputerCourse(sdk,{role:'teacher',name:'Other'}),false);
- assert.equal([...rows].filter(([k])=>k.startsWith('lessons/')).length,27);
+ assert.equal([...rows].filter(([k])=>k.startsWith('lessons/')).length,47);
 });
 
 test('v1 admin course gains illustrations without replacing edited lessons or deleted rows',async()=>{
@@ -58,8 +63,49 @@ test('v1 admin course gains illustrations without replacing edited lessons or de
  assert.equal(lesson.updatedAt,100);
  assert.equal(lesson.guide.slug,first.slug);
  assert.equal(rows.has(`lessons/computer-course-v1-${uid}-${second.slug}`),false);
- assert.equal(rows.get(`profiles/${uid}`).computerCourseVersion,2);
+ assert.equal(rows.get(`profiles/${uid}`).computerCourseVersion,3);
  assert.equal(rows.get(`profiles/${uid}`).computerCourseInstalledAt,42);
+});
+
+test('v2 installation adds Python without replacing edited computer lessons',async()=>{
+ const uid='00000000-0000-0000-0000-000000000004',profile={role:'admin',name:'Admin'};
+ const {sdk,rows}=mockDatabase(uid),first=computerCourse[0];
+ rows.set(`profiles/${uid}`,{computerCourseVersion:2});
+ rows.set(`lessons/computer-course-v1-${uid}-${first.slug}`,{ownerId:uid,content:'Mening tahririm',title:'Mening darsim'});
+ assert.equal(await ensureComputerCourse(sdk,profile),true);
+ assert.equal([...rows].filter(([key])=>key.startsWith('lessons/python-course-v3-')).length,20);
+ assert.equal(rows.get(`lessons/computer-course-v1-${uid}-${first.slug}`).content,'Mening tahririm');
+ rows.delete(`lessons/python-course-v3-${uid}-${pythonCourse[0].slug}`);
+ assert.equal(await ensureComputerCourse(sdk,profile),false);
+ assert.equal(rows.has(`lessons/python-course-v3-${uid}-${pythonCourse[0].slug}`),false);
+});
+
+test('Python curriculum has runnable examples, practical work and answer keys',()=>{
+ assert.equal(pythonCourse.length,20);
+ assert.equal(new Set(pythonCourse.map(item=>item.slug)).size,20);
+ for(const lesson of pythonCourse){
+  assert.ok(pythonLessonContent(lesson).length>650);
+  assert.ok(pythonLessonContent(lesson).includes('```python'));
+  assert.ok(lesson.practice.length>60&&lesson.explain.length>60);
+  const guide=pythonGuides[lesson.slug];
+  assert.equal(guide.steps.length,4);
+  assert.equal(guide.checks.length,2);
+  for(const check of guide.checks)assert.ok(check.answer>=0&&check.answer<check.options.length&&check.explanation);
+ }
+});
+
+test('Python lesson examples produce the stated results',()=>{
+ const directory=mkdtempSync(join(tmpdir(),'sinfquiz-python-'));
+ try{
+  for(const lesson of pythonCourse){
+   const result=spawnSync('python3',['-I','-c',lesson.code],{cwd:directory,input:lesson.slug==='python-input'?'12\n':undefined,encoding:'utf8',timeout:3000});
+   assert.equal(result.status,0,`${lesson.slug}: ${result.stderr}`);
+   const actual=result.stdout.trim().split('\n').map(line=>line.trim());
+   const expected=lesson.output.trim().split('\n').map(line=>line.trim());
+   if(lesson.slug==='python-input')assert.ok(actual.at(-1).endsWith(expected.at(-1)));
+   else assert.deepEqual(actual,expected,lesson.slug);
+  }
+ }finally{rmSync(directory,{recursive:true,force:true})}
 });
 
 test('course has ordered original lessons with an exercise in every module',()=>{

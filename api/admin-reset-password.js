@@ -6,8 +6,8 @@ const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]
 
 function client(){
  const url=process.env.SUPABASE_URL||process.env.VITE_SUPABASE_URL;
- const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
- if(!url||!key)throw Object.assign(Error('Serverda Supabase maxfiy kaliti sozlanmagan.'),{status:503});
+ const key=process.env.SUPABASE_SECRET_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY;
+ if(!url||!key)throw Object.assign(Error('Serverda Supabase maxfiy kaliti sozlanmagan. .env.local fayliga SUPABASE_SECRET_KEY kiriting va serverni qayta ishga tushiring.'),{status:503});
  return createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
 }
 

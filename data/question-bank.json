@@ -1,7 +1,7 @@
 [
   {
     "id": "word-lab",
-    "title": "Word: hujjat ustasi",
+    "title": "Word: matn va hujjat amaliyoti",
     "subject": "Word",
     "color": "blue",
     "pin": "110101",
@@ -21,7 +21,7 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Word matn, jadval va rasmni bitta hujjatda tahrirlash uchun xizmat qiladi.",
         "id": "word-lab-1",
         "subject": "Word"
       },
@@ -47,7 +47,7 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Insert → Table jadvalning qator va ustunlarini yaratadi.",
         "id": "word-lab-3",
         "subject": "Word"
       },
@@ -83,15 +83,99 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Insert → Pictures orqali rasm kiritiladi; matn bilan o‘rash Layout Options orqali belgilanadi.",
         "id": "word-lab-6",
         "subject": "Word"
+      },
+      {
+        "id": "word-lab-v11-7",
+        "type": "test",
+        "subject": "Word",
+        "text": "Rasm matnning o‘ng tomonida tursin va matn uning atrofiga oqsin. Qaysi amallar ketma-ketligi kerak?",
+        "options": [
+          "Rasmni tanlash → Layout Options → Square/Tight → rasmni o‘ngga siljitish",
+          "Home → Bold → Delete",
+          "Review → Translate → Print",
+          "File → Save As → PDF"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Wrap Text rasm bilan matn munosabatini belgilaydi; joyini siljitish alohida amal."
+      },
+      {
+        "id": "word-lab-v11-8",
+        "type": "test",
+        "subject": "Word",
+        "text": "Ikki ustunli jadvalning oxiriga yangi qator qo‘shish uchun qaysi amal qulay?",
+        "options": [
+          "Layout → Insert Below",
+          "Design → Page Color",
+          "References → Citations",
+          "View → Zoom"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Jadval ichiga kursorni qo‘yib Insert Below ishlatiladi."
+      },
+      {
+        "id": "word-lab-v11-9",
+        "type": "test",
+        "subject": "Word",
+        "text": "Ma’lumotnomada qabul qiluvchi, sana va imzo joylashuvini tekshirish nima uchun muhim?",
+        "options": [
+          "Hujjat kimga va qachon berilganini aniq ko‘rsatish uchun",
+          "Rasm faylini siqish uchun",
+          "Shriftni tasodifiy almashtirish uchun",
+          "Taqdimot ovozini yoqish uchun"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Ma’lumotnoma rekvizitlari hujjat mazmuni va tasdiqlanishini aniqlashtiradi."
+      },
+      {
+        "id": "word-lab-v11-10",
+        "type": "test",
+        "subject": "Word",
+        "text": "Rasm qo‘shilgach matn ustini bekitib qo‘ydi. Birinchi bo‘lib nimani o‘zgartirasiz?",
+        "options": [
+          "Rasmning Wrap Text (matnni o‘rash) parametrini",
+          "Hujjat kengaytmasini",
+          "Kompyuter vaqtini",
+          "Klaviatura tilini"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Inline, Square va Tight rejimlari rasmning matn bilan joylashishini boshqaradi."
+      },
+      {
+        "id": "word-lab-v11-11",
+        "type": "office",
+        "subject": "Word",
+        "text": "Word muharririda «Maktab kutubxonasi» hujjatini tuzing: sarlavha, matn, ikki qatorli jadval va o‘ng tomonga o‘ralgan rasm.",
+        "officeTemplate": "word-report",
+        "points": 200,
+        "time": 480,
+        "explanation": "Amalni muharrirda bajarib yuboring; mezonlar bo‘yicha qisman ball beriladi. O‘qituvchi ishni ham ko‘ra oladi."
+      },
+      {
+        "id": "word-lab-v11-12",
+        "type": "office",
+        "subject": "Word",
+        "text": "Word muharririda ma’lumotnoma yozing: kimga, sana, manba va ikki ustunli jadvalni to‘ldiring.",
+        "officeTemplate": "word-reference",
+        "points": 200,
+        "time": 480,
+        "explanation": "Amalni muharrirda bajarib yuboring; mezonlar bo‘yicha qisman ball beriladi. O‘qituvchi ishni ham ko‘ra oladi."
       }
     ]
   },
   {
     "id": "excel-lab",
-    "title": "Excel: formula laboratoriyasi",
+    "title": "Excel: katak va formulalar",
     "subject": "Excel",
     "color": "green",
     "pin": "220202",
@@ -111,7 +195,7 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Formula = belgisi bilan boshlanadi.",
         "id": "excel-lab-1",
         "subject": "Excel"
       },
@@ -137,7 +221,7 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Katak manzili ustun harfi va qator raqamidan tuziladi.",
         "id": "excel-lab-3",
         "subject": "Excel"
       },
@@ -175,15 +259,99 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "AVERAGE sonlarning o‘rtacha arifmetigini hisoblaydi.",
         "id": "excel-lab-6",
         "subject": "Excel"
+      },
+      {
+        "id": "excel-lab-v11-7",
+        "type": "test",
+        "subject": "Excel",
+        "text": "B2=3, C2=8000 bo‘lsa, =B2*C2 natijasi qancha?",
+        "options": [
+          "8003",
+          "24000",
+          "8000",
+          "3"
+        ],
+        "correct": 1,
+        "points": 100,
+        "time": 55,
+        "explanation": "Ko‘paytirish operatori *: 3 × 8000 = 24000."
+      },
+      {
+        "id": "excel-lab-v11-8",
+        "type": "test",
+        "subject": "Excel",
+        "text": "D2=24000 va D3=8000. =SUM(D2:D3) qancha beradi?",
+        "options": [
+          "16000",
+          "24000",
+          "32000",
+          "2"
+        ],
+        "correct": 2,
+        "points": 100,
+        "time": 55,
+        "explanation": "SUM belgilangan oraliqdagi qiymatlarni qo‘shadi."
+      },
+      {
+        "id": "excel-lab-v11-9",
+        "type": "test",
+        "subject": "Excel",
+        "text": "B2, B3, B4 kataklarda 70, 80, 90 yozilgan. O‘rtachasini topuvchi formula qaysi?",
+        "options": [
+          "=AVERAGE(B2:B4)",
+          "=SUM(B2:B4)",
+          "=B2*B4",
+          "=80"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "AVERAGE oraliqning o‘rtacha qiymatini qaytaradi."
+      },
+      {
+        "id": "excel-lab-v11-10",
+        "type": "test",
+        "subject": "Excel",
+        "text": "D2 formulasini D3 ga nusxalashda B2 va C2 nisbiy havolalari qanday o‘zgaradi?",
+        "options": [
+          "B3 va C3 ga",
+          "A1 va B1 ga",
+          "O‘zgarmaydi",
+          "D2 va D3 ga"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Nisbiy manzillar formula ko‘chirilgan qator bilan birga siljiydi."
+      },
+      {
+        "id": "excel-lab-v11-11",
+        "type": "office",
+        "subject": "Excel",
+        "text": "Jadvalda B va C kataklardagi miqdor va narxdan D2/D3 qiymatini formula bilan, D4 jami qiymatini SUM bilan hisoblang.",
+        "officeTemplate": "excel-shop",
+        "points": 200,
+        "time": 480,
+        "explanation": "Amalni muharrirda bajarib yuboring; mezonlar bo‘yicha qisman ball beriladi. O‘qituvchi ishni ham ko‘ra oladi."
+      },
+      {
+        "id": "excel-lab-v11-12",
+        "type": "office",
+        "subject": "Excel",
+        "text": "B2:B4 ballaridan B5 katakda AVERAGE, C2 katakda B2+5 formulasini ishlating.",
+        "officeTemplate": "excel-average",
+        "points": 200,
+        "time": 480,
+        "explanation": "Amalni muharrirda bajarib yuboring; mezonlar bo‘yicha qisman ball beriladi. O‘qituvchi ishni ham ko‘ra oladi."
       }
     ]
   },
   {
     "id": "ppt-lab",
-    "title": "PowerPoint: taqdimot yarating",
+    "title": "PowerPoint: slayd amaliyoti",
     "subject": "PowerPoint",
     "color": "orange",
     "pin": "330303",
@@ -203,7 +371,7 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Slayd taqdimotdagi alohida sahifadir.",
         "id": "ppt-lab-1",
         "subject": "PowerPoint"
       },
@@ -265,9 +433,83 @@
         "correct": 0,
         "points": 100,
         "time": 35,
-        "explanation": "",
+        "explanation": "Tinglovchilar o‘qishi uchun fikrlar ixcham va yirik matnda bo‘lsin.",
         "id": "ppt-lab-6",
         "subject": "PowerPoint"
+      },
+      {
+        "id": "ppt-lab-v11-7",
+        "type": "test",
+        "subject": "PowerPoint",
+        "text": "Taqdimotda rasmni qaysi menyudan qo‘shish mumkin?",
+        "options": [
+          "Insert → Pictures",
+          "Review → Spelling",
+          "Slide Show → End",
+          "File → Options"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Insert menyusi slaydga rasm va boshqa obyektlarni kiritadi."
+      },
+      {
+        "id": "ppt-lab-v11-8",
+        "type": "test",
+        "subject": "PowerPoint",
+        "text": "Slaydning ekranga kelish usuli qaysi bo‘limda tanlanadi?",
+        "options": [
+          "Transitions",
+          "Animations",
+          "References",
+          "Mailings"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Transitions slaydlar oralig‘idagi o‘tishni belgilaydi; Animations obyektlarga ta’sir qiladi."
+      },
+      {
+        "id": "ppt-lab-v11-9",
+        "type": "test",
+        "subject": "PowerPoint",
+        "text": "O‘qituvchi gapiradigan, lekin slaydda ko‘rinmaydigan izohlarni qayerga yozadi?",
+        "options": [
+          "Speaker Notes maydoniga",
+          "Slayd raqamiga",
+          "Fayl nomiga",
+          "Fonni tanlash oynasiga"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Notes maydoni ma’ruzachi uchun eslatmadir."
+      },
+      {
+        "id": "ppt-lab-v11-10",
+        "type": "test",
+        "subject": "PowerPoint",
+        "text": "Bir slaydda matn juda ko‘p. O‘qishga qulay qilish uchun nima qilasiz?",
+        "options": [
+          "Fikrlarni qisqartirib, keyingi slaydga ajrataman",
+          "Shriftni 5 punktga tushiraman",
+          "Matnni fon bilan bir rang qilaman",
+          "Barcha satrlarni animatsiya qilaman"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 55,
+        "explanation": "Har slaydda bitta asosiy fikr tinglovchiga qulay."
+      },
+      {
+        "id": "ppt-lab-v11-11",
+        "type": "office",
+        "subject": "PowerPoint",
+        "text": "PowerPoint muharririda ikki mazmunli slayd tuzing, slaydga rasm qo‘shing va ikkinchi slaydga so‘zlovchi qaydini yozing.",
+        "officeTemplate": "ppt-presentation",
+        "points": 200,
+        "time": 480,
+        "explanation": "Amalni muharrirda bajarib yuboring; mezonlar bo‘yicha qisman ball beriladi. O‘qituvchi ishni ham ko‘ra oladi."
       }
     ]
   },
@@ -775,7 +1017,7 @@
   },
   {
     "id": "python-basics",
-    "title": "Python: boshlang‘ich 15 savol",
+    "title": "Python: nazariya va kod yozish",
     "subject": "Python",
     "color": "blue",
     "pin": "110108",
@@ -785,257 +1027,239 @@
       {
         "id": "python-basics-1",
         "type": "test",
-        "text": "IDE nima?",
+        "text": "Kod yozgan o‘quvchi uni ishga tushirib, xatoni ko‘rmoqchi. Qaysi vosita aynan shu ishlarga yordam beradi?",
         "options": [
-          "Faqat rasm chizadigan dastur",
-          "Internet tezligini o‘lchaydigan qurilma",
-          "Python ma’lumot turi",
-          "Kod yozish, ishga tushirish va xatolarni topishga yordam beradigan dasturlash muhiti"
+          "Dasturlash muhiti (masalan, IDLE)",
+          "Fayl siqish dasturi",
+          "Faqat rasm ko‘ruvchi",
+          "Printer drayveri"
         ],
-        "correct": 3,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "IDE dastur yozish uchun kerakli vositalarni bitta muhitda birlashtiradi.",
+        "explanation": "IDE kodni yozish, ishga tushirish va xatoni tekshirishda yordam beradi.",
         "subject": "Python",
         "sourceUrl": "https://docs.python.org/3/library/idle.html"
       },
       {
         "id": "python-basics-2",
         "type": "test",
-        "text": "print() funksiyasining asosiy vazifasi nima?",
+        "text": "Quyidagi kod ekranda nima chiqaradi?\n\nprint(\"Fan:\", \"Python\")",
         "options": [
-          "Matnni har doim butun songa aylantirish",
-          "O‘zgaruvchini o‘chirish",
-          "Ma’lumotni ekranga chiqarish",
-          "Qiymat turini aniqlash"
+          "Fan: Python",
+          "Fan:Python",
+          "\"Fan:\" \"Python\"",
+          "Hech narsa"
         ],
-        "correct": 2,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "print() berilgan qiymatlarni standart chiqishga, odatda terminalga yozadi.",
+        "explanation": "print vergul bilan ajratilgan qiymatlar orasiga odatda bitta bo‘sh joy qo‘yadi.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/library/functions.html#print"
       },
       {
         "id": "python-basics-3",
         "type": "test",
-        "text": "Ushbu kod nimani chiqaradi?\n\nprint(\"Salom\")",
+        "text": "Ikkinchi qatordan so‘ng ball qancha bo‘ladi?\n\nball = 3\nball = ball + 4\nprint(ball)",
         "options": [
-          "Xato",
-          "Salom",
-          "\"Salom\"",
-          "print(Salom)"
+          "7",
+          "34",
+          "4",
+          "3"
         ],
-        "correct": 1,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "Qo‘shtirnoqlar matn chegarasini belgilaydi; odatiy print natijasida ular chiqmaydi.",
+        "explanation": "O‘ngdagi 3 + 4 hisoblanib, yangi 7 qiymati ball ga yoziladi.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/tutorial/introduction.html"
       },
       {
         "id": "python-basics-4",
         "type": "test",
-        "text": "Kod natijasini tanlang.\n\nprint(type(25))",
+        "text": "Sonning matndan farqini tekshiring. Qaysi ikki tur chiqadi?\n\nprint(type(\"8\").__name__)\nprint(type(8).__name__)",
         "options": [
-          "<class 'int'>",
-          "<class 'str'>",
-          "<class 'bool'>",
-          "25"
+          "str\nint",
+          "int\nstr",
+          "str\nstr",
+          "bool\nint"
         ],
         "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "25 — butun son. type() uning turini qaytaradi.",
+        "explanation": "Qo‘shtirnoqli 8 matn; qo‘shtirnoqsiz 8 butun son.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/library/functions.html#type"
       },
       {
         "id": "python-basics-5",
         "type": "test",
-        "text": "Qo‘shtirnoq ichidagi qiymatning turi qanday?\n\nprint(type(\"25\"))",
+        "text": "O‘quvchi input orqali 12 kiritdi. Natijani hisoblash uchun avval nima qilish kerak?",
         "options": [
-          "<class 'int'>",
-          "<class 'bool'>",
-          "<class 'float'>",
-          "<class 'str'>"
+          "int() bilan songa aylantirish",
+          "print() bilan o‘chirish",
+          "type() bilan ikki marta bo‘lish",
+          "Hech narsa: input doim int"
         ],
-        "correct": 3,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "Raqamlardan iborat bo‘lsa ham, qo‘shtirnoq ichidagi \"25\" matndir.",
+        "explanation": "input har doim str qaytaradi; int(\"12\") butun son hosil qiladi.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/library/functions.html#input"
       },
       {
         "id": "python-basics-6",
         "type": "test",
-        "text": "Ushbu kod nimani chiqaradi?\n\nprint(int(\"12\") + 3)",
+        "text": "Matn songa aylantirilgach natija qancha?\n\nprint(int(\"12\") + 3)",
         "options": [
-          "12",
-          "Xato",
           "15",
-          "123"
+          "123",
+          "12",
+          "Xato"
         ],
-        "correct": 2,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "int(\"12\") matnni 12 butun soniga aylantiradi; 12 + 3 = 15.",
+        "explanation": "int(\"12\") natijasi 12 bo‘lib, 3 qo‘shilganda 15 chiqadi.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/library/functions.html#int"
       },
       {
         "id": "python-basics-7",
         "type": "test",
-        "text": "Matnga aylantirishdan keyingi natija qaysi?\n\nprint(str(7) + \"3\")",
+        "text": "Nol va bo‘sh bo‘lmagan matn uchun natija nima?\n\nprint(bool(0))\nprint(bool(\"0\"))",
         "options": [
-          "Xato",
-          "73",
-          "10",
-          "<class 'int'>"
+          "False\nTrue",
+          "False\nFalse",
+          "True\nTrue",
+          "True\nFalse"
         ],
-        "correct": 1,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "str(7) — \"7\". Ikki matn + operatori bilan birlashtiriladi: \"7\" + \"3\" = \"73\".",
+        "explanation": "0 soni False; \"0\" esa ichida bitta belgi bor matn, shuning uchun True.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/library/functions.html#bool"
       },
       {
         "id": "python-basics-8",
         "type": "test",
-        "text": "bool(0) qanday qiymat beradi?\n\nprint(bool(0))",
+        "text": "17 ta kitobni 5 ta javonga teng joylashtirsak nechta ortadi?\n\nprint(17 % 5)",
         "options": [
-          "False",
-          "True",
-          "0.0",
-          "\"False\""
+          "2",
+          "3",
+          "5",
+          "12"
         ],
         "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "Nol soni mantiqiy tekshiruvda yolg‘on qiymat hisoblanadi.",
+        "explanation": "% bo‘lishdan qolgan qoldiqni hisoblaydi: 17 = 5 × 3 + 2.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
+        "sourceUrl": "https://docs.python.org/3/tutorial/introduction.html"
       },
       {
         "id": "python-basics-9",
         "type": "test",
-        "text": "Bo‘sh matn uchun natija nima?\n\nprint(bool(\"\"))",
+        "text": "Bahosi va davomat sharti birgalikda bajarildimi?\n\nbaho = 4\ndavomat = 80\nprint(baho >= 4 and davomat >= 75)",
         "options": [
           "True",
-          "None",
-          "Xato",
-          "False"
-        ],
-        "correct": 3,
-        "points": 100,
-        "time": 45,
-        "explanation": "Bo‘sh satr \"\" mantiqiy tekshiruvda False bo‘ladi.",
-        "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
-      },
-      {
-        "id": "python-basics-10",
-        "type": "test",
-        "text": "Bo‘sh bo‘lmagan matn uchun natija nima?\n\nprint(bool(\"0\"))",
-        "options": [
-          "0",
-          "Xato",
-          "True",
-          "False"
-        ],
-        "correct": 2,
-        "points": 100,
-        "time": 45,
-        "explanation": "\"0\" bo‘sh matn emas. Shuning uchun bool(\"0\") True; bu int(0) bilan bir xil emas.",
-        "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/functions.html"
-      },
-      {
-        "id": "python-basics-11",
-        "type": "test",
-        "text": "Amallar tartibiga ko‘ra natija qaysi?\n\nprint(2 + 3 * 4)",
-        "options": [
-          "24",
-          "14",
-          "20",
-          "10"
-        ],
-        "correct": 1,
-        "points": 100,
-        "time": 45,
-        "explanation": "Avval ko‘paytirish: 3 × 4 = 12. Keyin 2 + 12 = 14.",
-        "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
-      },
-      {
-        "id": "python-basics-12",
-        "type": "test",
-        "text": "// operatori ishlatilgan kod natijasi nima?\n\nprint(7 // 2)",
-        "options": [
-          "3",
-          "3.5",
-          "1",
-          "4"
+          "False",
+          "4",
+          "80"
         ],
         "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "// bo‘lish natijasini pastga qarab butunlashtiradi. 7 // 2 = 3.",
+        "explanation": "Har ikkala solishtirish True, and natijasi ham True.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+        "sourceUrl": "https://docs.python.org/3/tutorial/controlflow.html"
       },
       {
-        "id": "python-basics-13",
+        "id": "python-basics-10",
         "type": "test",
-        "text": "% operatori ishlatilgan kod natijasi nima?\n\nprint(7 % 2)",
+        "text": "Chegara 60 ball. 58 ball uchun qanday xabar chiqadi?\n\nball = 58\nif ball >= 60:\n    print(\"O‘tdi\")\nelse:\n    print(\"Mashq qiling\")",
         "options": [
-          "3",
-          "3.5",
-          "14",
+          "Mashq qiling",
+          "O‘tdi",
+          "58",
+          "Hech narsa"
+        ],
+        "correct": 0,
+        "points": 100,
+        "time": 45,
+        "explanation": "58 >= 60 yolg‘on, shu sabab else bo‘limi bajariladi.",
+        "subject": "Python",
+        "sourceUrl": "https://docs.python.org/3/tutorial/controlflow.html#if-statements"
+      },
+      {
+        "id": "python-basics-11",
+        "type": "test",
+        "text": "Ikkinchi fan nomi qaysi?\n\nfanlar = [\"Ingliz tili\", \"Python\", \"Matematika\"]\nprint(fanlar[1])",
+        "options": [
+          "Python",
+          "Ingliz tili",
+          "Matematika",
           "1"
         ],
-        "correct": 3,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "% bo‘lishdan qolgan qoldiqni beradi: 7 = 2 × 3 + 1.",
+        "explanation": "Ro‘yxatdagi birinchi indeks 0, ikkinchisi 1.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+        "sourceUrl": "https://docs.python.org/3/tutorial/introduction.html#lists"
       },
       {
-        "id": "python-basics-14",
+        "id": "python-basics-12",
         "type": "test",
-        "text": "== operatori bu yerda qanday natija beradi?\n\nprint(5 == 5)",
+        "text": "Sikl nechta belgi chiqaradi?\n\nfor _ in range(3):\n    print(\"X\")",
         "options": [
-          "10",
-          "Xato",
-          "True",
-          "False"
+          "X\nX\nX",
+          "X\nX",
+          "3",
+          "Hech narsa"
         ],
-        "correct": 2,
+        "correct": 0,
         "points": 100,
         "time": 45,
-        "explanation": "== ikkita qiymat tengligini tekshiradi. = esa qiymat berish operatoridir.",
+        "explanation": "range(3) uch aylanish beradi: 0, 1, 2. Har safar bir X chiqariladi.",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+        "sourceUrl": "https://docs.python.org/3/tutorial/controlflow.html#the-range-function"
       },
       {
-        "id": "python-basics-15",
-        "type": "test",
-        "text": "Mantiqiy ifoda natijasi nima?\n\nprint((3 > 2) and not False)",
-        "options": [
-          "2",
-          "True",
-          "False",
-          "3"
-        ],
-        "correct": 1,
-        "points": 100,
-        "time": 45,
-        "explanation": "3 > 2 — True; not False — True. True and True natijasi True.",
+        "id": "python-basics-v11-13",
+        "type": "python",
         "subject": "Python",
-        "sourceUrl": "https://docs.python.org/3/library/stdtypes.html"
+        "text": "a = 7, b = 5 berilgan. a+b ni ekranga chiqaring; natija 12 bo‘lsin.",
+        "sampleCode": "a = 7\nb = 5\n# Yig‘indini chiqaring\n",
+        "answer": "12",
+        "points": 200,
+        "time": 480,
+        "explanation": "print(a+b) kodini ishga tushiring."
+      },
+      {
+        "id": "python-basics-v11-14",
+        "type": "python",
+        "subject": "Python",
+        "text": "input() orqali 4 sonini oling. int bilan songa aylantirib ikki baravarini chiqaring.",
+        "sampleCode": "son = int(input())\n# Natijani chiqaring\n",
+        "answer": "8",
+        "points": 200,
+        "time": 480,
+        "explanation": "Kirish qiymatini 4 qilib bering va print(son*2) ishlating."
+      },
+      {
+        "id": "python-basics-v11-15",
+        "type": "python",
+        "subject": "Python",
+        "text": "for sikli yordamida 1, 2, 3 sonlarini har birini alohida qatorda ekranga chiqaring.",
+        "sampleCode": "for i in range(1, 4):\n    # print ni qo‘shing\n    pass\n",
+        "answer": "1\n2\n3",
+        "points": 200,
+        "time": 480,
+        "explanation": "print(i) sikl tanasida ishlatiladi."
       }
     ]
   }

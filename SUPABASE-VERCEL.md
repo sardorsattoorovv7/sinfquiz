@@ -19,7 +19,22 @@ VITE_SUPABASE_ANON_KEY=publishable_or_anon_key
 SUPABASE_SERVICE_ROLE_KEY=service_role_key
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` faqat Telegram login server funksiyasiga kerak. Telegram ishlatilmasa uni kiritmaslik mumkin.
+`SUPABASE_SERVICE_ROLE_KEY` yoki yangi `SUPABASE_SECRET_KEY` admin tomonidan parol tiklash uchun ham kerak. Bu maxfiy kalit faqat server muhitida turadi; `VITE_` bilan boshlanadigan o‘zgaruvchiga yozmang.
+
+### Localhostda admin parolini tiklash
+
+1. Supabase **Project Settings → API Keys** sahifasidan `secret` (`sb_secret_...`) kalitni oling. Agar loyihada faqat eski kalitlar bo‘lsa, `service_role` kalitini oling. Publishable/anon kaliti bu ishga yaramaydi.
+2. Loyiha ildizida `.env.local` faylini oching (yo‘q bo‘lsa `.env.example` dan nusxa yarating) va quyidagilarni kiriting:
+
+```text
+VITE_SUPABASE_URL=https://project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=publishable_or_anon_key
+SUPABASE_SECRET_KEY=sb_secret_your_secret_key
+```
+
+Eski `service_role` kaliti ishlatilsa oxirgi satr o‘rniga `SUPABASE_SERVICE_ROLE_KEY=...` yozing. Kalit va URL aynan **bitta Supabase loyihasiga** tegishli bo‘lsin. `.env.local` faylini GitHub yoki ZIP ichiga qo‘shmang, chatga yubormang.
+
+3. Terminaldagi eski `npm run dev` jarayonini to‘xtating (`Ctrl+C`), so‘ng qayta `npm run dev` qiling. Admin hisobidan kirib parolni yangilang. Lokal Vite server endi `/api/admin-reset-password` so‘rovini o‘zi qabul qiladi.
 
 ## 3. Administrator
 
@@ -31,7 +46,7 @@ SUPABASE_SERVICE_ROLE_KEY=service_role_key
 
 1. Loyihani GitHub orqali yoki ZIP’dan Vercel’ga import qiling.
 2. **Settings → Environment Variables** bo‘limiga `VITE_SUPABASE_URL` va `VITE_SUPABASE_ANON_KEY` qiymatlarini kiriting.
-3. Telegram login kerak bo‘lsa `SUPABASE_SERVICE_ROLE_KEY`, `VITE_TELEGRAM_BOT_USERNAME` va `TELEGRAM_BOT_TOKEN` qiymatlarini ham kiriting.
+3. Admin parol tiklash uchun `SUPABASE_SECRET_KEY` (yoki `SUPABASE_SERVICE_ROLE_KEY`) ni server env sifatida kiriting. Telegram login kerak bo‘lsa `VITE_TELEGRAM_BOT_USERNAME` va `TELEGRAM_BOT_TOKEN` ni ham kiriting.
 4. **Redeploy** qiling.
 
 ## 5. Telegram ixtiyoriy sozlamasi

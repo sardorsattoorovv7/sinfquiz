@@ -1,4 +1,10 @@
-# SinfQuiz 7.9
+# SinfQuiz 7.11
+
+## 7.11: sinf amaliyotlari
+
+Word, Excel va PowerPoint shaxsiy sinf testlari qayta tuzildi: tushuntirishli nazariy savollar bilan birga Word hujjati, jadval, rasm, matnga o‘rash va ma’lumotnoma; Excel kataklari, SUM va AVERAGE; PowerPoint slayd, rasm va so‘zlovchi qaydlari muharrirda bajariladi. O‘qituvchi ham shu amaliy topshiriqlarni testiga qo‘sha oladi. Muharrirlar o‘quv simulyatsiyasi; Microsoft fayl formatlariga eksport qilmaydi. Avvalgi tayyor shablonlar faqat tahrirlanmagan bo‘lsa yangilanadi; ustozning o‘zgartirgan testlari saqlanadi.
+
+Python sinf testi nazariy va kod yozish savollarini birlashtiradi. O‘quvchi kabinetida ham 20 mavzuli Python ish joyi bor. Kod shu brauzerda dars bo‘yicha oxirgi yozuvdan 52 soat saqlanadi va `.py` sifatida olinadi. Dastur ajratilgan iframe ichidagi vaqt limiti qo‘yilgan workerda ishlaydi; serverga kod bajarish uchun yuborilmaydi. Ruxsat etilgan modullar cheklangan. Python ishga tushishi uchun ilk marta Pyodide yuklanadi va internet kerak; yozilgan kod/oflayn tahrir saqlanaveradi. Kod va natija ustozga yuborilgan sinf testida ustoz uni tekshirishi mumkin. Baholash o‘quv mashqi uchun va faqat ko‘rsatilgan natijaga tayangan. Yangilash: `UPDATE-7.11.md`.
 
 ## O‘quvchi profili va parollar
 
@@ -66,11 +72,19 @@ Bosh sahifa → **Tayyor testlar**. Savol ishlash uchun boshqa saytga o‘tish y
 | --- | ---: | --- |
 | Ingliz tili | 30 | 6 ta asl VOA matni/dialogi; tanlash va qisqa javob |
 | Matematika | 30 | Nisbat, chiziqli tenglama, sistema va kvadrat tenglama |
-| Python | 15 | IDE, print, type, int, str, bool va operatorlar |
+| Python | 15 | IDE, print, o‘zgaruvchi, tur, input, operatorlar, shart, sikl, ro‘yxat, lug‘at va funksiya |
 
 Ingliz tili va matematikaning har birida 30 savollik aralash variant bor. Mavzularni alohida ham ishlash mumkin: 6 ta ingliz tili, 4 ta matematika va 1 ta Python to‘plami. Jami 75 ta noyob savol; aralash variantlar shu savollarni birlashtiradi, yangi savollar sifatida sanalmaydi.
 
-Python to‘plami ustoz panelidagi **Tayyor savollar to‘plami → Python** orqali shaxsiy testga nusxalanadi. Ustoz uni tahrirlashi, 6 xonali kod bilan faollashtirishi yoki 1v1 uchun savollarini tanlashi mumkin. Yangi ustozda boshlang‘ich shablonlar yaratiladi; mavjud ustoz testlariga avtomatik yozilmaydi. Chop etish uchun savol va kalit: `PYTHON-15-TEST.md`.
+Python to‘plami ustoz panelidagi **Tayyor savollar to‘plami → Python** orqali shaxsiy testga nusxalanadi. Ustoz uni tahrirlashi, 6 xonali kod bilan faollashtirishi yoki 1v1 uchun savollarini tanlashi mumkin. Eski tayyor Python shabloni o‘zgartirilmagan bo‘lsa, uning 15 savoli yangilanadi; ustoz tahrirlagan testlar saqlanadi. Chop etish uchun savol va kalit: `PYTHON-15-TEST.md`.
+
+## Darsliklar va video bo‘limi
+
+Admin birinchi marta yangi kodga kirganda 28 ta kompyuter, Word, Excel va PowerPoint darsiga 20 ta original Python darsi qo‘shiladi. Python kursi muhiti, print, o‘zgaruvchi, tur, input, matn, operator, shart, ro‘yxat, sikl, lug‘at, funksiya, xatolar, modul, fayl va kichik loyihani qamrab oladi. Har darsda kod, kutiladigan natija, mashq va ikki tekshiruv savoli bor. O‘zgartirilgan yoki o‘chirilgan eski darslar qayta yozilmaydi. Dars kartalarida emoji ishlatilmaydi.
+
+O‘quvchi kabinetidagi **Video darslar** hozircha «tez orada qo‘shiladi» sahifasidir. Email yoki Telegram orqali kirgan o‘quvchilar bir xil darsliklar va video bo‘limini ko‘radi.
+
+1v1 poygada ikki o‘quvchi bitta monitorda o‘ynaydi. 7.6 SQL migratsiyasi reytingga tegishli; poygadagi mehmon yozuvini yangilash xatosi 7.10 mijoz kodida tuzatildi. Yangilash qadamlarini `UPDATE-7.10.md` dan ko‘ring.
 
 ## Interfeys
 
@@ -104,6 +118,8 @@ Node.js 22.12+ kerak. `.env.example` dan `.env.local` yarating, Supabase URL va 
 npm ci
 npm run dev
 ```
+
+Admin panelidan boshqa foydalanuvchining parolini localhostda tiklash uchun `.env.local` ga server kaliti `SUPABASE_SECRET_KEY` (yoki eski `SUPABASE_SERVICE_ROLE_KEY`) ni ham qo‘shing va `npm run dev` ni qayta ishga tushiring. To‘liq qadamlar `SUPABASE-VERCEL.md` da. Kalitni hech qachon `VITE_` bilan nomlamang.
 
 Mavjud 7.6 bazada `supabase-migration-7.7.sql` ni bajaring. Eski 7.0/7.1 bazada avval `supabase-migration-7.2.sql`, 7.2/7.3 bazada `supabase-migration-7.4.sql`, 7.5 bazada `supabase-migration-7.6.sql` ham kerak. Yangi bazada ketma-ket `supabase-schema.sql`, `supabase-migration-7.2.sql`, `supabase-migration-7.4.sql`, `supabase-migration-7.7.sql` bajariladi. Batafsil: `SUPABASE-VERCEL.md` va `UPDATE-7.7.md`.
 

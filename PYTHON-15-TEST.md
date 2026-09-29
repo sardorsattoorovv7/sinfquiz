@@ -1,239 +1,210 @@
-# Python — boshlang‘ich 15 ta test
+# Python: boshlang‘ich 15 ta savol
 
-Mavzular: IDE, print(), type(), int, str, bool va operatorlar.
+Savollar original. Mavzular dasturlash muhitidan funksiya va siklgacha bosqichma-bosqich berilgan. Har bir savolning izohi va kaliti oxirida.
 
-## 1. IDE nima?
+## 1. Kod yozgan o‘quvchi uni ishga tushirib, xatoni ko‘rmoqchi. Qaysi vosita aynan shu ishlarga yordam beradi?
 
-A) Faqat rasm chizadigan dastur
+A) Dasturlash muhiti (masalan, IDLE)
+B) Fayl siqish dasturi
+C) Faqat rasm ko‘ruvchi
+D) Printer drayveri
 
-B) Internet tezligini o‘lchaydigan qurilma
-
-C) Python ma’lumot turi
-
-D) Kod yozish, ishga tushirish va xatolarni topishga yordam beradigan dasturlash muhiti
-
-## 2. print() funksiyasining asosiy vazifasi nima?
-
-A) Matnni har doim butun songa aylantirish
-
-B) O‘zgaruvchini o‘chirish
-
-C) Ma’lumotni ekranga chiqarish
-
-D) Qiymat turini aniqlash
-
-## 3. Ushbu kod nimani chiqaradi?
+## 2. Quyidagi kod ekranda nima chiqaradi?
 
 ```python
-print("Salom")
+print("Fan:", "Python")
 ```
 
-A) Xato
+A) Fan: Python
+B) Fan:Python
+C) "Fan:" "Python"
+D) Hech narsa
 
-B) Salom
-
-C) "Salom"
-
-D) print(Salom)
-
-## 4. Kod natijasini tanlang.
+## 3. Ikkinchi qatordan so‘ng ball qancha bo‘ladi?
 
 ```python
-print(type(25))
+ball = 3
+ball = ball + 4
+print(ball)
 ```
 
-A) <class 'int'>
+A) 7
+B) 34
+C) 4
+D) 3
 
-B) <class 'str'>
-
-C) <class 'bool'>
-
-D) 25
-
-## 5. Qo‘shtirnoq ichidagi qiymatning turi qanday?
+## 4. Sonning matndan farqini tekshiring. Qaysi ikki tur chiqadi?
 
 ```python
-print(type("25"))
+print(type("8").__name__)
+print(type(8).__name__)
 ```
 
-A) <class 'int'>
+A) str / int
+B) int / str
+C) str / str
+D) bool / int
 
-B) <class 'bool'>
+## 5. O‘quvchi input orqali 12 kiritdi. Natijani hisoblash uchun avval nima qilish kerak?
 
-C) <class 'float'>
+A) int() bilan songa aylantirish
+B) print() bilan o‘chirish
+C) type() bilan ikki marta bo‘lish
+D) Hech narsa: input doim int
 
-D) <class 'str'>
-
-## 6. Ushbu kod nimani chiqaradi?
+## 6. Matn songa aylantirilgach natija qancha?
 
 ```python
 print(int("12") + 3)
 ```
 
-A) 12
+A) 15
+B) 123
+C) 12
+D) Xato
 
-B) Xato
-
-C) 15
-
-D) 123
-
-## 7. Matnga aylantirishdan keyingi natija qaysi?
-
-```python
-print(str(7) + "3")
-```
-
-A) Xato
-
-B) 73
-
-C) 10
-
-D) <class 'int'>
-
-## 8. bool(0) qanday qiymat beradi?
+## 7. Nol va bo‘sh bo‘lmagan matn uchun natija nima?
 
 ```python
 print(bool(0))
-```
-
-A) False
-
-B) True
-
-C) 0.0
-
-D) "False"
-
-## 9. Bo‘sh matn uchun natija nima?
-
-```python
-print(bool(""))
-```
-
-A) True
-
-B) None
-
-C) Xato
-
-D) False
-
-## 10. Bo‘sh bo‘lmagan matn uchun natija nima?
-
-```python
 print(bool("0"))
 ```
 
-A) 0
+A) False / True
+B) False / False
+C) True / True
+D) True / False
 
-B) Xato
-
-C) True
-
-D) False
-
-## 11. Amallar tartibiga ko‘ra natija qaysi?
+## 8. 17 ta kitobni 5 ta javonga teng joylashtirsak nechta ortadi?
 
 ```python
-print(2 + 3 * 4)
-```
-
-A) 24
-
-B) 14
-
-C) 20
-
-D) 10
-
-## 12. // operatori ishlatilgan kod natijasi nima?
-
-```python
-print(7 // 2)
-```
-
-A) 3
-
-B) 3.5
-
-C) 1
-
-D) 4
-
-## 13. % operatori ishlatilgan kod natijasi nima?
-
-```python
-print(7 % 2)
-```
-
-A) 3
-
-B) 3.5
-
-C) 14
-
-D) 1
-
-## 14. == operatori bu yerda qanday natija beradi?
-
-```python
-print(5 == 5)
-```
-
-A) 10
-
-B) Xato
-
-C) True
-
-D) False
-
-## 15. Mantiqiy ifoda natijasi nima?
-
-```python
-print((3 > 2) and not False)
+print(17 % 5)
 ```
 
 A) 2
+B) 3
+C) 5
+D) 12
 
-B) True
+## 9. Bahosi va davomat sharti birgalikda bajarildimi?
 
-C) False
+```python
+baho = 4
+davomat = 80
+print(baho >= 4 and davomat >= 75)
+```
 
-D) 3
+A) True
+B) False
+C) 4
+D) 80
 
-## Javoblar va izohlar
+## 10. Chegara 60 ball. 58 ball uchun qanday xabar chiqadi?
 
-1. **D** — IDE dastur yozish uchun kerakli vositalarni bitta muhitda birlashtiradi.
+```python
+ball = 58
+if ball >= 60:
+    print("O‘tdi")
+else:
+    print("Mashq qiling")
+```
 
-2. **C** — print() berilgan qiymatlarni standart chiqishga, odatda terminalga yozadi.
+A) Mashq qiling
+B) O‘tdi
+C) 58
+D) Hech narsa
 
-3. **B** — Qo‘shtirnoqlar matn chegarasini belgilaydi; odatiy print natijasida ular chiqmaydi.
+## 11. Ikkinchi fan nomi qaysi?
 
-4. **A** — 25 — butun son. type() uning turini qaytaradi.
+```python
+fanlar = ["Ingliz tili", "Python", "Matematika"]
+print(fanlar[1])
+```
 
-5. **D** — Raqamlardan iborat bo‘lsa ham, qo‘shtirnoq ichidagi "25" matndir.
+A) Python
+B) Ingliz tili
+C) Matematika
+D) 1
 
-6. **C** — int("12") matnni 12 butun soniga aylantiradi; 12 + 3 = 15.
+## 12. Sikl nechta belgi chiqaradi?
 
-7. **B** — str(7) — "7". Ikki matn + operatori bilan birlashtiriladi: "7" + "3" = "73".
+```python
+for _ in range(3):
+    print("X")
+```
 
-8. **A** — Nol soni mantiqiy tekshiruvda yolg‘on qiymat hisoblanadi.
+A) X / X / X
+B) X / X
+C) 3
+D) Hech narsa
 
-9. **D** — Bo‘sh satr "" mantiqiy tekshiruvda False bo‘ladi.
+## 13. Sanoq uchga yetganda sikl natijasi nima?
 
-10. **C** — "0" bo‘sh matn emas. Shuning uchun bool("0") True; bu int(0) bilan bir xil emas.
+```python
+sanoq = 1
+while sanoq < 3:
+    print(sanoq)
+    sanoq += 1
+```
 
-11. **B** — Avval ko‘paytirish: 3 × 4 = 12. Keyin 2 + 12 = 14.
+A) 1 / 2
+B) 1 / 2 / 3
+C) 3
+D) Cheksiz davom etadi
 
-12. **A** — // bo‘lish natijasini pastga qarab butunlashtiradi. 7 // 2 = 3.
+## 14. Kalit orqali qaysi qiymat olinadi?
 
-13. **D** — % bo‘lishdan qolgan qoldiqni beradi: 7 = 2 × 3 + 1.
+```python
+kitob = {"nom": "Dasturlash", "bet": 120}
+print(kitob["bet"])
+```
 
-14. **C** — == ikkita qiymat tengligini tekshiradi. = esa qiymat berish operatoridir.
+A) 120
+B) Dasturlash
+C) bet
+D) Xato
 
-15. **B** — 3 > 2 — True; not False — True. True and True natijasi True.
+## 15. Funksiya chaqirilganda natija nima?
 
-Savollar SinfQuiz uchun original yozildi. Tekshiruv manbalari: Python rasmiy hujjatlaridagi built-in funksiyalar, turlar va IDLE bo‘limlari. Kod natijalari Python interpreteri bilan tekshirildi.
+```python
+def uch_baravar(son):
+    return son * 3
+print(uch_baravar(4))
+```
+
+A) 12
+B) 7
+C) 3
+D) None
+
+## Javob kaliti
+
+1. A — IDE kodni yozish, ishga tushirish va xatoni tekshirishda yordam beradi.
+
+2. A — print vergul bilan ajratilgan qiymatlar orasiga odatda bitta bo‘sh joy qo‘yadi.
+
+3. A — O‘ngdagi 3 + 4 hisoblanib, yangi 7 qiymati ball ga yoziladi.
+
+4. A — Qo‘shtirnoqli 8 matn; qo‘shtirnoqsiz 8 butun son.
+
+5. A — input har doim str qaytaradi; int("12") butun son hosil qiladi.
+
+6. A — int("12") natijasi 12 bo‘lib, 3 qo‘shilganda 15 chiqadi.
+
+7. A — 0 soni False; "0" esa ichida bitta belgi bor matn, shuning uchun True.
+
+8. A — % bo‘lishdan qolgan qoldiqni hisoblaydi: 17 = 5 × 3 + 2.
+
+9. A — Har ikkala solishtirish True, and natijasi ham True.
+
+10. A — 58 >= 60 yolg‘on, shu sabab else bo‘limi bajariladi.
+
+11. A — Ro‘yxatdagi birinchi indeks 0, ikkinchisi 1.
+
+12. A — range(3) uch aylanish beradi: 0, 1, 2. Har safar bir X chiqariladi.
+
+13. A — 1 va 2 chiqariladi; sanoq 3 bo‘lganda shart False va sikl tugaydi.
+
+14. A — Lug‘atdagi bet kaliti 120 qiymatiga bog‘langan.
+
+15. A — return 4 × 3 = 12 qiymatini qaytaradi, tashqi print uni chiqaradi.

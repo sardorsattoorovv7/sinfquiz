@@ -35,3 +35,15 @@
 .lesson-footer{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;align-items:center;margin-top:28px}
 .lesson-footer .btn{display:inline-flex;align-items:center;gap:5px}
 @media(max-width:600px){.lesson-filter{align-items:stretch;flex-direction:column;gap:9px}.lesson-filter select{width:100%;min-width:0}.lesson-admin .lesson-filter{margin:4px 16px 0}.lesson-content h2{font-size:18px}}
+.lesson-badge{width:48px;height:48px;display:inline-grid;place-items:center;border:1px solid #ddd6fe;border-radius:14px;color:#5b21b6;background:#ede9fe;font-size:16px;font-weight:800}
+.lesson-card>.lesson-badge{font-size:16px}
+.lesson-cover .lesson-badge{width:66px;height:66px}
+.lesson-admin-list article>.lesson-badge{width:44px;height:44px;font-size:16px}
+.lesson-code{overflow-x:auto;white-space:pre;background:#151827;color:#f8fafc;border-radius:14px;padding:18px 20px;margin:14px 0 22px;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4}
+.lesson-code code{font:inherit}
+.video-soon{max-width:730px;margin:50px auto;text-align:center;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:50px 28px;box-shadow:0 12px 30px #2518380b}
+.video-soon-icon{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin:0 auto 20px;background:#ede9fe;color:#5b21b6}
+.video-soon small{font-size:11px;letter-spacing:.12em;color:#6d28d9;font-weight:800}
+.video-soon h2{font:800 clamp(23px,3vw,30px) 'Plus Jakarta Sans',sans-serif;margin:12px 0}
+.video-soon p{color:var(--text-secondary);line-height:1.7;margin:0 auto 24px;max-width:530px}
+.catalog-tabs{flex-wrap:wrap}
