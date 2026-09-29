@@ -1,10 +1,10 @@
-# SinfQuiz 7.11
+# SinfQuiz 7.11.1
 
 ## 7.11: sinf amaliyotlari
 
 Word, Excel va PowerPoint shaxsiy sinf testlari qayta tuzildi: tushuntirishli nazariy savollar bilan birga Word hujjati, jadval, rasm, matnga o‘rash va ma’lumotnoma; Excel kataklari, SUM va AVERAGE; PowerPoint slayd, rasm va so‘zlovchi qaydlari muharrirda bajariladi. O‘qituvchi ham shu amaliy topshiriqlarni testiga qo‘sha oladi. Muharrirlar o‘quv simulyatsiyasi; Microsoft fayl formatlariga eksport qilmaydi. Avvalgi tayyor shablonlar faqat tahrirlanmagan bo‘lsa yangilanadi; ustozning o‘zgartirgan testlari saqlanadi.
 
-Python sinf testi nazariy va kod yozish savollarini birlashtiradi. O‘quvchi kabinetida ham 20 mavzuli Python ish joyi bor. Kod shu brauzerda dars bo‘yicha oxirgi yozuvdan 52 soat saqlanadi va `.py` sifatida olinadi. Dastur ajratilgan iframe ichidagi vaqt limiti qo‘yilgan workerda ishlaydi; serverga kod bajarish uchun yuborilmaydi. Ruxsat etilgan modullar cheklangan. Python ishga tushishi uchun ilk marta Pyodide yuklanadi va internet kerak; yozilgan kod/oflayn tahrir saqlanaveradi. Kod va natija ustozga yuborilgan sinf testida ustoz uni tekshirishi mumkin. Baholash o‘quv mashqi uchun va faqat ko‘rsatilgan natijaga tayangan. Yangilash: `UPDATE-7.11.md`.
+Python sinf testi nazariy va kod yozish savollarini birlashtiradi. O‘quvchi kabinetida ham 20 mavzuli Python ish joyi bor. Kod shu brauzerda dars bo‘yicha oxirgi yozuvdan 52 soat saqlanadi va `.py` sifatida olinadi. Dastur har safar alohida workerda ishlaydi; serverga kod bajarish uchun yuborilmaydi. Ruxsat etilgan modullar cheklangan. Python fayllari saytning o‘zidan yuklanadi va brauzerda keshlanadi; yozilgan kod/oflayn tahrir saqlanaveradi. Kod va natija ustozga yuborilgan sinf testida ustoz uni tekshirishi mumkin. Baholash o‘quv mashqi uchun va faqat ko‘rsatilgan natijaga tayangan. Muhitda turib qolish xatosi bo‘yicha yangilash: `UPDATE-7.11.1.md`.
 
 ## O‘quvchi profili va parollar
 

@@ -1,9 +1,13 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "7.11.0",
+  "version": "7.11.1",
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/copy-python-runtime.mjs",
+    "predev": "node scripts/copy-python-runtime.mjs",
+    "prebuild": "node scripts/copy-python-runtime.mjs",
+    "prestart": "node scripts/copy-python-runtime.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -14,6 +18,8 @@
     "@supabase/supabase-js": "^2.57.4",
     "@vitejs/plugin-react": "6.1.1",
     "lucide-react": "1.45.0",
+    "pyodide": "0.29.4",
+    "pyodide": "0.29.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "three": "^0.180.0",

@@ -48,14 +48,17 @@ test('Python output assessment and 52-hour local draft expiry',()=>{
  assert.equal(readPythonDraft('student','lesson',storage,start+PYTHON_DRAFT_TTL),null);
 });
 
-test('Python executes in a sandboxed opaque-origin iframe with worker timeout',()=>{
+test('Python worker loads local runtime, enforces limits and avoids external CDN',()=>{
  const runner=readFileSync(new URL('../src/python-runner.js',import.meta.url),'utf8');
- const sandbox=readFileSync(new URL('../public/python-sandbox.js',import.meta.url),'utf8');
+ const worker=readFileSync(new URL('../public/python-worker.mjs',import.meta.url),'utf8');
  const headers=JSON.parse(readFileSync(new URL('../vercel.json',import.meta.url)));
- assert.match(runner,/setAttribute\('sandbox','allow-scripts'\)/);
- assert.doesNotMatch(runner,/allow-same-origin/);
- assert.match(sandbox,/6000\)/);
- assert.match(sandbox,/\.terminate\(\)/);
- assert.match(sandbox,/ast\.walk/);
- assert.match(headers.headers.at(-1).headers.at(-1).value,/frame-ancestors 'self'/);
+ assert.match(runner,/new Worker\('\/python-worker\.mjs'/);
+ assert.match(runner,/LOAD_TIMEOUT=35000/);
+ assert.match(runner,/RUN_TIMEOUT=6000/);
+ assert.match(runner,/\.terminate\(\)/);
+ assert.match(worker,/ast\.walk/);
+ assert.match(worker,/python-runtime/);
+ assert.match(worker,/safe_builtins/);
+ assert.doesNotMatch(worker,/cdn\.jsdelivr/);
+ assert.match(headers.headers.at(-1).headers.at(-1).value,/frame-ancestors 'none'/);
 });

@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Code2,Download,Play,RotateCcw} from 'lucide-react';
+import {Code2,Download,Play,RotateCcw,Square} from 'lucide-react';
 import {pythonCourse} from '../data/python-course.js';
 import {readPythonDraft,savePythonDraft,clearPythonDraft} from './python-drafts.js';
 import {runPythonIsolated,downloadPython} from './python-runner.js';
@@ -24,10 +24,10 @@ export default function PythonWorkbench({ownerId,taskId,initialCode='',onChange}
  return <section className="py-workbench"><div className="py-workbench-head"><div><Code2 size={19}/><b>Python muharriri</b></div><small>Shu qurilmada 52 soat saqlanadi{draft.savedAt?` · Oxirgi yozuv ${new Date(draft.savedAt).toLocaleString('uz-UZ')}`:''}</small></div>
   <label>Kod<textarea aria-label="Python kodi" spellCheck="false" value={draft.code} maxLength={8000} onChange={event=>change({...draft,code:event.target.value,output:''})} placeholder="print('Salom, dunyo!')"/></label>
   <label>input() uchun qiymatlar <small>(har biri alohida qatorda)</small><textarea aria-label="Python input qiymatlari" spellCheck="false" value={draft.input} maxLength={2000} onChange={event=>change({...draft,input:event.target.value,output:''})} placeholder="12"/></label>
-  <div className="py-workbench-actions"><button type="button" className="btn btn-primary" disabled={busy||!draft.code.trim()} onClick={run}><Play size={17}/> {busy?'Ishlayapti…':'Kodni ishga tushirish'}</button><button type="button" className="btn btn-outline" disabled={!draft.code} onClick={()=>downloadPython(draft.code,taskId)}><Download size={17}/> .py yuklash</button><button type="button" className="btn btn-ghost" disabled={busy} onClick={reset}><RotateCcw size={16}/> Tozalash</button></div>
+  <div className="py-workbench-actions"><button type="button" className="btn btn-primary" disabled={busy||!draft.code.trim()} onClick={run}><Play size={17}/> {busy?'Ishlayapti…':'Kodni ishga tushirish'}</button>{busy&&<button type="button" className="btn btn-outline" onClick={()=>controller.current?.abort()}><Square size={16}/> To‘xtatish</button>}<button type="button" className="btn btn-outline" disabled={!draft.code} onClick={()=>downloadPython(draft.code,taskId)}><Download size={17}/> .py yuklash</button><button type="button" className="btn btn-ghost" disabled={busy} onClick={reset}><RotateCcw size={16}/> Tozalash</button></div>
   {status&&<p role="status" className="py-status">{status}</p>}{error&&<p role="alert" className="form-error">{error}</p>}
   <div className="py-output"><b>Natija</b><pre aria-label="Python natijasi">{draft.output||'Kod ishlatilgach natija shu yerda ko‘rinadi.'}</pre></div>
-  <p className="py-note">Kod brauzerdagi ajratilgan muhitda ishlaydi. 6 soniyadan uzoq ishlaydigan kod to‘xtatiladi; serverda kod bajarilmaydi. Fayl yoki internetdan foydalanadigan dasturlar bu mashq uchun mo‘ljallanmagan.</p>
+  <p className="py-note">Python fayllari shu saytdan bir marta yuklanadi, keyingi safar brauzer keshidan tezroq ochiladi. Kod ajratilgan workerda bajariladi; 6 soniyadan oshsa to‘xtatiladi. Fayl va internet amallari bu mashqda yopiq.</p>
  </section>;
 }
 
