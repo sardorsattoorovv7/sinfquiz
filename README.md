@@ -1,4 +1,14 @@
-# SinfQuiz 7.11.1
+# SinfQuiz 7.13.0
+
+## 7.13: Inglizcha audio labirint
+
+Uy sahifasidagi “Inglizcha audio labirint” bo‘limida A1–B1 darajadagi 12 ta alohida labirint, 36 ta tinglash topshirig‘i va brauzerda gapni ovoz chiqarib o‘qish bor. O‘qituvchi xaritani faollashtiradi; ustoz yozgan topshiriqlar ommaga chiqishidan oldin admin tasdig‘idan o‘tadi. Natijalar ustozlar kesimida ajratiladi. Supabase SQL Editor’da `supabase-audio-maze.sql` faylini avvalgi SinfQuiz migratsiyalaridan keyin RUN qiling. Tafsilotlar `AUDIO-MAZE.md` faylida.
+
+
+
+## 7.12: Matematika atlasi
+
+Matematika xaritasida 55 ta sahna bor. Mavzular 5–11-sinf oralig‘ida ketma-ket bog‘langan, biroq sinf tanlash qat’iy shart emas. Son chizig‘i, ifoda, tenglama tarozisi, chiziqli grafik, uchburchak, o‘zgarishlar, ko‘pburchaklar va fazoviy shakllar boshqariladigan SVG tajribalar bilan ishlaydi. O‘quvchi qiymat kiritib o‘z taxminini tekshiradi; xato javobda hisoblash yo‘li ko‘rsatiladi. O‘qituvchi/admin tushuncha, izoh, sahna turi, boshlang‘ich parametrlar va oldingi tushunchalarni belgilashi mumkin. Ommaviy o‘qituvchi kontenti admin tasdig‘idan so‘ng chiqadi. Supabase SQL Editor’da `supabase-math-atlas.sql` faylini Run qiling; bosqichma-bosqich yo‘riqnoma `MATEMATIKA-ATLAS.md` da.
 
 ## 7.11: sinf amaliyotlari
 
