@@ -20,6 +20,7 @@ import {ExperienceControls,Avatar3D,MotionScene,Celebration,playSound} from './e
 import ShortcutInput from './ShortcutInput.jsx';
 import {useActivityGuard} from './useActivityGuard.js';
 import NationalReview from './NationalReview.jsx';
+import EnglishAudioMaze from './EnglishAudioMaze.jsx';
 import {publicationError} from './national-validation.js';
 const CefrAdmin=React.lazy(()=>import('./CefrAdmin.jsx'));
 const CefrHub=React.lazy(()=>import('./CefrHub.jsx'));
@@ -32,7 +33,6 @@ const PythonWorkbench=React.lazy(()=>import('./PythonWorkbench.jsx'));
 const PythonPractice=React.lazy(()=>import('./PythonWorkbench.jsx').then(module=>({default:module.PythonPractice})));
 const OfficeLab=React.lazy(()=>import('./OfficeLab.jsx'));
 const MathAtlas=React.lazy(()=>import('./MathAtlas.jsx'));
-const EnglishAudioMaze=React.lazy(()=>import('./EnglishAudioMaze.jsx'));
 import {officeTemplates} from './office-lab-model.js';
 import {lessonCounts,markLessonRead} from './classroom-service.js';
 import {adminResetPassword} from './profile-service.js';
@@ -91,9 +91,9 @@ function App(){
     <nav className="site-nav" aria-label="Asosiy navigatsiya"><span className="nav-brand" aria-label="SinfQuiz"><Brand/></span><div className="nav-actions"><ExperienceControls/>{inActivity?<span className="session-label">{unfinished?'Mashq davom etmoqda':'Natijalar'}</span>:authReady&&(user?<><button className="btn btn-ghost" onClick={()=>{if(['teacher','admin'].includes(user.role)){setView('admin');location.hash='dashboard'}else setView('catalog')}}>{user.role==='admin'?'Administrator paneli · Informatika':user.role==='teacher'?'O‘qituvchi paneli · Informatika':'Informatika · Darsliklar va testlar'}</button><button className="btn btn-ghost" onClick={()=>{setView('mathAtlas');location.hash='matematika'}}><Compass size={16}/> Matematika atlasi</button>{user.role==='student'&&<button className="btn btn-ghost profile-link" onClick={()=>setView('profile')}><Users size={16}/> Profilim</button>}{view!=='home'&&<button className="btn btn-ghost" onClick={home}><ArrowLeft size={16}/> Bosh sahifaga chiqish</button>}<span className="nav-profile">{user.name}</span><button className="nav-logout" onClick={logout} title="Hisobdan chiqish" aria-label="Tizimdan chiqish"><LogOut size={18}/></button></>:<button className="btn btn-ghost teacher-entry" onClick={openAuth}><LockKeyhole size={16}/> Kirish</button>)}</div></nav>
     {toast&&<div className="toast" role="status">{toast}</div>}{connection&&<div className="connection-banner" role="status">{connection}</div>}
     {!authReady?<div className="page-loading">Yuklanmoqda…</div>:<>
-    {view==='home'&&<Landing user={user} catalog={catalog} onAudioMaze={()=>setView('audioMaze')} onNational={()=>user?setView('national'):openAuth()} onCefr={()=>{if(!user)return openAuth();setView('cefrManaged')}} onPractice={()=>{if(!user)return openAuth();setPracticeSubject('all');setView('practice')}} onCatalog={()=>setView('catalog')} onAtlas={()=>{if(!user)return openAuth();setView('mathAtlas');location.hash='matematika'}} onJoin={setEntryAndJoin} onRace={offer=>{setEntry({race:offer});setView('raceJoin')}} onTyping={offer=>{setEntry({typing:offer});setView('typingJoin')}}/>}
+    {view==='home'&&<Landing user={user} catalog={catalog} onAudioMaze={()=>{setView('audioMaze');location.hash='audio-maze'}} onNational={()=>user?setView('national'):openAuth()} onCefr={()=>{if(!user)return openAuth();setView('cefrManaged')}} onPractice={()=>{if(!user)return openAuth();setPracticeSubject('all');setView('practice')}} onCatalog={()=>setView('catalog')} onAtlas={()=>{if(!user)return openAuth();setView('mathAtlas');location.hash='matematika'}} onJoin={setEntryAndJoin} onRace={offer=>{setEntry({race:offer});setView('raceJoin')}} onTyping={offer=>{setEntry({typing:offer});setView('typingJoin')}}/>}
     {view==='mathAtlas'&&user&&<React.Suspense fallback={<div className="page-loading">Matematika atlasi ochilmoqda…</div>}><MathAtlas user={user} onBack={home}/></React.Suspense>}
-    {view==='audioMaze'&&<React.Suspense fallback={<div className="page-loading">Audio labirint yuklanmoqda…</div>}><EnglishAudioMaze user={user} notify={notify} onBack={home} onPlayingChange={active=>{setAudioMazePlaying(active);if(active)location.hash='audio-maze';else if(location.hash==='#audio-maze')history.replaceState(null,'',location.pathname)}}/></React.Suspense>}
+    {view==='audioMaze'&&<EnglishAudioMaze user={user} notify={notify} onBack={home} onPlayingChange={active=>{setAudioMazePlaying(active);if(active)location.hash='audio-maze';else if(location.hash==='#audio-maze')history.replaceState(null,'',location.pathname)}}/>}
     {view==='login'&&(globalThis.__SINFQUIZ_LEGACY_TEST__===true?<AdminLogin onBack={home} onLogin={login}/>:<AuthPortal onBack={home} onDone={telegramLoggedIn}/>)} 
     {view==='catalog'&&user&&<StudentCatalog ownerId={user.id} catalog={catalog} onBack={home} onJoinPin={async pin=>setEntryAndJoin(await api('/api/resolve',{method:'POST',data:{pin}}))} onLesson={lesson=>{setSelectedLesson(lesson);setView('lesson')}} onChats={()=>{setChatLessonId(null);setView('chat')}} onProfile={user.role==='student'?()=>setView('profile'):null}/>}
     {view==='profile'&&user?.role==='student'&&<React.Suspense fallback={<div className="page-loading">Profil ochilmoqda…</div>}><StudentProfile user={user} onBack={home} onSaved={profile=>setUser(old=>({...old,name:profile.name,school:profile.school,className:profile.className}))}/></React.Suspense>}

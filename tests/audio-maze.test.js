@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {PGlite} from '@electric-sql/pglite';
+import {JSDOM} from 'jsdom';
+import {createServer} from 'vite';
 import {audioMazeLevels,audioMazeTasks,mazePath,validateAudioMazeLevels} from '../src/audio-maze-content.js';
 
 const teacher='20000000-0000-0000-0000-000000000011',teacher2='20000000-0000-0000-0000-000000000012',student='20000000-0000-0000-0000-000000000013',admin='20000000-0000-0000-0000-000000000014';
@@ -48,5 +50,15 @@ test('audio maze RLS: teacher ownership, admin approval, active-level-only resul
 
 test('audio maze UI is wired into guest home and teacher/admin panels',()=>{
  const app=readFileSync(new URL('../src/App.jsx',import.meta.url),'utf8'),ui=readFileSync(new URL('../src/EnglishAudioMaze.jsx',import.meta.url),'utf8'),data=readFileSync(new URL('../src/supabase-data.js',import.meta.url),'utf8');
- assert.match(app,/onAudioMaze=\{\(\)=>setView\('audioMaze'\)\}/);assert.match(app,/section==='audioMaze'/);assert.match(ui,/onPlayingChange/);assert.match(ui,/SpeechSynthesisUtterance/);assert.match(data,/audioMazeActivations/);assert.match(data,/audioMazeResults/);
+ assert.match(app,/import EnglishAudioMaze from '\.\/EnglishAudioMaze\.jsx'/);assert.doesNotMatch(app,/React\.lazy\(\(\)=>import\('\.\/EnglishAudioMaze\.jsx'\)\)/);assert.match(app,/onAudioMaze=\{\(\)=>\{setView\('audioMaze'\);location\.hash='audio-maze'\}\}/);assert.match(app,/section==='audioMaze'/);assert.match(ui,/onPlayingChange/);assert.match(ui,/SpeechSynthesisUtterance/);assert.match(data,/audioMazeActivations/);assert.match(data,/audioMazeResults/);
+});
+
+test('Audio Labyrinth renders its active map after opening, without a separate chunk fetch',async()=>{
+ const dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'http://localhost:5173',pretendToBeVisual:true});
+ for(const key of ['window','document','HTMLElement','Element','Node','MutationObserver','localStorage','sessionStorage','history','location'])globalThis[key]=dom.window[key];
+ Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});globalThis.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});window.matchMedia=globalThis.matchMedia;globalThis.IS_REACT_ACT_ENVIRONMENT=true;globalThis.__SINFQUIZ_LEGACY_TEST__=true;
+ globalThis.fetch=async path=>new Response(JSON.stringify(path==='/api/audio-maze/active'?{active:[{id:'activation-a',ownerId:'teacher-a',ownerName:'Ustoz',level:audioMazeLevels[0]}]}:{}),{status:200,headers:{'Content-Type':'application/json'}});
+ const React=(await import('react')).default,{render,screen,cleanup}=await import('@testing-library/react'),vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
+ try{const {default:Maze}=await vite.ssrLoadModule('/src/EnglishAudioMaze.jsx');render(React.createElement(Maze,{user:{id:'student-a',role:'student',name:'O‘quvchi'}}));await screen.findByRole('heading',{name:'O‘yin xaritasini tanlang'});assert.ok(screen.getByRole('button',{name:/Boshlash/}));assert.ok(screen.getByText(/A1/))}
+ finally{cleanup();await vite.close();dom.window.close()}
 });
