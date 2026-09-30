@@ -53,12 +53,12 @@ test('audio maze UI is wired into guest home and teacher/admin panels',()=>{
  assert.match(app,/import EnglishAudioMaze from '\.\/EnglishAudioMaze\.jsx'/);assert.doesNotMatch(app,/React\.lazy\(\(\)=>import\('\.\/EnglishAudioMaze\.jsx'\)\)/);assert.match(app,/onAudioMaze=\{\(\)=>\{setView\('audioMaze'\);location\.hash='audio-maze'\}\}/);assert.match(app,/section==='audioMaze'/);assert.match(ui,/onPlayingChange/);assert.match(ui,/SpeechSynthesisUtterance/);assert.match(data,/audioMazeActivations/);assert.match(data,/audioMazeResults/);
 });
 
-test('Audio Labyrinth renders its active map after opening, without a separate chunk fetch',async()=>{
+test('Audio Labyrinth loads its active map and enters the game board',async()=>{
  const dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'http://localhost:5173',pretendToBeVisual:true});
  for(const key of ['window','document','HTMLElement','Element','Node','MutationObserver','localStorage','sessionStorage','history','location'])globalThis[key]=dom.window[key];
  Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});globalThis.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});window.matchMedia=globalThis.matchMedia;globalThis.IS_REACT_ACT_ENVIRONMENT=true;globalThis.__SINFQUIZ_LEGACY_TEST__=true;
  globalThis.fetch=async path=>new Response(JSON.stringify(path==='/api/audio-maze/active'?{active:[{id:'activation-a',ownerId:'teacher-a',ownerName:'Ustoz',level:audioMazeLevels[0]}]}:{}),{status:200,headers:{'Content-Type':'application/json'}});
- const React=(await import('react')).default,{render,screen,cleanup}=await import('@testing-library/react'),vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
- try{const {default:Maze}=await vite.ssrLoadModule('/src/EnglishAudioMaze.jsx');render(React.createElement(Maze,{user:{id:'student-a',role:'student',name:'O‘quvchi'}}));await screen.findByRole('heading',{name:'O‘yin xaritasini tanlang'});assert.ok(screen.getByRole('button',{name:/Boshlash/}));assert.ok(screen.getByText(/A1/))}
+ const React=(await import('react')).default,{render,screen,cleanup}=await import('@testing-library/react'),user=(await import('@testing-library/user-event')).default.setup(),vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
+ try{const {default:Maze}=await vite.ssrLoadModule('/src/EnglishAudioMaze.jsx');render(React.createElement(Maze,{user:{id:'student-a',role:'student',name:'O‘quvchi'}}));await screen.findByRole('heading',{name:'O‘yin xaritasini tanlang'});assert.ok(screen.getByRole('button',{name:/Boshlash/}));assert.ok(screen.getByText(/A1/));await user.click(screen.getByRole('button',{name:/Boshlash/}));assert.ok(await screen.findByRole('img',{name:/Labirint xaritasi/}))}
  finally{cleanup();await vite.close();dom.window.close()}
 });
