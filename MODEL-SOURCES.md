@@ -22,3 +22,7 @@ Matematik modellar tasodifiy dekorativ GLB emas: Three.js standart geometriyalar
 Three.js: https://threejs.org/docs/ — MIT, litsenziya o‘rnatilgan npm paketida mavjud.
 
 Tashqi model xizmati, API kaliti yoki iframe talab qilinmaydi. Aktivlar sayt bilan birga joylanadi. Matematik dars matnlari uchun oldingi `CONTENT-SOURCES.md` va atlas hujjatlariga qarang.
+
+## 7.16 Kimyo
+
+Kimyo bo‘limi tashqi 3D aktivlardan foydalanmaydi. Fazoviy molekulalar koordinatalardan SVG orqali proyeksiyalanadi; qolgan sxemalar loyiha uchun chizildi. Ilmiy manbalar va cheklovlar: [CHEMISTRY-SOURCES.md](CHEMISTRY-SOURCES.md).

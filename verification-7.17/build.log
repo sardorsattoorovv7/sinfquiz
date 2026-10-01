@@ -1,0 +1,69 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.17.0 prebuild
+> node scripts/copy-python-runtime.mjs
+
+Python muhiti tayyor: 5 ta mahalliy fayl.
+
+> sinf-quiz@7.17.0 build
+> vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2002 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 2.20 kB │ gzip:   0.89 kB
+dist/assets/PythonWorkbench-BOr2MbJe.css        1.92 kB │ gzip:   0.71 kB
+dist/assets/StudentProfile-eOwzo5FU.css         2.86 kB │ gzip:   0.95 kB
+dist/assets/OfficeLab-BwISxvcD.css              2.94 kB │ gzip:   0.99 kB
+dist/assets/ClassroomChat-DXd0O092.css          4.76 kB │ gzip:   1.35 kB
+dist/assets/CefrAdmin-BzZFDIeu.css              6.12 kB │ gzip:   1.93 kB
+dist/assets/MathAtlas-DpbWwQg5.css             12.81 kB │ gzip:   3.09 kB
+dist/assets/OpenExamHub-D7lqSddM.css           14.04 kB │ gzip:   3.28 kB
+dist/assets/ChemistryAtlas-D5lAyP8u.css        20.74 kB │ gzip:   4.71 kB
+dist/assets/index-c_7gbSdr.css                208.45 kB │ gzip:  40.88 kB
+dist/assets/rolldown-runtime-CbXtAM7H.js        0.58 kB │ gzip:   0.36 kB
+dist/assets/national-defaults-CfZITcIN.js       2.61 kB │ gzip:   1.36 kB
+dist/assets/KurashArena-BuS8wHvv.js             4.48 kB │ gzip:   2.23 kB
+dist/assets/StudentProfile-BlbSD3Gt.js          6.95 kB │ gzip:   2.51 kB
+dist/assets/OfficeLab-850O9mOL.js               7.12 kB │ gzip:   2.52 kB
+dist/assets/PythonWorkbench-D55q1ll1.js         7.13 kB │ gzip:   2.85 kB
+dist/assets/ClassroomChat-BelBJohu.js           8.75 kB │ gzip:   3.38 kB
+dist/assets/CefrHub-Bq8eLxDc.js                14.90 kB │ gzip:   5.08 kB
+dist/assets/CefrWorkspace-CkqEXoEN.js          17.26 kB │ gzip:   6.42 kB
+dist/assets/CefrAdmin-C232siVc.js              17.99 kB │ gzip:   5.99 kB
+dist/assets/OpenExamHub-BHOu_giU.js            18.54 kB │ gzip:   6.11 kB
+dist/assets/icons-4S8Edl8m.js                  21.85 kB │ gzip:   7.98 kB
+dist/assets/python-course-D9udbcGA.js          21.93 kB │ gzip:   8.51 kB
+dist/assets/learning-3d-BU2L7uEU.js            28.76 kB │ gzip:   8.44 kB
+dist/assets/open-exams-CPKBaGIA.js             31.00 kB │ gzip:  11.79 kB
+dist/assets/computer-course-seed-BbuZPKMi.js   60.97 kB │ gzip:  20.25 kB
+dist/assets/MathAtlas-CwB9R4IJ.js              80.07 kB │ gzip:  25.14 kB
+dist/assets/ChemistryAtlas-CXCIlSoE.js        123.02 kB │ gzip:  39.64 kB
+dist/assets/supabase-VaY9-frs.js              214.17 kB │ gzip:  55.01 kB
+dist/assets/react-Dy-GIXkn.js                 218.83 kB │ gzip:  68.25 kB
+dist/assets/index-DHBcVe0c.js                 366.66 kB │ gzip: 107.19 kB
+dist/assets/GLTFLoader-DeDHFTtr.js            613.56 kB │ gzip: 156.71 kB
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/context.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/lucide-react/dist/esm/context.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/Icon.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/lucide-react/dist/esm/Icon.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+✓ built in 390ms

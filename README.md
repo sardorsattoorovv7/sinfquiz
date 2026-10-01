@@ -1,8 +1,12 @@
-# SinfQuiz 7.14.0
+# SinfQuiz 7.16.1
 
-Yangilangan atlas, 3D audio labirint va reyting tuzatishi: [UPDATE-7.14.md](UPDATE-7.14.md).
+Qoralama, qayta yuborish, forma va ion panjarasi tuzatishlari: [UPDATE-7.16.1.md](UPDATE-7.16.1.md).
 
-Bu yangilanish uchun yangi SQL migratsiyasi kerak emas. Ishlayotgan `.env` sozlamalaringizni saqlang.
+Kimyo atlasining 12 sahnasi, virtual laboratoriya va ustoz kuzatishlari qo‘shildi. Manbalar: [CHEMISTRY-SOURCES.md](CHEMISTRY-SOURCES.md). Audio labirintning yangi ko‘rinishi: [UPDATE-7.15.md](UPDATE-7.15.md).
+
+Oldingi atlas, 3D audio labirint va reyting tuzatishi: [UPDATE-7.14.md](UPDATE-7.14.md).
+
+Kimyo uchun `supabase-chemistry-atlas.sql` migratsiyasi kerak. Ishlayotgan `.env` sozlamalaringizni saqlang. Yangilash tartibi: [UPDATE-7.16.md](UPDATE-7.16.md).
 
 # SinfQuiz 7.13.0
 

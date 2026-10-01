@@ -1,0 +1,14 @@
+✔ 13 laboratory templates have working numerical models, learning tasks and bounded teacher parameters (3.483808ms)
+✔ volcano limiting reagent conserves atoms and does not gain gas from soap (1.046523ms)
+✔ neutralisation follows ionic balance including acid/base excess and zero reactants (0.13956ms)
+✔ dissolution, crystallisation, filtration and distillation preserve every material mass (0.248373ms)
+✔ physical models have deterministic monotonic effects and expose qualitative units (0.404839ms)
+✔ chemistry RLS enforces author isolation, admin approval, active visibility and private observations (1703.851371ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1820.822585

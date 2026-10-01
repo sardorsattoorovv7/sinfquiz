@@ -29,7 +29,7 @@ SUPABASE_SERVICE_ROLE_KEY=service_role_key
 ```text
 VITE_SUPABASE_URL=https://project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=publishable_or_anon_key
-SUPABASE_SECRET_KEY=sb_secret_your_secret_key
+SUPABASE_SECRET_KEY=YOUR_SUPABASE_SECRET_KEY
 ```
 
 Eski `service_role` kaliti ishlatilsa oxirgi satr o‘rniga `SUPABASE_SERVICE_ROLE_KEY=...` yozing. Kalit va URL aynan **bitta Supabase loyihasiga** tegishli bo‘lsin. `.env.local` faylini GitHub yoki ZIP ichiga qo‘shmang, chatga yubormang.
