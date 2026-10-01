@@ -1,3 +1,4 @@
+import {quizRanking} from './quiz-ranking.js';
 import bank from '../data/question-bank.json';
 import typingLessons from '../data/english-typing-lessons.json';
 import longTypingLessons from '../data/typing-lessons.json';
@@ -36,7 +37,6 @@ const clean=value=>JSON.parse(JSON.stringify(value));
 const publicPlayer=player=>{const {responses,...safe}=player;return safe};
 const safeQuestion=question=>{if(!question)return null;const {correct,answer,acceptedAnswers,criteria,officeRubric,...safe}=question;return safe};
 const quizInfo=quiz=>({id:quiz.id,title:quiz.title,group:quiz.group,subject:quiz.subject,questionCount:quiz.questions.length,visibility:quiz.visibility||'private',ownerName:quiz.ownerName||'O‘qituvchi'});
-const rankRows=players=>players.sort((a,b)=>b.score-a.score||(a.finishedAt||Infinity)-(b.finishedAt||Infinity)||a.startedAt-b.startedAt);
 const docData=snapshot=>snapshot.exists()?{id:snapshot.id,...snapshot.data()}:null;
 const queryData=snapshot=>snapshot.docs.map(item=>({id:item.id,...item.data()}));
 const nationalInfo=section=>({id:section.id,title:section.title,subject:section.subject,description:section.description||'',questionCount:section.questions?.length||section.questionCount||30,durationMinutes:section.durationMinutes||60,scoringModel:section.scoringModel||'general-certificate',builtin:!!section.builtin,visibility:section.visibility||'private',approvalStatus:section.approvalStatus||'draft',ownerId:section.ownerId||null,ownerName:section.ownerName||'O‘qituvchi',reviewNote:section.reviewNote||'',createdAt:section.createdAt||null,updatedAt:section.updatedAt||null});
@@ -100,7 +100,7 @@ async function adminState(sdk){
 
 async function ranking(sdk,quizId){
  const snap=await sdk.getDoc(sdk.doc(sdk.db,'leaderboards',quizId));
- return snap.exists()?snap.data().rows||[]:[];
+ return quizRanking(snap.exists()?snap.data().rows:[],quizId);
 }
 
 function playState(current,player,rows){
@@ -310,7 +310,7 @@ export function subscribeSupabase(handlers){
     refresh();
    },()=>{}));refresh();
   }
-  const game=runtime.game||load('game');if(game){unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'leaderboards',game.quiz.id),snapshot=>handlers.onRanking?.(snapshot.data()?.rows||[]),()=>{}));unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'quizzes',game.quiz.id),snapshot=>{if(!snapshot.exists()||snapshot.data().status!=='active')handlers.onClosed?.()},()=>{}))}
+  const game=runtime.game||load('game');if(game){unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'leaderboards',game.quiz.id),snapshot=>handlers.onRanking?.(quizRanking(snapshot.data()?.rows,game.quiz.id)),error=>handlers.onError?.(error)));unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'quizzes',game.quiz.id),snapshot=>{if(!snapshot.exists()||snapshot.data().status!=='active')handlers.onClosed?.()},()=>{}))}
   const race=runtime.race||load('race');if(race)unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'live','race'),snapshot=>{const value=snapshot.data();if(!value?.active)handlers.onRaceClosed?.();else try{handlers.onRace?.(raceState(value,race))}catch{}},()=>{}));
   const typing=runtime.typing||load('typing');if(typing)unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'settings','app'),snapshot=>{if(!snapshot.data()?.typingActive)handlers.onTypingClosed?.()},()=>{}));
  }catch(error){handlers.onError?.(error)}};listen();return()=>{stopped=true;unsubs.forEach(stop=>stop())};

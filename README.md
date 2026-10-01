@@ -1,3 +1,9 @@
+# SinfQuiz 7.14.0
+
+Yangilangan atlas, 3D audio labirint va reyting tuzatishi: [UPDATE-7.14.md](UPDATE-7.14.md).
+
+Bu yangilanish uchun yangi SQL migratsiyasi kerak emas. Ishlayotgan `.env` sozlamalaringizni saqlang.
+
 # SinfQuiz 7.13.0
 
 ## 7.13: Inglizcha audio labirint

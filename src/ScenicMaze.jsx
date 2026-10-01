@@ -1,0 +1,27 @@
+import React,{memo,useId} from 'react';
+const W=44,H=30,P=56;
+const key=p=>p.join(',');
+const Landscape=memo(function Landscape({level,id}){
+ const width=level.grid[0].length*W,height=level.grid.length*H;
+ return <>
+ <defs><linearGradient id={`${id}water`} x2="0" y2="1"><stop stopColor="#51cbe7"/><stop offset="1" stopColor="#188da9"/></linearGradient><linearGradient id={`${id}stone`} x2="0" y2="1"><stop stopColor="#d5ded8"/><stop offset="1" stopColor="#849a94"/></linearGradient><pattern id={`${id}sand`} width="23" height="19" patternUnits="userSpaceOnUse"><rect width="23" height="19" fill="#eed9a5"/><path d="M3 5h3m8 9h2" stroke="#d1b97f" strokeWidth=".8"/></pattern><filter id={`${id}shadow`} x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="1" dy="3" stdDeviation="2" floodColor="#123e30" floodOpacity=".3"/></filter></defs>
+ <rect width={width+P*2} height={height+P*2} fill="#347c47"/>
+ <path d={`M15 0Q65 ${height/3} 22 ${height/2}T35 ${height+P*2}M${width+P+28} 0Q${width+P-5} ${height/2} ${width+P+33} ${height+P*2}`} stroke={`url(#${id}water)`} strokeWidth="48" fill="none"/>
+ <path d={`M12 0Q62 ${height/3} 19 ${height/2}T32 ${height+P*2}`} stroke="#b6f4ed" strokeWidth="2" strokeDasharray="14 24" fill="none" opacity=".6"/>
+ <rect x={P-5} y={P-5} width={width+10} height={height+10} rx="15" fill={`url(#${id}sand)`}/>
+ {level.grid.flatMap((row,y)=>[...row].map((c,x)=>c==='#'?<g key={`${x}-${y}`} transform={`translate(${P+x*W} ${P+y*H})`}><rect x="1" y="-7" width={W-1} height={H+7} rx="4" fill="#657d72"/><rect x="1" y="-12" width={W-1} height={H} rx="5" fill={`url(#${id}stone)`} stroke="#6c8278"/><path d={`M2 2h${W-3}M${W/2} -11v13M12 3v12M34 3v12`} stroke="#7d9389" strokeWidth="1.2"/><path d="M5 -10h15m9 1h9" stroke="#e4e9da" strokeWidth="3" strokeLinecap="round"/>{(x+y)%3===0&&<path d="M2 -9q10 -6 18 0l-4 4-9 -1-4 5z" fill="#78a74d"/>}</g>:null))}
+ {Array.from({length:28},(_,i)=>{const x=i<14?P+(i/14)*width: i%2?width+P+30:27,y=i<14?i%2?25:height+P+29:P+((i-14)/14)*height;return <g key={i} transform={`translate(${x} ${y})`} filter={`url(#${id}shadow)`}><path d="M0 2v18" stroke="#756039" strokeWidth="7"/><ellipse cy="-4" rx="22" ry="18" fill="#235b37"/><circle cx="-9" cy="-11" r="15" fill="#468c42"/><circle cx="10" cy="-13" r="17" fill="#559d49"/><circle cy="-22" r="14" fill="#70b255"/><path d="M-8 -25q8 -8 16 -2" fill="none" stroke="#99cd68" strokeWidth="3" strokeLinecap="round"/></g>})}
+ {Array.from({length:20},(_,i)=><g key={i} transform={`translate(${P+i*width/20} ${height+P+12+(i%3)*6})`}><ellipse rx="8" ry="4" fill="#488947"/><circle cy="-4" r="3" fill={i%2?'#fff1b0':'#f5b9c0'}/></g>)}
+ </>;
+});
+export default function ScenicMaze({level,position=level.start,monster=level.monster,closed=level.gateCells.map(key)}){
+ const id=useId().replace(/:/g,''),width=level.grid[0].length*W+P*2,height=level.grid.length*H+P*2;
+ const xy=p=>`${P+p[0]*W+W/2} ${P+p[1]*H+H/2}`;
+ return <div className="scenic-maze" data-position={key(position)} role="img" aria-label={`Labirint. Siz ${position[0]+1}-ustun, ${position[1]+1}-qatordasiz. ${closed.length} eshik yopiq.`}><svg viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+ <Landscape level={level} id={id}/>
+ <g transform={`translate(${xy(level.exit)})`}><ellipse rx="24" ry="18" fill="#fff2a1" opacity=".8"/><path d="M-14 10v-23q14 -17 28 0v23" fill="#ffc94e" stroke="#fff4b4" strokeWidth="4"/><path d="M-3 7v-28l20 5-20 7" fill="#2aa567" stroke="#fff" strokeWidth="2"/></g>
+ {level.gateCells.map((p,i)=>closed.includes(key(p))&&<g key={key(p)} transform={`translate(${xy(p)})`} filter={`url(#${id}shadow)`}><path d="M-18 12v-23a18 18 0 0 1 36 0v23" fill="#8d9b8b" stroke="#596b59" strokeWidth="2"/><path d="M-13 12v-23a13 13 0 0 1 26 0v23" fill="#9d663d" stroke="#60402b" strokeWidth="2"/><path d="M-6 -20v32M2 -23v35M9 -19v31M-12 3h24" stroke="#6c452d" strokeWidth="2"/><circle cy="-6" r="8" fill={['#e56a51','#489bd0','#59ab62'][i%3]} stroke="#ffe9b0"/><text y="-3" textAnchor="middle" fill="white" fontSize="9" fontWeight="800">{i+1}</text><path d="M-22 4v-9M22 4v-9" stroke="#67472e" strokeWidth="3"/><path d="M-25 -5q-3 -6 3 -11 6 7 3 11M19 -5q-3 -6 3 -11 6 7 3 11" fill="#ffcf55"/></g>)}
+ <g className="scenic-character" style={{transform:`translate(${xy(monster).replace(' ','px,')}px)`}}><ellipse cy="10" rx="16" ry="5" fill="#324438" opacity=".3"/><path d="M-15 9q-8 -16 1 -26l2 -10 9 8q12 -5 17 8l5 19-9 -3-5 5-7 -4z" fill="#7050a5" stroke="#503480" strokeWidth="2"/><path d="M-10 -12l7 2M5 -10l7 -3" stroke="white" strokeWidth="4"/><path d="M-5 0q5 4 10 -1" fill="none" stroke="#342452" strokeWidth="2"/></g>
+ <g className="scenic-character" style={{transform:`translate(${xy(position).replace(' ','px,')}px)`}}><ellipse cy="12" rx="13" ry="4" fill="#324438" opacity=".3"/><path d="M-4 2l-6 9m13 -9 8 7" stroke="#314661" strokeWidth="6" strokeLinecap="round"/><path d="M-9 11h-5m24 -1h5" stroke="#f4f7ed" strokeWidth="4" strokeLinecap="round"/><path d="M-8 -13l-8 9m22 -8 8 5" stroke="#e7ab73" strokeWidth="5" strokeLinecap="round"/><rect x="-9" y="-17" width="17" height="20" rx="6" fill="#2e9fc7" stroke="#207d9f" strokeWidth="2"/><rect x="-12" y="-15" width="6" height="14" rx="3" fill="#dd9250"/><circle cy="-25" r="10" fill="#efb784"/><path d="M-10 -25q-5 -15 9 -14 14 -2 12 13l-7 -5-3 4-6 -4z" fill="#533e30"/><circle cx="5" cy="-25" r="1.3" fill="#263847"/><path d="M2 -20h4" stroke="#ad704e" strokeWidth="1.3"/></g>
+ </svg></div>;
+}

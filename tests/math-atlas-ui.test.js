@@ -4,6 +4,7 @@ import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
 import {dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {atlasTopics} from '../src/math-atlas-content.js';
 
 test('atlas UI: xarita, 6 sahna, klaviatura boshqaruvi va javobga fikr-mulohaza',async()=>{
  const root=dirname(dirname(fileURLToPath(import.meta.url))),dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'http://localhost:3000',pretendToBeVisual:true});
@@ -19,5 +20,11 @@ test('atlas UI: xarita, 6 sahna, klaviatura boshqaruvi va javobga fikr-mulohaza'
   fireEvent.change(screen.getByRole('slider',{name:'m qiyalik'}),{target:{value:'3'}});result=screen.getByText(/Har 1 x qadamda y/);assert.match(result.textContent,/y = 7/);
   await user.type(screen.getByPlaceholderText('Sonni kiriting'),'7');await user.click(screen.getByRole('button',{name:'Tekshirish'}));assert.ok(screen.getByText(/To‘g‘ri\./));
   await user.clear(screen.getByPlaceholderText('Sonni kiriting'));await user.type(screen.getByPlaceholderText('Sonni kiriting'),'6');await user.click(screen.getByRole('button',{name:'Tekshirish'}));assert.match(screen.getByText(/Yana bir bor ko‘rib chiqing/).textContent,/Jadvaldagi/);
+  const {AtlasScene}=await vite.ssrLoadModule('/src/MathAtlasScenes.jsx');
+  for(const topic of atlasTopics){cleanup();render(React.createElement(AtlasScene,{topic}));assert.ok(document.querySelector('.ma-stage svg'),`${topic.id}: visual exists`);assert.ok(screen.getByRole('button',{name:'Tekshirish'}),`${topic.id}: experiment works`)}
+  cleanup();render(React.createElement(AtlasScene,{topic:atlasTopics.find(t=>t.scene==='prism')}));
+  const before=document.querySelector('.ma-result').textContent;
+  fireEvent.change(screen.getByRole('slider',{name:'a uzunlik'}),{target:{value:'5'}});
+  assert.notEqual(document.querySelector('.ma-result').textContent,before,'Prism base changes the measured volume');
  }finally{cleanup();await vite.close();dom.window.close()}
 });
