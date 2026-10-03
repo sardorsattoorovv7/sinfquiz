@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Box,RotateCcw,RotateCw} from 'lucide-react';
+import {Box,RotateCcw,RotateCw,ZoomIn,ZoomOut} from 'lucide-react';
 import './learning-visual.css';
 
 export default function LearningVisual({mode,fallback,label='Interaktiv 3D model',className='',...params}){
@@ -22,7 +22,7 @@ export default function LearningVisual({mode,fallback,label='Interaktiv 3D model
    {(view==='2d'||status!=='ready')&&<div className="lv-fallback-content">{fallback}</div>}
    {view==='3d'&&status==='loading'&&<span className="lv-loading" role="status">3D sahna tayyorlanmoqda…</span>}
   </div>
-  <div className="lv-caption"><span>{view==='3d'&&status==='ready'?(mode==='maze'?'Yashil yo‘lboshchi · binafsha izquvar':'Modelni sichqoncha yoki barmoq bilan aylantiring'):status==='fallback'?'Yengil chizma rejimi':'Obyektni chizmada kuzating'}</span>{view==='3d'&&status==='ready'&&<div><button title="Chapga aylantirish" aria-label="Modelni chapga aylantirish" onClick={()=>instance.current?.rotate(-.3)}><RotateCcw size={15}/></button><button title="O‘ngga aylantirish" aria-label="Modelni o‘ngga aylantirish" onClick={()=>instance.current?.rotate(.3)}><RotateCw size={15}/></button><button onClick={()=>instance.current?.reset()}>Tiklash</button></div>}</div>
+  <div className="lv-caption"><span>{view==='3d'&&status==='ready'?(mode==='maze'?'Yashil yo‘lboshchi · binafsha izquvar':'Modelni sichqoncha yoki barmoq bilan aylantiring'):status==='fallback'?'Yengil chizma rejimi':'Obyektni chizmada kuzating'}</span>{view==='3d'&&status==='ready'&&<div><button title="Chapga aylantirish" aria-label="Modelni chapga aylantirish" onClick={()=>instance.current?.rotate(-.3)}><RotateCcw size={15}/></button><button title="O‘ngga aylantirish" aria-label="Modelni o‘ngga aylantirish" onClick={()=>instance.current?.rotate(.3)}><RotateCw size={15}/></button>{mode==='solid'&&<><button aria-label="Modelga yaqinlashish" onClick={()=>instance.current?.zoom(.85)}><ZoomIn size={15}/></button><button aria-label="Modeldan uzoqlashish" onClick={()=>instance.current?.zoom(1.15)}><ZoomOut size={15}/></button></>}<button onClick={()=>instance.current?.reset()}>Tiklash</button></div>}</div>
  </div>;
 }
 

@@ -1,0 +1,8 @@
+export const neat=n=>Number(Number(n).toFixed(5));
+export const bounded=(n,min,max,def=min)=>Number.isFinite(Number(n))?Math.min(max,Math.max(min,Number(n))):def;
+export function gcd(a,b){while(b){[a,b]=[b,a%b]}return Math.abs(a)||1}
+export function fractionSum(a,b){const common=a.d*b.d/gcd(a.d,b.d),left=a.n*common/a.d,right=b.n*common/b.d,k=gcd(left+right,common);return {n:(left+right)/k,d:common/k,value:(left+right)/common,common,left,right}}
+export function balanceStep(state,op,value,both=true){if(!Number.isFinite(value)||Math.abs(value)>100||(['multiply','divide'].includes(op)&&value===0))throw Error('Bu amal uchun noldan farqli, chegaradagi son kerak.');const change=(a,c)=>op==='add'?[a,c+value]:op==='subtract'?[a,c-value]:op==='multiply'?[a*value,c*value]:[a/value,c/value],l=change(state.a,state.c),r=both?change(state.b,state.d):[state.b,state.d];if([...l,...r].some(v=>Math.abs(v)>10000))throw Error('Qiymatlar juda katta; qayta boshlang.');return {a:l[0],c:l[1],b:r[0],d:r[1]}}
+export function quadraticRoots(a,b,c){if(a===0)return b===0?{kind:c===0?'all':'none',roots:[]}:{kind:'linear',roots:[-c/b]};const D=b*b-4*a*c;return {kind:D<0?'none':'real',roots:D<0?[]:D===0?[-b/(2*a)]:[(-b-Math.sqrt(D))/(2*a),(-b+Math.sqrt(D))/(2*a)]}}
+export function triangleFromUnits(base,height,offset){const left=Math.hypot(offset,height),right=Math.hypot(base-offset,height),A=Math.atan2(height,offset)*180/Math.PI,B=Math.atan2(height,base-offset)*180/Math.PI;return {area:base*height/2,sides:[base,left,right],angles:[A,B,180-A-B]}}
+export const pythagoras=(a,b)=>({c:Math.hypot(a,b),areas:[a*a,b*b,a*a+b*b]});

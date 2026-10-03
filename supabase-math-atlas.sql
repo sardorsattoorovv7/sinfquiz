@@ -16,7 +16,7 @@ create table if not exists public.math_atlas_concepts (
     and length(coalesce(data->>'challenge','')) between 12 and 500
     and length(coalesce(data->>'misconception','')) between 12 and 500
     and data->>'domain' in ('Algebra','Geometriya')
-    and data->>'scene' in ('number','fraction','balance','linear','quadratic','coordinate','triangle','transform','power','sequence','expression','angle','line','square','rectangle','parallelogram','trapezoid','rhombus','polygon','circle','cube','cuboid','prism','pyramid','cylinder','cone','sphere')
+    and data->>'scene' in ('number','fraction','balance','linear','quadratic','coordinate','triangle','transform','power','sequence','expression','angle','line','square','rectangle','parallelogram','trapezoid','rhombus','polygon','circle','cube','cuboid','prism','pyramid','cylinder','cone','sphere','statistics','probability')
     and (data->>'grade')::integer between 5 and 11
     and jsonb_typeof(coalesce(data->'parameters','{}'::jsonb))='object'
     and jsonb_typeof(coalesce(data->'prerequisites','[]'::jsonb))='array'

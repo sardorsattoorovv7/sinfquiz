@@ -4,7 +4,7 @@ import {atlasTopics,atlasTopicById} from '../src/math-atlas-content.js';
 import {distance,triangleMeasures,lineTable,lineY,equationSolution,transformPoint,solidMeasures,polygonArea} from '../src/math-atlas-math.js';
 
 test('atlas: 5–11 sinf yo‘li to‘liq, tayanchlar mavjud, har sahna mazmunli',()=>{
- assert.equal(atlasTopics.length,55);
+ assert.equal(atlasTopics.length,62);
  assert.deepEqual([...new Set(atlasTopics.map(t=>t.grade))].sort((a,b)=>a-b),[5,6,7,8,9,10,11]);
  for(const topic of atlasTopics){for(const field of ['definition','reason','life','misconception','challenge'])assert.ok(topic[field].length>=12,`${topic.id}: ${field}`);for(const id of topic.prerequisites)assert.ok(atlasTopicById[id],`${topic.id}: ${id}`)}
  for(const id of ['son-chizigi','tenglik','chiziqli-funksiya','uchburchak','kochirish','kub','konus','shar','trigonometriya'])assert.ok(atlasTopicById[id]);

@@ -1,0 +1,81 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.20.0 prebuild
+> node scripts/copy-python-runtime.mjs
+
+Python muhiti tayyor: 5 ta mahalliy fayl.
+
+> sinf-quiz@7.20.0 build
+> vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2031 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 2.20 kB │ gzip:   0.89 kB
+dist/assets/PythonWorkbench-BOr2MbJe.css        1.92 kB │ gzip:   0.71 kB
+dist/assets/ExperimentManager-B3xF1fUf.css      2.15 kB │ gzip:   0.82 kB
+dist/assets/StudentProfile-eOwzo5FU.css         2.86 kB │ gzip:   0.95 kB
+dist/assets/OfficeLab-BwISxvcD.css              2.94 kB │ gzip:   0.99 kB
+dist/assets/CefrAdmin-BzZFDIeu.css              6.12 kB │ gzip:   1.93 kB
+dist/assets/ClassroomChat-DYJEpeIj.css          6.66 kB │ gzip:   1.83 kB
+dist/assets/OpenExamHub-D7lqSddM.css           14.04 kB │ gzip:   3.28 kB
+dist/assets/MathAtlas-Cn0l0apf.css             16.28 kB │ gzip:   3.70 kB
+dist/assets/BiologyAtlas-DPodF2Ie.css          16.88 kB │ gzip:   3.81 kB
+dist/assets/ChemistryAtlas-BoicKbg8.css        28.00 kB │ gzip:   6.12 kB
+dist/assets/index-CwBbTuaw.css                209.27 kB │ gzip:  41.02 kB
+dist/assets/rolldown-runtime-hePW80VL.js        0.71 kB │ gzip:   0.42 kB
+dist/assets/national-defaults-BkUqfxDk.js       2.61 kB │ gzip:   1.36 kB
+dist/assets/math-solid-models-D8vU_z9B.js       3.00 kB │ gzip:   1.40 kB
+dist/assets/experiment-service-nyhMol09.js      4.38 kB │ gzip:   1.57 kB
+dist/assets/KurashArena-aFklHwUn.js             4.58 kB │ gzip:   2.26 kB
+dist/assets/StudentProfile-BzkBaJnQ.js          6.95 kB │ gzip:   2.50 kB
+dist/assets/OfficeLab-BtRe1b3Z.js               7.12 kB │ gzip:   2.52 kB
+dist/assets/PythonWorkbench-DmpFK2Ue.js         7.13 kB │ gzip:   2.85 kB
+dist/assets/chemistry-bench-3d-D7qNWqj4.js      8.10 kB │ gzip:   3.70 kB
+dist/assets/learning-3d-yic_SPx6.js            10.62 kB │ gzip:   4.70 kB
+dist/assets/biology-anatomy-3d-DTngp_mW.js     10.78 kB │ gzip:   4.61 kB
+dist/assets/CefrHub-uPb41r7z.js                14.90 kB │ gzip:   5.07 kB
+dist/assets/ExperimentManager-DOwmeM4N.js      15.55 kB │ gzip:   5.59 kB
+dist/assets/ClassroomChat-DOjORt22.js          16.40 kB │ gzip:   5.52 kB
+dist/assets/CefrWorkspace-CiLnWcMC.js          17.26 kB │ gzip:   6.42 kB
+dist/assets/CefrAdmin-CTsbzoJb.js              17.99 kB │ gzip:   5.99 kB
+dist/assets/OpenExamHub-Cou4Hgs7.js            18.54 kB │ gzip:   6.11 kB
+dist/assets/OrbitControls-CnWvS4iP.js          19.02 kB │ gzip:   4.23 kB
+dist/assets/python-course-D9udbcGA.js          21.93 kB │ gzip:   8.51 kB
+dist/assets/icons-CggGaEHT.js                  22.65 kB │ gzip:   8.22 kB
+dist/assets/biology-world-3d-CECgOuIx.js       24.26 kB │ gzip:  10.63 kB
+dist/assets/open-exams-CPKBaGIA.js             31.00 kB │ gzip:  11.79 kB
+dist/assets/GLTFLoader-BMa0EYhs.js             44.28 kB │ gzip:  12.91 kB
+dist/assets/computer-course-seed-BbuZPKMi.js   60.97 kB │ gzip:  20.25 kB
+dist/assets/MathAtlas-Ch_mj4AH.js             101.85 kB │ gzip:  32.53 kB
+dist/assets/BiologyAtlas-LGb0JBK7.js          121.98 kB │ gzip:  40.78 kB
+dist/assets/ChemistryAtlas-B5VwcClD.js        159.91 kB │ gzip:  51.38 kB
+dist/assets/supabase-VaY9-frs.js              214.17 kB │ gzip:  55.01 kB
+dist/assets/react-CyDUuctK.js                 218.83 kB │ gzip:  68.25 kB
+dist/assets/three.core-Dhpjc96n.js            258.31 kB │ gzip:  71.61 kB
+dist/assets/three.module-Dg3yjlEb.js          318.56 kB │ gzip:  75.71 kB
+dist/assets/index-Sz_sU384.js                 370.67 kB │ gzip: 108.31 kB
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/context.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/lucide-react/dist/esm/context.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/Icon.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/lucide-react/dist/esm/Icon.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+✓ built in 458ms

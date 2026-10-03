@@ -1,3 +1,15 @@
+# SinfQuiz 7.20
+
+Yangilash va SQL tartibi: [UPDATE-7.20.md](UPDATE-7.20.md). Manbalar: [ATLAS-SOURCES-7.20.md](ATLAS-SOURCES-7.20.md). Tekshiruv: [QA-7.20.md](QA-7.20.md).
+
+# SinfQuiz 7.19
+
+Biologiya 3D yangilanishini o‘rnatish: [UPDATE-7.19.md](UPDATE-7.19.md). Tekshiruvlar: [QA-7.19.md](QA-7.19.md).
+
+# SinfQuiz 7.18
+
+Biologiya yangilanishi uchun [UPDATE-7.18.md](UPDATE-7.18.md), tekshiruvlar uchun [QA-7.18.md](QA-7.18.md)ni o‘qing.
+
 # SinfQuiz 7.16.1
 
 Qoralama, qayta yuborish, forma va ion panjarasi tuzatishlari: [UPDATE-7.16.1.md](UPDATE-7.16.1.md).
