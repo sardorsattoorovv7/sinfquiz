@@ -8,7 +8,7 @@ const root=dirname(dirname(fileURLToPath(import.meta.url))),read=name=>readFileS
 
 test('Vercel build uses Supabase Auth, Postgres and Realtime without Firebase',()=>{
  const pkg=JSON.parse(read('package.json')),vercel=JSON.parse(read('vercel.json')),env=read('.env.example'),app=read('src/App.jsx'),data=read('src/supabase-data.js'),sdk=read('src/supabase-sdk.js'),schema=read('supabase-schema.sql');
- assert.equal(pkg.version,'7.20.0');
+ assert.equal(pkg.version,'7.20.1');
  assert.ok(pkg.dependencies['@supabase/supabase-js']);
  assert.equal(pkg.dependencies['firebase-admin'],undefined);
  assert.equal(pkg.dependencies.express,undefined);

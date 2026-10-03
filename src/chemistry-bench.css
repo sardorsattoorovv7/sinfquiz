@@ -2,3 +2,35 @@
 
 .cb-stock{grid-template-columns:1fr;overflow-x:hidden}.cb-stock button>span:last-child{min-width:0;overflow-wrap:anywhere}.cb-stock small{font-size:12px}.cb-readings dd{max-width:125px}.cb-compare th{background:var(--cb-soft);color:var(--cb-ink)}
 @media(max-width:700px){.cb-stock{grid-template-columns:repeat(2,minmax(0,1fr))}.cb-stock b{font-size:12px}.cb-stock small{font-size:11px}}
+
+/* Guided workbench: short instructions tied to actual controls and observations. */
+.chemistry-bench .cb-tutorial-open{width:100%;justify-content:flex-start;text-align:left;padding:15px 20px;margin:0 0 18px;background:var(--cb-soft);border-color:var(--cb-line);gap:12px}
+.cb-tutorial-open>span{flex:1}.cb-tutorial-open b,.cb-tutorial-open small{display:block}.cb-tutorial-open small{font-size:12px;color:var(--cb-muted);font-weight:400;margin-top:4px}
+.cb-tutorial{border:1px solid var(--cb-line);border-radius:18px;background:var(--cb-paper);padding:22px;margin-bottom:22px;box-shadow:0 8px 24px #15374f07}
+.cb-tutorial header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.cb-tutorial header small{color:var(--cb-teal);font-size:10px;font-weight:800;letter-spacing:.07em}.cb-tutorial h3{font-size:21px;margin:7px 0 0}.cb-tutorial header button{flex-shrink:0}
+.cb-tutorial-intro{color:var(--cb-muted);font-size:13px;line-height:1.7;margin:12px 0 17px}
+.cb-tutorial-steps{display:flex;gap:9px;list-style:none;padding:0 0 12px;margin:0 0 16px;overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid var(--cb-line)}
+.cb-tutorial-steps li{display:flex;align-items:center;gap:6px;font-size:11px;white-space:nowrap;color:var(--cb-muted);padding:6px 10px;background:var(--cb-soft);border-radius:8px}
+.cb-tutorial-steps li>span{display:grid;place-items:center;border:1px solid var(--cb-line);width:21px;height:21px;border-radius:50%;flex-shrink:0;font-size:10px}
+.cb-tutorial-steps .current{border:1px solid var(--cb-teal);color:var(--cb-ink);font-weight:750}.cb-tutorial-steps .current>span{color:var(--cb-paper);background:var(--cb-teal);border-color:var(--cb-teal)}
+.cb-tutorial-steps .complete>span{background:var(--cb-teal);border-color:var(--cb-teal);color:var(--cb-paper)}
+.cb-tutorial-grid{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.2fr);gap:28px}.cb-tutorial-task>b{font-size:18px}.cb-tutorial-task p,.cb-tutorial-task ul{font-size:13px;line-height:1.75;color:var(--cb-muted);margin:9px 0}.cb-tutorial-task>strong{display:block;font-size:14px;padding:10px 0;color:var(--cb-teal)}
+.cb-tutorial-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:13px}.chemistry-bench .cb-tutorial-actions button{font-size:12px}
+.cb-tutorial-recipe>small{font-size:10px;letter-spacing:.08em;font-weight:750;color:var(--cb-muted)}
+.cb-recipe-items{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px}.cb-recipe-items>div{display:flex;align-items:center;gap:10px;border:1px solid var(--cb-line);background:var(--cb-soft);padding:10px 13px;border-radius:10px;min-height:65px;max-width:100%}
+.cb-recipe-items>div>span:last-child{min-width:0}.cb-recipe-items b{font-size:12px;display:block;overflow-wrap:anywhere}.cb-recipe-items small{color:var(--cb-muted);display:block;font-size:11px;line-height:1.5;margin-top:4px}
+.cb-recipe-bottle{height:38px;width:34px;border:1px solid #87a6b4;background:linear-gradient(90deg,#ffffff90,#ffffff40),linear-gradient(0deg,var(--reagent) 60%,transparent 61%);border-radius:7px 7px 5px 5px;position:relative;display:grid;place-items:center;flex-shrink:0;margin-top:5px;box-shadow:inset 2px 0 3px #fff6}
+.cb-recipe-bottle:before{content:"";position:absolute;top:-6px;height:5px;width:18px;border:1px solid #668b9e;border-radius:3px;background:#56798e}.cb-recipe-bottle b{background:#ffffffe0;border-radius:2px;font-size:7px;color:#20364b;padding:2px;max-width:30px;line-height:1.3;text-align:center}
+.cb-tutorial-recipe summary{font-size:12px;padding:5px 0}.cb-tutorial-recipe p{font-size:12px;line-height:1.75;color:var(--cb-muted);margin:6px 0}
+.cb-tutorial-note{font-size:11px;line-height:1.6;color:var(--cb-muted);border-top:1px solid var(--cb-line);margin:16px 0 0;padding-top:12px}
+.cb-tutorial-task .cb-tutorial-warning{background:#fff4db;border:1px solid #e4c584;color:#6d4b16;border-radius:9px;padding:11px 13px;font-size:12px}
+html[data-theme=dark] .cb-tutorial-task .cb-tutorial-warning{background:#403629;border-color:#836b3f;color:#f1d8a6}
+.cb-tutorial-done{display:flex;align-items:flex-start;gap:14px;background:var(--cb-soft);border-radius:12px;padding:18px;color:var(--cb-teal)}.cb-tutorial-done p{font-size:13px;line-height:1.65;color:var(--cb-muted)}.cb-tutorial-done svg{flex-shrink:0}
+.chemistry-bench [data-guide-highlight=true]{outline:3px solid #b98317;outline-offset:4px;box-shadow:0 0 0 9px #ddb84824}
+.cb-visual{background:radial-gradient(ellipse at 50% 35%,var(--cb-paper) 10%,var(--cb-soft) 88%);padding:14px 14px 16px}
+.cb-live-caption{font-size:12px;line-height:1.7;text-align:center;max-width:520px;margin:10px auto 8px;color:var(--cb-muted);min-height:40px}
+.cb-model-key{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:6px 0}.cb-model-key>span{font-size:10px;color:var(--cb-muted);background:var(--cb-paper);border:1px solid var(--cb-line);border-radius:6px;padding:5px 8px}
+@media(min-width:1800px){.cb-tutorial h3{font-size:25px}.cb-tutorial-task p,.cb-tutorial-task ul,.cb-live-caption{font-size:16px}.cb-recipe-items b{font-size:15px}.cb-recipe-items small{font-size:13px}.cb-tutorial-steps li{font-size:13px}}
+@media(max-width:700px){.cb-tutorial{padding:16px}.cb-tutorial h3{font-size:18px}.cb-tutorial-grid{grid-template-columns:1fr;gap:19px}.cb-recipe-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.cb-recipe-items>div{padding:9px;gap:8px}.cb-recipe-items b{font-size:11px}.cb-recipe-items small{font-size:10px}.cb-tutorial-actions{display:grid;grid-template-columns:1fr}.cb-tutorial-actions button{width:100%}.cb-tutorial-note{font-size:10px}.cb-visual{padding:10px}.cb-live-caption{font-size:12px}.cb-model-key>span{font-size:10px}}
+
+.cb-visual,.cb-tutorial,.cb-observation,.cb-shelf,.ex-notebook{scroll-margin-top:100px}

@@ -1,3 +1,7 @@
+# SinfQuiz 7.20.1
+
+Kimyo laboratoriyasiga bosqichli qo‘llanma va yangilangan 3D/2D tajriba stoli qo‘shildi. O‘rnatish: [UPDATE-7.20.1.md](UPDATE-7.20.1.md). Tekshiruv: [QA-7.20.1.md](QA-7.20.1.md).
+
 # SinfQuiz 7.20
 
 Yangilash va SQL tartibi: [UPDATE-7.20.md](UPDATE-7.20.md). Manbalar: [ATLAS-SOURCES-7.20.md](ATLAS-SOURCES-7.20.md). Tekshiruv: [QA-7.20.md](QA-7.20.md).

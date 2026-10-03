@@ -1,0 +1,17 @@
+SinfQuiz 7.20.1 — YANGILANGAN KIMYO LABORATORIYASI
+
+Bu to‘liq loyiha arxivi.
+
+Yangiliklar:
+- 12 amaliy ish va erkin rejim uchun 13 bosqichli qo‘llanma.
+- 23 virtual namuna: modda, miqdor, konsentratsiya, jihoz va sharoit.
+- Noto‘g‘ri modda, ortiqcha miqdor va mos bo‘lmagan sharoitga tushuntirish.
+- Yangilangan shisha idishlar, quyish, ko‘pik, moy qatlamlari va cho‘kma 3D/2D sahnalari.
+
+Qo‘llanmani ochish: Kimyo atlasi → Tajriba qil → amaliy ishni tanlang.
+Erkin laboratoriyada “Bosqichli qo‘llanma”ni oching.
+
+Yangilash: yangi papkaga oching; ishlayotgan .env faylingizni o‘zingiz ko‘chiring.
+Terminalda npm install va npm run dev bajaring.
+Avvalgi 7.20 migratsiyasi bajarilgan bo‘lsa, yangi SQL kerak emas.
+Batafsil: UPDATE-7.20.1.md va QA-7.20.1.md.

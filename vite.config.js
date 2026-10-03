@@ -7,6 +7,7 @@ export default defineConfig(({mode})=>{
  }
  return {
  plugins:[localAdminApi()],
+ optimizeDeps:{include:['three','three/addons/controls/OrbitControls.js','three/addons/environments/RoomEnvironment.js','three/addons/loaders/GLTFLoader.js']},
  server:{host:process.env.VITE_HOST||'0.0.0.0',strictPort:true},
  build:{
   chunkSizeWarningLimit:650,
