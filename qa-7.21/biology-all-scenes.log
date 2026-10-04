@@ -1,0 +1,1 @@
+PASS: all 24 scene types WebGL ready, every enum variant, part selection, scrubbing, real animation/pause/resume, no idle frames, mobile dark, 2D toggle, context loss, no runtime errors.

@@ -1,0 +1,5 @@
+SinfQuiz 7.21.0 — Biologiya: tayyor 3D modellar
+Yangilangan: 2026-10-04
+To‘liq loyiha: oldingi kimyo qo‘llanmasi va barcha fanlar bilan.
+O‘rnatish: UPDATE-7.21.md
+Yangi SQL migratsiyasi talab qilinmaydi.

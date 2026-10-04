@@ -1,0 +1,10 @@
+PASS biology start without prediction and restart
+8:51:37 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+8:51:38 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS 62-topic math, 7 critical models, 7 WebGL solids and responsive themes
+8:51:55 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+8:51:57 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS chemistry selected amounts, animation, snapshots, notebook save/download and 12 mission screens
+PASS complete A2 text maze with zero automatic speech
+8:52:05 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS private group, literal XSS payload, recorded voice and teacher assignment; no runtime errors

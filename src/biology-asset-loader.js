@@ -1,0 +1,18 @@
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {clone as cloneSkeleton} from 'three/addons/utils/SkeletonUtils.js';
+import {Box3,Vector3,Group,AnimationMixer} from 'three';
+import {biologyAssetUrl} from './biology-asset-catalog.js';
+const byteCache=new Map();let cacheBytes=0;const MAX_BYTES=24*1024*1024;
+async function modelBytes(key){
+ if(byteCache.has(key)){const record=byteCache.get(key);byteCache.delete(key);byteCache.set(key,record);return record.promise}
+ const record={size:0,promise:null};
+ record.promise=(async()=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),14000);try{const response=await fetch(biologyAssetUrl(key),{signal:controller.signal,credentials:'omit'});if(!response.ok)throw new Error('Model fayli yuklanmadi.');const data=await response.arrayBuffer();if(data.byteLength<20||new DataView(data).getUint32(0,true)!==0x46546c67)throw new Error('Model fayli to‘liq emas.');record.size=data.byteLength;cacheBytes+=record.size;for(const [old,item] of byteCache){if(cacheBytes<=MAX_BYTES)break;if(old!==key&&item.size){cacheBytes-=item.size;byteCache.delete(old)}}return data}catch(error){if(byteCache.get(key)===record)byteCache.delete(key);throw error}finally{clearTimeout(timer)}})();byteCache.set(key,record);return record.promise;
+}
+export async function loadBiologyAsset(key){const data=await modelBytes(key),gltf=await new GLTFLoader().parseAsync(data,biologyAssetUrl(key).replace(/[^/]+$/,''));gltf.scene.userData.assetKey=key;gltf.scene.traverse(node=>{if(node.isMesh){node.castShadow=false;node.receiveShadow=false;if(!node.userData.part)node.userData.part=node.parent?.userData?.part||''}});return gltf}
+export function instantiateBiologyAsset(gltf,{filter=null,height=null,center=true}={}){
+ const root=cloneSkeleton(gltf.scene);root.traverse(node=>{if(node.isMesh){node.material=Array.isArray(node.material)?node.material.map(m=>m.clone()):node.material.clone();node.userData={...node.userData};if(filter&&!filter(node))node.visible=false}});
+ const wrapper=new Group(),origin=new Group();wrapper.add(origin);origin.add(root);const bounds=new Box3();root.updateMatrixWorld(true);root.traverse(node=>{if(node.isMesh&&node.visible){if(node.isSkinnedMesh){node.computeBoundingBox();bounds.union(node.boundingBox.clone().applyMatrix4(node.matrixWorld))}else{node.geometry.computeBoundingBox();bounds.union(node.geometry.boundingBox.clone().applyMatrix4(node.matrixWorld))}}});
+ if(!bounds.isEmpty()){const c=bounds.getCenter(new Vector3()),size=bounds.getSize(new Vector3());if(center)origin.position.sub(c);if(height)wrapper.scale.setScalar(height/Math.max(size.y,size.x*.6,.01))}wrapper.userData.assetKey=gltf.scene.userData.assetKey;wrapper.userData.animations=gltf.animations;return wrapper;
+}
+export function disposeBiologyAsset(gltf){const geometries=new Set(),materials=new Set(),textures=new Set(),skeletons=new Set();gltf?.scene?.traverse(node=>{if(node.geometry)geometries.add(node.geometry);if(node.skeleton)skeletons.add(node.skeleton);for(const m of (Array.isArray(node.material)?node.material:[node.material]).filter(Boolean)){materials.add(m);for(const v of Object.values(m))if(v?.isTexture)textures.add(v)}});for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures){t.dispose();t.source?.data?.close?.()}for(const s of skeletons)s.dispose()}
+export function assetAnimation(model,clipName){const clips=model.userData.animations||[],clip=clips.find(c=>c.name.toLowerCase().includes(clipName?.toLowerCase()||'walk'))||clips[0];if(!clip)return null;const mixer=new AnimationMixer(model);mixer.clipAction(clip).play();return {at:t=>mixer.setTime(Math.max(0,t)),dispose:()=>{mixer.stopAllAction();mixer.uncacheRoot(model)}}}

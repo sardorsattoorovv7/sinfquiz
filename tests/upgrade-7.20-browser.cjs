@@ -2,10 +2,10 @@
 const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
 (async()=>{
- const root=path.resolve(__dirname,'..'),load=f=>import(pathToFileURL(path.join(root,f))),out=path.join(root,'qa-7.20');fs.mkdirSync(out,{recursive:true});
+ const root=path.resolve(__dirname,'..'),load=f=>import(pathToFileURL(path.join(root,f))),out=path.join(root,'qa-7.21','previous-modules');fs.mkdirSync(out,{recursive:true});
  const {createServer}=await load('node_modules/vite/dist/node/index.js'),{audioMazeLevels,mazePath}=await load('src/audio-maze-content.js'),{atlasTopics}=await load('src/math-atlas-content.js'),{benchMissions}=await load('src/chemistry-bench-content.js');
  const server=await createServer({root,server:{host:'127.0.0.1',port:4180,hmr:false}});await server.listen();
- const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_EXECUTABLE,args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--use-fake-ui-for-media-stream','--use-fake-device-for-media-stream']});
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_EXECUTABLE,args:['--no-sandbox','--no-zygote','--single-process','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--use-fake-ui-for-media-stream','--use-fake-device-for-media-stream']});
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[],accessibility=[],groups=[],messages=[],assignments=[];let role='student',serial=0,recorded,assignmentPayload;
  page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
  await page.addInitScript(()=>{window.__SINFQUIZ_LEGACY_TEST__=true;window.__speechCalls=0;window.speechSynthesis.speak=()=>window.__speechCalls++;window.__benchDraws=0;for(const Type of [window.WebGLRenderingContext,window.WebGL2RenderingContext])if(Type){const fn=Type.prototype.drawElements;Type.prototype.drawElements=function(...args){if(this.canvas?.closest?.('.cb-webgl'))window.__benchDraws++;return fn.apply(this,args)}}});

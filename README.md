@@ -1,3 +1,7 @@
+# SinfQuiz 7.21
+
+Biologiya atlasida tayyor anatomik, teksturali o‘simlik va hayvon modellari ishlaydi. O‘rnatish: [UPDATE-7.21.md](UPDATE-7.21.md). Manbalar: [BIOLOGY-MODELS-7.21.md](BIOLOGY-MODELS-7.21.md). Tekshiruv: [QA-7.21.md](QA-7.21.md). 7.21 uchun yangi SQL kerak emas.
+
 # SinfQuiz 7.20.1
 
 Kimyo laboratoriyasiga bosqichli qo‘llanma va yangilangan 3D/2D tajriba stoli qo‘shildi. O‘rnatish: [UPDATE-7.20.1.md](UPDATE-7.20.1.md). Tekshiruv: [QA-7.20.1.md](QA-7.20.1.md).
