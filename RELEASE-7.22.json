@@ -1,0 +1,91 @@
+{
+  "version": "7.22.0",
+  "baseVersion": "7.21.0",
+  "createdAt": "2026-10-05T06:50:58.996314+00:00",
+  "fullProject": true,
+  "competition": {
+    "stages": [
+      4,
+      24
+    ],
+    "teams": [
+      2,
+      32
+    ],
+    "membersPerTeam": [
+      1,
+      12
+    ],
+    "readySources": 48
+  },
+  "excel": {
+    "questions": 32,
+    "theory": 20,
+    "shortAnswers": 6,
+    "practical": 6
+  },
+  "migration": "supabase-migration-7.22.sql",
+  "checks": {
+    "unitTestsPassed": 124,
+    "unitTestsFailed": 0,
+    "build": "passed",
+    "browserStages": 5,
+    "automaticAccessibilityViolations": 0
+  },
+  "changedFiles": [
+    "src/App.jsx",
+    "src/theme.css",
+    "src/ScenicMaze.jsx",
+    "src/OfficeLab.jsx",
+    "src/office-lab-model.js",
+    "src/office-lab.css",
+    "src/supabase-data.js",
+    "package.json",
+    "package-lock.json",
+    "tests/vercel.test.js"
+  ],
+  "addedFiles": [
+    "src/TeamCompetitions.jsx",
+    "src/CompetitionBuilder.jsx",
+    "src/CompetitionRoom.jsx",
+    "src/CompetitionChallenges.jsx",
+    "src/competition-model.js",
+    "src/competition-service.js",
+    "src/team-competitions.css",
+    "data/excel-basics.js",
+    "supabase-migration-7.22.sql",
+    "scripts/build-competition-templates.mjs",
+    "tests/competition-db.test.js",
+    "tests/competition-model.test.js",
+    "tests/competition-browser.cjs",
+    "UPDATE-7.22.md",
+    "QA-7.22.md"
+  ],
+  "sha256": {
+    "src/App.jsx": "164ab865e12507b3abf4f7197e5a930785696ce8528d2674625bc0badc82e211",
+    "src/theme.css": "fb214ff3f3d51a26999fc4d64b85b09349965dc5eaa77dd90601cf49d9776b9e",
+    "src/ScenicMaze.jsx": "b964758421c97cde9c64042bacdfe7fa45303dd8227ab754a7fc2ab6a3740988",
+    "src/OfficeLab.jsx": "6c4fa396c532a82636262c7b16ab8077ae4e4b4f1ed00d996fa1f646f3f219fa",
+    "src/office-lab-model.js": "f046c14f0a6e5fe4ea22df83cc30eac867e41e4e0445b1c3231ace667fd61a9c",
+    "src/office-lab.css": "24939d4bb858fc22c5695c4cfecde4c77628eb953dbe793d6c93f2e8612c54e6",
+    "src/supabase-data.js": "072047f103b43ec2efbdbb23b79072791fcdec9169e00fac999c1145abb91aa8",
+    "package.json": "033291431f4813a4264353a38bd3002208ebea6302ced22febe0f890030f5a0e",
+    "package-lock.json": "03713314470717ae5abb6b60990ba8b050c7fa094a55ca46ed634fa5ab03640c",
+    "tests/vercel.test.js": "efa9f2b4810152335ccf034ca3ce24b186e4db921078e61d64c0677f77f0abe7",
+    "src/TeamCompetitions.jsx": "25fb6c242bcf9f8b4302b6fbc52db106c7d89abdcda0c4a6704335c98adc5aaa",
+    "src/CompetitionBuilder.jsx": "d9179c2bd9f16ecbb5609fd4b972550b9f84ce0f14ab6e743ed454d0d73c8592",
+    "src/CompetitionRoom.jsx": "49f34840ea844584f5f490f7c797de9ff6e9e8d181ed76d9d7b53e413436c654",
+    "src/CompetitionChallenges.jsx": "3fb5618e26ced5ba4fe496c2961a3b078739c47dc8793278f4aad7775b56d5b7",
+    "src/competition-model.js": "81e39d57600040612833298ebac8c97d17360e7c1fc12634ac0373e6e48454c0",
+    "src/competition-service.js": "e890211ba2b3dae7d70a31af8e64eebc06bcdf037fb4d4d45eb6476e457ada27",
+    "src/team-competitions.css": "7e6f45d5ab2bf3ad2f68af523d4cc9f833afd3a8bc9165f0b8dfa0ac54dd9290",
+    "data/excel-basics.js": "3a901ad86ae3e6ddf8b72a0dd0afd7006b6d3b35e4c9478e13d4fff3dd1945f4",
+    "supabase-migration-7.22.sql": "6d998f0fa4913d19e3b3f343a1d5319bd8cc1e33d057b9884e4f867caec74c7c",
+    "scripts/build-competition-templates.mjs": "fab4ee566ed9b0b304a92c23011285cddeca0e1086d43dd093ac4feff3bd9a19",
+    "tests/competition-db.test.js": "99231cea1fcf35dfccca71d27ef4c64380a052fbe7fb8d9e6cb9709019ff7ba0",
+    "tests/competition-model.test.js": "ae8f2b58fec7e5f9e9d22dc1301fe9f07f2e1aa2171e19cd8ab91f3bf751f8c8",
+    "tests/competition-browser.cjs": "351d6dab177859a2982331d7abb692047838cc9729d42b60f28edf4a84d9b0b4",
+    "UPDATE-7.22.md": "65e14bace136a7a1b9a81be2b50a31accb49563b7e7ee71899daef2ca8eac628",
+    "QA-7.22.md": "c9d9ce966eee7770adae6b2a549c9b903ef1ae85d61ad23fc9df7f7776302870"
+  }
+}

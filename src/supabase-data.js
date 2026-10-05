@@ -1,5 +1,6 @@
 import {quizRanking} from './quiz-ranking.js';
 import bank from '../data/question-bank.json';
+import {excelBasicsQuiz} from '../data/excel-basics.js';
 import typingLessons from '../data/english-typing-lessons.json';
 import longTypingLessons from '../data/typing-lessons.json';
 import {nationalTestBank} from '../data/national-test-bank.js';
@@ -61,6 +62,10 @@ async function isTeacher(sdk,user=sdk.auth.currentUser){return ['teacher','admin
 async function seedQuizzes(sdk){
  const uid=sdk.auth.currentUser.uid;if(seededTeachers.has(uid))return;
  const current=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid)));if(!current.empty){
+  if(!current.docs.some(item=>item.data()?.templateKey===excelBasicsQuiz.templateKey)){
+   const id=`excel-beginner-7-22:${uid}`,pins=new Set(current.docs.map(item=>item.data()?.pin));let pin;do{pin=String(Math.floor(100000+Math.random()*900000))}while(pins.has(pin));
+   const profile=await userProfile(sdk);await sdk.setDoc(sdk.doc(sdk.db,'quizzes',id),{...clean(excelBasicsQuiz),id,pin,status:'passive',visibility:'private',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:Date.now(),version:4});
+  }
   for(const snapshot of current.docs){const quiz=snapshot.data();const source=bank.find(item=>item.subject===quiz?.subject);
    if(source&&originalClassroomTemplates[quiz.subject]?.includes(templateHash(quiz.questions))){
     await sdk.updateDoc(snapshot.ref,{questions:clean(source.questions),title:source.title,version:3});
@@ -70,7 +75,7 @@ async function seedQuizzes(sdk){
  }
  const profile=await userProfile(sdk),ownerName=profile?.name||'O‘qituvchi';
  const batch=sdk.writeBatch(sdk.db),used=new Set();
- for(const source of bank){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:3})}
+ for(const source of [...bank,excelBasicsQuiz]){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=source.templateKey?`excel-beginner-7-22:${uid}`:randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:source.templateKey?4:3})}
  await batch.commit();seededTeachers.add(uid);
 }
 

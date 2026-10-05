@@ -1,4 +1,10 @@
 export const officeTemplates={
+ 'excel-cells-first':{title:'Excel: birinchi kataklar',kind:'excel',prompt:'A2 katakka Matematika, B2 katakka 12 yozing. A — ustun, 2 — qator.',initialCells:{A1:'Fan',B1:'Ball'},rubric:[{label:'A2: fan nomi',kind:'excelCell',cell:'A2',value:'Matematika'},{label:'B2: son',kind:'excelCell',cell:'B2',value:'12'}]},
+ 'excel-add-subtract':{title:'Excel: qo‘shish va ayirish',kind:'excel',prompt:'D2 ga =B2+C2, D3 ga =B3-C3 formulasini yozing. Formulalarning natijasini kuzating.',initialCells:{A1:'Amal',B1:'1-son',C1:'2-son',D1:'Natija',A2:'Qo‘shish',B2:'8',C2:'5',A3:'Ayirish',B3:'9',C3:'4'},rubric:[{label:'D2: qo‘shish, 13',kind:'excelFormula',cell:'D2',references:['B2','C2'],expected:13},{label:'D3: ayirish, 5',kind:'excelFormula',cell:'D3',references:['B3','C3'],expected:5}]},
+ 'excel-multiply-divide':{title:'Excel: ko‘paytirish va bo‘lish',kind:'excel',prompt:'D2 da B2*C2, D3 da B3/C3 ni hisoblang. Formula boshida = bo‘lishi kerak.',initialCells:{A1:'Amal',B1:'1-son',C1:'2-son',D1:'Natija',A2:'Ko‘paytirish',B2:'6',C2:'4',A3:'Bo‘lish',B3:'20',C3:'5'},rubric:[{label:'D2: ko‘paytirish, 24',kind:'excelFormula',cell:'D2',references:['B2','C2'],expected:24},{label:'D3: bo‘lish, 4',kind:'excelFormula',cell:'D3',references:['B3','C3'],expected:4}]},
+ 'excel-sum-first':{title:'Excel: kichik yig‘indi',kind:'excel',prompt:'B5 katakka =SUM(B2:B4) yozing. 5+7+8 natijasi bilan solishtiring.',initialCells:{A1:'Kun',B1:'Kitob',A2:'Dushanba',B2:'5',A3:'Seshanba',B3:'7',A4:'Chorshanba',B4:'8',A5:'Yig‘indi'},rubric:[{label:'B5: SUM orqali 20',kind:'excelFormula',cell:'B5',fn:'SUM',expected:20}]},
+ 'excel-average-first':{title:'Excel: oddiy o‘rtacha qiymat',kind:'excel',prompt:'B5 katakka =AVERAGE(B2:B4) yozing. (4+5+3)/3 bilan solishtiring.',initialCells:{A1:'Ism',B1:'Baho',A2:'Ali',B2:'4',A3:'Lola',B3:'5',A4:'Vali',B4:'3',A5:'O‘rtacha'},rubric:[{label:'B5: AVERAGE orqali 4',kind:'excelFormula',cell:'B5',fn:'AVERAGE',expected:4}]},
+ 'excel-order-first':{title:'Excel: qavs va amal tartibi',kind:'excel',prompt:'D2 da =(B2+C2)*4 formulasini yozing. Avval qavs ichidagi yig‘indi hisoblanadi.',initialCells:{A1:'Qavs bilan',B2:'2',C2:'3'},rubric:[{label:'D2: qavsli hisob, 20',kind:'excelFormula',cell:'D2',references:['B2','C2'],expected:20}]},
  'word-report':{
   title:'Word: rasm, jadval va matn o‘rami',kind:'word',
   prompt:'«Maktab kutubxonasi» nomli hujjat tayyorlang: sarlavha va izoh yozing, ikki qatorli jadval yarating, rasm qo‘shib uni matnning o‘ng tomoniga joylang.',
@@ -52,7 +58,8 @@ export function excelValue(cells,address,visiting=new Set()){
    if(take()!=='(')error('Funksiya qavsi yo‘q');const start=take();if(take()!==':')error('Oraliq noto‘g‘ri');const end=take();if(take()!==')')error('Funksiya qavsi yopilmagan');
    if(!/^[A-D][1-8]$/.test(start||'')||!/^[A-D][1-8]$/.test(end||''))error('Katak manzili noto‘g‘ri');
    const a=start.charCodeAt(0),b=end.charCodeAt(0),r1=Number(start.slice(1)),r2=Number(end.slice(1));if(a>b||r1>r2)error('Oraliq tartibi noto‘g‘ri');
-   const values=[];for(let row=r1;row<=r2;row++)for(let col=a;col<=b;col++)values.push(excelValue(cells,String.fromCharCode(col)+row,seen));
+   const values=[];for(let row=r1;row<=r2;row++)for(let col=a;col<=b;col++){const address=String.fromCharCode(col)+row,raw=String(cells?.[address]??'').trim();if(raw&&(raw.startsWith('=')||Number.isFinite(Number(raw))))values.push(excelValue(cells,address,seen))}
+   if(token==='AVERAGE'&&!values.length)error('O‘rtacha uchun sonli katak yo‘q');
    return values.reduce((sum,value)=>sum+value,0)/(token==='AVERAGE'?values.length:1);
   }
   if(/^[A-D][1-8]$/.test(token||''))return excelValue(cells,token,seen);
@@ -81,6 +88,7 @@ export function gradeOffice(q,value){
     const formula=String(submission.cells?.[item.cell]||'').toUpperCase().replace(/\s/g,'');
     passed=formula.startsWith('=')&&(!item.fn||formula.includes(item.fn+'('))&&(!item.references||item.references.every(ref=>formula.includes(ref)))&&Math.abs(excelValue(submission.cells,item.cell)-item.expected)<.001;
    }
+   if(item.kind==='excelCell')passed=String(submission.cells?.[item.cell]??'').trim().toLowerCase()===String(item.value).trim().toLowerCase();
    if(item.kind==='pptSlides')passed=Array.isArray(submission.slides)&&submission.slides.length>=2&&submission.slides.slice(0,2).every(slide=>text(slide.title)&&text(slide.body))&&submission.slides[0].title!==submission.slides[1].title;
    if(item.kind==='pptImage')passed=submission.slides?.some(slide=>slide.imageInserted===true)===true;
    if(item.kind==='pptNotes')passed=text(submission.slides?.[1]?.notes);

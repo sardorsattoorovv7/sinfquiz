@@ -1,0 +1,20 @@
+export const competitionKinds={quiz:'Quiz va amaliy savollar',typing:'Typing',maze:'Inglizcha labirint'};
+export const competitionStatuses={draft:'Qoralama',lobby:'Qabul ochiq',running:'Davom etmoqda',finished:'Yakunlangan',cancelled:'To‘xtatilgan'};
+export const sourceKey=s=>`${s.sourceKind}:${s.sourceId}`;
+export function stageFromSource(source){return {kind:source.kind,title:source.title,sourceKind:source.sourceKind,sourceId:source.sourceId,duration:source.kind==='maze'?180:source.kind==='typing'?120:Math.min(1800,Math.max(120,(source.count||5)*45)),weight:1}}
+export function validateCompetition(value){
+ if(!value.title?.trim()||value.title.trim().length<4||value.title.length>100)return 'Musobaqa nomi 4–100 belgidan iborat bo‘lsin.';
+ if(!Number.isInteger(value.teamSize)||value.teamSize<1||value.teamSize>12)return 'Bir jamoada 1–12 ishtirokchi bo‘lishi mumkin.';
+ if(!Array.isArray(value.teams)||value.teams.length<2||value.teams.length>32)return '2–32 ta jamoa kiriting.';
+ if(new Set(value.teams.map(t=>t.title.trim().toLowerCase())).size!==value.teams.length)return 'Jamoa nomlari takrorlanmasin.';
+ for(const team of value.teams){if(team.title.trim().length<2||team.title.length>60)return 'Har bir jamoaga nom yozing.';const names=team.roster||[];if(names.length&&names.length!==value.teamSize)return `${team.title}: ro‘yxatda ${value.teamSize} ta ism bo‘lsin yoki ro‘yxatni bo‘sh qoldiring.`;if(names.some(n=>n.trim().length<2||n.length>40)||new Set(names.map(n=>n.trim().toLowerCase())).size!==names.length)return 'Jamoada ism-familiyalar farqli va 2–40 belgidan iborat bo‘lsin.';}
+ if(!Array.isArray(value.stages)||value.stages.length<4||value.stages.length>24)return '4–24 ta bosqich biriktiring.';
+ for(const stage of value.stages){if(!competitionKinds[stage.kind]||stage.title.trim().length<3||stage.title.length>100)return 'Bosqich nomi va turini tekshiring.';if(!Number.isInteger(stage.duration)||stage.duration<30||stage.duration>3600)return 'Bosqich vaqti 30–3600 sekund bo‘lsin.';if(!Number.isInteger(stage.weight)||stage.weight<1||stage.weight>10)return 'Bosqich koeffitsiyenti 1–10 bo‘lsin.';if(stage.sourceKind==='custom'){if(stage.kind==='typing'&&((stage.custom?.text||'').trim().length<20||stage.custom.text.length>4000))return 'Typing matni 20–4000 belgidan iborat bo‘lsin.';if(stage.kind==='quiz'&&!stage.custom?.questions?.length)return 'O‘zingiz tuzadigan bosqichga kamida bitta savol qo‘shing.';}}
+ return '';
+}
+export function makeCompetition(){return {id:crypto.randomUUID(),title:'',description:'',visibility:'public',teamSize:2,teams:[{title:'Zukko',roster:[]},{title:'Bilimdon',roster:[]}],stages:[]}}
+export function editCompetition(state){return {id:state.competition.id,title:state.competition.title,description:state.competition.description,visibility:state.competition.visibility,teamSize:state.competition.teamSize,teams:state.teams.map(t=>({title:t.title,roster:t.roster||[]})),stages:state.stages.map(s=>({title:s.title,kind:s.kind,duration:s.duration,weight:s.weight,sourceKind:'custom',custom:s.custom}))}}
+const safeCsv=value=>{let s=String(value??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};
+export function competitionCsv(state){const rows=[['O‘rin','Jamoa','Jami ball','To‘g‘ri javoblar','Vaqt (sekund)',...state.stages.map(s=>`${s.position}. ${s.title} (0–100)`)],...state.teams.map(t=>[t.rank,t.title,t.score,t.correct,t.elapsed,...state.stages.map(s=>t.stages.find(v=>v.position===s.position)?.score??0)])];return '\uFEFF'+rows.map(row=>row.map(safeCsv).join(',')).join('\r\n')}
+export function saveCsv(state){const blob=new Blob([competitionCsv(state)],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`SinfQuiz-musobaqa-${state.competition.id.slice(0,8)}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+export function typingMatch(target,typed){const a=[...target],b=[...typed];return {correct:a.reduce((n,c,i)=>n+Number(c===b[i]),0),total:a.length,typed:b.length}}

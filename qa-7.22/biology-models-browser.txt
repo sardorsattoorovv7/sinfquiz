@@ -1,0 +1,2 @@
+7:18:29 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS: lazy local model loading, native anatomy layers/selection, real cut plane, keyboard controls, 390px mobile, 1920px classroom, zero automatic WCAG violations, asset failure/2D fallback/retry, textured flower and correctly scaled native fox and ready bird under Vercel CSP.

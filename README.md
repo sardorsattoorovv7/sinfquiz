@@ -1,3 +1,7 @@
+# SinfQuiz 7.22
+
+Jamoaviy musobaqalar: 4–24 bosqich, 2–32 jamoa, har birida 1–12 a’zo; quiz, typing, labirint va amaliy savollar. Boshlang‘ich Excel uchun 32 savol va 6 amaliy vazifa. O‘rnatish: [UPDATE-7.22.md](UPDATE-7.22.md), yangi SQL: supabase-migration-7.22.sql, tekshiruv: [QA-7.22.md](QA-7.22.md).
+
 # SinfQuiz 7.21
 
 Biologiya atlasida tayyor anatomik, teksturali o‘simlik va hayvon modellari ishlaydi. O‘rnatish: [UPDATE-7.21.md](UPDATE-7.21.md). Manbalar: [BIOLOGY-MODELS-7.21.md](BIOLOGY-MODELS-7.21.md). Tekshiruv: [QA-7.21.md](QA-7.21.md). 7.21 uchun yangi SQL kerak emas.

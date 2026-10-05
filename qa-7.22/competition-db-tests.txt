@@ -1,0 +1,14 @@
+✔ 7.22: repeatable migration, private sources, minimum stages and protected answer keys (1793.181687ms)
+✔ 7.22: four-stage team journey, true ranks, capacity, idempotent grades, maze paths and timeout (1495.716127ms)
+✔ 7.22: server Excel parser matches references, ignores blank/text in averages, rejects execution and cycles (1254.785992ms)
+✔ Competition drafts enforce at least four stages, fixed capacity and unambiguous names (1.74739ms)
+✔ CSV retains all stage scores and prevents spreadsheet formula injection (0.89084ms)
+✔ Beginner Excel pack has 20 theory questions, six short answers and six usable practical tasks (1.501749ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4676.34645
