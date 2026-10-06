@@ -27,11 +27,14 @@ export function QuizChallenge({stage,onSubmit,busy,ownerId}){
  </section>;
 }
 export function TypingChallenge({stage,onSubmit,busy}){
- const [text,setText]=useState(''),target=stage.data.text,typed=[...text],match=typingMatch(target,text),accuracy=Math.round(100*match.correct/Math.max(match.total,match.typed,1));
+ const [text,setText]=useState(''),target=stage.data.text,[match,setMatch]=useState(()=>typingMatch(target,'')),[checking,setChecking]=useState(false),worker=useRef(null),serial=useRef(0),textRef=useRef(text);textRef.current=text;
+ useEffect(()=>{let w;try{w=new Worker(new URL('./competition-typing.worker.js',import.meta.url),{type:'module'});worker.current=w;w.onmessage=({data})=>{if(data.id===serial.current){setMatch(data.match);setChecking(false)}};w.onerror=e=>{e.preventDefault();w.terminate();worker.current=null;setMatch(typingMatch(target,textRef.current));setChecking(false)}}catch{worker.current=null}return()=>{w?.terminate();worker.current=null}},[target]);
+ useEffect(()=>{const id=++serial.current;setChecking(true);const timer=setTimeout(()=>{if(worker.current)worker.current.postMessage({id,target,typed:text});else{setMatch(typingMatch(target,text));setChecking(false)}},120);return()=>clearTimeout(timer)},[text,target]);
+ const accuracy=Math.round(match.accuracy);
  const english=stage.data.language==='en';
  useEffect(()=>()=>window.speechSynthesis?.cancel(),[]);
- return <section className="comp-challenge comp-typing"><div className="comp-question-count"><span>{match.correct} / {match.total} belgi mos</span><span>Aniqlik: {accuracy}%</span></div><p>Matnni quyidagidek tering. Aniqlik va tezlik yakuniy ballga birga ta’sir qiladi.</p>
- <div className="comp-typing-target" tabIndex={0} role="region" aria-label="Teriladigan matn">{[...target].map((c,i)=><span key={i} className={i<typed.length?c===typed[i]?'is-correct':'is-wrong':''}>{c}</span>)}</div>
+ return <section className="comp-challenge comp-typing"><div className="comp-question-count"><span>{match.distance} ta {match.method==='word-levenshtein'?'so‘z':'belgi'} tahriri{match.method==='word-levenshtein'?' · kamida '+match.minimumCharEdits+' belgi farqi':''}</span><span role="status">{checking?'Hisoblanmoqda…':'Aniqlik: '+accuracy+'%'}</span></div><p>Matnni quyidagidek tering. Tushib qolgan, ortiqcha yoki almashgan belgi bittadan xato hisoblanadi. Uzun matn 128 dan ortiq belgi farq qilsa, tartibli so‘z tahrirlari bo‘yicha baholanadi. Aniqlik va tezlik ballga birga ta’sir qiladi.</p>
+ <div className="comp-typing-target" tabIndex={0} role="region" aria-label="Teriladigan matn">{target}</div>
  {english&&typeof window.speechSynthesis!=='undefined'&&<button className="btn btn-outline" disabled={busy} onClick={()=>speak(target)}><Headphones size={16}/> Matnni tinglash</button>}
  <label>Matnni shu yerga yozing<textarea aria-label="Musobaqa typing matni" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" value={text} disabled={busy} maxLength={Math.min(8000,target.length+500)} onChange={e=>setText(e.target.value)} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} rows={6}/></label>
  <small>Yopishtirish o‘chirilgan. Inglizcha matnni ovozsiz ham bajarishingiz mumkin.</small><button className="btn btn-primary" disabled={busy||!text.length} onClick={()=>onSubmit({text})}><Check size={17}/>{busy?'Yuborilmoqda…':'Typingni yakunlash'}</button></section>;

@@ -1,0 +1,20 @@
+{
+  "version": "7.24.0",
+  "testsPassed": 144,
+  "browserSuitesPassed": 2,
+  "browserVersion": "133.0.6943.0",
+  "accessibilityChecks": 8,
+  "buildPassed": true,
+  "loadClients": 40,
+  "loadStages": 10,
+  "loadRequests": 974,
+  "loadErrors": 0,
+  "loadScope": "40 simultaneous HTTP clients and actual SQL/RLS. Not a production Supabase capacity guarantee.",
+  "unchangedResponseReductionPercent": 98.2,
+  "previousArchiveFilesPreserved": 867,
+  "previousPublicAssetsUnchanged": true,
+  "englishAudioHashesVerified": 216,
+  "migrationSha256": "447e891afa1051a8e159efcc46d8f15ab15ffe7e758c6375c80355a64dbb8bb9",
+  "archiveCRC": "Verified after creation",
+  "files": 905
+}

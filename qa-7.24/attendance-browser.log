@@ -1,0 +1,4 @@
+7:46:45 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:46:50 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:46:51 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS actual HTTP + Chromium: attendance restore/exclude, partial start, empty team, fair typing worker, cancellation, mobile/dark/board and axe.

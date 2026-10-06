@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "actualHttp": true,
+  "initialCapacity": 6,
+  "startingParticipants": 2,
+  "emptyTeamUnranked": true,
+  "absentRestoredAndExcluded": true,
+  "typingWorkerFailureFallsBack": true,
+  "typingMissingFirstLetterAccuracy": 96,
+  "cancelPreservesResults": true,
+  "requests": 23,
+  "runtimeErrors": []
+}

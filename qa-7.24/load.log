@@ -1,0 +1,54 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.24.0 test:load:competition
+> node tests/competition-load.mjs
+
+7.22 40 simultaneous joins: 40 HTTP requests, p95 305.02ms
+7.22 40 simultaneous stage opens: 40 HTTP requests, p95 231.29ms
+7.22 unchanged lobby/room poll 1: 40 HTTP requests, p95 191.01ms
+7.22 unchanged lobby/room poll 2: 40 HTTP requests, p95 156.48ms
+7.22 unchanged lobby/room poll 3: 40 HTTP requests, p95 151.69ms
+7.22 40 simultaneous quiz submissions: 40 HTTP requests, p95 203.91ms
+7.22 40 simultaneous long typing opens: 40 HTTP requests, p95 190.98ms
+7.22 40 simultaneous 4000-character typing submissions: 40 HTTP requests, p95 5696.42ms
+7.22 40 stage 3 opens: 40 HTTP requests, p95 245.79ms
+7.22 40 stage 3 answers: 40 HTTP requests, p95 285.89ms
+7.22 40 stage 4 opens: 40 HTTP requests, p95 322.55ms
+7.22 40 stage 4 answers: 40 HTTP requests, p95 358.53ms
+7.22 40 stage 5 opens: 40 HTTP requests, p95 342.83ms
+7.22 40 stage 5 answers: 40 HTTP requests, p95 403.24ms
+7.22 40 stage 6 opens: 40 HTTP requests, p95 400.73ms
+7.22 40 stage 6 answers: 40 HTTP requests, p95 435.49ms
+7.22 40 stage 7 opens: 40 HTTP requests, p95 427.71ms
+7.22 40 stage 7 answers: 40 HTTP requests, p95 574.51ms
+7.22 40 stage 8 opens: 40 HTTP requests, p95 525.46ms
+7.22 40 stage 8 answers: 40 HTTP requests, p95 579.16ms
+7.22 40 stage 9 opens: 40 HTTP requests, p95 560.71ms
+7.22 40 stage 9 answers: 40 HTTP requests, p95 567.78ms
+7.22 40 stage 10 opens: 40 HTTP requests, p95 567.07ms
+7.22 40 stage 10 answers: 40 HTTP requests, p95 674.34ms
+7.24 40 simultaneous joins: 40 HTTP requests, p95 228.61ms
+7.24 40 simultaneous stage opens: 40 HTTP requests, p95 136.67ms
+7.24 unchanged lobby/room poll 1: 40 HTTP requests, p95 77.09ms
+7.24 unchanged lobby/room poll 2: 40 HTTP requests, p95 62.07ms
+7.24 unchanged lobby/room poll 3: 40 HTTP requests, p95 56.68ms
+7.24 40 simultaneous quiz submissions: 40 HTTP requests, p95 156.8ms
+7.24 40 simultaneous long typing opens: 40 HTTP requests, p95 133.01ms
+7.24 40 simultaneous 4000-character typing submissions: 40 HTTP requests, p95 248.51ms
+7.24 40 stage 3 opens: 40 HTTP requests, p95 159.38ms
+7.24 40 stage 3 answers: 40 HTTP requests, p95 184.84ms
+7.24 40 stage 4 opens: 40 HTTP requests, p95 166.11ms
+7.24 40 stage 4 answers: 40 HTTP requests, p95 191.84ms
+7.24 40 stage 5 opens: 40 HTTP requests, p95 177.84ms
+7.24 40 stage 5 answers: 40 HTTP requests, p95 198.16ms
+7.24 40 stage 6 opens: 40 HTTP requests, p95 193.06ms
+7.24 40 stage 6 answers: 40 HTTP requests, p95 235.29ms
+7.24 40 stage 7 opens: 40 HTTP requests, p95 215.44ms
+7.24 40 stage 7 answers: 40 HTTP requests, p95 252.4ms
+7.24 40 stage 8 opens: 40 HTTP requests, p95 238.18ms
+7.24 40 stage 8 answers: 40 HTTP requests, p95 269.73ms
+7.24 40 stage 9 opens: 40 HTTP requests, p95 283.76ms
+7.24 40 stage 9 answers: 40 HTTP requests, p95 270.78ms
+7.24 40 stage 10 opens: 40 HTTP requests, p95 279.11ms
+7.24 40 stage 10 answers: 40 HTTP requests, p95 294.49ms
+PASS load comparison 98.2% fewer response bytes on unchanged polls

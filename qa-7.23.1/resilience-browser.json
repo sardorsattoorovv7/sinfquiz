@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "backend": "local PGlite PostgreSQL + actual migration/RLS, storage transfer fixture",
+  "errors": [],
+  "checks": [
+    "native recording; explicit private upload; failure/retry; persisted clip; remote playback; replacement evidence",
+    "disconnected RPC draft recovery; edits during in-flight save; exact-token retry after committed response loss",
+    "parallel-device conflict choices; recovery copy; localStorage failure does not report server failure",
+    "submitted server text/audio chosen over local draft; class teacher native playback; unrelated teacher denied; human rubric opens next lesson",
+    "cancelled late microphone permission stops every track after navigation"
+  ],
+  "requests": 67
+}

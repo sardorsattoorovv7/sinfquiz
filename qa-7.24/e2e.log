@@ -1,0 +1,21 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.24.0 test:e2e:competition
+> node tests/competition-browser.cjs && node tests/competition-attendance-browser.cjs
+
+PASS sources selected
+7:54:09 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:54:10 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS draft saved
+PASS lobby ready
+PASS quiz ranked
+7:54:16 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS typing finished
+PASS full maze
+7:54:28 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:54:29 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS actual five-stage team competition: 6-code quiz, typing, full text maze, Excel practical, custom quiz and real Python worker, true rank and CSV; responsive/axe checks pass.
+7:54:33 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:54:38 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:54:39 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS actual HTTP + Chromium: attendance restore/exclude, partial start, empty team, fair typing worker, cancellation, mobile/dark/board and axe.

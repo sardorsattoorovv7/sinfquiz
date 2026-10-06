@@ -17,4 +17,4 @@ export function editCompetition(state){return {id:state.competition.id,title:sta
 const safeCsv=value=>{let s=String(value??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};
 export function competitionCsv(state){const rows=[['O‘rin','Jamoa','Jami ball','To‘g‘ri javoblar','Vaqt (sekund)',...state.stages.map(s=>`${s.position}. ${s.title} (0–100)`)],...state.teams.map(t=>[t.rank,t.title,t.score,t.correct,t.elapsed,...state.stages.map(s=>t.stages.find(v=>v.position===s.position)?.score??0)])];return '\uFEFF'+rows.map(row=>row.map(safeCsv).join(',')).join('\r\n')}
 export function saveCsv(state){const blob=new Blob([competitionCsv(state)],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`SinfQuiz-musobaqa-${state.competition.id.slice(0,8)}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-export function typingMatch(target,typed){const a=[...target],b=[...typed];return {correct:a.reduce((n,c,i)=>n+Number(c===b[i]),0),total:a.length,typed:b.length}}
+export {typingMatch} from './competition-typing.js';

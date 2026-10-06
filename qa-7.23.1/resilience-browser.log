@@ -1,0 +1,10 @@
+6:36:54 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+6:36:54 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+6:36:54 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+6:36:55 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS native audio, private upload/retry, replacement and accessible layouts
+PASS disconnected draft, slow save and committed-response retry
+PASS explicit conflict resolution and full localStorage
+6:37:17 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS submitted snapshot and class-private teacher audio review
+PASS cancelled late microphone request cleanup

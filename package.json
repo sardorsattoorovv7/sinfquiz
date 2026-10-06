@@ -1,7 +1,7 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "7.22.0",
+  "version": "7.24.0",
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/copy-python-runtime.mjs",
@@ -12,7 +12,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "vite --host 0.0.0.0",
-    "test": "node --test --test-concurrency=2 tests/*.test.js"
+    "test": "node --test --test-concurrency=2 tests/*.test.js",
+    "test:e2e:competition": "node tests/competition-browser.cjs && node tests/competition-attendance-browser.cjs",
+    "test:load:competition": "node tests/competition-load.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
@@ -32,6 +34,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "axe-core": "^4.10.3",
-    "jsdom": "^26.1.0"
+    "jsdom": "^26.1.0",
+    "playwright": "1.62.1"
   }
 }

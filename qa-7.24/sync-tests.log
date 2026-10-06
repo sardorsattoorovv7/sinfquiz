@@ -1,0 +1,15 @@
+✔ Competition drafts enforce at least four stages, fixed capacity and unambiguous names (1.532023ms)
+✔ CSV retains all stage scores and prevents spreadsheet formula injection (1.20402ms)
+✔ Beginner Excel pack has 20 theory questions, six short answers and six usable practical tasks (1.438465ms)
+✔ Realtime bursts are coalesced, pending refresh never runs concurrently and stop clears all work (1.199163ms)
+✔ Hidden/offline rooms do not fetch; failures back off and resume restores the connection (0.425685ms)
+✔ 40 fallback clients spread poll requests over time; live mode uses fewer periodic requests (5.546475ms)
+✔ Typing matches an independent reference on small edits and uses ordered words for heavily different long text (15.998683ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115.388455

@@ -17,7 +17,7 @@ test('Competition drafts enforce at least four stages, fixed capacity and unambi
 test('CSV retains all stage scores and prevents spreadsheet formula injection',()=>{
  const csv=competitionCsv({competition:{id:'abc'},stages:[{position:1,title:'=HYPERLINK("x")'}],teams:[{rank:1,title:' =SUM(1,2)',score:150,correct:4,elapsed:9,stages:[{position:1,score:75}]}]});
  assert.ok(csv.startsWith('\uFEFF'));assert.match(csv,/"' =SUM\(1,2\)"/);assert.match(csv,/"75"/);assert.match(csv,/HYPERLINK\(""x""\)/);
- assert.deepEqual(typingMatch('A😀B','A😀C'),{correct:2,total:3,typed:3});
+ assert.deepEqual(typingMatch('A😀B','A😀C'),{correct:2,total:3,typed:3,distance:1,accuracy:200/3,method:'levenshtein',expectedUnits:3,typedUnits:3,minimumCharEdits:1});
 });
 test('Beginner Excel pack has 20 theory questions, six short answers and six usable practical tasks',()=>{
  assert.equal(excelBasicsQuiz.questions.length,32);

@@ -1,0 +1,605 @@
+{
+  "passed": true,
+  "scope": "40 simultaneous HTTP clients and actual SQL/RLS. Not a production Supabase capacity guarantee.",
+  "baseline": {
+    "version": "7.22",
+    "passed": true,
+    "concurrentStudents": 40,
+    "teams": 4,
+    "teamSize": 10,
+    "stages": 10,
+    "requests": 974,
+    "errors": 0,
+    "phases": [
+      {
+        "phase": "40 simultaneous joins",
+        "requests": 40,
+        "totalMs": 323,
+        "p50Ms": 232.97,
+        "p95Ms": 305.02,
+        "maxMs": 315,
+        "responseBytes": 150816,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous stage opens",
+        "requests": 40,
+        "totalMs": 237,
+        "p50Ms": 229.48,
+        "p95Ms": 231.29,
+        "maxMs": 232,
+        "responseBytes": 168551,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 1",
+        "requests": 40,
+        "totalMs": 204,
+        "p50Ms": 110.21,
+        "p95Ms": 191.01,
+        "maxMs": 199,
+        "responseBytes": 168547,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 2",
+        "requests": 40,
+        "totalMs": 161,
+        "p50Ms": 154.81,
+        "p95Ms": 156.48,
+        "maxMs": 157,
+        "responseBytes": 168541,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 3",
+        "requests": 40,
+        "totalMs": 163,
+        "p50Ms": 150.19,
+        "p95Ms": 151.69,
+        "maxMs": 159,
+        "responseBytes": 168551,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous quiz submissions",
+        "requests": 40,
+        "totalMs": 209,
+        "p50Ms": 201.83,
+        "p95Ms": 203.91,
+        "maxMs": 204,
+        "responseBytes": 167788,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous long typing opens",
+        "requests": 40,
+        "totalMs": 195,
+        "p50Ms": 142.3,
+        "p95Ms": 190.98,
+        "maxMs": 191,
+        "responseBytes": 328345,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous 4000-character typing submissions",
+        "requests": 40,
+        "totalMs": 5700,
+        "p50Ms": 5694.85,
+        "p95Ms": 5696.42,
+        "maxMs": 5697,
+        "responseBytes": 176851,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 3 opens",
+        "requests": 40,
+        "totalMs": 266,
+        "p50Ms": 174.75,
+        "p95Ms": 245.79,
+        "maxMs": 263,
+        "responseBytes": 179005,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 3 answers",
+        "requests": 40,
+        "totalMs": 293,
+        "p50Ms": 282.46,
+        "p95Ms": 285.89,
+        "maxMs": 286,
+        "responseBytes": 177959,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 4 opens",
+        "requests": 40,
+        "totalMs": 326,
+        "p50Ms": 318.47,
+        "p95Ms": 322.55,
+        "maxMs": 323,
+        "responseBytes": 182917,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 4 answers",
+        "requests": 40,
+        "totalMs": 386,
+        "p50Ms": 186.1,
+        "p95Ms": 358.53,
+        "maxMs": 383,
+        "responseBytes": 181855,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 5 opens",
+        "requests": 40,
+        "totalMs": 348,
+        "p50Ms": 341.78,
+        "p95Ms": 342.83,
+        "maxMs": 343,
+        "responseBytes": 187758,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 5 answers",
+        "requests": 40,
+        "totalMs": 407,
+        "p50Ms": 401.11,
+        "p95Ms": 403.24,
+        "maxMs": 404,
+        "responseBytes": 186551,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 6 opens",
+        "requests": 40,
+        "totalMs": 403,
+        "p50Ms": 396.61,
+        "p95Ms": 400.73,
+        "maxMs": 401,
+        "responseBytes": 192074,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 6 answers",
+        "requests": 40,
+        "totalMs": 438,
+        "p50Ms": 433.89,
+        "p95Ms": 435.49,
+        "maxMs": 436,
+        "responseBytes": 190914,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 7 opens",
+        "requests": 40,
+        "totalMs": 430,
+        "p50Ms": 426.04,
+        "p95Ms": 427.71,
+        "maxMs": 428,
+        "responseBytes": 196435,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 7 answers",
+        "requests": 40,
+        "totalMs": 577,
+        "p50Ms": 571.93,
+        "p95Ms": 574.51,
+        "maxMs": 575,
+        "responseBytes": 195227,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 8 opens",
+        "requests": 40,
+        "totalMs": 528,
+        "p50Ms": 524.03,
+        "p95Ms": 525.46,
+        "maxMs": 526,
+        "responseBytes": 200746,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 8 answers",
+        "requests": 40,
+        "totalMs": 581,
+        "p50Ms": 576.17,
+        "p95Ms": 579.16,
+        "maxMs": 579,
+        "responseBytes": 199528,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 9 opens",
+        "requests": 40,
+        "totalMs": 564,
+        "p50Ms": 555.87,
+        "p95Ms": 560.71,
+        "maxMs": 561,
+        "responseBytes": 205060,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 9 answers",
+        "requests": 40,
+        "totalMs": 570,
+        "p50Ms": 566.15,
+        "p95Ms": 567.78,
+        "maxMs": 568,
+        "responseBytes": 203887,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 10 opens",
+        "requests": 40,
+        "totalMs": 569,
+        "p50Ms": 565.34,
+        "p95Ms": 567.07,
+        "maxMs": 567,
+        "responseBytes": 209614,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 10 answers",
+        "requests": 40,
+        "totalMs": 676,
+        "p50Ms": 672.35,
+        "p95Ms": 674.34,
+        "maxMs": 675,
+        "responseBytes": 208426,
+        "errors": 0
+      }
+    ],
+    "typoAccuracies": [
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5
+    ],
+    "scores": [
+      {
+        "title": "Bilimdon",
+        "rank": 1,
+        "score": 950.76
+      },
+      {
+        "title": "Ijodkor",
+        "rank": 2,
+        "score": 950.76
+      },
+      {
+        "title": "Ziyrak",
+        "rank": 3,
+        "score": 50.76
+      },
+      {
+        "title": "Zukko",
+        "rank": 4,
+        "score": 50.76
+      }
+    ],
+    "unchangedPollBytes": 0,
+    "cpuMs": 15958,
+    "eventLoopP95Ms": 575,
+    "dbModel": "Single PGlite PostgreSQL instance, serialized per-user auth/RLS; real loopback HTTP concurrency, no live Supabase or physical phones."
+  },
+  "updated": {
+    "version": "7.24",
+    "passed": true,
+    "concurrentStudents": 40,
+    "teams": 4,
+    "teamSize": 10,
+    "stages": 10,
+    "requests": 974,
+    "errors": 0,
+    "phases": [
+      {
+        "phase": "40 simultaneous joins",
+        "requests": 40,
+        "totalMs": 238,
+        "p50Ms": 160.93,
+        "p95Ms": 228.61,
+        "maxMs": 236,
+        "responseBytes": 155087,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous stage opens",
+        "requests": 40,
+        "totalMs": 139,
+        "p50Ms": 134.56,
+        "p95Ms": 136.67,
+        "maxMs": 137,
+        "responseBytes": 172510,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 1",
+        "requests": 40,
+        "totalMs": 82,
+        "p50Ms": 51.67,
+        "p95Ms": 77.09,
+        "maxMs": 80,
+        "responseBytes": 3037,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 2",
+        "requests": 40,
+        "totalMs": 64,
+        "p50Ms": 61.36,
+        "p95Ms": 62.07,
+        "maxMs": 62,
+        "responseBytes": 3037,
+        "errors": 0
+      },
+      {
+        "phase": "unchanged lobby/room poll 3",
+        "requests": 40,
+        "totalMs": 58,
+        "p50Ms": 49.89,
+        "p95Ms": 56.68,
+        "maxMs": 57,
+        "responseBytes": 3037,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous quiz submissions",
+        "requests": 40,
+        "totalMs": 159,
+        "p50Ms": 153.6,
+        "p95Ms": 156.8,
+        "maxMs": 157,
+        "responseBytes": 171763,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous long typing opens",
+        "requests": 40,
+        "totalMs": 135,
+        "p50Ms": 130.78,
+        "p95Ms": 133.01,
+        "maxMs": 133,
+        "responseBytes": 332344,
+        "errors": 0
+      },
+      {
+        "phase": "40 simultaneous 4000-character typing submissions",
+        "requests": 40,
+        "totalMs": 251,
+        "p50Ms": 247.16,
+        "p95Ms": 248.51,
+        "maxMs": 249,
+        "responseBytes": 187043,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 3 opens",
+        "requests": 40,
+        "totalMs": 161,
+        "p50Ms": 157.93,
+        "p95Ms": 159.38,
+        "maxMs": 160,
+        "responseBytes": 183095,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 3 answers",
+        "requests": 40,
+        "totalMs": 187,
+        "p50Ms": 183.44,
+        "p95Ms": 184.84,
+        "maxMs": 185,
+        "responseBytes": 182051,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 4 opens",
+        "requests": 40,
+        "totalMs": 168,
+        "p50Ms": 161.09,
+        "p95Ms": 166.11,
+        "maxMs": 167,
+        "responseBytes": 186936,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 4 answers",
+        "requests": 40,
+        "totalMs": 194,
+        "p50Ms": 190.2,
+        "p95Ms": 191.84,
+        "maxMs": 192,
+        "responseBytes": 185887,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 5 opens",
+        "requests": 40,
+        "totalMs": 180,
+        "p50Ms": 176,
+        "p95Ms": 177.84,
+        "maxMs": 178,
+        "responseBytes": 191809,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 5 answers",
+        "requests": 40,
+        "totalMs": 200,
+        "p50Ms": 196.57,
+        "p95Ms": 198.16,
+        "maxMs": 198,
+        "responseBytes": 190596,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 6 opens",
+        "requests": 40,
+        "totalMs": 195,
+        "p50Ms": 191.28,
+        "p95Ms": 193.06,
+        "maxMs": 193,
+        "responseBytes": 196126,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 6 answers",
+        "requests": 40,
+        "totalMs": 237,
+        "p50Ms": 233.64,
+        "p95Ms": 235.29,
+        "maxMs": 235,
+        "responseBytes": 194914,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 7 opens",
+        "requests": 40,
+        "totalMs": 218,
+        "p50Ms": 213.9,
+        "p95Ms": 215.44,
+        "maxMs": 216,
+        "responseBytes": 200438,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 7 answers",
+        "requests": 40,
+        "totalMs": 254,
+        "p50Ms": 250.68,
+        "p95Ms": 252.4,
+        "maxMs": 253,
+        "responseBytes": 199276,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 8 opens",
+        "requests": 40,
+        "totalMs": 240,
+        "p50Ms": 236.54,
+        "p95Ms": 238.18,
+        "maxMs": 238,
+        "responseBytes": 204793,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 8 answers",
+        "requests": 40,
+        "totalMs": 271,
+        "p50Ms": 267.75,
+        "p95Ms": 269.73,
+        "maxMs": 270,
+        "responseBytes": 203580,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 9 opens",
+        "requests": 40,
+        "totalMs": 285,
+        "p50Ms": 282,
+        "p95Ms": 283.76,
+        "maxMs": 284,
+        "responseBytes": 209071,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 9 answers",
+        "requests": 40,
+        "totalMs": 273,
+        "p50Ms": 269.07,
+        "p95Ms": 270.78,
+        "maxMs": 271,
+        "responseBytes": 207846,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 10 opens",
+        "requests": 40,
+        "totalMs": 281,
+        "p50Ms": 277.15,
+        "p95Ms": 279.11,
+        "maxMs": 279,
+        "responseBytes": 213588,
+        "errors": 0
+      },
+      {
+        "phase": "40 stage 10 answers",
+        "requests": 40,
+        "totalMs": 297,
+        "p50Ms": 292.6,
+        "p95Ms": 294.49,
+        "maxMs": 295,
+        "responseBytes": 212419,
+        "errors": 0
+      }
+    ],
+    "typoAccuracies": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ],
+    "scores": [
+      {
+        "title": "Bilimdon",
+        "rank": 1,
+        "score": 999.99
+      },
+      {
+        "title": "Ijodkor",
+        "rank": 2,
+        "score": 999.99
+      },
+      {
+        "title": "Ziyrak",
+        "rank": 3,
+        "score": 99.99
+      },
+      {
+        "title": "Zukko",
+        "rank": 4,
+        "score": 99.99
+      }
+    ],
+    "unchangedPollBytes": 9111,
+    "cpuMs": 5478,
+    "eventLoopP95Ms": 276,
+    "dbModel": "Single PGlite PostgreSQL instance, serialized per-user auth/RLS; real loopback HTTP concurrency, no live Supabase or physical phones."
+  },
+  "unchangedResponseReductionPercent": 98.2
+}

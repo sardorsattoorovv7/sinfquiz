@@ -1,0 +1,1946 @@
+[
+  {
+    "file": "en-pre-01.mp3",
+    "transcript": "Hello. My name is Lola. Please write my name: L, O, L, A. Ali is my friend. His name is A, L, I.",
+    "transcriptSha256": "fd0dcc0588ce010d80bc9f63395879993996823526fa4a89df0971398e99918e",
+    "audioSha256": "9737ae793e4d41cca9f6025b9de57cd4ad2945b47b32a0cc3b87c47105e073e9",
+    "seconds": 7.956,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-01-dictation.mp3",
+    "transcript": "B is the first letter in bag.",
+    "transcriptSha256": "77e68642db75ba9998c4dce9a268b633fe93d7ef55eee5e25224741e5b8d8fdc",
+    "audioSha256": "a1c704adc8f8ee3b6e0604a82b29be51bca3e7bf1f8c91daca035a777d266093",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-02.mp3",
+    "transcript": "Good morning. I am your teacher. My name is Malika. This is your classmate, Ali. Please say hello. Nice to meet you, everyone.",
+    "transcriptSha256": "60bf775b2b9e0403192006516aba5a005957081be1ca2e348a36e7bd00a77432",
+    "audioSha256": "a7f334f2dc0f960afe738603bfe6321347596759dd77556a58aa6ed26711c5ed",
+    "seconds": 9.108,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-02-dictation.mp3",
+    "transcript": "Good morning, teacher.",
+    "transcriptSha256": "317b95dfc3386f377e3f8539e95bb085a95987c02fc63969c49fafd565fdf028",
+    "audioSha256": "a301c8dc24eb4dbe2a8a62d1269ed45310eb37f6a53832a29f3543f7fef4c905",
+    "seconds": 1.728,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-03.mp3",
+    "transcript": "My name is Aziz. I am twelve years old. My sister is thirteen. Please write this practice number: one, two, zero, five. There are thirty students in our club.",
+    "transcriptSha256": "f30732cfab3076f693b881f9758ebd2f9e712abc3d0189e9f025f8fb7a0dfe35",
+    "audioSha256": "b3dc32bfc7a42f55cfa5b98994a510b78d025bfb3b57c7b851f770c5f2f65575",
+    "seconds": 11.484,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-03-dictation.mp3",
+    "transcript": "Thirty is three tens.",
+    "transcriptSha256": "7c163e06c0bd731a1015e49cfe88c2a242d8e1556080931a2b8e588effd64d1d",
+    "audioSha256": "89c892bb9620be031fd23858dde8ba2c986045dab338d35e34055c82f7f78c27",
+    "seconds": 1.656,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-04.mp3",
+    "transcript": "Hello, reading club. Our next meeting is on Friday at nine thirty. Please bring a notebook. Today is Tuesday. There is no meeting today.",
+    "transcriptSha256": "fe3498258615705f14767f3d03656306706a15bba2963361d0a9b2277c4eab27",
+    "audioSha256": "44c239c7dc6dbcbd3ec55535396b5be6bdd7fce1e93cb65d703602b90097a93d",
+    "seconds": 8.856,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-04-dictation.mp3",
+    "transcript": "Friday is a school day.",
+    "transcriptSha256": "7e10e5f3a75cd141c3c5512c6ebc6ff5e72c2a1918afeb9250842afbc7d8fac2",
+    "audioSha256": "31cf93ca836a947a57f63679a870e0fe187f6ba1e4f137dbc9ad0d1c2b6f2bf0",
+    "seconds": 1.872,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-05.mp3",
+    "transcript": "Please listen. Read the first sentence. Write your name. Then choose the blue book. Do not choose the red book. Thank you.",
+    "transcriptSha256": "a6ef92ea24c4c64a638496160b71f7dbe4c8c1b736ef9f555b2fe4da6900f4b4",
+    "audioSha256": "8017cfc065646fc2cf14ae60ad2720b3e8eb4b29006d43cf50bbe8e2faa7068d",
+    "seconds": 7.668,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-05-dictation.mp3",
+    "transcript": "Choose the blue book.",
+    "transcriptSha256": "f29d43abe8a75d62f413ca20099b3f0cabd3d9cc7b8bf570adf5f81675b0bc9a",
+    "audioSha256": "6b5d7f575f2f42ed4c6d7b73720fd424467d1671b241330956a487b2ba2c46d1",
+    "seconds": 1.368,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-06.mp3",
+    "transcript": "Hello. My name is Aziz. I am twelve. I am in class six. I like books. I can spell my name: A, Z, I, Z. Please say your name again.",
+    "transcriptSha256": "68e28be6afeec7d1e404fdf31582b1cca8f2460d51591bc5a78c8bec7a8b4eb9",
+    "audioSha256": "f879d6a5a4dd87818152dae012d00186739c24e1a024f40b4b8391e375ebf311",
+    "seconds": 9.792,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-pre-06-dictation.mp3",
+    "transcript": "Please say it again.",
+    "transcriptSha256": "5a113bc54e4619b455164f18c20f347a8832c6dca0335613ba78a4d7b90658a7",
+    "audioSha256": "fb2f9d26dd515cb435c6095bbda5c62fcbf3efe27cdd893ec991eddeef10c4ae",
+    "seconds": 1.62,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-01.mp3",
+    "transcript": "Ali is my classmate. He helps me with reading. Lola is our friend. We sit next to her. Our teacher knows us and helps us every day.",
+    "transcriptSha256": "cf3a07d029ad4615dad12750e92707cff4df7be79a7211fd7bcb9c54531227fb",
+    "audioSha256": "bf618b1e3140a63ce71c1ba4e853fb7b6f3c5cf268398a53a61ec2f2fe1b9cf0",
+    "seconds": 9.468,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-01-dictation.mp3",
+    "transcript": "The teacher knows us.",
+    "transcriptSha256": "6fe028d045539248d381695cf7ba460b85e3f63931e5ffc71fc242985ba5e409",
+    "audioSha256": "430260920817d6a03314f9329fbff1a61e57fc7b492b1c4c740a49c472052c7a",
+    "seconds": 1.62,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-02.mp3",
+    "transcript": "Hello. I am Malika, your teacher. We are in the library. Lola is happy, and Ali is ready. The books are new. You are all welcome here.",
+    "transcriptSha256": "f1600b49ca9abdb159e096c673798ab752f057ede959c95f9c294b40e1c92bd6",
+    "audioSha256": "ce0585e860dc4aae0d458f36e6014c613c619ad5bec8b5fd99ac3381ab68470c",
+    "seconds": 9.648,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-02-dictation.mp3",
+    "transcript": "They are my friends.",
+    "transcriptSha256": "ff0a363cabc1ebc8efb7495e1611777456abdc1725b490e950107ffe9f0075f4",
+    "audioSha256": "fa4c3d5689f4c9bd834af488f3fddfa4a027abe1845a8f57fa413b67177b2d37",
+    "seconds": 1.476,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-03.mp3",
+    "transcript": "Is this Room 5? Yes, it is. Is Ali here? No, he isn’t. Lola is here, and she is ready. We are not late. The lesson starts now.",
+    "transcriptSha256": "b1f960f5e9367aa73071aa250730f1ce958617b4770b75ab60466e40fa293454",
+    "audioSha256": "a747f6990670862305e1d8a81af1bbca7a7bc2e6400d731f5efef950a1d5c4a5",
+    "seconds": 9.072,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-03-dictation.mp3",
+    "transcript": "No, it isn’t.",
+    "transcriptSha256": "7a46121dc9ab918b633c862a126c2236628788bfb8b5470863135ff4164450b3",
+    "audioSha256": "f0cef27ec28d5ef90ae2f29d248d7d292e66a14b65944b580a5e368e068df9df",
+    "seconds": 1.404,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-04.mp3",
+    "transcript": "I have a book and an apple in my bag. The book is about birds. The apple is green. I am going to the library after lunch.",
+    "transcriptSha256": "cc8493b050c66733c69a9f54fe543846b6e231d8b964a38fe637f4c33d147475",
+    "audioSha256": "3fdd02d79f3a1d8059fd18c872d52a71611441af4280f239f47d455d7a5dbaa6",
+    "seconds": 7.416,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-04-dictation.mp3",
+    "transcript": "He is a university student.",
+    "transcriptSha256": "5cd3f222f0795ad0c2b8bf0aa6c2b128aeab101c0caf72e4aba7d96eb38530e4",
+    "audioSha256": "a370fb204f944e3e3080b039f91bf4b8887593969653cb3d6f104d2f96cf7ae5",
+    "seconds": 2.052,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-05.mp3",
+    "transcript": "These are my pens. This is my notebook. Those boxes near the window are empty. There are two children next to the door. Please give them these books.",
+    "transcriptSha256": "3f7e9ee83313fc2dcd26b3226026d314d4392cae5b4dc4fa297ec082a4c2971a",
+    "audioSha256": "b5d2ef98837919106b009fc5736e126139fa51e18cbe741762b61a8fd279cb95",
+    "seconds": 8.784,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-05-dictation.mp3",
+    "transcript": "Those boxes are empty.",
+    "transcriptSha256": "4601e10bf05fabdcfa5c326d72504251cbb076863c82f43a80b8ace7b80425e5",
+    "audioSha256": "c3dbb70cc7ae5efc34ed4a5bcb15f683eabb1ad47561f61b89f87283967ffe27",
+    "seconds": 2.016,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-06.mp3",
+    "transcript": "This is Lola’s notebook. Her name is inside. That is Ali’s pen. His pen is black. Our teacher’s bag is brown. Please give everyone their own things.",
+    "transcriptSha256": "f0ed3c097b9a358c5bb880b162da1f4651bc4cd3fed2538e9dfb0fda56599ca1",
+    "audioSha256": "2d2a42975380e99440df0eaa4ca270506594f971af35b9b484a362f048c0213c",
+    "seconds": 9.396,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-06-dictation.mp3",
+    "transcript": "Our classroom is bright.",
+    "transcriptSha256": "3009ae954142031fd9b5bf2e70abf38e54dd7b2af01afb0c76ae05a8f5a55964",
+    "audioSha256": "12bb7f8d621fc236faf6481074764ce678096c1a8f6a4e34021c1b5d0414d235",
+    "seconds": 1.764,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-07.mp3",
+    "transcript": "I have two notebooks and a pen. My sister has a ruler. Ali doesn’t have a pen today, so I give him my second pen. We have English on Monday.",
+    "transcriptSha256": "02d8964ccbceb3b9188bbc7add0b5f4a4283d4bcbb0ec38b22585c3f677f3380",
+    "audioSha256": "6dc996fa09bd5e2c2cfe292d0e7463e7762025ab5565d8c7f09be0691d1e84a4",
+    "seconds": 9.288,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-07-dictation.mp3",
+    "transcript": "Does Ali have a pen?",
+    "transcriptSha256": "97cd8707825293fb355d90b7d7f11816b51c7a6b11a23538b5c00cdea0ca9614",
+    "audioSha256": "0fd6ab81a2ad047999056867bea876e235fbde87d44b19ffc5510a0ee6b3ae0b",
+    "seconds": 1.764,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-08.mp3",
+    "transcript": "Welcome to the reading room. There is a desk near the window. There are four chairs and two shelves. There is no computer here. The computer room is next door.",
+    "transcriptSha256": "866c5856f688e935e7aad21e443602aee40972397e7d8f9a7c719edeff312d3c",
+    "audioSha256": "966bf4c242ded9fad036d8c125513055ca9f6fd09cef0e44c10228b2ebfae6cd",
+    "seconds": 8.856,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-08-dictation.mp3",
+    "transcript": "There isn’t a computer.",
+    "transcriptSha256": "77d0ba4a768a273f806c55c1cdcea960584e1d6b769713bd92c417e4c7b6545d",
+    "audioSha256": "af9a74306168d2cffe81100cfe02a2945a2801be6417ed44963bd2b3cf443b89",
+    "seconds": 1.62,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-09.mp3",
+    "transcript": "I walk to school every day. My sister goes by bus. After school, I study English for twenty minutes. On Fridays, I play football. Lola reads before bed.",
+    "transcriptSha256": "b20abd05077ddddb2d465c1cf2492a23f1d25c28a61816944b601226751642a4",
+    "audioSha256": "ce88a67da143e58c5e7065b728786d263b2934d686f72b63ae766062d66b45fd",
+    "seconds": 11.304,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-09-dictation.mp3",
+    "transcript": "We play football on Fridays.",
+    "transcriptSha256": "cd8e0ef093b4eac6b0c2bf208c70905dd4ff41234a218214d77bc39e61de342a",
+    "audioSha256": "2067aa5838c8586b594037bb9cd6b21c2324081d29c9ede12ed9416f9bc47344",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-10.mp3",
+    "transcript": "Do you read every day, Ali? No, I don’t. I read at the weekend. Does Lola borrow books every week? No, she doesn’t. She has books at home.",
+    "transcriptSha256": "a1aaf3e3713614f9f3eddd37bbd147780a5e6fbe1c3173aedb03b66cd0f9c6d0",
+    "audioSha256": "7946f595183be760489d6a51ee7fe1f28d0d6c06bb6c4720bf251b4b659cbcd0",
+    "seconds": 9.072,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-10-dictation.mp3",
+    "transcript": "We don’t go by bus.",
+    "transcriptSha256": "f036b16b68b6f2ce42c06e8e2f870d0f6af4fc047806fd5d853250a5b4e0e647",
+    "audioSha256": "7523851fc942b1a24f7d962491558c200a7bc98eca0950d95a3d46004dd7f944",
+    "seconds": 1.728,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-11.mp3",
+    "transcript": "We are making a poster now. Lola is reading, and Ali is drawing. I am writing the title. The teacher isn’t talking. She is looking at our work.",
+    "transcriptSha256": "6cba459df42afca708c2d09fb54bfd090a6a47528b38d4812756f0761bbe2afe",
+    "audioSha256": "f3c4fe1343e570694d93006921b4859c4ba08c0022b47b909ea5ce3f87ea9f6b",
+    "seconds": 9.9,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-11-dictation.mp3",
+    "transcript": "Ali isn’t talking.",
+    "transcriptSha256": "cc7c59d1c5bd3473024224cb73c4364647a3f049b77a269af0e419941ffde4b0",
+    "audioSha256": "a8d4b6d1e8bc93efc28adb9271b402b2846dc0e4276423dd56fee5e3c809b0ee",
+    "seconds": 1.728,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-12.mp3",
+    "transcript": "I usually go by bus, but today I am walking. Lola usually reads in the evening. Today she is studying for a test. I know the first answer, but I need help with the second.",
+    "transcriptSha256": "9e2555c679a733ea04f229e9962a3b4cdfac6c2a0bfd74b44f6d1ac06ebe6b65",
+    "audioSha256": "0c374f2cdc49b2d66d068aac05bdc7e9caba01d9a8233ff854e5d3467f5bbfce",
+    "seconds": 11.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-12-dictation.mp3",
+    "transcript": "She is reading now.",
+    "transcriptSha256": "865143c74e7fe0f983da852b4f48b26ccd2e7d3f8f8c0d3b4995bede892302ea",
+    "audioSha256": "4c5123f54f565427e2000adcf388afa8180dfa02fd967afa7dfd31a42a61cccb",
+    "seconds": 1.548,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-13.mp3",
+    "transcript": "The art club is in Room 6. It starts at four on Friday. Our teacher is Malika. There are twelve students. I like the club because I can draw with friends.",
+    "transcriptSha256": "33e96a55272fb8de0f9f2ceda4ab40313c7ab72e784d5d6965f09f62a96d072b",
+    "audioSha256": "686599fd7d2cb2420a942645e08c4931e075aa20eea41f21cff2b8e3da3cad1b",
+    "seconds": 10.332,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-13-dictation.mp3",
+    "transcript": "What time does the club start?",
+    "transcriptSha256": "cd6f3ffb3fbef974bb76d415cc6c140f5a2fae49ab4528e5288f361eff85b828",
+    "audioSha256": "e1cc4a6d702303903b268e113ec53de5cc17b8cff1f60b890ccb5e32798f8f6f",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-14.mp3",
+    "transcript": "Lola can draw our map. Ali can write the labels. Aziz can take photos. Please work on paper. Don’t touch the wet paint. You can use the computer after lunch.",
+    "transcriptSha256": "b6045893420c058d2d6fcf5a7375ba593a8eaec2a50ae653d2d2021c8f3d5751",
+    "audioSha256": "393dc5c3f62f7a297fb57dfd78ccd8c5fc3219621cf3c6864cb6331f7f58d232",
+    "seconds": 10.44,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-14-dictation.mp3",
+    "transcript": "We can’t use the computer now.",
+    "transcriptSha256": "d4fc3772ffa2a8efd990d597ef837f788b6974abee32514a9e48c46e4ab59870",
+    "audioSha256": "8285239b988a08f9e83628f66bcd381ea71882fa7f3c2fae50d4ba78fddc8b48",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-15.mp3",
+    "transcript": "Meet me on Monday at five. The café is between the bookshop and the bakery. Our table is near the window. My notebook is on the table, and my bag is under the chair.",
+    "transcriptSha256": "19f525931490e69de41057f650dd3acb436d921fccf0d15ba5dad295ae2c52ce",
+    "audioSha256": "d6985e5f31c9e7b5853c9c12f12411b31f10102cae7e1aaabe9ff702391c13ca",
+    "seconds": 10.332,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-15-dictation.mp3",
+    "transcript": "We meet on Monday.",
+    "transcriptSha256": "5a74115ecd281748423f514bdd95d5abb94b637f4936d0a920c52318d0562924",
+    "audioSha256": "04fafb051fbe566658bd158f3026796ac1bc370c5fb14aee255dbe6feb4a4612",
+    "seconds": 1.584,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-16.mp3",
+    "transcript": "We study together twice a week. Lola is always ready. I often read science books and sometimes read comics. I never drink coffee in the evening.",
+    "transcriptSha256": "d604e46ba8a318a066aa7d53a4b44303fc09bb472eb33a3be86ed382eedbfd45",
+    "audioSha256": "90a6cfb766b6ac03a94d0a7d43ccb4ace4831ced2f2b87e251c1519c43ac799e",
+    "seconds": 8.604,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-16-dictation.mp3",
+    "transcript": "Ali never drinks coffee.",
+    "transcriptSha256": "05670ef2e49d46fcc42ab6e1b124b9c7a8aee74137cd9ece0c00fb33b6cd2a39",
+    "audioSha256": "355c7603a6b583577ab420a5a91e3d0c694993359254da1f5205fcd68d923a8e",
+    "seconds": 2.16,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-17.mp3",
+    "transcript": "We have some apples and bread. We don’t have any milk. Please bring six bottles of water. We don’t need much sugar. Bring a reusable cup too.",
+    "transcriptSha256": "82cce25c5ef91858a45de7517501bb116affe4a8c5dc6afc1b5ffdd819831c5b",
+    "audioSha256": "d8cca58a8425b881bc869668a5b5d0f354cc9009f463fd5db4881f4ba91758db",
+    "seconds": 9.252,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-17-dictation.mp3",
+    "transcript": "How many bottles are there?",
+    "transcriptSha256": "4ca4cb09ed3f72eb93a20fb896db6074e1bc4b2e68f7eed33df3d61802998ad2",
+    "audioSha256": "db6cdd7d4346933c9aa2bf200bc6da7d4232c7f03240ed2073b4db9b069476b9",
+    "seconds": 1.944,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-18.mp3",
+    "transcript": "I am Lola, and I live in Samarkand. I like reading stories because I can imagine new places. My sister enjoys drawing. We go to the reading club on Fridays, but my brother prefers football.",
+    "transcriptSha256": "b23ce813b638e2b93f5d514441f3afc1f9a030c0d9d567038059241de18c4293",
+    "audioSha256": "8303816cb185e4e6192aa497974c2bbe39f09a5b99330c962dfae2b10d26ae98",
+    "seconds": 11.808,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a1-18-dictation.mp3",
+    "transcript": "We read because stories are interesting.",
+    "transcriptSha256": "6c28fd05e194f2928a6c79ff3d3183ab281ccbf0fcbdd5f1906f2269cfeb6319",
+    "audioSha256": "6991fb84ac4edd1f26ab15a51be21e251fd5b02ee6e348aa6d2dd2fc9de1626f",
+    "seconds": 2.916,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-01.mp3",
+    "transcript": "We were at the museum yesterday. Lola was early. Two students were late. The guide was friendly, but the café wasn’t open. We ate in the park.",
+    "transcriptSha256": "9364340371cd227fcfde00468c8bfde2e1b270e61c01cf6f712785c2b3cd6798",
+    "audioSha256": "49d0fd70de863f23552cfd90210dd79699ac4fc31677d0cc2bff58b1ce1bab2e",
+    "seconds": 9.108,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-01-dictation.mp3",
+    "transcript": "Were the rooms open?",
+    "transcriptSha256": "13de7f25eaeb3adec96319904c51421bcc562d095077161c96f79f1891304239",
+    "audioSha256": "6b4fd0156858f10cd609f414a0bdc653fd5f9fbb94545e8db24cfd19c10efd16",
+    "seconds": 1.584,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-02.mp3",
+    "transcript": "We visited our grandparents last Sunday. We arrived at ten and helped in the garden. My brother played football. We didn’t stay late because we had school on Monday.",
+    "transcriptSha256": "e48c71e47eefbea5bd3acd5da3b06463456ab25fc08a185ef2357275f407f43c",
+    "audioSha256": "99bc313bb69a9b262ccf19b1a31bc0322271ce4d38420564d4f1ed256877ccea",
+    "seconds": 9.54,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-02-dictation.mp3",
+    "transcript": "Did you watch the film?",
+    "transcriptSha256": "aa42991c537341cb7c30e649103c50f32aeb5b296a82a58218c8fa8d63f0f64e",
+    "audioSha256": "d25a73d8963b85787a9e1f971495253c5cc1efde7ab7f7fc76c29951e9e8c550",
+    "seconds": 1.872,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-03.mp3",
+    "transcript": "I went to the market on Saturday. We bought fruit. I left my notebook at a book stall. The seller gave it back to me. Finally, we took the bus home.",
+    "transcriptSha256": "fcf3fc8482fa81b6493d9c1891700d7ead4c896b013902bba01974ce0614af3e",
+    "audioSha256": "948340c88c9ecccba90ece4209b03796c58726629133fb678ef39f953b648076",
+    "seconds": 9.828,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-03-dictation.mp3",
+    "transcript": "He took the bus home.",
+    "transcriptSha256": "7d517e7707fb7a95be7beeb13c3cd2cc14f186e9696c053a6d62248e95987d29",
+    "audioSha256": "ae1bcbd942a38ff1d8979043a4c58c74e99a978908ff3e4b27a61c4ded252a9a",
+    "seconds": 1.476,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-04.mp3",
+    "transcript": "I was doing homework at eight. My sister was reading. Suddenly, the lights went out. I called my friend, but her lights were working. Our lights came back after twenty minutes.",
+    "transcriptSha256": "d795c3907448b8737307c42866f959fa0a17600182ec044c62e8a5f36fe245a7",
+    "audioSha256": "2509d869a274ed66b88bd92c11efb8df854acf780277169028d724a1e88697eb",
+    "seconds": 10.296,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-04-dictation.mp3",
+    "transcript": "We were talking while Ali was drawing.",
+    "transcriptSha256": "15cf62735180fae371c46c7751a6c442e3ceddd09b0a1f8f210603443d6d0853",
+    "audioSha256": "c913736c5ac4a52c5528c5f3d63b8348baadc135b69b2339b014e983f686196c",
+    "seconds": 2.628,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-05.mp3",
+    "transcript": "We are going to visit the park on Saturday. We are meeting at nine. Lola will bring water. Look at those clouds! It is going to rain, so I’ll bring a raincoat too.",
+    "transcriptSha256": "8252216042f66b7700f985f95fb4a8c619342a90ebf4fc4bbf3142c1716cab55",
+    "audioSha256": "bf5569836e1ea38c1cbc09e44856c73cfb167167f84bd82751633cb13a6a75f9",
+    "seconds": 10.872,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-05-dictation.mp3",
+    "transcript": "I think the trip will be fun.",
+    "transcriptSha256": "8e5acb3acb24e124d0631b150db016da34fc0126ea1897192c9598bb191c9d2d",
+    "audioSha256": "41861e95b89562770d491e944d6f409779528b52ff9a6920fb472bb86b922661",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-06.mp3",
+    "transcript": "Room 2 is smaller than Room 5. Room 5 is brighter, but Room 2 has more comfortable chairs. The library is the quietest place. We choose Room 5 because it has enough space.",
+    "transcriptSha256": "28fd1773c01a9be23c3acb862e7fa5c945c7aab67930aa4aa4cb9088beb888be",
+    "audioSha256": "c45879166098585f318d0ae86f0e2e51ac4bc1088c2bc34b1057f74813460970",
+    "seconds": 10.908,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-06-dictation.mp3",
+    "transcript": "This is the best place to study.",
+    "transcriptSha256": "d422b44bd2037dfacc8ca628136efb551ef451abdae3fd71479579288385bba4",
+    "audioSha256": "63110099caec53d5465252b07d027c2625452f1c12609a07fb60143e8eb22813",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-07.mp3",
+    "transcript": "The first room is too small. The second is big enough. Please speak slowly and check the speakers carefully. Now everyone can hear well. We have enough chairs.",
+    "transcriptSha256": "d0568f39903e02e44915e84e2496bffffe2f312bf06f8442dd72b3f9c4e9adc5",
+    "audioSha256": "84a485b76290a9af0e223d77a09d19aff1604fb645644661ce540fd21373d88d",
+    "seconds": 10.476,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-07-dictation.mp3",
+    "transcript": "This room is too small.",
+    "transcriptSha256": "496ca18577c3321bfe304d8ab63bf8d1306697df870123bb5d053d3e7a61ae9e",
+    "audioSha256": "f6a2e66352cb3462245daa2b2b6f8700b38dc5d0272efc7598425a950584b0c8",
+    "seconds": 1.908,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-08.mp3",
+    "transcript": "We have a few apples and a little water. There are few buses today. Ali will buy two more bottles, and then we can walk to the park. We still have a little time.",
+    "transcriptSha256": "932fbd2e2cf230deda3c7a38b06283f335bf0476c32acd490dfda115c7baaeb0",
+    "audioSha256": "20097c7843354bf925b1cbe0967e0808c4924bf933f852b64c1bd8c94e6f9904",
+    "seconds": 9.396,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-08-dictation.mp3",
+    "transcript": "We have little water left.",
+    "transcriptSha256": "8d2397344331ad7f5fcca133f6c0207b33d4e566b5d10b371bcf7ace935818f3",
+    "audioSha256": "4282d68c80ee4c7b1762413556e41a8fc54a532615ae40b9b36cde7d51b5696c",
+    "seconds": 1.764,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-09.mp3",
+    "transcript": "Welcome to the workshop. You have to wear safety glasses. You must not touch a hot tool. You do not have to bring paper. The school provides it. You can bring a notebook if you want.",
+    "transcriptSha256": "05770bf78a54165631031c86fd9626ec044c33e8ca6fa3622a4b6b21bf13e76c",
+    "audioSha256": "16200201ab0f92286f5cc8c5c208701c0b2fc212cc7e2b12f4f1991b80971133",
+    "seconds": 11.844,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-09-dictation.mp3",
+    "transcript": "Does she have to arrive early?",
+    "transcriptSha256": "a2e5553f9eb0c3bc70521727b167e7e4e98bf23ac4e32a764fd844e39cea7a63",
+    "audioSha256": "c2781e9ad5d0892a3ed03f5a8b0117eed8ff989248a729304d755d194baada45",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-10.mp3",
+    "transcript": "You should take a short break, Ali. You shouldn’t study all night. Could you show me the exercise? We can do one example together, then you should try the next question yourself.",
+    "transcriptSha256": "dcf48bcb234d77e558327046e26c757ba475e68e71117ee2d461ba4b2f4184b4",
+    "audioSha256": "9332787b7cb9687671d8fc5f4d9c7a8d5ac830777960b305990b997e514ad00a",
+    "seconds": 11.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-10-dictation.mp3",
+    "transcript": "Can I borrow your dictionary?",
+    "transcriptSha256": "c9d70b34d0984e64cb7d9a76877e2ff774f691070d35e89c65924537fa40593a",
+    "audioSha256": "5f4005eb92ac212417b4c0f887900a6272208d4a3e3df7d9b34be02b35c6e613",
+    "seconds": 2.268,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-11.mp3",
+    "transcript": "I have finished the poster. Lola has chosen the pictures. Ali has visited Bukhara. We haven’t put the labels on the wall yet. Have you checked all the names?",
+    "transcriptSha256": "740d92cca3037e22fe8511e3ea1143b1b89598485ce863c5acfffe65a36a36ac",
+    "audioSha256": "303b128242c4f3bf61f3d20a599ed07ff9f8f5f657137afa04d33f31c6b4352f",
+    "seconds": 9.9,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-11-dictation.mp3",
+    "transcript": "He has lost his key.",
+    "transcriptSha256": "c42f1d29a5651e5c911a93c6c546ddf4fceb56ba69503d7eaa7ce8511391c3cb",
+    "audioSha256": "dbce16b54093a180fe4a08f02e37e3f9f6291a08aa9e8a625a1692433efa43d2",
+    "seconds": 1.656,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-12.mp3",
+    "transcript": "I have just arrived. We have already packed the maps. Ali hasn’t called the bus company yet. Have you bought your ticket yet? Most students have never visited Khiva.",
+    "transcriptSha256": "702599624ae1bedaa4bc036821af05e51ddbd3cfe746b8190b3bb048d68c1ec1",
+    "audioSha256": "fe6f4d957647f3e33b6207f1f5fef053f2c3db6dddd81c96795725c4e06c9685",
+    "seconds": 9.108,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-12-dictation.mp3",
+    "transcript": "We have already packed our bags.",
+    "transcriptSha256": "44650ca1cc1963ec25ea9b11987f1085a008fc879ea9900d48d7c7990a64e2cf",
+    "audioSha256": "ffc98de075e93de58f12bca895a480a9083b749911fb0c5df3055bbd6a79861a",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-13.mp3",
+    "transcript": "I have been in the club for twelve months. I have known the teacher since September. We met yesterday. Ali has gone to the library and will come back later.",
+    "transcriptSha256": "d6191fb677f619eb496f6fb3a3e3247b2f96a2daa1f6ebd8f368f8724e8638a1",
+    "audioSha256": "5f78f6cfc80b5634472e72ca0a41e9d266716024ff07e249f7c6c473c327e367",
+    "seconds": 9.9,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-13-dictation.mp3",
+    "transcript": "I joined the club last year.",
+    "transcriptSha256": "7ca7d0e0cbb41e6baebe58e865302ee8ab607e528d9a3186117b58373744b796",
+    "audioSha256": "35edf5e3182618715c3ce08fc8b02b72beb7f02edef0008b35e5c673cca83227",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-14.mp3",
+    "transcript": "If it rains on Saturday, we will stay inside. If the weather is good, we will visit the park. Press the lamp button: if you press it, the light comes on. I will call you if our plan changes.",
+    "transcriptSha256": "f33275098c3497f20f6a558e920808ca063548d3da20ec1321527e20edc9994d",
+    "audioSha256": "896209f6e3f22beddd14afca5437f0ea635d4dd4d80a08f700498afc7819d3ef",
+    "seconds": 12.204,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-14-dictation.mp3",
+    "transcript": "If you press this button, the light comes on.",
+    "transcriptSha256": "c3bab750b610c440f47376883958d4fc6993f87f0b174ffaacc49b4280d0ba61",
+    "audioSha256": "9ee60b6d293c4944239302da6d133a5a931f18d0ea1e016029ae0035719c03f9",
+    "seconds": 3.06,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-15.mp3",
+    "transcript": "I enjoy reading, but I want to improve my speaking. I decided to join the club. Ali plans to study with me. We avoid using our phones for games while we study.",
+    "transcriptSha256": "490550b11d538d97b5bf0c7cedb32ba4432e3477baa8fcca30bb8f36c50a03c8",
+    "audioSha256": "c49b1a2e5f085b23515a65c372d0e27140de62db14a00e2dcff64a17ca9c2600",
+    "seconds": 11.34,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-15-dictation.mp3",
+    "transcript": "He finished writing the email.",
+    "transcriptSha256": "9c8050cfd5f7b74cd47a6d8e13174d965334340175f79c6041c878cab9602a8d",
+    "audioSha256": "7cab1ea23597dc5ec6df508a046279e65a44959ffff52c53c3e71cace7aa5ae4",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-16.mp3",
+    "transcript": "Someone left a blue bag. Does anyone know the owner? Nobody here recognises it. We will put it somewhere safe and tell the school office. Please don’t open it.",
+    "transcriptSha256": "f1b79e48ce2f2df063cbc3ebaa00b5ba4a3eb718984a586b66a977b8de77be3c",
+    "audioSha256": "091bfcacc3e94b85a688eb4a02e3d212b107fff8b36ac8f4e20880301dc86323",
+    "seconds": 9.54,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-16-dictation.mp3",
+    "transcript": "Nobody is in the room.",
+    "transcriptSha256": "0f2b61db354ef6f1872005dc16e862f24b1b9846d33dd23abb6c99ee1abe1b29",
+    "audioSha256": "ca068e7698190cb68457855b855f4b480e4a8b302e28385411ab12f300e27ed8",
+    "seconds": 1.728,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-17.mp3",
+    "transcript": "Get on bus four at school. Get off at the bank. Cross the road safely and go straight. Turn left at the bookshop. The library is next to the park.",
+    "transcriptSha256": "721f1ab4b0064c93fc4ca217fe501b8ec91e452fd4ae9cc3625ad5436fd11c75",
+    "audioSha256": "55b7f0ff448ea551e92e99eb05d213dc58d4c6f4c2aa4888e0c1f50c9499abd9",
+    "seconds": 9.72,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-17-dictation.mp3",
+    "transcript": "Walk across the road carefully.",
+    "transcriptSha256": "eb9b6b5c88368b347b6d3a4ec406f54928ecbc4c09d0f287762e66b0588aff1c",
+    "audioSha256": "5ee2efca24bfe212a26c9110266638e6d8c375ca88f9529f6b619e271e2c27be",
+    "seconds": 2.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-18.mp3",
+    "transcript": "Last Saturday we visited Bukhara. First, we met our guide. Then we walked around the old town. A classmate found my bottle. We are going to return next year and visit the museum.",
+    "transcriptSha256": "ccc43335ccf3a3f9c9921efc1aba93e4a251c6e380533236d639d52bff3ef66c",
+    "audioSha256": "08ad825e8114c90114cbb0d2a822baad720d03eff4c87da7c3641f6546f12d2f",
+    "seconds": 11.196,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-a2-18-dictation.mp3",
+    "transcript": "I have never seen that building before.",
+    "transcriptSha256": "02b0b441901b0881146db4eae2a59d58176e89ef5944e17f5ab95276e58a1742",
+    "audioSha256": "11857c88a64ec90881eef6bfb8d6714b65af5f95720d2982ac6f5b04eee5768b",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-01.mp3",
+    "transcript": "I usually help in the library on Fridays. Today I am checking labels because we are changing the room. We moved two shelves yesterday. We have finished one shelf. Lola has gone to the office to print the remaining labels, and she will return soon.",
+    "transcriptSha256": "54bb7cf9458205abcacfb05b7ee0bc0db7d29891981ce7808917ca2bc821c878",
+    "audioSha256": "22529b563ed248eede462b9d1d2aa9b6a90d238082f4616c2b8c5a6eaaf41559",
+    "seconds": 15.84,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-01-dictation.mp3",
+    "transcript": "We have finished the first shelf.",
+    "transcriptSha256": "bdba5e927ac3c7b49ff7d58745bf6ef36c18a7b781a45b1a07b6e2168c6025e1",
+    "audioSha256": "ac3cc24e82bc8f18761803ec05c399275cc0c3304caf7bcc98d7352bf1bf3069",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-02.mp3",
+    "transcript": "We have been working for two weeks. We have written six reports and interviewed three neighbours. Lola has been drawing the map, but it is not finished. We are tired because we have been walking all morning.",
+    "transcriptSha256": "94a9ca51927101c090d266e324b5eb0622dfc4b41850ac5f5a6a137bef8807d1",
+    "audioSha256": "27bb8f88a83a01963fd4fcde9d65481912e969ed4a61d7adb30654e99aec952f",
+    "seconds": 10.944,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-02-dictation.mp3",
+    "transcript": "He has been running, so he is tired.",
+    "transcriptSha256": "ddf06a702196a0d2cb92c87f594758642c22767e9802816f4941b39c38d9c9a4",
+    "audioSha256": "b3055a27a21c65069ad9a09f5fc91e369ba091f966d2203fb2813b3828125f1f",
+    "seconds": 2.448,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-03.mp3",
+    "transcript": "When I arrived at nine, the school bus had left. Lola was waiting outside. She had checked the timetable. A public bus was leaving in twenty minutes. We called our teacher and agreed to meet at the museum.",
+    "transcriptSha256": "6b9cb8a0ab0a69c836c1d6d01a00af24d1fe67d9b2947e465e741a1b962f5d55",
+    "audioSha256": "821b283c97262febdc41f69f9eee50cfd67e1ae95bc5fce8189300beaf6af29b",
+    "seconds": 13.968,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-03-dictation.mp3",
+    "transcript": "We called the teacher.",
+    "transcriptSha256": "687aade0ad2c2f90ace7b92e3add197e78198dfdd431b135b072238c9b045b44",
+    "audioSha256": "ab4e462e3beabc12c052f680ece8d7898d7464732d33ba52584821b2c9e31575",
+    "seconds": 1.584,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-04.mp3",
+    "transcript": "I used to read only comics. I didn’t use to keep notes. Now I enjoy longer stories and write down new words. My friend used to live near school, but she moved away. We still meet at weekends.",
+    "transcriptSha256": "3a0bc08373179a279693551b2fcd9ed55fe24acdfaab7d243d37c893ce4a4862",
+    "audioSha256": "f9e59422cb6d831048beba29ef59b8f96418502d35401113303eb60240517f1d",
+    "seconds": 12.024,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-04-dictation.mp3",
+    "transcript": "Did you use to walk there?",
+    "transcriptSha256": "c461ce2630f446d9bf24e0cc18a938059566cbc6386b7729ef085cdd11db550e",
+    "audioSha256": "b8278f9ae49cd4a0f34ed9d81995b9d93c9faf84a73887ff9f37683c20d9b168",
+    "seconds": 1.836,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-05.mp3",
+    "transcript": "The train leaves at eight. We are meeting the guide at nine, and the demonstration starts at ten. I am going to prepare questions. I’ll call home when I arrive.",
+    "transcriptSha256": "2db3bc405b72e120bccee5bbd9aa00d125cd371f1ca03450089054dfd33d7d9b",
+    "audioSha256": "34932a5aeba0e0a56c57b918b4dd2a2caa984906ee4d92d04f4798b6340ee564",
+    "seconds": 10.944,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-05-dictation.mp3",
+    "transcript": "I think the visit will be useful.",
+    "transcriptSha256": "09283861073b527f3cfef5bab9f7d0d9349402a9258d30a9d60bb771361fd2f4",
+    "audioSha256": "3c1019c1810e28374a1fd7b9960dbae75b224097945ba1b1dcf40a2c11439820",
+    "seconds": 2.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-06.mp3",
+    "transcript": "If our plan is approved, we will buy ten books. If we had a larger budget, we would create a reading corner. For now, we will submit the small plan and keep the bigger ideas for later.",
+    "transcriptSha256": "70b19cef042fb8f2677febb7f817312168fb1b0d64c1559ba852bdd04b99637d",
+    "audioSha256": "c56f17cd3ca030e54f7d9c047a5f47b8a327a131e2eebc9825519000772276d1",
+    "seconds": 10.548,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-06-dictation.mp3",
+    "transcript": "If I were you, I would ask the teacher.",
+    "transcriptSha256": "51d9e013328fc9c225dbd87c5041c33b2e96fd9f86d932306718923317445b21",
+    "audioSha256": "f0d7b9127c6cf873b559a27fb7588815097d233b24bb1a4da4f8e7c46b219bc2",
+    "seconds": 2.7,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-07.mp3",
+    "transcript": "Sixty books were donated last week. The room was cleaned before the boxes arrived. New labels were printed in the office. The main poster was designed by Lola. Damaged books are repaired if possible.",
+    "transcriptSha256": "4dc3ba74b0746f3e9b4dd5f197df4a922465d03b6e5e51e379a35f17b8927404",
+    "audioSha256": "59a6266c30b888e28ad416be20d372faca9084576b9c84b4b66cc2fcd1dde466",
+    "seconds": 12.996,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-07-dictation.mp3",
+    "transcript": "The poster was designed by Lola.",
+    "transcriptSha256": "66966ded02412448e66af535dd8e75282fec81caaa5748740d589c521626973c",
+    "audioSha256": "732c8d848211bea39b02c890c5a11cfa9cb8ae12a779a8886ac5779afd2dfe17",
+    "seconds": 2.16,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-08.mp3",
+    "transcript": "The teacher said the next meeting would be in the library. She told us to bring notebooks. Ali asked whether it started at four. Lola explained that it started at half past four, near the park entrance.",
+    "transcriptSha256": "b67771fb7b692de35aa58f8717fd33e410f896516a6c805d76d648cbf22af236",
+    "audioSha256": "8ebeffa2c6136e84451848dec148349895c55b9b14f686b236e40cb1d2cffd38",
+    "seconds": 11.304,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-08-dictation.mp3",
+    "transcript": "The teacher asked if we were ready.",
+    "transcriptSha256": "671128e912ec5c8859b09e19e0021f1d69e34de78a0cd6a4282b713f2aa4eab4",
+    "audioSha256": "fc4a026fbd8a38e210942354af31e69b6fc6dcf2db0852f7f993c6e7cd759395",
+    "seconds": 2.196,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-09.mp3",
+    "transcript": "My bag has a green label and a black handle. It isn’t the one with a bird picture. The student who helped at the entrance saw it under a chair. My notebook has my name on the first page.",
+    "transcriptSha256": "c7260db6a941338be42173129a80f790d92f8893895f6bafd2a77161c65b9e0c",
+    "audioSha256": "60fa0eb01d93f338fed9f84b3a9968d130a7bab9d6a4a5903f1cfb5ea8ffc797",
+    "seconds": 11.736,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-09-dictation.mp3",
+    "transcript": "That is the place where we met.",
+    "transcriptSha256": "fb7c37fdd3c21417d45f906722a0873b64ec13fdd71bbbb719a2598142bfede0",
+    "audioSha256": "9eac4daabcd0c249a28d38cddffe0cc1089a8699e57c3c965f69ef61c6161f6d",
+    "seconds": 1.944,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-10.mp3",
+    "transcript": "We can borrow the projector, but we must ask permission. The teacher might be busy. She may attend, but she has not confirmed it. We mustn’t share private photos without asking.",
+    "transcriptSha256": "adccad1b5c1fd7938193b6c0debec26de76128ab28e02449bce6dabe473b81a6",
+    "audioSha256": "3e0914c4cc598c4a4462a8b6525ddefc129b7c35236399532c8d9e62c9bd309b",
+    "seconds": 10.836,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-10-dictation.mp3",
+    "transcript": "You should ask before using the room.",
+    "transcriptSha256": "443bd6f1bb20b3e0c1001965d8be2a4d618830f2e37f399b8382c2bbf57899a6",
+    "audioSha256": "41865bd93766d76074584a5b9d0bd3e66051cd17a31d4b87ac592325e862b43e",
+    "seconds": 2.268,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-11.mp3",
+    "transcript": "I stopped checking my phone and tried reading aloud. After twenty minutes, I stopped to drink water. I remembered to save my draft. My friend forgot to save hers and could not find the file later.",
+    "transcriptSha256": "8e9abf2e96b80d8844378849fb2df94afff3e54922eeb380a8dc3f7c72bcebc5",
+    "audioSha256": "b97d5490b916bc2e74e31978e6363688ad1647fc5eef0da8228ea8514f807d5a",
+    "seconds": 13.212,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-11-dictation.mp3",
+    "transcript": "I remember meeting her last year.",
+    "transcriptSha256": "e8e05a842556eea3761237f248fe93853e34af15c70dff60dc88f7682fb5fcb1",
+    "audioSha256": "42d463b6174d20b9d9c62409008b95b41b757657f4838f8724a8c7748b1759cc",
+    "seconds": 2.412,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-12.mp3",
+    "transcript": "Could you tell me what time the next train leaves? It leaves at eleven. Do you know whether I need to book a seat? A reservation is helpful on a busy day. The museum is open until five.",
+    "transcriptSha256": "7e588d9d063789df256090f0fed2b84e7373567d2191e378562300e97603469e",
+    "audioSha256": "05e7fd8d2626b5faced4561fd3f04e7c1ca91cb343a1d9795ca5a46edff0c686",
+    "seconds": 10.296,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-12-dictation.mp3",
+    "transcript": "Can you tell me how much a ticket costs?",
+    "transcriptSha256": "460fb1551e591fda9b110ba67ef6c84f9b102cfbb48cd7e53215fbce24c0b826",
+    "audioSha256": "03657e1c5f91970ff019d1d881a486ede18367afc0808297aea2476280e9a6c6",
+    "seconds": 2.808,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-13.mp3",
+    "transcript": "Who sent the file? Ali sent it. Who did he send the link to? He sent it to the whole group. One student couldn’t open it because the link was private. We changed access for the class only.",
+    "transcriptSha256": "42818df54e7d63d7883bc300ed9de7e1d5a3a1848ec142c495137d277e2e6ef9",
+    "audioSha256": "065131cf734d597f84836c9aa24467331665e6032c934f014ca11efc9aa394a2",
+    "seconds": 11.808,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-13-dictation.mp3",
+    "transcript": "What did you find?",
+    "transcriptSha256": "b8f08617474d117532cf52fec1479f1a1c0a5d416ee5c2165e3f04e306a9d119",
+    "audioSha256": "e6d16a1479d9a5cb727de053ba78000e4bb8b6f42413184560e1e0c73dc03ca3",
+    "seconds": 1.584,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-14.mp3",
+    "transcript": "The meeting starts at four, doesn’t it? Yes. We can use the library, can’t we? No, it is busy. We are meeting in Room 5. You have finished your slides, haven’t you?",
+    "transcriptSha256": "f6dd8e7820bd2acc674d610528912ba2202f02adca9858527ae806a2185ab94e",
+    "audioSha256": "5acf37fd7f4894de41e00c469e29e1546339f38b48eca373324e81464f5bc959",
+    "seconds": 10.584,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-14-dictation.mp3",
+    "transcript": "We can use this room, can’t we?",
+    "transcriptSha256": "d23a1312b6c25614ab972a52a941d2d03c9b5e0111c7bed638258e09f7953b09",
+    "audioSha256": "6b86dbf28b8686f41d02fd5bd6afc5bdf80e34fe712f6637cd190f9af8f5efc3",
+    "seconds": 2.412,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-15.mp3",
+    "transcript": "The introduction was boring, and we were bored. Then the story became interesting. I was interested in the inventor’s tests. The ending was so surprising, and we had such a useful discussion afterward.",
+    "transcriptSha256": "9a643daeca28e8fa48eb9d2e86a45fcacbc442edc04df2efc3e5c1584eab539d",
+    "audioSha256": "f8d197ae18de8bfb0012ddd7a0e634ec810f20474fae5961beddad1300f65991",
+    "seconds": 13.32,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-15-dictation.mp3",
+    "transcript": "We were bored at first.",
+    "transcriptSha256": "f24df6a490627ccce9025289aff5787aad34738ba8a0ecc8d16209dd17173f28",
+    "audioSha256": "b5671b0d529daa579b75d8d2b314980cdf366a46b66c45f0e496ff10f9eb0b74",
+    "seconds": 1.836,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-16.mp3",
+    "transcript": "The app is useful. However, messages can distract me. Lola prefers audio, while Ali likes paper. Our room was noisy, so we moved to the library. We worked better because we had a clear aim.",
+    "transcriptSha256": "50b3329ecc77d0ce37cefd94f5014d3f1e6920f61af440d2e564157959fd540b",
+    "audioSha256": "8d7bbf0bd48fc166606e7c888e8e4b77f1bc1b30ce4555e79e951b740fb349c6",
+    "seconds": 13.14,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-16-dictation.mp3",
+    "transcript": "I took notes because the talk was long.",
+    "transcriptSha256": "a4d10802da4e621fc216a5169e6b8d9aaa780d7c35eb3c1a28dddcfdf82474dc",
+    "audioSha256": "410c606ad0f9c8a96043c0f388ad69992f4b97aec6d81c8bf7edaa8cbeca74b8",
+    "seconds": 2.52,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-17.mp3",
+    "transcript": "Ali needs to catch up with the class. He takes notes, looks up unfamiliar words, and does homework. He is making progress. The teacher asks him to hand it in on Friday.",
+    "transcriptSha256": "e4b08f750647a63d0c66c354854e7219e38bf9c66eefc2fe38be2493a187eae9",
+    "audioSha256": "8578886edcaa98a1fe0d8344133612f984374c10eb680588754ed03020d370a8",
+    "seconds": 11.124,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-17-dictation.mp3",
+    "transcript": "Please hand it in on Friday.",
+    "transcriptSha256": "514dda0728b69806d45b167ee5f06279d0a05f793b15e25aee160dcf8eea1703",
+    "audioSha256": "2b24d8050711491082720c6676a3f3187f8e75a4bb552154d8a97c8df7eae974",
+    "seconds": 2.124,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-18.mp3",
+    "transcript": "I have tried fifteen minutes of practice each day, and I remember more phrases. However, my friend prefers two longer sessions. I suggest testing a routine for a week and comparing what we can do, not just how many minutes we study.",
+    "transcriptSha256": "63a579d37901d29bea123188b3e960698e66137282a22255dc640e3424483c3d",
+    "audioSha256": "a85eb851cfcabe27aae23209a8aad8c4695b0b4b3eef6637f7846b068b8a8527",
+    "seconds": 14.796,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b1-18-dictation.mp3",
+    "transcript": "However, different learners need different plans.",
+    "transcriptSha256": "993c84761219d64146f29377b6745d7346dc996598751a0b29fdc9c939931a14",
+    "audioSha256": "d78153dd9f6d034ae300ba238214a3918d038b62c6990a7777ff4002ff9790f1",
+    "seconds": 3.528,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-01.mp3",
+    "transcript": "Manager: We have repaired three shelves. Volunteer: We have been checking books for four hours. Manager: That work matters, but we need to record which books are safe. Volunteer: Then the report should show both the completed repairs and the inspection still in progress.",
+    "transcriptSha256": "c0980ba0f22ae9e645a35ff9329076065c79ebc9758ec65474a7bd17a10e597a",
+    "audioSha256": "954f0a1ed98e76e7f75d563be315680a193588df14d203a708efd98b3d418ce6",
+    "seconds": 17.172,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-01-dictation.mp3",
+    "transcript": "I have been checking the labels.",
+    "transcriptSha256": "06b84b8a063c5a56b47285a42f0f9cdef2b335d7aef735b65f053c9d5fb741b2",
+    "audioSha256": "a0cfe103c9bd7a01e544266d26a2977ee20fbe68572b4d7f97ade749d9e32d20",
+    "seconds": 2.088,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-02.mp3",
+    "transcript": "At ten we will be arranging the displays. By noon we will have finished the labels, but we still need thirty minutes to check the cables. Visitors arrive at two. Please do not treat the label deadline as the completion time for the whole room.",
+    "transcriptSha256": "eac707f676f0c955d8a0c7510db4515b9f5fd664296c9fc3a5d454c5fb707eff",
+    "audioSha256": "f9afd4f8e4862fa59698aee29645e28d6ea7311d0f7181dfda4b188a7796d894",
+    "seconds": 14.04,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-02-dictation.mp3",
+    "transcript": "The guests will be arriving at two.",
+    "transcriptSha256": "d4c025a04f78ab9db674b20260a8073be08d97685841059195b6661e98365b69",
+    "audioSha256": "a83a31640c7097e48701476427fb3d3fc4e2ba35cbc54d7edb3c37d89b820acd",
+    "seconds": 2.52,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-03.mp3",
+    "transcript": "We missed the bus because the timetable was old. If we had checked, we might have avoided that delay. But the route later closed because of rain. Better planning would not have controlled the weather, so we should not blame one person for the whole outcome.",
+    "transcriptSha256": "18f7bd6d8d7635e9438e130e7e409fad6e3bd1d2d861bd11becced0ab0e6ed5f",
+    "audioSha256": "ecaa715c7f20877f74314edf34f6ff7826115047b6a565fa88083c610a50bacb",
+    "seconds": 15.624,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-03-dictation.mp3",
+    "transcript": "They could have waited if they had known.",
+    "transcriptSha256": "6840f789e4fc7b1d8bfbae251c2067c514f92db214e93b6b4b769c3e8b1a02cb",
+    "audioSha256": "81165cecc990306361f9e78bf3aa5a17e4f9cb49a3f4fb7c2bc08a3076336286",
+    "seconds": 2.088,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-04.mp3",
+    "transcript": "If Lola had practised the software earlier, she would feel more confident now. But she explains ideas clearly, so she will present while her partner handles the slides. We will also arrange short practice sessions for next week.",
+    "transcriptSha256": "a56c33d362ce6895ef0dfd07966f4b1ce1081f57812cd45c7c05e218e8b9c9ea",
+    "audioSha256": "3337c61b28604ee2dc5006f2c48b4f025a1b44fba18097cd75dad7e4d6270c2c",
+    "seconds": 13.572,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-04-dictation.mp3",
+    "transcript": "If I were more organised, I would have found the file.",
+    "transcriptSha256": "ec47d61afa71264c804f2b60dcef9864180a5fbb109c75c99d91e2dca0d36fc6",
+    "audioSha256": "8d908a0101ac8fad5777a62538c1e9d81ac77226691c85475cbee48b5ac388f7",
+    "seconds": 3.672,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-05.mp3",
+    "transcript": "I wish we had checked the programme before booking. The music is too loud. I wish they would lower it, but we should ask the manager for help. There is a quieter room available for the second half of our meeting.",
+    "transcriptSha256": "b160a31bdcdbb6e8ea1d45c585895d6099248ca98f60d83cf8aa6516841970bd",
+    "audioSha256": "f2a904629c73595bd7f107cd5ea2a70b7de34adc45b223047cca885d3bc0b854",
+    "seconds": 13.68,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-05-dictation.mp3",
+    "transcript": "If only I could hear the speaker.",
+    "transcriptSha256": "55bcf3c9780aa02de74ef90102ac889907baef720d2183d3cbbfe70d07278ec3",
+    "audioSha256": "75910af9577cb44b25fe7bf32a3937379fdafc5b346be3e748af6c3d81cdf6cb",
+    "seconds": 2.196,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-06.mp3",
+    "transcript": "I would rather practise the talk now. Could you check the slides? Before we do either task, we had better save a backup. There is only one copy, and we should not rely on one computer.",
+    "transcriptSha256": "06b67e12008c7ee4ca01294e0320ca79ec71579b74dd04ee9107ab5adaafb18e",
+    "audioSha256": "25a7bf226b7aaa7b59a6221b05fdc69c4e74e41213a784c611e28d52d956677c",
+    "seconds": 11.196,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-06-dictation.mp3",
+    "transcript": "You had better not rely on one computer.",
+    "transcriptSha256": "62d24ec0830a78b9458e46c045d253545c7d87893b8b76ad2f374cf153b1cdea",
+    "audioSha256": "7fdc8642b4b00d5d4fb5716b689d5287afcd52001433f0fd93bd05be9781be08",
+    "seconds": 2.556,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-07.mp3",
+    "transcript": "Speaker one: Our key word is address. The speaker has not arrived, although the meeting began ten minutes ago. One student says she must have forgotten. Speaker two: My main point is verification. We should verify information before blaming someone. The speaker has not arrived, although the meeting began ten minutes ago. One student says she must have forgotten. Another suggests that she might have taken the wrong bus. Neither has spoken to her, so the first explanation is stronger than the evidence allows. The organiser checks the invitation and finds an old address. They should have verified it before sending. The speaker then calls from the other building. This confirms one explanation but does not justify blaming her for forgetting. Reviewing the language matters: a possibility should not become a fact just because it is repeated confidently. The next invitation will include a map and a contact number.",
+    "transcriptSha256": "a9d33feed14a73fbbda82e9e767ca0edbbf1a3a51d7f95e9267ed6a2869daa58",
+    "audioSha256": "8c40cb0c45aaaf73b203f6f8b6359705a0806c3e8d88017e83eaee81fc974d8f",
+    "seconds": 57.744,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-07-dictation.mp3",
+    "transcript": "We should have checked the address.",
+    "transcriptSha256": "a6a2132710f01f16ec69c4b7a99f2166546792cabea795eade5cb30bebc62a4b",
+    "audioSha256": "73cf2ae8f9ee93e75ba89fcd69fca74120d0986a9dd7c94ffd2d0b507227a2f7",
+    "seconds": 1.872,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-08.mp3",
+    "transcript": "Speaker one: Our key word is maintenance. The sports hall has been inspected, and the roof is being repaired. A public notice says that the remaining windows will be checked before reopening. Speaker two: My main point is responsibility. Readers need a clear contact as well as a process description. The sports hall has been inspected, and the roof is being repaired. A public notice says that the remaining windows will be checked before reopening. Passive forms keep attention on the building and the sequence of work. However, the notice also says that a mistake was made without naming who will correct it. Parents ask for a contact person, not because every sentence needs an agent, but because someone must answer questions. The manager adds the maintenance team’s name and a review date. An effective report can focus on processes while still making responsibility clear. Avoiding an agent is reasonable when the person is unknown or irrelevant; it is less helpful when readers need to know who can act.",
+    "transcriptSha256": "984d91ef5b6de5a7b5c90c3a293d907104ef9f42ef225f135a9875f47087984a",
+    "audioSha256": "ece99672b6e717fda990325a66aa0657a3577cccb3a0602a762d3279b8062c15",
+    "seconds": 56.052,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-08-dictation.mp3",
+    "transcript": "The report was written by the engineer.",
+    "transcriptSha256": "a4a43e90853cc91f1566874b2221c28a529e93b9f315cd2f4bb78ccd95081989",
+    "audioSha256": "b27d14e723b7acfbe38f3e40854eee5c22ec76f210115338375240ef6f365540",
+    "seconds": 2.52,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-09.mp3",
+    "transcript": "Speaker one: Our key word is source. It is reported that the community centre will reopen in May. A local article names the manager as its source, but an online post repeats the claim without that detail. Speaker two: My main point is confirmation. Attribution is useful, but unconfirmed rules need checking. It is reported that the community centre will reopen in May. A local article names the manager as its source, but an online post repeats the claim without that detail. The centre is also said to have changed its entry rules. No official notice confirms the rules yet. Students compare the reports and find that the reopening date comes from one interview, while the rule change began as an unnamed comment. Reporting passive is useful because it signals that information is attributed to someone. It does not show whether the source is reliable. Before publishing their own summary, the students contact the centre and label the unconfirmed detail clearly. A careful summary distinguishes a reported plan from a completed or guaranteed event.",
+    "transcriptSha256": "d341d122cc665cdb2eb333272970fbf74e718a839122b2f7438d0ef05d569ef9",
+    "audioSha256": "88ae3533f47bb08adf0dbba575edb81f0dfe954fce3ebe84e125af58034f4cf6",
+    "seconds": 66.852,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-09-dictation.mp3",
+    "transcript": "The figures are believed to be incomplete.",
+    "transcriptSha256": "a033d68bd8f1808e494f7fee43a61f98bc4c734cdbd714f4f6cb8d7de3e72def",
+    "audioSha256": "df20ffddce4a0227079b87783f204557e4b4bf339b61bbe8d3676cc0b6672c15",
+    "seconds": 2.52,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-10.mp3",
+    "transcript": "Speaker one: Our key word is service. The club printer stopped working before a display was due. Ali said he had repaired it, which sounded as if he had done the technical work himself. Speaker two: My main point is context. The same form can describe an arranged service or an unwanted experience. The club printer stopped working before a display was due. Ali said he had repaired it, which sounded as if he had done the technical work himself. He actually had it repaired by a local technician. The distinction matters when the teacher asks who can explain the fault. Ali arranged the service but did not diagnose the machine. The club checks the warranty before paying and asks the technician for a short written record. Later, another student says she had her bag stolen on the bus. This has the same broad grammatical shape, but she did not arrange the action. Context determines whether the structure describes a service or an unwanted experience. Clear wording prevents mistaken assumptions about skills and responsibility.",
+    "transcriptSha256": "f15ec3c1f0979b0a93c0a8f5949330a1dfc0a18503602bf7b7cb378e90221585",
+    "audioSha256": "4d03da714b635e9c7bae3ef1f4cc14475195e953ffde4e76add077c4a76f525e",
+    "seconds": 55.98,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-10-dictation.mp3",
+    "transcript": "I got my brother to test the microphone.",
+    "transcriptSha256": "9d508e1a7bd59e42b09af6c81ceeb49e9a1d2c36a33ba243639e17b68de6cd04",
+    "audioSha256": "f45963c39c38caef280c99cb67b1bc27fa2069f6144588f72979bc07bac41c6f",
+    "seconds": 2.628,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-11.mp3",
+    "transcript": "Speaker one: Our key word is account. A meeting summary said that one student admitted hiding a file. The student had only said that she moved it to another folder. Speaker two: My main point is accuracy. The summary needs accuracy rather than the strongest possible verb. A meeting summary said that one student admitted hiding a file. The student had only said that she moved it to another folder. The writer had chosen a reporting verb that added a judgement unsupported by the statement. After checking the recording, the group rewrote the sentence neutrally. Another student did apologise for sending the wrong link, so that verb was justified. The teacher warned everyone not to publish names before the facts were checked. Reporting verbs can make a summary concise, but they must preserve the speaker’s intention. A strong verb is not automatically a more accurate verb. The revised account separates acknowledged mistakes, suggestions, and disputed claims rather than turning all of them into confessions.",
+    "transcriptSha256": "3fc4d671a9b6cb808a20945843567653545dbb448ac88e74d8e59f2a904bbf2a",
+    "audioSha256": "814dba9865bcbccc727191ba6da86872a2bd215d9e33514d187ce995551934cc",
+    "seconds": 62.892,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-11-dictation.mp3",
+    "transcript": "The teacher warned us not to publish names.",
+    "transcriptSha256": "47c96e0986e39bc34fdede7d672c69c44d02505065c256ce57e7a689f04b25a8",
+    "audioSha256": "f0b0e41789a9e90201e70e00fcb9ee54019e04c1cc3da7bb7a2f36b81bc2ea56",
+    "seconds": 2.952,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-12.mp3",
+    "transcript": "Speaker one: Our key word is distinction. Two notices describe a club visit. One says that the students who arrived early helped arrange chairs. Speaker two: My main point is subgroup. The attendance record supports a subgroup rather than a claim about everyone. Two notices describe a club visit. One says that the students who arrived early helped arrange chairs. The other says that the students, who arrived early, helped arrange chairs. The first identifies a subgroup; the second adds information about the whole group already being discussed. A small punctuation change therefore changes the claim. Lola, who leads the club, asks the writer to check which meaning matches the attendance record. Only five students arrived early, so the first notice is accurate. The revised report also names the hall, which opened last year. That detail is interesting but not necessary to identify the hall in this context. Grammar helps readers distinguish essential identification from additional background, rather than simply making sentences longer.",
+    "transcriptSha256": "13239814bedcb34b0a21a4f25a99c3ce5a5e958a3a90e616853f1692059fa3d1",
+    "audioSha256": "48ef416ce7eae619fa8cf7a8a883634a49d696c9a79d794dcb61851085f44c87",
+    "seconds": 60.084,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-12-dictation.mp3",
+    "transcript": "The guide, whom we met yesterday, returned.",
+    "transcriptSha256": "738b49fbacb2a6ec397ab86ed831ae0a467ef4e7d6be2208fe2035932234f758",
+    "audioSha256": "348c4121ee8d4849333d1cc5739bc35092b16d1df0dd1863056f3d932bead8a5",
+    "seconds": 3.24,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-13.mp3",
+    "transcript": "Speaker one: Our key word is subject. A student tries to make a report shorter: “Entering the hall, the lights were bright. ” The sentence seems to make the lights enter the hall. Speaker two: My main point is clarity. A shorter sentence is useful only when its subject remains clear. A student tries to make a report shorter: “Entering the hall, the lights were bright.” The sentence seems to make the lights enter the hall. She changes it to “Entering the hall, I noticed the bright lights.” The action now has a clear subject. Another sentence describes reports written yesterday; here the reports receive the action, so the past participle is appropriate. Concision can make a report easier to read, but it is useful only when the relation between actions stays clear. The editor checks each shortened clause by expanding it. If the expanded version names a different subject or changes active to passive meaning, the shortening needs revision. Saving a few words is not worth making readers guess who did what.",
+    "transcriptSha256": "5e64b7f8e485811def1042c5573fe0f58565632092a024c7634b7e5916b6dadd",
+    "audioSha256": "19ef98abda1efe7c9ef0f21dc9356c2d8652577e2cf550e0dfa3359ee05dc1b6",
+    "seconds": 62.1,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-13-dictation.mp3",
+    "transcript": "Walking home, I noticed the rain.",
+    "transcriptSha256": "0e00336c790288d588236910a3f0cc8606e89c30b6952c68fbeb90d08996a71d",
+    "audioSha256": "92c149aa7f453e9199f5d53bfdbd64eee341f31682eaa529c5c2742ca540a7bb",
+    "seconds": 2.556,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-14.mp3",
+    "transcript": "Speaker one: Our key word is method. The club asks why a recorded interview contains a long pause. One student says they stopped talking; another says they stopped to talk to a guide outside. Speaker two: My main point is meaning. Verb patterns change what the instruction asks someone to do. The club asks why a recorded interview contains a long pause. One student says they stopped talking; another says they stopped to talk to a guide outside. The first describes ending an activity, while the second gives the purpose of a pause in another activity. The organiser checks the timeline and finds that both happened at different points. A later note says, “Remember locking the equipment room.” This sounds like recalling an action, not asking someone to do it. The writer changes it to “Remember to lock the equipment room.” Small changes in verb patterns can affect instructions, not merely grammatical accuracy. When the group edits practical messages, it asks whether the sentence describes memory, intention, a method, or an attempt.",
+    "transcriptSha256": "3021b132116c3bf22c6f0c10af620f0d8424fb45d2d1c9d5d1129886b4742290",
+    "audioSha256": "3154c41ffd1cda6be427cf7bbe80a82a9b89215d1dc6305ce3351a7b2d99d1c7",
+    "seconds": 59.4,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-14-dictation.mp3",
+    "transcript": "We stopped to talk to the guide.",
+    "transcriptSha256": "384b256be66922a746cf8761db3f9dac044eec2fef99e4b5efacdc3beccec5c2",
+    "audioSha256": "5f2519c4e119f1110e39fe729dfc8b75d344928e31e782f6db00e216c62d2166",
+    "seconds": 2.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-15.mp3",
+    "transcript": "Speaker one: Our key word is reference. A student opens her report with a proposal for a reading corner. In the next sentence, the proposal refers to the same idea, so the definite article helps the reader follow it. Speaker two: My main point is scope. Determiners help readers identify the scope of a claim. A student opens her report with a proposal for a reading corner. In the next sentence, the proposal refers to the same idea, so the definite article helps the reader follow it. She then writes that the libraries help children, although she means libraries in general rather than a known set. Removing the article makes the scope clearer. Her teacher also checks determiners: each student has a role, but both teams share one display. These choices are small, yet they tell readers whether the report describes one object, a known group, or a general category. The editor does not replace every article mechanically. She asks what the reader can already identify and whether the intended claim applies generally or specifically.",
+    "transcriptSha256": "fb70ac4ea50b0fa352daeea04fe6a5dbf709d799eb79035b32a2a12f46ee33cd",
+    "audioSha256": "b470219f1761b5fffb1096c78bc968d6edc74d2c5e670dc30a655b81fe59f510",
+    "seconds": 65.664,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-15-dictation.mp3",
+    "transcript": "Each student has a role.",
+    "transcriptSha256": "2ff583faba83485ea2bef40a4716f3e30734c27e0c30a1b876d5c5a2a9d52fb0",
+    "audioSha256": "4fd640c6f84f2d5148414663746f3d07ed5ddfe90dcfa1a60122f03fb766f92a",
+    "seconds": 1.908,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-16.mp3",
+    "transcript": "Speaker one: Our key word is trial. The school considers extending library hours. Although the plan would cost money, supporters argue that students need a quiet place after lessons. Speaker two: My main point is evidence. A shared aim still needs evidence about likely attendance. The school considers extending library hours. Although the plan would cost money, supporters argue that students need a quiet place after lessons. Critics agree with the aim but question whether enough students would attend. The school proposes a two-week trial so that it can collect attendance data before making a permanent decision. Last year, a popular event was so busy that the room became difficult to use. That result does not prove every extended session will be crowded. A reasoned report separates the purpose of a trial from the consequence of a past event. It also acknowledges the cost without treating it as a complete argument against the plan. Shared aims can make disagreement more productive when the uncertain facts are tested.",
+    "transcriptSha256": "245cc2f8c7ba9c6710713349b19a2ccbc08cf4b08cfca687a89c3cf5b4474a54",
+    "audioSha256": "3b7a401fb34b5df5f3eb7b338bd86865fab34756e7224ffcc917901687ceba8f",
+    "seconds": 56.052,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-16-dictation.mp3",
+    "transcript": "The room was so busy that we waited.",
+    "transcriptSha256": "e01d6a901f32c3db7150d2617a3cf6b447fcdaed6b3d02ddcf28f7b2d1b4c53b",
+    "audioSha256": "059d913faf180013751dd34efd4bf98871f48e48ccd8d6bcbbe78b231a854077",
+    "seconds": 2.196,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-17.mp3",
+    "transcript": "Speaker one: Our key word is sample. A survey of eight volunteers finds that most prefer the new reading corner. The organiser announces that all students clearly support it. Speaker two: My main point is tentative. The result is encouraging, but the conclusion should remain tentative. A survey of eight volunteers finds that most prefer the new reading corner. The organiser announces that all students clearly support it. Another student agrees that the result is encouraging but points out that the sample is small and voluntary. She says the findings may suggest a useful pattern, not prove a school-wide preference. This wording limits the claim to what the evidence supports. Her objection is courteous because she recognises the useful work already done and proposes a larger survey. Hedging is not an excuse to avoid taking a position. The student still recommends keeping the corner during the trial. She simply separates a practical recommendation from a certainty the survey cannot establish.",
+    "transcriptSha256": "fec756b10abe8fb5384debffd5c495e8b95fb18a458f137f640e9de9c55c4276",
+    "audioSha256": "15366bedc34b6de3079cc12f0598f69051083e12ad20dffc3a4af7f07738b740",
+    "seconds": 62.388,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-17-dictation.mp3",
+    "transcript": "The method tends to work better with clear instructions.",
+    "transcriptSha256": "ec3756b043f40dfaeab9233c2ce52e06189b9c41d0d9714fd4890726356bcb42",
+    "audioSha256": "31ef56069ca28a2fa28a3217a120ca50e31aa9359e59971c6e8063df4f8d4e67",
+    "seconds": 3.42,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-18.mp3",
+    "transcript": "Speaker one: Our key word is recipient. Two emails ask for the same deadline. A message to a friend says, “Can you tell me when it is due? Speaker two: My main point is clarity. A formal request should remain easy to understand. Two emails ask for the same deadline. A message to a friend says, “Can you tell me when it is due?” A message to the school office says, “Could you please clarify the submission deadline?” The second is not better English in every situation; it suits a different relationship. A student initially writes a very long formal email with several vague phrases and no clear request. The teacher asks her to simplify it. She keeps a polite greeting, states the purpose, and asks one precise question. Register includes clarity as well as politeness. Choosing an audience does not require hiding meaning behind elaborate words. The office can answer more quickly because the revised message makes the requested action easy to identify.",
+    "transcriptSha256": "2073cd5cb22cba6b6471d75515f6e6535b25030c8f615c347a68d8b1748e433b",
+    "audioSha256": "79782b9d9c020e7af8f0a9c77675a1e2e6941631dfc8a68bd1dbcd1f068c8f0d",
+    "seconds": 53.64,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-18-dictation.mp3",
+    "transcript": "Can you tell me when it is due?",
+    "transcriptSha256": "c1edaff657e3d30e1e5ddc06960e820921b7a52cd696809afca5761e4c83a5b3",
+    "audioSha256": "61e2e5d50b231b7a715511063191a3829b7e92b331e943b6a229e0898e72e0c2",
+    "seconds": 2.232,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-19.mp3",
+    "transcript": "Speaker one: Our key word is reliability. The club report describes a successful trial, then claims that success proves the plan is reliable. The teacher asks what reliability means in this context. Speaker two: My main point is consistency. Reliability requires more than one successful event. The club report describes a successful trial, then claims that success proves the plan is reliable. The teacher asks what reliability means in this context. One positive event is evidence of success, but a reliable process should work consistently under similar conditions. The group repeats the trial with another class and checks whether the instructions can be followed without extra help. They also edit word forms. “The team worked successful” becomes “The team worked successfully.” Selecting the right suffix matters grammatically, while selecting the right concept matters logically. A word family can help express an idea precisely only when the writer understands the relation between the words. The revised report separates a successful event from evidence of reliability.",
+    "transcriptSha256": "bcefd548c7d61d5cba494b7cba2bbabfb29e12bad549ae1a1c0fcbab3f4b403b",
+    "audioSha256": "22563fa68223905222b9a1a9d7ad10998c452c47531e4bbbc7dd7ee483165c12",
+    "seconds": 71.208,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-19-dictation.mp3",
+    "transcript": "They hope to succeed next time.",
+    "transcriptSha256": "ad2f4819d5b4117f9e95f32353f8964c9ac375fbba1cba0507df6f577fdce286",
+    "audioSha256": "83f2a2cab983a14e7fb5b1bd5d51211f766db983ea9c53524115091df58b3d87",
+    "seconds": 2.52,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-20.mp3",
+    "transcript": "Speaker one: Our key word is survey. The committee put the meeting off because several students could not attend. A member then raised a concern that repeated delays might exclude people with limited free time. Speaker two: My main point is fairness. Natural phrasing should describe a fair process, not replace it. The committee put the meeting off because several students could not attend. A member then raised a concern that repeated delays might exclude people with limited free time. Another suggested carrying out a short survey before choosing a date. The group agreed, but one student drew a conclusion from only the first two replies. The organiser asked everyone to wait until the response period ended. Useful collocations make the minutes sound natural, yet they do not guarantee a sensible decision. The committee needs both accurate language and a fair process. In the revised minutes, it records the concern, the evidence to be collected, and the date when a conclusion will be discussed. This gives readers more than a list of fluent phrases.",
+    "transcriptSha256": "b2c2a943d231178f7ace3dd7a3e1e0de3ac0f46caafe72322ea8618621b2afb0",
+    "audioSha256": "ccda980357870d548bd29419d5bf8939019392b9ca7310b17f2cd2cb40cebd0d",
+    "seconds": 57.132,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-20-dictation.mp3",
+    "transcript": "They put the meeting off.",
+    "transcriptSha256": "5abb923de0ea1773f42ba48e9e4a178087363a3ffe650dbc937e418180009e3d",
+    "audioSha256": "ecd44a77ebb68fbaffa8517432b4911fdeb1fe3692e1954679c691344b5143f3",
+    "seconds": 1.512,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-21.mp3",
+    "transcript": "Speaker one: Our key word is access. Should the school replace every printed notice with an online message? Supporters say updates would reach readers quickly and reduce wasted paper. Speaker two: My main point is trial. Test a mixed approach before removing the printed board. Should the school replace every printed notice with an online message? Supporters say updates would reach readers quickly and reduce wasted paper. Critics point out that not every family checks the same app. A student essay initially describes critics as people who dislike technology. That weak version of their argument is easy to dismiss but does not address the access problem. The writer revises the essay to acknowledge the strongest objection and proposes a mixed trial: online messages plus one shared printed board. The trial would measure whether families receive important information on time. A persuasive essay should not merely defeat an imagined opponent. It should help readers compare realistic options and understand why a recommendation follows from the evidence.",
+    "transcriptSha256": "e09a7b058ae1e778d1ea93d25c767c34a032add0996188d5cfc452ad96548f4d",
+    "audioSha256": "3a49658f8579149ca62915160dbd3422c9ad94fea5ea3a81bf6e93c6bc98bbe8",
+    "seconds": 64.872,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-21-dictation.mp3",
+    "transcript": "Critics reasonably point out the cost.",
+    "transcriptSha256": "0bff23a0080313eeccfb1efb4691356c1b33bcb2bbd5b91fc57d9cfe422142b9",
+    "audioSha256": "5c48670a8d8edad28fed9e234a962fea992b310bfea697bc42b49e7285db3f0b",
+    "seconds": 2.628,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-22.mp3",
+    "transcript": "Speaker one: Our key word is criterion. After a museum visit, the class writes two texts. The report records attendance and survey results for the organiser. Speaker two: My main point is audience. A recommendation is useful when readers know whom it suits. After a museum visit, the class writes two texts. The report records attendance and survey results for the organiser. The review helps future visitors decide whether the tour suits them. Both use the same experience, but they answer different questions. The report notes that the survey excluded evening visitors, so its findings are incomplete. The review explains that the guide’s clear explanations were useful for first-time visitors, although experienced visitors might want more detail. Neither text needs to pretend to be completely objective. It needs to show where facts end and evaluation begins. A recommendation becomes more useful when the reader knows the criteria and the audience for whom it was made.",
+    "transcriptSha256": "461a3ddcedf7de59e5a15c5cbb10c801bf29204c17ba00f1dfbd1e83f942a9bc",
+    "audioSha256": "52815326306f95391b04c824af75a7739791a30469550968be8175f84290d051",
+    "seconds": 55.548,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-22-dictation.mp3",
+    "transcript": "The survey did not include evening visitors.",
+    "transcriptSha256": "608d073d46e5aaada088b08739c82cdb0c94d59d4ba7611bb362059ed9cb24f5",
+    "audioSha256": "d2eb3cf65ea64f5e1e048ad0265a2c9ee2f439bbfa1b2ed7fc78f7e67fa6de8e",
+    "seconds": 2.844,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-23.mp3",
+    "transcript": "Speaker one: Our key word is confirmation. A club booking email confirms that the room will be available at ten. On the day, another group is still using it, and the club waits thirty minutes. Speaker two: My main point is resolution. A firm complaint should ask for a practical resolution. A club booking email confirms that the room will be available at ten. On the day, another group is still using it, and the club waits thirty minutes. The first complaint calls the venue dishonest. The writer cannot support that intention claim, so she revises it to state the observable problem and its effect. She attaches the confirmation and asks for an explanation and a practical solution for the next booking. The revised message is firm but respectful. It does not weaken the complaint; it makes the requested response easier to identify. Professional correspondence can express dissatisfaction without guessing someone’s motives. The most useful outcome is a clear arrangement that prevents the same delay, not simply a stronger adjective.",
+    "transcriptSha256": "65d1d1e5cf25a77048d61a9c8ff1bb5ff23753fef4e4e54f8b79dc1e44ab10f3",
+    "audioSha256": "66e9e50c5e087e3ec6cfc9fea342dc696219ff4f9fc07703a35dcbd02bbbd88b",
+    "seconds": 65.412,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-23-dictation.mp3",
+    "transcript": "The confirmation email gives a start time of ten.",
+    "transcriptSha256": "5d49d4e0bd576d8147825acb1b94ca7cbf21004e3a963974a1b54f549da950b9",
+    "audioSha256": "27ced9b4ec74eec1092a8c3396223a89f601d9b9c4b56b3cd15a31252bffd9f1",
+    "seconds": 2.988,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-24.mp3",
+    "transcript": "Speaker one: Our key word is priority. The school club has funds for one extra session each week. A survey favours a fixed afternoon, while interviews with students who travel far suggest that a rotating day would be fairer. Speaker two: My main point is compromise. Agree on criteria before choosing the most popular option. The school club has funds for one extra session each week. A survey favours a fixed afternoon, while interviews with students who travel far suggest that a rotating day would be fairer. The survey has more responses, but the interviews reveal a need the fixed schedule may overlook. The committee first agrees on three criteria: access, cost, and reliable staffing. It then compares the options against those criteria instead of choosing the most popular answer automatically. The group proposes alternating two afternoons for a short trial. This compromise may not satisfy every preference, but it can test whether more students attend without increasing the total number of sessions. The decision includes a review date and a way to collect evidence. Agreement is stronger when participants understand both the benefit and the remaining limitation.",
+    "transcriptSha256": "9fcf2faea92bb649666f1645dbf2133d15c8838291945bb7139a2cb60415add0",
+    "audioSha256": "d825d06c78cfdd5b1fc5c163243a05a44893698f980f458a1365d937e3c5a790",
+    "seconds": 66.024,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-b2-24-dictation.mp3",
+    "transcript": "The flexible plan costs more but reaches more people.",
+    "transcriptSha256": "3fbc319984ff20ef0ef7ca9d5ab34efb95f185e3a2bf2d76f91e45a58de826b3",
+    "audioSha256": "1a5a92e04585be1469ca7eff9635a194b5920eee6d79b924c639b27e5c19efcf",
+    "seconds": 3.456,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-01.mp3",
+    "transcript": "Speaker one: Our key word is agency. Two versions of a council notice describe the same delay. The first says that the committee postponed a decision; the second says that the decision was postponed pending consultation. Speaker two: My main point is attribution. Ask for clearer attribution without pretending to know the writer’s motives. Two versions of a council notice describe the same delay. The first says that the committee postponed a decision; the second says that the decision was postponed pending consultation. The passive version directs attention to the process rather than the committee. A reader might interpret this as avoidance of responsibility, but the wording alone cannot establish that intention. The notice also says that criteria have been revised twice, presenting a measurable result, whereas another sentence says that members have been reconsidering their priorities, foregrounding continuing work. A careful analysis distinguishes grammatical effect, supported inference, and speculation about motives. This makes criticism more precise: readers can request clearer attribution without claiming to know why the writer chose a particular form.",
+    "transcriptSha256": "efe0787a9fe4c0d2369cb15e12c1dee58af7c758f59a61f3f895da2317a58485",
+    "audioSha256": "f74aa7502a724507c18a3d009668d7ad959b44b1a9651592aa04558c128157b8",
+    "seconds": 73.764,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-01-dictation.mp3",
+    "transcript": "The criteria have been revised twice.",
+    "transcriptSha256": "8962c63292e29f552c7bc0cf6130ee23266dab1a1ad1d25412b8fbf0af341a25",
+    "audioSha256": "71c3fd25576cbf360a4e4f9025f8a4444188737a6b54b025d912488408b0c84b",
+    "seconds": 2.412,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-02.mp3",
+    "transcript": "Speaker one: Our key word is restriction. A seminar summary opens, “Rarely have participants agreed so quickly. ” The sentence creates emphasis, but the writer later reveals that only six people attended. Speaker two: My main point is purpose. Use inversion when the communicative purpose justifies the emphasis. A seminar summary opens, “Rarely have participants agreed so quickly.” The sentence creates emphasis, but the writer later reveals that only six people attended. The claim is therefore about this seminar history, not a universal pattern. A privacy note uses a stronger restriction: “Under no circumstances should names be published without permission.” Here inversion highlights an operational rule rather than an emotional reaction. The editor keeps that emphasis and simplifies a third inverted sentence because it interrupts the explanation. Advanced grammar earns its place when it supports a communicative purpose. A reader should be able to say what is being restricted, when understanding changed, or why emphasis matters. Unnecessary inversion can make ordinary information sound more dramatic than its evidence warrants.",
+    "transcriptSha256": "f073ac9b44b6000db62ea1e5dbd946533db0afff50adc501faf99c79731effa7",
+    "audioSha256": "8a7f49be80b214967f94d616616d9985d59a176ae53c00c4ad2d2b526fec2d93",
+    "seconds": 64.044,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-02-dictation.mp3",
+    "transcript": "Not until the review did we understand the limitation.",
+    "transcriptSha256": "016549e2336eb9c7077418f4fef4f1cfa45dd91f4581a6f91f757199faff361b",
+    "audioSha256": "91dd85adb4c8aacd4e76e6526d1b52004a4c4a3bef372afb9371b5a1e03df666",
+    "seconds": 3.456,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-03.mp3",
+    "transcript": "Speaker one: Our key word is focus. A debate is described as an argument about price. The interviews show something more specific: it was access that concerned the students most. Speaker two: My main point is complexity. Correct the focus without excluding every other relevant factor. A debate is described as an argument about price. The interviews show something more specific: it was access that concerned the students most. Price mattered, but travel time prevented some students from attending even a free session. The writer uses a cleft to correct the mistaken focus without claiming that price was irrelevant. She then adds, “What we need is a clearer timetable.” This pseudo-cleft moves from diagnosis to a practical request. A revised sentence saying “Only access mattered” would go further than the evidence. Focusing information is not the same as excluding every other factor. Good editing preserves that distinction and helps readers notice the central issue while retaining the complexity of the original discussion.",
+    "transcriptSha256": "81575a2660213f9907303737f91015ea773742d602e74209183ee972494a4725",
+    "audioSha256": "4b13a91fdba3e3aad9f4b2bf651e53a1b4ae1420f504f0d29b2377226e973b2f",
+    "seconds": 65.772,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-03-dictation.mp3",
+    "transcript": "What the survey reveals is a gap in communication.",
+    "transcriptSha256": "2ee22fae12eaab787f41c09b944624c23c016b0451ae18f622894317929c363c",
+    "audioSha256": "6bde4163b7a76cd32c4bc16cf5c056c69ca334c2d67118d86a5f726405681684",
+    "seconds": 3.42,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-04.mp3",
+    "transcript": "Speaker one: Our key word is transition. An analytical report first discusses a small sample, then unexpectedly begins a paragraph about long-term effects. Readers lose the connection because the new topic appears without a transition. Speaker two: My main point is coherence. Connect familiar information to the next uncertainty before adding detail. An analytical report first discusses a small sample, then unexpectedly begins a paragraph about long-term effects. Readers lose the connection because the new topic appears without a transition. The editor writes, “This limitation, we can address with a larger survey. Of greater concern is the missing comparison group.” The structure connects a known limitation to a more important uncertainty. Fronting can improve coherence, but it is not a decoration that every sentence requires. The editor also moves a long explanation to the end of a sentence so that readers meet familiar information before new detail. The revised report becomes easier to follow without reducing its complexity. Information structure helps organise attention, while evidence still determines whether the conclusions are justified.",
+    "transcriptSha256": "f972fec7d41ad10b456f6ef0cd5ad85ec917ae1acffacbbaf25d19d61a953582",
+    "audioSha256": "a9f1e8a9d320a60be1ba0c80027a0745fd8dc9023ca5c0d2c2f8462e08dff570",
+    "seconds": 66.204,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-04-dictation.mp3",
+    "transcript": "Into the room came the organiser.",
+    "transcriptSha256": "190e05c03bd3570d27fa8a0528c8c44f6ab3edd892f8605a0173a1930a7ca21c",
+    "audioSha256": "c6432117dd9d7b33bbbc2b563d943734a8a055be347884517cc3d56c62925215",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-05.mp3",
+    "transcript": "Speaker one: Our key word is contingency. A proposal includes the provision, “Should the trial fail, the original system will remain. ” This does not predict failure; it states a contingency. Speaker two: My main point is time. Expand the condition to check its time relation. A proposal includes the provision, “Should the trial fail, the original system will remain.” This does not predict failure; it states a contingency. The review also says, “Had we known about the transport problem, we would have revised the timetable.” That clause refers to an unreal past condition. Students initially treat both sentences as future warnings because both begin with an auxiliary. The editor asks them to expand each into an if-clause and identify the time relation. Formal compression is useful only when readers can recover the intended condition. The proposal keeps the future contingency and moves the past reflection to the review section. This separates what the team will do next from what it wishes it had known earlier.",
+    "transcriptSha256": "92f194c2e0c9a5c24af16b53567829078824ba902d20436ff40f443da8afb895",
+    "audioSha256": "bed8d5cb47d3cf575bfc8431269f3fe0f87bd236db2d1b4f5829889b30558540",
+    "seconds": 66.096,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-05-dictation.mp3",
+    "transcript": "Had we not checked, the error would have remained.",
+    "transcriptSha256": "d4919b8f0a783849ee5ea8129b164abb4c6585cd9000f8c6eb8354b1d2d9b66d",
+    "audioSha256": "3b670fc0cf9c1f31a03ce581c6a2d8a583f9dbc690bdc5670bc617ce9c8ea5a4",
+    "seconds": 2.844,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-06.mp3",
+    "transcript": "Speaker one: Our key word is causation. Students who attended the workshop reported greater confidence afterwards. The report says that the workshop caused the improvement. Speaker two: My main point is uncertainty. Recommend a better trial without claiming that causation has been established. Students who attended the workshop reported greater confidence afterwards. The report says that the workshop caused the improvement. However, the students volunteered to attend, and no comparison group was observed. The result is consistent with a positive effect, but other explanations remain plausible: motivated students may practise more outside the workshop. A qualified conclusion therefore states the observed change and the uncertainty about its cause separately. This is not excessive caution. It prevents a recommendation from being presented as a demonstrated mechanism. The organiser can still propose another trial, provided the design collects evidence that distinguishes competing explanations. Good modality allows a clear decision while preserving the limits of knowledge.",
+    "transcriptSha256": "058616a99529dba2f7e749508d570fbeaa4b365dfb31b89b95d6fe8d01f82f42",
+    "audioSha256": "b4ca29f42c74b058ef79f0c61e6a2a4d7e41daf5d48b07b788fbfcbaaf401dd3",
+    "seconds": 61.308,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-06-dictation.mp3",
+    "transcript": "The response is likely to depend on context.",
+    "transcriptSha256": "c6a4f80dd97419f0349eddfd5510c540ad8a31027abfe5fbcfea33278ef1ccc6",
+    "audioSha256": "db7f67004da75cf8a93512d8d633f804dff94cfed00c4d82ca03d576c5bcd2cf",
+    "seconds": 3.276,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-07.mp3",
+    "transcript": "Speaker one: Our key word is source. Several posts state that the access policy is believed to have been revised. The wording sounds cautious, yet none identifies who believes it or what revision occurred. Speaker two: My main point is independence. Trace the original source before treating repeated reports as confirmation. Several posts state that the access policy is believed to have been revised. The wording sounds cautious, yet none identifies who believes it or what revision occurred. The student researcher traces every post to the same preliminary report. Repetition has created an appearance of confirmation without adding an independent source. The original report says only that a revision was proposed. The researcher rewrites the summary to name the report and distinguish proposal from implementation. Complex reporting forms can preserve useful time relations, but they can also conceal missing attribution. A reliable analysis asks who made the claim, which event is described, and whether the source supports the stronger version now circulating.",
+    "transcriptSha256": "7eb6ac8ab786650dd978e8fac848e94f42833c07e78ad018ae37bff874c64f0c",
+    "audioSha256": "ca67c626c3152d7d38531dc5a4a463edbae161a65b8369820d34677e86f22f27",
+    "seconds": 69.3,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-07-dictation.mp3",
+    "transcript": "The figures are said to have been checked.",
+    "transcriptSha256": "58e8f4297706a217d8c63aafc10595295d0e6f73e2f0cf66fc9ff0781397fc4a",
+    "audioSha256": "8b251cf5bf71278ed9d0578ddb30449a23c7b8a768959f4b3dc174231717a589",
+    "seconds": 2.592,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-08.mp3",
+    "transcript": "Speaker one: Our key word is premise. A proposal says, “Assuming that attendance remains stable, the plan is feasible. ” The assumption is essential: if attendance falls, the cost per participant may rise. Speaker two: My main point is qualification. Keep the assumption visible when quoting the recommendation. A proposal says, “Assuming that attendance remains stable, the plan is feasible.” The assumption is essential: if attendance falls, the cost per participant may rise. A shortened clause makes that condition compact, but readers must not lose it when quoting the recommendation. Another sentence says, “Having reviewed the evidence, the claim was revised.” Its implied subject is the claim, which cannot review evidence. The writer names the team and checks whether the review actually preceded the revision. Editing therefore involves more than selecting an elegant participle. It tests the subject, the time relation, and any premise compressed into the clause. These checks prevent concise prose from quietly strengthening a conclusion.",
+    "transcriptSha256": "a894d36b8795eb528f1abc3d4ecfb52904e7589e48f8674fe88cdcd85740836f",
+    "audioSha256": "be79fb7782f192d9c9cf12141ce9d465299790507330b7476ce18ef069da9d72",
+    "seconds": 60.804,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-08-dictation.mp3",
+    "transcript": "Written for specialists, the report needs explanation.",
+    "transcriptSha256": "5db98584ebd1d05ebf7ab77e8e156517d9c6215fb8bc636123def3d648cdeac2",
+    "audioSha256": "1a511026cd7566e4f30dae24b10e9e29f1643c9168265bf12b2d976814d3698f",
+    "seconds": 3.78,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-09.mp3",
+    "transcript": "Speaker one: Our key word is allocation. The report states that the allocation of rooms resulted in the exclusion of one group. Readers can identify the outcome but not who allocated the rooms or whether the exclusion was intended. Speaker two: My main point is accountability. Name the action before using an abstract noun to refer back to it. The report states that the allocation of rooms resulted in the exclusion of one group. Readers can identify the outcome but not who allocated the rooms or whether the exclusion was intended. The writer expands the sentence: the organiser assigned both rooms to early applicants, leaving later applicants without space. This version names the agent and explains the sequence without guessing intent. Later, the report uses “the allocation” to refer back to that process efficiently. Nominalisation is therefore not inherently evasive. It can maintain cohesion once the action is clear. Problems arise when abstract nouns replace necessary information about who acted, when, and under which criteria. A good revision alternates explicit actions with concise references to them.",
+    "transcriptSha256": "baf6fdb9ab2832567140f27ac5c8f28e0b9e749f0f77505800de577f3cd76da0",
+    "audioSha256": "73a7251da7436e7d63978fb1edb2c4648d649a0a34c58bcc6701c886e1a73813",
+    "seconds": 71.532,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-09-dictation.mp3",
+    "transcript": "The review identified a communication gap.",
+    "transcriptSha256": "1318742d451a5d695446a5d41ed37b33f86eb54738ce0ef410852b94cca7ae28",
+    "audioSha256": "c225acd6af1b2d8dc6d55698b609255f8e414125c789a1517e68d5855d6b8c73",
+    "seconds": 3.204,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-10.mp3",
+    "transcript": "Speaker one: Our key word is referent. A summary says that one group tested the plan and another did so too. Readers naturally infer that the groups performed comparable tests. Speaker two: My main point is distinction. Substitution must preserve the distinction between testing and discussing. A summary says that one group tested the plan and another did so too. Readers naturally infer that the groups performed comparable tests. In fact, the second group only discussed the plan. The substitution hides a meaningful difference, so the editor restores the full verb. Elsewhere, “some preferred mornings; others, afternoons” is concise and accurate because the missing verb is shared. Ellipsis works when the omitted material can be recovered without changing the claim. The same principle applies to “the better one”: readers need to know which options are being compared and by which criterion. Advanced cohesion is not simply fewer repeated words. It is economical wording that preserves the distinctions necessary for fair interpretation.",
+    "transcriptSha256": "3f76a61b3b08b09ee81473e4c1614737a86107a01617bd09fc956f465374a677",
+    "audioSha256": "3f60b18b07677cc45ecd007813e37215b5f9c4a7d18835aa412984dfb881687c",
+    "seconds": 57.888,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-10-dictation.mp3",
+    "transcript": "I did not agree, and neither did she.",
+    "transcriptSha256": "d739c8a003f0751a396e3788796ea72860fb778d55e7b17b63672e2807eb928d",
+    "audioSha256": "2c92b8537b88ae2197dc522618293ef12bf3efa64290d62030a951a05a6cb37a",
+    "seconds": 2.808,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-11.mp3",
+    "transcript": "Speaker one: Our key word is scope. The committee agrees that what matters is whether the new schedule improves access. Attendance rose, but that fact alone does not show who benefited. Speaker two: My main point is beneficiaries. A higher total does not identify the beneficiaries. The committee agrees that what matters is whether the new schedule improves access. Attendance rose, but that fact alone does not show who benefited. The group whose proposal was accepted reports that more students came on the first day. Another group asks whether distant students attended more often or whether nearby students simply returned twice. Both interpretations fit the total. A noun clause lets the writer state the uncertainty rather than convert it into a conclusion. The summary also uses “which reduced confusion” to refer to the revision of the notice, not to the committee itself. Clear clause relations define the scope of claims and help readers locate what still needs investigation.",
+    "transcriptSha256": "d34371a2bb58688dbdd919e93ac76b5b49b5bfe839abe5bcc008bf9cb89f47cb",
+    "audioSha256": "ebadc73f6bcc23a3524e382def777918dd287f5aa3e7ca2b0ebde4d980ed0cff",
+    "seconds": 61.92,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-11-dictation.mp3",
+    "transcript": "The fact that attendance rose needs explanation.",
+    "transcriptSha256": "5d1b9f7b3902ed6e0b253039163243ee8aff15c8072bdf06fc4102541785b1dd",
+    "audioSha256": "d4caba55db6b8fe29d91868c352b1c3e009996a9da7e272db232c6dae1e62811",
+    "seconds": 3.24,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-12.mp3",
+    "transcript": "Speaker one: Our key word is inference. A draft links every paragraph with “therefore. ” It moves from a small survey to a recommendation, then from an access concern to a budget figure. Speaker two: My main point is connection. Explain the connection before choosing its marker. A draft links every paragraph with “therefore.” It moves from a small survey to a recommendation, then from an access concern to a budget figure. These are not all causal consequences. The editor replaces one marker with “nevertheless” because the limitation qualifies an encouraging result. Another becomes “moreover” because the budget concern adds a different reason for caution. The recommendation remains the writer’s judgement, not an inevitable logical result. Readers need a transparent path through the argument. Discourse markers can reveal that path when chosen accurately, but they can also pretend that an unsupported jump is a deduction. The editor tests every connection by explaining it in ordinary language before selecting the marker.",
+    "transcriptSha256": "9011974ee18ab6ddcca22dcd20616bd69782821f4d3112a6d376d730e6ac6a14",
+    "audioSha256": "7d3d0055522a2692c47ca230a7b8d5db29b0f131dfa6fbe05d8f98939f23c0bd",
+    "seconds": 56.772,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-12-dictation.mp3",
+    "transcript": "The survey is small; moreover, it excludes evening users.",
+    "transcriptSha256": "8058749e94cd17e0e70664b3c9c9184937b73694f9c1691e1fe289adff887934",
+    "audioSha256": "6af74f5ef7899f1254b47c6039624e4eac2dc918bd6f43e3db7254f8aa662f7c",
+    "seconds": 4.212,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-13.mp3",
+    "transcript": "Speaker one: Our key word is cohesion. A report says that attendance rose and then describes this as greater engagement. The terms are related but not identical: being present does not show how actively someone participated. Speaker two: My main point is precision. Repeat a term when variation would change the measured concept. A report says that attendance rose and then describes this as greater engagement. The terms are related but not identical: being present does not show how actively someone participated. Later, “this caused confusion” could refer either to the timetable or to the survey mentioned in the previous sentence. The editor repeats the timetable explicitly and keeps attendance as the term for the measured count. She uses engagement only when discussing the separate interview evidence. Avoiding repetition is not worth introducing a different construct or an ambiguous pronoun. A cohesive text gives readers a reliable chain of ideas. That chain can include deliberate repetition, clear reference, and carefully chosen lexical variation rather than a different synonym in every sentence.",
+    "transcriptSha256": "a4dd4b41aec4d4e47afc22ddf00c3b603e7af3295eddef2567ae68a57e88fe96",
+    "audioSha256": "a87ac0a7f4bcdce55f8ab2214562e9816b260b953dae22c8ec38ac358d07284d",
+    "seconds": 71.028,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-13-dictation.mp3",
+    "transcript": "This intervention was reviewed after two weeks.",
+    "transcriptSha256": "fa5f04f9b789b67607c41404931df932d25bc9f7eba2523f299cbdbc5f557571",
+    "audioSha256": "604c1b0f95a5ed7224afe90e292a0945e1b52417108ca017da8ea08718df03f8",
+    "seconds": 2.664,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-14.mp3",
+    "transcript": "Speaker one: Our key word is basis. A committee email begins, “As you obviously know, your estimate is wrong. ” The writer wants clarification, but the opening attributes knowledge and fault without establishing either. Speaker two: My main point is clarification. Challenge the estimate while asking for evidence that could resolve the issue. A committee email begins, “As you obviously know, your estimate is wrong.” The writer wants clarification, but the opening attributes knowledge and fault without establishing either. A revised version recognises the team’s constraints, identifies the unsupported estimate, and asks for its basis. The objection remains firm: the missing information affects whether the committee can approve the plan. Diplomatic tone does not require pretending to agree. It separates criticism of a claim from speculation about the person making it. The editor also removes elaborate phrases that obscure the request. A professional recipient should be able to identify what is disputed, what evidence would address it, and which action is proposed next.",
+    "transcriptSha256": "e257e624ba9f1a0a9e48851002d24f4839f915e3bbd4859c039ba141fed8a6f3",
+    "audioSha256": "b73268da43afc6b6497055ddcf46399f76390538a4313b8111e522e3cb40b77e",
+    "seconds": 60.336,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-14-dictation.mp3",
+    "transcript": "Nevertheless, the missing information affects our decision.",
+    "transcriptSha256": "4b0934b70ac066f1a896b27adb7dfb20ae44d7d4a29b8acd4887a549bef435cb",
+    "audioSha256": "635398493c9b0f68558624fa5db529571d6727e8e3783c4fd93f5f8f211e287f",
+    "seconds": 3.636,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-15.mp3",
+    "transcript": "Speaker one: Our key word is equitable. The proposal is described as good, but committee members mean different things by that word. The organiser considers it viable because existing staff can run it. Speaker two: My main point is criteria. State the criterion before judging whether the plan is good. The proposal is described as good, but committee members mean different things by that word. The organiser considers it viable because existing staff can run it. The finance group calls it efficient because it uses fewer hours per participant. Students ask whether it is equitable, since those living far away may still be excluded. No single adjective answers all three questions. The report adopts the separate terms and explains the criteria behind them. In light of the evidence, the committee supports a revised trial rather than a blanket endorsement. Precise vocabulary does not make the text more impressive by sounding unusual. It allows readers to see which judgement is being made, which evidence supports it, and where the judgements may conflict.",
+    "transcriptSha256": "55320b4a23c10da8d9cfbc968cbbfd016ca9847ade12d53ac1d3cfcfb3e9ba5d",
+    "audioSha256": "6eeb899fe77301f3e44ca1a9b03b412de9291f9493b5e6a404009363e761ddc2",
+    "seconds": 67.284,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-15-dictation.mp3",
+    "transcript": "In light of the evidence, we recommend revision.",
+    "transcriptSha256": "914cb95d1918a008e1bd9bf75c72e5c26dda0a88eaf0de329f2eb57b431bd098",
+    "audioSha256": "7cefeab5b8e0ff81755576ef99189c9056719058ad37ec5f19e9c50f2c34550a",
+    "seconds": 3.24,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-16.mp3",
+    "transcript": "Speaker one: Our key word is literal. A meeting leader says the team must be on the same page. Experienced members understand that they need shared criteria, but a new participant thinks they should open a document. Speaker two: My main point is audience. Use direct wording when readers need exact conditions. A meeting leader says the team must be on the same page. Experienced members understand that they need shared criteria, but a new participant thinks they should open a document. The misunderstanding is harmless here, yet it shows why audience matters. Another note calls the rules a grey area without specifying what is unclear. The editor replaces the phrase with an exact description of the missing condition. Idioms can create a natural conversational tone and express attitudes efficiently. They are less useful when precision or accessibility is the main priority. Advanced language use includes knowing when not to use an idiom. The revised guide states conditions directly and leaves figurative expressions for discussion where clarification can be requested.",
+    "transcriptSha256": "7fe440e4e626a1c925965f9630b5444462e4ffad271e5ccb884ebe094a563507",
+    "audioSha256": "f8aa16c0781b93ca7ebd494377e52216665215b8523e92659034d0f8ce9123de",
+    "seconds": 59.688,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-16-dictation.mp3",
+    "transcript": "Let us spell out the conditions.",
+    "transcriptSha256": "3035b7abb438a7eebe99f3d970e94b39437d23d9756b99493ce3a29a75b6b68f",
+    "audioSha256": "fb53ee5c980b73b5abe1ee5b545fee3a44f335c1e3f627ad0c517d190e3b5607",
+    "seconds": 2.34,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-17.mp3",
+    "transcript": "Speaker one: Our key word is qualification. The source says that the programme may contribute to confidence among some participants. A draft paraphrase says that it makes students confident. Speaker two: My main point is fidelity. Change the wording while retaining the limits of the claim. The source says that the programme may contribute to confidence among some participants. A draft paraphrase says that it makes students confident. The shorter wording removes three qualifications: possibility, contribution rather than sole causation, and a limited group. A faithful paraphrase can change structure and vocabulary while retaining those boundaries. The editor writes that the programme could play a part in greater confidence for a subset of participants. She also attributes the claim to the report rather than presenting it as her own established finding. The purpose is not to preserve every word. It is to preserve the claim the words make. Checking scope and certainty is therefore as important as avoiding copied phrasing.",
+    "transcriptSha256": "ef8b9fa403e8903cc3ed30d5d92b486267542121675a16625608e8c41bf8a7e1",
+    "audioSha256": "48b917b7650305eda72d2d321fc2b2bafe6bf48173a0f14dbd4b1cc66d4a3807",
+    "seconds": 64.656,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-17-dictation.mp3",
+    "transcript": "A subset of participants described an improvement.",
+    "transcriptSha256": "c4dc2b4bc547fc6c5ab39ee4ecca7aa1ae9b17f75904046480956946d294fae1",
+    "audioSha256": "e6c3fba15784c90f9736a87d5976543c9b7e55cf3ef9ecc962742f43c97eee9e",
+    "seconds": 3.42,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-18.mp3",
+    "transcript": "Speaker one: Our key word is methodology. Source A is a survey of sixty students that favours a fixed afternoon session. Source B contains interviews with six students who travel far; they describe difficulties attending on that day. Speaker two: My main point is synthesis. Compare scope and method instead of ranking sources by size alone. Source A is a survey of sixty students that favours a fixed afternoon session. Source B contains interviews with six students who travel far; they describe difficulties attending on that day. Calling the sources contradictory overlooks the different questions they answer. The survey records preference across a wider group, while the interviews explain constraints for a particular group. Taken together, the sources support testing a mixed schedule, but neither measures long-term attendance. A synthesis should not choose one source simply because it has more respondents or more detailed stories. It compares scope, method, and relevance to the decision. The conclusion can integrate both forms of evidence while keeping the shared limitation visible.",
+    "transcriptSha256": "0d8441f222aa478918dcdec0d5d613c9b65aabe50fbc153b71d19183befee22e",
+    "audioSha256": "fdff4832cd1f1904997e1a4bbfdcd5805d1f2718731476042dc84428383dd2e6",
+    "seconds": 60.228,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-18-dictation.mp3",
+    "transcript": "Taken together, they suggest a mixed approach.",
+    "transcriptSha256": "e1e821832e614eb5bed4bbe7799928d628eca01bbe046ce9c8a23a7e6756aca7",
+    "audioSha256": "9f8f7dbceffbc9185b7e72d7a6161e05ea27a2b821d68eb17df86b13ca953c31",
+    "seconds": 3.564,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-19.mp3",
+    "transcript": "Speaker one: Our key word is premise. The proposal argues that the club is popular, so it must improve learning. Its evidence supports popularity, but the conclusion requires an additional premise: participation must produce the intended learning benefit. Speaker two: My main point is warrant. Ask what connects the popularity evidence to the learning conclusion. The proposal argues that the club is popular, so it must improve learning. Its evidence supports popularity, but the conclusion requires an additional premise: participation must produce the intended learning benefit. That premise has not been tested. A counterexample is possible: a popular activity can be enjoyable without improving the target skill. This does not prove the club is ineffective. It shows that the argument is incomplete. The committee asks for a measure of what participants can do before and after the programme, with relevant comparison evidence. Evaluating an argument therefore involves neither automatic acceptance nor automatic rejection. It identifies what would make the inference stronger and which claims remain unsupported.",
+    "transcriptSha256": "b76077cc50b6cf945dd7939bcf19a8a5758835a8c1f7ded2b28a128c2d84ed94",
+    "audioSha256": "d5d1971482884f82a137a495dd12346ccfde72c7cf1177e1598dd5b0d3213929",
+    "seconds": 71.532,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-19-dictation.mp3",
+    "transcript": "The counterexample narrows the conclusion.",
+    "transcriptSha256": "ed7c9569e0d399e245db9758db4496c72cba76996bb4da985a4ffc188a9d352d",
+    "audioSha256": "e2d6d9da47e108edea93752713c2f8939f18fb2ed57596b0a74b3c5d21a7f7d9",
+    "seconds": 2.88,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-20.mp3",
+    "transcript": "Speaker one: Our key word is thesis. An essay recommends a mixed schedule because the survey and interviews reveal different access needs. Its strongest counterargument concerns staffing: alternating days may make reliable supervision harder. Speaker two: My main point is qualification. A defensible position states the conditions under which it holds. An essay recommends a mixed schedule because the survey and interviews reveal different access needs. Its strongest counterargument concerns staffing: alternating days may make reliable supervision harder. The first draft dismisses this concern as resistance to change. The revision acknowledges the real constraint and limits the trial to days when staff are available. The thesis becomes more qualified but more defensible. An academic argument should be able to explain why its recommendation survives a serious objection and where it must change. Qualification is not indecision. It defines the conditions under which the position is supported. The final paragraph therefore recommends a bounded trial and a review, rather than claiming that a permanent solution has been proven.",
+    "transcriptSha256": "3d16af8f2134cb4d4995c2864ab87dafe6cca749074a7791e70c4c4757f65d06",
+    "audioSha256": "c7395f93d980478b2cb5a75bf8d16ad5102ee1c2bb272875ea1e13edc7440d36",
+    "seconds": 63.864,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-20-dictation.mp3",
+    "transcript": "That objection limits the scale, not the value, of a trial.",
+    "transcriptSha256": "a284b1c75c35183fb454698fa8dc7524d501027287be11fe3e15d4d66b4790f2",
+    "audioSha256": "e1354ac9f24e92e58d2ac0711f65ba6f0ba4d6efb8a8c3edcd3855225ebbc7bb",
+    "seconds": 4.104,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-21.mp3",
+    "transcript": "Speaker one: Our key word is objective. A proposal promises to improve access by adding one session. It lists the activity but gives no way to judge whether access improves. Speaker two: My main point is evaluation. Evaluate the stated need rather than only counting completed activities. A proposal promises to improve access by adding one session. It lists the activity but gives no way to judge whether access improves. The editor asks the team to identify which students currently face barriers and how their participation will be recorded. The proposal then names a coordinator, specifies existing staffing, and includes a contingency if supervision is unavailable. The trial’s success criterion compares participation among the relevant groups rather than counting sessions delivered. This does not require an elaborate prediction model. It requires alignment between the need, the action, and the evidence used to evaluate it. A proposal can be ambitious while remaining honest about what a short trial can demonstrate.",
+    "transcriptSha256": "aded91e54141cf0a4dd5109e71990e30c8caa56c6ef0701d705464410c332ba7",
+    "audioSha256": "c5583b49d678c48f4d5feee51e043c9a9955f32ee2aa1dc01fb3464a9d24488a",
+    "seconds": 68.652,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-21-dictation.mp3",
+    "transcript": "Success would be assessed against participation criteria.",
+    "transcriptSha256": "bcee5758a143fb7ee5e451f11c3f4655faa856a312553223cc42a3f0e1ff8ab2",
+    "audioSha256": "9200ca6a5b43fe97571808f58d37c04fea64c2600537077ea0ebf7b33e14b74e",
+    "seconds": 3.744,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-22.mp3",
+    "transcript": "Speaker one: Our key word is confound. Attendance increased during the trial, mainly among students already living near the school. The timetable changed at the same time as a promotional campaign. Speaker two: My main point is provisional. The recommendation remains provisional until competing explanations are tested. Attendance increased during the trial, mainly among students already living near the school. The timetable changed at the same time as a promotional campaign. A report attributing the increase entirely to the timetable would ignore a possible confound. The writer separates the observed pattern from its interpretation and recommends another trial that records how participants heard about the sessions. She also disaggregates the total by the groups relevant to the access objective. The limitation appears beside the finding because it changes what can be inferred, rather than as a minor footnote. Analytical reporting is useful when it helps decision makers see both a pattern and the questions that pattern leaves unanswered.",
+    "transcriptSha256": "061f2714b48dd86b60adb8c583015b8efb29e4e83fa6d63c9fdc183cd45b48ce",
+    "audioSha256": "484ed87eabb07b1e5467cc5dd49aac23a157b1a7677cf4c774c7d5f2d669ac5b",
+    "seconds": 57.564,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-22-dictation.mp3",
+    "transcript": "The report cannot separate that effect from promotion.",
+    "transcriptSha256": "629d7226e7613cbf9dea41a688eae883b7d7b07a24f422d1254a02937b53ee5f",
+    "audioSha256": "4ab8a31801f9fa88239ed0b8ce2c32a2882809ed965d06c9d9b22598ac6e2951",
+    "seconds": 3.528,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-23.mp3",
+    "transcript": "Speaker one: Our key word is interest. Two committee members disagree about the trial. One demands a fixed day, while the other insists on flexibility. Speaker two: My main point is conditional. Check the conditions before recording agreement. Two committee members disagree about the trial. One demands a fixed day, while the other insists on flexibility. The discussion becomes more productive when a student asks what each position protects. The fixed-day supporter needs reliable staffing; the flexibility supporter wants distant students to participate. These interests are not identical, but they are not automatically incompatible. The group considers alternating only between two days with confirmed supervision. Before accepting, one member paraphrases the proposal and checks the review condition. This prevents a polite nod from being recorded as unconditional agreement. A successful negotiation need not eliminate every difference. It should identify a workable next step, the conditions of consent, and the evidence that will guide reconsideration.",
+    "transcriptSha256": "00c39b1bce4d037f3a4b5ea7e30c3918693526991d493b12e6728648e3fb613f",
+    "audioSha256": "93ebfcb823c44e67cd41341b8b6dd7b12da9f64e18160bd2ce6ec5b0515f9543",
+    "seconds": 67.356,
+    "voice": "rms",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-23-dictation.mp3",
+    "transcript": "Let me distinguish the cost from the scheduling issue.",
+    "transcriptSha256": "f48eb3e5ee578fd5ddf7c4c641d97bb786b3f0cff09a9f69dde2562f2705c4cd",
+    "audioSha256": "f829e4046f7a34f5501e665330d2c09edce28a3ae84226d23c497fe6ebec846d",
+    "seconds": 3.312,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-24.mp3",
+    "transcript": "Speaker one: Our key word is selection bias. Source A reports a survey of sixty students, most of whom prefer a fixed afternoon. Respondents completed it voluntarily through a link shared in the school group. Speaker two: My main point is revision. A defensible recommendation identifies what evidence would require revision. Source A reports a survey of sixty students, most of whom prefer a fixed afternoon. Respondents completed it voluntarily through a link shared in the school group. The report treats preference as evidence of demand, but it does not show whether non-respondents face different constraints. Source B presents six interviews with students living far from the school. They describe transport difficulties and favour rotating days. These interviews explain a barrier but cannot estimate how common it is across the school. Source C records staffing availability. Two afternoons have reliable supervision, although one depends on a teacher who may leave next term. Taken together, the sources support a bounded trial on those two days, not a permanent claim that every group will benefit. The evaluation should record participation by relevant groups, distinguish attendance from active engagement, and ask how students heard about the sessions. A presenter must also explain what evidence would change the recommendation. If distant students still cannot attend, rotation alone may not address the barrier. If staffing becomes unreliable, the proposal needs revision even if demand is strong. A defensible decision links evidence, conditions, and willingness to reconsider rather than presenting confidence as proof.",
+    "transcriptSha256": "833983b19f9f69a145ac16c9a2565c09adab18e7f1d58dcb82ef1941a32703ef",
+    "audioSha256": "30e95876cf8cffe5dd7c533db9996663fdc2f2d74f761010111622105ff7f581",
+    "seconds": 92.376,
+    "voice": "slt",
+    "synthetic": true
+  },
+  {
+    "file": "en-c1-24-dictation.mp3",
+    "transcript": "A plausible objection concerns selection bias.",
+    "transcriptSha256": "d030b71f4d359a6968e5b13a579e6cfdac56691ec0097fed49baed885f4d28ea",
+    "audioSha256": "44c6e6999932742b77c33dc0efefa913e7008a65e6eb97b5b3e5643f619f13b6",
+    "seconds": 3.384,
+    "voice": "slt",
+    "synthetic": true
+  }
+]

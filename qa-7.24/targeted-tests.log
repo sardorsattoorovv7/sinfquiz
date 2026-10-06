@@ -1,0 +1,16 @@
+✔ Competition drafts enforce at least four stages, fixed capacity and unambiguous names (1.661664ms)
+✔ CSV retains all stage scores and prevents spreadsheet formula injection (0.931309ms)
+✔ Beginner Excel pack has 20 theory questions, six short answers and six usable practical tasks (1.488178ms)
+✔ 7.24 attendance: partial teams start, empty teams unranked, roster freezes and absent students cannot answer (1709.922844ms)
+✔ 7.24 unequal team sizes use fixed starting denominators and averaged tie breakers; withdrawn participants do not block next (1427.365616ms)
+✔ 7.24 cancellation closes joining and answers, preserves scores, is idempotent, and only owner/admin controls it (1286.912321ms)
+✔ 7.24 real SQL typing uses edit distance, Unicode, bounds and idempotence; poll never leaks hidden answers (1269.586704ms)
+✔ 7.24 upgrade preserves completed competition data and all quiz templates on rerun (1237.601681ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7127.043033

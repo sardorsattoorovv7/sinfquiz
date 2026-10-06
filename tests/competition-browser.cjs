@@ -1,15 +1,15 @@
 // Real Chromium -> React -> local Postgres RPCs; no live accounts or data are changed.
-const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright');
+const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES?process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright':'playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
 (async()=>{
- const root=path.resolve(__dirname,'..'),load=file=>import(pathToFileURL(path.join(root,file))),out=path.join(root,'qa-7.22');
+ const root=path.resolve(__dirname,'..'),load=file=>import(pathToFileURL(path.join(root,file))),out=path.resolve(root,process.env.COMPETITION_QA_DIR||'qa-7.24/browser');
  fs.mkdirSync(out,{recursive:true});
  const {PGlite}=await load('node_modules/@electric-sql/pglite/dist/index.js'),{createServer}=await load('node_modules/vite/dist/node/index.js'),{audioMazeLevels,mazePath}=await load('src/audio-maze-content.js');
  const db=new PGlite(),teacher='72200000-0000-0000-0000-000000000001',a='72200000-0000-0000-0000-000000000002',b='72200000-0000-0000-0000-000000000003';
  await db.exec("create role anon;create role authenticated;create schema auth;create table auth.users(id uuid primary key);create table public.documents(collection text,id text,data jsonb,primary key(collection,id));create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.uid',true),'')::uuid$$;grant usage on schema auth to authenticated;grant execute on function auth.uid() to authenticated;create function public.sq_is_admin() returns boolean language sql stable as $$select false$$;create function public.sq_is_teacher() returns boolean language sql stable security definer as $$select (data->>'role') in ('teacher','admin') from public.documents where collection='profiles' and id=auth.uid()::text$$;");
  for(const id of [teacher,a,b])await db.query('insert into auth.users values($1)',[id]);
  for(const [id,role,name] of [[teacher,'teacher','Ustoz'],[a,'student','Ali'],[b,'student','Lola']])await db.query('insert into public.documents values($1,$2,$3)',['profiles',id,JSON.stringify({role,name})]);
- await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.22.sql'),'utf8'));
+ await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.22.sql'),'utf8'));await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.24.sql'),'utf8'));
  const quiz={ownerId:teacher,ownerName:'Ustoz',title:'Olti kodli boshlang‘ich quiz',pin:'654321',subject:'Excel',visibility:'private',questions:[{type:'test',text:'Excel formulasini nima bilan boshlaymiz?',options:['=','+','A','#'],correct:0,points:100,explanation:'Formula tenglik belgisi bilan boshlanadi.'}]};
  await db.query('insert into public.documents values($1,$2,$3)',['quizzes','quiz-6',JSON.stringify(quiz)]);
  await db.query('insert into public.documents values($1,$2,$3)',['quizzes','excel-lab',JSON.stringify({...quiz,title:'Excel o‘rtacha amaliyoti',pin:'654322',questions:[{type:'office',text:'B5 katakka o‘rtacha qiymat formulasini yozing.',officeTemplate:'excel-average-first',points:100}]})]);
@@ -29,7 +29,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
     else if(p==='/api/quizzes')result={quizzes:[{...quiz,id:'quiz-6'}],publicQuizzes:[],lessons:[],players:[],results:[],typing:{texts:[],results:[],active:false},race:{active:false}};
     else if(p.startsWith('/api/competitions/')){
      const action=p.split('/').at(-1);actions.push({uid,action,...body});
-     const fn={list:['sq_comp_list',[]],catalog:['sq_comp_catalog',[]],state:['sq_comp_state',[body.id]],save:['sq_comp_save',[body.config?.id,body.config]],join:['sq_comp_join',[body.code,body.name]],control:['sq_comp_control',[body.id,body.action,body.stage||0]],answer:['sq_comp_answer',[body.id,body.stageId,body.actionId,body.body]],leave:['sq_comp_leave',[body.id]]}[action];
+     const fn={list:['sq_comp_list',[]],catalog:['sq_comp_catalog',[]],state:['sq_comp_state',[body.id]],poll:['sq_comp_poll',[body.id,body.revision??-1]],member:['sq_comp_member',[body.id,body.userId,body.included]],save:['sq_comp_save',[body.config?.id,body.config]],join:['sq_comp_join',[body.code,body.name]],control:['sq_comp_control',[body.id,body.action,body.stage||0]],answer:['sq_comp_answer',[body.id,body.stageId,body.actionId,body.body]],leave:['sq_comp_leave',[body.id]]}[action];
      result=await rpc(uid,...fn);
     }
    }catch(e){result={error:e.message};status=400}
@@ -66,7 +66,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await pa.getByRole('heading',{name:'Bosqich yakunlandi',exact:true}).waitFor();assert.equal(await pa.getByRole('button',{name:'Tizimdan chiqish'}).count(),0);assert.equal(await pa.evaluate(()=>sessionStorage.getItem('sq_active_hash')),'#musobaqa');await pa.reload();await pa.getByRole('heading',{name:'Bosqich yakunlandi',exact:true}).waitFor();assert.equal(await pa.locator('.comp-personal-history article').count(),1);
   await refresh(t);assert.deepEqual(await t.locator('.comp-leaderboard').first().locator('tbody .comp-rank').allTextContents(),['1','2']);
   await t.getByRole('button',{name:'Keyingi bosqich',exact:true}).click();for(const p of [pa,pb])await refresh(p);
-  console.log('PASS quiz ranked');const text=await pa.locator('.comp-typing-target').innerText();await pa.getByLabel('Musobaqa typing matni').fill(text);await pa.getByRole('button',{name:'Typingni yakunlash',exact:true}).click();await pb.getByLabel('Musobaqa typing matni').fill(text.replace(/^./,'?'));await pb.getByRole('button',{name:'Typingni yakunlash',exact:true}).click();await pa.getByRole('heading',{name:'Bosqich yakunlandi',exact:true}).waitFor();
+  console.log('PASS quiz ranked');const text=await pa.locator('.comp-typing-target').innerText();await pa.getByLabel('Musobaqa typing matni').fill(text);await pa.getByRole('button',{name:'Typingni yakunlash',exact:true}).click();await pb.getByLabel('Musobaqa typing matni').fill(text.slice(1));await pb.getByRole('button',{name:'Typingni yakunlash',exact:true}).click();await pb.getByRole('heading',{name:'Bosqich yakunlandi',exact:true}).waitFor();assert.ok(Number((await pb.locator('.comp-feedback').innerText()).match(/([\d.]+)% aniqlik/)[1])>95);await pa.getByRole('heading',{name:'Bosqich yakunlandi',exact:true}).waitFor();
   await refresh(t);await t.getByRole('button',{name:'Keyingi bosqich',exact:true}).click();await refresh(pa);await refresh(pb);
   current=pb;await pb.setViewportSize({width:390,height:844});await noOverflow(pb);await axe(pb,'maze mobile');await shot(pb,'competition-maze-mobile');await pb.setViewportSize({width:1440,height:1000});
   console.log('PASS typing finished');current=pa;const level=audioMazeLevels[0],route=mazePath(level.grid,level.start,level.exit);let prev=route[0];
@@ -89,7 +89,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await pa.getByRole('button',{name:'Tungi ko‘rinishga o‘tish',exact:true}).click();await pa.setViewportSize({width:390,height:844});await pa.waitForTimeout(350);await noOverflow(pa);await axe(pa,'results dark mobile');await shot(pa,'competition-results-dark-mobile');
   const download=t.waitForEvent('download');await t.getByRole('button',{name:'Natijalarni Excel uchun olish',exact:true}).click();assert.match((await download).suggestedFilename(),/\.csv$/);
   await pa.getByRole('button',{name:'Musobaqalar',exact:true}).click();await pa.getByRole('heading',{name:'Jamoaviy musobaqalar',exact:true}).waitFor();
-  assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'accessibility.json'),JSON.stringify(accessibility,null,2));fs.writeFileSync(path.join(out,'competition-browser.json'),JSON.stringify({status:'pass',stages:5,teams:2,sourceQuizPin:'654321',results:ranks,runtimeErrors:errors,answerCalls:actions.filter(a=>a.action==='answer').length},null,2));
+  assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'accessibility.json'),JSON.stringify(accessibility,null,2));fs.writeFileSync(path.join(out,'competition-browser.json'),JSON.stringify({status:'pass',browser:await browser.version(),stages:5,teams:2,sourceQuizPin:'654321',results:ranks,runtimeErrors:errors,answerCalls:actions.filter(a=>a.action==='answer').length},null,2));
   console.log('PASS actual five-stage team competition: 6-code quiz, typing, full text maze, Excel practical, custom quiz and real Python worker, true rank and CSV; responsive/axe checks pass.');
  }catch(e){if(current&&!current.isClosed())await shot(current,'failure').catch(()=>{});fs.writeFileSync(path.join(out,'accessibility.json'),JSON.stringify(accessibility,null,2));console.error('Browser failure at',current?.url());throw e}
  finally{await browser.close();await server.close();await db.close()}

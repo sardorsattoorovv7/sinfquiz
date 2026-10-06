@@ -1,0 +1,14 @@
+✔ 7.23: 108 complete original lessons, all exercise formats and transcript audio integrity (42.847061ms)
+✔ 7.23: mandatory placement, balanced low-level stop, UID persistence, high placement pending human evidence and locked RPCs (3073.89191ms)
+✔ 7.23: lesson evidence, idempotent grades, review gating, revisions, versions, teacher isolation and private audio (2149.673637ms)
+✔ 7.23: normalized apostrophes and case do not erase missing grammar; server level review requires all skills (1862.766862ms)
+✔ 7.23: anonymous UID joins course class without registering; final checks alternate and objective results alone never unlock the next level (2392.613105ms)
+✔ Vercel build uses Supabase Auth, Postgres and Realtime without Firebase (4.384828ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9782.829494

@@ -1,3 +1,15 @@
+# SinfQuiz 7.24
+
+Jamoaviy musobaqada kelmaganlarni belgilash, hozirgi tarkib bilan boshlash, adolatli typing va yengil holat yangilanishi qo‘shildi. **supabase-migration-7.24.sql**ni bajaring va yangi kodni o‘rnating. [Yangilash tartibi](UPDATE-7.24.md) · [Amaliy tekshiruvlar](QA-7.24.md).
+
+# SinfQuiz 7.23.1
+
+Ovoz yozuvi va qoralama saqlash oqimlari yangilandi. 7.23 o‘rnatilgan bo‘lsa **supabase-migration-7.23.1.sql**ni bajaring va yangi kodni o‘rnating. Bosqichlar: [UPDATE-7.23.1.md](UPDATE-7.23.1.md). Tekshiruv: [QA-7.23.1.md](QA-7.23.1.md).
+
+**Ingliz tili darsi — Noldan C1 gacha**: 108 original dars, 216 mahalliy audio, adaptiv daraja testi, o‘zlashtirish bo‘yicha ketma-ket ochilish, writing/speaking rubrikalari va ustoz guruhiga biriktirish. Kirish: bosh menyu → **Ingliz tili darsi**. Mavjud modul va foydalanuvchi oqimlari saqlangan.
+
+Ishlayotgan 7.22 bazada `supabase-migration-7.23.sql` ni RUN qiling va yangi kodni o‘rnating. Qadamlar: [UPDATE-7.23.md](UPDATE-7.23.md). Tekshiruv: [QA-7.23.md](QA-7.23.md). Kontent, manbalar va audio chegaralari: [ENGLISH-COURSE-7.23.md](ENGLISH-COURSE-7.23.md).
+
 # SinfQuiz 7.22
 
 Jamoaviy musobaqalar: 4–24 bosqich, 2–32 jamoa, har birida 1–12 a’zo; quiz, typing, labirint va amaliy savollar. Boshlang‘ich Excel uchun 32 savol va 6 amaliy vazifa. O‘rnatish: [UPDATE-7.22.md](UPDATE-7.22.md), yangi SQL: supabase-migration-7.22.sql, tekshiruv: [QA-7.22.md](QA-7.22.md).

@@ -1,0 +1,12 @@
+PASS sources selected
+7:29:08 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:29:08 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS draft saved
+PASS lobby ready
+PASS quiz ranked
+7:29:14 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS typing finished
+PASS full maze
+7:29:26 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+7:29:27 AM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS actual five-stage team competition: 6-code quiz, typing, full text maze, Excel practical, custom quiz and real Python worker, true rank and CSV; responsive/axe checks pass.

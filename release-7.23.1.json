@@ -1,0 +1,12 @@
+{
+  "version": "7.23.1",
+  "audioFilesVerified": 216,
+  "previousArchiveFilesPreserved": 837,
+  "previousPublicAssetsUnchanged": true,
+  "testsPassed": 135,
+  "browserSuitesPassed": 2,
+  "accessibilityChecks": 10,
+  "buildPassed": true,
+  "archiveCRC": "Checked after creation; package is delivered only when verification passes.",
+  "files": 867
+}
