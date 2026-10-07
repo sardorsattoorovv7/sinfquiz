@@ -1,0 +1,15 @@
+{
+  "version": "7.25.0",
+  "items": 144,
+  "domains": 4,
+  "itemsPerBand": 48,
+  "itemsPerTimedForm": 32,
+  "books": 198,
+  "subjects": {
+    "chemistry": 12,
+    "english": 108,
+    "biology": 30,
+    "informatics": 48
+  },
+  "englishSeedParts": 17
+}

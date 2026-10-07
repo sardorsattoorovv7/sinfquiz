@@ -1,3 +1,9 @@
+# SinfQuiz 7.25
+
+IQ va mantiq: 144 original topshiriq, 32 savollik urinish, 4 yo‘nalish profili va izohli yechimlar. Yagona **Darsliklar** oynasi: Kimyo 12, Ingliz tili 108, Biologiya 30, Informatika/Python 48 dars. **supabase-migration-7.25.sql** faylini RUN qiling va yangi frontendni o‘rnating. [Yangilash tartibi](UPDATE-7.25.md) · [Tekshiruvlar](QA-7.25.md) · [IQ talqini va ilmiy chegaralar](IQ-METHODS-7.25.md). Bu natijalar yosh me’yorlari bilan standartlashtirilgan IQ balli emas.
+
+Quyida avvalgi relizlar va dastlabki o‘rnatish yo‘riqnomalari saqlangan. Ishlayotgan 7.24 saytni yangilashda avval 7.25 yo‘riqnomasini o‘qing.
+
 # SinfQuiz 7.24
 
 Jamoaviy musobaqada kelmaganlarni belgilash, hozirgi tarkib bilan boshlash, adolatli typing va yengil holat yangilanishi qo‘shildi. **supabase-migration-7.24.sql**ni bajaring va yangi kodni o‘rnating. [Yangilash tartibi](UPDATE-7.24.md) · [Amaliy tekshiruvlar](QA-7.24.md).

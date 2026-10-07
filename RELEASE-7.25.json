@@ -1,0 +1,21 @@
+{
+  "version": "7.25.0",
+  "testedAt": "2026-10-07",
+  "testsPassed": 156,
+  "browserSuitesPassed": 3,
+  "browserVersion": "133.0.6943.0",
+  "accessibilityChecks": 18,
+  "buildPassed": true,
+  "iqItems": 144,
+  "iqItemsPerRun": 32,
+  "originalTextbooks": 198,
+  "criterionBasedScoresOnly": true,
+  "ageNormedIQValidationPerformed": false,
+  "previousArchiveFilesPreserved": 905,
+  "previousPublicAssetsUnchanged": true,
+  "englishAudioHashesVerified": 216,
+  "migrationSha256": "d0e3f104af6b146e9dc80403750993cbde5e27c41c743b7671177680da96a04c",
+  "scope": "Local Chromium and PostgreSQL/PGlite RPC fixtures; no live Supabase/Vercel or psychometric norming trial",
+  "archiveCRC": "Verified after creation",
+  "files": 987
+}

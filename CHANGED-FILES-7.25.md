@@ -1,0 +1,104 @@
+# SinfQuiz 7.25 — o‘zgargan fayllar
+
+7.24 arxivi bilan baytlar bo‘yicha solishtirildi. Oldingi 905 fayl saqlangan; public aktivlar o‘zgarmagan.
+
+## Yangilangan
+
+- `README.md`
+- `package-lock.json`
+- `package.json`
+- `src/App.jsx`
+- `src/BiologyAtlas.jsx`
+- `src/ChemistryAtlas.jsx`
+- `src/EnglishCourse.jsx`
+- `src/english-course/Lesson.jsx`
+- `src/theme.css`
+- `tests/english-browser.cjs`
+- `tests/vercel.test.js`
+
+## Yangi
+
+- `CHANGED-FILES-7.25.md`
+- `IQ-METHODS-7.25.md`
+- `QA-7.25.md`
+- `RELEASE-7.25.json`
+- `UPDATE-7.25.md`
+- `data/iq/build-bank.js`
+- `data/iq/items.json`
+- `data/iq/schema.sql`
+- `data/science-textbooks.js`
+- `generated/iq-library-manifest.json`
+- `qa-7.25/all-tests.log`
+- `qa-7.25/browser/accessibility.json`
+- `qa-7.25/browser/biology-book-mobile.png`
+- `qa-7.25/browser/chemistry-book-desktop.png`
+- `qa-7.25/browser/iq-intro-desktop.png`
+- `qa-7.25/browser/iq-question-mobile.png`
+- `qa-7.25/browser/iq-results-board.png`
+- `qa-7.25/browser/iq-results-dark-mobile.png`
+- `qa-7.25/browser/learning-browser.json`
+- `qa-7.25/browser/library-desktop.png`
+- `qa-7.25/browser.log`
+- `qa-7.25/build.log`
+- `qa-7.25/competition-regression.log`
+- `qa-7.25/english-regression.log`
+- `qa-7.25/regression/competition/accessibility.json`
+- `qa-7.25/regression/competition/competition-browser.json`
+- `qa-7.25/regression/competition/competition-builder-desktop.png`
+- `qa-7.25/regression/competition/competition-builder-mobile.png`
+- `qa-7.25/regression/competition/competition-maze-mobile.png`
+- `qa-7.25/regression/competition/competition-results-board.png`
+- `qa-7.25/regression/competition/competition-results-dark-mobile.png`
+- `qa-7.25/regression/competition/competition-results-desktop.png`
+- `qa-7.25/regression/english/accessibility.json`
+- `qa-7.25/regression/english/english-browser.json`
+- `qa-7.25/regression/english/english-home-desktop.png`
+- `qa-7.25/regression/english/english-home-mobile.png`
+- `qa-7.25/regression/english/english-reading-board.png`
+- `qa-7.25/regression/english/english-reading-dark.png`
+- `qa-7.25/regression/english/english-reading-mobile.png`
+- `qa-7.25/regression/english/english-teacher-desktop.png`
+- `qa-7.25/regression/english/placement-result.png`
+- `scripts/build-iq-library.mjs`
+- `scripts/package-learning-release.py`
+- `sql/7.25/01-schema.sql`
+- `sql/7.25/02-iq-band-1.sql`
+- `sql/7.25/03-iq-band-2.sql`
+- `sql/7.25/04-iq-band-3.sql`
+- `sql/7.25/05-book-keys.sql`
+- `sql/english-7.23/01-schema.sql`
+- `sql/english-7.23/02-lessons.sql`
+- `sql/english-7.23/03-lessons.sql`
+- `sql/english-7.23/04-lessons.sql`
+- `sql/english-7.23/05-lessons.sql`
+- `sql/english-7.23/06-lessons.sql`
+- `sql/english-7.23/07-lessons.sql`
+- `sql/english-7.23/08-lessons.sql`
+- `sql/english-7.23/09-lessons.sql`
+- `sql/english-7.23/10-lessons.sql`
+- `sql/english-7.23/11-lessons.sql`
+- `sql/english-7.23/12-lessons.sql`
+- `sql/english-7.23/13-lessons.sql`
+- `sql/english-7.23/14-lessons.sql`
+- `sql/english-7.23/15-lessons.sql`
+- `sql/english-7.23/16-lessons.sql`
+- `sql/english-7.23/17-lessons.sql`
+- `sql/english-7.23/18-lessons.sql`
+- `sql/english-7.23/README.md`
+- `src/BookPractice.jsx`
+- `src/IQHub.jsx`
+- `src/LessonText.jsx`
+- `src/TextbookHub.jsx`
+- `src/iq/Item.jsx`
+- `src/iq/model.js`
+- `src/iq/practice.js`
+- `src/iq/service.js`
+- `src/learning-hub.css`
+- `src/textbooks/Reader.jsx`
+- `src/textbooks/model.js`
+- `supabase-migration-7.25.sql`
+- `tests/iq-library.test.js`
+- `tests/learning-browser.cjs`
+- `tests/learning-fixture.js`
+
+`qa-7.25/` — ushbu relizda qayta bajarilgan testlar, loglar va ekran suratlari. Tarixiy QA hisobotlari alohida saqlanadi.

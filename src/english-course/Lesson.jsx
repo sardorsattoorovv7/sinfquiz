@@ -1,8 +1,10 @@
 import React,{useEffect,useState} from 'react';import {ArrowLeft,CheckCircle2,Bookmark} from 'lucide-react';
+import {books} from '../iq/service.js';
 import {course} from './service.js';import {useDraft,DraftNotice} from './useDraft.jsx';import {catalog} from './catalog.js';import {Audio,Recorder} from './Audio.jsx';import Exercise from './Exercise.jsx';import Visual from './Visual.jsx';import Writing from './Writing.jsx';
 const steps=['Ko‘rib tushun','So‘z va talaffuz','Grammatika','Tinglash','O‘qish','Yozish','Gapirish','Yakun'];
 export default function Lesson({data,uid,onBack,onUpdated,onActive}){
  const lesson=data.lesson,[run,setRun]=useState(data.run),[error,setError]=useState(''),[busy,setBusy]=useState(false),[voiceBusy,setVoiceBusy]=useState(false),[exitAnswers,setExitAnswers]=useState({}),[word,setWord]=useState(null),[marked,setMarked]=useState([]),[recap,setRecap]=useState(false);
+ useEffect(()=>{const t=setTimeout(()=>books('mark',{id:'book-'+lesson.id}).catch(()=>{}),4500);return()=>clearTimeout(t)},[lesson.id,uid]);
  const readonly=['submitted','reviewed','mastered'].includes(run.status),variant=(run.state.exitHistory?.length||0)%2;
  const draft=useDraft({key:`sq_en_draft:${uid}:${run.id}`,work:run,defaults:{step:0,writing:'',completed:[],speaking:{}},send:body=>course('save',body),fetchRemote:async()=>(await course('run',{id:run.id})).run,onSaved:setRun});
  const {step,writing,completed,speaking}=draft.draft, sync=draft.sync,flush=draft.flush;

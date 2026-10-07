@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.25.0 test:e2e:learning
+> node tests/learning-browser.cjs
+
+1:11:05 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:11 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:11 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:17 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:21 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:24 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:25 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+1:11:25 PM [vite] (client) [console.warn] Couldn't load preload assets:  {"isTrusted":true}
+PASS complete IQ and four-subject library workflow, SQL score, draft recovery, ownership, real Python/Office and English gates.

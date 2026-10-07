@@ -1,0 +1,7586 @@
+[
+  {
+    "id": "iq-1-0-patterns-0-0",
+    "band": 0,
+    "domain": "patterns",
+    "family": 0,
+    "order": 0,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        4,
+        1,
+        2,
+        null
+      ]
+    },
+    "options": [
+      3,
+      4,
+      1,
+      2
+    ],
+    "answer": 0,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 1 + 2 = 3 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 1,
+      "c": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-0-1",
+    "band": 0,
+    "domain": "patterns",
+    "family": 0,
+    "order": 1,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        4,
+        2,
+        2,
+        null
+      ]
+    },
+    "options": [
+      5,
+      2,
+      3,
+      4
+    ],
+    "answer": 3,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 2 + 2 = 4 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 2,
+      "c": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-0-2",
+    "band": 0,
+    "domain": "patterns",
+    "family": 0,
+    "order": 2,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        4,
+        3,
+        2,
+        null
+      ]
+    },
+    "options": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "answer": 2,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 3 + 2 = 5 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 3,
+      "c": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-0-3",
+    "band": 0,
+    "domain": "patterns",
+    "family": 0,
+    "order": 3,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        4,
+        4,
+        2,
+        null
+      ]
+    },
+    "options": [
+      5,
+      6,
+      7,
+      4
+    ],
+    "answer": 1,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 4 + 2 = 6 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 4,
+      "c": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-1-0",
+    "band": 0,
+    "domain": "patterns",
+    "family": 1,
+    "order": 4,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        0,
+        1,
+        2,
+        1,
+        2,
+        0,
+        2,
+        0,
+        null
+      ]
+    },
+    "options": [
+      2,
+      0,
+      3,
+      1
+    ],
+    "answer": 3,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 0
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-1-1",
+    "band": 0,
+    "domain": "patterns",
+    "family": 1,
+    "order": 5,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        1,
+        2,
+        0,
+        2,
+        0,
+        1,
+        0,
+        1,
+        null
+      ]
+    },
+    "options": [
+      1,
+      3,
+      2,
+      0
+    ],
+    "answer": 2,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-1-2",
+    "band": 0,
+    "domain": "patterns",
+    "family": 1,
+    "order": 6,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        2,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1,
+        2,
+        null
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-1-3",
+    "band": 0,
+    "domain": "patterns",
+    "family": 1,
+    "order": 7,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        0,
+        2,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        null
+      ]
+    },
+    "options": [
+      2,
+      0,
+      1,
+      3
+    ],
+    "answer": 0,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 0
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-2-0",
+    "band": 0,
+    "domain": "patterns",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        1,
+        4,
+        null
+      ]
+    },
+    "options": [
+      7,
+      1,
+      5,
+      4
+    ],
+    "answer": 2,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 1,
+      "b": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-2-1",
+    "band": 0,
+    "domain": "patterns",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        2,
+        5,
+        null
+      ]
+    },
+    "options": [
+      3,
+      7,
+      6,
+      5
+    ],
+    "answer": 1,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 2,
+      "b": 5
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-2-2",
+    "band": 0,
+    "domain": "patterns",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        3,
+        6,
+        null
+      ]
+    },
+    "options": [
+      5,
+      4,
+      7,
+      1
+    ],
+    "answer": 0,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 3,
+      "b": 6
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-patterns-2-3",
+    "band": 0,
+    "domain": "patterns",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        4,
+        7,
+        null
+      ]
+    },
+    "options": [
+      2,
+      1,
+      7,
+      3
+    ],
+    "answer": 3,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 4,
+      "b": 7
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-0-0",
+    "band": 0,
+    "domain": "numbers",
+    "family": 0,
+    "order": 0,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ]
+    },
+    "options": [
+      12,
+      10,
+      13,
+      14
+    ],
+    "answer": 0,
+    "explanation": "Har safar 2 qo‘shiladi: 10 + 2 = 12.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 2,
+      "d": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-0-1",
+    "band": 0,
+    "domain": "numbers",
+    "family": 0,
+    "order": 1,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        3,
+        6,
+        9,
+        12,
+        15
+      ]
+    },
+    "options": [
+      15,
+      19,
+      21,
+      18
+    ],
+    "answer": 3,
+    "explanation": "Har safar 3 qo‘shiladi: 15 + 3 = 18.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 3,
+      "d": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-0-2",
+    "band": 0,
+    "domain": "numbers",
+    "family": 0,
+    "order": 2,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        4,
+        8,
+        12,
+        16,
+        20
+      ]
+    },
+    "options": [
+      25,
+      28,
+      24,
+      20
+    ],
+    "answer": 2,
+    "explanation": "Har safar 4 qo‘shiladi: 20 + 4 = 24.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 4,
+      "d": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-0-3",
+    "band": 0,
+    "domain": "numbers",
+    "family": 0,
+    "order": 3,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        5,
+        10,
+        15,
+        20,
+        25
+      ]
+    },
+    "options": [
+      35,
+      30,
+      25,
+      31
+    ],
+    "answer": 1,
+    "explanation": "Har safar 5 qo‘shiladi: 25 + 5 = 30.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 5,
+      "d": 5
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-1-0",
+    "band": 0,
+    "domain": "numbers",
+    "family": 1,
+    "order": 4,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        2,
+        4,
+        8,
+        14,
+        22
+      ]
+    },
+    "options": [
+      30,
+      34,
+      28,
+      32
+    ],
+    "answer": 3,
+    "explanation": "Farqlar 2, 4, 6, 8, 10 bo‘lib ortadi. 22 + 10 = 32.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 2,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-1-1",
+    "band": 0,
+    "domain": "numbers",
+    "family": 1,
+    "order": 5,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        3,
+        5,
+        9,
+        15,
+        23
+      ]
+    },
+    "options": [
+      35,
+      29,
+      33,
+      31
+    ],
+    "answer": 2,
+    "explanation": "Farqlar 2, 4, 6, 8, 10 bo‘lib ortadi. 23 + 10 = 33.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 3,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-1-2",
+    "band": 0,
+    "domain": "numbers",
+    "family": 1,
+    "order": 6,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        4,
+        6,
+        10,
+        16,
+        24
+      ]
+    },
+    "options": [
+      30,
+      34,
+      32,
+      36
+    ],
+    "answer": 1,
+    "explanation": "Farqlar 2, 4, 6, 8, 10 bo‘lib ortadi. 24 + 10 = 34.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 4,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-1-3",
+    "band": 0,
+    "domain": "numbers",
+    "family": 1,
+    "order": 7,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        5,
+        7,
+        11,
+        17,
+        25
+      ]
+    },
+    "options": [
+      35,
+      33,
+      37,
+      31
+    ],
+    "answer": 0,
+    "explanation": "Farqlar 2, 4, 6, 8, 10 bo‘lib ortadi. 25 + 10 = 35.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 5,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-2-0",
+    "band": 0,
+    "domain": "numbers",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    "options": [
+      34,
+      16,
+      32,
+      18
+    ],
+    "answer": 2,
+    "explanation": "Har son 2 marta ortadi: 16 × 2 = 32.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 2,
+      "r": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-2-1",
+    "band": 0,
+    "domain": "numbers",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        3,
+        6,
+        12,
+        24
+      ]
+    },
+    "options": [
+      24,
+      48,
+      26,
+      50
+    ],
+    "answer": 1,
+    "explanation": "Har son 2 marta ortadi: 24 × 2 = 48.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 3,
+      "r": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-2-2",
+    "band": 0,
+    "domain": "numbers",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        4,
+        8,
+        16,
+        32
+      ]
+    },
+    "options": [
+      64,
+      34,
+      66,
+      32
+    ],
+    "answer": 0,
+    "explanation": "Har son 2 marta ortadi: 32 × 2 = 64.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 4,
+      "r": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-numbers-2-3",
+    "band": 0,
+    "domain": "numbers",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        5,
+        10,
+        20,
+        40
+      ]
+    },
+    "options": [
+      42,
+      82,
+      40,
+      80
+    ],
+    "answer": 3,
+    "explanation": "Har son 2 marta ortadi: 40 × 2 = 80.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 5,
+      "r": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-0-0",
+    "band": 0,
+    "domain": "logic",
+    "family": 0,
+    "order": 0,
+    "prompt": "Barcha doiralar — ko‘k shakllar. Barcha ko‘k shakllar — belgilangan shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "doiralar",
+        "ko‘k shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "options": [
+      "Barcha doiralar — belgilangan shakllar.",
+      "Barcha belgilangan shakllar — doiralar.",
+      "Hech bir doiralar — belgilangan shakllar emas.",
+      "Barcha belgilangan shakllar — ko‘k shakllar."
+    ],
+    "answer": 0,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "doiralar",
+        "ko‘k shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-0-1",
+    "band": 0,
+    "domain": "logic",
+    "family": 0,
+    "order": 1,
+    "prompt": "Barcha kvadratlar — katta shakllar. Barcha katta shakllar — ko‘k shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "kvadratlar",
+        "katta shakllar",
+        "ko‘k shakllar"
+      ]
+    },
+    "options": [
+      "Barcha ko‘k shakllar — kvadratlar.",
+      "Hech bir kvadratlar — ko‘k shakllar emas.",
+      "Barcha ko‘k shakllar — katta shakllar.",
+      "Barcha kvadratlar — ko‘k shakllar."
+    ],
+    "answer": 3,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "kvadratlar",
+        "katta shakllar",
+        "ko‘k shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-0-2",
+    "band": 0,
+    "domain": "logic",
+    "family": 0,
+    "order": 2,
+    "prompt": "Barcha X guruhidagilar — Y guruhidagilar. Barcha Y guruhidagilar — Z guruhidagilar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "X guruhidagilar",
+        "Y guruhidagilar",
+        "Z guruhidagilar"
+      ]
+    },
+    "options": [
+      "Hech bir X guruhidagilar — Z guruhidagilar emas.",
+      "Barcha Z guruhidagilar — Y guruhidagilar.",
+      "Barcha X guruhidagilar — Z guruhidagilar.",
+      "Barcha Z guruhidagilar — X guruhidagilar."
+    ],
+    "answer": 2,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "X guruhidagilar",
+        "Y guruhidagilar",
+        "Z guruhidagilar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-0-3",
+    "band": 0,
+    "domain": "logic",
+    "family": 0,
+    "order": 3,
+    "prompt": "Barcha uchburchaklar — kichik shakllar. Barcha kichik shakllar — belgilangan shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "uchburchaklar",
+        "kichik shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "options": [
+      "Barcha belgilangan shakllar — kichik shakllar.",
+      "Barcha uchburchaklar — belgilangan shakllar.",
+      "Barcha belgilangan shakllar — uchburchaklar.",
+      "Hech bir uchburchaklar — belgilangan shakllar emas."
+    ],
+    "answer": 1,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "uchburchaklar",
+        "kichik shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-1-0",
+    "band": 0,
+    "domain": "logic",
+    "family": 1,
+    "order": 4,
+    "prompt": "Ali Loladan oldinda. Lola Azizdan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Lola",
+      "Aziz",
+      "Aniqlab bo‘lmaydi",
+      "Ali"
+    ],
+    "answer": 3,
+    "explanation": "Tartib: Ali → Lola → Aziz. Ikki berilgan munosabatdan eng oldinda Ali ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Ali",
+        "Lola",
+        "Aziz"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-1-1",
+    "band": 0,
+    "domain": "logic",
+    "family": 1,
+    "order": 5,
+    "prompt": "Nodira Dilshoddan oldinda. Dilshod Malikadan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Malika",
+      "Aniqlab bo‘lmaydi",
+      "Nodira",
+      "Dilshod"
+    ],
+    "answer": 2,
+    "explanation": "Tartib: Nodira → Dilshod → Malika. Ikki berilgan munosabatdan eng oldinda Nodira ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Nodira",
+        "Dilshod",
+        "Malika"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-1-2",
+    "band": 0,
+    "domain": "logic",
+    "family": 1,
+    "order": 6,
+    "prompt": "Sardor Ziloladan oldinda. Zilola Otabekdan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Aniqlab bo‘lmaydi",
+      "Sardor",
+      "Zilola",
+      "Otabek"
+    ],
+    "answer": 1,
+    "explanation": "Tartib: Sardor → Zilola → Otabek. Ikki berilgan munosabatdan eng oldinda Sardor ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Sardor",
+        "Zilola",
+        "Otabek"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-1-3",
+    "band": 0,
+    "domain": "logic",
+    "family": 1,
+    "order": 7,
+    "prompt": "Madina Javlondan oldinda. Javlon Anvardan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Madina",
+      "Javlon",
+      "Anvar",
+      "Aniqlab bo‘lmaydi"
+    ],
+    "answer": 0,
+    "explanation": "Tartib: Madina → Javlon → Anvar. Ikki berilgan munosabatdan eng oldinda Madina ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Madina",
+        "Javlon",
+        "Anvar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-2-0",
+    "band": 0,
+    "domain": "logic",
+    "family": 2,
+    "order": 8,
+    "prompt": "Bu vazifadagi barcha to‘rtburchaklar qizil. P shakli qizil emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — qizil.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — to‘rtburchak emas.",
+      "P — to‘rtburchak."
+    ],
+    "answer": 2,
+    "explanation": "Agar P to‘rtburchak bo‘lganida qizil bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "to‘rtburchak",
+        "qizil"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-2-1",
+    "band": 0,
+    "domain": "logic",
+    "family": 2,
+    "order": 9,
+    "prompt": "Bu vazifadagi barcha doiralar katta. P shakli katta emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — doira emas.",
+      "P — doira.",
+      "P — katta."
+    ],
+    "answer": 1,
+    "explanation": "Agar P doira bo‘lganida katta bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "doira",
+        "katta"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-2-2",
+    "band": 0,
+    "domain": "logic",
+    "family": 2,
+    "order": 10,
+    "prompt": "Bu vazifadagi barcha uchburchaklar belgilangan. P shakli belgilangan emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — uchburchak emas.",
+      "P — uchburchak.",
+      "P — belgilangan.",
+      "P haqida hech qanday xulosa yo‘q."
+    ],
+    "answer": 0,
+    "explanation": "Agar P uchburchak bo‘lganida belgilangan bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "uchburchak",
+        "belgilangan"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-logic-2-3",
+    "band": 0,
+    "domain": "logic",
+    "family": 2,
+    "order": 11,
+    "prompt": "Bu vazifadagi barcha romblar yashil. P shakli yashil emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — romb.",
+      "P — yashil.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — romb emas."
+    ],
+    "answer": 3,
+    "explanation": "Agar P romb bo‘lganida yashil bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "romb",
+        "yashil"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-0-0",
+    "band": 0,
+    "domain": "spatial",
+    "family": 0,
+    "order": 0,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-0-1",
+    "band": 0,
+    "domain": "spatial",
+    "family": 0,
+    "order": 1,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-0-2",
+    "band": 0,
+    "domain": "spatial",
+    "family": 0,
+    "order": 2,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-0-3",
+    "band": 0,
+    "domain": "spatial",
+    "family": 0,
+    "order": 3,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-1-0",
+    "band": 0,
+    "domain": "spatial",
+    "family": 1,
+    "order": 4,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-1-1",
+    "band": 0,
+    "domain": "spatial",
+    "family": 1,
+    "order": 5,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-1-2",
+    "band": 0,
+    "domain": "spatial",
+    "family": 1,
+    "order": 6,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-1-3",
+    "band": 0,
+    "domain": "spatial",
+    "family": 1,
+    "order": 7,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-2-0",
+    "band": 0,
+    "domain": "spatial",
+    "family": 2,
+    "order": 8,
+    "prompt": "Har gal strelka soat yo‘nalishida 90° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        0,
+        1,
+        2
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 2,
+    "explanation": "Har qadam 90° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 0,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-2-1",
+    "band": 0,
+    "domain": "spatial",
+    "family": 2,
+    "order": 9,
+    "prompt": "Har gal strelka soat yo‘nalishida 90° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        1,
+        2,
+        3
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Har qadam 90° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 1,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-2-2",
+    "band": 0,
+    "domain": "spatial",
+    "family": 2,
+    "order": 10,
+    "prompt": "Har gal strelka soat yo‘nalishida 90° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        2,
+        3,
+        0
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 0,
+    "explanation": "Har qadam 90° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 2,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-0-spatial-2-3",
+    "band": 0,
+    "domain": "spatial",
+    "family": 2,
+    "order": 11,
+    "prompt": "Har gal strelka soat yo‘nalishida 90° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        3,
+        0,
+        1
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 3,
+    "explanation": "Har qadam 90° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 3,
+      "step": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-0-0",
+    "band": 1,
+    "domain": "patterns",
+    "family": 0,
+    "order": 0,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        5,
+        1,
+        3,
+        null
+      ]
+    },
+    "options": [
+      3,
+      4,
+      5,
+      1
+    ],
+    "answer": 1,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 1 + 3 = 4 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 1,
+      "c": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-0-1",
+    "band": 1,
+    "domain": "patterns",
+    "family": 0,
+    "order": 1,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        5,
+        2,
+        3,
+        null
+      ]
+    },
+    "options": [
+      5,
+      6,
+      2,
+      4
+    ],
+    "answer": 0,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 2 + 3 = 5 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 2,
+      "c": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-0-2",
+    "band": 1,
+    "domain": "patterns",
+    "family": 0,
+    "order": 2,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        5,
+        3,
+        3,
+        null
+      ]
+    },
+    "options": [
+      7,
+      3,
+      5,
+      6
+    ],
+    "answer": 3,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 3 + 3 = 6 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 3,
+      "c": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-0-3",
+    "band": 1,
+    "domain": "patterns",
+    "family": 0,
+    "order": 3,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        2,
+        3,
+        2,
+        3,
+        5,
+        4,
+        3,
+        null
+      ]
+    },
+    "options": [
+      4,
+      6,
+      7,
+      8
+    ],
+    "answer": 2,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 4 + 3 = 7 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 4,
+      "c": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-1-0",
+    "band": 1,
+    "domain": "patterns",
+    "family": 1,
+    "order": 4,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        1,
+        0,
+        2,
+        0,
+        2,
+        1,
+        2,
+        1,
+        null
+      ]
+    },
+    "options": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "answer": 0,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-1-1",
+    "band": 1,
+    "domain": "patterns",
+    "family": 1,
+    "order": 5,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        2,
+        1,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        null
+      ]
+    },
+    "options": [
+      2,
+      0,
+      3,
+      1
+    ],
+    "answer": 3,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-1-2",
+    "band": 1,
+    "domain": "patterns",
+    "family": 1,
+    "order": 6,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        1,
+        2,
+        0,
+        0,
+        1,
+        2,
+        2,
+        0,
+        null
+      ]
+    },
+    "options": [
+      0,
+      3,
+      1,
+      2
+    ],
+    "answer": 2,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 0
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-1-3",
+    "band": 1,
+    "domain": "patterns",
+    "family": 1,
+    "order": 7,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        2,
+        0,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        null
+      ]
+    },
+    "options": [
+      3,
+      2,
+      0,
+      1
+    ],
+    "answer": 1,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-2-0",
+    "band": 1,
+    "domain": "patterns",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        5,
+        8,
+        null
+      ]
+    },
+    "options": [
+      12,
+      15,
+      9,
+      13
+    ],
+    "answer": 3,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 5,
+      "b": 8
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-2-1",
+    "band": 1,
+    "domain": "patterns",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        6,
+        9,
+        null
+      ]
+    },
+    "options": [
+      13,
+      11,
+      15,
+      14
+    ],
+    "answer": 2,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 6,
+      "b": 9
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-2-2",
+    "band": 1,
+    "domain": "patterns",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        7,
+        10,
+        null
+      ]
+    },
+    "options": [
+      9,
+      13,
+      12,
+      15
+    ],
+    "answer": 1,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 7,
+      "b": 10
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-patterns-2-3",
+    "band": 1,
+    "domain": "patterns",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        8,
+        11,
+        null
+      ]
+    },
+    "options": [
+      3,
+      2,
+      1,
+      7
+    ],
+    "answer": 0,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 8,
+      "b": 11
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-0-0",
+    "band": 1,
+    "domain": "numbers",
+    "family": 0,
+    "order": 0,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        9,
+        12,
+        15,
+        18,
+        21
+      ]
+    },
+    "options": [
+      27,
+      24,
+      21,
+      25
+    ],
+    "answer": 1,
+    "explanation": "Har safar 3 qo‘shiladi: 21 + 3 = 24.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 9,
+      "d": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-0-1",
+    "band": 1,
+    "domain": "numbers",
+    "family": 0,
+    "order": 1,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        10,
+        14,
+        18,
+        22,
+        26
+      ]
+    },
+    "options": [
+      30,
+      26,
+      31,
+      34
+    ],
+    "answer": 0,
+    "explanation": "Har safar 4 qo‘shiladi: 26 + 4 = 30.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 10,
+      "d": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-0-2",
+    "band": 1,
+    "domain": "numbers",
+    "family": 0,
+    "order": 2,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        11,
+        16,
+        21,
+        26,
+        31
+      ]
+    },
+    "options": [
+      31,
+      37,
+      41,
+      36
+    ],
+    "answer": 3,
+    "explanation": "Har safar 5 qo‘shiladi: 31 + 5 = 36.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 11,
+      "d": 5
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-0-3",
+    "band": 1,
+    "domain": "numbers",
+    "family": 0,
+    "order": 3,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        12,
+        18,
+        24,
+        30,
+        36
+      ]
+    },
+    "options": [
+      43,
+      48,
+      42,
+      36
+    ],
+    "answer": 2,
+    "explanation": "Har safar 6 qo‘shiladi: 36 + 6 = 42.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 12,
+      "d": 6
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-1-0",
+    "band": 1,
+    "domain": "numbers",
+    "family": 1,
+    "order": 4,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        9,
+        13,
+        21,
+        33,
+        49
+      ]
+    },
+    "options": [
+      69,
+      65,
+      73,
+      61
+    ],
+    "answer": 0,
+    "explanation": "Farqlar 4, 8, 12, 16, 20 bo‘lib ortadi. 49 + 20 = 69.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 9,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-1-1",
+    "band": 1,
+    "domain": "numbers",
+    "family": 1,
+    "order": 5,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        10,
+        14,
+        22,
+        34,
+        50
+      ]
+    },
+    "options": [
+      66,
+      74,
+      62,
+      70
+    ],
+    "answer": 3,
+    "explanation": "Farqlar 4, 8, 12, 16, 20 bo‘lib ortadi. 50 + 20 = 70.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 10,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-1-2",
+    "band": 1,
+    "domain": "numbers",
+    "family": 1,
+    "order": 6,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        11,
+        15,
+        23,
+        35,
+        51
+      ]
+    },
+    "options": [
+      75,
+      63,
+      71,
+      67
+    ],
+    "answer": 2,
+    "explanation": "Farqlar 4, 8, 12, 16, 20 bo‘lib ortadi. 51 + 20 = 71.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 11,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-1-3",
+    "band": 1,
+    "domain": "numbers",
+    "family": 1,
+    "order": 7,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        12,
+        16,
+        24,
+        36,
+        52
+      ]
+    },
+    "options": [
+      64,
+      72,
+      68,
+      76
+    ],
+    "answer": 1,
+    "explanation": "Farqlar 4, 8, 12, 16, 20 bo‘lib ortadi. 52 + 20 = 72.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 12,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-2-0",
+    "band": 1,
+    "domain": "numbers",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        9,
+        27,
+        81,
+        243
+      ]
+    },
+    "options": [
+      246,
+      732,
+      243,
+      729
+    ],
+    "answer": 3,
+    "explanation": "Har son 3 marta ortadi: 243 × 3 = 729.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 9,
+      "r": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-2-1",
+    "band": 1,
+    "domain": "numbers",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        10,
+        30,
+        90,
+        270
+      ]
+    },
+    "options": [
+      813,
+      270,
+      810,
+      273
+    ],
+    "answer": 2,
+    "explanation": "Har son 3 marta ortadi: 270 × 3 = 810.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 10,
+      "r": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-2-2",
+    "band": 1,
+    "domain": "numbers",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        11,
+        33,
+        99,
+        297
+      ]
+    },
+    "options": [
+      297,
+      891,
+      300,
+      894
+    ],
+    "answer": 1,
+    "explanation": "Har son 3 marta ortadi: 297 × 3 = 891.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 11,
+      "r": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-numbers-2-3",
+    "band": 1,
+    "domain": "numbers",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        12,
+        36,
+        108,
+        324
+      ]
+    },
+    "options": [
+      972,
+      327,
+      975,
+      324
+    ],
+    "answer": 0,
+    "explanation": "Har son 3 marta ortadi: 324 × 3 = 972.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 12,
+      "r": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-0-0",
+    "band": 1,
+    "domain": "logic",
+    "family": 0,
+    "order": 0,
+    "prompt": "Barcha romblar — qizil shakllar. Barcha qizil shakllar — ramkadagi shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "romblar",
+        "qizil shakllar",
+        "ramkadagi shakllar"
+      ]
+    },
+    "options": [
+      "Barcha ramkadagi shakllar — qizil shakllar.",
+      "Barcha romblar — ramkadagi shakllar.",
+      "Barcha ramkadagi shakllar — romblar.",
+      "Hech bir romblar — ramkadagi shakllar emas."
+    ],
+    "answer": 1,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "romblar",
+        "qizil shakllar",
+        "ramkadagi shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-0-1",
+    "band": 1,
+    "domain": "logic",
+    "family": 0,
+    "order": 1,
+    "prompt": "Barcha yulduzlar — yashil shakllar. Barcha yashil shakllar — katta shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "yulduzlar",
+        "yashil shakllar",
+        "katta shakllar"
+      ]
+    },
+    "options": [
+      "Barcha yulduzlar — katta shakllar.",
+      "Barcha katta shakllar — yulduzlar.",
+      "Hech bir yulduzlar — katta shakllar emas.",
+      "Barcha katta shakllar — yashil shakllar."
+    ],
+    "answer": 0,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "yulduzlar",
+        "yashil shakllar",
+        "katta shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-0-2",
+    "band": 1,
+    "domain": "logic",
+    "family": 0,
+    "order": 2,
+    "prompt": "Barcha R guruhidagilar — S guruhidagilar. Barcha S guruhidagilar — T guruhidagilar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "R guruhidagilar",
+        "S guruhidagilar",
+        "T guruhidagilar"
+      ]
+    },
+    "options": [
+      "Barcha T guruhidagilar — R guruhidagilar.",
+      "Hech bir R guruhidagilar — T guruhidagilar emas.",
+      "Barcha T guruhidagilar — S guruhidagilar.",
+      "Barcha R guruhidagilar — T guruhidagilar."
+    ],
+    "answer": 3,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "R guruhidagilar",
+        "S guruhidagilar",
+        "T guruhidagilar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-0-3",
+    "band": 1,
+    "domain": "logic",
+    "family": 0,
+    "order": 3,
+    "prompt": "Barcha beshburchaklar — sariq shakllar. Barcha sariq shakllar — ramkadagi shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "beshburchaklar",
+        "sariq shakllar",
+        "ramkadagi shakllar"
+      ]
+    },
+    "options": [
+      "Hech bir beshburchaklar — ramkadagi shakllar emas.",
+      "Barcha ramkadagi shakllar — sariq shakllar.",
+      "Barcha beshburchaklar — ramkadagi shakllar.",
+      "Barcha ramkadagi shakllar — beshburchaklar."
+    ],
+    "answer": 2,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "beshburchaklar",
+        "sariq shakllar",
+        "ramkadagi shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-1-0",
+    "band": 1,
+    "domain": "logic",
+    "family": 1,
+    "order": 4,
+    "prompt": "Gulnora Akmaldan oldinda. Akmal Diyordan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Gulnora",
+      "Akmal",
+      "Diyor",
+      "Aniqlab bo‘lmaydi"
+    ],
+    "answer": 0,
+    "explanation": "Tartib: Gulnora → Akmal → Diyor. Ikki berilgan munosabatdan eng oldinda Gulnora ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Gulnora",
+        "Akmal",
+        "Diyor"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-1-1",
+    "band": 1,
+    "domain": "logic",
+    "family": 1,
+    "order": 5,
+    "prompt": "Laylo Komildan oldinda. Komil Azizadan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Komil",
+      "Aziza",
+      "Aniqlab bo‘lmaydi",
+      "Laylo"
+    ],
+    "answer": 3,
+    "explanation": "Tartib: Laylo → Komil → Aziza. Ikki berilgan munosabatdan eng oldinda Laylo ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Laylo",
+        "Komil",
+        "Aziza"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-1-2",
+    "band": 1,
+    "domain": "logic",
+    "family": 1,
+    "order": 6,
+    "prompt": "Kamola Olimdan oldinda. Olim Ozodadan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Ozoda",
+      "Aniqlab bo‘lmaydi",
+      "Kamola",
+      "Olim"
+    ],
+    "answer": 2,
+    "explanation": "Tartib: Kamola → Olim → Ozoda. Ikki berilgan munosabatdan eng oldinda Kamola ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Kamola",
+        "Olim",
+        "Ozoda"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-1-3",
+    "band": 1,
+    "domain": "logic",
+    "family": 1,
+    "order": 7,
+    "prompt": "Nargiza Umiddan oldinda. Umid Faridadan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Aniqlab bo‘lmaydi",
+      "Nargiza",
+      "Umid",
+      "Farida"
+    ],
+    "answer": 1,
+    "explanation": "Tartib: Nargiza → Umid → Farida. Ikki berilgan munosabatdan eng oldinda Nargiza ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Nargiza",
+        "Umid",
+        "Farida"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-2-0",
+    "band": 1,
+    "domain": "logic",
+    "family": 2,
+    "order": 8,
+    "prompt": "Bu vazifadagi barcha beshburchaklar ko‘k. P shakli ko‘k emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — beshburchak.",
+      "P — ko‘k.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — beshburchak emas."
+    ],
+    "answer": 3,
+    "explanation": "Agar P beshburchak bo‘lganida ko‘k bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "beshburchak",
+        "ko‘k"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-2-1",
+    "band": 1,
+    "domain": "logic",
+    "family": 2,
+    "order": 9,
+    "prompt": "Bu vazifadagi barcha yulduzlar sariq. P shakli sariq emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — sariq.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — yulduz emas.",
+      "P — yulduz."
+    ],
+    "answer": 2,
+    "explanation": "Agar P yulduz bo‘lganida sariq bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "yulduz",
+        "sariq"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-2-2",
+    "band": 1,
+    "domain": "logic",
+    "family": 2,
+    "order": 10,
+    "prompt": "Bu vazifadagi barcha olti burchaklar katta. P shakli katta emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — olti burchak emas.",
+      "P — olti burchak.",
+      "P — katta."
+    ],
+    "answer": 1,
+    "explanation": "Agar P olti burchak bo‘lganida katta bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "olti burchak",
+        "katta"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-logic-2-3",
+    "band": 1,
+    "domain": "logic",
+    "family": 2,
+    "order": 11,
+    "prompt": "Bu vazifadagi barcha kvadratlar kichik. P shakli kichik emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — kvadrat emas.",
+      "P — kvadrat.",
+      "P — kichik.",
+      "P haqida hech qanday xulosa yo‘q."
+    ],
+    "answer": 0,
+    "explanation": "Agar P kvadrat bo‘lganida kichik bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "kvadrat",
+        "kichik"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-0-0",
+    "band": 1,
+    "domain": "spatial",
+    "family": 0,
+    "order": 0,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-0-1",
+    "band": 1,
+    "domain": "spatial",
+    "family": 0,
+    "order": 1,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-0-2",
+    "band": 1,
+    "domain": "spatial",
+    "family": 0,
+    "order": 2,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-0-3",
+    "band": 1,
+    "domain": "spatial",
+    "family": 0,
+    "order": 3,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 90° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Kataklar markaz atrofida 90° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "k": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-1-0",
+    "band": 1,
+    "domain": "spatial",
+    "family": 1,
+    "order": 4,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-1-1",
+    "band": 1,
+    "domain": "spatial",
+    "family": 1,
+    "order": 5,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-1-2",
+    "band": 1,
+    "domain": "spatial",
+    "family": 1,
+    "order": 6,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-1-3",
+    "band": 1,
+    "domain": "spatial",
+    "family": 1,
+    "order": 7,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-2-0",
+    "band": 1,
+    "domain": "spatial",
+    "family": 2,
+    "order": 8,
+    "prompt": "Har gal strelka soat yo‘nalishida 180° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        0,
+        2,
+        0
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 3,
+    "explanation": "Har qadam 180° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 0,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-2-1",
+    "band": 1,
+    "domain": "spatial",
+    "family": 2,
+    "order": 9,
+    "prompt": "Har gal strelka soat yo‘nalishida 180° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        1,
+        3,
+        1
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 2,
+    "explanation": "Har qadam 180° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 1,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-2-2",
+    "band": 1,
+    "domain": "spatial",
+    "family": 2,
+    "order": 10,
+    "prompt": "Har gal strelka soat yo‘nalishida 180° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        2,
+        0,
+        2
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Har qadam 180° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 2,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-1-spatial-2-3",
+    "band": 1,
+    "domain": "spatial",
+    "family": 2,
+    "order": 11,
+    "prompt": "Har gal strelka soat yo‘nalishida 180° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        3,
+        1,
+        3
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 0,
+    "explanation": "Har qadam 180° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 3,
+      "step": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-0-0",
+    "band": 2,
+    "domain": "patterns",
+    "family": 0,
+    "order": 0,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        6,
+        1,
+        4,
+        null
+      ]
+    },
+    "options": [
+      1,
+      4,
+      5,
+      6
+    ],
+    "answer": 2,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 1 + 4 = 5 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 1,
+      "c": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-0-1",
+    "band": 2,
+    "domain": "patterns",
+    "family": 0,
+    "order": 1,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        6,
+        2,
+        4,
+        null
+      ]
+    },
+    "options": [
+      5,
+      6,
+      7,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 2 + 4 = 6 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 2,
+      "c": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-0-2",
+    "band": 2,
+    "domain": "patterns",
+    "family": 0,
+    "order": 2,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        6,
+        3,
+        4,
+        null
+      ]
+    },
+    "options": [
+      7,
+      8,
+      3,
+      6
+    ],
+    "answer": 0,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 3 + 4 = 7 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 3,
+      "c": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-0-3",
+    "band": 2,
+    "domain": "patterns",
+    "family": 0,
+    "order": 3,
+    "prompt": "Har qatorda dastlabki ikki katak qanday bog‘langan? Bo‘sh katakni to‘ldiring.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "dots",
+      "cells": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        6,
+        4,
+        4,
+        null
+      ]
+    },
+    "options": [
+      9,
+      4,
+      7,
+      8
+    ],
+    "answer": 3,
+    "explanation": "Har qatorda nuqtalar qo‘shiladi. Oxirgi qatorda 4 + 4 = 8 ta nuqta.",
+    "rule": "rowSum",
+    "parameters": {
+      "a": 4,
+      "c": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-1-0",
+    "band": 2,
+    "domain": "patterns",
+    "family": 1,
+    "order": 4,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        0,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        2,
+        null
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-1-1",
+    "band": 2,
+    "domain": "patterns",
+    "family": 1,
+    "order": 5,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        2,
+        1,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        null
+      ]
+    },
+    "options": [
+      2,
+      0,
+      1,
+      3
+    ],
+    "answer": 0,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 0
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-1-2",
+    "band": 2,
+    "domain": "patterns",
+    "family": 1,
+    "order": 6,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        0,
+        2,
+        1,
+        1,
+        0,
+        2,
+        2,
+        1,
+        null
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 3,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-1-3",
+    "band": 2,
+    "domain": "patterns",
+    "family": 1,
+    "order": 7,
+    "prompt": "Har qator va ustunda doira, uchburchak va kvadrat bir martadan uchraydi. Yetishmagan shakl qaysi?",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "shape",
+      "cells": [
+        1,
+        0,
+        2,
+        2,
+        1,
+        0,
+        0,
+        2,
+        null
+      ]
+    },
+    "options": [
+      0,
+      3,
+      1,
+      2
+    ],
+    "answer": 2,
+    "explanation": "Qator va ustunlarda uchta shakl bir martadan uchraydi. Romb bu uchlikka kirmaydi.",
+    "rule": "latin",
+    "parameters": {
+      "a": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-2-0",
+    "band": 2,
+    "domain": "patterns",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        9,
+        12,
+        null
+      ]
+    },
+    "options": [
+      5,
+      4,
+      7,
+      1
+    ],
+    "answer": 0,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 9,
+      "b": 12
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-2-1",
+    "band": 2,
+    "domain": "patterns",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        10,
+        13,
+        null
+      ]
+    },
+    "options": [
+      6,
+      5,
+      3,
+      7
+    ],
+    "answer": 3,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 10,
+      "b": 13
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-2-2",
+    "band": 2,
+    "domain": "patterns",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        11,
+        14,
+        null
+      ]
+    },
+    "options": [
+      7,
+      1,
+      5,
+      4
+    ],
+    "answer": 2,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 11,
+      "b": 14
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-patterns-2-3",
+    "band": 2,
+    "domain": "patterns",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ustma-ust qo‘yilganda ikkala katakda bor bo‘lak o‘chadi, faqat bittasida bor bo‘lak qoladi. Uchinchi katakni toping.",
+    "visual": {
+      "kind": "matrix",
+      "cellKind": "tiles",
+      "cells": [
+        1,
+        2,
+        3,
+        3,
+        1,
+        2,
+        12,
+        15,
+        null
+      ]
+    },
+    "options": [
+      7,
+      3,
+      2,
+      1
+    ],
+    "answer": 1,
+    "explanation": "Bir xil joydagi ikkita bo‘lak bekor bo‘ladi. Faqat bittasida bo‘lgan bo‘laklar yakuniy shaklda qoladi.",
+    "rule": "xor",
+    "parameters": {
+      "a": 12,
+      "b": 15
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-0-0",
+    "band": 2,
+    "domain": "numbers",
+    "family": 0,
+    "order": 0,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        16,
+        20,
+        24,
+        28,
+        32
+      ]
+    },
+    "options": [
+      37,
+      40,
+      36,
+      32
+    ],
+    "answer": 2,
+    "explanation": "Har safar 4 qo‘shiladi: 32 + 4 = 36.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 16,
+      "d": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-0-1",
+    "band": 2,
+    "domain": "numbers",
+    "family": 0,
+    "order": 1,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        17,
+        22,
+        27,
+        32,
+        37
+      ]
+    },
+    "options": [
+      47,
+      42,
+      37,
+      43
+    ],
+    "answer": 1,
+    "explanation": "Har safar 5 qo‘shiladi: 37 + 5 = 42.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 17,
+      "d": 5
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-0-2",
+    "band": 2,
+    "domain": "numbers",
+    "family": 0,
+    "order": 2,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        18,
+        24,
+        30,
+        36,
+        42
+      ]
+    },
+    "options": [
+      48,
+      42,
+      49,
+      54
+    ],
+    "answer": 0,
+    "explanation": "Har safar 6 qo‘shiladi: 42 + 6 = 48.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 18,
+      "d": 6
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-0-3",
+    "band": 2,
+    "domain": "numbers",
+    "family": 0,
+    "order": 3,
+    "prompt": "Bir xil qoida davom etadi. Keyingi sonni tanlang.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        19,
+        26,
+        33,
+        40,
+        47
+      ]
+    },
+    "options": [
+      47,
+      55,
+      61,
+      54
+    ],
+    "answer": 3,
+    "explanation": "Har safar 7 qo‘shiladi: 47 + 7 = 54.",
+    "rule": "arithmetic",
+    "parameters": {
+      "a": 19,
+      "d": 7
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-1-0",
+    "band": 2,
+    "domain": "numbers",
+    "family": 1,
+    "order": 4,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        16,
+        22,
+        34,
+        52,
+        76
+      ]
+    },
+    "options": [
+      94,
+      106,
+      100,
+      112
+    ],
+    "answer": 1,
+    "explanation": "Farqlar 6, 12, 18, 24, 30 bo‘lib ortadi. 76 + 30 = 106.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 16,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-1-1",
+    "band": 2,
+    "domain": "numbers",
+    "family": 1,
+    "order": 5,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        17,
+        23,
+        35,
+        53,
+        77
+      ]
+    },
+    "options": [
+      107,
+      101,
+      113,
+      95
+    ],
+    "answer": 0,
+    "explanation": "Farqlar 6, 12, 18, 24, 30 bo‘lib ortadi. 77 + 30 = 107.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 17,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-1-2",
+    "band": 2,
+    "domain": "numbers",
+    "family": 1,
+    "order": 6,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        18,
+        24,
+        36,
+        54,
+        78
+      ]
+    },
+    "options": [
+      102,
+      114,
+      96,
+      108
+    ],
+    "answer": 3,
+    "explanation": "Farqlar 6, 12, 18, 24, 30 bo‘lib ortadi. 78 + 30 = 108.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 18,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-1-3",
+    "band": 2,
+    "domain": "numbers",
+    "family": 1,
+    "order": 7,
+    "prompt": "Farqlar qanday o‘zgaradi? Keyingi sonni toping.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        19,
+        25,
+        37,
+        55,
+        79
+      ]
+    },
+    "options": [
+      115,
+      97,
+      109,
+      103
+    ],
+    "answer": 2,
+    "explanation": "Farqlar 6, 12, 18, 24, 30 bo‘lib ortadi. 79 + 30 = 109.",
+    "rule": "secondDifference",
+    "parameters": {
+      "a": 19,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-2-0",
+    "band": 2,
+    "domain": "numbers",
+    "family": 2,
+    "order": 8,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        16,
+        64,
+        256,
+        1024
+      ]
+    },
+    "options": [
+      4096,
+      1028,
+      4100,
+      1024
+    ],
+    "answer": 0,
+    "explanation": "Har son 4 marta ortadi: 1024 × 4 = 4096.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 16,
+      "r": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-2-1",
+    "band": 2,
+    "domain": "numbers",
+    "family": 2,
+    "order": 9,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        17,
+        68,
+        272,
+        1088
+      ]
+    },
+    "options": [
+      1092,
+      4356,
+      1088,
+      4352
+    ],
+    "answer": 3,
+    "explanation": "Har son 4 marta ortadi: 1088 × 4 = 4352.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 17,
+      "r": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-2-2",
+    "band": 2,
+    "domain": "numbers",
+    "family": 2,
+    "order": 10,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        18,
+        72,
+        288,
+        1152
+      ]
+    },
+    "options": [
+      4612,
+      1152,
+      4608,
+      1156
+    ],
+    "answer": 2,
+    "explanation": "Har son 4 marta ortadi: 1152 × 4 = 4608.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 18,
+      "r": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-numbers-2-3",
+    "band": 2,
+    "domain": "numbers",
+    "family": 2,
+    "order": 11,
+    "prompt": "Ko‘paytirish qoidasini davom ettiring.",
+    "visual": {
+      "kind": "sequence",
+      "values": [
+        19,
+        76,
+        304,
+        1216
+      ]
+    },
+    "options": [
+      1216,
+      4864,
+      1220,
+      4868
+    ],
+    "answer": 1,
+    "explanation": "Har son 4 marta ortadi: 1216 × 4 = 4864.",
+    "rule": "geometric",
+    "parameters": {
+      "a": 19,
+      "r": 4
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-0-0",
+    "band": 2,
+    "domain": "logic",
+    "family": 0,
+    "order": 0,
+    "prompt": "Barcha P guruhidagilar — Q guruhidagilar. Barcha Q guruhidagilar — R guruhidagilar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "P guruhidagilar",
+        "Q guruhidagilar",
+        "R guruhidagilar"
+      ]
+    },
+    "options": [
+      "Hech bir P guruhidagilar — R guruhidagilar emas.",
+      "Barcha R guruhidagilar — Q guruhidagilar.",
+      "Barcha P guruhidagilar — R guruhidagilar.",
+      "Barcha R guruhidagilar — P guruhidagilar."
+    ],
+    "answer": 2,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "P guruhidagilar",
+        "Q guruhidagilar",
+        "R guruhidagilar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-0-1",
+    "band": 2,
+    "domain": "logic",
+    "family": 0,
+    "order": 1,
+    "prompt": "Barcha kichik doiralar — oq shakllar. Barcha oq shakllar — chegaradagi shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "kichik doiralar",
+        "oq shakllar",
+        "chegaradagi shakllar"
+      ]
+    },
+    "options": [
+      "Barcha chegaradagi shakllar — oq shakllar.",
+      "Barcha kichik doiralar — chegaradagi shakllar.",
+      "Barcha chegaradagi shakllar — kichik doiralar.",
+      "Hech bir kichik doiralar — chegaradagi shakllar emas."
+    ],
+    "answer": 1,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "kichik doiralar",
+        "oq shakllar",
+        "chegaradagi shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-0-2",
+    "band": 2,
+    "domain": "logic",
+    "family": 0,
+    "order": 2,
+    "prompt": "Barcha olti burchaklar — qora shakllar. Barcha qora shakllar — belgilangan shakllar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "olti burchaklar",
+        "qora shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "options": [
+      "Barcha olti burchaklar — belgilangan shakllar.",
+      "Barcha belgilangan shakllar — olti burchaklar.",
+      "Hech bir olti burchaklar — belgilangan shakllar emas.",
+      "Barcha belgilangan shakllar — qora shakllar."
+    ],
+    "answer": 0,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "olti burchaklar",
+        "qora shakllar",
+        "belgilangan shakllar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-0-3",
+    "band": 2,
+    "domain": "logic",
+    "family": 0,
+    "order": 3,
+    "prompt": "Barcha M guruhidagilar — N guruhidagilar. Barcha N guruhidagilar — O guruhidagilar. Qaysi xulosa albatta kelib chiqadi?",
+    "visual": {
+      "kind": "sets",
+      "labels": [
+        "X",
+        "Y",
+        "Z"
+      ],
+      "legend": [
+        "M guruhidagilar",
+        "N guruhidagilar",
+        "O guruhidagilar"
+      ]
+    },
+    "options": [
+      "Barcha O guruhidagilar — M guruhidagilar.",
+      "Hech bir M guruhidagilar — O guruhidagilar emas.",
+      "Barcha O guruhidagilar — N guruhidagilar.",
+      "Barcha M guruhidagilar — O guruhidagilar."
+    ],
+    "answer": 3,
+    "explanation": "Birinchi to‘plam ikkinchisining, ikkinchisi uchinchisining ichida. Demak birinchisi uchinchiga kiradi; teskari yo‘nalish kafolatlanmaydi.",
+    "rule": "inclusion",
+    "parameters": {
+      "names": [
+        "M guruhidagilar",
+        "N guruhidagilar",
+        "O guruhidagilar"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-1-0",
+    "band": 2,
+    "domain": "logic",
+    "family": 1,
+    "order": 4,
+    "prompt": "Zafar Irodadan oldinda. Iroda Saiddan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Aniqlab bo‘lmaydi",
+      "Zafar",
+      "Iroda",
+      "Said"
+    ],
+    "answer": 1,
+    "explanation": "Tartib: Zafar → Iroda → Said. Ikki berilgan munosabatdan eng oldinda Zafar ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Zafar",
+        "Iroda",
+        "Said"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-1-1",
+    "band": 2,
+    "domain": "logic",
+    "family": 1,
+    "order": 5,
+    "prompt": "Nilufar Islomdan oldinda. Islom Shahnozadan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Nilufar",
+      "Islom",
+      "Shahnoza",
+      "Aniqlab bo‘lmaydi"
+    ],
+    "answer": 0,
+    "explanation": "Tartib: Nilufar → Islom → Shahnoza. Ikki berilgan munosabatdan eng oldinda Nilufar ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Nilufar",
+        "Islom",
+        "Shahnoza"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-1-2",
+    "band": 2,
+    "domain": "logic",
+    "family": 1,
+    "order": 6,
+    "prompt": "Baxtiyor Feruzadan oldinda. Feruza Adhamdan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Feruza",
+      "Adham",
+      "Aniqlab bo‘lmaydi",
+      "Baxtiyor"
+    ],
+    "answer": 3,
+    "explanation": "Tartib: Baxtiyor → Feruza → Adham. Ikki berilgan munosabatdan eng oldinda Baxtiyor ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Baxtiyor",
+        "Feruza",
+        "Adham"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-1-3",
+    "band": 2,
+    "domain": "logic",
+    "family": 1,
+    "order": 7,
+    "prompt": "Munisa Temurdan oldinda. Temur Muroddan oldinda. Uchalasidan kim eng oldinda?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "Murod",
+      "Aniqlab bo‘lmaydi",
+      "Munisa",
+      "Temur"
+    ],
+    "answer": 2,
+    "explanation": "Tartib: Munisa → Temur → Murod. Ikki berilgan munosabatdan eng oldinda Munisa ekanligi kelib chiqadi.",
+    "rule": "ordering",
+    "parameters": {
+      "names": [
+        "Munisa",
+        "Temur",
+        "Murod"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-2-0",
+    "band": 2,
+    "domain": "logic",
+    "family": 2,
+    "order": 8,
+    "prompt": "Bu vazifadagi barcha doiralar belgilangan. P shakli belgilangan emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — doira emas.",
+      "P — doira.",
+      "P — belgilangan.",
+      "P haqida hech qanday xulosa yo‘q."
+    ],
+    "answer": 0,
+    "explanation": "Agar P doira bo‘lganida belgilangan bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "doira",
+        "belgilangan"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-2-1",
+    "band": 2,
+    "domain": "logic",
+    "family": 2,
+    "order": 9,
+    "prompt": "Bu vazifadagi barcha uchburchaklar oq. P shakli oq emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — uchburchak.",
+      "P — oq.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — uchburchak emas."
+    ],
+    "answer": 3,
+    "explanation": "Agar P uchburchak bo‘lganida oq bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "uchburchak",
+        "oq"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-2-2",
+    "band": 2,
+    "domain": "logic",
+    "family": 2,
+    "order": 10,
+    "prompt": "Bu vazifadagi barcha romblar katta. P shakli katta emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P — katta.",
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — romb emas.",
+      "P — romb."
+    ],
+    "answer": 2,
+    "explanation": "Agar P romb bo‘lganida katta bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "romb",
+        "katta"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-logic-2-3",
+    "band": 2,
+    "domain": "logic",
+    "family": 2,
+    "order": 11,
+    "prompt": "Bu vazifadagi barcha kvadratlar qora. P shakli qora emas. P haqida nimani aniq aytish mumkin?",
+    "visual": {
+      "kind": "text"
+    },
+    "options": [
+      "P haqida hech qanday xulosa yo‘q.",
+      "P — kvadrat emas.",
+      "P — kvadrat.",
+      "P — qora."
+    ],
+    "answer": 1,
+    "explanation": "Agar P kvadrat bo‘lganida qora bo‘lishi kerak edi. Bu shart bajarilmaydi, shuning uchun P bu guruhga kirmaydi.",
+    "rule": "contrapositive",
+    "parameters": {
+      "names": [
+        "kvadrat",
+        "qora"
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-0-0",
+    "band": 2,
+    "domain": "spatial",
+    "family": 0,
+    "order": 0,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 180° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Kataklar markaz atrofida 180° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "k": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-0-1",
+    "band": 2,
+    "domain": "spatial",
+    "family": 0,
+    "order": 1,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 180° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Kataklar markaz atrofida 180° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "k": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-0-2",
+    "band": 2,
+    "domain": "spatial",
+    "family": 0,
+    "order": 2,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 180° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Kataklar markaz atrofida 180° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "k": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-0-3",
+    "band": 2,
+    "domain": "spatial",
+    "family": 0,
+    "order": 3,
+    "prompt": "Shaklni markaz atrofida soat yo‘nalishida 180° buring. Qaysi natija mos?",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Kataklar markaz atrofida 180° buriladi. Shaklning kataklari soni va bir-biriga ulanishi saqlanadi.",
+    "rule": "rotation",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "k": 2
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-1-0",
+    "band": 2,
+    "domain": "spatial",
+    "family": 1,
+    "order": 4,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 1,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-1-1",
+    "band": 2,
+    "domain": "spatial",
+    "family": 1,
+    "order": 5,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 0,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-1-2",
+    "band": 2,
+    "domain": "spatial",
+    "family": 1,
+    "order": 6,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 3,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-1-3",
+    "band": 2,
+    "domain": "spatial",
+    "family": 1,
+    "order": 7,
+    "prompt": "Shaklni o‘rtadagi tik o‘qqa nisbatan akslantiring. O‘ng va chap o‘rin almashadi. Natijani tanlang.",
+    "visual": {
+      "kind": "gridShape",
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "axis": true
+    },
+    "options": [
+      [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    ],
+    "answer": 2,
+    "explanation": "Tik ko‘zgu o‘qida balandlik saqlanadi, chapdagi katak o‘ngga o‘tadi. Burish bilan akslantirish turli amallar.",
+    "rule": "reflection",
+    "parameters": {
+      "points": [
+        [
+          2,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-2-0",
+    "band": 2,
+    "domain": "spatial",
+    "family": 2,
+    "order": 8,
+    "prompt": "Har gal strelka soat yo‘nalishida 270° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        0,
+        3,
+        2
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 0,
+    "explanation": "Har qadam 270° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 0,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-2-1",
+    "band": 2,
+    "domain": "spatial",
+    "family": 2,
+    "order": 9,
+    "prompt": "Har gal strelka soat yo‘nalishida 270° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        1,
+        0,
+        3
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 3,
+    "explanation": "Har qadam 270° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 1,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-2-2",
+    "band": 2,
+    "domain": "spatial",
+    "family": 2,
+    "order": 10,
+    "prompt": "Har gal strelka soat yo‘nalishida 270° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        2,
+        1,
+        0
+      ]
+    },
+    "options": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "answer": 2,
+    "explanation": "Har qadam 270° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 2,
+      "step": 3
+    },
+    "version": 1
+  },
+  {
+    "id": "iq-1-2-spatial-2-3",
+    "band": 2,
+    "domain": "spatial",
+    "family": 2,
+    "order": 11,
+    "prompt": "Har gal strelka soat yo‘nalishida 270° buriladi. Keyingi yo‘nalishni toping.",
+    "visual": {
+      "kind": "arrows",
+      "values": [
+        3,
+        2,
+        1
+      ]
+    },
+    "options": [
+      3,
+      0,
+      1,
+      2
+    ],
+    "answer": 1,
+    "explanation": "Har qadam 270° burilish. Oxirgi strelkani yana shuncha burib keyingi yo‘nalishni toping.",
+    "rule": "arrow",
+    "parameters": {
+      "a": 3,
+      "step": 3
+    },
+    "version": 1
+  }
+]
