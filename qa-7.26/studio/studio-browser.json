@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "fixture": "Only auth/catalog transport; real React, SVG geometry and WebGL models. No live deployment tested.",
+  "viewports": [
+    1600,
+    1920,
+    390
+  ],
+  "accessibilityChecks": 12,
+  "purposeNavigation": true,
+  "triangleLiveCalculation": true,
+  "mobileDrawerEscape": true,
+  "subjectsAndTheme": true,
+  "actualChemistryWorkbench": true,
+  "real3DMazeAndTextMode": true,
+  "teacherPanel": true,
+  "runtimeErrors": []
+}

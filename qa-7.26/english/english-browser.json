@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "errors": [],
+  "requests": 51,
+  "checks": [
+    "mandatory adaptive placement",
+    "direct locked gate",
+    "word order",
+    "hint feedback",
+    "local MP3 playback and ended evidence",
+    "server writing refresh (local PostgreSQL RPC fixture)",
+    "microphone explicit action and no automatic upload",
+    "XSS escaped text",
+    "teacher assignment",
+    "immutable content version",
+    "rubric mastery",
+    "mobile 390",
+    "desktop 1440",
+    "board 1920",
+    "dark mode"
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "label": "home desktop",
+    "violations": []
+  },
+  {
+    "label": "math triangle desktop",
+    "violations": []
+  },
+  {
+    "label": "math triangle mobile",
+    "violations": []
+  },
+  {
+    "label": "books mobile",
+    "violations": []
+  },
+  {
+    "label": "books dark mobile",
+    "violations": []
+  },
+  {
+    "label": "chemistry dark desktop",
+    "violations": []
+  },
+  {
+    "label": "chemistry desktop",
+    "violations": []
+  },
+  {
+    "label": "chemistry mobile",
+    "violations": []
+  },
+  {
+    "label": "maze dark desktop",
+    "violations": []
+  },
+  {
+    "label": "maze text question",
+    "violations": []
+  },
+  {
+    "label": "teacher desktop",
+    "violations": []
+  },
+  {
+    "label": "teacher mobile",
+    "violations": []
+  }
+]

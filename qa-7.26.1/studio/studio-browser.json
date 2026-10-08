@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "fixture": "Auth/catalog transport fixtures; profile/chat reload checks only verify navigation. Real React, SVG and WebGL; no live deployment or account-editing test.",
+  "viewports": [
+    1600,
+    1920,
+    390
+  ],
+  "accessibilityChecks": 13,
+  "purposeNavigation": true,
+  "topLevelReload": true,
+  "keyboardSearch": true,
+  "searchDismissAndEmptyEnter": true,
+  "triangleLiveCalculation": true,
+  "mobileDrawerEscape": true,
+  "subjectsAndTheme": true,
+  "actualChemistryWorkbench": true,
+  "real3DMazeAndTextMode": true,
+  "teacherPanel": true,
+  "teacherChatRoute": true,
+  "runtimeErrors": []
+}

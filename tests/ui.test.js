@@ -61,9 +61,9 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   assert.equal(screen.queryByText(/Faol testlar/),null);
   assert.equal(document.querySelector('.active-lessons'),null);
   assert.equal(document.querySelector('.nav-brand').tagName,'SPAN');
-  assert.equal(within(screen.getByRole('navigation',{name:'Asosiy navigatsiya'})).queryByText('CEFR Mock'),null);
+  assert.equal(within(document.querySelector('.site-nav')).queryByText('CEFR Mock'),null);
   assert.ok(screen.getByText(/Faqat o‘qituvchi bergan kod yetarli/i));
-  const nav=screen.getByRole('navigation',{name:'Asosiy navigatsiya'});assert.ok(within(nav).getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));
+  const nav=document.querySelector('.site-nav');assert.ok(within(nav).getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));
   await user.click(screen.getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));assert.equal(document.documentElement.dataset.theme,'dark');
   await user.click(within(nav).getByRole('button',{name:'Kirish'}));await screen.findByRole('heading',{name:'Tizimga kirish'});
   assert.ok(screen.getByText(/Parol Supabase Authentication’da belgilanadi/));
@@ -111,7 +111,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await user.click(screen.getByRole('button',{name:'Testni tugatish'}));await screen.findByRole('heading',{name:'Xatolar tahlili'});
   assert.ok(screen.getByText('Incorrect fixture'));assert.ok(screen.getByText('Correct fixture'));assert.ok(screen.getByText('Explanation fixture'));assert.equal(screen.queryByText('Correct question'),null);
   await user.click(screen.getByRole('button',{name:'Barcha javoblar'}));assert.ok(screen.getByText('Correct question'));
-  await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(screen.getByRole('button',{name:'Bosh sahifaga chiqish'}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
+  await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(within(screen.getByRole('navigation',{name:'Asosiy bo‘limlar'})).getByRole('button',{name:'Bosh sahifa',exact:true}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
   // Native sourced reading: no upload or external redirect is required.
   await user.click(screen.getByRole('button',{name:/Tayyor testlar/}));
   await screen.findByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'});

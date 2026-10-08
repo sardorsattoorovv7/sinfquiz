@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "transport": "Chromium fetch / local checked Postgres RPCs; not a live Supabase or Vercel deployment",
+  "realPythonWorker": true,
+  "realOfficeGrading": true,
+  "englishGatePreserved": true,
+  "englishLessonWorks": true,
+  "activeReload": true,
+  "networkRecovery": true,
+  "canonicalScore": 32,
+  "answerReview": true,
+  "teacherOwnership": true,
+  "runtimeErrors": [],
+  "requests": 84,
+  "accessibilityChecks": 8
+}

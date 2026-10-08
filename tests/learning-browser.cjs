@@ -3,7 +3,7 @@
 const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES?process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright':'playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
 (async()=>{
- const root=path.resolve(__dirname,'..'),load=f=>import(pathToFileURL(path.join(root,f))),out=path.join(root,'qa-7.25/browser');fs.mkdirSync(out,{recursive:true});
+ const root=path.resolve(__dirname,'..'),load=f=>import(pathToFileURL(path.join(root,f))),out=process.env.LEARNING_QA_DIR||path.join(root,'qa-7.25/browser');fs.mkdirSync(out,{recursive:true});
  const {englishDb,ids}=await load('tests/english-fixture.js'),ctx=await englishDb();
  for(const f of ['01-schema.sql','02-iq-band-1.sql','03-iq-band-2.sql','04-iq-band-3.sql','05-book-keys.sql'])await ctx.db.exec(fs.readFileSync(path.join(root,'sql/7.25',f),'utf8'));
  for(const [role,id] of [['student',ids.student],['teacher',ids.teacher],['teacher',ids.other],['admin',ids.admin]])await ctx.db.query('insert into public.documents values($1,$2,$3)',['profiles',id,JSON.stringify({role,name:'Lola'})]);

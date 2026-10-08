@@ -1,3 +1,23 @@
+# SinfQuiz 7.26.1 — qidiruv va navigatsiya
+
+Qidiruv Word/Excel/Pythonni topadi, klaviaturada boshqariladi. Asosiy bo‘limlar F5 dan keyin qayta ochiladi; ustozning chat tugmasi o‘z paneliga olib boradi. Mobil menyu va ZIP yetkazish tekshiruvi yaxshilandi.
+
+[Yangilash](UPDATE-7.26.1.md) · [Yuklab olish](DOWNLOAD-7.26.1.md) · [Tekshiruvlar](QA-7.26.1.md) · [O‘zgargan fayllar](CHANGED-FILES-7.26.1.md).
+
+7.25/7.26 ishlayotgan bo‘lsa yangi SQL kerak emas. O‘zingizdagi `.env.local` bilan `npm ci` va `npm run dev` ni bajaring. Kichik arxivdan foydalansangiz yangi relizning **to‘rtta** ZIPini birga oching.
+
+Quyida oldingi relizlar saqlangan.
+
+# SinfQuiz 7.26 — Studio UI
+
+Yorug‘ «Interaktiv Studio» va tungi «Tungi laboratoriya» ko‘rinishi: chap menyu, tartibli fan kartalari, katta atlas sahnalari, kimyo ish stoli va o‘ngdagi savol paneli bilan 3D labirint. Telefon, kompyuter va sinf doskasiga mos.
+
+[Yangilash tartibi](UPDATE-7.26.md) · [Dizayn va manbalar](STUDIO-DESIGN-7.26.md) · [Tekshiruvlar](QA-7.26.md) · [ZIPlarni ochish](DOWNLOAD-7.26.md) · [O‘zgargan fayllar](CHANGED-FILES-7.26.md).
+
+**7.25 bazasi ishlayotgan bo‘lsa, bu yangilanish uchun yangi SQL kerak emas.** ZIP ichidagi `sinf-quiz` papkasida shaxsiy `.env.local` sozlamalaringizni tiklab, `npm ci` va `npm run dev` ni bajaring. Node.js 22.12+ talab qilinadi. Mavjud modellar, audio, SQL, API va ustozga tegishli kontent chegaralari saqlangan.
+
+Quyida oldingi relizlar va dastlabki o‘rnatish yo‘riqnomalari saqlangan.
+
 # SinfQuiz 7.25
 
 IQ va mantiq: 144 original topshiriq, 32 savollik urinish, 4 yo‘nalish profili va izohli yechimlar. Yagona **Darsliklar** oynasi: Kimyo 12, Ingliz tili 108, Biologiya 30, Informatika/Python 48 dars. **supabase-migration-7.25.sql** faylini RUN qiling va yangi frontendni o‘rnating. [Yangilash tartibi](UPDATE-7.25.md) · [Tekshiruvlar](QA-7.25.md) · [IQ talqini va ilmiy chegaralar](IQ-METHODS-7.25.md). Bu natijalar yosh me’yorlari bilan standartlashtirilgan IQ balli emas.

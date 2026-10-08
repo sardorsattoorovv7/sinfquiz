@@ -1,0 +1,11 @@
+UI checks: local admin, code-only quiz, no-code 1v1 race, split runners, typing ACTIVE/PASSIVE, typing join, answer, winner, theme, 3D fallback and result.
+✔ UI: local admin, code-only student, ready 3D fallback, theme, quiz and result (4792.056495ms)
+✔ Theme semantic text contrast meets 4.5:1 for body text (0.476805ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5193.235979

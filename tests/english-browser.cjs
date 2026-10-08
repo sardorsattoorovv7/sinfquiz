@@ -1,4 +1,4 @@
-const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright');
+const {chromium}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES?process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright':'playwright');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
 (async()=>{
  const root=path.resolve(__dirname,'..'),load=f=>import(pathToFileURL(path.join(root,f))),out=path.resolve(root,process.env.ENGLISH_QA_DIR||'qa-7.23.1/regression');fs.mkdirSync(out,{recursive:true});

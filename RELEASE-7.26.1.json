@@ -1,0 +1,36 @@
+{
+  "version": "7.26.1",
+  "testedAt": "2026-10-08",
+  "files": 877,
+  "testsPassed": 158,
+  "buildPassed": true,
+  "browserSuitesPassed": 4,
+  "browserVersion": "133.0.6943.0",
+  "accessibilityChecks": 31,
+  "viewports": [
+    "390x844 mobile",
+    "1600x1050 desktop",
+    "1920x1080 board"
+  ],
+  "triangleChecks": [
+    "8 * 5 / 2 = 20",
+    "10 * 5 / 2 = 25"
+  ],
+  "iqItemsPreserved": 144,
+  "originalTextbooksPreserved": 198,
+  "previousArchiveFilesPreserved": 852,
+  "previousPublicAssetsUnchanged": true,
+  "existingAPIAndSQLUnchanged": true,
+  "englishAudioHashesVerified": 216,
+  "newSQLRequiredFrom725Or726": false,
+  "maintenanceChecks": [
+    "keyboardSearch",
+    "topLevelReload",
+    "searchDismissAndEmptyEnter",
+    "teacherChatRoute",
+    "mobileDrawerFocusAndInertBackground"
+  ],
+  "archiveValidation": "All five local ZIP CRCs and the four-part byte union checked by this script",
+  "deliveryVerification": "Saved copies must be downloaded and compared to delivery SHA-256 before links are delivered",
+  "scope": "Local Chromium, SVG/WebGL, actual Python worker, PostgreSQL/PGlite RPC fixtures; no live Supabase/Vercel deployment tested"
+}

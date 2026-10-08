@@ -1,0 +1,28 @@
+{
+  "version": "7.26.0",
+  "testedAt": "2026-10-08",
+  "files": 852,
+  "testsPassed": 156,
+  "buildPassed": true,
+  "browserSuitesPassed": 4,
+  "browserVersion": "133.0.6943.0",
+  "accessibilityChecks": 30,
+  "viewports": [
+    "390x844 mobile",
+    "1600x1050 desktop",
+    "1920x1080 board"
+  ],
+  "triangleChecks": [
+    "8 * 5 / 2 = 20",
+    "10 * 5 / 2 = 25"
+  ],
+  "iqItemsPreserved": 144,
+  "originalTextbooksPreserved": 198,
+  "previousArchiveFilesPreserved": 815,
+  "previousPublicAssetsUnchanged": true,
+  "existingAPIAndSQLUnchanged": true,
+  "englishAudioHashesVerified": 216,
+  "newSQLRequiredFrom725": false,
+  "archiveValidation": "All four ZIP CRCs and the parts union checked by this script",
+  "scope": "Local Chromium, SVG/WebGL, actual Python worker, PostgreSQL/PGlite RPC fixtures; no live Supabase/Vercel deployment tested"
+}

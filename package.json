@@ -1,7 +1,7 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "7.25.0",
+  "version": "7.26.1",
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/copy-python-runtime.mjs",
@@ -15,7 +15,8 @@
     "test": "node --test --test-concurrency=2 tests/*.test.js",
     "test:e2e:competition": "node tests/competition-browser.cjs && node tests/competition-attendance-browser.cjs",
     "test:load:competition": "node tests/competition-load.mjs",
-    "test:e2e:learning": "node tests/learning-browser.cjs"
+    "test:e2e:learning": "node tests/learning-browser.cjs",
+    "test:e2e:studio": "node tests/studio-browser.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
