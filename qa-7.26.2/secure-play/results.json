@@ -1,0 +1,9 @@
+{
+  "checks": {
+    "noAnswerKeyInStorage": true,
+    "guestQuizAndRank": true,
+    "differentScoresGetDifferentRanks": true,
+    "guestSplitRaceAndWinner": true
+  },
+  "errors": []
+}

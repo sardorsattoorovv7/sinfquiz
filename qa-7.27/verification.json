@@ -1,0 +1,43 @@
+{
+  "release": "7.27.0",
+  "date": "2026-10-08",
+  "nodeTests": {
+    "passed": 161,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browserSuites": 6,
+  "axe": [
+    {
+      "file": "qa-7.27/attendance/accessibility.json",
+      "checks": 3,
+      "violations": 0
+    },
+    {
+      "file": "qa-7.27/competition/accessibility.json",
+      "checks": 5,
+      "violations": 0
+    },
+    {
+      "file": "qa-7.27/english/accessibility.json",
+      "checks": 5,
+      "violations": 0
+    },
+    {
+      "file": "qa-7.27/island/accessibility.json",
+      "checks": 6,
+      "violations": 0
+    },
+    {
+      "file": "qa-7.27/learning/accessibility.json",
+      "checks": 8,
+      "violations": 0
+    },
+    {
+      "file": "qa-7.27/studio/accessibility.json",
+      "checks": 13,
+      "violations": 0
+    }
+  ],
+  "boundaries": "Local Chromium/PGlite and fixture accounts; no live Supabase, Vercel deployment, Google indexing or real classroom network test."
+}

@@ -15,6 +15,7 @@ import './course.css';
 import './admin-overrides.css';
 import StudioShell,{StudioHub} from './StudioShell.jsx';
 import {studioViewHash,restoredStudioView} from './studio-navigation.js';
+import {canUseClassroom} from './classroom/model.js';
 import './studio.css';
 import bank from '../data/question-bank.json';
 import {placementBank,placementLevels,randomPlacementQuestion} from '../data/placement-bank.js';
@@ -41,6 +42,7 @@ const EnglishCourse=React.lazy(()=>import('./EnglishCourse.jsx'));
 const TeamCompetitions=React.lazy(()=>import('./TeamCompetitions.jsx'));
 const BiologyAtlas=React.lazy(()=>import('./BiologyAtlas.jsx'));
 const ChemistryAtlas=React.lazy(()=>import('./ChemistryAtlas.jsx'));
+const Classroom=React.lazy(()=>import('./Classroom.jsx'));
 import {officeTemplates} from './office-lab-model.js';
 import {lessonCounts,markLessonRead} from './classroom-service.js';
 import {adminResetPassword} from './profile-service.js';
@@ -82,6 +84,21 @@ function App(){
   const inActivity=iqActive||englishActive||competitionActive||cefrActive||audioMazePlaying||['play','result','race','typing','nationalExam','cefrExam'].includes(view);
   const unfinished=iqActive||englishActive||competitionActive||cefrActive||audioMazePlaying||(view==='play'&&!game?.finished)||(view==='race'&&raceGame?.race?.phase!=='finished')||(view==='typing'&&!typingGame?.finished)||(view==='nationalExam'&&!nationalGame?.finished)||(view==='cefrExam'&&!cefrGame?.finished);
   useActivityGuard({active:authReady?unfinished:!!sessionStorage.getItem('sq_active_hash'),hash:!authReady?(sessionStorage.getItem('sq_active_hash')||location.hash):cefrActive?(view==='practice'?'#open-exam':view==='cefrManaged'?'#cefr-test':'#cefr-source'):location.hash});
+  useEffect(()=>{
+    if(!authReady)return;
+    const open=()=>{
+      if(inActivity)return;
+      setView(current=>{
+        if(location.hash==='#sinfxona')return canUseClassroom(user)?'classroom':'classroomDenied';
+        if(!['classroom','classroomDenied'].includes(current))return current;
+        const publicViews={'#atlaslar':'atlasHub','#mashqlar':'exerciseHub','#ingliz-darsi':'englishCourse'};
+        const accountViews={'#matematika':'mathAtlas','#kimyo':'chemistry','#biologiya':'biology','#darsliklar':'books','#iq':'iq','#musobaqa':'competitions','#audio-maze':'audioMaze'};
+        return restoredStudioView(location.hash,user)||publicViews[location.hash]||(user&&accountViews[location.hash])||'home';
+      });
+    };
+    open();window.addEventListener('hashchange',open);
+    return()=>window.removeEventListener('hashchange',open);
+  },[authReady,user?.id,user?.role,inActivity]);
   const reload=async()=>{const next=await api('/api/quizzes');setConnection('');setDb(next);return next};
   const applyGame=next=>{setConnection('');setPlayerCsrf(next.csrf);setGame(next);setView(next.finished?'result':'play');location.hash='play'};
   const applyRace=next=>{setConnection('');setRaceCsrf(next.csrf);setRaceGame(next);setView('race');location.hash='race'};
@@ -123,6 +140,7 @@ function App(){
     if(['atlasHub','exerciseHub'].includes(id)){setView(id);location.hash=id==='atlasHub'?'atlaslar':'mashqlar';return;}
     if(id==='livePractice'){home();requestAnimationFrame(()=>document.querySelector('.active-lessons')?.scrollIntoView({behavior:'smooth'}));return;}
     if(!user)return openAuth();
+    if(id==='classroom'){if(!canUseClassroom(user)){notify('Sinfxona faqat ustoz va administrator uchun.');return;}setView('classroom');location.hash='sinfxona';return;}
     if(id==='admin'||(id==='results'&&['teacher','admin'].includes(user.role))){if(!['teacher','admin'].includes(user.role))return;setAdminInitialSection(id==='results'?'results':null);setView('admin');location.hash='dashboard';return;}
     if(id==='results'){setView('profile');location.hash=studioViewHash('profile');return;}
     if(id==='chat'){setChatLessonId(null);if(user.role==='student'){setView('chat');location.hash=studioViewHash('chat');return;}setAdminInitialSection('chats');setView('admin');location.hash='dashboard';return;}
@@ -136,6 +154,8 @@ function App(){
     {!authReady?<div className="page-loading">Yuklanmoqda…</div>:<>
     {view==='atlasHub'&&<StudioHub type="atlas" onNavigate={openStudio}/>}
     {view==='exerciseHub'&&<StudioHub type="exercise" onNavigate={openStudio}/>}
+    {view==='classroom'&&canUseClassroom(user)&&<React.Suspense fallback={<div className="page-loading">Sinfxona ochilmoqda…</div>}><Classroom user={user} onBack={home}/></React.Suspense>}
+    {(view==='classroomDenied'||view==='classroom'&&!canUseClassroom(user))&&<main className="learning-page"><h1>Sinfxona ustozlar uchun</h1><p>Elektron doska va dars vositalaridan faqat o‘qituvchi va administrator foydalanadi.</p><button className="btn btn-primary" onClick={user?home:openAuth}>{user?'Bosh sahifaga qaytish':'Hisobga kirish'}</button></main>}
     {view==='home'&&<Landing onAtlasHub={()=>openStudio('atlasHub')} onExerciseHub={()=>openStudio('exerciseHub')} onIQ={openIQ} onEnglishCourse={openEnglish} onCompetitions={openCompetitions} onBiology={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('biology');location.hash='biologiya'}} onChemistry={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('chemistry');location.hash='kimyo'}} user={user} catalog={catalog} onAudioMaze={()=>{setView('audioMaze');location.hash='audio-maze'}} onNational={()=>user?setView('national'):openAuth()} onCefr={()=>{if(!user)return openAuth();setView('cefrManaged')}} onPractice={()=>{if(!user)return openAuth();setPracticeSubject('all');setView('practice')}} onCatalog={openBooks} onAtlas={()=>{if(!user)return openAuth();setView('mathAtlas');location.hash='matematika'}} onJoin={setEntryAndJoin} onRace={offer=>{setEntry({race:offer});setView('raceJoin')}} onTyping={offer=>{setEntry({typing:offer});setView('typingJoin')}}/>}
     {view==='englishCourse'&&<React.Suspense fallback={<div className="page-loading">Ingliz tili darsi ochilmoqda…</div>}><EnglishCourse key={user?.id||'guest'} initialLessonId={englishInitialLessonId} user={user} onBack={englishInitialLessonId?openBooks:home} onLogin={openAuth} onMaze={()=>{setEnglishActive(false);setView('audioMaze');location.hash='audio-maze'}} onActive={setEnglishActive}/></React.Suspense>}
     {view==='competitions'&&<React.Suspense fallback={<div className="page-loading">Musobaqalar ochilmoqda…</div>}><TeamCompetitions key={user?.id||'guest'} user={user} onBack={home} onLogin={openAuth} onActive={setCompetitionActive}/></React.Suspense>}
@@ -165,6 +185,7 @@ function App(){
     {view==='typing'&&typingGame&&<TypingScreen game={typingGame} onUpdate={applyTyping} onLeave={leaveTyping}/>} 
     {view==='play'&&game&&<PlayQuiz game={game} onUpdate={applyGame}/>}
     {view==='result'&&game&&<Result quiz={{...game.quiz,questions:Array(game.quiz.questionCount)}} player={game.player} db={{players:game.ranking}} onHome={leave} onRefresh={async()=>applyGame(await api('/api/play/session',{role:'player'}))}/>}
+        {view==='home'&&<nav className="studio-public-links" aria-label="Fanlar haqida"><a href="/fanlar/informatika">Informatika</a><a href="/fanlar/matematika">Matematika</a><a href="/fanlar/kimyo">Kimyo</a><a href="/fanlar/biologiya">Biologiya</a><a href="/ingliz-tili">Ingliz tili</a><a href="/darsliklar">Darsliklar haqida</a><a href="/ustozlar/sinfxona">Sinfxona haqida</a></nav>}
     </>}
   </StudioShell>;
   function setEntryAndJoin(data){setEntry(data);setView('join')}
@@ -470,7 +491,7 @@ function RaceJoin({race,onBack,onStart}){
  const [players,setPlayers]=useState([{name:'',avatar:avatars[0]},{name:'',avatar:avatars[1]}]);const [busy,setBusy]=useState(false);const [error,setError]=useState('');
  const update=(lane,field,value)=>setPlayers(current=>current.map((player,index)=>index===lane?{...player,[field]:value}:player));
  const start=async()=>{if(busy||players.some(player=>!player.name.trim()))return;setBusy(true);setError('');try{await onStart({players:players.map(player=>({...player,name:player.name.trim()}))})}catch(e){setError(e.message)}finally{setBusy(false)}};
- return <div className="join-page race-join-page"><div className="join-top"><button onClick={onBack}><ArrowLeft/></button><Brand light/><span/></div><div className="join-card local-race-join"><div className="join-quiz race-join-banner"><span><Flag/></span><div><small>BITTA KOMPYUTER · 10 TA SAVOL</small><h2>{race.title}</h2><p>Ikki o‘quvchi bitta maydonda yonma-yon bellashadi</p><div className="no-account-badge"><Check size={15}/> Poyga o‘qituvchi tomonidan ochilgan</div></div></div><div className="join-form"><span className="join-step">ISHTIROKCHILAR</span><h1>1v1 poygaga tayyorlaning</h1><p>Har ikki o‘quvchining ismi va avatarini tanlang. To‘g‘ri javob bergan yuguruvchi umumiy maydonda oldinga o‘tadi.</p><div className="local-player-setup">{players.map((player,lane)=><section key={lane}><div><span>{lane+1}</span><b>{lane===0?'1-o‘quvchi':'2-o‘quvchi'}</b></div><label>{lane+1}-o‘quvchi ismi<input value={player.name} onChange={e=>update(lane,'name',e.target.value.slice(0,30))} placeholder={`${lane+1}-o‘quvchi ismi`} autoFocus={lane===0}/></label><label>Avatar<select value={player.avatar} onChange={e=>update(lane,'avatar',e.target.value)}>{avatars.map((value,index)=><option value={value} key={value}>{value} Avatar {index+1}</option>)}</select></label></section>)}</div><button className="btn btn-primary wide join-button" disabled={players.some(player=>!player.name.trim())||busy} onClick={start}>{busy?'Tayyorlanmoqda…':'Poygani boshlash'} <Flag size={19}/></button>{error&&<p className="form-error" role="alert">{error}</p>}</div></div></div>
+ return <div className="join-page race-join-page"><div className="join-top"><button onClick={onBack}><ArrowLeft/></button><Brand light/><span/></div><div className="join-card local-race-join"><div className="join-quiz race-join-banner"><span><Flag/></span><div><small>BITTA KOMPYUTER · {race.questionCount||10} TA SAVOL</small><h2>{race.title}</h2><p>Ikki o‘quvchi bitta maydonda yonma-yon bellashadi</p><div className="no-account-badge"><Check size={15}/> Poyga o‘qituvchi tomonidan ochilgan</div></div></div><div className="join-form"><span className="join-step">ISHTIROKCHILAR</span><h1>1v1 poygaga tayyorlaning</h1><p>Har ikki o‘quvchining ismi va avatarini tanlang. To‘g‘ri javob bergan yuguruvchi umumiy maydonda oldinga o‘tadi.</p><div className="local-player-setup">{players.map((player,lane)=><section key={lane}><div><span>{lane+1}</span><b>{lane===0?'1-o‘quvchi':'2-o‘quvchi'}</b></div><label>{lane+1}-o‘quvchi ismi<input value={player.name} onChange={e=>update(lane,'name',e.target.value.slice(0,30))} placeholder={`${lane+1}-o‘quvchi ismi`} autoFocus={lane===0}/></label><label>Avatar<select value={player.avatar} onChange={e=>update(lane,'avatar',e.target.value)}>{avatars.map((value,index)=><option value={value} key={value}>{value} Avatar {index+1}</option>)}</select></label></section>)}</div><button className="btn btn-primary wide join-button" disabled={players.some(player=>!player.name.trim())||busy} onClick={start}>{busy?'Tayyorlanmoqda…':'Poygani boshlash'} <Flag size={19}/></button>{error&&<p className="form-error" role="alert">{error}</p>}</div></div></div>
 }
 
 function RaceTrack({race,playerId}){
@@ -491,7 +512,7 @@ function LocalRaceScreen({game,onUpdate,onLeave}){
  return <main className="race-page local-race-page"><header className="race-header"><div><span><Flag/> 1V1 · BITTA MONITOR</span><h1>{race.title}</h1><p>Har bir to‘g‘ri javob yuguruvchini marraga yaqinlashtiradi.</p></div><button className="btn btn-outline" onClick={()=>{if(race.phase==='finished'||confirm('Poygadan chiqishni xohlaysizmi?'))onLeave()}}><ArrowLeft/> Chiqish</button></header><RaceTrack race={race} playerId={null}/>
   {race.phase==='countdown'&&<div className="race-countdown" role="status"><strong>{countdown}</strong><span>HAR IKKI ISHTIROKCHI TAYYOR</span></div>}
   {race.phase==='running'&&<div className="local-question-split">{[0,1].map(lane=>{const player=race.racers.find(item=>item.id===playerIds[lane]),question=questions[lane],feedback=game.feedbackByPlayer?.[playerIds[lane]],retrying=feedback&&!feedback.correct&&feedback.retryAt>now;return <section className={`local-question-lane lane-${lane}`} key={playerIds[lane]}><div className="local-question-title"><span>{player?.avatar}</span><div><small>{lane===0?'CHAP YO‘LAK':'O‘NG YO‘LAK'} · SAVOL {(player?.index||0)+1}/{race.questionCount}</small><b>{player?.name}</b></div></div>{question&&<><h2>{question.text}</h2><div className="local-answer-grid">{question.options.map((option,index)=><button disabled={busy[lane]||retrying} onClick={()=>setSelected(value=>value.map((item,itemIndex)=>itemIndex===lane?index:item))} className={selected[lane]===index?'selected':''} key={index}><span>{String.fromCharCode(65+index)}</span><b>{option}</b></button>)}</div>{feedback&&<p className={`race-feedback ${feedback.correct?'correct':'wrong'}`}>{feedback.correct?'To‘g‘ri — yuguruvchi oldinga chiqdi!':retrying?'Xato. Bir soniyadan keyin yana urinib ko‘ring.':'Yana bir javob tanlang.'}</p>}{errors[lane]&&<p className="form-error" role="alert">{errors[lane]}</p>}<button className="btn btn-primary local-answer-button" disabled={busy[lane]||retrying||selected[lane]===null} onClick={()=>answer(lane)}>{busy[lane]?'Javob tekshirilmoqda…':'Javob berish'} <ChevronRight/></button></>}</section>})}</div>}
-  {race.phase==='finished'&&<section className="race-finish winner" role="status"><Trophy/><span>POYGA YAKUNLANDI</span><h2>{winner?.name} g‘olib!</h2><p>U 10 ta savolga birinchi bo‘lib to‘g‘ri javob berdi.</p><button className="btn btn-primary" onClick={onLeave}><Home/> Bosh sahifaga qaytish</button></section>}
+  {race.phase==='finished'&&<section className="race-finish winner" role="status"><Trophy/><span>POYGA YAKUNLANDI</span><h2>{winner?.name} g‘olib!</h2><p>U {race.questionCount||10} ta savolga birinchi bo‘lib to‘g‘ri javob berdi.</p><button className="btn btn-primary" onClick={onLeave}><Home/> Bosh sahifaga qaytish</button></section>}
  </main>
 }
 
@@ -506,7 +527,7 @@ function RemoteRaceScreen({game,onUpdate,onLeave}){
   {race.phase==='lobby'&&<section className="race-stage"><Flag/><h2>{race.racers.length<2?'Ikkinchi yuguruvchi kutilmoqda':'Ikkala yuguruvchi startda'}</h2><p>Har ikki o‘quvchi “Tayyorman”ni bosgach poyga avtomatik boshlanadi.</p><button className="btn btn-primary" disabled={busy||mine?.ready} onClick={()=>action('/api/race/ready')}>{mine?.ready?<><Check/> Siz tayyorsiz</>:<><Flag/> Tayyorman</>}</button></section>}
   {race.phase==='countdown'&&<div className="race-countdown" role="status"><strong>{countdown}</strong><span>STARTGA TAYYOR!</span></div>}
   {race.phase==='running'&&question&&<section className="race-question" key={question.id}><div className="race-question-meta"><span>SAVOL {mine.index+1} / {race.questionCount}</span><b>{question.subject||'Informatika'}</b></div><h2>{question.text}</h2><div className="answer-grid">{question.options.map((option,index)=><button disabled={busy||retrying} onClick={()=>setSelected(index)} className={selected===index?'selected':''} key={index}><span>{String.fromCharCode(65+index)}</span><b>{option}</b></button>)}</div>{game.feedback&&<p className={`race-feedback ${game.feedback.correct?'correct':'wrong'}`}>{game.feedback.correct?'To‘g‘ri! Yuguruvchi oldinga o‘tdi.':retrying?'Xato. Bir soniyadan keyin yana urinib ko‘ring.':'Yana bir javob tanlang.'}</p>}{error&&<p className="form-error" role="alert">{error}</p>}<button className="btn btn-primary race-answer" disabled={busy||retrying||selected===null} onClick={()=>action('/api/race/answer',{questionId:question.id,value:selected})}>{busy?'Javob tekshirilmoqda…':retrying?'Biroz kuting…':'Javob berish'} <ChevronRight/></button></section>}
-  {race.phase==='finished'&&<section className={`race-finish ${winner?.id===playerId?'winner':'runner-up'}`} role="status"><Trophy/><span>POYGA YAKUNLANDI</span><h2>{winner?.name} g‘olib!</h2><p>{winner?.id===playerId?'Siz 10 ta savolni birinchi bo‘lib to‘g‘ri yakunladingiz.':'Raqib 10 ta savolni birinchi bo‘lib yakunladi.'}</p><button className="btn btn-primary" onClick={onLeave}><Home/> Bosh sahifaga qaytish</button></section>}
+  {race.phase==='finished'&&<section className={`race-finish ${winner?.id===playerId?'winner':'runner-up'}`} role="status"><Trophy/><span>POYGA YAKUNLANDI</span><h2>{winner?.name} g‘olib!</h2><p>{`${winner?.id===playerId?'Siz':'Raqib'} ${race.questionCount||10} ta savolni birinchi bo‘lib yakunladi.`}</p><button className="btn btn-primary" onClick={onLeave}><Home/> Bosh sahifaga qaytish</button></section>}
  </main>
 }
 

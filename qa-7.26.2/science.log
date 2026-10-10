@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "lessonAndCheck": true,
+    "pauseResumeDraft": true,
+    "twoTrialsAndConclusion": true,
+    "actualModelCSV": true,
+    "licensedAnatomy3D": true,
+    "realChemistryActions": true,
+    "reducedMotionAnd2DFallback": true,
+    "scienceTextbookCheck": true
+  },
+  "errors": []
+}

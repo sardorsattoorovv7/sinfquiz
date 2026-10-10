@@ -1,0 +1,9 @@
+{
+  "modelId": "deb4dc75e62346c19c117bf61334eeb5",
+  "bytes": 1460304,
+  "sha256": "2be055e43c3ec055ff06794ba39e69d6e314cfcf6c7e175ff88b4e988ecaa783",
+  "lowVariant": {
+    "sha256": "2be055e43c3ec055ff06794ba39e69d6e314cfcf6c7e175ff88b4e988ecaa783"
+  },
+  "adaptation": "Original city geometry preserved. Embedded WebP textures at 1024/512px; Meshopt compression."
+}

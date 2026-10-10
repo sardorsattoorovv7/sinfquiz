@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "viewports": [
+    1600,
+    1920,
+    1280,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "accessibilityChecks": 6,
+  "guestCodeJoin": true,
+  "authGate": true,
+  "slowAuthNavigation": true,
+  "publicDeepLinkGate": true,
+  "noJsPublicPages": true,
+  "reducedMotion": true,
+  "runtimeErrors": []
+}

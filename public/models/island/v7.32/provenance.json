@@ -1,0 +1,10 @@
+{
+  "modelId": "48ef6c69479541d3b4aed13ff7290ff8",
+  "bytes": 3671488,
+  "sha256": "5a5a8dc2f5fd34da975f653d0ee78e3a8718d9a73dc06ba08f0f2ebaefa7c239",
+  "source": "https://sketchfab.com/3d-models/stylized-mini-floating-island-48ef6c69479541d3b4aed13ff7290ff8",
+  "adaptation": "Embedded artist textures, resized to 1024/512px WebP. Original geometry retained. Meshopt compression and quantization, no triangle simplification.",
+  "lowVariant": {
+    "sha256": "f1e98d79b3f83f6c2dcda74ce60527acc631197a4b2ffdd511996ae8d563d5f4"
+  }
+}

@@ -8,13 +8,13 @@ const root=dirname(dirname(fileURLToPath(import.meta.url))),read=name=>readFileS
 
 test('Vercel build uses Supabase Auth, Postgres and Realtime without Firebase',()=>{
  const pkg=JSON.parse(read('package.json')),vercel=JSON.parse(read('vercel.json')),env=read('.env.example'),app=read('src/App.jsx'),data=read('src/supabase-data.js'),sdk=read('src/supabase-sdk.js'),schema=read('supabase-schema.sql');
- assert.equal(pkg.version,'7.26.1');
+ assert.equal(pkg.version,'7.27.0');
  assert.ok(pkg.dependencies['@supabase/supabase-js']);
  assert.equal(pkg.dependencies['firebase-admin'],undefined);
  assert.equal(pkg.dependencies.express,undefined);
  assert.equal(pkg.dependencies['socket.io'],undefined);
  assert.equal(vercel.outputDirectory,'dist');
- assert.equal(vercel.rewrites[0].destination,'/index.html');
+ assert.equal(vercel.rewrites[0].destination,'/');
  for(const name of ['VITE_SUPABASE_URL','VITE_SUPABASE_ANON_KEY','SUPABASE_SERVICE_ROLE_KEY','VITE_TELEGRAM_BOT_USERNAME','TELEGRAM_BOT_TOKEN'])assert.match(env,new RegExp(name));
  assert.doesNotMatch(env,/FIREBASE/);
  assert.match(vercel.headers.at(-1).headers.find(item=>item.key==='Content-Security-Policy').value,/supabase\.co/);

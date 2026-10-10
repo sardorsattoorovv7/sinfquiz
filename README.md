@@ -1,221 +1,68 @@
-# SinfQuiz 7.26.1 — qidiruv va navigatsiya
+# SinfQuiz 7.27.0 — Sinfxona
 
-Qidiruv Word/Excel/Pythonni topadi, klaviaturada boshqariladi. Asosiy bo‘limlar F5 dan keyin qayta ochiladi; ustozning chat tugmasi o‘z paneliga olib boradi. Mobil menyu va ZIP yetkazish tekshiruvi yaxshilandi.
+7.26.2 Science Studio asosida elektron doska, topshiriq shablonlari, 10 ko‘rinishli taymer, mikrofon orqali nisbiy shovqin nazorati va xolis raqam tanlash qo‘shildi. Sinfxona faqat ustoz/admin uchun. Mavjud fanlar, kirish va ruxsat oqimlari saqlangan.
 
-[Yangilash](UPDATE-7.26.1.md) · [Yuklab olish](DOWNLOAD-7.26.1.md) · [Tekshiruvlar](QA-7.26.1.md) · [O‘zgargan fayllar](CHANGED-FILES-7.26.1.md).
+**[7.27 yangilash tartibi](UPDATE-7.27.0.md) · [7.27 tekshiruvlar](QA-7.27.0.md) · [7.27 o‘zgargan fayllar](CHANGED-FILES-7.27.0.md)**
 
-7.25/7.26 ishlayotgan bo‘lsa yangi SQL kerak emas. O‘zingizdagi `.env.local` bilan `npm ci` va `npm run dev` ni bajaring. Kichik arxivdan foydalansangiz yangi relizning **to‘rtta** ZIPini birga oching.
+Sinfxona uchun yangi SQL kerak emas. 7.26.2 migratsiyasi oldindan bajarilgan bo‘lsa, kodni yangilab `npm ci` va `npm run dev` qiling. Qidiruv uchun ochiq fan sahifalari, metadata va `sitemap.xml` build vaqtida yaratiladi; domenni `VITE_PUBLIC_SITE_URL` bilan belgilang.
 
-Quyida oldingi relizlar saqlangan.
+## Avvalgi Science Studio imkoniyatlari
 
-# SinfQuiz 7.26 — Studio UI
+7.26.1 Studio dizayni asosida kimyo va biologiya darslari, 3D sahnalar, jonli grafik va tajriba daftarini birlashtirgan yangilanish. Bu tarmoq avvalgi Informatika, Ingliz tili, Matematika, testlar, typing va musobaqa oqimlarini saqlaydi.
 
-Yorug‘ «Interaktiv Studio» va tungi «Tungi laboratoriya» ko‘rinishi: chap menyu, tartibli fan kartalari, katta atlas sahnalari, kimyo ish stoli va o‘ngdagi savol paneli bilan 3D labirint. Telefon, kompyuter va sinf doskasiga mos.
+**[Yangilash tartibi](UPDATE-7.26.2.md) · [Tekshiruvlar](QA-7.26.2.md) · [Ilmiy hisob va modellar](SCIENCE-STUDIO-7.26.2.md) · [O‘zgargan fayllar](CHANGED-FILES-7.26.2.md)**
 
-[Yangilash tartibi](UPDATE-7.26.md) · [Dizayn va manbalar](STUDIO-DESIGN-7.26.md) · [Tekshiruvlar](QA-7.26.md) · [ZIPlarni ochish](DOWNLOAD-7.26.md) · [O‘zgargan fayllar](CHANGED-FILES-7.26.md).
+## Ishga tushirish
 
-**7.25 bazasi ishlayotgan bo‘lsa, bu yangilanish uchun yangi SQL kerak emas.** ZIP ichidagi `sinf-quiz` papkasida shaxsiy `.env.local` sozlamalaringizni tiklab, `npm ci` va `npm run dev` ni bajaring. Node.js 22.12+ talab qilinadi. Mavjud modellar, audio, SQL, API va ustozga tegishli kontent chegaralari saqlangan.
+ZIP ichidagi `sinf-quiz` papkasini VS Code’da oching. Amaldagi loyihangizning `.env.local` faylini saqlang; yangi loyiha uchun `.env.example`ni nusxalab o‘z qiymatlaringizni kiriting.
 
-Quyida oldingi relizlar va dastlabki o‘rnatish yo‘riqnomalari saqlangan.
+**7.26 bazasidan o‘tayotgan bo‘lsangiz:** Supabase SQL Editor’da `supabase-migration-7.26.2.sql` faylini RUN qiling. Bu migratsiya oldindan bajarilgan bo‘lsa takrorlash talab qilinmaydi. 7.27.0 Sinfxona uchun qo‘shimcha SQL yo‘q. Yangi loyiha uchun bazaviy schema va oldingi migratsiyalarni `SUPABASE-VERCEL.md` bo‘yicha bajarib, 7.26.2 migratsiyasini oxirida qo‘shing.
 
-# SinfQuiz 7.25
+Node.js 22.12 yoki undan yangi versiyada:
 
-IQ va mantiq: 144 original topshiriq, 32 savollik urinish, 4 yo‘nalish profili va izohli yechimlar. Yagona **Darsliklar** oynasi: Kimyo 12, Ingliz tili 108, Biologiya 30, Informatika/Python 48 dars. **supabase-migration-7.25.sql** faylini RUN qiling va yangi frontendni o‘rnating. [Yangilash tartibi](UPDATE-7.25.md) · [Tekshiruvlar](QA-7.25.md) · [IQ talqini va ilmiy chegaralar](IQ-METHODS-7.25.md). Bu natijalar yosh me’yorlari bilan standartlashtirilgan IQ balli emas.
-
-Quyida avvalgi relizlar va dastlabki o‘rnatish yo‘riqnomalari saqlangan. Ishlayotgan 7.24 saytni yangilashda avval 7.25 yo‘riqnomasini o‘qing.
-
-# SinfQuiz 7.24
-
-Jamoaviy musobaqada kelmaganlarni belgilash, hozirgi tarkib bilan boshlash, adolatli typing va yengil holat yangilanishi qo‘shildi. **supabase-migration-7.24.sql**ni bajaring va yangi kodni o‘rnating. [Yangilash tartibi](UPDATE-7.24.md) · [Amaliy tekshiruvlar](QA-7.24.md).
-
-# SinfQuiz 7.23.1
-
-Ovoz yozuvi va qoralama saqlash oqimlari yangilandi. 7.23 o‘rnatilgan bo‘lsa **supabase-migration-7.23.1.sql**ni bajaring va yangi kodni o‘rnating. Bosqichlar: [UPDATE-7.23.1.md](UPDATE-7.23.1.md). Tekshiruv: [QA-7.23.1.md](QA-7.23.1.md).
-
-**Ingliz tili darsi — Noldan C1 gacha**: 108 original dars, 216 mahalliy audio, adaptiv daraja testi, o‘zlashtirish bo‘yicha ketma-ket ochilish, writing/speaking rubrikalari va ustoz guruhiga biriktirish. Kirish: bosh menyu → **Ingliz tili darsi**. Mavjud modul va foydalanuvchi oqimlari saqlangan.
-
-Ishlayotgan 7.22 bazada `supabase-migration-7.23.sql` ni RUN qiling va yangi kodni o‘rnating. Qadamlar: [UPDATE-7.23.md](UPDATE-7.23.md). Tekshiruv: [QA-7.23.md](QA-7.23.md). Kontent, manbalar va audio chegaralari: [ENGLISH-COURSE-7.23.md](ENGLISH-COURSE-7.23.md).
-
-# SinfQuiz 7.22
-
-Jamoaviy musobaqalar: 4–24 bosqich, 2–32 jamoa, har birida 1–12 a’zo; quiz, typing, labirint va amaliy savollar. Boshlang‘ich Excel uchun 32 savol va 6 amaliy vazifa. O‘rnatish: [UPDATE-7.22.md](UPDATE-7.22.md), yangi SQL: supabase-migration-7.22.sql, tekshiruv: [QA-7.22.md](QA-7.22.md).
-
-# SinfQuiz 7.21
-
-Biologiya atlasida tayyor anatomik, teksturali o‘simlik va hayvon modellari ishlaydi. O‘rnatish: [UPDATE-7.21.md](UPDATE-7.21.md). Manbalar: [BIOLOGY-MODELS-7.21.md](BIOLOGY-MODELS-7.21.md). Tekshiruv: [QA-7.21.md](QA-7.21.md). 7.21 uchun yangi SQL kerak emas.
-
-# SinfQuiz 7.20.1
-
-Kimyo laboratoriyasiga bosqichli qo‘llanma va yangilangan 3D/2D tajriba stoli qo‘shildi. O‘rnatish: [UPDATE-7.20.1.md](UPDATE-7.20.1.md). Tekshiruv: [QA-7.20.1.md](QA-7.20.1.md).
-
-# SinfQuiz 7.20
-
-Yangilash va SQL tartibi: [UPDATE-7.20.md](UPDATE-7.20.md). Manbalar: [ATLAS-SOURCES-7.20.md](ATLAS-SOURCES-7.20.md). Tekshiruv: [QA-7.20.md](QA-7.20.md).
-
-# SinfQuiz 7.19
-
-Biologiya 3D yangilanishini o‘rnatish: [UPDATE-7.19.md](UPDATE-7.19.md). Tekshiruvlar: [QA-7.19.md](QA-7.19.md).
-
-# SinfQuiz 7.18
-
-Biologiya yangilanishi uchun [UPDATE-7.18.md](UPDATE-7.18.md), tekshiruvlar uchun [QA-7.18.md](QA-7.18.md)ni o‘qing.
-
-# SinfQuiz 7.16.1
-
-Qoralama, qayta yuborish, forma va ion panjarasi tuzatishlari: [UPDATE-7.16.1.md](UPDATE-7.16.1.md).
-
-Kimyo atlasining 12 sahnasi, virtual laboratoriya va ustoz kuzatishlari qo‘shildi. Manbalar: [CHEMISTRY-SOURCES.md](CHEMISTRY-SOURCES.md). Audio labirintning yangi ko‘rinishi: [UPDATE-7.15.md](UPDATE-7.15.md).
-
-Oldingi atlas, 3D audio labirint va reyting tuzatishi: [UPDATE-7.14.md](UPDATE-7.14.md).
-
-Kimyo uchun `supabase-chemistry-atlas.sql` migratsiyasi kerak. Ishlayotgan `.env` sozlamalaringizni saqlang. Yangilash tartibi: [UPDATE-7.16.md](UPDATE-7.16.md).
-
-# SinfQuiz 7.13.0
-
-## 7.13: Inglizcha audio labirint
-
-Uy sahifasidagi “Inglizcha audio labirint” bo‘limida A1–B1 darajadagi 12 ta alohida labirint, 36 ta tinglash topshirig‘i va brauzerda gapni ovoz chiqarib o‘qish bor. O‘qituvchi xaritani faollashtiradi; ustoz yozgan topshiriqlar ommaga chiqishidan oldin admin tasdig‘idan o‘tadi. Natijalar ustozlar kesimida ajratiladi. Supabase SQL Editor’da `supabase-audio-maze.sql` faylini avvalgi SinfQuiz migratsiyalaridan keyin RUN qiling. Tafsilotlar `AUDIO-MAZE.md` faylida.
-
-
-
-## 7.12: Matematika atlasi
-
-Matematika xaritasida 55 ta sahna bor. Mavzular 5–11-sinf oralig‘ida ketma-ket bog‘langan, biroq sinf tanlash qat’iy shart emas. Son chizig‘i, ifoda, tenglama tarozisi, chiziqli grafik, uchburchak, o‘zgarishlar, ko‘pburchaklar va fazoviy shakllar boshqariladigan SVG tajribalar bilan ishlaydi. O‘quvchi qiymat kiritib o‘z taxminini tekshiradi; xato javobda hisoblash yo‘li ko‘rsatiladi. O‘qituvchi/admin tushuncha, izoh, sahna turi, boshlang‘ich parametrlar va oldingi tushunchalarni belgilashi mumkin. Ommaviy o‘qituvchi kontenti admin tasdig‘idan so‘ng chiqadi. Supabase SQL Editor’da `supabase-math-atlas.sql` faylini Run qiling; bosqichma-bosqich yo‘riqnoma `MATEMATIKA-ATLAS.md` da.
-
-## 7.11: sinf amaliyotlari
-
-Word, Excel va PowerPoint shaxsiy sinf testlari qayta tuzildi: tushuntirishli nazariy savollar bilan birga Word hujjati, jadval, rasm, matnga o‘rash va ma’lumotnoma; Excel kataklari, SUM va AVERAGE; PowerPoint slayd, rasm va so‘zlovchi qaydlari muharrirda bajariladi. O‘qituvchi ham shu amaliy topshiriqlarni testiga qo‘sha oladi. Muharrirlar o‘quv simulyatsiyasi; Microsoft fayl formatlariga eksport qilmaydi. Avvalgi tayyor shablonlar faqat tahrirlanmagan bo‘lsa yangilanadi; ustozning o‘zgartirgan testlari saqlanadi.
-
-Python sinf testi nazariy va kod yozish savollarini birlashtiradi. O‘quvchi kabinetida ham 20 mavzuli Python ish joyi bor. Kod shu brauzerda dars bo‘yicha oxirgi yozuvdan 52 soat saqlanadi va `.py` sifatida olinadi. Dastur har safar alohida workerda ishlaydi; serverga kod bajarish uchun yuborilmaydi. Ruxsat etilgan modullar cheklangan. Python fayllari saytning o‘zidan yuklanadi va brauzerda keshlanadi; yozilgan kod/oflayn tahrir saqlanaveradi. Kod va natija ustozga yuborilgan sinf testida ustoz uni tekshirishi mumkin. Baholash o‘quv mashqi uchun va faqat ko‘rsatilgan natijaga tayangan. Muhitda turib qolish xatosi bo‘yicha yangilash: `UPDATE-7.11.1.md`.
-
-## O‘quvchi profili va parollar
-
-O‘quvchi **Profilim** sahifasida ismi, maktabi va sinfi haqida ma’lumot kiritadi, email bilan kirgan bo‘lsa joriy parolini tasdiqlab yangi parol qo‘yadi. Natijalar tarixida hisobga bog‘langan sinf testi, typing, milliy test, CEFR, mustaqil mashq va 1v1 poyga ko‘rinadi. Administrator **Foydalanuvchilar** jadvalida email hisobli o‘quvchi yoki o‘qituvchi parolini server orqali tasodifiy yangi parolga almashtira oladi. Admin paneli chap menyusi kichik ekranda ichida aylantiriladi. `UPDATE-7.9.md` dagi SQL va deploy qadamlarini bajaring.
-
-## Administratorning kompyuter savodxonligi kursi
-
-Administrator hisobiga kirilganda 28 ta tayyor darslik uning nomidan ommaga e’lon qilinadi: 5 ta kompyuter/klaviatura/sichqoncha/internet, 8 ta Word, 9 ta Excel va 6 ta PowerPoint darsi. Har birida original tushuntiruvchi SVG sxema, mavzu matni, ketma-ket amaliy mashq, kutilgan natija, xatolar va javobi izohlangan 2 ta tekshirish savoli bor. Dars oxiridagi tugma keyingi darsni ochadi. **Administrator paneli → Darsliklarim** bo‘limida ularni ko‘rish, bo‘limga ajratish va matnini tahrirlash mumkin. O‘quvchilar **Darsliklar** kabinetida mashqlarni saytdan chiqmasdan o‘qiydi. Eski 7.8 bazasida admin paneliga kirilganda mavjud darslar v2 ko‘rgazmali qo‘llanma bilan boyitiladi; tahrirlangan matnlar, qoralama holati va o‘chirilgan darslar saqlanadi. Boshqa ustozlarning darsliklariga tegilmaydi. Yangi SQL migratsiyasi talab qilinmaydi; mavjud baza 7.8 holatida bo‘lishi kerak.
-
-## Kompyuterda ishga tushirish
-
-Windows’da `START.bat` ni oching yoki VS Code terminalida `npm install` va `npm run dev` ni bajaring. Terminal oynasini yopmang; brauzerda terminal ko‘rsatgan `Local` manzilini oching. `ERR_CONNECTION_REFUSED` yoki `Failed to fetch dynamically imported module` chiqsa, dev server to‘xtagan: terminaldagi xatoni tekshirib qayta ishga tushiring va sahifani yangilang. Server ishlayotganida `ClassroomChat.jsx` va `OpenExamHub.jsx` modullari yuklanadi.
-
-## Darslik o‘qilishi va shaxsiy chat
-
-O‘quvchi hisobida darslik ochilgach 4,5 soniya o‘tganda bir marta o‘qilgan deb belgilanadi. Bitta o‘quvchi qayta ochsa, son oshmaydi. O‘quvchi va ustoz darslik kartalarida nechta noyob o‘quvchi o‘qiganini ko‘radi; ustoz sahifasida sanog‘i besh soniyada bitta so‘rov bilan yangilanadi.
-
-Chat **bosh sahifada ko‘rsatilmaydi**. O‘quvchi darslikda “Ustozga yozish”ni, ustoz esa panelda “O‘quvchilar bilan chat”ni ochadi. Matn, emoji va 15 soniyagacha ovozli xabar yuborish mumkin. Bir suhbatda faqat o‘sha o‘quvchi va darslik muallifi yozishadi; begona hisoblar xabar va ovozni o‘qimaydi. Bloklash, shikoyat va adminning shikoyat bo‘yicha suhbatni to‘xtatish amallari bor. Xabarlar mahalliy doimiy xotiraga yozilmaydi. Bazadagi matn va ovoz 24 soatdan keyin ko‘rsatilmaydi va Cron har daqiqada o‘chiradi.
-
-**Mavjud baza:** Supabase’da Cron modulini yoqing, `supabase-migration-7.8.sql` ni RUN qiling, so‘ng saytni deploy qiling. Bu yangi SQL zarur. Qadamlar va saqlash muddati chegaralari `UPDATE-7.8.md` da.
-
-## O‘quvchilar uchun hisob ochish shart emas
-
-6 xonali kodli sinf testi, ustoz faollashtirgan typing va bitta monitordagi 1v1 poygaga o‘quvchi **email yoki Telegramsiz** qo‘shiladi. Kodli testda kodni, keyin ism va avatarni kiritadi. Typing va 1v1 tugmalari faqat ustoz ularni ochganida ko‘rinadi; o‘quvchi ism va avatarni tanlaydi. Supabase fon rejimida anonim sessiya ochadi, shuning uchun **Auth → Anonymous Sign-Ins** yoqilgan bo‘lishi kerak. Ustoz/admin paneli, darsliklar, milliy test va CEFR uchun odatiy hisob kirishi saqlanadi. Bazaga yangi migratsiya talab qilinmaydi; 7.7 SQL hali bajarilmagan bo‘lsa, `UPDATE-7.7.md` qadamlarini bajaring.
-
-## 10 ta tayyor CEFR / Multilevel mock
-
-Administrator Supabase SQL Editor’da `supabase-migration-7.7.sql` faylini bir marta ishga tushiradi. So‘ng yangi kodni deploy qilib, **Administrator paneli → CEFR / Multilevel** sahifasini ochadi. Sahifa 10 ta variantni bir marta e’lon qiladi; ular o‘quvchilarning CEFR katalogida ko‘rinadi. Oldingi variant va natijalar saqlanadi. Batafsil ketma-ketlik: `UPDATE-7.7.md`.
-
-Har variantda 35 ta Listening (6 qism, mahalliy MP3), 35 ta Reading (5 qism), 3 ta Writing va 8 ta Speaking topshirig‘i bor. Jami 700 ta kalit bilan tekshiriladigan Listening/Reading savoli va 110 ta yozma/og‘zaki topshiriq. Audio 60 ta qisqa sun’iy ovoz yozuvidan iborat; brauzer saytdan yuklaydi. Mavzular va matnlar original mashq materiallari. Ular kutilayotgan imtihonning haqiqiy savollari yoki rasmiy sertifikat emas; Writing va Speaking ishlari administrator tomonidan baholanadi.
-
-## Reyting va tezlik yangilanishi
-
-Ustozning natija qatorlari Supabase RLS orqali faqat o‘ziga va natijani topshirgan o‘quvchiga ochiq. O‘quvchi faqat o‘zi qatnashgan testning ixcham jonli reytingini (ism, avatar, ball) ko‘radi; boshqa test qatnashchilarining javoblari yuborilmaydi. Reyting jadvali bazada avtomatik yangilanadi. Ustoz paneli jonli xabarlarni olayotganda har safar ortiqcha ro‘yxat so‘rovlarini yubormaydi.
-
-**Mavjud 7.5 bazadan yangilash:** ZIPdagi `supabase-migration-7.6.sql` faylini Supabase SQL Editor’da RUN qiling, keyin 7.6 kodini Vercel’ga deploy qiling. Eski natijalar o‘chirilmaydi. Yangi loyiha uchun `supabase-schema.sql` bu o‘zgarishni o‘z ichiga oladi; undan keyin 7.2 va 7.4 migratsiyalarini bajaring. Batafsil `UPDATE-7.6.md`.
-
-Sinf fanlari, kodli testlar, typing va umumiy maydondagi 1v1 poyga platformasi. React/Vite + Supabase; Vercel uchun tayyor loyiha.
-
-## Yangi: bo‘sh milliy test katalogiga tayyor variantlar
-
-Admin hisobida birinchi kirishda ikkita 30 savollik variant bir marta Supabase’ga tasdiqlangan va ommaga ochiq holda joylanadi: **Matematika — manbali algebra** va **Ingliz tili — Reading**. Ular “Milliy test → Matematika / Ingliz tili” kartalarida darhol ishlanadi, adminning “Milliy testlar” panelida tahrirlanadi yoki o‘chiriladi. O‘qituvchining mavjud savollari va tasdiq jarayoni saqlanadi. Admin biror variantni o‘chirgach, u qayta avtomatik yaratilmaydi.
-
-Har ikkisi mavjud 75 savollik ochiq to‘plamdagi manbali mashqlardan moslashtirilgan: matematika uchun 30 ta Boyden masalasi, ingliz tili uchun VOA matnlari asosida 30 ta savol. Inglizcha savollar oynasida kerakli Reading matni ham ochiladi. To‘rt variantli format uchun yangi chalg‘ituvchi javoblar qo‘shilgan, izoh va manba saqlangan. Bular rasmiy milliy sertifikatning aynan nusxasi emas, mashq natijasi.
-
-7.4 bazasidan yangilash uchun **yangi SQL kerak emas**. Admin hisobida kirib, “Milliy testlar” yoki bosh sahifadagi “Milliy test” bo‘limini bir marta oching. Batafsil: `UPDATE-7.5.md`.
-
-## Admin boshqaradigan CEFR
-
-**Administrator paneli → CEFR / Multilevel**: to‘rt bo‘limli variant yaratish, qoralama saqlash, tekshirish, e’lon qilish va yopish. Listening uchun HTTPS audio manzili, Reading uchun matn, Writing va Speaking uchun topshiriqlar kiritiladi. Manba/muallif va foydalanish huquqi qaydi talab qilinadi.
-
-O‘quvchi **CEFR / Multilevel** kartasidan e’lon qilingan variantni ishlaydi. Taymer server vaqtiga asoslanadi, topshirilgan bo‘limga qaytilmaydi, javoblar har 5 soniyada serverga va darhol qurilmaga saqlanadi. Internet uzilsa, xabar va qayta saqlash tugmasi bor; muddatdan keyingi javoblar qabul qilinmaydi. Speaking mikrofon yoki 20 MB gacha audio fayl orqali topshiriladi.
-
-Listening/Reading kalit bo‘yicha bazada tekshiriladi. **Tekshirish** oynasida admin Writing va Speaking ishlariga 0–75 mashq bahosi va izoh beradi. O‘quvchi natija sahifasida yangilangan bahoni ko‘radi. Rasmiy CEFR darajasi avtomatik chiqarilmaydi.
-
-Yangi jadval va RPC ruxsatlari: faqat admin variantlarni boshqaradi; o‘quvchi faqat o‘z sessiyasini ko‘radi. Javob kaliti test tugaguncha yuborilmaydi. Speaking yozuvlari xususiy bucket’da; o‘quvchi o‘z audiosini, admin topshirilgan audioni ochadi. Variant tahriri qoralamaga qaytadi, boshlangan sessiya o‘z nusxasida davom etadi.
-
-7.4 bazangiz ishlayotgan bo‘lsa, CEFR uchun SQL qayta bajarilmaydi. Yangi loyihada `supabase-migration-7.4.sql` ham kerak; batafsil `UPDATE-7.5.md` da.
-
-## Sayt ichidagi tayyor testlar
-
-Bosh sahifa → **Tayyor testlar**. Savol ishlash uchun boshqa saytga o‘tish yoki PDF yuklash shart emas.
-
-| Fan | Takrorlanmagan savol | Tarkib |
-| --- | ---: | --- |
-| Ingliz tili | 30 | 6 ta asl VOA matni/dialogi; tanlash va qisqa javob |
-| Matematika | 30 | Nisbat, chiziqli tenglama, sistema va kvadrat tenglama |
-| Python | 15 | IDE, print, o‘zgaruvchi, tur, input, operatorlar, shart, sikl, ro‘yxat, lug‘at va funksiya |
-
-Ingliz tili va matematikaning har birida 30 savollik aralash variant bor. Mavzularni alohida ham ishlash mumkin: 6 ta ingliz tili, 4 ta matematika va 1 ta Python to‘plami. Jami 75 ta noyob savol; aralash variantlar shu savollarni birlashtiradi, yangi savollar sifatida sanalmaydi.
-
-Python to‘plami ustoz panelidagi **Tayyor savollar to‘plami → Python** orqali shaxsiy testga nusxalanadi. Ustoz uni tahrirlashi, 6 xonali kod bilan faollashtirishi yoki 1v1 uchun savollarini tanlashi mumkin. Eski tayyor Python shabloni o‘zgartirilmagan bo‘lsa, uning 15 savoli yangilanadi; ustoz tahrirlagan testlar saqlanadi. Chop etish uchun savol va kalit: `PYTHON-15-TEST.md`.
-
-## Darsliklar va video bo‘limi
-
-Admin birinchi marta yangi kodga kirganda 28 ta kompyuter, Word, Excel va PowerPoint darsiga 20 ta original Python darsi qo‘shiladi. Python kursi muhiti, print, o‘zgaruvchi, tur, input, matn, operator, shart, ro‘yxat, sikl, lug‘at, funksiya, xatolar, modul, fayl va kichik loyihani qamrab oladi. Har darsda kod, kutiladigan natija, mashq va ikki tekshiruv savoli bor. O‘zgartirilgan yoki o‘chirilgan eski darslar qayta yozilmaydi. Dars kartalarida emoji ishlatilmaydi.
-
-O‘quvchi kabinetidagi **Video darslar** hozircha «tez orada qo‘shiladi» sahifasidir. Email yoki Telegram orqali kirgan o‘quvchilar bir xil darsliklar va video bo‘limini ko‘radi.
-
-1v1 poygada ikki o‘quvchi bitta monitorda o‘ynaydi. 7.6 SQL migratsiyasi reytingga tegishli; poygadagi mehmon yozuvini yangilash xatosi 7.10 mijoz kodida tuzatildi. Yangilash qadamlarini `UPDATE-7.10.md` dan ko‘ring.
-
-## Interfeys
-
-- Fan bo‘yicha filtr, mavzu qidiruvi, aniq savol/vaqt kartalari.
-- Reading matni va savollar yonma-yon; telefonda ketma-ket.
-- Matn o‘lchamini sozlash, radio variantlar va qisqa javob maydoni.
-- Javoblar xaritasi, “Keyin ko‘rish” belgisi va javobni tozalash.
-- Taymer; vaqt tugaganda avtomatik yakunlash. Yakunlangan javoblar o‘zgarmaydi.
-- Sahifa yangilanganda davom ettirish, qurilmada avtomatik saqlash.
-- Xato, javobsiz yoki barcha savollar bo‘yicha javob/yechim tahlili; natijani JSON yuklash.
-- Logo faol testdan chiqarmaydi; qaytish aniq tugma orqali.
-- Ranglar, fokus holatlari, dark/light ko‘rinish va tor ekran moslashuvi.
-
-Yangi mashqlarda har javob uchun server so‘rovi yuborilmaydi; test ochilgach ma’lumotlar qurilmada ishlaydi. Natijalar brauzerda saqlanadi, admin statistikasiga avtomatik yuborilmaydi. Ustozning kodli testi va uning jonli natijalari avvalgi tizimda ishlaydi.
-
-## Manbalar va aniq chegaralar
-
-VOA o‘z original matnlaridan ta’lim/tijorat maqsadida manba ko‘rsatib foydalanishga ruxsat bergan. Boydenning 1895-yilgi kitobi public domain. Asl matnlar va masalalar manbadan olindi; tanlash variantlari, tarjimalar va izohlar moslashtirilgan. Manba sanalari ko‘rsatilgan: 2004-yildagi matn raqamlari bugungi statistika sifatida berilmaydi.
-
-To‘liq izoh va foydalanish qaydi: `CONTENT-SOURCES.md`. Python savollari original; rasmiy Python hujjatlari bilan tekshirilgan.
-
-10 ta tayyor CEFR mock **mustaqil mashq** sifatida qo‘shilgan. CEFR muharriri ham mavjud: admin o‘z savollari va audio materiallarini joylay oladi. Rasmiy B1/B2/C1 darajasi yoki Rasch sertifikat bali avtomatik berilmaydi. 30 savollik algebra to‘plami rasmiy milliy sertifikat variantining aynan nusxasi emas.
-
-Avvalgi mahalliy PDF/audio ish joyi faqat oldin boshlangan sessiyalarni tiklash uchun saqlangan; bosh sahifadagi CEFR tugmasi admin e’lon qilgan CEFR variantlarini ochadi. Tayyor Reading esa “Tayyor testlar” ichida qolgan. Eski avtomatik demo mocklar ommaviy katalogda ko‘rsatilmaydi.
-
-## O‘rnatish
-
-Node.js 22.12+ kerak. `.env.example` dan `.env.local` yarating, Supabase URL va publishable/anon key’ni kiriting.
-
-```bash
+```powershell
 npm ci
 npm run dev
 ```
 
-Admin panelidan boshqa foydalanuvchining parolini localhostda tiklash uchun `.env.local` ga server kaliti `SUPABASE_SECRET_KEY` (yoki eski `SUPABASE_SERVICE_ROLE_KEY`) ni ham qo‘shing va `npm run dev` ni qayta ishga tushiring. To‘liq qadamlar `SUPABASE-VERCEL.md` da. Kalitni hech qachon `VITE_` bilan nomlamang.
+Production:
 
-Mavjud 7.6 bazada `supabase-migration-7.7.sql` ni bajaring. Eski 7.0/7.1 bazada avval `supabase-migration-7.2.sql`, 7.2/7.3 bazada `supabase-migration-7.4.sql`, 7.5 bazada `supabase-migration-7.6.sql` ham kerak. Yangi bazada ketma-ket `supabase-schema.sql`, `supabase-migration-7.2.sql`, `supabase-migration-7.4.sql`, `supabase-migration-7.7.sql` bajariladi. Batafsil: `SUPABASE-VERCEL.md` va `UPDATE-7.7.md`.
-
-Vercel’ga yangi kodni yuklang, env qiymatlarini saqlang va redeploy qiling. `SUPABASE_SERVICE_ROLE_KEY` va `TELEGRAM_BOT_TOKEN` serverda qoladi; ularni `VITE_` bilan boshlamang.
-
-## Tekshiruv
-
-```bash
+```powershell
 npm test
 npm run build
 ```
 
-Kodli Python javoblarini tekshiruvchi test uchun Python 3 ham kerak. Saytning o‘zida Python o‘rnatilishi talab qilinmaydi.
+Vercel: Vite, build `npm run build`, chiqish katalogi `dist`. Production muhitiga `VITE_SUPABASE_URL` va `VITE_SUPABASE_ANON_KEY` kiriting va yangi kodni qayta deploy qiling. Server kalitlari va Telegram bot tokenining nomiga `VITE_` qo‘shilmaydi.
 
-Testlar savollar kaliti, matematik yechimlar, Pythonning haqiqiy chiqishi, sessiya, yakunlash, qayta ochish va UI oqimlarini tekshiradi. CEFR SQL migratsiyasi PGlite (PostgreSQL) ichida, ruxsatlar va deadline bilan sinovdan o‘tadi. UI sinovi jsdom/simulyatsiya qilingan API bilan; haqiqiy mobil brauzer, mikrofon va live Supabase bu muhitda tekshirilmagan.
+## Kimyo va biologiya
 
-Tayyor 75 savollik mustaqil mashqning javob kalitlari mijoz kodida mavjud. Yangi admin CEFR variantlarining kalitlari bazada yashiriladi. Bu nazoratli rasmiy imtihon yoki soxtalashtirishdan to‘liq himoyalangan baholash tizimi emas. Global jonli poyga hali bir necha sinf uchun mustaqil xonalarga bo‘linmagan.
+- Kimyo: 12 atlas mavzusi, 13 boshqariladigan laboratoriya shabloni, erkin tajriba stoli va 12 amaliy ish. Modda, jihoz, miqdor, konsentratsiya, harorat va vaqt natijaga ta’sir qiladi.
+- Biologiya: 30 tushuncha, 24 turdagi sahna, 12 amaliy ish; barg–tuproq–ildiz, o‘simlik, hayvonlar va interaktiv anatomiya.
+- Har mavzuga qisqa dars va bilimni tekshirish biriktirilgan. Grafiklar aynan sahnadagi modeldan hisoblanadi; CSV, sharoitlarni taqqoslash va tiklash ishlaydi.
+- Biologiyada pauzadagi bosqich, parametrlar va daftar shu hisob/mavzu bo‘yicha qayta ochiladi.
+- Tayyor biologiya modellarining litsenziyalari `MODEL-SOURCES.md` va `public/biology/v7.21/manifest.json`da. Yengil 3D va ishlaydigan 2D muqobil saqlangan.
+
+## Kirish va natijalar
+
+Darslar va atlaslar mavjud o‘quvchi kabineti orqali ochiladi. Ustoz o‘z ishlarini boshqaradi, o‘quvchi kuzatuvini ko‘radi va fikr beradi. Ommaviy ustoz nusxalari uchun mavjud admin tasdiqlashi va RLS cheklovlari saqlangan.
+
+6 xonali kodli test, typing va 1v1 uchun email/Telegram hisobini yaratish shart emas. Mehmon kirishi uchun Supabase Anonymous Sign-Ins yoqilgan bo‘lsin. 6 xonali testning ball/taymeri va 1v1 javob/g‘olibi endi serverda hisoblanadi. Migratsiyadan oldingi aktiv test/poygaga kod bilan qayta kiriladi; yakuniy natijalar yo‘qolmaydi.
+
+Telegram va admin parol APIlari `npm run dev` orqali lokalda ham ishlaydi. Telegram imzosi haqiqiy bot tokeni bilan tekshiriladi; server kaliti `SUPABASE_SECRET_KEY` yoki `SUPABASE_SERVICE_ROLE_KEY` bo‘lishi mumkin.
+
+## Brauzer tekshiruvi
+
+Playwright va Chromium o‘rnatilgach:
+
+```powershell
+npx playwright install chromium
+npm run test:e2e:science
+npm run test:e2e:play
+npm run test:e2e:studio
+npm run test:e2e:learning
+npm run test:e2e:competition
+```
+
+Sinovlarda transport/Auth fixture ishlatilgan joylar QA hujjatida alohida ko‘rsatilgan. Production Supabase va Vercel bilan o‘z loyihangizda tekshirish kerak.
+
+Bu virtual ta’lim modeli: murakkab tabiiy jarayonlarning qaysi jihatlari soddalashtirilgani sahnaning o‘zida ko‘rsatiladi. Anatomiya tashxis vositasi emas. Tarixiy reliz hujjatlari paketda saqlangan; ushbu yangilanish uchun `UPDATE-7.26.2.md`ni kuzating.

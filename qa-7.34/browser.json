@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "stats": {
+    "frames": 5,
+    "elapsed": 0.16,
+    "drawMs": 0.5,
+    "drawCalls": 11,
+    "triangles": 344215,
+    "width": 1366,
+    "height": 502,
+    "quality": "standard",
+    "pixelRatio": 1,
+    "azimuth": 0.6573570334704748,
+    "zoom": 1,
+    "phase": "day",
+    "paused": false,
+    "modelId": "af54f5280eb249beb6501eab4769c351",
+    "modelLoaded": true,
+    "animationClips": 0,
+    "autoOrbit": true,
+    "assetUrl": "/models/registan/v7.34/registan.glb"
+  },
+  "responsiveWidths": [
+    320,
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "realLocalGLB": true,
+  "rotation": true,
+  "zoom": true,
+  "keyboard": true,
+  "darkTheme": true,
+  "guestAuthGate": true,
+  "errors": [],
+  "scope": "Local browser with auth/API fixtures; actual Three.js and local artist model."
+}

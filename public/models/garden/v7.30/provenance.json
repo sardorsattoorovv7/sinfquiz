@@ -1,0 +1,24 @@
+{
+  "modelId": "7108937f2dbb4e5281f9354986b178ea",
+  "title": "DAE - Grandma's Castle Garden",
+  "author": "meesvanhout",
+  "source": "https://sketchfab.com/3d-models/dae-grandmas-castle-garden-7108937f2dbb4e5281f9354986b178ea",
+  "license": {
+    "uri": "https://api.sketchfab.com/v3/licenses/322a749bcfa841b29dff1e8a1bb74b0b",
+    "label": "CC Attribution",
+    "fullName": "Creative Commons Attribution",
+    "requirements": "Author must be credited. Commercial use is allowed.",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "slug": "by"
+  },
+  "archiveMirror": "https://mirror.traines.eu/sketchfab-backup/71/7108937f2dbb4e5281f9354986b178ea.zip",
+  "changes": "Specular/gloss materials converted to supported metallic/roughness PBR. Meshopt compression; textures at most 1024 px, converted to WebP. No geometry simplification. Site lighting and framing added.",
+  "bytes": 4731636,
+  "sha256": "84124fc144177574848b6ee2490d8379aaa1f2e54ba77b82e4d7bd12924da3ae",
+  "lowVariant": {
+    "textureSize": 512,
+    "bytes": 2853308,
+    "sha256": "fb91908ffe7a494e9a05e7e2345675da578046be767f497582fa52badf08094a",
+    "geometrySimplified": false
+  }
+}

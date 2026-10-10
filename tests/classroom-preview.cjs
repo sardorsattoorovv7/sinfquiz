@@ -1,0 +1,18 @@
+// Capture the real module with a lesson prepared through its public controls.
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
+(async()=>{
+ const root=path.resolve(__dirname,'..'),out=process.env.CLASSROOM_QA_DIR||path.join(root,'qa-7.27.0/classroom');fs.mkdirSync(out,{recursive:true});
+ const {createServer}=await import(pathToFileURL(path.join(root,'node_modules/vite/dist/node/index.js'))),server=await createServer({root,server:{host:'127.0.0.1',port:4199,hmr:false}});await server.listen();
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_EXECUTABLE,args:['--no-sandbox','--no-zygote','--single-process']});
+ try{
+  const context=await browser.newContext({viewport:{width:1600,height:1080}}),page=await context.newPage();
+  await context.addInitScript(()=>{window.__SINFQUIZ_LEGACY_TEST__=true;localStorage.setItem('sq_theme','light');localStorage.setItem('sq_sound','off');});
+  await context.route(/\/(auth|api)\//,async route=>{const p=new URL(route.request().url()).pathname;await route.fulfill({status:200,json:p==='/auth/session'?{user:{id:'classroom-preview',name:'Dilshod',role:'teacher'},csrf:'fixture'}:{quizzes:[],lessons:[],analytics:{}}});});
+  await page.goto('http://127.0.0.1:4199/#sinfxona');await page.locator('.cr-board').waitFor();
+  await page.getByRole('button',{name:'Topshiriq shabloni',exact:true}).click();await page.getByLabel('Topshiriq shakli',{exact:true}).selectOption('image');await page.getByLabel('Topshiriq sarlavhasi',{exact:true}).fill('Uchburchak yuzi');await page.getByLabel('Topshiriq sharti',{exact:true}).fill('Asos 8, balandlik 5 birlik. Yuzani toping. Nega ikkiga bo‘lamiz?');await page.getByLabel('Topshiriq rasmi',{exact:true}).setInputFiles(path.join(root,'tests/fixtures/classroom-triangle.png'));await page.getByRole('button',{name:'Topshiriqni doskaga qo‘yish',exact:true}).click();
+  await page.getByLabel('Matn o‘lchami',{exact:true}).fill('38');await page.getByRole('button',{name:'Matn',exact:true}).click();await page.locator('.cr-board').scrollIntoViewIfNeeded();const box=await page.locator('.cr-board').boundingBox();await page.mouse.click(box.x+box.width*960/1600,box.y+box.height*320/900);await page.getByRole('textbox',{name:'Matn',exact:true}).fill('S = 8 × 5 ÷ 2\nS = 20 kv. birlik');await page.getByRole('button',{name:'Matnni joylashtirish',exact:true}).click();
+  await page.getByLabel('Taymer ko‘rinishi',{exact:true}).selectOption('ring');await page.getByLabel('Taymer nomi',{exact:true}).fill('Mustaqil ish');await page.locator('.panel-timer').getByRole('button',{name:'5 daq',exact:true}).click();await page.locator('.panel-timer').getByRole('button',{name:'Boshlash',exact:true}).click();
+  await page.getByRole('button',{name:'Tanlash',exact:true}).click();await page.getByRole('button',{name:'Qoralamani hozir saqlash',exact:true}).click();await page.waitForTimeout(250);await page.evaluate(()=>{window.scrollTo({top:0,behavior:'instant'});document.querySelectorAll('.cr-dock').forEach(el=>el.scrollTop=0);});await page.screenshot({path:path.join(out,'sinfxona-preview.png'),fullPage:true});
+  await page.getByRole('button',{name:'Dars namoyishi',exact:true}).click();await page.setViewportSize({width:1920,height:1080});await page.waitForTimeout(250);await page.evaluate(()=>document.querySelectorAll('.cr-dock').forEach(el=>el.scrollTop=0));await page.locator('.cr-classroom').screenshot({path:path.join(out,'sinfxona-preview-projector.png')});
+ }finally{await browser.close();await server.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

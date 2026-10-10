@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "stats": {
+    "frames": 4,
+    "elapsed": 0,
+    "drawMs": 328,
+    "drawCalls": 67,
+    "triangles": 143120,
+    "width": 1366,
+    "height": 502,
+    "quality": "standard",
+    "pixelRatio": 1,
+    "azimuth": 0.6610431688506868,
+    "zoom": 1,
+    "phase": "day",
+    "paused": true,
+    "modelId": "7108937f2dbb4e5281f9354986b178ea",
+    "modelLoaded": true,
+    "animationClips": 0,
+    "autoOrbit": false,
+    "assetUrl": "/models/garden/v7.30/garden.glb"
+  },
+  "responsiveWidths": [
+    320,
+    390,
+    768,
+    1024,
+    1440
+  ],
+  "realLocalGLB": true,
+  "rotation": true,
+  "zoom": true,
+  "keyboard": true,
+  "darkTheme": true,
+  "guestAuthGate": true,
+  "errors": [],
+  "scope": "Local browser with auth/API fixtures; actual Three.js and local artist model."
+}

@@ -1,0 +1,109 @@
+/* Home-only redesign. Activity, auth, teacher and student screens retain their rules. */
+.island-home-mode{--garden-bg:#f5f6f1;--garden-card:#fff;--garden-ink:#172f35;--garden-muted:#52676b;--garden-border:#d4ded6;--garden-accent:#215c4f;background:var(--garden-bg)!important}
+[data-theme=dark] .island-home-mode{--garden-bg:#102421;--garden-card:#18302b;--garden-ink:#eef7f0;--garden-muted:#b9c9bf;--garden-border:#446254;--garden-accent:#b7e3ca}
+.island-home-mode .studio-topbar.site-nav{position:relative;top:auto;left:auto;right:auto;min-height:82px;margin:auto;max-width:1600px;padding:16px 40px;border-bottom:1px solid var(--garden-border);background:var(--garden-bg);color:var(--garden-ink)}
+.island-home-mode .studio-mobile-brand,.island-home-mode .studio-topbar .nav-brand{color:var(--garden-ink)}
+.island-home-mode .studio-topbar .nav-brand span{color:var(--garden-accent)}
+.island-home-mode .studio-topbar .experience-controls button,.island-home-mode .studio-menu-toggle,.island-home-mode .studio-profile{background:var(--garden-card);color:var(--garden-ink);border-color:var(--garden-border);box-shadow:none}
+.island-home-mode .studio-search form{background:var(--garden-card);border-color:var(--garden-border);color:var(--garden-muted)}
+.island-home-mode .studio-search input{color:var(--garden-ink)}
+.island-home-mode .teacher-entry{background:#215c4f!important;color:white!important;border:0;box-shadow:none}
+.island-home-mode .island-landing,.island-home-mode .island-world{background:var(--garden-bg);color:var(--garden-ink)}
+.island-home-mode .island-world{padding:0 36px!important;max-width:1600px;margin:auto}
+.island-home-mode .island-intro{display:flex;justify-content:space-between;align-items:center;padding:30px 0 23px;gap:20px}
+.island-home-mode .island-intro h1{font-size:clamp(28px,3vw,43px);letter-spacing:-1.3px;color:var(--garden-ink);margin:8px 0}
+.island-home-mode .island-intro p{color:var(--garden-muted);font-size:14px;margin:0}
+.island-home-mode .island-intro :is(h1,p,span){text-shadow:none}
+.island-home-mode .studio-search input::placeholder{color:var(--garden-muted);opacity:1}
+.island-home-mode .studio-topbar .studio-search input{color:var(--garden-ink)}
+.island-home-mode .island-beyond>header>span,.island-home-mode .island-wordmark>span{color:var(--garden-accent)}
+.island-home-mode .island-wordmark{color:var(--garden-ink)}
+.campus-eyebrow{font-size:10px;letter-spacing:1.8px;font-weight:750;color:var(--garden-accent)}
+.campus-code-link{display:flex;align-items:center;gap:10px;border:1px solid var(--garden-border);padding:13px 17px;border-radius:12px;color:var(--garden-accent);background:var(--garden-card);font-size:12px;text-decoration:none;white-space:nowrap}
+.island-home-mode .garden-map{height:570px;min-height:570px;border:1px solid var(--garden-border);border-radius:25px;overflow:hidden;background:var(--garden-card);box-shadow:0 15px 45px #1c3a2410}
+.island-home-mode .island-3d-host{inset:0 310px 62px 0;background:#e7ede5}
+.island-home-mode .island-3d-host:after{display:none}
+.island-home-mode .garden-map .island-destinations,.island-home-mode .garden-map[data-explore=true] .island-destinations,.island-home-mode .garden-map:not([data-scene-status=ready]) .island-destinations{position:absolute;top:0;right:0;bottom:0;left:auto;width:310px;transform:none;display:flex;flex-direction:column;gap:9px;padding:24px 19px;border-left:1px solid var(--garden-border);background:var(--garden-card)}
+.garden-map .island-destinations header span{font-size:9px;letter-spacing:1.4px;color:var(--garden-muted);font-weight:700}
+.garden-map .island-destinations header h2{font-size:24px;letter-spacing:-.7px;color:var(--garden-ink);margin:6px 0 12px}
+.island-home-mode .garden-map .island-destination{padding:12px 11px;min-height:64px;border-radius:13px;background:var(--garden-bg);border:1px solid var(--garden-border);color:var(--garden-ink);box-shadow:none;display:flex;align-items:center;gap:11px;text-align:left;transition:background .15s,transform .15s}
+.garden-map .island-destination>span{display:grid;gap:5px;flex:1}
+.garden-map .island-destination b{font-size:13px;font-weight:700}
+.garden-map .island-destination small{font-size:10px;line-height:1.35;color:var(--garden-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.garden-map .island-destination em{font-size:10px;font-style:normal;font-weight:700;color:var(--garden-accent)}
+.island-home-mode .garden-map .island-destination i{width:25px;height:25px;background:transparent;color:var(--garden-accent)}
+.island-home-mode .garden-map .island-destination:hover{background:var(--garden-card);transform:translateX(-3px);border-color:var(--garden-accent)}
+.island-home-mode .island-world-toolbar{left:18px;right:330px;bottom:10px;gap:6px}
+.island-home-mode .island-world-toolbar button,.island-home-mode .island-time-picker summary{min-height:40px;border-color:var(--garden-border);border-radius:10px;background:var(--garden-card);color:var(--garden-ink);padding:8px 10px;font-size:10px;backdrop-filter:none}
+.island-home-mode .island-time-picker summary{min-width:105px}
+.island-home-mode .island-time-picker small{color:var(--garden-muted)}
+.island-home-mode .island-world-toolbar .island-motion-toggle span,.island-home-mode .island-explore span{display:none}
+.island-home-mode .island-world-toolbar button:hover:not(:disabled){background:var(--garden-bg)}
+.island-home-mode .island-world-toolbar button[aria-pressed=true]{background:#d7eadd;color:#174835}
+.island-home-mode .island-camera-controls>button:not(.island-explore){width:38px;padding:8px}
+.island-home-mode .island-time-popover{color:var(--garden-ink);background:var(--garden-card);border-color:var(--garden-border)}
+.island-home-mode .island-time-popover p{color:var(--garden-muted)}
+.island-home-mode .island-time-popover select{color:var(--garden-ink);background:var(--garden-bg);border-color:var(--garden-border)}
+.island-home-mode .island-scene-message{left:calc((100% - 310px)/2);top:38%;width:min(65%,440px);color:#243f35}
+.island-home-mode .island-scene-message button{background:#215c4f;color:white;border:0}
+.island-home-mode .island-scene-message{padding:20px;border:1px solid var(--garden-border);border-radius:16px;background:var(--garden-card);color:var(--garden-ink);box-shadow:0 8px 26px #172f3512}
+.island-home-mode .island-asset-credit{background:transparent;color:var(--garden-muted);justify-content:flex-start;padding:9px 6px 0;font-size:10px}
+.island-home-mode .island-asset-credit a{color:var(--garden-accent)}
+.island-home-mode .island-code.pin-box{width:100%;max-width:none;margin:19px 0 0!important;padding:19px 24px;grid-template-columns:220px 1fr 140px;background:var(--garden-card);border:1px solid var(--garden-border);box-shadow:none;color:var(--garden-ink);border-radius:18px}
+.island-home-mode .island-code h2{font-size:24px;color:var(--garden-ink)}
+.island-home-mode .island-code>label,.island-home-mode .island-code p{color:var(--garden-muted)}
+.island-home-mode .island-pin-slots span{background:var(--garden-bg);border-color:var(--garden-border);color:var(--garden-ink)}
+.island-home-mode .island-enter{background:#215c4f!important;color:white!important;box-shadow:none}
+.island-home-mode .island-beyond{max-width:1528px;margin:0 auto;padding:42px 36px 120px;background:var(--garden-bg);color:var(--garden-ink)}
+.island-home-mode .island-beyond h2,.island-home-mode .island-beyond h3,.island-home-mode .island-beyond b{color:var(--garden-ink)}
+.island-home-mode .island-beyond p,.island-home-mode .island-beyond small{color:var(--garden-muted)}
+.island-home-mode .island-shortcuts>button,.island-home-mode .island-tools>button,.island-home-mode .island-public-links article{background:var(--garden-card);border-color:var(--garden-border);color:var(--garden-accent);box-shadow:none}
+.island-home-mode .island-beyond a{color:var(--garden-accent)}
+.island-home-mode .studio-bottom-nav{background:var(--garden-card);border-color:var(--garden-border);box-shadow:0 5px 30px #172f3520}
+.island-home-mode .studio-bottom-nav button{color:var(--garden-muted)}
+.island-home-mode .studio-bottom-nav button.is-current{background:#d7eadd;color:#174835}
+.island-home-mode :is(button,a,input,summary,select):focus-visible{outline:3px solid #43826b;outline-offset:3px}
+@media(max-width:1000px){.island-home-mode .island-world{padding:0 20px!important}.island-home-mode .garden-map{height:620px;min-height:620px}.island-home-mode .island-world-toolbar .island-time-picker{display:none}.island-home-mode .island-world-toolbar{right:329px;left:12px}.island-home-mode .island-camera-controls{gap:3px}.island-home-mode .island-camera-controls>button:not(.island-explore){width:33px;padding:6px}.island-home-mode .island-3d-host{right:285px}.island-home-mode .garden-map .island-destinations{width:285px;padding:22px 14px}.island-home-mode .island-code.pin-box{grid-template-columns:160px 1fr 100px}}
+@media(max-width:760px){.island-home-mode .studio-topbar.site-nav{padding:11px 15px;min-height:67px;background:var(--garden-bg)}.island-home-mode .island-world{padding:0 14px!important}.island-home-mode .island-intro{display:block;padding:23px 4px 19px}.island-home-mode .island-intro h1{font-size:28px;line-height:1.17;letter-spacing:-.7px;margin-top:9px}.island-home-mode .island-intro p{font-size:12px;line-height:1.5}.campus-code-link{display:none}.island-home-mode .garden-map{height:780px;min-height:780px;border-radius:19px}.island-home-mode .island-3d-host{inset:0 0 410px 0}.island-home-mode .garden-map .island-destinations,.island-home-mode .garden-map[data-explore=true] .island-destinations,.island-home-mode .garden-map:not([data-scene-status=ready]) .island-destinations{left:0;right:0;top:auto;bottom:0;width:auto;height:350px;padding:17px 13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-left:0;border-top:1px solid var(--garden-border)}.garden-map .island-destinations header{grid-column:1/-1}.garden-map .island-destinations header h2{font-size:21px;margin:3px 0 2px}.island-home-mode .garden-map .island-destination{min-height:72px;padding:10px 9px;gap:6px}.garden-map .island-destination em{display:none}.garden-map .island-destination small{font-size:9px}.garden-map .island-destination b{font-size:12px}.island-home-mode .island-world-toolbar{left:10px;right:10px;bottom:360px;gap:5px}.island-home-mode .island-camera-controls{position:static;transform:none;margin-left:auto;width:auto;gap:2px}.island-home-mode .island-camera-controls>button:not(.island-explore){width:33px}.island-home-mode .island-world-toolbar .island-motion-toggle{min-width:33px}.island-home-mode .island-world-toolbar .island-lightweight{min-width:33px;width:33px}.island-home-mode .island-world-toolbar .island-time-picker{display:none}.island-home-mode .island-drag-hint{bottom:418px;font-size:10px}.island-home-mode .island-scene-message{top:22%;left:50%;width:88%}.island-home-mode .island-code.pin-box{display:block;margin-top:16px!important;padding:21px}.island-home-mode .island-code h2{text-align:center;margin-bottom:10px}.island-home-mode .island-code>label{text-align:center;margin-bottom:12px}.island-home-mode .island-beyond{padding:32px 15px 120px}.island-home-mode .island-asset-credit{padding:8px 2px 0;justify-content:center;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.garden-map .island-destination{transition:none}}
+
+/* 7.31: subjects surround the garden; the model stays open. */
+.island-home-mode .garden-map .island-3d-host{inset:0 0 66px}
+.island-home-mode .garden-map .island-destinations{inset:0;width:auto;padding:0;display:block;pointer-events:none;background:none;border:0}
+.island-home-mode .garden-map .island-destination{position:absolute;width:200px;min-height:66px;left:18px;top:22%;transform:translateY(-50%);pointer-events:auto;background:var(--garden-card,#fff);box-shadow:0 5px 20px #172f2312}
+.island-home-mode .garden-map .island-destination:nth-of-type(2){top:48%}
+.island-home-mode .garden-map .island-destination:nth-of-type(3){top:74%}
+.island-home-mode .garden-map .island-destination:nth-of-type(n+4){left:auto;right:18px}
+.island-home-mode .garden-map .island-destination:nth-of-type(4){top:22%}
+.island-home-mode .garden-map .island-destination:nth-of-type(5){top:48%}
+.island-home-mode .garden-map .island-destination:nth-of-type(6){top:74%}
+.island-home-mode .garden-map .island-world-toolbar{left:18px;right:18px;bottom:10px}
+@media(max-width:1000px){
+.island-home-mode .garden-map .island-destination{width:166px;left:12px;padding:10px}
+.island-home-mode .garden-map .island-destination:nth-of-type(n+4){right:12px}
+.island-home-mode .garden-map .island-destination em{display:none}
+}
+@media(max-width:760px){
+.island-home-mode .garden-map{height:520px;min-height:520px}
+.island-home-mode .garden-map .island-destinations{inset:0;height:auto;display:block}
+.island-home-mode .garden-map .island-destination{width:110px;min-height:48px;left:8px;padding:8px;gap:3px}
+.island-home-mode .garden-map .island-destination:nth-of-type(n+4){right:8px}
+.island-home-mode .garden-map .island-destination small,.island-home-mode .garden-map .island-destination i{display:none}
+.island-home-mode .garden-map .island-destination b{font-size:12px}
+.island-home-mode .garden-map .island-world-toolbar{left:8px;right:8px;bottom:10px;gap:4px;flex-wrap:wrap}
+.island-home-mode .garden-map .island-3d-host{inset:0 0 100px}
+}
+
+/* Keep the same perimeter layout during loading, retry and camera interaction. */
+.island-home-mode .garden-map .island-destinations{transform:none!important;inset:0!important;width:auto!important;height:auto!important;display:block!important;padding:0!important}
+.island-home-mode .garden-map .island-destination{position:absolute!important;transform:translateY(-50%)!important;top:22%!important;left:18px!important;right:auto!important}
+.island-home-mode .garden-map .island-destination:nth-of-type(2),.island-home-mode .garden-map .island-destination:nth-of-type(5){top:48%!important}
+.island-home-mode .garden-map .island-destination:nth-of-type(3),.island-home-mode .garden-map .island-destination:nth-of-type(6){top:74%!important}
+.island-home-mode .garden-map .island-destination:nth-of-type(n+4){left:auto!important;right:18px!important}
+.island-home-mode .garden-map .island-scene-message{top:42%;width:min(34%,360px);z-index:2}
+@media(max-width:760px){
+.island-home-mode .garden-map .island-destination{left:8px!important}
+.island-home-mode .garden-map .island-destination:nth-of-type(n+4){right:8px!important}
+.island-home-mode .garden-map .island-scene-message{width:36%;font-size:11px;gap:8px}
+.island-home-mode .garden-map .island-scene-message b{font-size:13px}
+}

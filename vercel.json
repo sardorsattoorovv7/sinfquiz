@@ -5,8 +5,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/app",
+      "destination": "/"
     }
   ],
   "headers": [
@@ -76,5 +76,6 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }

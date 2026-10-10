@@ -1,0 +1,114 @@
+{
+  "modelId": "27910a201acb4a109f77baa5c073c7a3",
+  "title": "Fantasy Island in the sky",
+  "author": "Violette_Lass",
+  "source": "https://sketchfab.com/3d-models/fantasy-island-in-the-sky-27910a201acb4a109f77baa5c073c7a3",
+  "authorUrl": "https://sketchfab.com/Violette_Lass",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "retrievedAt": "2026-10-09",
+  "downloadSource": "https://mirror.traines.eu/sketchfab-backup/27/27910a201acb4a109f77baa5c073c7a3.zip",
+  "mirrorDocumentation": "https://github.com/traines-source/sketchfab-backup",
+  "originalArchiveSha256": "79658328a1688d514c4662db7ac313724e621abec1ecd73d4825e01ce9624d52",
+  "originalArchiveBytes": 5695398,
+  "originalUnpackedBytes": 10249357,
+  "optimizedBytes": 735292,
+  "optimizedSha256": "72a392fbdc769dc141bc37207495123c8c3bd2986c7c85c67ffc7405192ea025",
+  "originalMeshNodes": 304,
+  "optimizedMeshNodes": 23,
+  "animationChannels": 28,
+  "animatedSubtreeTriangles": {
+    "Empty_2": 0,
+    "Sphere_219": 38339,
+    "Sphere.003_220": 396,
+    "Sphere.004_221": 396,
+    "Sphere.005_222": 396,
+    "Sphere.006_223": 396,
+    "Sphere.007_224": 396,
+    "Sphere.008_225": 396,
+    "Sphere.009_226": 396,
+    "Sphere.010_227": 396,
+    "Sphere.017_228": 396
+  },
+  "optimization": "glTF Transform CLI 4.5.0 / SDK 4.5.1: palette, weld, resample, Meshopt, WebP; static leaf meshes batched within the same animated ancestor; no triangle simplification. Scene normalization and lighting change at runtime.",
+  "textures": [
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 22016,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 35464,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 128,
+      "bytes": 19738,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 64,
+      "bytes": 18800,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 256,
+      "bytes": 20406,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 512,
+      "bytes": 24726,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 512,
+      "bytes": 33270,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 3634,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 17478,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 11534,
+      "mime": "image/webp"
+    },
+    {
+      "width": 1024,
+      "height": 1024,
+      "bytes": 11576,
+      "mime": "image/webp"
+    },
+    {
+      "width": 512,
+      "height": 4,
+      "bytes": 554,
+      "mime": "image/webp"
+    },
+    {
+      "width": 512,
+      "height": 4,
+      "bytes": 282,
+      "mime": "image/webp"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "lessonAndCheck": true,
+    "pauseResumeDraft": true,
+    "twoTrialsAndConclusion": true,
+    "actualModelCSV": true,
+    "licensedAnatomy3D": true,
+    "realChemistryActions": true,
+    "reducedMotionAnd2DFallback": true,
+    "scienceTextbookCheck": true
+  },
+  "errors": [],
+  "accessibility": [
+    {
+      "label": "biology desktop",
+      "violations": []
+    },
+    {
+      "label": "biology mobile",
+      "violations": []
+    },
+    {
+      "label": "biology dark",
+      "violations": []
+    },
+    {
+      "label": "chemistry desktop",
+      "violations": []
+    },
+    {
+      "label": "chemistry mobile",
+      "violations": []
+    },
+    {
+      "label": "chemistry dark",
+      "violations": []
+    },
+    {
+      "label": "biology textbook dark",
+      "violations": []
+    }
+  ]
+}

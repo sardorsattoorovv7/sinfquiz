@@ -1,0 +1,99 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sinf-quiz@7.26.2 prebuild
+> node scripts/copy-python-runtime.mjs
+
+Python muhiti tayyor: 5 ta mahalliy fayl.
+
+> sinf-quiz@7.26.2 build
+> vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2084 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/competition-typing.worker-DQSscsgc.js    1.63 kB
+dist/index.html                                      2.20 kB │ gzip:   0.89 kB
+dist/assets/PythonWorkbench-BOr2MbJe.css             1.92 kB │ gzip:   0.71 kB
+dist/assets/ExperimentManager-B3xF1fUf.css           2.15 kB │ gzip:   0.82 kB
+dist/assets/StudentProfile-eOwzo5FU.css              2.86 kB │ gzip:   0.95 kB
+dist/assets/OfficeLab-DmbrtqBC.css                   3.32 kB │ gzip:   1.10 kB
+dist/assets/CefrAdmin-BzZFDIeu.css                   6.12 kB │ gzip:   1.93 kB
+dist/assets/ClassroomChat-DYJEpeIj.css               6.66 kB │ gzip:   1.83 kB
+dist/assets/ScienceStudio-Drp3nmOI.css               8.14 kB │ gzip:   2.13 kB
+dist/assets/EnglishCourse-zg2xI6HX.css              13.32 kB │ gzip:   3.32 kB
+dist/assets/OpenExamHub-D7lqSddM.css                14.04 kB │ gzip:   3.28 kB
+dist/assets/TeamCompetitions-D5wmYSfY.css           14.80 kB │ gzip:   3.55 kB
+dist/assets/MathAtlas-Cn0l0apf.css                  16.28 kB │ gzip:   3.70 kB
+dist/assets/learning-hub-CNujoVa-.css               17.30 kB │ gzip:   3.95 kB
+dist/assets/BiologyAtlas-CVAZbKva.css               20.12 kB │ gzip:   4.32 kB
+dist/assets/ChemistryAtlas-CFHvE2lc.css             33.66 kB │ gzip:   7.18 kB
+dist/assets/index-BWxF_a9c.css                     261.80 kB │ gzip:  49.58 kB
+dist/assets/SkeletonUtils-CHxfGqZJ.js                0.44 kB │ gzip:   0.25 kB
+dist/assets/rolldown-runtime-hePW80VL.js             0.71 kB │ gzip:   0.42 kB
+dist/assets/service-CGb_998w.js                      1.11 kB │ gzip:   0.73 kB
+dist/assets/atlas-experiment-math-CqPVQS11.js        1.26 kB │ gzip:   0.72 kB
+dist/assets/computer-course-seed-CtDIGqZ7.js         1.86 kB │ gzip:   0.87 kB
+dist/assets/BookPractice-pLaKOawA.js                 2.24 kB │ gzip:   1.04 kB
+dist/assets/national-defaults-BDq7IqSm.js            2.61 kB │ gzip:   1.36 kB
+dist/assets/biology-asset-loader-CXBOEkHQ.js         2.65 kB │ gzip:   1.31 kB
+dist/assets/math-solid-models-hKJ04RKU.js            3.00 kB │ gzip:   1.40 kB
+dist/assets/experiment-service-bYmpan3H.js           4.38 kB │ gzip:   1.57 kB
+dist/assets/KurashArena-0Bb_zTLq.js                  4.58 kB │ gzip:   2.27 kB
+dist/assets/biology-anatomy-3d-Cfbvktfr.js           5.86 kB │ gzip:   2.71 kB
+dist/assets/StudentProfile-phxivYV3.js               6.95 kB │ gzip:   2.51 kB
+dist/assets/PythonWorkbench-C3RWOsu4.js              7.13 kB │ gzip:   2.85 kB
+dist/assets/OfficeLab--EdJU2DQ.js                    7.63 kB │ gzip:   2.66 kB
+dist/assets/chemistry-content-DcyNTG8U.js            8.68 kB │ gzip:   3.74 kB
+dist/assets/learning-3d-CfnByquk.js                 10.82 kB │ gzip:   4.85 kB
+dist/assets/ExperimentManager-BWOUc_PE.js           14.30 kB │ gzip:   4.95 kB
+dist/assets/CefrHub-BjfaphcM.js                     14.90 kB │ gzip:   5.07 kB
+dist/assets/TextbookHub-1ijN_aBw.js                 15.20 kB │ gzip:   5.56 kB
+dist/assets/ClassroomChat-DEZ5qxAm.js               16.40 kB │ gzip:   5.52 kB
+dist/assets/CefrWorkspace-DbB5kxIO.js               17.26 kB │ gzip:   6.42 kB
+dist/assets/CefrAdmin-CRea0VuY.js                   17.99 kB │ gzip:   5.99 kB
+dist/assets/OpenExamHub-Dt2Diuin.js                 18.54 kB │ gzip:   6.10 kB
+dist/assets/chemistry-bench-3d-DcF4EWTb.js          19.02 kB │ gzip:   7.83 kB
+dist/assets/OrbitControls-Ll1FgSqh.js               19.02 kB │ gzip:   4.23 kB
+dist/assets/python-course-D9udbcGA.js               21.93 kB │ gzip:   8.51 kB
+dist/assets/icons-CyVK_uHk.js                       25.17 kB │ gzip:   8.97 kB
+dist/assets/catalog-_eaAkJnw.js                     25.21 kB │ gzip:   6.29 kB
+dist/assets/IQHub-DEIceCZ5.js                       26.45 kB │ gzip:   8.84 kB
+dist/assets/biology-world-3d-CSo9eQ__.js            28.14 kB │ gzip:  12.14 kB
+dist/assets/open-exams-CPKBaGIA.js                  31.00 kB │ gzip:  11.79 kB
+dist/assets/GLTFLoader-JpARWlpt.js                  44.28 kB │ gzip:  12.89 kB
+dist/assets/TeamCompetitions-CtE_eU21.js            57.24 kB │ gzip:  17.28 kB
+dist/assets/course-guides-BCwT6oGe.js               59.18 kB │ gzip:  19.39 kB
+dist/assets/EnglishCourse-U7I_jnsV.js               77.69 kB │ gzip:  22.36 kB
+dist/assets/BiologyAtlas-DAEGDMx9.js                94.47 kB │ gzip:  30.64 kB
+dist/assets/MathAtlas-B78R9uyk.js                  103.40 kB │ gzip:  32.92 kB
+dist/assets/ScienceStudio-DJ7Ss71S.js              112.53 kB │ gzip:  40.55 kB
+dist/assets/ChemistryAtlas-DmFf0ZTJ.js             131.17 kB │ gzip:  39.85 kB
+dist/assets/supabase-VaY9-frs.js                   214.17 kB │ gzip:  55.01 kB
+dist/assets/react-CyDUuctK.js                      218.83 kB │ gzip:  68.25 kB
+dist/assets/three.core-DEr6R1h2.js                 264.45 kB │ gzip:  73.03 kB
+dist/assets/three.module-B8aHgu8Y.js               318.56 kB │ gzip:  75.71 kB
+dist/assets/index-sZXWpJ6b.js                      390.62 kB │ gzip: 115.43 kB
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "../../island-728-work/sinf-quiz/node_modules/lucide-react/dist/esm/context.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../island-728-work/sinf-quiz/node_modules/lucide-react/dist/esm/context.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+[33m[MODULE_LEVEL_DIRECTIVE] [0mThe semantics of the module level directive "use client" in "../../island-728-work/sinf-quiz/node_modules/lucide-react/dist/esm/Icon.mjs" may not be preserved when bundling.
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m ../../island-728-work/sinf-quiz/node_modules/lucide-react/dist/esm/Icon.mjs:2:1 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m "use client";
+ [38;5;240m  │[0m ──────┬──────  
+ [38;5;240m  │[0m       ╰──────── module level directive may not be preserved
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+[38;5;246m───╯[0m
+
+✓ built in 867ms

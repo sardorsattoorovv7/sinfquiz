@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "realBuiltWebGL": true,
+  "hashedIslandChunk": true,
+  "camera": true,
+  "authGate": true,
+  "noJsPublicPages": true,
+  "assetResponses": [
+    {
+      "path": "/assets/rolldown-runtime-hePW80VL.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-CaAhCvYg.css",
+      "status": 200
+    },
+    {
+      "path": "/assets/icons-D8nWnzCA.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/react-CyDUuctK.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/supabase-VaY9-frs.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-BbWVhm2T.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/island-world-3d-7_sDs9lO.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/BufferGeometryUtils-BqQmNElr.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/OrbitControls-B40Hv9Uj.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/three.core-DRK50atL.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/three.module-Bg-mVCSF.js",
+      "status": 200
+    }
+  ],
+  "runtimeErrors": [],
+  "failedRequests": [],
+  "scope": "Local Vite production preview; auth/API fixtures; no live Vercel or Supabase mutation."
+}

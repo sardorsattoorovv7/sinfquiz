@@ -1,0 +1,69 @@
+PASS teacherMenuAndDeepLink
+PASS penMarkerHighlighterUndoRedo
+PASS partialEraser
+PASS allShapesAndReversedArrow
+PASS keyboardCreatesShapes
+PASS selectionMoveResizeKeyboardDelete
+PASS textEditingColorAndMeasuredBounds
+PASS rasterImageAnnotationAndPNG
+PASS allTenBoardStylesPreserveWork
+PASS multiPageRenameAndIndexedDBReload
+PASS fourTaskTemplates
+PASS tenTimerVisualizationsShareDeadline
+PASS timerWhileDrawingPauseResumeMinute
+PASS backgroundDeadlineAndEndNotice
+PASS optionalWebAudioAlarmAndMute
+PASS numberPoolUniqueHistoryResetAndTooMany
+PASS numberAllModesAndInputErrors
+PASS microphonePermissionAndNativeAudioBalloonRiseFallCalibrationDock
+PASS microphoneDeniedAndRetry
+PASS collapsedPanelKeepsVisibleMonitor
+PASS actualFullscreenProjector
+PASS touchWithoutPageScrollAndStylusPressure
+PASS responsiveDarkLightReducedMotion
+PASS browserBackStopsMicrophone
+PASS microphoneStopsOnExit
+PASS perAccountDraftIsolation
+PASS localStorageFallbackAutoSaveReload
+PASS storageQuotaNoticeAndRecovery
+PASS adminAccess
+PASS studentDirectLinkDenied
+PASS guestDirectLinkDenied
+PASS seoPagesWorkWithoutJavaScript
+{
+  "checks": {
+    "teacherMenuAndDeepLink": true,
+    "penMarkerHighlighterUndoRedo": true,
+    "partialEraser": true,
+    "allShapesAndReversedArrow": true,
+    "keyboardCreatesShapes": true,
+    "selectionMoveResizeKeyboardDelete": true,
+    "textEditingColorAndMeasuredBounds": true,
+    "rasterImageAnnotationAndPNG": true,
+    "allTenBoardStylesPreserveWork": true,
+    "multiPageRenameAndIndexedDBReload": true,
+    "fourTaskTemplates": true,
+    "tenTimerVisualizationsShareDeadline": true,
+    "timerWhileDrawingPauseResumeMinute": true,
+    "backgroundDeadlineAndEndNotice": true,
+    "optionalWebAudioAlarmAndMute": true,
+    "numberPoolUniqueHistoryResetAndTooMany": true,
+    "numberAllModesAndInputErrors": true,
+    "microphonePermissionAndNativeAudioBalloonRiseFallCalibrationDock": true,
+    "microphoneDeniedAndRetry": true,
+    "collapsedPanelKeepsVisibleMonitor": true,
+    "actualFullscreenProjector": true,
+    "touchWithoutPageScrollAndStylusPressure": true,
+    "responsiveDarkLightReducedMotion": true,
+    "browserBackStopsMicrophone": true,
+    "microphoneStopsOnExit": true,
+    "perAccountDraftIsolation": true,
+    "localStorageFallbackAutoSaveReload": true,
+    "storageQuotaNoticeAndRecovery": true,
+    "adminAccess": true,
+    "studentDirectLinkDenied": true,
+    "guestDirectLinkDenied": true,
+    "seoPagesWorkWithoutJavaScript": true
+  },
+  "errors": []
+}

@@ -9,7 +9,7 @@ import {buildImportedBiologyScene} from './biology-imported-scenes.js';
 // Every moving part is a pure function of the experiment's progress and parameters.
 const C={leaf:0x439577,vein:0xb8dca2,stem:0x487b58,soil:0x82634e,root:0xe5c495,water:0x37a8d2,red:0xc95069,blue:0x487fc6,bone:0xe6d6b6,nerve:0xe6b34c,pink:0xd493ae,purple:0x9474c0};
 export function mountBiologyWorld(host,sceneId,initial,{onReady,onFail,onParts,onSelect}){
- const low=(navigator.hardwareConcurrency||4)<=4||innerWidth<600;
+ const low=(navigator.hardwareConcurrency||4)<=4||(navigator.deviceMemory||8)<=4||innerWidth<600;
  const renderer=new T.WebGLRenderer({antialias:!low,alpha:true,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio||1,low?1:1.5));renderer.setClearColor(0,0);
  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
@@ -20,7 +20,7 @@ export function mountBiologyWorld(host,sceneId,initial,{onReady,onFail,onParts,o
  for(const [color,intensity,pos] of [[0xfff5e7,3.2,[3,7,5]],[0x8dbbff,1.8,[-5,2,-3]]]){const l=new T.DirectionalLight(color,intensity);l.position.set(...pos);scene.add(l)}
  const world=new T.Group();scene.add(world);let moves=[],parts=new Map(),geometry=[],materials=[],signature='',disposed=false,visible=true,frame=null,chosen='',dark=false;
  const assets=new Map();let assetReady=false,lastState=initial,animations=[],skeletons=[];
- const sphere=new T.SphereGeometry(1,28,18),mat=(color,opacity=1)=>{const m=new T.MeshStandardMaterial({color,roughness:.48,metalness:.03,transparent:opacity<1,opacity,depthWrite:opacity===1,side:T.DoubleSide});materials.push(m);return m};
+ const sphere=new T.SphereGeometry(1,low?16:28,low?12:18),mat=(color,opacity=1)=>{const m=new T.MeshStandardMaterial({color,roughness:.48,metalness:.03,transparent:opacity<1,opacity,depthWrite:opacity===1,side:T.DoubleSide});materials.push(m);return m};
  const mesh=(g,color,label,parent=world,opacity=1)=>{const m=new T.Mesh(g,mat(color,opacity));parent.add(m);m.userData.part=label;if(g!==sphere)geometry.push(g);return m};
  const ell=(pos,scale,color,label,parent=world,opacity=1)=>{const m=mesh(sphere,color,label,parent,opacity);m.position.set(...pos);m.scale.set(...scale);return m};
  const box=(pos,size,color,label,parent=world,opacity=1)=>{const m=mesh(new T.BoxGeometry(...size),color,label,parent,opacity);m.position.set(...pos);return m};

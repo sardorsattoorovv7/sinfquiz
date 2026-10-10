@@ -1,0 +1,14 @@
+{
+  "modelId": "af54f5280eb249beb6501eab4769c351",
+  "bytes": 8679136,
+  "sha256": "7554cb411e78fe81079ddfedd7e0e836148f7c43fb1a45339e435ea736f5a95b",
+  "lowVariant": {
+    "sha256": "d7f5fea7d29ddf7f8031045aa5862be2cd0878be72a8636a305f2f2ef18aff83",
+    "bytes": 6011624
+  },
+  "source": "https://sketchfab.com/3d-models/registan-complex-samarkand-uzbekistan-af54f5280eb249beb6501eab4769c351",
+  "processedSource": "https://zenodo.org/records/21490200",
+  "license": "CC-BY-NC-4.0",
+  "licenseNote": "Upstream normalized asset incorrectly labels CC-BY; original artist listing and source archive say CC-BY-NC. Artist license retained.",
+  "adaptation": "Normalized LOD source, geometry simplified 0.5 with error 0.01 for both variants; WebP textures 1024/512px, Meshopt compression."
+}

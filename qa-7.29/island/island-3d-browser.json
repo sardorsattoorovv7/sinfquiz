@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "fixture": "Only auth/API transports; actual React, mesh geometry, WebGL, shader pixels and controls.",
+  "realGeometry": true,
+  "automaticDuskAt17": true,
+  "artistAnimationAndPause": true,
+  "cameraAndKeyboard": true,
+  "clockAndManualPersistence": true,
+  "reducedMotionAndOffscreenPause": true,
+  "responsiveWidths": [
+    1600,
+    1920,
+    1280,
+    1024,
+    768,
+    390,
+    320
+  ],
+  "contextLossRecovery": true,
+  "packagedLocalArtistAsset": true,
+  "deviceTimezone": true,
+  "fallbackAndAuthGate": true,
+  "accessibilityChecks": 3,
+  "runtimeErrors": []
+}

@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "browser": "133.0.6943.0",
+  "realBuiltWebGL": true,
+  "hashedIslandChunk": true,
+  "camera": true,
+  "authGate": true,
+  "noJsPublicPages": true,
+  "assetResponses": [
+    {
+      "path": "/assets/rolldown-runtime-hePW80VL.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-wuWb1f4h.css",
+      "status": 200
+    },
+    {
+      "path": "/assets/icons-D8nWnzCA.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/supabase-VaY9-frs.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/react-CyDUuctK.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-Cn2JL7tc.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/OrbitControls-Ll1FgSqh.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/GLTFLoader-JpARWlpt.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/island-world-3d-B7QBlSuc.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/three.module-B8aHgu8Y.js",
+      "status": 200
+    },
+    {
+      "path": "/assets/three.core-DEr6R1h2.js",
+      "status": 200
+    },
+    {
+      "path": "/models/island/v7.29/fantasy-island.glb",
+      "status": 200
+    }
+  ],
+  "runtimeErrors": [],
+  "failedRequests": [],
+  "scope": "Local Vite production preview; auth/API fixtures; no live Vercel or Supabase mutation."
+}

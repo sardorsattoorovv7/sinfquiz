@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "stalledModelNavigationMs": 1206,
+  "navigationWorksWithoutModel": true,
+  "modelTransportWasStalled": true,
+  "missingModelRetry": true,
+  "dataSaverDefersActualModel": true,
+  "lowQuality": {
+    "frames": 3,
+    "elapsed": 0,
+    "drawMs": 269.60000000009313,
+    "drawCalls": 26,
+    "triangles": 45871,
+    "width": 1331,
+    "height": 488,
+    "quality": "low",
+    "pixelRatio": 0.9246097547902026,
+    "azimuth": 0.6389139850038872,
+    "zoom": 1,
+    "phase": "night",
+    "paused": true,
+    "modelId": "27910a201acb4a109f77baa5c073c7a3",
+    "modelLoaded": true,
+    "animationClips": 1
+  },
+  "lightweightDisposesCanvas": true,
+  "runtimeErrors": [],
+  "scope": "Actual React and local artist GLB; auth/API fixtures and controlled slow/404 model transport."
+}

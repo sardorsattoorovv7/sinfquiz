@@ -3,8 +3,8 @@ import {createClient} from '@supabase/supabase-js';
 
 function adminClient(){
  const url=process.env.VITE_SUPABASE_URL||process.env.SUPABASE_URL;
- const key=process.env.SUPABASE_SERVICE_ROLE_KEY;
- if(!url||!key)throw Error('SUPABASE_SERVICE_ROLE_KEY yoki VITE_SUPABASE_URL kiritilmagan.');
+ const key=process.env.SUPABASE_SECRET_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY;
+ if(!url||!key)throw Error('Supabase server kaliti (SUPABASE_SECRET_KEY yoki SUPABASE_SERVICE_ROLE_KEY) va loyiha URL manzilini kiriting.');
  return createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
 }
 

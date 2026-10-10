@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle} from 'lucide-react';
+import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle,Presentation} from 'lucide-react';
 import {ExperienceControls} from './effects.jsx';
 import StudioArt from './StudioArt.jsx';
 import {findStudioRoutes,normalizeStudioSearch} from './studio-navigation.js';
@@ -33,8 +33,8 @@ export default function StudioShell({children,user,view,onNavigate,onLogout,inAc
  const drawerRef=useRef(null),menuRef=useRef(null),mainRef=useRef(null),searchRef=useRef(null),searchInputRef=useRef(null);
  const drawerOpen=drawer&&!inActivity;
  const staff=['teacher','admin'].includes(user?.role);
- const active=studioSections.find(s=>s.views.includes(view))?.id||(view==='admin'?'admin':'home');
- const routes=[...studioSections,...studioActivities,...(staff?[{id:'admin',label:roleLabel(user)+' paneli'}]:[])];
+ const active=studioSections.find(s=>s.views.includes(view))?.id||(['admin','classroom'].includes(view)?view:'home');
+ const routes=[...studioSections,...studioActivities,...(staff?[{id:'admin',label:roleLabel(user)+' paneli'},{id:'classroom',label:'Sinfxona',detail:'Elektron doska, dars taymeri, shovqin nazorati, raqam tanlash'}]:[])];
  const matches=findStudioRoutes(routes,query),hasQuery=!!normalizeStudioSearch(query);
  const navigate=id=>{setDrawer(false);setSearchOpen(false);setQuery('');onNavigate(id);};
  const closeSearch=()=>{searchInputRef.current?.focus();setSearchOpen(false);};
@@ -66,7 +66,7 @@ export default function StudioShell({children,user,view,onNavigate,onLogout,inAc
   document.addEventListener('keydown',esc);const previous=document.body.style.overflow;document.body.style.overflow='hidden';
   return()=>{document.removeEventListener('keydown',esc);document.body.style.overflow=previous;(old?.isConnected?old:menuRef.current)?.focus();};
  },[drawerOpen]);
- const links=(mobile=false)=><nav className="studio-main-nav" aria-label={mobile?'Mobil bo‘limlar':'Asosiy bo‘limlar'}>{studioSections.map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}{staff&&<><span className="studio-nav-caption">BOSHQARUV</span><button className={active==='admin'?'is-current':''} onClick={()=>navigate('admin')}><Shield size={20}/><span>{roleLabel(user)} paneli</span></button></>}</nav>;
+ const links=(mobile=false)=><nav className="studio-main-nav" aria-label={mobile?'Mobil bo‘limlar':'Asosiy bo‘limlar'}>{studioSections.map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}{staff&&<><span className="studio-nav-caption">BOSHQARUV</span><button className={active==='classroom'?'is-current':''} aria-current={active==='classroom'?'page':undefined} onClick={()=>navigate('classroom')}><Presentation size={20}/><span>Sinfxona</span></button><button className={active==='admin'?'is-current':''} onClick={()=>navigate('admin')}><Shield size={20}/><span>{roleLabel(user)} paneli</span></button></>}</nav>;
  return <div className={`app-shell studio-app ${inActivity?'studio-in-activity':''}`}>
  <a className="studio-skip" href="#studio-main">Asosiy mazmunga o‘tish</a>
  {!inActivity&&<aside className="studio-sidebar" inert={drawerOpen?true:undefined}><span className="studio-brand nav-brand" aria-label="SinfQuiz">Sinf<span>Quiz</span></span>{links()}<div className="studio-sidebar-foot"><span className="studio-person-icon"><UserRound size={20}/></span><div><b>{user?.name||'Xush kelibsiz'}</b><small>{roleLabel(user)}</small></div></div></aside>}

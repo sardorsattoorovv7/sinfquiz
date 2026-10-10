@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "teacherMenuAndDeepLink": true,
+    "penMarkerHighlighterUndoRedo": true,
+    "partialEraser": true,
+    "allShapesAndReversedArrow": true,
+    "keyboardCreatesShapes": true,
+    "selectionMoveResizeKeyboardDelete": true,
+    "textEditingColorAndMeasuredBounds": true,
+    "rasterImageAnnotationAndPNG": true,
+    "allTenBoardStylesPreserveWork": true,
+    "multiPageRenameAndIndexedDBReload": true,
+    "fourTaskTemplates": true,
+    "tenTimerVisualizationsShareDeadline": true,
+    "timerWhileDrawingPauseResumeMinute": true,
+    "backgroundDeadlineAndEndNotice": true,
+    "optionalWebAudioAlarmAndMute": true,
+    "numberPoolUniqueHistoryResetAndTooMany": true,
+    "numberAllModesAndInputErrors": true,
+    "microphonePermissionAndNativeAudioBalloonRiseFallCalibrationDock": true,
+    "microphoneDeniedAndRetry": true,
+    "collapsedPanelKeepsVisibleMonitor": true,
+    "actualFullscreenProjector": true,
+    "touchWithoutPageScrollAndStylusPressure": true,
+    "responsiveDarkLightReducedMotion": true,
+    "browserBackStopsMicrophone": true,
+    "microphoneStopsOnExit": true,
+    "perAccountDraftIsolation": true,
+    "localStorageFallbackAutoSaveReload": true,
+    "storageQuotaNoticeAndRecovery": true,
+    "adminAccess": true,
+    "studentDirectLinkDenied": true,
+    "guestDirectLinkDenied": true,
+    "seoPagesWorkWithoutJavaScript": true
+  },
+  "errors": [],
+  "accessibility": [
+    {
+      "label": "desktop all tools",
+      "violations": []
+    },
+    {
+      "label": "projector",
+      "violations": []
+    },
+    {
+      "label": "tablet",
+      "violations": []
+    },
+    {
+      "label": "mobile light",
+      "violations": []
+    },
+    {
+      "label": "mobile dark",
+      "violations": []
+    }
+  ]
+}

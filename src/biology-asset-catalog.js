@@ -2,7 +2,7 @@ export const BIOLOGY_ASSET_BASE='/biology/v7.21/';
 export const BIOLOGY_ASSETS=Object.freeze({organs:'anatomy-organs.glb',lungs:'anatomy-lungs.glb',skeleton:'anatomy-skeleton.glb',skin:'anatomy-skin.glb',muscles:'anatomy-muscles.glb',eye:'anatomy-eye.glb',plant:'plant.glb',livingPlant:'living-plant.glb',seedling:'seedling.glb',flower:'flower.glb',leaf:'leaf.glb',tree:'tree.glb',fungus:'fungus.glb',fish:'fish.glb',fox:'fox.glb',bird:'bird.glb'});
 export function biologyAssetUrl(key){if(typeof key!=='string'||!Object.hasOwn(BIOLOGY_ASSETS,key))throw new Error('Noma’lum biologiya modeli.');return BIOLOGY_ASSET_BASE+BIOLOGY_ASSETS[key]}
 export function biologySceneAssets(scene){
- if(['leaf','soil','compost'].includes(scene))return ['leaf','plant','tree','fungus'];
+ if(['leaf','soil','compost'].includes(scene))return ['leaf','livingPlant','plant','tree','fungus'];
  if(['seed','growth','photosynthesis','transport'].includes(scene))return ['livingPlant','seedling','plant'];
  if(scene==='pollination')return ['flower'];
  if(['habitat','adaptation','lifecycle','foodchain'].includes(scene))return ['fish','fox','bird','plant','leaf'];

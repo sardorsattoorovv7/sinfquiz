@@ -7,7 +7,7 @@ import {benchVisualState} from './chemistry-bench-visual-model.js';
 // Original procedural models. Reuse particle populations and update transforms;
 // never rebuild a scene on each simulation tick.
 export function createBenchView(host,initial){
- const low=initial.quality==='low'||(initial.quality==='auto'&&((navigator.hardwareConcurrency||4)<=4||innerWidth<700));
+ const low=initial.quality==='low'||(initial.quality==='auto'&&((navigator.hardwareConcurrency||4)<=4||(navigator.deviceMemory||8)<=4||innerWidth<700));
  const segments=low?24:48,particleMax=low?28:64;
  const renderer=new T.WebGLRenderer({antialias:!low,alpha:true,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(devicePixelRatio||1,low?1:1.5));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;renderer.setClearColor(0,0);host.appendChild(renderer.domElement);
@@ -24,7 +24,7 @@ export function createBenchView(host,initial){
  const rod=(parent,a,b,width,color)=>{const start=new T.Vector3(...a),end=new T.Vector3(...b),o=mesh(parent,new T.CylinderGeometry(width,width,start.distanceTo(end),10),mat(color),start.clone().add(end).multiplyScalar(.5).toArray());o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),end.sub(start).normalize());return o;};
  const disposeGroup=g=>{const materials=new Set(),geometries=new Set(),textures=new Set();g.traverse(o=>{if(o.geometry)geometries.add(o.geometry);if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{materials.add(m);if(m.map)textures.add(m.map);});});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());g.clear();};
  const label=(parent,text,x,y,z,width=.62)=>{const c=document.createElement('canvas');c.width=256;c.height=96;const ctx=c.getContext('2d');ctx.fillStyle='#e8f5f8';ctx.fillRect(0,0,256,96);ctx.fillStyle='#28475a';ctx.font='600 37px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,128,48);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;const s=new T.Sprite(new T.SpriteMaterial({map:texture,transparent:true,opacity:.9,depthWrite:false}));s.position.set(x,y,z);s.scale.set(width,width*96/256,1);parent.add(s);return s;};
- const base=mesh(scene,new T.CylinderGeometry(3.25,3.25,.12,segments),mat(0xe5eef2,{roughness:.82}),[0,-.11,0]);
+ const base=mesh(scene,new T.BoxGeometry(7.2,.12,5.5),mat(0xe5eef2,{roughness:.82}),[0,-.11,0]);
  const tray=mesh(scene,new T.CylinderGeometry(2.13,2.13,.065,segments),mat(0xdae8ed,{roughness:.62}),[0,-.014,0]);
  const ring=mesh(scene,new T.TorusGeometry(2.13,.025,8,segments),mat(0xb1c6cf),[0,.026,0]);ring.rotation.x=Math.PI/2;
  const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=128;const ctx=shadowCanvas.getContext('2d'),gradient=ctx.createRadialGradient(64,64,5,64,64,60);gradient.addColorStop(0,'rgba(24,48,62,.3)');gradient.addColorStop(.65,'rgba(24,48,62,.08)');gradient.addColorStop(1,'rgba(24,48,62,0)');ctx.fillStyle=gradient;ctx.fillRect(0,0,128,128);
@@ -52,6 +52,7 @@ export function createBenchView(host,initial){
  const iron=mesh(sample,new T.BoxGeometry(.64,.12,.22),mat(0x75838b,{metalness:.75,roughness:.34}),[.2,.13,.2]);
  const rust=population(new T.IcosahedronGeometry(1,1),mat(0xaa693e,{roughness:.98}));
  const bulb=sphere(sample,.21,0x98a9b2,[-1.75,3.32,0]);const bulbLight=new T.PointLight(0xffd87a,0,2);bulbLight.position.copy(bulb.position);sample.add(bulbLight);
+ renderer.domElement.setAttribute('aria-hidden','true');
  let current=initial,appearance=benchVisualState(initial.result),kind='',microKey='',disposed=false,frame=0,visible=true,inViewport=true,last=0,clock=0,lastPour=initial.pour?.serial||0,pourStart=-100,settleStart=-100,settling=false,previousMix=false,pourHeightFrom=0;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  function buildVessel(id){
@@ -128,8 +129,8 @@ export function createBenchView(host,initial){
   if(pour.visible){pour.visible=age<1.45&&current.view!=='micro';pour.children.forEach(o=>{if(o.userData.grain){const {i,y}=o.userData,v=(age*.9+i*.097)%1;o.position.set(-1.05+(i%3)*.08+v*.9,y+.2-v*(y-h),.1+Math.sin(i)*.055);}});}
   [bubbles,droplets,foam,sand,crystals,precipitate,ice,steam,rust].forEach(o=>{o.instanceMatrix.needsUpdate=true;});
  }
- function draw(){if(!disposed&&visible)renderer.render(scene,camera);}
- const animated=()=>visible&&!reduce.matches&&(current.running||pour.visible||settling);
+ function draw(){if(!disposed&&visible&&inViewport)renderer.render(scene,camera);}
+ const animated=()=>visible&&inViewport&&!reduce.matches&&(current.running||pour.visible||settling);
  function animate(t){if(disposed)return;frame=0;if(animated()){if(t-last>=(low?50:33)){clock+=Math.min(.1,(t-last)/1000);last=t;if(settling&&clock-settleStart>=2.4)settling=false;arrange(clock);draw();}if(animated())frame=requestAnimationFrame(animate);}}
  function update(next){
   if(disposed)return;const wasRunning=current.running,priorHeight=appearance.height,priorTime=current.result.parameters.elapsed,priorFiltered=current.result.filtered;current={...current,...next};appearance=benchVisualState(current.result);

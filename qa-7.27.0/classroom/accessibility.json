@@ -1,0 +1,22 @@
+[
+  {
+    "label": "desktop all tools",
+    "violations": []
+  },
+  {
+    "label": "projector",
+    "violations": []
+  },
+  {
+    "label": "tablet",
+    "violations": []
+  },
+  {
+    "label": "mobile light",
+    "violations": []
+  },
+  {
+    "label": "mobile dark",
+    "violations": []
+  }
+]
