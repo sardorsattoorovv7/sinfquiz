@@ -277,5 +277,18 @@ commit;
 
 -- Supabase Cron / pg_cron kengaytmasi cron sxemasini o‘zi yaratadi.
 -- Job har daqiqada 24 soatdan oshgan matn va audio baytlarini o‘chiradi.
-create extension if not exists pg_cron;
-select cron.schedule('sinfquiz-chat-24h-purge','* * * * *','select public.sq_chat_purge()');
+do $optional_cron$
+begin
+  if exists(select 1 from pg_available_extensions where name='pg_cron') then
+    begin
+      execute 'create extension if not exists pg_cron';
+    exception when insufficient_privilege or feature_not_supported then
+      raise notice 'Chat ishga tushdi. Avtomatik tozalash uchun Database → Extensions orqali pg_cronni yoqing.';
+    end;
+  end if;
+  if to_regnamespace('cron') is not null and to_regprocedure('cron.schedule(text,text,text)') is not null then
+    execute $$select cron.schedule('sinfquiz-chat-24h-purge','* * * * *','select public.sq_chat_purge()')$$;
+  else
+    raise notice 'pg_cron mavjud emas. Chat o‘qishda 24 soatlik cheklov ishlaydi; fon tozalash uchun pg_cron kerak.';
+  end if;
+end $optional_cron$;

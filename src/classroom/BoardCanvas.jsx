@@ -1,10 +1,11 @@
+import {tableCellAt} from './table-model.js';
 import React,{memo,useEffect,useRef} from 'react';
 import {BOARD_WIDTH as W,BOARD_HEIGHT as H,clamp,makeId,objectBounds,hitObject,translateObject,resizeObject,eraseObjects,shapeFromPoints} from './model.js';
 import {drawBoard,readyImages} from './board-renderer.js';
 
-export default memo(function BoardCanvas({page,tool,color,width,fontSize,selected,presentation,onSelect,onCommit,onText,onUndo,onRedo,onMessage}) {
+export default memo(function BoardCanvas({page,tool,color,width,fontSize,selected,presentation,onSelect,onCommit,onText,onTable,onUndo,onRedo,onMessage}) {
   const canvas=useRef(null),view=useRef({}),gesture=useRef(null),frame=useRef(null),scale=useRef(1);
-  view.current={page,tool,color,width,fontSize,selected,presentation,onSelect,onCommit,onText,onUndo,onRedo,onMessage};
+  view.current={page,tool,color,width,fontSize,selected,presentation,onSelect,onCommit,onText,onTable,onUndo,onRedo,onMessage};
   const paint=()=>{
     const el=canvas.current;if(!el)return;const ctx=el.getContext('2d');if(!ctx)return;
     if(view.current.presentation){
@@ -77,5 +78,5 @@ export default memo(function BoardCanvas({page,tool,color,width,fontSize,selecte
       v.onCommit(v.page.objects.map(o=>o.id===object.id?translateObject(o,dx,dy):o));
     }
   };
-  return <div className="cr-board-wrap"><canvas ref={canvas} className={`cr-board tool-${tool}`} tabIndex="0" role="application" aria-label={`${page.name}. Elektron doska`} aria-describedby="cr-board-help" onPointerDown={down} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} onKeyDown={keys}>Chizmalar ro‘yxati doska ostida mavjud.</canvas><p id="cr-board-help" className="cr-board-help">Sensor yoki qalam bilan yozing. Matn/shakl asbobi + Enter — qo‘yish. Tanlangan obyekt: strelkalar — ko‘chirish, Shift — 10 birlik; Delete — o‘chirish; Ctrl+Z / Ctrl+Y — bekor qilish / qaytarish.</p></div>;
+  return <div className="cr-board-wrap"><canvas onDoubleClick={e=>{if(tool!=='select')return;const rect=e.currentTarget.getBoundingClientRect(),point={x:(e.clientX-rect.left)*1600/rect.width,y:(e.clientY-rect.top)*900/rect.height};const table=[...page.objects].reverse().find(o=>o.type==='table'&&tableCellAt(o,point));if(table)onTable?.(table,tableCellAt(table,point));}} ref={canvas} className={`cr-board tool-${tool}`} tabIndex="0" role="application" aria-label={`${page.name}. Elektron doska`} aria-describedby="cr-board-help" onPointerDown={down} onPointerMove={move} onPointerUp={finish} onPointerCancel={finish} onKeyDown={keys}>Chizmalar ro‘yxati doska ostida mavjud.</canvas><p id="cr-board-help" className="cr-board-help">Sensor yoki qalam bilan yozing. Matn/shakl asbobi + Enter — qo‘yish. Tanlangan obyekt: strelkalar — ko‘chirish, Shift — 10 birlik; Delete — o‘chirish; Ctrl+Z / Ctrl+Y — bekor qilish / qaytarish.</p></div>;
 });

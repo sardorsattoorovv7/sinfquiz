@@ -1,0 +1,22 @@
+[
+  {
+    "label": "builder desktop",
+    "violations": []
+  },
+  {
+    "label": "builder mobile",
+    "violations": []
+  },
+  {
+    "label": "maze mobile",
+    "violations": []
+  },
+  {
+    "label": "results desktop",
+    "violations": []
+  },
+  {
+    "label": "results dark mobile",
+    "violations": []
+  }
+]

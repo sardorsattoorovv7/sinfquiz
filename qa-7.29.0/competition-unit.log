@@ -1,0 +1,23 @@
+✔ 7.29: three original question packs have 12/12/10 questions and real Office tasks (1.946716ms)
+✔ 7.29: Excel copies all four reference kinds and supports bounded logical expressions (3.033169ms)
+▶ 7.29 real Postgres: free order, exact deadlines, drafts, partial scoring and private ownership
+  ✔ Primary start works with 2/6 seats, freezes team sizes, leaves an empty team unranked (1.467556ms)
+  ✔ Learners independently choose different stages and durations (18.352538ms)
+  ✔ Reopening or reloading an attempt never resets its deadline (14.706043ms)
+  ✔ Saved unsubmitted quiz answer is counted once at timeout, unattempted questions stay zero (30.067071ms)
+  ✔ Typing partial draft grades fairly at timeout and manager polling settles it (19.571239ms)
+  ✔ Other learner/teacher cannot save drafts, pick foreign stages, control or read private internals (15.290046ms)
+  ✔ Teacher can finish incomplete competition; unstarted stages receive 0, existing scores stay (23.394465ms)
+  ✔ Migration can be reapplied without losing results and preserves old guided competitions (55.440289ms)
+✔ 7.29 real Postgres: free order, exact deadlines, drafts, partial scoring and private ownership (4186.75323ms)
+✔ 7.29 JS and Postgres grade all seven new Office tasks equally, including incomplete work (1821.89768ms)
+✔ 7.29 Office drafts receive partial points at timeout, even after switching stages; late data cannot change them (1953.249249ms)
+✔ tests/learning-fixture.js (146.620218ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8179.828642

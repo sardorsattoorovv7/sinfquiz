@@ -8,7 +8,7 @@ const root=dirname(dirname(fileURLToPath(import.meta.url))),read=name=>readFileS
 
 test('Vercel build uses Supabase Auth, Postgres and Realtime without Firebase',()=>{
  const pkg=JSON.parse(read('package.json')),vercel=JSON.parse(read('vercel.json')),env=read('.env.example'),app=read('src/App.jsx'),data=read('src/supabase-data.js'),sdk=read('src/supabase-sdk.js'),schema=read('supabase-schema.sql');
- assert.equal(pkg.version,'7.27.0');
+ assert.equal(pkg.version,'7.29.0');
  assert.ok(pkg.dependencies['@supabase/supabase-js']);
  assert.equal(pkg.dependencies['firebase-admin'],undefined);
  assert.equal(pkg.dependencies.express,undefined);
@@ -43,8 +43,8 @@ test('Vercel build uses Supabase Auth, Postgres and Realtime without Firebase',(
  assert.match(read('src/CefrWorkspace.jsx'),/SourceResources/);
  assert.match(read('api/telegram-auth.js'),/timingSafeEqual/);
  assert.match(read('api/telegram-auth.js'),/SUPABASE_SERVICE_ROLE_KEY/);
- assert.match(data,/questionsByLane/);
- assert.match(data,/quiz\.ownerId!==sdk\.auth\.currentUser\.uid/);
+ assert.match(read('supabase-migration-7.28.sql'),/questionsByLane/);
+ assert.match(read('supabase-migration-7.28.sql'),/Bu test boshqa ustozga tegishli/);
  assert.equal(existsSync(join(root,'firestore.rules')),false);
  assert.equal(existsSync(join(root,'firebase.json')),false);
  assert.equal(existsSync(join(root,'server.js')),false);

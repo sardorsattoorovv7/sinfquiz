@@ -29,3 +29,21 @@ export function typingMatch(target,typed){
  const correct=method==='levenshtein'?Math.max(0,Math.min(total,count,length-distance)):Math.round(total*accuracy/100);
  return {correct,total,typed:count,distance,accuracy,method,expectedUnits,typedUnits,minimumCharEdits};
 }
+
+// Live practice preview compares the typed prefix, leaving the untyped tail out.
+// Nearby prefix lengths allow a dropped/extra letter without marking the rest
+// of the sentence wrong. Final grading always compares the complete target.
+export function typingPreview(target,typed){
+ const text=[...target],count=[...typed].length;
+ if(!count)return {...typingMatch('',''),accuracy:100};
+ const end=Math.min(text.length,count);
+ let best=typingMatch(text.slice(0,end).join(''),typed);
+ const cost=match=>match.method==='levenshtein'?match.distance:match.minimumCharEdits;
+ for(let shift=1;shift<=8;shift++)for(const index of [end-shift,end+shift]){
+  if(index<0||index>text.length)continue;
+  const next=typingMatch(text.slice(0,index).join(''),typed);
+  if(cost(next)<cost(best))best=next;
+  if(cost(best)===0)return best;
+ }
+ return best;
+}

@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "version": "7.29.0",
+  "clients": 40,
+  "capacity": 48,
+  "requests": 365,
+  "errors": 0,
+  "phases": [
+    {
+      "title": "40 simultaneous joins",
+      "requests": 40,
+      "totalMs": 472,
+      "p50Ms": 339.3,
+      "p95Ms": 448.1,
+      "maxMs": 462.93,
+      "errors": 0,
+      "responseBytes": 89351
+    },
+    {
+      "title": "40 independent stage openings",
+      "requests": 40,
+      "totalMs": 310,
+      "p50Ms": 296.89,
+      "p95Ms": 301.53,
+      "maxMs": 301.82,
+      "errors": 0,
+      "responseBytes": 116619
+    },
+    {
+      "title": "40 unsubmitted draft saves",
+      "requests": 40,
+      "totalMs": 154,
+      "p50Ms": 95.38,
+      "p95Ms": 144.01,
+      "maxMs": 148.52,
+      "errors": 0,
+      "responseBytes": 2915
+    },
+    {
+      "title": "40 changed-state polls",
+      "requests": 40,
+      "totalMs": 208,
+      "p50Ms": 200.87,
+      "p95Ms": 203.1,
+      "maxMs": 203.4,
+      "errors": 0,
+      "responseBytes": 116190
+    },
+    {
+      "title": "40 unchanged-state polls",
+      "requests": 40,
+      "totalMs": 101,
+      "p50Ms": 86.72,
+      "p95Ms": 87.51,
+      "maxMs": 94.96,
+      "errors": 0,
+      "responseBytes": 3035
+    },
+    {
+      "title": "40 stage switches",
+      "requests": 40,
+      "totalMs": 225,
+      "p50Ms": 217.26,
+      "p95Ms": 220.46,
+      "maxMs": 220.66,
+      "errors": 0,
+      "responseBytes": 125642
+    },
+    {
+      "title": "40 returns preserve first deadline",
+      "requests": 40,
+      "totalMs": 289,
+      "p50Ms": 281.15,
+      "p95Ms": 283.24,
+      "maxMs": 283.51,
+      "errors": 0,
+      "responseBytes": 128130
+    },
+    {
+      "title": "Teacher settles 80 expired attempts",
+      "requests": 1,
+      "totalMs": 51,
+      "errors": 0
+    },
+    {
+      "title": "40 timeout-result reads",
+      "requests": 40,
+      "totalMs": 216,
+      "p50Ms": 210,
+      "p95Ms": 212.28,
+      "maxMs": 212.37,
+      "errors": 0,
+      "responseBytes": 132096
+    },
+    {
+      "title": "40 final ranking reads",
+      "requests": 40,
+      "totalMs": 247,
+      "p50Ms": 239.97,
+      "p95Ms": 243.38,
+      "maxMs": 243.75,
+      "errors": 0,
+      "responseBytes": 129560
+    }
+  ],
+  "scope": "Local concurrent HTTP requests with fixture Auth; PGlite processes SQL through one queue. Network, physical phones and production Supabase capacity are not measured."
+}

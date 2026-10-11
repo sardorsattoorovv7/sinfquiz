@@ -53,7 +53,7 @@ begin
 end $$;
 create or replace function public.sq_iq(p_action text,p jsonb default '{}') returns jsonb
 language plpgsql security definer set search_path='' as $$
-declare uid uuid:=auth.uid();v_run public.sq_iq_runs;v_band integer;v_mode text;chosen_bank jsonb;q jsonb;choice jsonb;rev integer;action_token uuid;old_payload jsonb;action_payload jsonb;out jsonb;staff boolean;
+declare v_started timestamptz:=clock_timestamp();uid uuid:=auth.uid();v_run public.sq_iq_runs;v_band integer;v_mode text;chosen_bank jsonb;q jsonb;choice jsonb;rev integer;action_token uuid;old_payload jsonb;action_payload jsonb;out jsonb;staff boolean;
 begin
  if uid is null then raise exception 'Avval mavjud hisobingizga kiring.';end if;
  if jsonb_typeof(p)<>'object' or length(p::text)>16000 then raise exception 'So‘rov hajmi yoki turi noto‘g‘ri.';end if;
@@ -82,7 +82,7 @@ begin
   select jsonb_agg(payload order by rn,domain) into chosen_bank from
    (select payload,domain,row_number() over(partition by domain order by random()) rn from public.sq_iq_items where bank_version=1 and sq_iq_items.band=v_band)x where rn<=8;
   if coalesce(jsonb_array_length(chosen_bank),0)<>32 then raise exception 'Savollar hali o‘rnatilmagan. SQL 02–04 fayllarini RUN qiling.';end if;
-  insert into public.sq_iq_runs(user_id,band,mode,bank_version,bank,deadline) values(uid,v_band,v_mode,1,chosen_bank,clock_timestamp()+case when v_mode='extended' then interval '48 minutes' else interval '24 minutes' end) returning * into v_run;
+  insert into public.sq_iq_runs(user_id,band,mode,bank_version,bank,started_at,deadline) values(uid,v_band,v_mode,1,chosen_bank,v_started,v_started+case when v_mode='extended' then interval '48 minutes' else interval '24 minutes' end) returning * into v_run;
   return public.sq_iq_view(v_run);
  end if;
  if p_action='staff' then

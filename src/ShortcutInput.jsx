@@ -1,6 +1,6 @@
 import React from 'react';
 const modifiers=['Ctrl','Alt','Shift'];
-const rows=[['Esc','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12'],['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L'],['Z','X','C','V','B','N','M'],['1','2','3','4','5','6','7','8','9','0','Enter','Delete']];
+const rows=[['Esc','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12'],['Q','W','E','R','T','Y','U','I','O','P'],['A','S','D','F','G','H','J','K','L'],['Z','X','C','V','B','N','M'],['1','2','3','4','5','6','7','8','9','0','Enter','Delete','Backspace','Home','End','ArrowLeft','ArrowRight','ArrowUp','ArrowDown']];
 export default function ShortcutInput({value,onChange,disabled}){
  const keys=value.split('+').filter(Boolean);
  const choose=k=>{const mods=keys.filter(v=>modifiers.includes(v));if(modifiers.includes(k)){onChange([...mods.filter(v=>v!==k),...(!mods.includes(k)?[k]:[]),...keys.filter(v=>!modifiers.includes(v))].join('+'))}else onChange([...mods,k].join('+'))};

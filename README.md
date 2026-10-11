@@ -1,10 +1,6 @@
-# SinfQuiz 7.27.0 — Sinfxona
+# SinfQuiz 7.29.0
 
-7.26.2 Science Studio asosida elektron doska, topshiriq shablonlari, 10 ko‘rinishli taymer, mikrofon orqali nisbiy shovqin nazorati va xolis raqam tanlash qo‘shildi. Sinfxona faqat ustoz/admin uchun. Mavjud fanlar, kirish va ruxsat oqimlari saqlangan.
-
-**[7.27 yangilash tartibi](UPDATE-7.27.0.md) · [7.27 tekshiruvlar](QA-7.27.0.md) · [7.27 o‘zgargan fayllar](CHANGED-FILES-7.27.0.md)**
-
-Sinfxona uchun yangi SQL kerak emas. 7.26.2 migratsiyasi oldindan bajarilgan bo‘lsa, kodni yangilab `npm ci` va `npm run dev` qiling. Qidiruv uchun ochiq fan sahifalari, metadata va `sitemap.xml` build vaqtida yaratiladi; domenni `VITE_PUBLIC_SITE_URL` bilan belgilang.
+To‘lmagan jamoa bilan boshlash, har ishtirokchi uchun erkin bosqichlar va alohida taymerlar, serverda qoralamadan qisman baholash. Klaviatura — 12, Word — 12, Excel — 10 ta yangi savol. Sinfxona doskasi, katta namoyish va boshqa fanlar saqlangan. **[Yangilash](UPDATE-7.29.md) · [SQL tartibi](MIGRATIONS.md) · [Tekshiruvlar](QA-7.29.md) · [Savollar](CONTENT-7.29.md)**
 
 ## Avvalgi Science Studio imkoniyatlari
 
@@ -16,7 +12,7 @@ Sinfxona uchun yangi SQL kerak emas. 7.26.2 migratsiyasi oldindan bajarilgan bo�
 
 ZIP ichidagi `sinf-quiz` papkasini VS Code’da oching. Amaldagi loyihangizning `.env.local` faylini saqlang; yangi loyiha uchun `.env.example`ni nusxalab o‘z qiymatlaringizni kiriting.
 
-**7.26 bazasidan o‘tayotgan bo‘lsangiz:** Supabase SQL Editor’da `supabase-migration-7.26.2.sql` faylini RUN qiling. Bu migratsiya oldindan bajarilgan bo‘lsa takrorlash talab qilinmaydi. 7.27.0 Sinfxona uchun qo‘shimcha SQL yo‘q. Yangi loyiha uchun bazaviy schema va oldingi migratsiyalarni `SUPABASE-VERCEL.md` bo‘yicha bajarib, 7.26.2 migratsiyasini oxirida qo‘shing.
+**Ishlayotgan 7.28 bazasidan o‘tayotgan bo‘lsangiz:** Supabase SQL Editor’da `supabase-migration-7.29.sql` faylini to‘liq RUN qiling. 7.27 bazasi uchun avval 7.28, so‘ng 7.29 qo‘llanadi. Yangi Supabase loyiha uchun barcha 49 faylning tekshirilgan tartibi `MIGRATIONS.md` va `migration-chain.json`da. Oxirgi migratsiya — 7.29.
 
 Node.js 22.12 yoki undan yangi versiyada:
 
@@ -65,4 +61,4 @@ npm run test:e2e:competition
 
 Sinovlarda transport/Auth fixture ishlatilgan joylar QA hujjatida alohida ko‘rsatilgan. Production Supabase va Vercel bilan o‘z loyihangizda tekshirish kerak.
 
-Bu virtual ta’lim modeli: murakkab tabiiy jarayonlarning qaysi jihatlari soddalashtirilgani sahnaning o‘zida ko‘rsatiladi. Anatomiya tashxis vositasi emas. Tarixiy reliz hujjatlari paketda saqlangan; ushbu yangilanish uchun `UPDATE-7.26.2.md`ni kuzating.
+Bu virtual ta’lim modeli: murakkab tabiiy jarayonlarning qaysi jihatlari soddalashtirilgani sahnaning o‘zida ko‘rsatiladi. Anatomiya tashxis vositasi emas. Tarixiy reliz hujjatlari paketda saqlangan; ushbu yangilanish uchun `UPDATE-7.28.md`ni kuzating.

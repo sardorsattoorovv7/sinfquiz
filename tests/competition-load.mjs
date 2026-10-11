@@ -4,7 +4,7 @@ import {performance,monitorEventLoopDelay} from 'node:perf_hooks';
 import {competitionHttp} from './competition-http-fixture.js';
 import {config,teacher,students} from './competition-fixture.js';
 import {typingMatch} from '../src/competition-typing.js';
-const out='qa-7.24',id='72420000-0000-0000-0000-000000000001',pupils=students.slice(0,40),text=('Our class learns together. We read, think and practise every day. ').repeat(60).slice(0,4000);
+const out=process.env.COMPETITION_QA_DIR||'qa-7.24',id='72420000-0000-0000-0000-000000000001',pupils=students.slice(0,40),text=('Our class learns together. We read, think and practise every day. ').repeat(60).slice(0,4000);
 const percentile=(values,p)=>Math.round([...values].sort((a,b)=>a-b)[Math.ceil(values.length*p)-1]*100)/100;
 async function scenario(patched){
  const f=await competitionHttp({port:patched?4186:4187,patched}),rows=[],cpu=process.cpuUsage(),loop=monitorEventLoopDelay({resolution:20});loop.enable();

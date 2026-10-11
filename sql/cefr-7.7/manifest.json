@@ -1,0 +1,20 @@
+{
+  "source": "supabase-migration-7.7.sql",
+  "sourceSha256": "4f69554f74fe7932177dfb7f396a2c6ed27fe7f496f2a082ce1a00e97404931b",
+  "mocks": 10,
+  "files": [
+    "sql/cefr-7.7/01-schema.sql",
+    "sql/cefr-7.7/02-mock.sql",
+    "sql/cefr-7.7/03-mock.sql",
+    "sql/cefr-7.7/04-mock.sql",
+    "sql/cefr-7.7/05-mock.sql",
+    "sql/cefr-7.7/06-mock.sql",
+    "sql/cefr-7.7/07-mock.sql",
+    "sql/cefr-7.7/08-mock.sql",
+    "sql/cefr-7.7/09-mock.sql",
+    "sql/cefr-7.7/10-mock.sql",
+    "sql/cefr-7.7/11-mock.sql",
+    "sql/cefr-7.7/12-finish.sql"
+  ],
+  "contentSha256": "10feb8eb578f9c240e4dd9610f263ae1807d4958886d056329ee494831969162"
+}

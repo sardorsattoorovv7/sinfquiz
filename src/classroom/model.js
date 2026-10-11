@@ -36,7 +36,7 @@ const color = x => x==='auto'||/^#[0-9a-f]{6}$/i.test(x)?x:'auto';
 const safeImage = x => typeof x==='string' && x.length<=4500000 && /^data:image\/(png|jpeg|webp);base64,[a-z0-9+/=]+$/i.test(x);
 
 export function validateBoardObject(o) {
-  if(!o||!['stroke','text','image','line','arrow','ellipse','rectangle','triangle'].includes(o.type))return null;
+  if(!o||!['stroke','text','image','line','arrow','ellipse','rectangle','triangle','table'].includes(o.type))return null;
   const common={id:text(o.id,80)||makeId(),type:o.type,color:color(o.color),width:finite(o.width,1,64,4)};
   if(o.type==='stroke') {
     if(!Array.isArray(o.points)||o.points.length<2)return null;
@@ -45,11 +45,13 @@ export function validateBoardObject(o) {
     return {...common,brush:['pen','marker','highlight'].includes(o.brush)?o.brush:'pen',points};
   }
   if(o.type==='image'&&!safeImage(o.src))return null;
+  if(o.type==='table'&&(!Array.isArray(o.cells)||!o.cells.length||o.cells.length>12||!Array.isArray(o.cells[0])||!o.cells[0].length||o.cells[0].length>12||o.cells.some(row=>!Array.isArray(row)||row.length!==o.cells[0].length)))return null;
+
   const w=finite(o.w,1,BOARD_WIDTH,200),h=finite(o.h,1,BOARD_HEIGHT,100);
   return {...common,x:finite(o.x,0,BOARD_WIDTH-w),y:finite(o.y,0,BOARD_HEIGHT-h),w,h,
     flipX:!!o.flipX,flipY:!!o.flipY,...(o.circle?{circle:true}:{}),
     ...(o.type==='text'?{text:text(o.text,4000),fontSize:finite(o.fontSize,12,150,34)}:{}),
-    ...(o.type==='image'?{src:o.src}:{}),...(o.dashed?{dashed:true}:{})};
+    ...(o.type==='image'?{src:o.src}:{}),...(o.type==='table'?{cells:o.cells.map(row=>row.map(v=>text(v,300))),header:!!o.header,fontSize:finite(o.fontSize,16,64,30)}:{}),...(o.dashed?{dashed:true}:{})};
 }
 export function validateClassroom(raw) {
   if(!raw||raw.version!==1||!Array.isArray(raw.pages)||!raw.pages.length||raw.pages.some(p=>!p||typeof p!=='object'))return null;
@@ -200,9 +202,7 @@ export function taskObjects(kind,title,condition,image=null) {
   const top=Math.max(270,conditionObject.y+conditionObject.h+28),items=[titleObject,conditionObject];
   if(kind==='blanks')items.push(t('7 + ____ = 12        24 ÷ ____ = 6',100,top,42),t('Javob va izoh uchun joy',100,top+90,25),box(80,top+145,1440,Math.max(60,830-top-145),true));
   else if(kind==='table') {
-    const x=100,y=top,w=1400,h=Math.min(420,830-top);
-    for(let r=0;r<4;r++)for(let c=0;c<3;c++)items.push(box(x+c*w/3,y+r*h/4,w/3,h/4));
-    items.push(...['Berilgan','Hisoblash','Natija'].map((label,i)=>({...t(label,x+i*w/3+20,y+24,30),w:w/3-40})));
+    items.push({id:makeId(),type:'table',x:100,y:top,w:1400,h:Math.min(420,830-top),color:'auto',width:2,fontSize:30,header:true,cells:[['Berilgan','Hisoblash','Natija'],['','',''],['','',''],['','','']]});
   } else if(kind==='image'&&image){const fit=Math.min(1,1100/image.w,(830-top)/image.h);items.push({...image,id:makeId(),x:250,y:top,w:image.w*fit,h:image.h*fit});}
   else items.push(t('Yechim',100,top,28),box(80,top+60,1440,Math.max(60,830-top-60),true));
   return items;

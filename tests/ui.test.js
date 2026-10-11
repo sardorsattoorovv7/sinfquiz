@@ -46,7 +46,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   else if(path==='/api/race/session')value=raceModel
   else if(path==='/api/race/answer'){raceModel={...raceModel,race:{...raceModel.race,phase:'finished',winnerId:data.playerId,racers:raceModel.race.racers.map(player=>player.id===data.playerId?{...player,index:10,correct:10}:player)},questions:[null,null],feedbackByPlayer:{[data.playerId]:{correct:true,at:Date.now()}}};value=raceModel}
   else if(path==='/api/race/leave'||path==='/api/race/stop'){raceActive=false;value={ok:true}}
-  else if(path==='/api/typing/active')value={active:typingActive,stageCount:5,title:'English Typing & Vocabulary',levels:['A1','A2','B1','B2']}
+  else if(path==='/api/typing/active')value={active:typingActive,id:'typing-ui-room',stageCount:5,title:'English Typing & Vocabulary',levels:['A1','A2','B1','B2']}
   else if(path==='/api/typing/status'){typingActive=data.active;value={typing:{active:typingActive,stageCount:5,studentCount:0,results:[]}}}
   else if(path==='/api/typing/join'){const lesson=typingLessons.find(item=>item.englishLevel===(data.englishLevel||'A1'));typingModel={active:true,playerId:'typist-1',name:data.name,avatar:data.avatar,courseMode:data.courseMode||'english',englishLevel:data.englishLevel||'A1',entryMode:data.entryMode||'selected',index:0,stageCount:5,stage:{...lesson,wordCount:lesson.text.split(/\s+/).length},stageStartedAt:null,results:[],feedback:null,finished:false,csrf:'typing-test',serverNow:Date.now()};value=typingModel}
   else if(path==='/api/typing/start'){typingModel={...typingModel,stageStartedAt:Date.now(),feedback:null};value=typingModel}

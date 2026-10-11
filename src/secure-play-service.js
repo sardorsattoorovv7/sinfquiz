@@ -3,7 +3,7 @@ import {quizRanking} from './quiz-ranking.js';
 
 export async function playRpc(sdk,name,args={}){
  const {data,error}=await sdk.app.rpc(name,args);
- if(error){if(error.code==='PGRST202'||error.code==='42883')throw Error('Supabase SQL Editor’da supabase-migration-7.26.2.sql faylini RUN qiling, keyin sahifani yangilang.');throw Error(error.message||'So‘rov bajarilmadi.')}
+ if(error){if(error.code==='PGRST202'||error.code==='42883')throw Error('Supabase SQL Editor’da supabase-migration-7.28.sql faylini RUN qiling, keyin sahifani yangilang.');throw Error(error.message||'So‘rov bajarilmadi.')}
  return data;
 }
 const gameState=data=>({...data,ranking:quizRanking(data.ranking,data.quiz.id)});
@@ -31,7 +31,7 @@ export async function securePlayApi(path,payload,{runtime,load,save}){
  }
  if(path==='/api/race/active')return playRpc(sdk,'sq_race_action',{p_action:'active'});
  if(path==='/api/race/join'){
-  const data=await playRpc(sdk,'sq_race_action',{p_action:'join',p_payload:payload});
+  const data=await playRpc(sdk,'sq_race_action',{p_action:'join',p_race_id:payload.roomId||null,p_payload:payload});
   save('race',{raceId:data.race.id,localMode:!!data.localMode,playerIds:data.playerIds||[data.playerId],playerId:data.playerId,secure:true});return data;
  }
  const current=runtime.race||load('race');if(!current?.secure){save('race',null);throw Error('Poyga sessiyasi tugagan. Qayta kiring.')}

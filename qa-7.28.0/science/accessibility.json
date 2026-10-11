@@ -1,0 +1,30 @@
+[
+  {
+    "label": "biology desktop",
+    "violations": []
+  },
+  {
+    "label": "biology mobile",
+    "violations": []
+  },
+  {
+    "label": "biology dark",
+    "violations": []
+  },
+  {
+    "label": "chemistry desktop",
+    "violations": []
+  },
+  {
+    "label": "chemistry mobile",
+    "violations": []
+  },
+  {
+    "label": "chemistry dark",
+    "violations": []
+  },
+  {
+    "label": "biology textbook dark",
+    "violations": []
+  }
+]

@@ -1,0 +1,27 @@
+✔ Live typing preview counts an early dropped/extra letter without cascading errors or penalizing the untyped tail (6.060165ms)
+✔ 7.28 ordered pagination reads 1,203 records without dropping or repeating rows (4.560497ms)
+✔ Native table keeps cells through moving, resizing, draft recovery and changing dimensions (2.297919ms)
+▶ 7.28 PostgreSQL audit regression: grading, isolation, unique codes, counters, rollback and full bulk
+  ✔ Migration repairs conflicting active PINs and reruns without data loss (25.723539ms)
+  ✔ Other teacher cannot read a private active quiz or its answer key (87.742577ms)
+  ✔ Server PIN allocation resolves activation collision and unique index blocks bypass (26.038619ms)
+  ✔ Forged Python stdout never earns ranking points (212.221519ms)
+  ✔ Two teachers activate independent race and typing rooms; students must select one (192.427788ms)
+  ✔ An authenticated anonymous UID without a profile cannot manage rooms or start a national exam (17.708589ms)
+  ✔ Direct client writes of invented typing/national/activity results are denied (26.162345ms)
+  ✔ Typing grades canonical content, server elapsed time and fair edit distance; rejects replay/UID substitution (186.401249ms)
+  ✔ National catalog and unfinished session contain no answer keys (47.808792ms)
+  ✔ National grading ignores forged score, finishes idempotently and releases full mistake review (283.639884ms)
+  ✔ Batch rolls back earlier changes if a later operation fails RLS (69.195175ms)
+  ✔ Server counters are session-idempotent and analytics counts exceed 500 users (547.328087ms)
+  ✔ A bulk clear removes 1,003 results atomically and preserves the other teacher (562.858899ms)
+  ✔ Restrictive guards survive a mistakenly replayed permissive 7.6 policy (338.563379ms)
+✔ 7.28 PostgreSQL audit regression: grading, isolation, unique codes, counters, rollback and full bulk (16818.08423ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17355.842771

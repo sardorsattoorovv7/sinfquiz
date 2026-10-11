@@ -40,7 +40,7 @@ test('All four task templates contain editable work, fit the board and keep imag
  for(const kind of ['solve','blanks','table','image']){
   const objects=taskObjects(kind,'Kasrlar','Hisoblang va qanday yechganingizni tushuntiring.',image);assert.ok(objects.length>=3);
   for(const o of objects){const b=objectBounds(o);assert.ok(b.x>=0&&b.y>=0&&b.x+b.w<=1600&&b.y+b.h<=900,`${kind}: ${o.type}`);}
-  if(kind==='table')assert.equal(objects.filter(o=>o.type==='rectangle').length,12);
+  if(kind==='table')assert.deepEqual(objects.find(o=>o.type==='table').cells[0],['Berilgan','Hisoblash','Natija']);
   if(kind==='image'){const o=objects.find(o=>o.type==='image');assert.equal(o.w/o.h,2);}
  }
 });

@@ -10,6 +10,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  for(const id of [teacher,a,b])await db.query('insert into auth.users values($1)',[id]);
  for(const [id,role,name] of [[teacher,'teacher','Ustoz'],[a,'student','Ali'],[b,'student','Lola']])await db.query('insert into public.documents values($1,$2,$3)',['profiles',id,JSON.stringify({role,name})]);
  await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.22.sql'),'utf8'));await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.24.sql'),'utf8'));
+ const secureSql=fs.readFileSync(path.join(root,'supabase-migration-7.28.sql'),'utf8'),safeAt=secureSql.indexOf('create or replace function public.sq_safe_question(');await db.exec(secureSql.slice(safeAt,secureSql.indexOf('$$;',safeAt)+3));await db.exec(fs.readFileSync(path.join(root,'supabase-migration-7.29.sql'),'utf8'));
  const quiz={ownerId:teacher,ownerName:'Ustoz',title:'Olti kodli boshlang‘ich quiz',pin:'654321',subject:'Excel',visibility:'private',questions:[{type:'test',text:'Excel formulasini nima bilan boshlaymiz?',options:['=','+','A','#'],correct:0,points:100,explanation:'Formula tenglik belgisi bilan boshlanadi.'}]};
  await db.query('insert into public.documents values($1,$2,$3)',['quizzes','quiz-6',JSON.stringify(quiz)]);
  await db.query('insert into public.documents values($1,$2,$3)',['quizzes','excel-lab',JSON.stringify({...quiz,title:'Excel o‘rtacha amaliyoti',pin:'654322',questions:[{type:'office',text:'B5 katakka o‘rtacha qiymat formulasini yozing.',officeTemplate:'excel-average-first',points:100}]})]);
@@ -29,7 +30,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
     else if(p==='/api/quizzes')result={quizzes:[{...quiz,id:'quiz-6'}],publicQuizzes:[],lessons:[],players:[],results:[],typing:{texts:[],results:[],active:false},race:{active:false}};
     else if(p.startsWith('/api/competitions/')){
      const action=p.split('/').at(-1);actions.push({uid,action,...body});
-     const fn={list:['sq_comp_list',[]],catalog:['sq_comp_catalog',[]],state:['sq_comp_state',[body.id]],poll:['sq_comp_poll',[body.id,body.revision??-1]],member:['sq_comp_member',[body.id,body.userId,body.included]],save:['sq_comp_save',[body.config?.id,body.config]],join:['sq_comp_join',[body.code,body.name]],control:['sq_comp_control',[body.id,body.action,body.stage||0]],answer:['sq_comp_answer',[body.id,body.stageId,body.actionId,body.body]],leave:['sq_comp_leave',[body.id]]}[action];
+     const fn={select:['sq_comp_select',[body.id,body.stageId]],draft:['sq_comp_draft',[body.id,body.stageId,body.actionId,body.body]],list:['sq_comp_list',[]],catalog:['sq_comp_catalog',[]],state:['sq_comp_state',[body.id]],poll:['sq_comp_poll',[body.id,body.revision??-1]],member:['sq_comp_member',[body.id,body.userId,body.included]],save:['sq_comp_save',[body.config?.id,body.config]],join:['sq_comp_join',[body.code,body.name]],control:['sq_comp_control',[body.id,body.action,body.stage||0]],answer:['sq_comp_answer',[body.id,body.stageId,body.actionId,body.body]],leave:['sq_comp_leave',[body.id]]}[action];
      result=await rpc(uid,...fn);
     }
    }catch(e){result={error:e.message};status=400}
@@ -44,7 +45,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  try{
   const t=await makePage(teacher,'teacher','Ustoz');pages.push(t);current=t;
   await t.goto('http://127.0.0.1:4182/#dashboard');await t.locator('.admin-shell').getByRole('button',{name:'Jamoaviy musobaqalar',exact:true}).click();await t.getByRole('heading',{name:'Jamoaviy musobaqalar',exact:true}).waitFor();
-  await t.getByRole('button',{name:'Musobaqa yaratish',exact:true}).click();await t.getByLabel('Musobaqa nomi',{exact:true}).fill('Sinf bilim va mahorat bahsi');await t.getByLabel('Har bir jamoada',{exact:true}).fill('1');
+  await t.getByRole('button',{name:'Musobaqa yaratish',exact:true}).click();await t.getByLabel('Musobaqa nomi',{exact:true}).fill('Sinf bilim va mahorat bahsi');await t.getByLabel('Har bir jamoada',{exact:true}).fill('1');await t.getByLabel('Bosqichlarni bajarish tartibi').selectOption('guided');
   const attach=async search=>{await t.getByLabel('Material nomi yoki 6 raqamli quiz kodi').fill(search);const source=t.locator('.comp-source-list article').first();await source.getByRole('button',{name:'Biriktirish',exact:true}).click()};
   await attach('654321');await attach('A1 ·');await attach('Birinchi burilish');await attach('Excel o‘rtacha amaliyoti');
   console.log('PASS sources selected');assert.equal(await t.locator('.comp-stage-editor').count(),4);
@@ -53,7 +54,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   await q.getByLabel('Javobdan keyingi tushuntirish').fill('2 ga 2 qo‘shilsa 4 chiqadi.');
   await t.getByRole('button',{name:'Savol qo‘shish',exact:true}).click();const py=t.locator('.comp-question-editor').nth(1);await py.locator('select').first().selectOption('python');await py.getByLabel('Savol yoki vazifa').fill('Python bilan konsolga 12 sonini chiqaring.');await py.getByLabel('Kutilgan konsol natijasi').fill('12');
   await t.getByRole('button',{name:'Yopish',exact:true}).click();
-  for(let i=0;i<5;i++){const row=t.locator('.comp-stage-editor').nth(i);await row.getByRole('button',{name:'Sozlash',exact:true}).click();await row.getByLabel('Vaqt (sekund)').fill('3600');await row.getByRole('button',{name:'Yopish',exact:true}).click()}
+  for(let i=0;i<5;i++){const row=t.locator('.comp-stage-editor').nth(i);await row.getByRole('button',{name:'Sozlash',exact:true}).click();await row.getByLabel('Vaqt (daqiqa)').fill('60');await row.getByLabel('Qo‘shimcha sekund').fill('0');await row.getByRole('button',{name:'Yopish',exact:true}).click()}
   await noOverflow(t);await axe(t,'builder desktop');await shot(t,'competition-builder-desktop');
   await t.setViewportSize({width:390,height:844});await noOverflow(t);await axe(t,'builder mobile');await shot(t,'competition-builder-mobile');await t.setViewportSize({width:1440,height:1000});
   await t.getByRole('button',{name:'Qoralamani saqlash',exact:true}).click();await t.getByRole('button',{name:'Qabulni faollashtirish',exact:true}).waitFor();console.log('PASS draft saved');const codes=[await t.locator('.comp-team-codes article').filter({has:t.getByText('Zukko',{exact:true})}).locator('code').innerText(),await t.locator('.comp-team-codes article').filter({has:t.getByText('Bilimdon',{exact:true})}).locator('code').innerText()];assert.equal(codes.length,2);

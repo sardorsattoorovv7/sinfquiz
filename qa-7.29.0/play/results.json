@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "noAnswerKeyInStorage": true,
+    "guestQuizAndRank": true,
+    "differentScoresGetDifferentRanks": true,
+    "guestSplitRaceAndWinner": true,
+    "guestTypingCanonicalFiveStages": true,
+    "nationalServerGradeAndReview": true
+  },
+  "errors": []
+}

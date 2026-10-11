@@ -1,12 +1,12 @@
+import {secureActivityPath,secureActivityApi} from './secure-activities.js';
 import {securePlayPath,securePlayApi,playRpc} from './secure-play-service.js';
 import {quizRanking} from './quiz-ranking.js';
 import bank from '../data/question-bank.json';
+import {office729Quizzes} from '../data/office-729.js';
 import {excelBasicsQuiz} from '../data/excel-basics.js';
 import typingLessons from '../data/english-typing-lessons.json';
 import longTypingLessons from '../data/typing-lessons.json';
 import {nationalTestBank} from '../data/national-test-bank.js';
-import {nationalGrade} from './national-grading.js';
-import {nationalReview} from './national-review.js';
 import {publicationError} from './national-validation.js';
 import {cefrResult} from './cefr-grading.js';
 import {audioMazeLevelById} from './audio-maze-content.js';
@@ -40,7 +40,6 @@ const quizInfo=quiz=>({id:quiz.id,title:quiz.title,group:quiz.group,subject:quiz
 const docData=snapshot=>snapshot.exists()?{id:snapshot.id,...snapshot.data()}:null;
 const queryData=snapshot=>snapshot.docs.map(item=>({id:item.id,...item.data()}));
 const nationalInfo=section=>({id:section.id,title:section.title,subject:section.subject,description:section.description||'',questionCount:section.questions?.length||section.questionCount||30,durationMinutes:section.durationMinutes||60,scoringModel:section.scoringModel||'general-certificate',builtin:!!section.builtin,visibility:section.visibility||'private',approvalStatus:section.approvalStatus||'draft',ownerId:section.ownerId||null,ownerName:section.ownerName||'O‘qituvchi',reviewNote:section.reviewNote||'',createdAt:section.createdAt||null,updatedAt:section.updatedAt||null});
-const nationalState=current=>{const total=current.section.questions.length,expired=Date.now()>=current.endsAt;if(expired&&!current.finished){current.finished=true;current.finishedAt=Date.now();current.finishReason='time'}const question=current.finished?null:safeQuestion(current.section.questions[current.index]);return {section:nationalInfo(current.section),question,index:current.index,answers:current.answers.map(value=>value===null?null:true),selected:current.answers[current.index],startedAt:current.startedAt,endsAt:current.endsAt,serverNow:Date.now(),finished:!!current.finished,finishReason:current.finishReason||null,review:nationalReview(current),result:current.finished?nationalGrade(current.section,current.section.questions.reduce((sum,item,index)=>sum+Number(current.answers[index]===item.correct),0),total):null}};
 const cefrInfo=mock=>({id:mock.id,number:mock.number,title:mock.title,theme:mock.theme,description:mock.description,durationMinutes:mock.durationMinutes,listeningCount:mock.listening.length,readingCount:mock.reading.length,writingCount:mock.writing.length,speakingParts:mock.speaking.length});
 const cefrState=current=>{
  const expired=Date.now()>=current.endsAt;if(expired&&!current.finished){current.finished=true;current.finishedAt=Date.now();current.finishReason='time'}
@@ -61,9 +60,10 @@ async function isTeacher(sdk,user=sdk.auth.currentUser){return ['teacher','admin
 async function seedQuizzes(sdk){
  const uid=sdk.auth.currentUser.uid;if(seededTeachers.has(uid))return;
  const current=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid)));if(!current.empty){
-  if(!current.docs.some(item=>item.data()?.templateKey===excelBasicsQuiz.templateKey)){
-   const id=`excel-beginner-7-22:${uid}`,pins=new Set(current.docs.map(item=>item.data()?.pin));let pin;do{pin=String(Math.floor(100000+Math.random()*900000))}while(pins.has(pin));
-   const profile=await userProfile(sdk);await sdk.setDoc(sdk.doc(sdk.db,'quizzes',id),{...clean(excelBasicsQuiz),id,pin,status:'passive',visibility:'private',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:Date.now(),version:4});
+  for(const source of [excelBasicsQuiz,...office729Quizzes]){
+   if(current.docs.some(item=>item.data()?.templateKey===source.templateKey))continue;
+   const id=`template:${source.templateKey}:${uid}`,pins=new Set(current.docs.map(item=>item.data()?.pin));let pin;do{pin=String(Math.floor(100000+Math.random()*900000))}while(pins.has(pin));
+   const profile=await userProfile(sdk);await sdk.setDoc(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:Date.now(),version:5});
   }
   for(const snapshot of current.docs){const quiz=snapshot.data();const source=bank.find(item=>item.subject===quiz?.subject);
    if(source&&originalClassroomTemplates[quiz.subject]?.includes(templateHash(quiz.questions))){
@@ -74,7 +74,7 @@ async function seedQuizzes(sdk){
  }
  const profile=await userProfile(sdk),ownerName=profile?.name||'O‘qituvchi';
  const batch=sdk.writeBatch(sdk.db),used=new Set();
- for(const source of [...bank,excelBasicsQuiz]){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=source.templateKey?`excel-beginner-7-22:${uid}`:randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:source.templateKey?4:3})}
+ for(const source of [...bank,excelBasicsQuiz,...office729Quizzes]){let pin=String(Math.floor(100000+Math.random()*900000));while(used.has(pin)){pin=String(Math.floor(100000+Math.random()*900000))}used.add(pin);const id=source.templateKey?`template:${source.templateKey}:${uid}`:randomId();batch.set(sdk.doc(sdk.db,'quizzes',id),{...clean(source),id,pin,status:'passive',visibility:'private',ownerId:sdk.auth.currentUser.uid,ownerName,createdAt:Date.now(),version:source.templateKey?4:3})}
  await batch.commit();seededTeachers.add(uid);
 }
 
@@ -89,29 +89,23 @@ async function adminState(sdk){
  const [quizSnap,playerSnap,raceSnap,settingsSnap,resultSnap,lessonSnap,publicQuizSnap,nationalSnap]=await Promise.all([
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid))),
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'players'),sdk.where('ownerId','==',uid))),
-  sdk.getDoc(sdk.doc(sdk.db,'live','race')),
+  playRpc(sdk,'sq_room_staff'),
   sdk.getDoc(sdk.doc(sdk.db,'settings','app')),
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'typingResults'),sdk.where('ownerId','==',uid))),
   sdk.getDocs(sdk.query(sdk.collection(sdk.db,'lessons'),sdk.where('ownerId','==',uid))),
-  sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('visibility','==','public'))),
+  playRpc(sdk,'sq_quiz_catalog'),
   isAdmin?sdk.getDocs(sdk.collection(sdk.db,'nationalSections')):sdk.getDocs(sdk.query(sdk.collection(sdk.db,'nationalSections'),sdk.where('ownerId','==',uid))),
  ]);
- const settings=settingsSnap.data()||{},race=raceSnap.exists()?raceSnap.data():null;
+ const settings=settingsSnap.data()||{},race=raceSnap.race;
  let analytics=null;
- if(isAdmin){const [profilesSnap,activitySnap]=await Promise.all([sdk.getDocs(sdk.collection(sdk.db,'profiles')),sdk.getDocs(sdk.collection(sdk.db,'userActivity'))]),profiles=queryData(profilesSnap),activity=queryData(activitySnap),activityMap=new Map(activity.map(item=>[item.uid,item])),now=Date.now(),users=profiles.map(item=>({...item,activity:activityMap.get(item.uid)||null})).sort((a,b)=>(b.activity?.lastSeenAt||0)-(a.activity?.lastSeenAt||0));analytics={users,totalUsers:users.length,activeUsers:users.filter(item=>now-(item.activity?.lastSeenAt||0)<5*60*1000).length,totalLogins:activity.reduce((sum,item)=>sum+(item.loginCount||0),0),totalLogouts:activity.reduce((sum,item)=>sum+(item.logoutCount||0),0),teachers:users.filter(item=>item.role==='teacher').length,students:users.filter(item=>item.role==='student').length,generatedAt:now}}
- return {quizzes:queryData(quizSnap),publicQuizzes:queryData(publicQuizSnap),lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),courseSeedError,nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race:raceSummary(race),typing:{active:!!settings.typingActive,activatedAt:settings.typingActivatedAt||null,studentCount:0,stageCount:5,results:queryData(resultSnap).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)},analytics};
+ if(isAdmin)analytics=await playRpc(sdk,'sq_admin_analytics');
+ return {quizzes:queryData(quizSnap),publicQuizzes:publicQuizSnap,lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),courseSeedError,nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race,typing:{...raceSnap.typing,studentCount:0,stageCount:5,results:queryData(resultSnap).filter(r=>r.verified===true).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)},analytics};
 }
 
 const raceSummary=race=>race?{id:race.id,active:!!race.active,phase:race.phase,title:race.title,sourceQuizId:race.sourceQuizId||null,questionCount:race.questionCount||race.questionsByLane?.[0]?.length||race.questions?.length||0,startsAt:race.startsAt||null,startedAt:race.startedAt||null,winnerId:race.winnerId||null,createdAt:race.createdAt,racers:(race.racers||[]).map(({answer,...player})=>player)}:null;
-const editDistance=(left,right)=>{const a=[...left],b=[...right],row=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let diagonal=row[0];row[0]=i;for(let j=1;j<=b.length;j++){const above=row[j],cost=a[i-1]===b[j-1]?0:1;row[j]=Math.min(row[j]+1,row[j-1]+1,diagonal+cost);diagonal=above}}return row[b.length]};
-const typingMetrics=(target,value,elapsedMs)=>{const expected=target.normalize('NFC'),typed=value.normalize('NFC'),distance=editDistance(expected,typed),length=Math.max(1,expected.length,typed.length),accuracy=Math.max(0,Math.round((1-distance/length)*1000)/10),correctChars=Math.max(0,expected.length-distance),seconds=Math.max(1,elapsedMs/1000),wpm=Math.max(0,Math.round((correctChars/5)/(seconds/60)));return {accuracy,wpm,seconds:Math.round(seconds*10)/10,errors:distance,typedChars:typed.length,expectedChars:expected.length,passed:accuracy>=90&&typed.length>=expected.length*.9}};
-const englishLevels=['A1','A2','B1','B2','C1','C2'];
-const typingCourse=(level,mode)=>mode==='longtext'?longTypingLessons:typingLessons.filter(stage=>stage.englishLevel===(englishLevels.includes(level)?level:'A1'));
-const typingStage=(index,level,mode)=>{const stage=typingCourse(level,mode)[index];return stage?{...stage,courseMode:mode||'english',wordCount:stage.text.trim().split(/\s+/u).length}:null};
-const typingState=current=>{const course=typingCourse(current.englishLevel,current.courseMode);return {active:true,playerId:current.playerId,name:current.name,avatar:current.avatar,courseMode:current.courseMode||'english',englishLevel:current.englishLevel||'A1',entryMode:current.entryMode||'selected',placementScore:current.placementScore??null,index:current.index,stage:typingStage(current.index,current.englishLevel,current.courseMode),stageCount:course.length,stageStartedAt:current.stageStartedAt||null,results:current.results,feedback:current.feedback||null,finished:current.index>=course.length,csrf:'firebase',serverNow:Date.now()}};
-
 export async function supabaseApi(path,{method='GET',data={}}={}){
  try{
+  if(secureActivityPath(path))return await secureActivityApi(path,data,{runtime,load,save});
   if(securePlayPath(path))return await securePlayApi(path,data,{runtime,load,save});
   if(path==='/auth/session'){
   const sdk=await waitForAuth(),user=sdk.auth.currentUser,profile=await userProfile(sdk,user);return {user:profile?{id:user.uid,...profile}:null,csrf:profile?'supabase':null};
@@ -160,11 +154,12 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
   if((path==='/api/quizzes'&&method==='POST')||quizMatch){
    const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');
    const uid=sdk.auth.currentUser.uid,existing=quizMatch?docData(await sdk.getDoc(sdk.doc(sdk.db,'quizzes',quizMatch[1]))):null;if(existing&&existing.ownerId!==uid)fail('Faqat o‘zingiz yaratgan testni o‘zgartira olasiz.');
-   if(method==='DELETE'){const id=quizMatch[1],batch=sdk.writeBatch(sdk.db),players=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'players'),sdk.where('quizId','==',id)));players.forEach(item=>batch.delete(item.ref));batch.delete(sdk.doc(sdk.db,'quizzes',id));await batch.commit();return {ok:true}}
-   const quizzes=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('pin','==',data.pin)));if(quizzes.docs.some(item=>item.id!==quizMatch?.[1]))fail('Bu kod band. Boshqa 6 xonali kod tanlang.');
-   const profile=await userProfile(sdk),id=quizMatch?.[1]||randomId(),quiz={...clean(data),id,visibility:data.visibility==='public'?'public':'private',ownerId:uid,ownerName:profile?.name||'O‘qituvchi',createdAt:data.createdAt||Date.now(),updatedAt:Date.now(),version:(data.version||0)+1};await sdk.setDoc(sdk.doc(sdk.db,'quizzes',id),quiz);return {quiz};
+   if(method==='DELETE')return playRpc(sdk,'sq_owned_bulk',{p_kind:'quiz-delete',p_quiz_id:quizMatch[1]});
+   const profile=await userProfile(sdk),id=quizMatch?.[1]||data.id||randomId(),quiz={...clean(data),id,visibility:data.visibility==='public'?'public':'private',ownerName:profile?.name||'O‘qituvchi',createdAt:data.createdAt||Date.now(),version:(data.version||0)+1};
+   return {quiz:await playRpc(sdk,'sq_quiz_save',{p_id:id,p_data:quiz})};
+
   }
-  if(path==='/api/results/reset'){const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');const snap=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'players'),sdk.where('ownerId','==',sdk.auth.currentUser.uid))),batch=sdk.writeBatch(sdk.db);snap.forEach(item=>batch.delete(item.ref));await batch.commit();return {ok:true}}
+  if(path==='/api/results/reset'){const sdk=await waitForAuth();return playRpc(sdk,'sq_owned_bulk',{p_kind:'players-reset'})}
 
   if(path==='/api/catalog'){
    const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('Telegram orqali kirish kerak.');
@@ -182,8 +177,7 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
   if(path==='/api/national'&&method==='GET'){
    const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('Milliy test mashqlariga kirish uchun hisobingizga kiring.');
    if(profile.role==='admin')await seedNational(sdk,profile);
-   const snap=await sdk.getDocs(sdk.collection(sdk.db,'nationalSections')),custom=queryData(snap).filter(item=>profile.role==='admin'||item.ownerId===sdk.auth.currentUser.uid||(item.visibility==='public'&&item.approvalStatus==='approved'));
-   return {sections:custom.filter(item=>!publicationError(item)).map(nationalInfo),canCreate:['teacher','admin'].includes(profile.role),canReview:profile.role==='admin'};
+   return playRpc(sdk,'sq_national_catalog');
   }
   const nationalSectionMatch=path.match(/^\/api\/national\/sections\/([^/]+)$/),nationalReviewMatch=path.match(/^\/api\/national\/sections\/([^/]+)\/review$/);
   if((path==='/api/national/sections'&&method==='POST')||nationalSectionMatch||nationalReviewMatch){
@@ -196,32 +190,6 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
    if(data.requestPublic){const issue=publicationError(data);if(issue)fail(issue)}
    const wantsPublic=data.requestPublic===true,approvalStatus=profile.role==='admin'&&wantsPublic?'approved':wantsPublic?'pending':'draft',id=existing?.id||randomId(),section={id,title:data.title.trim(),subject:data.subject,description:String(data.description||'').trim().slice(0,500),durationMinutes:Math.max(30,Math.min(180,Number(data.durationMinutes)||60)),scoringModel:'general-certificate',questions:questions.map((item,index)=>({id:item.id||`${id}-q-${index+1}`,type:'test',text:item.text.trim(),passage:String(item.passage||'').trim().slice(0,12000),topic:String(item.topic||'').trim().slice(0,120),sourceUrl:String(item.sourceUrl||'').trim().slice(0,1000),sourceReference:String(item.sourceReference||'').trim().slice(0,200),options:item.options.map(option=>String(option).trim()),correct:Number(item.correct),answer:String(item.options[Number(item.correct)]).trim(),explanation:String(item.explanation||'').trim().slice(0,600),subject:data.subject,points:1,time:120})),questionCount:30,builtin:false,visibility:approvalStatus==='approved'?'public':'private',approvalStatus,ownerId:existing?.ownerId||uid,ownerName:existing?.ownerName||profile.name||'O‘qituvchi',createdAt:existing?.createdAt||Date.now(),updatedAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'nationalSections',id),section);return {section:nationalInfo(section)};
   }
-  if(path==='/api/national/start'){
-   const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('Testni boshlash uchun hisobingizga kiring.');let section=nationalTestBank.find(item=>item.id===data.sectionId);if(!section)section=docData(await sdk.getDoc(sdk.doc(sdk.db,'nationalSections',String(data.sectionId||''))));if(!section||section.builtin)fail('Bu demo variant arxivlangan. Ustozning manbali variantini tanlang.');if(!section.builtin&&section.approvalStatus!=='approved'&&section.ownerId!==sdk.auth.currentUser.uid&&profile.role!=='admin')fail('Bu bo‘lim hali ommaga tasdiqlanmagan.');const startedAt=Date.now(),current={attemptId:randomId(),uid:sdk.auth.currentUser.uid,section:clean(section),index:0,answers:Array(section.questions.length).fill(null),startedAt,endsAt:startedAt+(section.durationMinutes||60)*60*1000,finished:false};save('national',current);return nationalState(current);
-  }
-  if(path.startsWith('/api/national/')){
-   const sdk=await waitForAuth(),current=runtime.national||load('national');if(!current||current.uid!==sdk.auth.currentUser?.uid)fail('Milliy test sessiyasi topilmadi. Qayta boshlang.');
-   nationalState(current);
-   if(path==='/api/national/leave'){if(!current.finished)fail('Avval testni tugating.');save('national',null);return {ok:true}}
-   if(path==='/api/national/finish'&&!current.finished){current.finished=true;current.finishedAt=Date.now();current.finishReason='submitted'}
-   if(current.finished){
-    save('national',current);
-    if(!current.resultSaved){
-     current.attemptId=current.attemptId||randomId();save('national',current);
-     try{
-      const ref=sdk.doc(sdk.db,'nationalResults',current.attemptId),previous=await sdk.getDoc(ref),state=nationalState(current);
-      if(!previous.exists())await sdk.setDoc(ref,{uid:current.uid,sectionId:current.section.id,sectionTitle:current.section.title,subject:current.section.subject,ownerId:current.section.ownerId||'',...state.result,review:state.review,startedAt:current.startedAt,finishedAt:current.finishedAt,finishReason:current.finishReason});
-      current.resultSaved=true;current.storageError=null;
-     }catch{current.storageError='Natija hozircha shu brauzerda saqlandi. Serverga yuborish uchun qayta urinib ko‘ring.'}
-     save('national',current);
-    }
-    return {...nationalState(current),storageError:current.storageError||null};
-   }
-   if(path==='/api/national/session'){save('national',current);return nationalState(current)}
-   if(path==='/api/national/answer'){const value=Number(data.value);if(!Number.isInteger(value)||value<0||value>3)fail('Javob variantini tanlang.');current.answers[current.index]=value;save('national',current);return nationalState(current)}
-   if(path==='/api/national/navigate'){const index=Number(data.index);if(!Number.isInteger(index)||index<0||index>=current.section.questions.length)fail('Savol raqami noto‘g‘ri.');current.index=index;save('national',current);return nationalState(current)}
-  }
-
   if(path==='/api/cefr'&&method==='GET'){
    const sdk=await waitForAuth(),profile=await userProfile(sdk);if(!profile)fail('CEFR mock testlariga kirish uchun hisobingizga kiring.');return {mocks:[],notice:'Eski demo savollar arxivlangan; rasmiy manbalar bilan ishlang.'};
   }
@@ -233,22 +201,9 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
    fail('Eski CEFR sessiyasini faqat yopish mumkin. Manbali mashq bo‘limidan foydalaning.');
   }
 
-  if(path==='/api/race/activate'){const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');const quiz=docData(await sdk.getDoc(sdk.doc(sdk.db,'quizzes',String(data.quizId||''))));if(!quiz||quiz.ownerId!==sdk.auth.currentUser.uid)fail('Poyga uchun o‘zingiz yaratgan testni tanlang.');const requested=Array.isArray(data.questionIds)?data.questionIds.slice(0,12):[],byId=new Map((quiz.questions||[]).filter(question=>question.type==='test'&&question.options?.length===4).map(question=>[question.id,question])),selected=requested.map(id=>byId.get(id)).filter(Boolean);if(selected.length<2)fail('Poyga uchun kamida 2 ta variantli savol tanlang.');const id=randomId(),lane0=selected.map((question,index)=>({...clean(question),id:`${id}-a-${index+1}`})),lane1=[...selected.slice(1),selected[0]].map((question,index)=>({...clean(question),id:`${id}-b-${index+1}`})),race={id,title:`${quiz.title} · 1v1`,active:true,phase:'lobby',ownerId:sdk.auth.currentUser.uid,sourceQuizId:quiz.id,sourcePin:quiz.pin,questionCount:selected.length,questionsByLane:[lane0,lane1],racers:[],winnerId:null,createdAt:Date.now(),startsAt:null,startedAt:null};await sdk.setDoc(sdk.doc(sdk.db,'live','race'),race);return {race:raceSummary(race)}}
-  if(path==='/api/race/stop'){const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');await sdk.setDoc(sdk.doc(sdk.db,'live','race'),{active:false,phase:'closed',closedAt:Date.now()},{merge:true});return {ok:true}}
-  if(path==='/api/typing/active'){const sdk=await ensureAnonymous(),settings=(await sdk.getDoc(sdk.doc(sdk.db,'settings','app'))).data()||{};return {active:!!settings.typingActive,stageCount:5,title:'English Typing & Vocabulary',levels:englishLevels}}
-  if(path==='/api/typing/status'){const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');await sdk.setDoc(sdk.doc(sdk.db,'settings','app'),{typingActive:!!data.active,typingOwnerId:sdk.auth.currentUser.uid,typingActivatedAt:data.active?Date.now():null},{merge:true});return {typing:(await adminState(sdk)).typing}}
-  if(path==='/api/typing/results/reset'){const sdk=await waitForAuth();if(!await isTeacher(sdk))fail('O‘qituvchi ruxsati kerak.');const snap=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'typingResults'),sdk.where('ownerId','==',sdk.auth.currentUser.uid))),batch=sdk.writeBatch(sdk.db);snap.forEach(item=>batch.delete(item.ref));await batch.commit();return {ok:true}}
-  if(path==='/api/typing/join'){const sdk=await ensureAnonymous(),settings=(await sdk.getDoc(sdk.doc(sdk.db,'settings','app'))).data()||{};if(!settings.typingActive)fail('Matn terish mashqi hozir yopiq. O‘qituvchi ochishini kuting.');if(!data.name?.trim()||!avatars.includes(data.avatar))fail('Ism va avatarni kiriting.');const courseMode=data.courseMode==='longtext'?'longtext':'english',englishLevel=englishLevels.includes(data.englishLevel)?data.englishLevel:'A1',current={playerId:randomId(),uid:sdk.auth.currentUser.uid,ownerId:settings.typingOwnerId||'',name:data.name.trim(),avatar:data.avatar,courseMode,englishLevel,entryMode:data.entryMode==='placement'?'placement':courseMode==='longtext'?'longtext':'selected',placementScore:Number.isFinite(data.placementScore)?data.placementScore:null,index:0,results:[],stageStartedAt:null,feedback:null};save('typing',current);return typingState(current)}
-  if(path.startsWith('/api/typing/')){
-   const sdk=await ensureAnonymous(),current=runtime.typing||load('typing');if(!current||current.uid!==sdk.auth.currentUser.uid)fail('Typing sessiyasi tugagan. Qayta qo‘shiling.');const settings=(await sdk.getDoc(sdk.doc(sdk.db,'settings','app'))).data()||{};if(path!=='/api/typing/leave'&&!settings.typingActive)fail('Typing mashqi hozir PASSIVE.');
-   if(path==='/api/typing/session')return typingState(current);
-   if(path==='/api/typing/start'){current.stageStartedAt=current.stageStartedAt||Date.now();current.feedback=null;save('typing',current);return typingState(current)}
-   if(path==='/api/typing/submit'){const course=typingCourse(current.englishLevel,current.courseMode),stage=course[current.index];if(!stage||!current.stageStartedAt)fail('Avval bosqichni boshlang.');const metrics=typingMetrics(stage.text,data.value||'',Date.now()-current.stageStartedAt),result={stage:stage.level,title:stage.title,courseMode:current.courseMode||'english',englishLevel:current.englishLevel,focus:stage.focus||null,...metrics};current.feedback={...result,correctText:stage.text,translation:stage.translation||null};current.stageStartedAt=null;if(metrics.passed){current.results.push(result);current.index++;if(current.index>=course.length){const count=Math.max(1,current.results.length),averageAccuracy=Math.round(current.results.reduce((sum,item)=>sum+item.accuracy,0)/count*10)/10,averageWpm=Math.round(current.results.reduce((sum,item)=>sum+item.wpm,0)/count);await sdk.setDoc(sdk.doc(sdk.db,'typingResults',current.playerId),{uid:current.uid,ownerId:current.ownerId||'',name:current.name,avatar:current.avatar,courseMode:current.courseMode||'english',englishLevel:current.englishLevel,entryMode:current.entryMode,placementScore:current.placementScore,averageAccuracy,averageWpm,totalSeconds:Math.round(current.results.reduce((sum,item)=>sum+item.seconds,0)*10)/10,completedAt:Date.now(),stages:current.results})}}save('typing',current);return typingState(current)}
-   if(path==='/api/typing/leave'){save('typing',null);return {ok:true}}
-  }
   fail('Funksiya topilmadi.');
  }catch(error){
-  const message=String(error?.message||'');if(/invalid login credentials/i.test(message))throw Error('Login yoki parol noto‘g‘ri.');if(/row-level security|permission denied|not allowed/i.test(message))throw Error('Supabase xavfsizlik qoidasi ruxsat bermadi. SQL Editor’da `supabase-migration-7.6.sql` yangilanishini RUN qiling.');throw Error(message||'Supabase so‘rovi bajarilmadi.');
+  const message=String(error?.message||'');if(/invalid login credentials/i.test(message))throw Error('Login yoki parol noto‘g‘ri.');if(/row-level security|permission denied|not allowed/i.test(message))throw Error('Supabase xavfsizlik qoidasi ruxsat bermadi. SQL Editor’da `supabase-migration-7.28.sql` yangilanishini RUN qiling.');throw Error(message||'Supabase so‘rovi bajarilmadi.');
  }
 }
 
@@ -268,10 +223,10 @@ export function subscribeSupabase(handlers){
     const row=payload.new?.data||payload.old?.data;
     if(row&&!['live','settings','profiles','userActivity'].includes(collection)&&profile?.role!=='admin'&&row.ownerId!==user.uid)return;
     refresh();
-   },()=>{}));refresh();
+   },()=>{}));const roomTimer=setInterval(refresh,15000);unsubs.push(()=>clearInterval(roomTimer));refresh();
   }
   const game=runtime.game||load('game');if(game){unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'leaderboards',game.quiz.id),snapshot=>handlers.onRanking?.(quizRanking(snapshot.data()?.rows,game.quiz.id)),error=>handlers.onError?.(error)));const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/play/session').catch(e=>{if(/testni to‘xtatgan/.test(e.message))handlers.onClosed?.()})},15000);unsubs.push(()=>clearInterval(timer))}
   const race=runtime.race||load('race');if(race){let pending=false;const refresh=async()=>{if(stopped||pending||document.hidden)return;pending=true;try{handlers.onRace?.(await supabaseApi('/api/race/session'))}catch(error){if(/Poyga yopilgan|Poyga almashtirilgan/.test(error.message))handlers.onRaceClosed?.();else handlers.onError?.(error)}finally{pending=false}};const timer=setInterval(refresh,1000);unsubs.push(()=>clearInterval(timer));refresh();}
-  const typing=runtime.typing||load('typing');if(typing)unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'settings','app'),snapshot=>{if(!snapshot.data()?.typingActive)handlers.onTypingClosed?.()},()=>{}));
+  const typing=runtime.typing||load('typing');if(typing){const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/typing/session').catch(error=>{if(/hozir yopiq/.test(error.message))handlers.onTypingClosed?.()})},15000);unsubs.push(()=>clearInterval(timer));}
  }catch(error){handlers.onError?.(error)}};listen();return()=>{stopped=true;unsubs.forEach(stop=>stop())};
 }

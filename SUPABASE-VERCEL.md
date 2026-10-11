@@ -1,3 +1,5 @@
+**7.29.0 uchun amaldagi ketma-ketlik: [MIGRATIONS.md](MIGRATIONS.md). 7.28dan faqat 7.29; 7.27dan 7.28 va 7.29 migratsiyasi qo‘llanadi. Quyida tarixiy boshlang‘ich sozlamalar bor.**
+
 # SinfQuiz 7.8 ni Supabase va Vercel’da sozlash
 
 ## 1. Supabase loyihasi
@@ -58,6 +60,6 @@ Eski `service_role` kaliti ishlatilsa oxirgi satr o‘rniga `SUPABASE_SERVICE_RO
 ## 6. Muammo chiqsa
 
 - “Supabase sozlanmagan” — Vercel env qiymatlarini tekshirib, qayta deploy qiling.
-- “row-level security” — mavjud loyihada `supabase-migration-7.6.sql` ni, yangi loyihada `supabase-schema.sql` ni SQL Editor’da RUN qiling.
+- “row-level security” — rolingiz va kontent egasini tekshiring. `MIGRATIONS.md`dagi joriy ketma-ketlikni bajaring; ruxsatlarni ochish uchun eski 7.6 skriptini qayta qo‘llamang.
 - O‘quvchi kod bilan kira olmasa — Anonymous Sign-Ins yoqilganini tekshiring.
 - Realtime yangilanmasa — Database → Replication bo‘limida `documents` jadvali yoqilganini tekshiring; SQL fayli odatda buni avtomatik bajaradi.

@@ -1,0 +1,38 @@
+[
+  {
+    "label": "editable table controls",
+    "violations": []
+  },
+  {
+    "label": "large timer controls",
+    "violations": []
+  },
+  {
+    "label": "large number controls",
+    "violations": []
+  },
+  {
+    "label": "large noise controls",
+    "violations": []
+  },
+  {
+    "label": "desktop all tools",
+    "violations": []
+  },
+  {
+    "label": "projector",
+    "violations": []
+  },
+  {
+    "label": "tablet",
+    "violations": []
+  },
+  {
+    "label": "mobile light",
+    "violations": []
+  },
+  {
+    "label": "mobile dark",
+    "violations": []
+  }
+]

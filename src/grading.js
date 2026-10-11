@@ -12,10 +12,7 @@ export function gradeAnswer(q, value, seconds) {
   else if(q.type==='shortcut') ratio=normalizeShortcut(value)===normalizeShortcut(q.answer)?1:0;
   else if(q.type==='office'){const result=gradeOffice(q,value);ratio=result.ratio;checks=result.checks}
   else if(q.type==='python'){
-    let submission;try{submission=typeof value==='string'&&value.length<16000?JSON.parse(value):null}catch{submission=null}
-    const code=typeof submission?.code==='string'?submission.code:'',output=typeof submission?.output==='string'?submission.output:'';
-    checks=[{label:'Kod yozilgan',passed:code.trim().length>=5&&code.length<=8000},{label:'Dastur natijasi',passed:!!output.trim()&&normalize(output)===normalize(q.answer)}];
-    ratio=checks.every(item=>item.passed)?1:0;
+    return {ratio:0,earned:0,correct:false,practiceOnly:true,verification:'local-practice',checks:[],message:'Python natijasi shu brauzerda mashq sifatida ko‘riladi. Serverda tekshirilmagan natija reytingga qo‘shilmaydi.'};
   }
   else if(q.type==='prompt') {
     const answer=normalize(value);

@@ -1,68 +1,18 @@
-# SinfQuiz 7.28 — haqiqiy 3D Bilim oroli
+# SinfQuiz 7.28.0
 
-Bu reliz bosh sahifadagi orolni haqiqiy, aylantiriladigan 3D sahnaga almashtiradi. Matematika, kimyo, biologiya, ingliz tili, informatika va IQ uchun alohida hajmli binolar, markaziy ochiq kitob, ko‘priklar, daraxtlar va sakkizta sharshara bor. Fanlar avvalgi kirish va ruxsat tartibi orqali ochiladi.
+Bu to‘liq paket 7.27.0 asosida yangilandi: mavjud fanlar, GLB modellar, audio, Python muhiti va foydalanuvchi oqimlari ichida bor.
 
-## Nima o‘zgardi?
+1. Supabase SQL Editor’da `supabase-migration-7.28.sql`ni RUN qiling. Batafsil ketma-ketlik: `MIGRATIONS.md`.
+2. Loyiha fayllarini yangilang; o‘z `.env.local` faylingizni saqlang.
+3. `npm ci`, `npm run dev`. Vercel uchun `npm run build` va qayta deploy.
+4. Ustoz typing yoki 1v1 xonasini qayta ochadi. O‘quvchilar o‘sha ustozning xonasini tanlaydi.
+5. **Sinfxona → Jadval qo‘shish** orqali qator, ustun va matnlarni kiriting. Doskada jadvalni ikki marta bosing yoki tanlab **Jadvalni tahrirlash**ni ishlating. Undo/redo, qoralama, PNG va doska uslublari saqlanadi.
+6. Taymer, shovqin yoki raqam panelidagi **Katta namoyish** tugmasini bosing. Vaqt va mikrofon holati davom etadi. Oyna ichidagi parametrlar odatiy panel bilan bir xil.
 
-- Orol rasm yoki video fon emas. Three.js geometrik modellari brauzerda chiziladi; kamerani aylantirish va yaqinlashtirish mumkin.
-- Suv yuzasi, sharsharalar oqimi, ko‘pik halqalari va suv tomchilari harakatlanadi. Markazdagi armillyar globus ham sekin aylanadi.
-- Yorug‘lik qurilmaning mahalliy vaqtiga mos: tong 05:00–07:00, kunduz 07:00–16:00, shom 16:00–19:00, tun 19:00–05:00. 17:00 da shom manzarasi. Yoritish chegaralarda asta o‘zgaradi.
-- Soat tugmasidan vaqtni qo‘lda tanlab ko‘rish yoki avtomatik holatga qaytish mumkin. Tanlov shu brauzerda saqlanadi.
-- Aylantirish, yaqinlashtirish, ko‘rinishni tiklash va harakatni to‘xtatish tugmalari ishlaydi. Telefon ekranida oltita fan tartibli tugmalar qatorida chiqadi.
-- 3D yuklanmasa ham fanlar va testga kirish formasi ishlaydi. WebGL uzilsa, qayta ochish tugmasi bor.
+Typingdagi jonli hisob va yakuniy baho bitta harf tushsa keyingi barcha belgini xato hisoblamaydi.
 
-Bu vaqt jadvali bezakli muhit uchun mo‘ljallangan; shahar koordinatasi, ob-havo yoki astronomik quyosh botishi hisoblanmaydi. Geolokatsiya ruxsati so‘ralmaydi. Fan binolari mavzularni belgilovchi me’moriy modellar; binoning o‘zi ilmiy simulyatsiya sifatida taqdim etilmaydi.
+Typing va milliy test javoblari UIDga bog‘langan server sessiyasida hisoblanadi; mijoz taymer yoki ballini yuborib natijani o‘zgartira olmaydi. Ustozlar boshqa ustozning savollari/kalitlarini ocholmaydi. Faol quiz PINi bazada noyob. Atomik yozuvlar, server hisoblagichlari va 50 tadan foydalanuvchi sahifalari qo‘shildi.
 
-## Yangilash va ishga tushirish
+Python amaliyoti reytingdan ajratildi: brauzer natijasi serverdagi xavfsiz bajaruvchida tekshirilmaguncha unga reyting balli berilmaydi. Eski typing/milliy natijalarning tarixi saqlanadi, ammo ular tekshirilmagan mashq sifatida belgilanadi.
 
-1. ZIPni alohida papkaga oching. Loyihangizdagi haqiqiy `.env.local` yoki `.env` qiymatlarini saqlang; ularni Gitga qo‘shmang.
-2. Node.js 22.12 yoki undan yangi versiyada `sinf-quiz` papkasini terminalda oching.
-3. Bog‘liqliklarni o‘rnating va ishga tushiring:
-
-```bash
-npm ci
-npm run dev
-```
-
-Production yig‘ish va mahalliy ko‘rish:
-
-```bash
-npm run build
-npm run preview
-```
-
-Vercelda yangi kodni odatdagi tarzda joylab, yangi deployment yarating. Mavjud Supabase va server environment qiymatlari o‘z joyida qoladi. Ushbu 7.28 yangilanishi uchun yangi SQL migratsiya kerak emas: jadval, RLS, Supabase kalitlari va kirish mexanizmi o‘zgarmagan. Boshqa versiyadan ancha oldin qolgan baza bo‘lsa, avvalgi relizlarning mavjud migratsiya tartibi amal qiladi.
-
-## Boshqaruv va qulaylik
-
-- 3D maydonni klaviatura bilan tanlang: chap/o‘ng strelka aylantiradi, `+` / `−` yaqinlashtiradi, `Home` boshlang‘ich ko‘rinishga qaytaradi.
-- «Erkin aylantirish» yoqilganda sichqoncha yoki barmoq bilan surish, ikki barmoq bilan yaqinlashtirish mumkin.
-- «Harakatni to‘xtatish» faqat avtomatik oqimni to‘xtatadi; kamera va fan tugmalari ishlashda davom etadi.
-- Qurilmada harakatni kamaytirish yoqilgan bo‘lsa, avtomatik animatsiya o‘chadi. Sahna ekrandan tashqarida yoki brauzer yashirilganda chizish to‘xtaydi.
-- 3D uchun WebGL 2 kerak. U mavjud bo‘lmasa, matnli fan navigatsiyasi va mavjud sayt funksiyalari saqlanadi.
-
-## Tezlik
-
-Statik modellar material bo‘yicha birlashtiriladi. Animatsiya React holatini har kadrda yangilamaydi. Bitta `requestAnimationFrame` sikli ishlaydi: mobil/tejamkor muhitda ko‘pi bilan 24, odatiy muhitda 30 kadr/soniya. Bu yuqori chegara, har bir qurilmada shu tezlik kafolati emas.
-
-Render buferi mobil yoki zaif qurilmada 650 ming, desktopda 1,3 million piksel bilan chegaralanadi. Mobil holatda soyalar o‘chadi; chizish juda sustlashsa, ruxsat qo‘shimcha pasayadi. Sahna yopilganda geometriya, materiallar, kuzatuvchilar va WebGL resurslari tozalanadi. Yangi 3D geometriya va suv effektlari uchun tashqi model yoki rasm serveriga so‘rov yuborilmaydi.
-
-## Fayllar va model manbalari
-
-Asosiy yangi kod: `src/IslandWorld.jsx`, `src/island-world-3d.js`, `src/island-models.js`, `src/island-clock.js`, `src/useIslandEnvironment.js`, `src/island-world.css`.
-
-Ulash joylari: `src/IslandHome.jsx`, `src/App.jsx`, `scripts/build-public-pages.mjs`, `package.json`, `package-lock.json`. To‘liq ro‘yxat `CHANGED-FILES-7.28.md`da.
-
-Yangi orolning geometriyasi loyiha uchun dasturiy tarzda yaratilgan original modeldir. Tayyor pulli yoki boshqa brendga tegishli 3D aktivlar ishlatilmagan. Three.js MIT litsenziyasi (`https://github.com/mrdoob/three/blob/r180/LICENSE`), Lucide ISC litsenziyasi (`https://lucide.dev/license`) bilan ishlatiladi; mavjud dependency versiyalari o‘zgartirilmagan. Avvalgi biologiya, kimyo va boshqa bo‘limlardagi aktivlar hamda ularning litsenziya hujjatlari saqlangan.
-
-## Tekshiruv
-
-```bash
-npm test
-npm run build
-npx playwright install chromium
-npm run test:e2e:island
-npm run test:e2e:studio
-```
-
-Maxsus Chromium o‘rnatilgan muhitda `CHROME_EXECUTABLE` qiymatini ko‘rsatish mumkin. Natijalar va sinov chegaralari `QA-7.28.md`da. Avvalgi `QA-7.27.md` avvalgi reliz hisoboti bo‘lib qoladi; u 7.28 sinovlari o‘rnida ishlatilmaydi.
+Tekshiruvlar va chegaralar `QA-7.28.md`, o‘zgargan fayllar `CHANGED-FILES-7.28.md` ichida.

@@ -12,24 +12,26 @@ function speak(text){
  if(!window.speechSynthesis)return;
  window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='en-US';utterance.rate=.85;window.speechSynthesis.speak(utterance);
 }
-export function QuizChallenge({stage,onSubmit,busy,ownerId}){
- const q=stage.data.question,[answer,setAnswer]=useState(q.type==='test'?null:'');
+export function QuizChallenge({stage,onSubmit,busy,ownerId,onDraft}){
+ const q=stage.data.question,[answer,setAnswer]=useState(()=>stage.draft?.questionId===q.id?stage.draft.answer:(q.type==='test'?null:''));
+ useEffect(()=>{onDraft?.({questionId:q.id,answer})},[answer,q.id,onDraft]);
  const ready=q.type==='test'?answer!==null:q.type==='python'?pythonReady(answer):String(answer).trim().length>0;
  return <section className="comp-challenge"><div className="comp-question-count">Savol {stage.data.index+1} / {stage.data.total}<span>{q.points} savol balli</span></div>
  {q.passage&&<div className="comp-passage" tabIndex={0} role="region" aria-label="Savol matni">{q.passage}</div>}<h3>{q.text}</h3>
  {q.code&&q.type!=='python'&&<pre className="comp-code" aria-label="Savolga oid kod">{q.code}</pre>}
  {q.type==='test'?<fieldset className="comp-answer-options"><legend>Javobni tanlang</legend>{q.options.map((text,i)=><label className={answer===i?'is-selected':''} key={i}><input type="radio" name={'comp-answer-'+q.id} disabled={busy} checked={answer===i} onChange={()=>setAnswer(i)}/><span className="comp-option-letter">{String.fromCharCode(65+i)}</span><span>{text}</span></label>)}</fieldset>:
  q.type==='shortcut'?<ShortcutInput value={answer} onChange={setAnswer} disabled={busy}/>:
- q.type==='office'?<OfficeLab question={q} onChange={setAnswer} disabled={busy}/>:
+ q.type==='office'?<OfficeLab question={q} initialAnswer={answer} onChange={setAnswer} disabled={busy}/>:
  q.type==='python'?<React.Suspense fallback={<p role="status">Python muharriri ochilmoqda…</p>}><PythonWorkbench ownerId={ownerId} taskId={'comp-'+stage.id+'-'+q.id} initialCode={q.code||''} onChange={setAnswer}/></React.Suspense>:
  <label>{q.type==='prompt'?'Javobingizni tushuntiring':'Javobingiz'}<textarea autoComplete="off" spellCheck={q.type==='prompt'} maxLength={q.type==='prompt'?5000:8000} disabled={busy} value={answer} onChange={e=>setAnswer(e.target.value)} rows={q.type==='prompt'?5:2}/></label>}
- {q.type==='python'&&<p className="comp-muted">Avval kodni ishga tushiring. Natija chiqqach javobni yuboring.</p>}<button className="btn btn-primary" disabled={busy||!ready} onClick={()=>onSubmit({questionId:q.id,answer})}><Check size={17}/>{busy?'Javob tekshirilmoqda…':'Javobni yuborish'}</button>
+ {q.type==='python'&&<p className="comp-muted">Bu Python amaliy mashqi. Kodni ishga tushiring va natijani tekshiring. Brauzerdagi bajarilish reyting balliga kiritilmaydi.</p>}<button className="btn btn-primary" disabled={busy||!ready} onClick={()=>onSubmit({questionId:q.id,answer})}><Check size={17}/>{busy?'Javob tekshirilmoqda…':'Javobni yuborish'}</button>
  </section>;
 }
-export function TypingChallenge({stage,onSubmit,busy}){
- const [text,setText]=useState(''),target=stage.data.text,[match,setMatch]=useState(()=>typingMatch(target,'')),[checking,setChecking]=useState(false),worker=useRef(null),serial=useRef(0),textRef=useRef(text);textRef.current=text;
+export function TypingChallenge({stage,onSubmit,busy,onDraft}){
+ const [text,setText]=useState(stage.draft?.text||''),target=stage.data.text,[match,setMatch]=useState(()=>typingMatch(target,'')),[checking,setChecking]=useState(false),worker=useRef(null),serial=useRef(0),textRef=useRef(text);textRef.current=text;
  useEffect(()=>{let w;try{w=new Worker(new URL('./competition-typing.worker.js',import.meta.url),{type:'module'});worker.current=w;w.onmessage=({data})=>{if(data.id===serial.current){setMatch(data.match);setChecking(false)}};w.onerror=e=>{e.preventDefault();w.terminate();worker.current=null;setMatch(typingMatch(target,textRef.current));setChecking(false)}}catch{worker.current=null}return()=>{w?.terminate();worker.current=null}},[target]);
  useEffect(()=>{const id=++serial.current;setChecking(true);const timer=setTimeout(()=>{if(worker.current)worker.current.postMessage({id,target,typed:text});else{setMatch(typingMatch(target,text));setChecking(false)}},120);return()=>clearTimeout(timer)},[text,target]);
+ useEffect(()=>{onDraft?.({text})},[text,onDraft]);
  const accuracy=Math.round(match.accuracy);
  const english=stage.data.language==='en';
  useEffect(()=>()=>window.speechSynthesis?.cancel(),[]);

@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checks": {
+    "creatorSetsSeparateTimesAndPacks": true,
+    "primaryStartWithTwoOfSixSeats": true,
+    "independentOrder": true,
+    "typingAutosavesWithinFourSeconds": true,
+    "switchKeepsDraftAndDeadline": true,
+    "reloadKeepsDraftAndDeadline": true,
+    "timeoutGradesSavedPartialTyping": true,
+    "timeoutGradesSelectedUnsubmittedQuiz": true,
+    "absoluteReferenceCopiesInRealEditor": true,
+    "mixedReferencesCopyBothDirections": true,
+    "logicalFormulaPackScoresOneHundred": true,
+    "wordKeyboardFormattingTableImage": true,
+    "teacherClosesAndPreservesAllStageScores": true,
+    "responsiveAndAccessible": true
+  },
+  "errors": [],
+  "accessibilityChecks": 5,
+  "requests": 75,
+  "browser": "133.0.6943.0",
+  "scope": "Local Chromium + React + Postgres RPC/RLS. Fixture Auth identity; no live deployment."
+}

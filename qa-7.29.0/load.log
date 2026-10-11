@@ -1,0 +1,10 @@
+40 simultaneous joins: 40 requests; p95 448.1 ms
+40 independent stage openings: 40 requests; p95 301.53 ms
+40 unsubmitted draft saves: 40 requests; p95 144.01 ms
+40 changed-state polls: 40 requests; p95 203.1 ms
+40 unchanged-state polls: 40 requests; p95 87.51 ms
+40 stage switches: 40 requests; p95 220.46 ms
+40 returns preserve first deadline: 40 requests; p95 283.24 ms
+40 timeout-result reads: 40 requests; p95 212.28 ms
+40 final ranking reads: 40 requests; p95 243.38 ms
+PASS 40-client free-order/draft/timeout HTTP load; 365 requests.

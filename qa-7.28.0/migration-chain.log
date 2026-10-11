@@ -1,0 +1,9 @@
+✔ 7.28 fresh-install SQL chain compiles in order without cron and preserves all content banks (4515.177223ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4792.296843

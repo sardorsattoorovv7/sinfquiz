@@ -77,8 +77,8 @@ test('7.22: server Excel parser matches references, ignores blank/text in averag
   const cases=[
    [{type:'practical',subject:'Excel',answer:'=B2+C2',acceptedAnswers:['=C2+B2']},'= C2 + B2'],
    [{type:'shortcut',answer:'Ctrl+C'},'C + Control'],
-   [{type:'python',answer:'12'},JSON.stringify({code:'print(12)',output:'12\n'})],
-   [{type:'python',answer:'12'},JSON.stringify({code:'print(11)',output:'11'})],
+
+
    [{type:'prompt',criteria:[{label:'SUM',keywords:['sum']},{label:'Misol',keywords:['misol','namuna']}]},'SUM uchun bitta misol yozing.'],
    [{type:'prompt',criteria:[{label:'SUM',keywords:['sum']},{label:'Misol',keywords:['misol','namuna']}]},'SUM nima?'],
    [{type:'office',officeTask:officeTemplates['word-report']},JSON.stringify({kind:'word',title:'Kutubxona',body:'Maktabdagi yangi kitoblar',table:[['Fan','Kitob'],['Algebra','5']],imageInserted:true,wrap:'right'})],
@@ -89,7 +89,7 @@ test('7.22: server Excel parser matches references, ignores blank/text in averag
    assert.ok(Math.abs(Number(sql.ratio)-gradeAnswer({...question,time:30,points:100},submission,30).ratio)<1e-9,question.type+' grading agrees');
   }
   await login(teacher);
-  const prompt={...cases[4][0],text:'SUMni tushuntiring va misol yozing.',points:100};
+  const prompt={...cases.find(([q])=>q.type==='prompt')[0],text:'SUMni tushuntiring va misol yozing.',points:100};
   const config=make();config.stages[0]=stage('quiz',{questions:[prompt]},'Yozma savol');
   await rpc('sq_comp_save',[comp,config]);assert.equal((await rpc('sq_comp_state',[comp])).stages[0].custom.questions[0].criteria[0].keywords[0],'sum');
   const broken={...config,stages:config.stages.map((s,i)=>i?s:stage('quiz',{questions:[{...prompt,criteria:['sum']}]},'Noto‘g‘ri mezon'))};

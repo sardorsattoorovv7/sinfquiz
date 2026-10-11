@@ -1,0 +1,49 @@
+7.22 40 simultaneous joins: 40 HTTP requests, p95 1193.59ms
+7.22 40 simultaneous stage opens: 40 HTTP requests, p95 445.63ms
+7.22 unchanged lobby/room poll 1: 40 HTTP requests, p95 588.3ms
+7.22 unchanged lobby/room poll 2: 40 HTTP requests, p95 392.93ms
+7.22 unchanged lobby/room poll 3: 40 HTTP requests, p95 398.03ms
+7.22 40 simultaneous quiz submissions: 40 HTTP requests, p95 661.37ms
+7.22 40 simultaneous long typing opens: 40 HTTP requests, p95 673.94ms
+7.22 40 simultaneous 4000-character typing submissions: 40 HTTP requests, p95 14519.87ms
+7.22 40 stage 3 opens: 40 HTTP requests, p95 509.1ms
+7.22 40 stage 3 answers: 40 HTTP requests, p95 1124.99ms
+7.22 40 stage 4 opens: 40 HTTP requests, p95 588.75ms
+7.22 40 stage 4 answers: 40 HTTP requests, p95 651.62ms
+7.22 40 stage 5 opens: 40 HTTP requests, p95 651.57ms
+7.22 40 stage 5 answers: 40 HTTP requests, p95 717.75ms
+7.22 40 stage 6 opens: 40 HTTP requests, p95 889.85ms
+7.22 40 stage 6 answers: 40 HTTP requests, p95 901.87ms
+7.22 40 stage 7 opens: 40 HTTP requests, p95 918.09ms
+7.22 40 stage 7 answers: 40 HTTP requests, p95 916.79ms
+7.22 40 stage 8 opens: 40 HTTP requests, p95 1142.08ms
+7.22 40 stage 8 answers: 40 HTTP requests, p95 882.88ms
+7.22 40 stage 9 opens: 40 HTTP requests, p95 983.2ms
+7.22 40 stage 9 answers: 40 HTTP requests, p95 937.95ms
+7.22 40 stage 10 opens: 40 HTTP requests, p95 1030.27ms
+7.22 40 stage 10 answers: 40 HTTP requests, p95 960.26ms
+7.24 40 simultaneous joins: 40 HTTP requests, p95 872.19ms
+7.24 40 simultaneous stage opens: 40 HTTP requests, p95 297.22ms
+7.24 unchanged lobby/room poll 1: 40 HTTP requests, p95 234.79ms
+7.24 unchanged lobby/room poll 2: 40 HTTP requests, p95 260.01ms
+7.24 unchanged lobby/room poll 3: 40 HTTP requests, p95 170.66ms
+7.24 40 simultaneous quiz submissions: 40 HTTP requests, p95 448.45ms
+7.24 40 simultaneous long typing opens: 40 HTTP requests, p95 333.1ms
+7.24 40 simultaneous 4000-character typing submissions: 40 HTTP requests, p95 633.71ms
+7.24 40 stage 3 opens: 40 HTTP requests, p95 423.46ms
+7.24 40 stage 3 answers: 40 HTTP requests, p95 497.09ms
+7.24 40 stage 4 opens: 40 HTTP requests, p95 532.97ms
+7.24 40 stage 4 answers: 40 HTTP requests, p95 701.78ms
+7.24 40 stage 5 opens: 40 HTTP requests, p95 429.64ms
+7.24 40 stage 5 answers: 40 HTTP requests, p95 434.65ms
+7.24 40 stage 6 opens: 40 HTTP requests, p95 379.72ms
+7.24 40 stage 6 answers: 40 HTTP requests, p95 447.8ms
+7.24 40 stage 7 opens: 40 HTTP requests, p95 515.59ms
+7.24 40 stage 7 answers: 40 HTTP requests, p95 518.12ms
+7.24 40 stage 8 opens: 40 HTTP requests, p95 506.08ms
+7.24 40 stage 8 answers: 40 HTTP requests, p95 781.21ms
+7.24 40 stage 9 opens: 40 HTTP requests, p95 778.74ms
+7.24 40 stage 9 answers: 40 HTTP requests, p95 1001.82ms
+7.24 40 stage 10 opens: 40 HTTP requests, p95 587.68ms
+7.24 40 stage 10 answers: 40 HTTP requests, p95 547.26ms
+PASS load comparison 98.2% fewer response bytes on unchanged polls

@@ -1,56 +1,64 @@
-# SinfQuiz 7.28 — tekshiruv natijalari
+# SinfQuiz 7.28.0 — tekshiruvlar
 
-Sana: 2026-10-09. Muhit: Node.js 24.19.0, Chromium 133.0.6943.0, Vite development va production preview, SQL sinovlari uchun mahalliy PGlite. Bazaviy reliz: 7.27. Bu tekshiruvlar jonli Vercel yoki foydalanuvchining Supabase bazasiga yozmaydi.
+Tekshirildi: 2026-10-10. Baza: to‘liq 7.27.0 ZIP. Joriy natijalar `qa-7.28.0/` ichida; eski QA hujjatlari avvalgi versiyalarga tegishli.
 
-## Avtomatik tekshiruv
+`npm test`: **207/207**, 0 fail, 0 skip. Production build muvaffaqiyatli. Brauzerning oltita regressiya suite va yangi baza migratsiya zanjiri o‘tdi.
 
-- `npm ci`: lockfile bo‘yicha o‘rnatildi; beshta mahalliy Python runtime fayli tiklandi.
-- `npm test`: **166 / 166** o‘tdi; 0 ta xato, bekor qilingan yoki o‘tkazib yuborilgan test.
-- `npm run build`: production build muvaffaqiyatli. Lucide modulidagi `use client` direktivasiga oid Vite/Rolldown ogohlantirishi mavjud; yig‘ish va production brauzer sinovi o‘tdi.
-- Yangi 3D, navigatsiya va Studio oqimlarida jami **22 ta axe tekshiruvi, 0 ta aniqlangan buzilish**. Bu avtomatik tekshiruv natijasi, to‘liq WCAG muvofiqlik sertifikati emas.
+## Audit bo‘yicha tuzatishlar
 
-## Haqiqiy brauzerda bajarilgan ishlar
+| Topilma | Amal va tasdiq |
+|---|---|
+| Soxta Python stdout ball olishi | Python amaliy mashq sifatida qoldi. Mijoz yasagan stdout quiz va musobaqa reytingiga ball bermadi; aralash quizning ball maxraji Pythonni hisoblamaydi. Xavfsiz server Python bajaruvchisi qo‘shilgan emas. |
+| Typing/milliy natijani to‘g‘ridan-to‘g‘ri yasash | Bevosita INSERT/UPDATE rad etildi. Kanonik topshiriq, UID, vaqt va yakuniy hisob RPCda. Milliy natija 29/30 uchun 72.5, tugagandan keyin 30 savol tahlili; vaqt tugashi va replay tekshirildi. |
+| Ustozlar xonalari aralashishi | Ikki ustoz alohida typing va 1v1 xonasini bir vaqtda ochdi. Boshqa ustoz yopishi yoki boshqa UID sessiyaga kirishi rad etildi. To‘lgan/ishlayotgan race yangi ishtirokchilar katalogidan olinadi. |
+| Private savol/kalit ko‘rinishi | Ikkinchi ustoz raw private quizni SELECT qila olmadi. Katalogda faqat metadata; tugamagan sessiyada javob va izoh kaliti yo‘q. |
+| Eski 7.6 ruxsat tavsiyasi | Kod va amaldagi yo‘riqnoma 7.28ga o‘tdi. 7.6 permissive policy sinovda qayta qo‘llanganda ham restrictive guard kalit va soxta natijani himoya qildi. Eski skript funksiyalarni almashtirishi mumkin; qayta qo‘llash tavsiya etilmaydi. |
+| Faol PIN takrorlanishi | Eski takroriy PIN ma’lumotni o‘chirmasdan yangilandi. Noyob indeks, PIN format guard va server retries tekshirildi. |
+| 500 yozuv kesilishi | Adapter 1 203 yozuvni to‘liq/tartibli o‘qidi. Admin hisobida 607 foydalanuvchi serverdan sanaldi va 50 tadan pagination bilan olindi. |
+| Atomik bo‘lmagan yozuvlar/bulk | Ikkinchi amal RLSda rad etilsa birinchi amal ham rollback bo‘ldi. 1 003 natija birdan tozalandi; boshqa ustozning natijasi saqlandi. Reset tegishli quiz sessiyalarini ham yopadi. |
+| Typingdagi ketma-ket xatolar | Yakuniy baho Unicode tahrir masofasi bilan. Boshidan bitta belgi tushgan matn bitta xato bilan baholandi; jonli preview yozilmagan qolgan qismni xato sanamaydi va workerda hisoblanadi. 128dan ortiq belgi farqida tartibli so‘z tahrirlari ishlatiladi. |
+| Yangi bazaning SQL tartibi | `migration-chain.json`dagi barcha fayllar yangi PostgreSQL/PGlite bazasida tartib bilan bajarildi. Cron yo‘q va cron sxemasi bo‘sh holatlar xatosiz; CEFRning 10 mocki asl JSON bilan teng. 7.28ni ikki marta qo‘llash tekshirildi. |
 
-| Oqim | Amaliy tekshiruv | Hisobot |
-| --- | --- | --- |
-| Haqiqiy 3D | WebGL buferi chizildi; geometriya va draw-call soni tekshirildi; yangi orol bitmap fon yuklamaydi | `qa-7.28/island/island-3d-browser.json` |
-| Suv va pauza | Render qilingan canvas piksellari harakatda o‘zgaradi; pauzada ikkita surat baytma-bayt bir xil; kamera pauzada ham ishlaydi | Shu hisobot |
-| Mahalliy vaqt | Bir xil UTC paytida Toshkentda 17:00/shom, Nyu-Yorkda 08:00/kunduz; tong, kunduz, tun va 00:00; qo‘lda tanlash va F5 dan keyin saqlanish | Shu hisobot |
-| Kamera | Burish, yaqinlashtirish, tiklash, strelkalar va Home; chizilgan manzara haqiqatan o‘zgaradi | Shu hisobot |
-| Tejamkor ishlash | Harakatni kamaytirish jonli yoqildi; sahna ekrandan tashqarida bo‘lganda kadrlar to‘xtadi; mobil piksel cheklovi unit testda tekshirildi | Shu hisobot va `tests/island-clock.test.js` |
-| Tiklash | WebGL context yo‘qotilishi sun’iy chaqirildi, qayta ochish ishladi; WebGL yo‘q holatda fanlar va auth yo‘li ishladi | Shu hisobot |
-| Mobil va doska | 320, 390, 768, 1024, 1280, 1600, 1920 px; gorizontal chiqish yo‘q, oltita fan tugmasi ko‘rinadi va bosiladi | Yangi 3D va navigatsiya hisobotlari |
-| Kod va kirish | Noto‘g‘ri kod xabari, to‘g‘ri 6 xonali kod bilan mehmon kirishi, auth cheklovi, sekin auth paytida tanlangan bo‘lim, ommaviy deep link | `qa-7.28/navigation/island-browser.json` |
-| Umumiy sayt | Klaviaturali qidiruv, Escape, tashqariga bosish; profil/chat/milliy testni F5 bilan tiklash; mobil menyu; ustoz paneli va chat yo‘li | `qa-7.28/studio/studio-browser.json` |
-| Mavjud fanlar | Uchburchak yuzi 8×5÷2=20 va 10×5÷2=25; kimyoda 100 ml suv qo‘shish; WebGL labirintda yurish va matnli savol; 4 fan darsliklari; yorug‘/tungi rejim | Shu Studio hisoboti |
-| Production | Hashli build chunklari 200 bilan yuklandi; haqiqiy 3D, kamera, auth yo‘li va JavaScriptsiz ochiq fan sahifalari ishladi | `qa-7.28/production/production-browser.json` |
+## Sinfxona
 
-Tekshirilgan brauzer oqimlarida ushlanmagan JavaScript xatosi kuzatilmadi. Production preview tekshiruvida muvaffaqiyatsiz asset so‘rovi bo‘lmadi. Yangi 3D chunk buildda taxminan 21 KB (gzipdan oldin); avvaldan bor umumiy Three.js dependency alohida yuklanadi.
+- Native jadval: 1–12 qator va 1–12 ustun; matn/sarlavha/shrift, ikki marta bosib tahrirlash, ko‘chirish/resize, undo/redo, qoralama va PNG. Juda uzun matn sig‘masa tushunarli xabar; yozuv jim kesilmaydi.
+- Qalam, marker, matn ajratish, qisman o‘chirish, matn, besh shakl, rasm va ustiga yozish, sahifa nomi/tiklash, to‘rt topshiriq shabloni, o‘nta doska uslubi.
+- O‘nta taymer bir deadline bilan ishlaydi. Katta namoyish/ko‘rinishni almashtirish va doskada yozish vaqtni qayta boshlamaydi. Background tab, pauza/davom, ±1 daqiqa, vaqt tugashi va ixtiyoriy WebAudio signali tekshirildi.
+- Shovqin: Chrome mikrofon qurilmasi va boshqariladigan native audio oqimi bilan sharlarning ko‘tarilishi/pasayishi, kalibrlash, sezgirlik, ruxsatni rad qilish/qayta urinish, chiqishda va Backda stream to‘xtashi. Yozish yoki serverga audio yuborish yo‘q. Katta oynada ikkinchi mikrofon oqimi ochilmaydi.
+- Raqam: uch manba, deduplikatsiya, takrorlanmas tanlov, tarix, reset, bo‘sh/noto‘g‘ri oraliq/ortiqcha miqdor. Katta oynadan tanlov umumiy tarixga tushadi.
+- IndexedDB per-UID, localStorage fallback, avtomatik tiklash, quota xabari va qayta saqlash. Qoralama bulut bilan sinxronlangan emas.
+- Ustoz/admin kirishi; student/guest deep-link rad etilishi. 390×844, 768×1024, 1600×1080 va 1920×1080; touch scroll bloklanishi va stilus bosimi; dark/light va reduced motion.
 
-## Hisoblar, ruxsatlar va kontent
+## Boshqa oqimlar
 
-166 ta Node testi matematika hisoblari, kimyoda moddalar/atomlar saqlanishi, biologiya modellari, SQL/RLS, egaga tegishli kontent, Telegram imzosi, admin parol vakolati, typing, reyting, jamoaviy musobaqa va mavjud 1v1/quiz UI oqimlarini qamraydi. Beshta yangi test mahalliy vaqt chegaralari, bir sutkadagi yoritish uzluksizligi, GPU bufer chegaralari va barcha oltita haqiqiy 3D modelni tekshiradi.
+Quiz va 1v1 haqiqiy React adapteri hamda SQL RPC orqali bajarildi: ikki xil ball — 1- va 2-o‘rin; mahalliy split savollari turlicha, g‘olib serverdan. Typing besh bosqichi yakunlandi; milliy testni tugatishda to‘g‘ri ball va xatolar tahlili ochildi. Auth identifikatori fixture orqali berilgan, production hisoblariga tegilmagan.
 
-7.27 arxiv manifestidagi 925 faylning barchasi va manifestning o‘zi saqlangan: **926 ta avvalgi fayl yo‘qolmagan**. API, SQL migratsiyalari, auth/RLS, mavjud fan ma’lumotlari, audio, Python runtime va eski 3D aktivlar o‘zgartirilmagan. To‘liq farqlar `CHANGED-FILES-7.28.md`da, joriy fayl hashlar `ARCHIVE-MANIFEST-7.28.json`da.
+Informatika/Python worker/Office, 4 fan bo‘yicha 198 dars, IQning 32 savolli oqimi, ustoz kontentining ajratilishi, Matematika hisoblari, WebGL matnli labirint, kimyo va biologiya amaliyotlari, CSV va qoralama regressiyasi o‘tdi. Admin parolni almashtirishning haqiqiy tashqi API amali bu QAda bajarilmadi.
 
-Yangi SQL migratsiya yo‘q. Test natijalari production hisoblarining login/parol ishlashini tasdiqlamaydi: brauzer testlarida auth va API transporti fixture. Mahalliy SQL testlari alohida bajarildi. 30–40 ta haqiqiy telefon, haqiqiy past tezlikdagi internet, barcha fizik GPUlar yoki jonli Vercel deployment bu tekshiruvga kirmaydi. Google indekslash holati tekshirilgani yoki kafolatlangani da’vo qilinmaydi; mavjud ochiq HTML, canonical, sitemap va meta testlari saqlangan.
+Jamoaviy musobaqada absent/restored o‘quvchi, qisman boshlash, bo‘sh jamoaning reytingdan chiqarilishi, typing worker fallback, cancellation va saqlangan natijalar tekshirildi.
 
-## Vizual ko‘rik va tuzatish
+## Yuklama va SEO chegarasi
 
-Desktop va telefon ekran tasvirlari ochib ko‘rildi: markaziy kitob, oltita maskan, darvoza, ko‘priklar, ko‘l va sharsharalar haqiqiy meshlar bilan chiziladi. Tog‘ ko‘rinishidagi ortiqcha uzoq konuslar olib tashlandi; ixcham boshqaruvlarda matn yashirilganda ham accessible nom saqlandi; resize paytida fan yorliqlari darhol joylashtiriladi. Sarlavhada bosishni to‘sib turgan `pointer-events` qoidasi tuzatildi va Studio sinovi qayta o‘tdi.
+40 parallel HTTP mijoz × 4 jamoa × 10 bosqich, 974 so‘rov, 0 xato. O‘zgarmagan holat so‘rovlari javob hajmi eski yo‘lga nisbatan 98.2% kam. Bu mavjud 7.24 musobaqa sync/baholash oqimining lokal takroriy o‘lchovi: bir PGlite bazasi auth/RLS ishlarini navbatlaydi. Production Supabase sig‘imi, turli internet tarmoqlari yoki 40 jismoniy telefon sinovi emas. Productionda p95, DB yuklamasi va Realtime yetkazilishini alohida o‘lchash zarur.
 
-Yangi QA ekran tasvirlari `qa-7.28/` ichida hajmi kamaytirilgan WebP ko‘rinishida. Testlarni qayta ishlatish PNG natijalarini ham yaratadi. Oldingi `qa-7.27/` hisobotlari tarixiy ma’lumot sifatida qoldirilgan.
+7 ta ochiq HTML sahifasi JavaScript o‘chirilgan brauzerda HTTP 200, H1 va canonical bilan ochildi. Sitemap 8 URL, robots va metadata saqlangan. Google indekslash muddati yoki qidiruv o‘rni kafolatlanmaydi; yakuniy domen bilan Search Console orqali tekshiriladi.
 
-## Qayta tekshirish
+## Qayta bajarish
 
 ```bash
 npm ci
 npm test
 npm run build
 npx playwright install chromium
-npm run test:e2e:island
+npm run test:e2e:classroom
+npm run test:e2e:play
 npm run test:e2e:studio
-node tests/island-production-browser.cjs
+npm run test:e2e:science
+npm run test:e2e:learning
+node tests/competition-attendance-browser.cjs
+npm run test:load:competition
 ```
 
-Studio hisoboti odatda `qa-7.28/studio`ga yoziladi; `STUDIO_QA_DIR` orqali boshqa papka tanlash mumkin. Maxsus brauzer yo‘li `CHROME_EXECUTABLE` orqali beriladi. ZIPni yig‘ishda barcha a’zolar CRC bo‘yicha tekshiriladi; saqlangan faylni qayta olishda SHA-256 hamda a’zolar manifesti solishtiriladi.
+Brauzer sinovlari lokal Vite serverlarini o‘zlari ochib-yopadi. Test muhitida Chromium boshqa joyda bo‘lsa `CHROME_EXECUTABLE` orqali ko‘rsating. `CLASSROOM_QA_DIR`, `PLAY_QA_DIR`, `STUDIO_QA_DIR`, `SCIENCE_QA_DIR`, `LEARNING_QA_DIR`, `COMPETITION_QA_DIR` natija kataloglarini belgilaydi.
+
+Joriy brauzer natijalari: 36 Sinfxona tekshiruvi, 6 server o‘yin oqimi, 6 brauzer suite; 40 axe holati, 0 aniqlangan buzilish. Axe avtomatik tekshiruv; to‘liq qo‘lda WCAG sertifikati emas.

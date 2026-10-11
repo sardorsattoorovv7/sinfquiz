@@ -36,10 +36,11 @@ test('Excel formulas use cell references, SUM and AVERAGE without evaluating Jav
  assert.equal(gradeAnswer(average,JSON.stringify({kind:'excel',cells:{B2:'70',B3:'80',B4:'90',B5:'=AVERAGE(B2:B4)',C2:'=B2+5'}}),average.time).earned,average.points);
 });
 
-test('Python output assessment and 52-hour local draft expiry',()=>{
+test('Python remains practice-only and 52-hour local draft expiry',()=>{
  const py=bank.find(item=>item.id==='python-basics').questions.find(item=>item.type==='python');
- assert.equal(gradeAnswer(py,JSON.stringify({code:'print(12)',output:'12\n'}),py.time).earned,py.points);
+ assert.equal(gradeAnswer(py,JSON.stringify({code:'print(12)',output:'12\n'}),py.time).earned,0);
  assert.equal(gradeAnswer(py,JSON.stringify({code:'print(11)',output:'11\n'}),py.time).earned,0);
+ assert.equal(gradeAnswer(py,JSON.stringify({code:'pass # audit',output:'12'}),py.time).practiceOnly,true);
  const values=new Map(),storage={getItem:key=>values.get(key)||null,setItem:(key,value)=>values.set(key,value),removeItem:key=>values.delete(key)};
  const start=1_000_000;
  assert.equal(savePythonDraft('student','lesson',{code:'print(1)',input:'',output:'1'},storage,start),true);

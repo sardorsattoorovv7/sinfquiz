@@ -47,6 +47,14 @@ function wrappedLines(ctx,text,maxWidth) {
 }
 let textContext;
 export function fitTextObject(o) {
+  if(o.type==='table'){
+    textContext ||= document.createElement('canvas').getContext('2d');textContext.font=`600 ${o.fontSize}px system-ui`;
+    const w=clamp(o.w,o.cells[0].length*65,W-40),cw=w/o.cells[0].length;
+    const needed=Math.max(...o.cells.flat().map(v=>wrappedLines(textContext,v,cw-22).length))*o.fontSize*1.25+20;
+    const h=Math.max(o.h,needed*o.cells.length);
+    if(h>H-40)throw Error('Jadval doskaga sig‘madi. Qatorlar sonini yoki katak matnini kamaytiring, shriftni kichraytiring.');
+    return {...o,w,h,x:clamp(o.x,0,W-w),y:clamp(o.y,0,H-h)};
+  }
   if(o.type!=='text')return o;
   textContext ||= document.createElement('canvas').getContext('2d');
   const w=clamp(o.w,16,W-40),fontSize=clamp(o.fontSize,12,150);
@@ -73,6 +81,17 @@ function drawObject(ctx,o,style) {
       ctx.globalAlpha=.18;ctx.strokeStyle=boardStyle(style).background;ctx.lineWidth=Math.max(1,o.width*.3);ctx.setLineDash([.7,3.2]);
       ctx.beginPath();o.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();
     }
+  } else if(o.type==='table'){
+    const rows=o.cells.length,cols=o.cells[0].length,cw=o.w/cols,ch=o.h/rows;
+    ctx.save();ctx.strokeStyle=visibleInk(o.color,style);ctx.lineWidth=o.width;ctx.fillStyle=visibleInk(o.color,style,true);
+    if(o.header){ctx.save();ctx.globalAlpha=.09;ctx.fillRect(o.x,o.y,o.w,ch);ctx.restore();}
+    for(let i=0;i<=rows;i++){ctx.beginPath();ctx.moveTo(o.x,o.y+i*ch);ctx.lineTo(o.x+o.w,o.y+i*ch);ctx.stroke();}
+    for(let j=0;j<=cols;j++){ctx.beginPath();ctx.moveTo(o.x+j*cw,o.y);ctx.lineTo(o.x+j*cw,o.y+o.h);ctx.stroke();}
+    for(let i=0;i<rows;i++)for(let j=0;j<cols;j++){
+      ctx.save();ctx.beginPath();ctx.rect(o.x+j*cw+3,o.y+i*ch+3,cw-6,ch-6);ctx.clip();
+      ctx.font=`${i===0&&o.header?'600':'400'} ${o.fontSize}px system-ui`;ctx.textBaseline='top';
+      wrappedLines(ctx,o.cells[i][j],Math.max(1,cw-22)).forEach((line,k)=>ctx.fillText(line,o.x+j*cw+11,o.y+i*ch+10+k*o.fontSize*1.25));ctx.restore();
+    }ctx.restore();ctx.restore();return;
   } else if(o.type==='text') {
     ctx.font=`${chalk?'500':'600'} ${o.fontSize}px system-ui, sans-serif`;ctx.textBaseline='top';
     wrappedLines(ctx,o.text,o.w).forEach((line,i)=>ctx.fillText(line,o.x,o.y+i*o.fontSize*1.3));
