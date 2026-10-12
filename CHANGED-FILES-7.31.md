@@ -1,12 +1,63 @@
-src/IslandWorld.jsx
-src/garden-campus.css
-src/garden-campus-3d.js
-src/garden-model-cache.js
-tests/garden-cache.test.js
-tests/garden-browser.cjs
-tests/island-browser.cjs
-tests/vercel.test.js
-package.json
-package-lock.json
-UPDATE-7.31.md
-QA-7.31.md
+# 7.31 o‘zgargan fayllar
+
+## O‘zgartirilgan
+
+- `migration-chain.json`
+- `package-lock.json`
+- `package.json`
+- `scripts/build-space-730.mjs`
+- `seo-pages.js`
+- `src/App.jsx`
+- `src/StudioShell.jsx`
+- `src/space/SpaceAtlas.jsx`
+- `src/space/SpaceScene.jsx`
+- `src/space/content.js`
+- `src/space/model.js`
+- `src/space/renderer.js`
+- `src/space/service.js`
+- `src/space/space.css`
+- `tests/space-browser.cjs`
+- `tests/space-db.test.js`
+- `tests/space-fixture.js`
+- `tests/space-model.test.js`
+- `tests/vercel.test.js`
+- `vercel.json`
+
+## Qo‘shilgan
+
+- `CHANGED-FILES-7.31.md`
+- `PHYSICS-7.31-SOURCES.md`
+- `QA-7.31.md`
+- `RELEASE-7.31.0.json`
+- `UPDATE-7.31.md`
+- `data/space-730/catalog.json`
+- `public/space/v7.31/manifest.json`
+- `public/space/v7.31/sun-nasa.glb`
+- `qa-7.31/build.log`
+- `qa-7.31/competition-browser.log`
+- `qa-7.31/competition/accessibility.json`
+- `qa-7.31/competition/results.json`
+- `qa-7.31/learning-browser.log`
+- `qa-7.31/learning/accessibility.json`
+- `qa-7.31/learning/learning-browser.json`
+- `qa-7.31/models.log`
+- `qa-7.31/node-tests.log`
+- `qa-7.31/physical-browser.log`
+- `qa-7.31/physical/result.json`
+- `qa-7.31/play-browser.log`
+- `qa-7.31/play/results.json`
+- `qa-7.31/space-browser.log`
+- `qa-7.31/space/result.json`
+- `qa-7.31/studio-browser.log`
+- `qa-7.31/studio/accessibility.json`
+- `qa-7.31/studio/studio-browser.json`
+- `scripts/build-space-731.mjs`
+- `scripts/build-space-assets-731.py`
+- `scripts/package-physical-release.py`
+- `src/space/PhysicalGuide.jsx`
+- `src/space/physical.js`
+- `src/space/scenes-731.js`
+- `supabase-migration-7.31.sql`
+- `tests/physical-browser.cjs`
+- `tests/physical-db.test.js`
+- `tests/physical-model.test.js`

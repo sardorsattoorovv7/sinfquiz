@@ -1,0 +1,48 @@
+{
+  "checks": {
+    "realSunMovement": true,
+    "heatingAndPixels": true,
+    "liveTemperatureChart": true,
+    "farSunCooling": true,
+    "svgSunMovement": true,
+    "deepPressureAndDensity": true,
+    "cabinPressureCollapse": true,
+    "sealedAirCompression": true,
+    "recordIsNotDeathLimit": true,
+    "cameraModes": true,
+    "realDepthNotebook": true,
+    "mobile": true,
+    "dark": true,
+    "projector": true,
+    "svgOcean": true,
+    "teacherNewScene": true,
+    "teacherIsolation": true
+  },
+  "axes": [
+    {
+      "label": "hot Sun desktop",
+      "violations": []
+    },
+    {
+      "label": "protected deep desktop",
+      "violations": []
+    },
+    {
+      "label": "ocean mobile",
+      "violations": []
+    },
+    {
+      "label": "ocean dark",
+      "violations": []
+    },
+    {
+      "label": "ocean 2D",
+      "violations": []
+    },
+    {
+      "label": "teacher depth controls",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

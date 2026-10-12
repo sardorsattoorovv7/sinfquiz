@@ -1,0 +1,45 @@
+✔ 7.31 catalog-only migration supports real depth work, preserves records and keeps tenant isolation (15973.504481ms)
+✔ Closer Sun actually reduces scene separation and increases flux by inverse square (5.164075ms)
+✔ Solar heat evolves towards equilibrium, and outgoing energy reduces the positive net flux (0.346063ms)
+✔ Farther Sun cools the model; more reflected light lowers equilibrium temperature (0.30378ms)
+✔ Temperature chart is live rather than plotting only constant irradiance (2.103408ms)
+✔ Ocean surface pressure, density and sealed air volume have correct zero-depth limits (1.859096ms)
+✔ Incompressible hydrostatic pressure is rho*g*h; ten metres adds roughly one atmosphere (0.429326ms)
+✔ Water compresses modestly at Challenger Deep while sealed gas compresses strongly (0.898922ms)
+✔ Cabin load uses pressure difference and a user-selected structural limit, not a human death depth (4.612688ms)
+✔ Constant bulk modulus model satisfies its equation of state and hydrostatic derivative (50.257727ms)
+✔ Higher surface density increases pressure; timeline reaches the selected depth without passing the seabed (0.433603ms)
+✔ New scene keeps eight bounded scalar measurements and the record preset is a valid control step (5.429129ms)
+▶ Space real PostgreSQL RPC, RLS, group scope, moderation, immutable results and input attacks
+  ✔ Owner is taken from authenticated session; group membership is required (42.023221ms)
+  ✔ Teacher public content remains pending until admin approves, including edits (38.599264ms)
+  ✔ Idempotent submission ignores forged actor, grade, title and arbitrary metrics keys (68.56676ms)
+  ✔ Null and object payloads, missing choice, duplicate trials, invalid params and object metrics are rejected (73.274308ms)
+  ✔ Direct table writes and internal catalog/parameter helper calls are denied (27.813864ms)
+  ✔ Closed group/config cannot accept a new assignment submission; results stay visible to owner (29.101401ms)
+  ✔ Submission rate limit blocks a seventh unique request but keeps retry idempotent (181.783298ms)
+  ✔ Migration is repeatable and anonymous users cannot execute RPC (29.302532ms)
+✔ Space real PostgreSQL RPC, RLS, group scope, moderation, immutable results and input attacks (15863.623426ms)
+✔ 53 complete topics have distinct ids, valid default controls and acyclic prerequisites (6.222676ms)
+✔ Energy scales with speed squared, meteor mass with diameter cubed (38.441138ms)
+✔ Solar inverse square law and airless equilibrium temperature (1.333206ms)
+✔ Tidal forcing scales with inverse cube, not a local water-height prediction (0.277331ms)
+✔ Daylight at equator, equinox and polar cases is finite and bounded (36.704883ms)
+✔ Moon phases and eclipse inclination are distinct mechanisms (19.025775ms)
+✔ Circle overlap gives the correct transit depth and no face-on transit (11.987602ms)
+✔ 400 km orbit circular speed, escape speed, impact and escape cases (19.202445ms)
+✔ Velocity Verlet conserves specific energy in the circular test (12.940424ms)
+✔ Meteor integration is bounded, composition dependent, and monotonic in altitude (62.310452ms)
+✔ Every scene has finite outputs at extreme parameters and timeline positions (223.619687ms)
+✔ Untrusted draft cannot inject arbitrary parameters or render object metrics (45.922522ms)
+✔ Notebook completion requires distinct parameters and a correct concept answer (7.631493ms)
+✔ Gravity, rocket logarithm, cosmological redshift and stellar mass paths (0.568251ms)
+✔ Longer illustrative gamma duration preserves a signal longer (0.413903ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17274.454291

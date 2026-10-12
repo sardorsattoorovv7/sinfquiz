@@ -1,0 +1,74 @@
+{
+  "version": "7.31.0",
+  "baselineSha256": "f65c530916499a34bfb498a3341ff1c8cd5e2ce24746a3f0eec8adcb3c2bd7f8",
+  "baselineFiles": 1101,
+  "preservedBaselineFiles": 1079,
+  "omittedAuditScreenshots": 22,
+  "nodeTests": 269,
+  "nodePassed": 269,
+  "scenes": 53,
+  "physicsChecks": {
+    "realSunMovement": true,
+    "heatingAndPixels": true,
+    "liveTemperatureChart": true,
+    "farSunCooling": true,
+    "svgSunMovement": true,
+    "deepPressureAndDensity": true,
+    "cabinPressureCollapse": true,
+    "sealedAirCompression": true,
+    "recordIsNotDeathLimit": true,
+    "cameraModes": true,
+    "realDepthNotebook": true,
+    "mobile": true,
+    "dark": true,
+    "projector": true,
+    "svgOcean": true,
+    "teacherNewScene": true,
+    "teacherIsolation": true
+  },
+  "spaceChecks": {
+    "authRequired": true,
+    "all53Scenes": true,
+    "nasaModelsReady": true,
+    "realAnimationPixels": true,
+    "playPause": true,
+    "draftRestored": true,
+    "realSqlNotebook": true,
+    "exportWorks": true,
+    "svgFallback": true,
+    "tabletFits1024": true,
+    "mobileFits390": true,
+    "darkMode": true,
+    "projectorFits1920": true,
+    "learnerRole": true,
+    "notesArePlainText": true,
+    "teacherCreatesGroupWork": true,
+    "groupWorkSubmitted": true,
+    "teacherFeedback": true,
+    "teacherIsolation": true,
+    "noWebglRecovery": true,
+    "expiredSessionDoesNotLockNavigation": true
+  },
+  "accessibilityStates": 38,
+  "otherBrowserSuites": [
+    "learning",
+    "studio",
+    "competition",
+    "play"
+  ],
+  "assets": [
+    {
+      "file": "sun-nasa.glb",
+      "bytes": 322040,
+      "sha256": "26e75b3327c5d1bce56d3de70ffc1f8eb537f0ff5ec83356cf167ae9a79589a8",
+      "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/s/Sun_1_1391000.glb",
+      "sourcePage": "https://science.nasa.gov/learn/heat/resource/sun-3d-model/",
+      "credit": "NASA / VTAD",
+      "rights": "NASA educational media guidelines; credit retained. No endorsement.",
+      "changes": "Embedded textures reduced to 2048 px JPEG. Geometry unchanged."
+    }
+  ],
+  "migrationsFrom730": [
+    "supabase-migration-7.31.sql"
+  ]
+}

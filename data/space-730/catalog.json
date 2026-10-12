@@ -1,0 +1,1590 @@
+[
+  {
+    "id": "solar-system",
+    "title": "Quyosh tizimi",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Katta yarim o‘q",
+        "min": 0.4,
+        "max": 10,
+        "step": 0.1,
+        "value": 1,
+        "unit": "AU",
+        "type": "range"
+      },
+      {
+        "key": "eccentricity",
+        "label": "Ekssentrisitet",
+        "min": 0,
+        "max": 0.75,
+        "step": 0.01,
+        "value": 0.1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "day-night",
+    "title": "Kun va tun",
+    "controls": [
+      {
+        "key": "tilt",
+        "label": "O‘q og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 0.1,
+        "value": 23.4,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Geografik kenglik",
+        "min": -80,
+        "max": 80,
+        "step": 1,
+        "value": 41,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "season",
+        "label": "Yillik holat",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "axial-tilt",
+    "title": "Yer o‘qi va fasllar",
+    "controls": [
+      {
+        "key": "tilt",
+        "label": "O‘q og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 0.1,
+        "value": 23.4,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Geografik kenglik",
+        "min": -80,
+        "max": 80,
+        "step": 1,
+        "value": 41,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "season",
+        "label": "Yillik holat",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "sun-distance",
+    "title": "Quyosh yaqinlashsa",
+    "controls": [
+      {
+        "key": "distance",
+        "label": "Quyoshgacha masofa",
+        "min": 0.5,
+        "max": 1.5,
+        "step": 0.01,
+        "value": 1,
+        "unit": "AU",
+        "type": "range"
+      },
+      {
+        "key": "albedo",
+        "label": "Qaytarilgan yorug‘lik ulushi",
+        "min": 0,
+        "max": 0.8,
+        "step": 0.01,
+        "value": 0.3,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "moon-distance",
+    "title": "Oy yaqinlashsa: suv qalqishi",
+    "controls": [
+      {
+        "key": "distance",
+        "label": "Oygacha masofa",
+        "min": 180000,
+        "max": 600000,
+        "step": 100,
+        "value": 384400,
+        "unit": "km",
+        "type": "range"
+      },
+      {
+        "key": "phase",
+        "label": "Oy yo‘nalishi",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 0,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "orbit",
+    "title": "Sun’iy yo‘ldosh orbitasi",
+    "controls": [
+      {
+        "key": "height",
+        "label": "Boshlang‘ich balandlik",
+        "min": 200,
+        "max": 36000,
+        "step": 100,
+        "value": 400,
+        "unit": "km",
+        "type": "range"
+      },
+      {
+        "key": "speed",
+        "label": "Tangensial tezlik",
+        "min": 1,
+        "max": 13,
+        "step": 0.1,
+        "value": 7.7,
+        "unit": "km/s",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "gravity",
+    "title": "Massa va og‘irlik",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Jism massasi",
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "value": 50,
+        "unit": "kg",
+        "type": "range"
+      },
+      {
+        "key": "world",
+        "label": "Osmon jismi",
+        "value": "earth",
+        "options": [
+          [
+            "earth",
+            "Yer"
+          ],
+          [
+            "moon",
+            "Oy"
+          ],
+          [
+            "mars",
+            "Mars"
+          ]
+        ],
+        "type": "select"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "rocket",
+    "title": "Raketa va reaktiv harakat",
+    "controls": [
+      {
+        "key": "ratio",
+        "label": "Boshlang‘ich / oxirgi massa",
+        "min": 1.1,
+        "max": 10,
+        "step": 0.1,
+        "value": 3,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "exhaust",
+        "label": "Gaz chiqish tezligi",
+        "min": 1,
+        "max": 4.5,
+        "step": 0.1,
+        "value": 3,
+        "unit": "km/s",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "stellar-life",
+    "title": "Yulduz hayoti",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 30,
+        "step": 0.5,
+        "value": 15,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 40,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "blackhole-tides",
+    "title": "Qora tuynuk va cho‘zilish",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Massa",
+        "min": 3,
+        "max": 100,
+        "step": 1,
+        "value": 10,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "distance",
+        "label": "Markazgacha masofa",
+        "min": 1.2,
+        "max": 15,
+        "step": 0.1,
+        "value": 5,
+        "unit": "rₛ",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "supernova",
+    "title": "Supernova",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 30,
+        "step": 0.5,
+        "value": 15,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 95,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "cosmic-scale",
+    "title": "Koinot masshtablari",
+    "controls": [
+      {
+        "key": "zoom",
+        "label": "Masshtab pog‘onasi",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "value": 3,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "aurora",
+    "title": "Qutb yog‘dusi",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Magnit maydon yo‘nalishi",
+        "min": -1,
+        "max": 1,
+        "step": 0.1,
+        "value": -0.5,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Kenglik",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 65,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "solar-wind",
+    "title": "Quyosh shamoli",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Magnit maydon yo‘nalishi",
+        "min": -1,
+        "max": 1,
+        "step": 0.1,
+        "value": -0.5,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Kenglik",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 65,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "sunspots",
+    "title": "Quyosh dog‘lari",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "solar-flare",
+    "title": "Quyosh chaqnashi",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Magnit maydon yo‘nalishi",
+        "min": -1,
+        "max": 1,
+        "step": 0.1,
+        "value": -0.5,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Kenglik",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 65,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "cme",
+    "title": "Koronal massa otilishi",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Magnit maydon yo‘nalishi",
+        "min": -1,
+        "max": 1,
+        "step": 0.1,
+        "value": -0.5,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Kenglik",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 65,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "direction",
+        "label": "Otilish og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 0,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "geomagnetic-storm",
+    "title": "Geomagnit bo‘ron",
+    "controls": [
+      {
+        "key": "activity",
+        "label": "Faollik",
+        "min": 0.1,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Magnit maydon yo‘nalishi",
+        "min": -1,
+        "max": 1,
+        "step": 0.1,
+        "value": -0.5,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "latitude",
+        "label": "Kenglik",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 65,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "solar-eclipse",
+    "title": "Quyosh tutilishi",
+    "controls": [
+      {
+        "key": "phase",
+        "label": "Oy orbital holati",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 0,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Orbita og‘ishi",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "value": 5.1,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "lunar-eclipse",
+    "title": "Oy tutilishi",
+    "controls": [
+      {
+        "key": "phase",
+        "label": "Oy orbital holati",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 180,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Orbita og‘ishi",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "value": 5.1,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "moon-phases",
+    "title": "Oy fazalari",
+    "controls": [
+      {
+        "key": "phase",
+        "label": "Oy orbital holati",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 0,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Orbita og‘ishi",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "value": 5.1,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "tidal-lock",
+    "title": "Oy nega bir tomonini ko‘rsatadi?",
+    "controls": [
+      {
+        "key": "phase",
+        "label": "Oy orbital holati",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 0,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "transit",
+    "title": "Ekzosayyora tranziti",
+    "controls": [
+      {
+        "key": "ratio",
+        "label": "Sayyora / yulduz radiusi",
+        "min": 0.02,
+        "max": 0.35,
+        "step": 0.01,
+        "value": 0.1,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Orbita kuzatuvga og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "retrograde",
+    "title": "Teskari ko‘ringan harakat",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Katta yarim o‘q",
+        "min": 0.4,
+        "max": 10,
+        "step": 0.1,
+        "value": 1,
+        "unit": "AU",
+        "type": "range"
+      },
+      {
+        "key": "eccentricity",
+        "label": "Ekssentrisitet",
+        "min": 0,
+        "max": 0.75,
+        "step": 0.01,
+        "value": 0.1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "resonance",
+    "title": "Orbital rezonans",
+    "controls": [
+      {
+        "key": "inner",
+        "label": "Ichki orbitadagi aylanishlar",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "value": 2,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "outer",
+        "label": "Tashqi orbitadagi aylanishlar",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "gravity-assist",
+    "title": "Gravitatsion manevr",
+    "controls": [
+      {
+        "key": "speed",
+        "label": "Boshlang‘ich tezlik",
+        "min": 2,
+        "max": 20,
+        "step": 0.5,
+        "value": 8,
+        "unit": "km/s",
+        "type": "range"
+      },
+      {
+        "key": "bend",
+        "label": "Burilish",
+        "min": 0,
+        "max": 160,
+        "step": 1,
+        "value": 70,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "side",
+        "label": "Uchib o‘tish tomoni",
+        "value": "behind",
+        "options": [
+          [
+            "behind",
+            "Harakat ortidan"
+          ],
+          [
+            "front",
+            "Harakat oldidan"
+          ]
+        ],
+        "type": "select"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "comet-tail",
+    "title": "Kometa dumlari",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Katta yarim o‘q",
+        "min": 0.4,
+        "max": 10,
+        "step": 0.1,
+        "value": 1,
+        "unit": "AU",
+        "type": "range"
+      },
+      {
+        "key": "eccentricity",
+        "label": "Ekssentrisitet",
+        "min": 0,
+        "max": 0.75,
+        "step": 0.01,
+        "value": 0.1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "meteor-entry",
+    "title": "Meteor: atmosferaga kirish",
+    "controls": [
+      {
+        "key": "diameter",
+        "label": "Diametr",
+        "min": 0.02,
+        "max": 1000,
+        "step": 0.01,
+        "value": 40,
+        "unit": "m",
+        "type": "range"
+      },
+      {
+        "key": "speed",
+        "label": "Kirish tezligi",
+        "min": 11,
+        "max": 72,
+        "step": 0.5,
+        "value": 20,
+        "unit": "km/s",
+        "type": "range"
+      },
+      {
+        "key": "angle",
+        "label": "Kirish burchagi",
+        "min": 10,
+        "max": 90,
+        "step": 1,
+        "value": 45,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "material",
+        "label": "Tarkib",
+        "value": "stone",
+        "options": [
+          [
+            "stone",
+            "Tosh"
+          ],
+          [
+            "iron",
+            "Temir"
+          ],
+          [
+            "ice",
+            "G‘ovak muz"
+          ]
+        ],
+        "type": "select"
+      },
+      {
+        "key": "surface",
+        "label": "Sirt",
+        "value": "land",
+        "options": [
+          [
+            "land",
+            "Quruqlik"
+          ],
+          [
+            "water",
+            "Suv"
+          ]
+        ],
+        "type": "select"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "meteor-shower",
+    "title": "Meteor yomg‘iri",
+    "controls": [
+      {
+        "key": "count",
+        "label": "Oqimdagi zarrachalar",
+        "min": 10,
+        "max": 120,
+        "step": 1,
+        "value": 40,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "phase",
+        "label": "Yer orbital holati",
+        "min": 0,
+        "max": 360,
+        "step": 1,
+        "value": 180,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "meteor-impact",
+    "title": "Meteorit Yerga tushsa",
+    "controls": [
+      {
+        "key": "diameter",
+        "label": "Diametr",
+        "min": 0.02,
+        "max": 1000,
+        "step": 0.01,
+        "value": 120,
+        "unit": "m",
+        "type": "range"
+      },
+      {
+        "key": "speed",
+        "label": "Kirish tezligi",
+        "min": 11,
+        "max": 72,
+        "step": 0.5,
+        "value": 20,
+        "unit": "km/s",
+        "type": "range"
+      },
+      {
+        "key": "angle",
+        "label": "Kirish burchagi",
+        "min": 10,
+        "max": 90,
+        "step": 1,
+        "value": 45,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "material",
+        "label": "Tarkib",
+        "value": "iron",
+        "options": [
+          [
+            "stone",
+            "Tosh"
+          ],
+          [
+            "iron",
+            "Temir"
+          ],
+          [
+            "ice",
+            "G‘ovak muz"
+          ]
+        ],
+        "type": "select"
+      },
+      {
+        "key": "surface",
+        "label": "Sirt",
+        "value": "land",
+        "options": [
+          [
+            "land",
+            "Quruqlik"
+          ],
+          [
+            "water",
+            "Suv"
+          ]
+        ],
+        "type": "select"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "planet-rings",
+    "title": "Sayyora halqalari",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Halqa tashqi radiusi",
+        "min": 1.4,
+        "max": 3.5,
+        "step": 0.05,
+        "value": 2.3,
+        "unit": "jism radiusi",
+        "type": "range"
+      },
+      {
+        "key": "eccentricity",
+        "label": "Zarracha orbitasi cho‘ziqligi",
+        "min": 0,
+        "max": 0.6,
+        "step": 0.01,
+        "value": 0.05,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "protoplanetary-disk",
+    "title": "Sayyoralar tug‘iladigan disk",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Katta yarim o‘q",
+        "min": 0.4,
+        "max": 10,
+        "step": 0.1,
+        "value": 1,
+        "unit": "AU",
+        "type": "range"
+      },
+      {
+        "key": "eccentricity",
+        "label": "Ekssentrisitet",
+        "min": 0,
+        "max": 0.75,
+        "step": 0.01,
+        "value": 0.1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "protostar",
+    "title": "Yosh yulduz",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 30,
+        "step": 0.5,
+        "value": 1,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 10,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "red-giant",
+    "title": "Qizil gigant",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 7.5,
+        "step": 0.5,
+        "value": 1,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 78,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "planetary-nebula",
+    "title": "Planetar tumanlik",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 7.5,
+        "step": 0.5,
+        "value": 1,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 95,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "white-dwarf",
+    "title": "Oq mitti",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Boshlang‘ich massa",
+        "min": 0.5,
+        "max": 7.5,
+        "step": 0.5,
+        "value": 1,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "age",
+        "label": "Evolyutsiya bosqichi",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "value": 95,
+        "unit": "%",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "nova",
+    "title": "Nova: qayta chaqnash",
+    "controls": [
+      {
+        "key": "separation",
+        "label": "Yulduzlar oralig‘i",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "value": 4,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Kuzatuv og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "pulsar",
+    "title": "Pulsar mayog‘i",
+    "controls": [
+      {
+        "key": "spin",
+        "label": "Aylanish davri",
+        "min": 0.1,
+        "max": 5,
+        "step": 0.1,
+        "value": 1,
+        "unit": "s",
+        "type": "range"
+      },
+      {
+        "key": "beam",
+        "label": "Nur o‘qi og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 45,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "magnetar",
+    "title": "Magnetar",
+    "controls": [
+      {
+        "key": "spin",
+        "label": "Aylanish davri",
+        "min": 0.1,
+        "max": 5,
+        "step": 0.1,
+        "value": 1,
+        "unit": "s",
+        "type": "range"
+      },
+      {
+        "key": "beam",
+        "label": "Nur o‘qi og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 45,
+        "unit": "°",
+        "type": "range"
+      },
+      {
+        "key": "field",
+        "label": "Nisbiy maydon kuchi",
+        "min": 0.5,
+        "max": 3,
+        "step": 0.1,
+        "value": 1,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "eclipsing-binary",
+    "title": "Tutiluvchi qo‘sh yulduz",
+    "controls": [
+      {
+        "key": "separation",
+        "label": "Yulduzlar oralig‘i",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "value": 4,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Kuzatuv og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "neutron-merger",
+    "title": "Neytron yulduzlar qo‘shilishi",
+    "controls": [
+      {
+        "key": "separation",
+        "label": "Yulduzlar oralig‘i",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "value": 4,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Kuzatuv og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "gamma-burst",
+    "title": "Gamma chaqnashi",
+    "controls": [
+      {
+        "key": "duration",
+        "label": "Ko‘rgazmali davomiylik",
+        "min": 1,
+        "max": 10,
+        "step": 0.5,
+        "value": 3,
+        "unit": "s",
+        "type": "range"
+      },
+      {
+        "key": "beam",
+        "label": "Nurga nisbatan og‘ish",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 15,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "blackhole-merger",
+    "title": "Qora tuynuklar qo‘shilishi",
+    "controls": [
+      {
+        "key": "separation",
+        "label": "Yulduzlar oralig‘i",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "value": 4,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "inclination",
+        "label": "Kuzatuv og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 90,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "gravitational-waves",
+    "title": "Gravitatsion to‘lqinlar",
+    "controls": [
+      {
+        "key": "frequency",
+        "label": "Nisbiy chastota",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "value": 3,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "amplitude",
+        "label": "Nisbiy deformatsiya",
+        "min": 0.1,
+        "max": 1,
+        "step": 0.05,
+        "value": 0.4,
+        "unit": "",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "accretion-disk",
+    "title": "Akkretsiya diski",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Massa",
+        "min": 3,
+        "max": 100,
+        "step": 1,
+        "value": 10,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "distance",
+        "label": "Markazgacha masofa",
+        "min": 1.2,
+        "max": 15,
+        "step": 0.1,
+        "value": 5,
+        "unit": "rₛ",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "jets",
+    "title": "Kosmik jetlar",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Massa",
+        "min": 3,
+        "max": 100,
+        "step": 1,
+        "value": 10,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "distance",
+        "label": "Markazgacha masofa",
+        "min": 1.2,
+        "max": 15,
+        "step": 0.1,
+        "value": 5,
+        "unit": "rₛ",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "lensing",
+    "title": "Gravitatsion linza",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Massa",
+        "min": 3,
+        "max": 100,
+        "step": 1,
+        "value": 10,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "distance",
+        "label": "Markazgacha masofa",
+        "min": 1.2,
+        "max": 15,
+        "step": 0.1,
+        "value": 5,
+        "unit": "rₛ",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "galaxy-collision",
+    "title": "Galaktikalar yaqinlashuvi",
+    "controls": [
+      {
+        "key": "separation",
+        "label": "Markazlar oralig‘i",
+        "min": 0,
+        "max": 10,
+        "step": 0.1,
+        "value": 6,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "angle",
+        "label": "Disklar og‘ishi",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "value": 30,
+        "unit": "°",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "galaxy-rotation",
+    "title": "Galaktika aylanishi",
+    "controls": [
+      {
+        "key": "radius",
+        "label": "Kuzatuv radiusi",
+        "min": 0.4,
+        "max": 10,
+        "step": 0.1,
+        "value": 3,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "profile",
+        "label": "Tezlik profili",
+        "value": "flat",
+        "options": [
+          [
+            "flat",
+            "Tekis tezlik"
+          ],
+          [
+            "kepler",
+            "Markaziy massa"
+          ]
+        ],
+        "type": "select"
+      }
+    ],
+    "answer": 0
+  },
+  {
+    "id": "quasar",
+    "title": "Kvazar",
+    "controls": [
+      {
+        "key": "mass",
+        "label": "Markaziy massa",
+        "min": 1000000,
+        "max": 1000000000,
+        "step": 1000000,
+        "value": 100000000,
+        "unit": "M☉",
+        "type": "range"
+      },
+      {
+        "key": "distance",
+        "label": "Markazgacha masofa",
+        "min": 1.2,
+        "max": 15,
+        "step": 0.1,
+        "value": 5,
+        "unit": "rₛ",
+        "type": "range"
+      }
+    ],
+    "answer": 1
+  },
+  {
+    "id": "cosmic-expansion",
+    "title": "Koinot kengayishi",
+    "controls": [
+      {
+        "key": "scale",
+        "label": "Kengayish koeffitsiyenti",
+        "min": 1,
+        "max": 4,
+        "step": 0.1,
+        "value": 2,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "wavelength",
+        "label": "Chiqarilgan to‘lqin",
+        "min": 400,
+        "max": 700,
+        "step": 10,
+        "value": 500,
+        "unit": "nm",
+        "type": "range"
+      }
+    ],
+    "answer": 2
+  },
+  {
+    "id": "redshift",
+    "title": "Kosmologik qizil siljish",
+    "controls": [
+      {
+        "key": "scale",
+        "label": "Kengayish koeffitsiyenti",
+        "min": 1,
+        "max": 4,
+        "step": 0.1,
+        "value": 2,
+        "unit": "",
+        "type": "range"
+      },
+      {
+        "key": "wavelength",
+        "label": "Chiqarilgan to‘lqin",
+        "min": 400,
+        "max": 700,
+        "step": 10,
+        "value": 500,
+        "unit": "nm",
+        "type": "range"
+      }
+    ],
+    "answer": 0
+  }
+]

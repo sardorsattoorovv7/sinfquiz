@@ -1,7 +1,7 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "7.29.0",
+  "version": "7.31.0",
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/copy-python-runtime.mjs",
@@ -20,7 +20,9 @@
     "test:e2e:studio": "node tests/studio-browser.cjs",
     "test:e2e:science": "node tests/science-studio-browser.cjs",
     "test:e2e:play": "node tests/secure-play-browser.cjs",
-    "test:e2e:classroom": "node tests/classroom-browser.cjs"
+    "test:e2e:classroom": "node tests/classroom-browser.cjs",
+    "test:e2e:space": "node tests/space-browser.cjs",
+    "test:e2e:physical": "node tests/physical-browser.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

@@ -1,0 +1,38 @@
+✔ Public subjects and classroom have actual crawlable HTML and canonical URLs (3.376745ms)
+✔ Metadata escapes user-supplied verification text and JSON-LD cannot close its script (0.62854ms)
+✔ Public origin is explicit HTTPS; custom domains regenerate all discoverable URLs (1.638995ms)
+✔ Deployment serves public files without rewriting unknown paths into soft 404s (2.938336ms)
+▶ Space real PostgreSQL RPC, RLS, group scope, moderation, immutable results and input attacks
+  ✔ Owner is taken from authenticated session; group membership is required (42.444753ms)
+  ✔ Teacher public content remains pending until admin approves, including edits (26.705729ms)
+  ✔ Idempotent submission ignores forged actor, grade, title and arbitrary metrics keys (41.285098ms)
+  ✔ Null and object payloads, missing choice, duplicate trials, invalid params and object metrics are rejected (58.998134ms)
+  ✔ Direct table writes and internal catalog/parameter helper calls are denied (10.195132ms)
+  ✔ Closed group/config cannot accept a new assignment submission; results stay visible to owner (23.383079ms)
+  ✔ Submission rate limit blocks a seventh unique request but keeps retry idempotent (66.261469ms)
+  ✔ Migration is repeatable and anonymous users cannot execute RPC (15.341948ms)
+✔ Space real PostgreSQL RPC, RLS, group scope, moderation, immutable results and input attacks (4134.347702ms)
+✔ 52 complete topics have distinct ids, valid default controls and acyclic prerequisites (3.984124ms)
+✔ Energy scales with speed squared, meteor mass with diameter cubed (7.207733ms)
+✔ Solar inverse square law and airless equilibrium temperature (0.436806ms)
+✔ Tidal forcing scales with inverse cube, not a local water-height prediction (0.161189ms)
+✔ Daylight at equator, equinox and polar cases is finite and bounded (0.254767ms)
+✔ Moon phases and eclipse inclination are distinct mechanisms (4.871346ms)
+✔ Circle overlap gives the correct transit depth and no face-on transit (0.440161ms)
+✔ 400 km orbit circular speed, escape speed, impact and escape cases (1.603282ms)
+✔ Velocity Verlet conserves specific energy in the circular test (2.712493ms)
+✔ Meteor integration is bounded, composition dependent, and monotonic in altitude (10.125069ms)
+✔ Every scene has finite outputs at extreme parameters and timeline positions (19.106315ms)
+✔ Untrusted draft cannot inject arbitrary parameters or render object metrics (1.265232ms)
+✔ Notebook completion requires distinct parameters and a correct concept answer (0.284541ms)
+✔ Gravity, rocket logarithm, cosmological redshift and stellar mass paths (0.258101ms)
+✔ Longer illustrative gamma duration preserves a signal longer (0.167498ms)
+✔ Vercel build uses Supabase Auth, Postgres and Realtime without Firebase (14.741728ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4373.593893

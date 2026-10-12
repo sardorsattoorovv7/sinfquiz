@@ -1,3 +1,7 @@
+# Yangilash: 7.30.0
+
+Koinot atlasi uchun [UPDATE-7.30.md](UPDATE-7.30.md)ni o‘qing. 7.29 dan: `supabase-office-amaliy-fix.sql`, keyin `supabase-migration-7.30.sql`. Mavjud login va environment qiymatlari saqlanadi. To‘liq ketma-ketlik `migration-chain.json`da.
+
 # SinfQuiz 7.29.0
 
 To‘lmagan jamoa bilan boshlash, har ishtirokchi uchun erkin bosqichlar va alohida taymerlar, serverda qoralamadan qisman baholash. Klaviatura — 12, Word — 12, Excel — 10 ta yangi savol. Sinfxona doskasi, katta namoyish va boshqa fanlar saqlangan. **[Yangilash](UPDATE-7.29.md) · [SQL tartibi](MIGRATIONS.md) · [Tekshiruvlar](QA-7.29.md) · [Savollar](CONTENT-7.29.md)**

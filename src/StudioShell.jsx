@@ -7,12 +7,13 @@ import {findStudioRoutes,normalizeStudioSearch} from './studio-navigation.js';
 export const studioSections=[
  {id:'home',label:'Bosh sahifa',icon:Home,views:['home']},
  {id:'books',label:'Darsliklar',icon:BookOpen,views:['books','lesson','bookPractice','catalog','englishCourse']},
- {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology']},
+ {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space']},
  {id:'exerciseHub',label:'Mashqlar',icon:Gamepad2,views:['exerciseHub','chat','iq','audioMaze','practice','national','nationalExam','cefr','cefrManaged','cefrExam','typing','typingJoin','race','raceJoin','join','play']},
  {id:'competitions',label:'Musobaqalar',icon:Trophy,views:['competitions']},
  {id:'results',label:'Natijalar',icon:BarChart3,views:['profile','result']},
 ];
 export const studioActivities=[
+ {id:'space',label:'Koinot atlasi',detail:'53 hodisa, meteoritlar, orbitalar va yulduzlar. Fizika tajribalari.',subject:'space',type:'atlas'},
  {id:'mathAtlas',label:'Matematika atlasi',detail:'Son, formula, grafik va fazoviy shakllar.',subject:'math',type:'atlas'},
  {id:'chemistry',label:'Kimyo laboratoriyasi',detail:'Atomlar, molekulalar va boshqariladigan tajribalar.',subject:'chemistry',type:'atlas'},
  {id:'biology',label:'Biologiya atlasi',detail:'Tirik tabiat, odam tanasi va amaliy kuzatishlar.',subject:'biology',type:'atlas'},

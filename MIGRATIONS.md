@@ -1,3 +1,7 @@
+# Yangilash: 7.30.0
+
+Koinot atlasi uchun [UPDATE-7.30.md](UPDATE-7.30.md)ni o‘qing. 7.29 dan: `supabase-office-amaliy-fix.sql`, keyin `supabase-migration-7.30.sql`. Mavjud login va environment qiymatlari saqlanadi. To‘liq ketma-ketlik `migration-chain.json`da.
+
 # SinfQuiz 7.29.0 — SQL va kodni birga yangilash
 
 Ishlayotgan 7.28.0 bazasida Supabase SQL Editor’da faqat **supabase-migration-7.29.sql** faylini to‘liq RUN qiling. 7.27.0 uchun avval 7.28, keyin 7.29 bajariladi. Baza eskiroq bo‘lsa yetishmagan fayllarni quyidagi tartibdan oling; ishlab turgan bazaga hamma eski skriptlarni qayta qo‘llamang.

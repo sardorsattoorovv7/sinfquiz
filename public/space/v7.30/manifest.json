@@ -1,0 +1,18 @@
+[
+  {
+    "file": "earth-nasa.glb",
+    "bytes": 433060,
+    "sha256": "25256a913248d5135827949fd424a4af7f7ede37d9c2301941a76d8bc608ed94",
+    "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/e/EarthClouds_1_12756.glb",
+    "credit": "NASA / VTAD",
+    "changes": "Embedded textures reduced to 2048 px JPEG. Geometry unchanged."
+  },
+  {
+    "file": "moon-nasa.glb",
+    "bytes": 396412,
+    "sha256": "40453a22ab1f828e1da6110840c31d1416457b0376538951a53325312078d4d0",
+    "source": "https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcllRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7d626e5badbf2157a4fa43b9e891ab22ca767f3e/Moon_1_3474.glb",
+    "credit": "NASA / VTAD",
+    "changes": "Embedded textures reduced to 2048 px JPEG. Geometry unchanged."
+  }
+]

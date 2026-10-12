@@ -1,5 +1,5 @@
 {
-  "version": "7.29.0",
+  "version": "7.31.0",
   "freshInstall": [
     "supabase-schema.sql",
     "supabase-migration-7.2.sql",
@@ -49,13 +49,30 @@
     "supabase-migration-7.25.sql",
     "supabase-migration-7.26.2.sql",
     "supabase-migration-7.28.sql",
-    "supabase-migration-7.29.sql"
+    "supabase-migration-7.29.sql",
+    "supabase-office-amaliy-fix.sql",
+    "supabase-migration-7.30.sql",
+    "supabase-migration-7.31.sql"
   ],
   "upgradeFrom7.27": [
     "supabase-migration-7.28.sql",
-    "supabase-migration-7.29.sql"
+    "supabase-migration-7.29.sql",
+    "supabase-office-amaliy-fix.sql",
+    "supabase-migration-7.30.sql",
+    "supabase-migration-7.31.sql"
   ],
   "upgradeFrom7.28": [
-    "supabase-migration-7.29.sql"
+    "supabase-migration-7.29.sql",
+    "supabase-office-amaliy-fix.sql",
+    "supabase-migration-7.30.sql",
+    "supabase-migration-7.31.sql"
+  ],
+  "upgradeFrom7.29": [
+    "supabase-office-amaliy-fix.sql",
+    "supabase-migration-7.30.sql",
+    "supabase-migration-7.31.sql"
+  ],
+  "upgradeFrom7.30": [
+    "supabase-migration-7.31.sql"
   ]
 }

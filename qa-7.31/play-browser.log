@@ -1,0 +1,12 @@
+4:32:33 PM [vite] (client) Re-optimizing dependencies because vite config has changed
+{
+  "checks": {
+    "noAnswerKeyInStorage": true,
+    "guestQuizAndRank": true,
+    "differentScoresGetDifferentRanks": true,
+    "guestSplitRaceAndWinner": true,
+    "guestTypingCanonicalFiveStages": true,
+    "nationalServerGradeAndReview": true
+  },
+  "errors": []
+}

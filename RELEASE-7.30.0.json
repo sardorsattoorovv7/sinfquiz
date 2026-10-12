@@ -1,0 +1,60 @@
+{
+  "version": "7.30.0",
+  "baselineSha256": "48ebc82ead589e3eab26e70201bd610ccf58b582f14d2a5ca55ca4090aca795d",
+  "baselineFiles": 1057,
+  "nodeTests": 257,
+  "nodePassed": 257,
+  "spaceScenes": 52,
+  "spaceBrowserChecks": {
+    "authRequired": true,
+    "all52Scenes": true,
+    "nasaModelsReady": true,
+    "realAnimationPixels": true,
+    "playPause": true,
+    "draftRestored": true,
+    "realSqlNotebook": true,
+    "exportWorks": true,
+    "svgFallback": true,
+    "tabletFits1024": true,
+    "mobileFits390": true,
+    "darkMode": true,
+    "projectorFits1920": true,
+    "learnerRole": true,
+    "notesArePlainText": true,
+    "teacherCreatesGroupWork": true,
+    "groupWorkSubmitted": true,
+    "teacherFeedback": true,
+    "teacherIsolation": true,
+    "noWebglRecovery": true,
+    "expiredSessionDoesNotLockNavigation": true
+  },
+  "accessibilityStates": 32,
+  "otherBrowserSuites": [
+    "learning",
+    "studio",
+    "competition",
+    "play"
+  ],
+  "assets": [
+    {
+      "file": "earth-nasa.glb",
+      "bytes": 433060,
+      "sha256": "25256a913248d5135827949fd424a4af7f7ede37d9c2301941a76d8bc608ed94",
+      "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/e/EarthClouds_1_12756.glb",
+      "credit": "NASA / VTAD",
+      "changes": "Embedded textures reduced to 2048 px JPEG. Geometry unchanged."
+    },
+    {
+      "file": "moon-nasa.glb",
+      "bytes": 396412,
+      "sha256": "40453a22ab1f828e1da6110840c31d1416457b0376538951a53325312078d4d0",
+      "source": "https://solarsystem.nasa.gov/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcllRIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7d626e5badbf2157a4fa43b9e891ab22ca767f3e/Moon_1_3474.glb",
+      "credit": "NASA / VTAD",
+      "changes": "Embedded textures reduced to 2048 px JPEG. Geometry unchanged."
+    }
+  ],
+  "migrationsFrom729": [
+    "supabase-office-amaliy-fix.sql",
+    "supabase-migration-7.30.sql"
+  ]
+}

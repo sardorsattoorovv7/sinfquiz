@@ -1,3 +1,7 @@
+# Yangilash: 7.30.0
+
+Koinot atlasi uchun [UPDATE-7.30.md](UPDATE-7.30.md)ni o‘qing. 7.29 dan: `supabase-office-amaliy-fix.sql`, keyin `supabase-migration-7.30.sql`. Mavjud login va environment qiymatlari saqlanadi. To‘liq ketma-ketlik `migration-chain.json`da.
+
 **7.29.0 uchun amaldagi ketma-ketlik: [MIGRATIONS.md](MIGRATIONS.md). 7.28dan faqat 7.29; 7.27dan 7.28 va 7.29 migratsiyasi qo‘llanadi. Quyida tarixiy boshlang‘ich sozlamalar bor.**
 
 # SinfQuiz 7.8 ni Supabase va Vercel’da sozlash

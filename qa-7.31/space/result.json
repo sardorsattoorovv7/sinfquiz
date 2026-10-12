@@ -1,0 +1,107 @@
+{
+  "checks": {
+    "authRequired": true,
+    "all53Scenes": true,
+    "nasaModelsReady": true,
+    "realAnimationPixels": true,
+    "playPause": true,
+    "draftRestored": true,
+    "realSqlNotebook": true,
+    "exportWorks": true,
+    "svgFallback": true,
+    "tabletFits1024": true,
+    "mobileFits390": true,
+    "darkMode": true,
+    "projectorFits1920": true,
+    "learnerRole": true,
+    "notesArePlainText": true,
+    "teacherCreatesGroupWork": true,
+    "groupWorkSubmitted": true,
+    "teacherFeedback": true,
+    "teacherIsolation": true,
+    "noWebglRecovery": true,
+    "expiredSessionDoesNotLockNavigation": true
+  },
+  "scenes": [
+    "solar-system",
+    "day-night",
+    "axial-tilt",
+    "sun-distance",
+    "moon-distance",
+    "orbit",
+    "gravity",
+    "rocket",
+    "stellar-life",
+    "blackhole-tides",
+    "supernova",
+    "cosmic-scale",
+    "aurora",
+    "solar-wind",
+    "sunspots",
+    "solar-flare",
+    "cme",
+    "geomagnetic-storm",
+    "solar-eclipse",
+    "lunar-eclipse",
+    "moon-phases",
+    "tidal-lock",
+    "transit",
+    "retrograde",
+    "resonance",
+    "gravity-assist",
+    "comet-tail",
+    "meteor-entry",
+    "meteor-shower",
+    "meteor-impact",
+    "planet-rings",
+    "protoplanetary-disk",
+    "protostar",
+    "red-giant",
+    "planetary-nebula",
+    "white-dwarf",
+    "nova",
+    "pulsar",
+    "magnetar",
+    "eclipsing-binary",
+    "neutron-merger",
+    "gamma-burst",
+    "blackhole-merger",
+    "gravitational-waves",
+    "accretion-disk",
+    "jets",
+    "lensing",
+    "galaxy-collision",
+    "galaxy-rotation",
+    "quasar",
+    "cosmic-expansion",
+    "redshift",
+    "ocean-depth"
+  ],
+  "errors": [],
+  "axes": [
+    {
+      "label": "desktop 2D",
+      "violations": []
+    },
+    {
+      "label": "tablet",
+      "violations": []
+    },
+    {
+      "label": "mobile",
+      "violations": []
+    },
+    {
+      "label": "dark mobile",
+      "violations": []
+    },
+    {
+      "label": "teacher builder",
+      "violations": []
+    },
+    {
+      "label": "teacher results",
+      "violations": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "realSunMovement": true,
+    "heatingAndPixels": true,
+    "liveTemperatureChart": true,
+    "farSunCooling": true,
+    "svgSunMovement": true,
+    "deepPressureAndDensity": true,
+    "cabinPressureCollapse": true,
+    "sealedAirCompression": true,
+    "recordIsNotDeathLimit": true,
+    "cameraModes": true,
+    "realDepthNotebook": true,
+    "mobile": true,
+    "dark": true,
+    "projector": true,
+    "svgOcean": true,
+    "teacherNewScene": true,
+    "teacherIsolation": true
+  },
+  "axes": 6,
+  "errors": []
+}

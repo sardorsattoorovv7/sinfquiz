@@ -1,0 +1,34 @@
+3D scenes checked: 10
+3D scenes checked: 20
+3D scenes checked: 30
+3D scenes checked: 40
+3D scenes checked: 50
+3:16:30 PM [vite] (client) [console.error] THREE.WebGLRenderer: Error creating WebGL context.
+{
+  "checks": {
+    "authRequired": true,
+    "all52Scenes": true,
+    "nasaModelsReady": true,
+    "realAnimationPixels": true,
+    "playPause": true,
+    "draftRestored": true,
+    "realSqlNotebook": true,
+    "exportWorks": true,
+    "svgFallback": true,
+    "tabletFits1024": true,
+    "mobileFits390": true,
+    "darkMode": true,
+    "projectorFits1920": true,
+    "learnerRole": true,
+    "notesArePlainText": true,
+    "teacherCreatesGroupWork": true,
+    "groupWorkSubmitted": true,
+    "teacherFeedback": true,
+    "teacherIsolation": true,
+    "noWebglRecovery": true,
+    "expiredSessionDoesNotLockNavigation": true
+  },
+  "sceneCount": 52,
+  "axes": 6,
+  "errors": []
+}
