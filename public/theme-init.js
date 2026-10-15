@@ -1,1 +1,2 @@
-try{const saved=localStorage.getItem('sq_theme');const theme=['dark','light'].includes(saved)?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme}catch{}
+document.documentElement.dataset.design='paper';
+try{const saved=localStorage.getItem('sq_theme');const theme=['dark','light'].includes(saved)?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='dark'?'#302A24':'#EEE5D5')}catch{}

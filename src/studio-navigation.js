@@ -14,7 +14,7 @@ export function findStudioRoutes(routes,query){
  });
 }
 
-const hashes={space:'koinot',profile:'profil',chat:'suhbatlar',catalog:'informatika',practice:'open-exam',national:'milliy-testlar',cefrManaged:'cefr-test',classroom:'sinfxona'};
+const hashes={cinemaPiano:'kino-piano',space:'koinot',profile:'profil',chat:'suhbatlar',catalog:'informatika',practice:'open-exam',national:'milliy-testlar',cefrManaged:'cefr-test',classroom:'sinfxona'};
 export const studioViewHash=view=>hashes[view]||null;
 export function restoredStudioView(hash,user){
  if(!user||!['student','teacher','admin'].includes(user.role))return null;

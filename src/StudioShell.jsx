@@ -1,14 +1,16 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle,Presentation} from 'lucide-react';
+import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle,Presentation,Piano} from 'lucide-react';
 import {ExperienceControls} from './effects.jsx';
 import StudioArt from './StudioArt.jsx';
 import {findStudioRoutes,normalizeStudioSearch} from './studio-navigation.js';
+import {PaperBrand,PaperButton,PaperDialog} from './paper/PaperUI.jsx';
+import ClassJoinForm from './paper/ClassJoinForm.jsx';
 
 export const studioSections=[
  {id:'home',label:'Bosh sahifa',icon:Home,views:['home']},
  {id:'books',label:'Darsliklar',icon:BookOpen,views:['books','lesson','bookPractice','catalog','englishCourse']},
  {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space']},
- {id:'exerciseHub',label:'Mashqlar',icon:Gamepad2,views:['exerciseHub','chat','iq','audioMaze','practice','national','nationalExam','cefr','cefrManaged','cefrExam','typing','typingJoin','race','raceJoin','join','play']},
+ {id:'exerciseHub',label:'Mashqlar',icon:Gamepad2,views:['exerciseHub','chat','iq','audioMaze','cinemaPiano','practice','national','nationalExam','cefr','cefrManaged','cefrExam','typing','typingJoin','race','raceJoin','join','play']},
  {id:'competitions',label:'Musobaqalar',icon:Trophy,views:['competitions']},
  {id:'results',label:'Natijalar',icon:BarChart3,views:['profile','result']},
 ];
@@ -19,6 +21,7 @@ export const studioActivities=[
  {id:'biology',label:'Biologiya atlasi',detail:'Tirik tabiat, odam tanasi va amaliy kuzatishlar.',subject:'biology',type:'atlas'},
  {id:'iq',label:'IQ va mantiq',detail:'32 savol va yechimlar tahlili.',icon:Brain,type:'exercise'},
  {id:'audioMaze',label:'Inglizcha labirint',detail:'Darajani tanlang. Matn yoki ovoz bilan yo‘l toping.',icon:Headphones,type:'exercise'},
+ {id:'cinemaPiano',label:'Kino Piano',detail:'Pianino, musiqa, soundtrack, MIDI va 30 soniyalik kuylarni o‘rganish.',icon:Piano,type:'exercise'},
  {id:'englishCourse',label:'Ingliz tili darsi',detail:'108 dars, tinglash, o‘qish va kundalik suhbat.',icon:BookOpen,type:'exercise'},
  {id:'practice',label:'Tayyor testlar',detail:'Python, ingliz tili va matematika.',icon:Code2,type:'exercise'},
  {id:'national',label:'Milliy test',detail:'Ustoz variantlari va javoblar tahlili.',icon:GraduationCap,type:'exercise'},
@@ -29,10 +32,11 @@ export const studioActivities=[
 ];
 const roleLabel=u=>u?.role==='admin'?'Administrator':u?.role==='teacher'?'O‘qituvchi':u?'O‘quvchi':'Mehmon';
 
-export default function StudioShell({children,user,view,onNavigate,onLogout,inActivity,unfinished,authReady}){
- const [drawer,setDrawer]=useState(false),[query,setQuery]=useState(''),[searchOpen,setSearchOpen]=useState(false);
+export default function StudioShell({children,user,view,onNavigate,onLogout,onJoin,inActivity,unfinished,authReady}){
+ const [drawer,setDrawer]=useState(false),[query,setQuery]=useState(''),[searchOpen,setSearchOpen]=useState(false),[joinOpen,setJoinOpen]=useState(false);
  const drawerRef=useRef(null),menuRef=useRef(null),mainRef=useRef(null),searchRef=useRef(null),searchInputRef=useRef(null);
  const drawerOpen=drawer&&!inActivity;
+ const homeView=view==='home',blocked=drawerOpen||joinOpen;
  const staff=['teacher','admin'].includes(user?.role);
  const active=studioSections.find(s=>s.views.includes(view))?.id||(['admin','classroom'].includes(view)?view:'home');
  const routes=[...studioSections,...studioActivities,...(staff?[{id:'admin',label:roleLabel(user)+' paneli'},{id:'classroom',label:'Sinfxona',detail:'Elektron doska, dars taymeri, shovqin nazorati, raqam tanlash'}]:[])];
@@ -59,7 +63,7 @@ export default function StudioShell({children,user,view,onNavigate,onLogout,inAc
   return()=>document.removeEventListener('pointerdown',dismiss);
  },[searchOpen]);
 
- useEffect(()=>{setDrawer(false);setSearchOpen(false);},[view,inActivity]);
+ useEffect(()=>{setDrawer(false);setSearchOpen(false);setJoinOpen(false);},[view,inActivity]);
  useEffect(()=>{
   if(!drawerOpen)return;
   const old=document.activeElement;drawerRef.current?.querySelector('button')?.focus();
@@ -68,18 +72,20 @@ export default function StudioShell({children,user,view,onNavigate,onLogout,inAc
   return()=>{document.removeEventListener('keydown',esc);document.body.style.overflow=previous;(old?.isConnected?old:menuRef.current)?.focus();};
  },[drawerOpen]);
  const links=(mobile=false)=><nav className="studio-main-nav" aria-label={mobile?'Mobil bo‘limlar':'Asosiy bo‘limlar'}>{studioSections.map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}{staff&&<><span className="studio-nav-caption">BOSHQARUV</span><button className={active==='classroom'?'is-current':''} aria-current={active==='classroom'?'page':undefined} onClick={()=>navigate('classroom')}><Presentation size={20}/><span>Sinfxona</span></button><button className={active==='admin'?'is-current':''} onClick={()=>navigate('admin')}><Shield size={20}/><span>{roleLabel(user)} paneli</span></button></>}</nav>;
- return <div className={`app-shell studio-app ${inActivity?'studio-in-activity':''}`}>
+ return <div className={`app-shell studio-app paper-workshop ${homeView?'pw-home-shell':''} ${inActivity?'studio-in-activity':''}`}>
  <a className="studio-skip" href="#studio-main">Asosiy mazmunga o‘tish</a>
- {!inActivity&&<aside className="studio-sidebar" inert={drawerOpen?true:undefined}><span className="studio-brand nav-brand" aria-label="SinfQuiz">Sinf<span>Quiz</span></span>{links()}<div className="studio-sidebar-foot"><span className="studio-person-icon"><UserRound size={20}/></span><div><b>{user?.name||'Xush kelibsiz'}</b><small>{roleLabel(user)}</small></div></div></aside>}
- <div className="studio-body"><header className="site-nav studio-topbar" aria-label="Asosiy navigatsiya" inert={drawerOpen?true:undefined}>
+ {!inActivity&&<aside className="studio-sidebar" inert={blocked?true:undefined}><button className="pw-brand-link" aria-label="Bosh sahifaga qaytish" onClick={()=>navigate('home')}><PaperBrand className="studio-brand nav-brand"/></button>{links()}<div className="studio-sidebar-foot"><span className="studio-person-icon"><UserRound size={20}/></span><div><b>{user?.name||'Xush kelibsiz'}</b><small>{roleLabel(user)}</small></div></div></aside>}
+ <div className="studio-body"><header className="site-nav studio-topbar" aria-label="Asosiy navigatsiya" inert={blocked?true:undefined}>
  {!inActivity&&<button ref={menuRef} className="studio-menu-toggle" aria-expanded={drawer} aria-controls="studio-drawer" aria-label="Menyuni ochish" onClick={()=>setDrawer(true)}><Menu size={22}/></button>}
- <span className="studio-mobile-brand nav-brand" aria-label="SinfQuiz">Sinf<span>Quiz</span></span>
+ <button className="pw-brand-link pw-header-brand" aria-label="Bosh sahifaga qaytish" disabled={inActivity} onClick={()=>navigate('home')}><PaperBrand className="studio-mobile-brand nav-brand"/></button>
+ {!inActivity&&<nav className="pw-top-links" aria-label="Ustaxona yo‘llari"><button onClick={()=>navigate('subjects')}>Fanlar</button><button onClick={()=>navigate('atlasHub')}>Tajribalar</button><button onClick={()=>navigate('competitions')}>Musobaqalar</button></nav>}
  {!inActivity&&<div className="studio-search" ref={searchRef} onKeyDown={searchKeys}><form role="search" onSubmit={e=>{e.preventDefault();if(hasQuery&&matches[0])navigate(matches[0].id);}}><Search size={18}/><input ref={searchInputRef} type="search" maxLength={100} aria-label="Bo‘lim qidirish" aria-controls={searchOpen&&hasQuery?'studio-search-results':undefined} placeholder="Bo‘lim yoki mashq qidirish…" value={query} onFocus={()=>setSearchOpen(true)} onChange={e=>{setQuery(e.target.value);setSearchOpen(true);}}/></form>{searchOpen&&hasQuery&&<div id="studio-search-results" className="studio-search-results" role="region" aria-label="Qidiruv natijalari"><p className="studio-search-status" role="status">{matches.length?`${matches.length} ta mos bo‘lim`:'Bo‘lim topilmadi.'}</p>{matches.map(r=><button key={r.id} onClick={()=>navigate(r.id)}>{r.label}<ArrowRight size={16}/></button>)}<button className="studio-search-close" onClick={closeSearch}>Qidiruvni yopish</button></div>}</div>}
  {inActivity&&<span className="session-label">{unfinished?'Mashq davom etmoqda':'Natijalar'}</span>}
- <div className="nav-actions studio-top-actions"><ExperienceControls/>{!inActivity&&authReady&&(user?<><button className="studio-profile" onClick={()=>navigate(staff?'admin':'results')} aria-label={staff?'Boshqaruv paneli':'Profilim'}><UserRound size={18}/><span>{user.name}</span></button><button className="nav-logout" aria-label="Tizimdan chiqish" title="Hisobdan chiqish" onClick={onLogout}><LogOut size={19}/></button></>:<button className="btn btn-primary teacher-entry" onClick={()=>navigate('login')}>Kirish <ArrowRight size={16}/></button>)}</div>
- </header><div ref={mainRef} id="studio-main" className="studio-content" tabIndex={-1} inert={drawerOpen?true:undefined}>{children}</div></div>
- {drawerOpen&&<><div className="studio-drawer-shade" onClick={()=>setDrawer(false)} aria-hidden="true"/><aside id="studio-drawer" ref={drawerRef} className="studio-drawer" role="dialog" aria-modal="true" aria-label="Bo‘limlar menyusi"><div><span className="studio-brand">Sinf<span>Quiz</span></span><button aria-label="Menyuni yopish" onClick={()=>setDrawer(false)}><X size={22}/></button></div>{links(true)}<p>{roleLabel(user)} · {user?.name||'SinfQuiz'}</p></aside></>}
- {!inActivity&&<nav className="studio-bottom-nav" aria-label="Tezkor bo‘limlar" inert={drawerOpen?true:undefined}>{studioSections.filter(s=>['home','books','competitions','results'].includes(s.id)).map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}</nav>}
+ <div className="nav-actions studio-top-actions"><ExperienceControls/>{!inActivity&&<PaperButton variant="primary" className="pw-join-trigger" onClick={()=>setJoinOpen(true)}>Sinfga qo‘shilish <ArrowRight size={16}/></PaperButton>}{!inActivity&&authReady&&(user?<><button className="studio-profile" onClick={()=>navigate(staff?'admin':'results')} aria-label={staff?'Boshqaruv paneli':'Profilim'}><UserRound size={18}/><span>{user.name}<small>{roleLabel(user)}</small></span></button><button className="nav-logout" aria-label="Tizimdan chiqish" title="Hisobdan chiqish" onClick={onLogout}><LogOut size={19}/></button></>:<button className="btn btn-outline teacher-entry" onClick={()=>navigate('login')}>Kirish <ArrowRight size={16}/></button>)}</div>
+ </header><div ref={mainRef} id="studio-main" className="studio-content" tabIndex={-1} inert={blocked?true:undefined}>{children}</div></div>
+ {drawerOpen&&<><div className="studio-drawer-shade" onClick={()=>setDrawer(false)} aria-hidden="true"/><aside id="studio-drawer" ref={drawerRef} className="studio-drawer" role="dialog" aria-modal="true" aria-label="Bo‘limlar menyusi"><div><PaperBrand className="studio-brand"/><button aria-label="Menyuni yopish" onClick={()=>setDrawer(false)}><X size={22}/></button></div>{links(true)}<PaperButton className="pw-drawer-join" variant="primary" onClick={()=>{setDrawer(false);setJoinOpen(true)}}>Sinfga qo‘shilish <ArrowRight size={17}/></PaperButton>{user&&<PaperButton className="pw-drawer-logout" variant="quiet" onClick={()=>{setDrawer(false);onLogout()}}><LogOut size={17}/> Hisobdan chiqish</PaperButton>}<p>{roleLabel(user)} · {user?.name||'SinfQuiz'}</p></aside></>}
+ {!inActivity&&<nav className="studio-bottom-nav" aria-label="Tezkor bo‘limlar" inert={blocked?true:undefined}>{studioSections.filter(s=>['home','books','atlasHub','exerciseHub','results'].includes(s.id)).map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{id==='home'?'Bosh':id==='books'?'Darslar':label}</span></button>)}</nav>}
+ <PaperDialog open={joinOpen&&!inActivity} onClose={()=>setJoinOpen(false)} title="Sinfga qo‘shilish" description="Ustoz bergan olti xonali kodni kiriting. Hisob ochmasdan ham sinf testiga qo‘shilishingiz mumkin."><ClassJoinForm compact autoFocus onResolved={async entry=>{setJoinOpen(false);await onJoin(entry)}}/></PaperDialog>
  </div>;
 }
 

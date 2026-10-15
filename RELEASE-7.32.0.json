@@ -1,0 +1,76 @@
+{
+  "version": "7.32.0",
+  "module": "Kino Piano",
+  "entry": "#kino-piano",
+  "readyScores": 38,
+  "originalScores": 32,
+  "publicDomainMelodies": 6,
+  "filmMidiSlots": 34,
+  "nodeTests": 277,
+  "nodePassed": 277,
+  "newTests": 8,
+  "newSqlRequiredFrom731": false,
+  "newNpmDependencies": false,
+  "audioLabyrinthSourcePreserved": true,
+  "rolesVerifiedInDom": [
+    "guest",
+    "student",
+    "teacher",
+    "admin"
+  ],
+  "liveBrowserQa": false,
+  "physicalMidiQa": false,
+  "changedFiles": [
+    "package.json",
+    "package-lock.json",
+    "src/App.jsx",
+    "src/StudioShell.jsx",
+    "src/studio-navigation.js",
+    "src/effects.jsx",
+    "tests/vercel.test.js",
+    "README.md"
+  ],
+  "addedFiles": [
+    "src/CinemaPiano.jsx",
+    "src/cinema-piano.css",
+    "src/piano-audio.js",
+    "src/piano-music.js",
+    "src/piano-storage.js",
+    "tests/piano.test.js",
+    "UPDATE-7.32.md",
+    "QA-7.32.md",
+    "CHANGED-FILES-7.32.md",
+    "RELEASE-7.32.0.json"
+  ],
+  "audioVerification": {
+    "passed": true,
+    "renderer": "web-audio-engine OfflineAudioContext, not a physical audio device",
+    "cases": [
+      {
+        "name": "chord",
+        "frames": 132300,
+        "sampleRate": 44100,
+        "rms": 0.03397764981343083,
+        "peak": 0.37918418645858765,
+        "tailEnergy": 4.4174630078618757e-10
+      },
+      {
+        "name": "registers",
+        "frames": 132300,
+        "sampleRate": 44100,
+        "rms": 0.041916731347562006,
+        "peak": 0.413425087928772,
+        "tailEnergy": 1.3986234547047086e-08
+      },
+      {
+        "name": "reverb",
+        "frames": 132300,
+        "sampleRate": 44100,
+        "rms": 0.017836751848323746,
+        "peak": 0.11756612360477448,
+        "tailEnergy": 5.7207000259747646e-12
+      }
+    ],
+    "sustainPressRelease": true
+  }
+}

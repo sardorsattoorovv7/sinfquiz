@@ -1,3 +1,21 @@
+# SinfQuiz 7.33.0 — Qog‘oz ustaxonasi
+
+SinfQuiz interfeysi Paper Workshop uslubiga o‘tkazildi: tabiiy qog‘oz palitrasi, serif sarlavhalar, olti fan xatcho‘pi va interaktiv **Kashfiyot daftarim**. Kunduzgi va tungi rejim, rollarga mos navigatsiya hamda umumiy kodli qo‘shilish oynasi mavjud.
+
+**[Yangilash va ishlatish](UPDATE-7.33.md) · [Dizayn tizimi](PAPER-WORKSHOP.md) · [Tekshiruvlar](QA-7.33.md) · [O‘zgargan fayllar](CHANGED-FILES-7.33.md)**
+
+7.31.0 / 7.32.0 dan bu yangilanishga o‘tishda yangi SQL yoki npm dependency kerak emas. O‘zingizning `.env.local` qiymatlaringizni saqlang. Node.js 22.12+: `npm ci`, `npm run dev` yoki `npm run build`.
+
+Administrator, ustoz, o‘quvchi va mehmon oqimlari; darslar, atlaslar, musobaqalar, natijalar va Kino Piano shu to‘liq manbada mavjud. Jonli mobil/brauzer QA chegaralari QA hisobotida aniq ko‘rsatilgan.
+
+# SinfQuiz 7.32.0 — Kino Piano
+
+**Mashqlar → Kino Piano**: virtual pianino, yoritib o‘rgatish, avtoijro, MIDI import/eksport va Audio Lab. 32 original mashq va 6 klassik kuy tayyor; 34 kino katalogi shaxsiy MIDI yuklash uchun.
+
+**[Yangilash va ishlatish](UPDATE-7.32.md) · [Tekshiruvlar](QA-7.32.md) · [O‘zgargan fayllar](CHANGED-FILES-7.32.md)**
+
+7.31.0 dan bu yangilanish uchun yangi SQL kerak emas. Amaldagi environment qiymatlarini saqlang.
+
 # Audio Labirint dizayni tiklandi — 7.31.0
 
 Tosh devorli bog‘ sahnasi, yashil daraxtlar, suv yo‘llari, yuqoridagi taymer va maydon ostidagi oq-ko‘k javob paneli qaytarildi. **[Yangilash va ishga tushirish](UPDATE-LABIRINT.md) · [Tekshiruvlar](QA-LABIRINT.md)**

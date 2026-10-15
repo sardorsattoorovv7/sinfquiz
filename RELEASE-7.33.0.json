@@ -1,0 +1,95 @@
+{
+  "version": "7.33.0",
+  "design": "Qog‘oz ustaxonasi / Paper Workshop",
+  "baseline": "7.32.0",
+  "tests": {
+    "total": 285,
+    "passed": 285,
+    "failed": 0,
+    "newPaperTests": 5,
+    "pianoTests": 11
+  },
+  "productionBuild": true,
+  "cssParserWarnings": 0,
+  "rolesTestedInDom": [
+    "guest",
+    "student",
+    "teacher",
+    "admin"
+  ],
+  "liveBrowserQa": false,
+  "realMobileQa": false,
+  "physicalMidiQa": false,
+  "productionDeployment": false,
+  "newSqlRequired": false,
+  "newNpmDependencies": false,
+  "changedFiles": [
+    "README.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/favicon.svg",
+    "public/manifest.webmanifest",
+    "public/seo.css",
+    "public/theme-init.js",
+    "seo-pages.js",
+    "src/App.jsx",
+    "src/StudioShell.jsx",
+    "src/effects.jsx",
+    "src/main.jsx",
+    "src/textbooks/Reader.jsx",
+    "tests/classroom-browser.cjs",
+    "tests/learning-browser.cjs",
+    "tests/space-browser.cjs",
+    "tests/studio-browser.cjs",
+    "tests/vercel.test.js",
+    "src/CinemaPiano.jsx",
+    "src/piano-audio.js",
+    "src/piano-music.js",
+    "tests/piano.test.js"
+  ],
+  "addedFiles": [
+    "src/paper/PaperUI.jsx",
+    "src/paper/ClassJoinForm.jsx",
+    "src/paper/PaperHome.jsx",
+    "src/paper/paper-tokens.css",
+    "src/paper/paper-workshop.css",
+    "tests/paper-workshop.test.js",
+    "UPDATE-7.33.md",
+    "QA-7.33.md",
+    "PAPER-WORKSHOP.md",
+    "CHANGED-FILES-7.33.md",
+    "RELEASE-7.33.0.json"
+  ],
+  "protectedSources": {
+    "sql": {
+      "count": 69,
+      "unchanged": true
+    },
+    "api_and_supabase": {
+      "count": 5,
+      "unchanged": true
+    },
+    "question_data": {
+      "count": 35,
+      "unchanged": true
+    },
+    "science_models": {
+      "count": 14,
+      "unchanged": true
+    },
+    "restored_maze": {
+      "count": 3,
+      "unchanged": true
+    }
+  },
+  "pianoFixes": [
+    "canvas-independent recording timer",
+    "bounded 300-second takes",
+    "metronome scope cancellation",
+    "outside pointer release",
+    "MIDI range guard",
+    "optional auto-follow"
+  ],
+  "notes": "DOM/algorithm/CSS checks are not a live browser visual audit; see QA-7.33.md."
+}
