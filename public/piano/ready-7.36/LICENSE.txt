@@ -1,0 +1,19 @@
+SinfQuiz 7.36.0 — ready Turkish melody data
+
+Source: M. Kemal Karaosmanoğlu / SymbTr, Turkish Makam Music Symbolic Data Collection.
+Repository: https://github.com/MTG/SymbTr
+Commit: 246bbe362ef17cf9d200b5296e06473f29768be3
+License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License URL: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The 20 derived MIDI clips and src/piano-turkish-ready.js score data retain this license.
+Changes: first 30 seconds of each source MIDI; standard 12-semitone acoustic piano keys;
+melody assigned to the right hand; no invented accompaniment; MIDI lyrics/text omitted.
+Source checksums, per-track attribution and immutable source URLs are recorded in
+data/piano-ready-7.36.json and the adjacent manifest.json.
+
+This attribution/license applies to these music assets, not to unrelated SinfQuiz code.
+Bella Ciao is separately credited and remains CC0-1.0.
+
+Reference: M. Kemal Karaosmanoğlu, A Turkish makam music symbolic database for music
+information retrieval: SymbTr. ISMIR 2012, pages 223–228.

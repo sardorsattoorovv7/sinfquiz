@@ -14,3 +14,14 @@
 .cp-keyboard-pan{display:flex;align-items:center;justify-content:space-between;padding:5px 9px;background:#151a21;border-block:1px solid #323a44}.cp-app .cp-keyboard-pan button{display:flex;align-items:center;gap:6px;padding:5px;border:0;background:none;color:#c5ccd6;font-size:9px}.cp-keyboard-pan small{font-size:8px;color:#9da7b6}
 .cp-app .cp-track-copy>b{font-size:12px}.cp-app .cp-track-copy>small{font-size:9px}.cp-app .cp-feature p{font-size:12px}.cp-app .cp-range>span{font-size:12px}.cp-app .cp-toggle b{font-size:12px}.cp-app .cp-toggle small{font-size:10px}.cp-app .cp-latency-note{font-size:10px}.cp-app .cp-piano-bottom>span{font-size:9px}.cp-app .cp-key .cp-note-label{font-size:9px}.cp-app .cp-session-foot button{font-size:10px}
 @media(max-width:760px){.cp-app .cp-feature p{font-size:10px}.cp-app .cp-piano-bottom>span{font-size:8px}.cp-app .cp-track-copy>b{font-size:12px}}
+/* Repertoire navigation stays within the narrow library and touch targets. */
+.cp-app .cp-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+.cp-app .cp-tabs button{min-height:44px;white-space:normal;line-height:1.35}
+.cp-app .cp-track-copy>small{white-space:normal;line-height:1.4;overflow-wrap:anywhere}
+.cp-app .cp-track-artist{opacity:.9}
+.cp-app .cp-track-availability{font-weight:650}
+.cp-app .cp-feature-artist{display:block;font-size:14px;line-height:1.5;color:var(--cp-ink)}
+.cp-app .cp-source-link{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:7px 0;color:var(--cp-gold);font-size:12px;text-underline-offset:4px;overflow-wrap:anywhere}
+.cp-app .cp-source-link svg{flex:none}
+.cp-app .cp-source-link:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:3px}
+.cp-app .cp-upload-detail{display:block;margin:0 auto 18px;max-width:42ch;font-size:12px;line-height:1.6;color:var(--cp-muted)}

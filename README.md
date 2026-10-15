@@ -1,3 +1,25 @@
+# 7.36.0 — tayyor piano repertuari
+
+20 ta turkcha xalq/mumtoz MIDI melodiyasi qo‘shildi; Bella Ciao bilan 21 ta tayyor kuy. Foydalanuvchidan MIDI ulash yoki obuna talab qilinmaydi. Bu zamonaviy trend hitlar to‘plami emas. Yangi musiqa ma’lumotlari CC BY-NC-SA 4.0 (notijoriy foydalanish); tafsilot: [PIANO-SOURCES-7.36.md](PIANO-SOURCES-7.36.md). [O‘rnatish va yangilash](UPDATE-7.36.md).
+
+# SinfQuiz 7.35.0 — tezroq yuklanish
+
+Boshlang‘ich JavaScript **33.63%**, CSS **15.64%** kichraytirildi. Administrator, o‘quvchi, login, milliy test va jonli mashqlar alohida modullarga ajratildi. Audio Labirint va uning xaritalari zaruratda yuklanadi. Pianino statik nota maydonini qayta ishlatadi; audio ijrosi saqlangan.
+
+**[O‘rnatish va yangilash](UPDATE-7.35.md) · [Tekshiruv va o‘lchovlar](QA-7.35.md) · [O‘zgargan fayllar](CHANGED-FILES-7.35.md)**
+
+Bu to‘liq loyiha. ZIPni ixchamlashtirish uchun qayta yaratiladigan beshta Python runtime fayli arxivda takrorlanmagan: **`npm ci`** ularni avtomatik yaratadi. Build oldidan ham nusxalanadi. Yangi SQL, dependency yoki environment o‘zgarishi kerak emas.
+
+Node.js 22.12+: `npm ci`, `npm test`, `npm run build`, `npm run perf`. Lokal ochish: `npm run dev`.
+
+# SinfQuiz 7.34.0 — Turkcha va trend
+
+**Mashqlar → Kino Piano** endi **Bella Ciao** bilan ochiladi: 30 soniyalik tayyor piano, tinglash va yoritib o‘rganish. **KUSURA BAKMA — BLOK3** va yana 11 ta turkcha qo‘shiq uchun ijrochi, tinglash havolasi va shaxsiy MIDI ulash kartalari qo‘shildi. Ushbu 12 ta zamonaviy qo‘shiqning tayyor notalari kiritilmagan.
+
+**[Yangilash](UPDATE-7.34.md) · [Repertuar va manbalar](PIANO-REPERTOIRE.md) · [Tekshiruvlar](QA-7.34.md) · [O‘zgargan fayllar](CHANGED-FILES-7.34.md)**
+
+7.33.0 dan yangi SQL yoki dependency talab qilinmaydi. Paper Workshop dizayni va mavjud fanlar, rollar hamda Supabase ishlash mantiqi saqlangan.
+
 # SinfQuiz 7.33.0 — Qog‘oz ustaxonasi
 
 SinfQuiz interfeysi Paper Workshop uslubiga o‘tkazildi: tabiiy qog‘oz palitrasi, serif sarlavhalar, olti fan xatcho‘pi va interaktiv **Kashfiyot daftarim**. Kunduzgi va tungi rejim, rollarga mos navigatsiya hamda umumiy kodli qo‘shilish oynasi mavjud.

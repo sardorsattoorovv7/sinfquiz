@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PIANO_LIBRARY,FILM_CATALOG,KEY_CODES,normalizePianoSettings,keyboardGeometry,guideGroups,clipEvents,encodeMidi,parseMidi,frequency} from '../src/piano-music.js';
+import {READY_SONGS,SONG_REPERTOIRE} from '../src/piano-repertoire.js';
 import {PianoAudio,PianoTransport} from '../src/piano-audio.js';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
@@ -49,6 +50,13 @@ test('MIDI parser honors tempo changes, running status, channel percussion and r
  assert.throws(()=>parseMidi(smf([[0,60,100,0,255,47,0]])),/running status/);
  assert.throws(()=>parseMidi(smf([[0,255,47,0]])),/notalari topilmadi/);
 });
+test('MIDI import reports the actual initial tempo rather than the 120 BPM fallback',()=>{
+ const notes=[{midi:60,time:0,duration:1,velocity:.7,hand:'right'}];
+ for(const tempo of [60,78,84,108,150]){
+  const parsed=parseMidi(encodeMidi(notes,{tempo}).buffer);
+  assert.equal(parsed.bpm,tempo);assert.ok(Math.abs(parsed.events[0].duration-1)<.003);
+ }
+});
 test('Transport pause/resume and speed use the audio clock and restore sounding notes',async()=>{
  const scheduled=[],audio={ctx:{currentTime:0,state:'running'},ensure(){return this.ctx},schedule(...a){scheduled.push(a)},stopScope(){},tick(){}};
  const tr=new PianoTransport(audio);tr.load([{time:0,midi:60,duration:2,velocity:.7},{time:1,midi:64,duration:.5,velocity:.7}],3);
@@ -85,6 +93,8 @@ test('Kino Piano UI searches, teaches a complete melody, toggles labels and impo
  try{
   const {default:Module}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');
   const view=render(React.createElement(Module,{createAudio:factory,onActive:value=>active.push(value)}));
+  fireEvent.click(screen.getByRole('button',{name:'Mashqlar',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:/Orbital Dawn.*30 s/}));
   assert.equal(view.container.querySelectorAll('.cp-track').length,38);
   fireEvent.change(screen.getByRole('textbox',{name:'Piano kuyini qidirish'}),{target:{value:'Orbital'}});assert.equal(view.container.querySelectorAll('.cp-track').length,1);
   fireEvent.click(screen.getByRole('checkbox',{name:/Nota nomlari/}));assert.ok([...view.container.querySelectorAll('.cp-note-label')].every(n=>!n.textContent));
@@ -115,6 +125,7 @@ test('Piano clock, auto-follow, pointer release, MIDI input and recording limit 
  try{
   const {default:Module}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');t.mock.method(performance,'now',()=>now);
   const view=render(React.createElement(Module,{createAudio:()=>engine})),ui=within(view.container);
+  fireEvent.click(ui.getByRole('button',{name:'Mashqlar',exact:true}));fireEvent.click(ui.getByRole('button',{name:/Orbital Dawn.*30 s/}));
   const step=async time=>{now=time;const [id,fn]=frames.entries().next().value;frames.delete(id);await act(async()=>fn(time))};
   const sc=view.container.querySelector('.cp-keyboard-scroll');Object.defineProperty(sc,'clientWidth',{value:200});
   for(const key of sc.querySelectorAll('[data-note]')){Object.defineProperty(key,'offsetLeft',{value:Number(key.dataset.note)*20});Object.defineProperty(key,'offsetWidth',{value:20})}
@@ -133,7 +144,7 @@ test('Piano clock, auto-follow, pointer release, MIDI input and recording limit 
   const beforeMidi=played.length;act(()=>input.onmidimessage({data:[144,0,100]}));assert.equal(played.length,beforeMidi,'out-of-range MIDI does not create a virtual held note');
   act(()=>input.onmidimessage({data:[144,60,100]}));assert.equal(key.getAttribute('aria-pressed'),'true');act(()=>input.onmidimessage({data:[128,60,0]}));assert.equal(key.getAttribute('aria-pressed'),'false');
   act(()=>input.onmidimessage({data:[144,60,100]}));access.inputs.clear();act(()=>access.onstatechange());assert.equal(key.getAttribute('aria-pressed'),'false','disconnect releases MIDI notes');
-  fireEvent.click(ui.getByRole('button',{name:'Kino MIDI',exact:true}));fireEvent.click(ui.getByRole('button',{name:/Interstellar.*MIDI yuklang/}));assert.equal(view.container.querySelector('canvas'),null);
+  fireEvent.click(ui.getByRole('button',{name:'Tayyor kuylar',exact:true}));fireEvent.click(ui.getByRole('button',{name:/Sarı Gelin.*Tayyor/}));assert.equal(view.container.querySelector('.cp-film-upload'),null);
   await act(async()=>fireEvent.click(ui.getByRole('button',{name:'Ijroni yozish',exact:true})));
   now=1300;fireEvent.keyDown(window,{code:'KeyZ'});now=1700;fireEvent.keyUp(window,{code:'KeyZ'});
   await step(2200);assert.ok(ui.getByRole('button',{name:'Yozishni tugatish 00:01',exact:true}));
@@ -160,8 +171,8 @@ test('SinfQuiz opens Kino Piano for guest, student, teacher and admin, then retu
   for(role of [null,'student','teacher','admin']){
    location.hash='kino-piano';sessionStorage.clear();
    const view=render(React.createElement(App)),ui=within(view.container);
-   await ui.findByRole('heading',{level:1,name:'Orbital Dawn'});
-   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,38);
+   await ui.findByRole('heading',{level:1,name:READY_SONGS[0].title});
+   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,SONG_REPERTOIRE.length);
    fireEvent.click(ui.getByRole('button',{name:'Pianinodan orqaga'}));
    await ui.findByRole('heading',{name:'O‘zingiz sinab ko‘ring.',exact:true});
    assert.equal(location.hash,'#mashqlar');assert.ok(ui.getByRole('heading',{name:'Kino Piano',exact:true}));

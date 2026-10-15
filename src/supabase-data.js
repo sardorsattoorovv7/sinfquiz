@@ -1,15 +1,8 @@
 import {secureActivityPath,secureActivityApi} from './secure-activities.js';
 import {securePlayPath,securePlayApi,playRpc} from './secure-play-service.js';
 import {quizRanking} from './quiz-ranking.js';
-import bank from '../data/question-bank.json';
-import {office729Quizzes} from '../data/office-729.js';
-import {excelBasicsQuiz} from '../data/excel-basics.js';
-import typingLessons from '../data/english-typing-lessons.json';
-import longTypingLessons from '../data/typing-lessons.json';
-import {nationalTestBank} from '../data/national-test-bank.js';
 import {publicationError} from './national-validation.js';
 import {cefrResult} from './cefr-grading.js';
-import {audioMazeLevelById} from './audio-maze-content.js';
 import {adminEmail,ensureAnonymous,getSupabase,waitForAuth} from './supabase-sdk.js';
 
 const avatars=['🧑‍💻','👩‍🚀','🤖','🥷','🧙','🦸','👾','🦊','🐼','🦁','🐯','🐸'];
@@ -59,7 +52,7 @@ async function isTeacher(sdk,user=sdk.auth.currentUser){return ['teacher','admin
 
 async function seedQuizzes(sdk){
  const uid=sdk.auth.currentUser.uid;if(seededTeachers.has(uid))return;
- const current=await sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid)));if(!current.empty){
+ const [current,{default:bank},{office729Quizzes},{excelBasicsQuiz}]=await Promise.all([sdk.getDocs(sdk.query(sdk.collection(sdk.db,'quizzes'),sdk.where('ownerId','==',uid))),import('../data/question-bank.json'),import('../data/office-729.js'),import('../data/excel-basics.js')]);if(!current.empty){
   for(const source of [excelBasicsQuiz,...office729Quizzes]){
    if(current.docs.some(item=>item.data()?.templateKey===source.templateKey))continue;
    const id=`template:${source.templateKey}:${uid}`,pins=new Set(current.docs.map(item=>item.data()?.pin));let pin;do{pin=String(Math.floor(100000+Math.random()*900000))}while(pins.has(pin));
@@ -105,6 +98,7 @@ async function adminState(sdk){
 const raceSummary=race=>race?{id:race.id,active:!!race.active,phase:race.phase,title:race.title,sourceQuizId:race.sourceQuizId||null,questionCount:race.questionCount||race.questionsByLane?.[0]?.length||race.questions?.length||0,startsAt:race.startsAt||null,startedAt:race.startedAt||null,winnerId:race.winnerId||null,createdAt:race.createdAt,racers:(race.racers||[]).map(({answer,...player})=>player)}:null;
 export async function supabaseApi(path,{method='GET',data={}}={}){
  try{
+  const audioMazeLevelById=path.startsWith('/api/audio-maze')?(await import('./audio-maze-content.js')).audioMazeLevelById:null;
   if(secureActivityPath(path))return await secureActivityApi(path,data,{runtime,load,save});
   if(securePlayPath(path))return await securePlayApi(path,data,{runtime,load,save});
   if(path==='/auth/session'){

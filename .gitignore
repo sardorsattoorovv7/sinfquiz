@@ -1,5 +1,7 @@
 node_modules/
 dist/
+public/python-runtime/*
+!public/python-runtime/README.md
 .env
 .env.*
 !.env.example

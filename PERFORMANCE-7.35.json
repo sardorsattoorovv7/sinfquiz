@@ -1,0 +1,42 @@
+{
+  "baseline_version": "7.34.0",
+  "version": "7.35.0",
+  "javascript": {
+    "before": {
+      "files": 6,
+      "bytes": 879138,
+      "gzip": 257714,
+      "brotli": 215897
+    },
+    "after": {
+      "files": 6,
+      "bytes": 583479,
+      "gzip": 171607,
+      "brotli": 147396
+    },
+    "reduction_percent": 33.63
+  },
+  "css": {
+    "before": {
+      "files": 2,
+      "bytes": 372729,
+      "gzip": 66263,
+      "brotli": 54087
+    },
+    "after": {
+      "files": 2,
+      "bytes": 314436,
+      "gzip": 55345,
+      "brotli": 45572
+    },
+    "reduction_percent": 15.64
+  },
+  "budgets": {
+    "javascriptBytes": 650000,
+    "javascriptGzip": 200000,
+    "cssBytes": 380000,
+    "cssGzip": 75000,
+    "passed": true
+  },
+  "measurement": "Emitted local entry scripts, modulepreloads and stylesheets. Compression estimates; no browser timing."
+}

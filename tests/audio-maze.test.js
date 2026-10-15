@@ -50,7 +50,7 @@ test('audio maze RLS: teacher ownership, admin approval, active-level-only resul
 
 test('audio maze UI is wired into guest home and teacher/admin panels',()=>{
  const app=readFileSync(new URL('../src/App.jsx',import.meta.url),'utf8'),ui=readFileSync(new URL('../src/EnglishAudioMaze.jsx',import.meta.url),'utf8'),data=readFileSync(new URL('../src/supabase-data.js',import.meta.url),'utf8');
- assert.match(app,/import EnglishAudioMaze from '\.\/EnglishAudioMaze\.jsx'/);assert.doesNotMatch(app,/React\.lazy\(\(\)=>import\('\.\/EnglishAudioMaze\.jsx'\)\)/);assert.match(app,/onAudioMaze=\{\(\)=>\{setView\('audioMaze'\);location\.hash='audio-maze'\}\}/);assert.match(app,/section==='audioMaze'/);assert.match(ui,/onPlayingChange/);assert.match(ui,/SpeechSynthesisUtterance/);assert.match(data,/audioMazeActivations/);assert.match(data,/audioMazeResults/);
+ assert.match(app,/import EnglishAudioMaze from ["']\.\/lazy-audio-maze\.jsx/);assert.match(readFileSync(new URL('../src/lazy-audio-maze.jsx',import.meta.url),'utf8'),/deferredView.*import\('\.\/EnglishAudioMaze\.jsx'\)/);assert.match(app,/onAudioMaze=\{\(\)=>\{setView\('audioMaze'\);location\.hash='audio-maze'\}\}/);assert.match(readFileSync(new URL('../src/app-views/AdminViews.jsx',import.meta.url),'utf8'),/section==='audioMaze'/);assert.match(ui,/onPlayingChange/);assert.match(ui,/SpeechSynthesisUtterance/);assert.match(data,/audioMazeActivations/);assert.match(data,/audioMazeResults/);
 });
 
 test('Audio Labyrinth loads its active map and enters the game board',async()=>{

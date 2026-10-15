@@ -183,7 +183,8 @@ export function parseMidi(arrayBuffer){
  const origin=notes.reduce((min,n)=>Math.min(min,n.time),Infinity);for(const n of notes)n.time-=origin;
  const duration=notes.reduce((max,n)=>Math.max(max,n.time+n.duration),0);
  if(duration>3600)throw Error('Bir soatdan qisqa MIDI fayl tanlang.');
- return {events:notes.sort((a,b)=>a.time-b.time||a.midi-b.midi),duration,title:trackNames.find(s=>s.trim())||'',bpm:Math.round(60e6/tempoMap[0].micro)};
+ const initialTempo=tempoMap.filter(t=>t.tick===0).at(-1)||tempoMap[0];
+ return {events:notes.sort((a,b)=>a.time-b.time||a.midi-b.midi),duration,title:trackNames.find(s=>s.trim())||'',bpm:Math.round(60e6/initialTempo.micro)};
 }
 export function encodeMidi(notes,{tempo=120,pedalEvents=[]}={}){
  const division=480,micro=Math.round(60e6/tempo),ticksPerSecond=division*tempo/60,events=[];

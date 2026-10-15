@@ -1,0 +1,27 @@
+{
+  "version": "7.36.0",
+  "name": "Ready-Piano-20",
+  "baseVersion": "7.35.0",
+  "tests": {
+    "passed": 291,
+    "failed": 0
+  },
+  "productionBuild": "passed",
+  "performanceBudget": "passed",
+  "initialJsBytes": 583479,
+  "initialCssBytes": 314436,
+  "newReadyScores": 20,
+  "allReadySongs": 21,
+  "newMidiNotes": 1846,
+  "newMidiBytes": 16466,
+  "newMidiLicense": "CC-BY-NC-SA-4.0",
+  "modernChartSongsAdded": 0,
+  "hindiSongsAdded": 0,
+  "noMidiUploadRequiredForReadySongs": true,
+  "newSqlRequired": false,
+  "dependencyChanges": false,
+  "browserQaPerformed": false,
+  "liveDeploymentPerformed": false,
+  "upstreamCommit": "246bbe362ef17cf9d200b5296e06473f29768be3",
+  "sources": "PIANO-SOURCES-7.36.md"
+}

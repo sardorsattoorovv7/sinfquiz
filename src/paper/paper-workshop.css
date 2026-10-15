@@ -383,6 +383,9 @@
 :root[data-design="paper"] .paper-workshop .cp-brand small{color:var(--pw-muted);font-size:9px}
 :root[data-design="paper"] .paper-workshop .cp-mark{background:var(--pw-accent-soft);color:var(--pw-accent-ink);border-color:var(--pw-border);border-radius:5px}
 :root[data-design="paper"] .paper-workshop .cp-feature h1{font-family:var(--pw-serif);font-weight:400;font-size:clamp(29px,3vw,43px);letter-spacing:-1px;color:var(--pw-ink)}
+:root[data-design="paper"] .paper-workshop .cp-source-link{color:var(--pw-accent-ink);font-size:13px;min-height:44px}
+:root[data-design="paper"] .paper-workshop .cp-feature-artist{color:var(--pw-ink)}
+:root[data-design="paper"] .paper-workshop .cp-upload-detail{color:var(--pw-muted)}
 :root[data-design="paper"] .paper-workshop :is(.cp-feature p,.cp-track-copy>small,.cp-lab p,.cp-help p,.cp-latency-note,.cp-overline){color:var(--pw-muted)}
 :root[data-design="paper"] .paper-workshop .cp-app :is(.cp-icon,.cp-button,.cp-mobile-tools button,.cp-midi button,.cp-keyboard-pan button,.cp-speed select,.cp-hand-label select,.cp-piano-top select,.cp-piano-top button,.cp-piano-bottom button){background:var(--pw-paper);border-color:var(--pw-border);color:var(--pw-ink);min-height:44px;min-width:44px;border-radius:5px}
 :root[data-design="paper"] .paper-workshop .cp-search{background:var(--pw-paper-alt);border-color:var(--pw-border);color:var(--pw-muted)}

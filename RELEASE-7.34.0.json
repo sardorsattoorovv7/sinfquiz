@@ -1,0 +1,21 @@
+{
+  "version": "7.34.0",
+  "name": "Turkcha va trend",
+  "baseline": "7.33.0",
+  "ready_new_scores": 1,
+  "modern_midi_cards": 12,
+  "previous_ready_scores": 38,
+  "film_midi_cards": 34,
+  "tests": {
+    "total": 288,
+    "passed": 288,
+    "failed": 0
+  },
+  "production_build": "passed",
+  "new_sql_required": false,
+  "dependency_changes": false,
+  "browser_qa_performed": false,
+  "sources": "PIANO-REPERTOIRE.md",
+  "changed_files": "CHANGED-FILES-7.34.md",
+  "qa": "QA-7.34.md"
+}
