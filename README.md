@@ -1,3 +1,7 @@
+# Audio Labirint dizayni tiklandi — 7.31.0
+
+Tosh devorli bog‘ sahnasi, yashil daraxtlar, suv yo‘llari, yuqoridagi taymer va maydon ostidagi oq-ko‘k javob paneli qaytarildi. **[Yangilash va ishga tushirish](UPDATE-LABIRINT.md) · [Tekshiruvlar](QA-LABIRINT.md)**
+
 # Yangilash: 7.30.0
 
 Koinot atlasi uchun [UPDATE-7.30.md](UPDATE-7.30.md)ni o‘qing. 7.29 dan: `supabase-office-amaliy-fix.sql`, keyin `supabase-migration-7.30.sql`. Mavjud login va environment qiymatlari saqlanadi. To‘liq ketma-ketlik `migration-chain.json`da.
