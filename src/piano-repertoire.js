@@ -2,7 +2,8 @@ import {BELLA_CIAO_EVENTS} from './piano-bella-ciao.js';
 import {READY_TURKISH_SONGS} from './piano-turkish-ready.js';
 import {MODERN_SONGS} from './piano-modern-ready.js';
 import {FOCUS_SONGS} from './piano-focus-ready.js';
-export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS};
+import {NEW_SONGS} from './piano-expansion-ready.js';
+export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS,NEW_SONGS};
 
 export const REPERTOIRE_CHECKED_AT='2026-10-16';
 export const READY_SONGS=[{
@@ -35,7 +36,7 @@ export const TURKISH_CATALOG=[
  description:'Pianoda o‘rganish uchun shu qo‘shiqning o‘zingizdagi MIDI faylini ulang. Istalgan 30 soniyagacha parchani tanlashingiz mumkin.',
 }));
 
-export const SONG_REPERTOIRE=[...FOCUS_SONGS,...MODERN_SONGS,...READY_SONGS];
+export const SONG_REPERTOIRE=[...NEW_SONGS,...FOCUS_SONGS,...MODERN_SONGS,...READY_SONGS];
 export const requiresMidi=track=>track?.kind==='film'||track?.kind==='song';
 
 export function normalizePianoSearch(value=''){
@@ -43,7 +44,7 @@ export function normalizePianoSearch(value=''){
 }
 export function matchesPianoSearch(track,query){
  const words=normalizePianoSearch(query).split(' ').filter(Boolean);
- const haystack=normalizePianoSearch([track.title,track.artist,track.movie,track.movieAlias,track.key,track.mood,...(track.aliases||[])].filter(Boolean).join(' '));
+ const haystack=normalizePianoSearch([track.title,track.artist,track.movie,track.movieAlias,track.series,track.album,track.key,track.mood,...(track.aliases||[])].filter(Boolean).join(' '));
  return words.every(word=>haystack.includes(word));
 }
 

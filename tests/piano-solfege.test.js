@@ -40,7 +40,7 @@ test('known MIDI staff/channel assignments keep the melody below middle C and ba
 test('twenty modern hits have distinct, bundled 30-second piano scores with exact MIDI provenance',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/modern-7.37/manifest.json',import.meta.url)));
  const sources=JSON.parse(fs.readFileSync(new URL('../data/piano-modern-7.37.json',import.meta.url)));
- assert.equal(MODERN_SONGS.length,20);assert.equal(READY_SONGS.length,21);assert.equal(SONG_REPERTOIRE.length,41+FOCUS_SONGS.length);
+ assert.equal(MODERN_SONGS.length,20);assert.equal(READY_SONGS.length,21);assert.equal(SONG_REPERTOIRE.length,61+FOCUS_SONGS.length);
  assert.ok(MODERN_SONGS.some(t=>t.title==='APT.'));assert.ok(MODERN_SONGS.some(t=>t.title==='Espresso'));
  assert.ok(MODERN_SONGS.every(t=>t.year>=2023&&t.kind==='ready'&&!requiresMidi(t)));
  const signatures=new Set();let count=0;

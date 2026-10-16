@@ -1,0 +1,61 @@
+{
+  "version": "7.39.0",
+  "date": "2026-10-16",
+  "basedOn": "7.38.0",
+  "addedSongs": 20,
+  "trainingSeasonChorus": true,
+  "turkishSeriesThemes": 9,
+  "hindiFilmSongs": 10,
+  "readyMidiSources": 5,
+  "scoreTranscriptions": 15,
+  "notes": 1209,
+  "newMidiBytes": 11294,
+  "durationPerSong": 30,
+  "melodyOnly": true,
+  "readySongsTotal": 72,
+  "originalAndClassicPracticeTracks": 38,
+  "landscapeStage": {
+    "cssRotation": true,
+    "nativeFullscreenAndOrientationWhenSupported": true,
+    "phoneTabletPortraitFallback": true,
+    "safeAreas": true,
+    "progressPreserved": true,
+    "multiPointerInputPreserved": true
+  },
+  "newDependencies": false,
+  "newSql": false,
+  "tests": {
+    "passed": 308,
+    "failed": 0,
+    "skipped": 0
+  },
+  "productionBuild": "passed",
+  "initialJavascript": {
+    "files": 6,
+    "bytes": 583481,
+    "gzip": 171609,
+    "brotli": 147384
+  },
+  "initialCss": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "performanceBudgetPassed": true,
+  "pianoChunks": [
+    {
+      "name": "CinemaPiano-Fqke7-SR.js",
+      "bytes": 362086
+    },
+    {
+      "name": "CinemaPiano-BWRtg9pO.css",
+      "bytes": 42623
+    }
+  ],
+  "browserQa": "not run: control-browser unavailable",
+  "realAudioListeningTest": "not run",
+  "realPhoneTabletTouchTest": "not run",
+  "fullProjectBaselineFiles": 1254,
+  "protectedPreviousFilesUnchanged": 517
+}

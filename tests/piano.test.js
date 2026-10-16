@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PIANO_LIBRARY,FILM_CATALOG,KEY_CODES,normalizePianoSettings,keyboardGeometry,guideGroups,clipEvents,encodeMidi,parseMidi,frequency} from '../src/piano-music.js';
-import {READY_SONGS,MODERN_SONGS,FOCUS_SONGS,SONG_REPERTOIRE} from '../src/piano-repertoire.js';
+import {READY_SONGS,MODERN_SONGS,FOCUS_SONGS,NEW_SONGS,SONG_REPERTOIRE} from '../src/piano-repertoire.js';
 import {PianoAudio,PianoTransport} from '../src/piano-audio.js';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
@@ -171,8 +171,8 @@ test('SinfQuiz opens Kino Piano for guest, student, teacher and admin, then retu
   for(role of [null,'student','teacher','admin']){
    location.hash='kino-piano';sessionStorage.clear();
    const view=render(React.createElement(App)),ui=within(view.container);
-   await ui.findByRole('heading',{level:1,name:FOCUS_SONGS[0].title});
-   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,FOCUS_SONGS.length);
+   await ui.findByRole('heading',{level:1,name:NEW_SONGS[0].title});
+   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.length);
    fireEvent.click(ui.getByRole('button',{name:'Pianinodan orqaga'}));
    await ui.findByRole('heading',{name:'O‘zingiz sinab ko‘ring.',exact:true});
    assert.equal(location.hash,'#mashqlar');assert.ok(ui.getByRole('heading',{name:'Kino Piano',exact:true}));

@@ -10,7 +10,7 @@ import {parseMidi,encodeMidi,guideGroups,solfegeName} from '../src/piano-music.j
 test('BLOK3 and Shah Rukh repertoire contains eleven playable excerpts with honest source types',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/focus-7.38/manifest.json',import.meta.url)));
  const source=JSON.parse(fs.readFileSync(new URL('../data/piano-focus-7.38.json',import.meta.url)));
- assert.equal(FOCUS_SONGS.length,11);assert.equal(SONG_REPERTOIRE.length,52);
+ assert.equal(FOCUS_SONGS.length,11);assert.equal(SONG_REPERTOIRE.length,72);
  assert.equal(FOCUS_SONGS.filter(t=>t.artist==='BLOK3').length,6);
  assert.equal(FOCUS_SONGS.filter(t=>t.language==='hi').length,5);
  assert.equal(FOCUS_SONGS.filter(t=>t.sourceType==='ready-midi').length,4);
@@ -95,6 +95,8 @@ test('all eleven requested cards play and teach immediately; film search and lan
   const {default:Piano}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');
   globalThis.fetch=async url=>{requests.push(String(url));throw Error('Bundled melodies must not fetch external files');};
   const view=render(React.createElement(Piano,{createAudio:()=>engine})),ui=within(view.container);
+  fireEvent.click(ui.getByRole('button',{name:'BLOK3 va hindcha',exact:true}));
+  fireEvent.click(ui.getByRole('button',{name:/Kusura Bakma.*Tayyor/}));
   assert.ok(ui.getByRole('heading',{level:1,name:'Kusura Bakma'}));
   assert.equal(ui.getByRole('button',{name:'BLOK3 va hindcha',exact:true}).getAttribute('aria-pressed'),'true');
   assert.equal(ui.getByRole('combobox',{name:'Mashq qilinadigan qo‘l'}).value,'right');

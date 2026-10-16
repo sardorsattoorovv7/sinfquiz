@@ -28,8 +28,8 @@ test('Bella Ciao preserves every verified CC0 source note in a complete 30-secon
 test('twenty ready Turkish scores contain verified MIDI clips, distinct melodies and source licenses',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/ready-7.36/manifest.json',import.meta.url)));
  const source=JSON.parse(fs.readFileSync(new URL('../data/piano-ready-7.36.json',import.meta.url)));
- assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,52);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,52);
+ assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72);
  const melodies=new Set();let notes=0;
  for(const track of READY_TURKISH_SONGS){
   const row=manifest.tracks.find(t=>t.id===track.id),original=source.tracks.find(t=>t.id===track.id);

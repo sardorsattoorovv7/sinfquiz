@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-16",
+  "readyMidiSources": [
+    {
+      "title": "Kal Ho Naa Ho",
+      "sourceSha256": "a0577bc2228f7316defd38032a44ae5a3fac37773e33492887a00e3d1f723422",
+      "sourceBytes": 2944,
+      "sourceMidiHeader": "MThd",
+      "sourceNotesAndTimingCompared": true,
+      "originalMelodyRetained": true,
+      "transposeSemitones": 0,
+      "sourceUrl": "https://jarzee.in/midi-files/kal-ho-na-ho/kal-ho-na-ho"
+    },
+    {
+      "title": "Main Agar Kahoon",
+      "sourceSha256": "b46db7d9ad9e0534d0230515978bca74e96c7eb6ebef053550ab6e90a2344dad",
+      "sourceBytes": 6749,
+      "sourceMidiHeader": "MThd",
+      "sourceNotesAndTimingCompared": true,
+      "originalMelodyRetained": true,
+      "transposeSemitones": -12,
+      "sourceUrl": "https://jarzee.in/midi-files/om-shanti-om/main-agar-kahoon"
+    },
+    {
+      "title": "Dil Diyan Gallan",
+      "sourceSha256": "ca737fe0fa8468762ea2dbe3c88868a0b643bf5fae83dcb3d8d99400d1207e41",
+      "sourceBytes": 5828,
+      "sourceMidiHeader": "MThd",
+      "sourceNotesAndTimingCompared": true,
+      "originalMelodyRetained": true,
+      "transposeSemitones": 0,
+      "sourceUrl": "https://jarzee.in/midi-files/tiger-zinda-hai/dil-diyan-gallan"
+    },
+    {
+      "title": "Khamoshiyan",
+      "sourceSha256": "517b0962238016844c8775764fc68b11d23307261c26afd232a97cb615dc0d7c",
+      "sourceBytes": 4095,
+      "sourceMidiHeader": "MThd",
+      "sourceNotesAndTimingCompared": true,
+      "originalMelodyRetained": true,
+      "transposeSemitones": 0,
+      "sourceUrl": "https://jarzee.in/midi-files/khamoshiyan/khamoshiyan"
+    },
+    {
+      "title": "Mere Haath Mein",
+      "sourceSha256": "dd79b665fb68b57eda4627ce45b34ea6a0fa82964e2b9f8a1d8cfadcd0bb8055",
+      "sourceBytes": 3298,
+      "sourceMidiHeader": "MThd",
+      "sourceNotesAndTimingCompared": true,
+      "originalMelodyRetained": true,
+      "transposeSemitones": 0,
+      "sourceUrl": "https://jarzee.in/midi-files/fanaa/mere-haath-mein"
+    }
+  ],
+  "noteComparison": "Each published source MIDI was parsed and its first30seconds compared to the selected input events: note count/pitch exact, timing and duration error<2ms. Final <32ms boundary fragments omitted by bundle generator."
+}

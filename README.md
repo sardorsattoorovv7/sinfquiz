@@ -1,3 +1,13 @@
+# SinfQuiz 7.39.0 — 20 yangi kuy va yonlama piano
+
+**Mashqlar → Kino Piano → Yangi kuylar**: Dua Lipa — Training Season’ning aynan naqorati, Çukur, Kara Sevda’dan ikki mavzu, Ezel, Eyşan, Aşk-ı Memnu, Yalı Çapkını, Leyla, Medcezir va 10 ta hindcha kino kuyi. “Ishq va qasos” (Marjaavaan) uchun Tum Hi Aana hamda Thodi Jagah kiritilgan.
+
+20 ta yangi 30 soniyalik o‘ng qo‘l melodiyasi: **5 tasi bepul tayyor MIDI manbasidan, 15 tasi ochiq notadan tayyorlangan o‘quv parcha**. Do–Re–Mi darslari, tinglash, tezlik va MIDI eksport bor. Notadan olingan kuylar o‘quv tempida; uchta hindcha parchada soddalashtirilgan ritm aniq ko‘rsatilgan. Oldingi 52 kuy va 38 mashq saqlangan.
+
+Telefon/planshetda **Yonlama piano** tugmasini bosing. Klavishlar va tutorial keng sahnada joylashadi. Aylantirish tugmasi ko‘rinishni 90° buradi. Brauzer qo‘llasa fullscreen va landscape ishlaydi; qo‘llamasa ilovaning o‘zida aylantirilgan sahna ochiladi. Qadamlar va sozlamalar saqlanadi.
+
+**[O‘rnatish](UPDATE-7.39.md) · [Tekshiruvlar](QA-7.39.md) · [Kuylar va manbalar](PIANO-SOURCES-7.39.md) · [O‘zgargan fayllar](CHANGED-FILES-7.39.md)**
+
 # SinfQuiz 7.38.0 — BLOK3 va Shohruxxon kinolari
 
 **Mashqlar → Kino Piano → BLOK3 va hindcha**: 6 ta BLOK3 qo‘shig‘i va 5 ta hindcha kino melodiyasi qo‘shildi. Kusura Bakma, Git, Sebebi Yar, Napıyosun Mesela, Kırgınım, Kayıp Kalp; “O‘g‘irlanmagan kelin”dan Tujhe Dekha Toh, Kuch Kuch Hota Hai, Main Hoon Na, Baazigar O Baazigar va Yeh Kaali Kaali Aankhen.
