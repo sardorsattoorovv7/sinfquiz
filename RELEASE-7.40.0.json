@@ -1,0 +1,95 @@
+{
+  "version": "7.40.0",
+  "date": "2026-10-16",
+  "baseVersion": "7.39.0",
+  "tests": {
+    "passed": 314,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": "passed",
+  "performanceBudget": "passed",
+  "initialJavaScript": {
+    "files": 6,
+    "bytes": 583481,
+    "gzip": 171603,
+    "brotli": 147384
+  },
+  "initialCss": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "lazyPiano": [
+    {
+      "file": "CinemaPiano-BFOhtv11.css",
+      "bytes": 42868
+    },
+    {
+      "file": "CinemaPiano-BBQf5r61.js",
+      "bytes": 375357
+    }
+  ],
+  "newReadySongs": 5,
+  "readySongsTotal": 77,
+  "practiceSongs": 38,
+  "notesAdded": 283,
+  "midiBytesAdded": 2638,
+  "songs": [
+    {
+      "id": "requested-belalim-chorus",
+      "title": "Belalım — naqorat",
+      "artist": "Sezen Aksu",
+      "sourceType": "score-transcription",
+      "section": "Naqorat: 23–29-taktlar, 1- va 2-volta ko‘rsatmalariga ko‘ra takrorlanadi.",
+      "simplifiedRhythm": false
+    },
+    {
+      "id": "requested-calikusu-theme",
+      "title": "Çalıkuşu — asosiy mavzu",
+      "artist": "Esin Engin",
+      "sourceType": "score-transcription",
+      "section": "Serialning Esin Engin bastalagan asosiy mavzusi: 1–5-taktlar, 1- va 2-volta bilan. Bu vokal naqorat emas.",
+      "simplifiedRhythm": false
+    },
+    {
+      "id": "requested-unutmak-istiyorum-hook",
+      "title": "Unutmak İstiyorum — asosiy qism",
+      "artist": "Ufuk Çalışkan",
+      "sourceType": "score-transcription",
+      "section": "Ochiq fingerstyle aranjirovkadagi 21–28-taktlarning asosiy takroriy frazasi. Faqat yuqori melodiya ovozi, bas va to‘liq strum akkordlari olib tashlangan.",
+      "simplifiedRhythm": false
+    },
+    {
+      "id": "requested-diet-mountain-dew",
+      "title": "Diet Mountain Dew — naqorat",
+      "artist": "Lana Del Rey",
+      "sourceType": "score-transcription",
+      "section": "Manbada Chorus deb belgilangan birinchi to‘rt satr va naqoratning qaytgan birinchi iborasi. Intro yoki band emas.",
+      "simplifiedRhythm": true
+    },
+    {
+      "id": "requested-bu-aksam-olurum-chorus",
+      "title": "Bu Akşam Ölürüm — naqorat",
+      "artist": "Murat Kekilli",
+      "sourceType": "score-transcription",
+      "section": "Asosiy vokal naqorat: 24–31-taktlar; gitara introsi emas.",
+      "simplifiedRhythm": false
+    }
+  ],
+  "unresolvedRequests": [
+    "Alisher Uzoqov — Nahotki shu bo‘lsa sevgi: exact melody not verified"
+  ],
+  "louderOutput": true,
+  "landscapeVolume": true,
+  "newSql": false,
+  "newDependencies": false,
+  "verificationLimits": [
+    "No actual-browser or device rendering",
+    "No audible output comparison",
+    "No live Supabase E2E"
+  ],
+  "sourceDocs": "PIANO-SOURCES-7.40.md",
+  "qa": "QA-7.40.md"
+}

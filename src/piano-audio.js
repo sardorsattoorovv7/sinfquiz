@@ -1,10 +1,24 @@
-import {clamp,frequency} from './piano-music.js';
+import {clamp,frequency,DEFAULT_PIANO_SETTINGS} from './piano-music.js';
+
+// Shared boost for manual keys, lessons, preview notes and MIDI. The last
+// native audio node bounds peaks without a JS audio loop or downloaded assets.
+export const PIANO_OUTPUT_BOOST=2.5;
+export const PIANO_OUTPUT_MAKEUP=1.15;
+export const PIANO_OUTPUT_CEILING=.97;
+export function pianoLimiterCurve(){
+ const curve=new Float32Array(8193),knee=.8,room=PIANO_OUTPUT_CEILING-knee;
+ for(let i=0;i<curve.length;i++){
+  const x=i*2/(curve.length-1)-1,a=Math.abs(x);
+  curve[i]=Math.sign(x)*(a<=knee?a:knee+room*Math.tanh((a-knee)/room));
+ }
+ return curve;
+}
 
 // Five independently decaying string/partial layers and a filtered hammer
 // transient per voice. No network samples or main-thread audio processing.
 export class PianoAudio {
  constructor({contextFactory,onState=()=>{}}={}){
-  this.factory=contextFactory;this.onState=onState;this.voices=new Map();this.counter=0;this.sustain=false;this.settings={volume:.72,gain:1,reverb:.24};this.disposed=false;
+  this.factory=contextFactory;this.onState=onState;this.voices=new Map();this.counter=0;this.sustain=false;this.settings={volume:DEFAULT_PIANO_SETTINGS.volume,gain:DEFAULT_PIANO_SETTINGS.gain,reverb:DEFAULT_PIANO_SETTINGS.reverb};this.disposed=false;
  }
  ensure(){
   if(this.disposed)throw Error('Audio yopilgan.');
@@ -14,12 +28,16 @@ export class PianoAudio {
    const ctx=this.ctx=this.factory?this.factory():new Audio({latencyHint:'interactive'});
    this.input=ctx.createGain();this.dry=ctx.createGain();this.wet=ctx.createGain();
    this.convolver=ctx.createConvolver();this.volume=ctx.createGain();this.master=ctx.createGain();
+   this.boost=ctx.createGain();this.makeup=ctx.createGain();this.limiter=ctx.createWaveShaper();
+   this.boost.gain.value=PIANO_OUTPUT_BOOST;this.makeup.gain.value=PIANO_OUTPUT_MAKEUP;
+   this.limiter.curve=pianoLimiterCurve();this.limiter.oversample='none';
    this.compressor=ctx.createDynamicsCompressor();this.analyser=ctx.createAnalyser();
    this.compressor.threshold.value=-12;this.compressor.knee.value=15;this.compressor.ratio.value=5;this.compressor.attack.value=.003;this.compressor.release.value=.2;
    this.analyser.fftSize=512;
    this.input.connect(this.dry);this.input.connect(this.convolver);this.convolver.connect(this.wet);
    this.dry.connect(this.volume);this.wet.connect(this.volume);this.volume.connect(this.master);
-   this.master.connect(this.compressor);this.compressor.connect(this.analyser);this.analyser.connect(ctx.destination);
+   this.master.connect(this.boost);this.boost.connect(this.compressor);this.compressor.connect(this.makeup);
+   this.makeup.connect(this.limiter);this.limiter.connect(this.analyser);this.analyser.connect(ctx.destination);
    const length=Math.floor(ctx.sampleRate*1.85),impulse=ctx.createBuffer(2,length,ctx.sampleRate);
    let seed=81921;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)|0;return (seed>>>0)/4294967296*2-1};
    for(let ch=0;ch<2;ch++){const d=impulse.getChannelData(ch);for(let i=0;i<length;i++)d[i]=rand()*Math.pow(1-i/length,2.8)*.65}
@@ -120,13 +138,14 @@ export class PianoAudio {
 // Audio-clock lookahead scheduling; animation frames are never used to time audio.
 export class PianoTransport{
  constructor(audio,{onEnd=()=>{},onChange=()=>{}}={}){this.audio=audio;this.onEnd=onEnd;this.onChange=onChange;this.offset=0;this.speed=1;this.playing=false;this.loop=false;this.events=[];this.duration=30;this.timer=null;this.generation=0}
- load(events,duration=30,bpm=90){this.stop();this.events=[...events].sort((a,b)=>a.time-b.time);this.duration=duration;this.bpm=bpm}
+ load(events,duration=30,bpm=90,meter='4/4'){this.stop();this.events=[...events].sort((a,b)=>a.time-b.time);this.duration=duration;this.bpm=bpm;const m=/^(\d{1,2})\/(2|4|8|16)$/.exec(meter||'4/4');this.beatsPerBar=m&&Number(m[1])>0?Number(m[1]):4;this.beatUnit=m?Number(m[2]):4}
+ beatSeconds(){return 60/(this.bpm||90)*4/(this.beatUnit||4)}
  position(){return this.playing?Math.min(this.duration,this.offset+Math.max(0,this.audio.ctx.currentTime-this.startedAt)*this.speed):this.offset}
  async play(){
   const generation=this.generation;this.audio.ensure();if(this.audio.ctx.state==='suspended')await this.audio.ctx.resume();
   if(this.playing||generation!==this.generation)return;if(this.offset>=this.duration-.005)this.offset=0;
   this.startedAt=this.audio.ctx.currentTime+.035;this.cursor=this.events.findIndex(e=>e.time>=this.offset-.001);if(this.cursor<0)this.cursor=this.events.length;
-  this.nextBeat=Math.ceil(this.offset/(60/this.bpm));this.playing=true;
+  this.nextBeat=Math.ceil(this.offset/this.beatSeconds());this.playing=true;
   // Restore notes already sounding when resuming/seeking into their duration.
   for(const e of this.events)if(e.time<this.offset-.001&&e.time+e.duration>this.offset)this.audio.schedule(e.midi,e.velocity,this.startedAt,(e.time+e.duration-this.offset)/this.speed);
   this.pump();this.timer=setInterval(()=>this.pump(),25);this.onChange(true);
@@ -138,10 +157,10 @@ export class PianoTransport{
    const e=this.events[this.cursor++],at=this.startedAt+(e.time-this.offset)/this.speed;
    if(at>=now-.035)this.audio.schedule(e.midi,e.velocity,Math.max(now,at),Math.min(e.duration,this.duration-e.time)/this.speed);
   }
-  if(this.metronome){const beat=60/this.bpm;this.nextBeat=Math.max(this.nextBeat,Math.ceil((pos-.001)/beat));while(this.nextBeat*beat<=horizon&&this.nextBeat*beat<this.duration){const at=this.startedAt+(this.nextBeat*beat-this.offset)/this.speed;if(at>=now)this.audio.tick(at,this.nextBeat%4===0);this.nextBeat++}}
+  if(this.metronome){const beat=this.beatSeconds();this.nextBeat=Math.max(this.nextBeat,Math.ceil((pos-.001)/beat));while(this.nextBeat*beat<=horizon&&this.nextBeat*beat<this.duration){const at=this.startedAt+(this.nextBeat*beat-this.offset)/this.speed;if(at>=now)this.audio.tick(at,this.nextBeat%this.beatsPerBar===0);this.nextBeat++}}
   if(pos>=this.duration){if(this.loop){this.pause();this.offset=0;this.play().catch(()=>{})}else{this.pause();this.offset=this.duration;this.onEnd()}}
  }
- setMetronome(enabled){if(this.metronome===Boolean(enabled))return;this.metronome=Boolean(enabled);this.audio.stopScope('metronome');if(this.metronome)this.nextBeat=Math.ceil(this.position()/(60/(this.bpm||90)))}
+ setMetronome(enabled){if(this.metronome===Boolean(enabled))return;this.metronome=Boolean(enabled);this.audio.stopScope('metronome');if(this.metronome)this.nextBeat=Math.ceil(this.position()/this.beatSeconds())}
  pause(){this.generation++;if(this.playing)this.offset=this.position();this.playing=false;clearInterval(this.timer);this.timer=null;this.audio.stopScope('transport');this.audio.stopScope('metronome');this.onChange(false)}
  stop(){this.pause();this.offset=0}
  seek(seconds){const playing=this.playing;this.pause();this.offset=clamp(seconds,0,this.duration);if(playing)this.play().catch(()=>{})}

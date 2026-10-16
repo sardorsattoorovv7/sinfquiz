@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-16",
+  "tracks": [
+    {
+      "id": "requested-belalim-chorus",
+      "sourceFileSha256": "e4d6e97ead3eba50699b08921ef2e88d74e04589b08ba3c41ef8eb6216682dda",
+      "sourceHashMatched": true,
+      "writtenPitchAnchorsReviewed": true,
+      "sourceType": "score-transcription",
+      "notes": 62,
+      "section": "Naqorat: 23–29-taktlar, 1- va 2-volta ko‘rsatmalariga ko‘ra takrorlanadi.",
+      "rhythm": "Notadagi 16-, 8-, chorak va nuqtali davomiyliklar saqlangan; bog‘langan notalar bitta bosish. Gitara 8lik oktava belgisi hisobga olingan; 80 BPM o‘quv tempi.",
+      "simplifiedRhythm": false,
+      "audioListeningPerformed": false
+    },
+    {
+      "id": "requested-calikusu-theme",
+      "sourceFileSha256": "7c492acc83431a898424cdcbb8b34caa3ff64af5aec4458376eb8ef557f176ef",
+      "sourceHashMatched": true,
+      "writtenPitchAnchorsReviewed": true,
+      "sourceType": "score-transcription",
+      "notes": 44,
+      "section": "Serialning Esin Engin bastalagan asosiy mavzusi: 1–5-taktlar, 1- va 2-volta bilan. Bu vokal naqorat emas.",
+      "rhythm": "Notadagi chorak, yarim va sakkizlik ritmlar, ikkala volta saqlangan; gitara registri pianinoda bir oktava yuqorida. 64 BPM o‘quv tempi.",
+      "simplifiedRhythm": false,
+      "audioListeningPerformed": false
+    },
+    {
+      "id": "requested-unutmak-istiyorum-hook",
+      "sourceFileSha256": "c3f4edb32d867283173a1b36d8b80771dcfa7682fad64c3156d5b775a1c38991",
+      "sourceHashMatched": true,
+      "writtenPitchAnchorsReviewed": true,
+      "sourceType": "score-transcription",
+      "notes": 73,
+      "section": "Ochiq fingerstyle aranjirovkadagi 21–28-taktlarning asosiy takroriy frazasi. Faqat yuqori melodiya ovozi, bas va to‘liq strum akkordlari olib tashlangan.",
+      "rhythm": "Manbadagi sakkizlik, 16-lik, chorak va nuqtali ritmlar saqlangan, bog‘langan notalar birlashtirilgan. 24 va 28-taktlarda akkordning yuqori notasi olinadi. 64 BPM o‘quv tempi; gitaraga nisbatan bir oktava yuqori.",
+      "simplifiedRhythm": false,
+      "audioListeningPerformed": false
+    },
+    {
+      "id": "requested-diet-mountain-dew",
+      "sourceFileSha256": "88bbcfff3e40fb69179445787ec1afea99824ce33cd8b58d9f2ab29d724e525e",
+      "sourceHashMatched": true,
+      "writtenPitchAnchorsReviewed": true,
+      "sourceType": "score-transcription",
+      "notes": 48,
+      "section": "Manbada Chorus deb belgilangan birinchi to‘rt satr va naqoratning qaytgan birinchi iborasi. Intro yoki band emas.",
+      "rhythm": "Tab faqat tovush balandliklarini beradi. Ritm 80 BPM dagi soddalashtirilgan o‘quv mashqi sifatida tuzildi; original ijroning aniq transkripsiyasi emas. Do garmonika tovushlari bir oktava yuqorida pianinoga ko‘chirildi.",
+      "simplifiedRhythm": true,
+      "audioListeningPerformed": false
+    },
+    {
+      "id": "requested-bu-aksam-olurum-chorus",
+      "sourceFileSha256": "4740c9ec3f6f1644bd1dbc40f39fdf9fe6fab3369edddd072bdc1bddf10a1222",
+      "sourceHashMatched": true,
+      "writtenPitchAnchorsReviewed": true,
+      "sourceType": "score-transcription",
+      "notes": 56,
+      "section": "Asosiy vokal naqorat: 24–31-taktlar; gitara introsi emas.",
+      "rhythm": "6/8 notadagi ritm va bog‘lanishlar saqlangan; treble-gitara ovozi pianino uchun bir oktava yuqorida. Chorak = 48 BPM sekin o‘quv tempi.",
+      "simplifiedRhythm": false,
+      "audioListeningPerformed": false
+    }
+  ],
+  "unresolvedRequests": [
+    {
+      "title": "Nahotki shu bo‘lsa sevgi",
+      "artist": "Alisher Uzoqov",
+      "status": "Exact chorus melody not verified; chord-only sources and low-confidence automatic pitch extraction were rejected.",
+      "referenceUrl": "https://music.apple.com/us/song/1640066046"
+    }
+  ]
+}

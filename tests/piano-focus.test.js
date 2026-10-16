@@ -4,13 +4,13 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
-import {FOCUS_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
+import {FOCUS_SONGS,NEW_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
 import {parseMidi,encodeMidi,guideGroups,solfegeName} from '../src/piano-music.js';
 
 test('BLOK3 and Shah Rukh repertoire contains eleven playable excerpts with honest source types',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/focus-7.38/manifest.json',import.meta.url)));
  const source=JSON.parse(fs.readFileSync(new URL('../data/piano-focus-7.38.json',import.meta.url)));
- assert.equal(FOCUS_SONGS.length,11);assert.equal(SONG_REPERTOIRE.length,72);
+ assert.equal(FOCUS_SONGS.length,11);assert.equal(SONG_REPERTOIRE.length,52+NEW_SONGS.length);
  assert.equal(FOCUS_SONGS.filter(t=>t.artist==='BLOK3').length,6);
  assert.equal(FOCUS_SONGS.filter(t=>t.language==='hi').length,5);
  assert.equal(FOCUS_SONGS.filter(t=>t.sourceType==='ready-midi').length,4);

@@ -53,6 +53,8 @@ test('unsupported mobile fullscreen keeps a rotated playable tutorial and preser
   fireEvent.click(body.getByRole('button',{name:'Piano ko‘rinishini 90 darajaga aylantirish'}));
   assert.equal(dialog.classList.contains('is-rotated'),false);assert.ok(dialog.classList.contains('is-narrow'));assert.equal(dialog.querySelector('.is-held'),null);assert.ok(s.released.length>=3);
   const summary=body.getByLabelText('Yonlama piano sozlamalari');fireEvent.click(summary);
+  const volume=body.getByRole('slider',{name:/Yonlama ovoz balandligi/});fireEvent.change(volume,{target:{value:'0.96'}});
+  assert.equal(volume.value,'0.96');
   fireEvent.change(body.getByRole('combobox',{name:'Yonlama nota yozuvi'}),{target:{value:'letters'}});
   assert.equal(dialog.querySelector('[data-note="60"] .cp-note-label').textContent,'C4');
   document.documentElement.dataset.theme='dark';assert.equal(dialog.closest('.paper-workshop')!==null,true);
@@ -65,6 +67,8 @@ test('unsupported mobile fullscreen keeps a rotated playable tutorial and preser
   assert.equal(document.body.style.overflow,'scroll');assert.equal(document.activeElement,view.container.querySelector('.cp-stage-launch'));
   assert.match(view.container.querySelector('.cp-guide-status').textContent,new RegExp('2/'+steps.length));
   assert.equal(JSON.parse(localStorage.getItem('sq-cinema-piano:guest:settings')).notation,'letters');
+  assert.equal(JSON.parse(localStorage.getItem('sq-cinema-piano:guest:settings')).volume,.96);
+  assert.equal(ui.getByRole('slider',{name:/^Ovoz balandligi/}).value,'0.96');
  }finally{await s.dispose()}
 });
 

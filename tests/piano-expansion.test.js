@@ -4,18 +4,18 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
-import {NEW_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
+import {NEW_SONGS,EXPANSION_SONGS,REQUESTED_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
 import {parseMidi,guideGroups,solfegeName} from '../src/piano-music.js';
 
 test('twenty new melodies retain exact downloadable MIDI notes, source types and pickup rests',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/expansion-7.39/manifest.json',import.meta.url)));
- assert.equal(NEW_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72);
- assert.equal(NEW_SONGS.filter(t=>t.sourceType==='ready-midi').length,5);
- assert.equal(NEW_SONGS.filter(t=>t.sourceType==='score-transcription').length,15);
- assert.equal(NEW_SONGS.filter(t=>t.language==='tr').length,9);assert.equal(NEW_SONGS.filter(t=>t.language==='hi').length,10);
+ assert.equal(EXPANSION_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72+REQUESTED_SONGS.length);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72+REQUESTED_SONGS.length);
+ assert.equal(EXPANSION_SONGS.filter(t=>t.sourceType==='ready-midi').length,5);
+ assert.equal(EXPANSION_SONGS.filter(t=>t.sourceType==='score-transcription').length,15);
+ assert.equal(EXPANSION_SONGS.filter(t=>t.language==='tr').length,9);assert.equal(EXPANSION_SONGS.filter(t=>t.language==='hi').length,10);
  const signatures=new Set();let notes=0;
- for(const track of NEW_SONGS){
+ for(const track of EXPANSION_SONGS){
   const report=manifest.tracks.find(t=>t.id===track.id),bytes=fs.readFileSync(new URL('../public'+track.sourceMidi,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),report.clipSha256);
   assert.equal(track.kind,'ready');assert.equal(requiresMidi(track),false);assert.equal(track.duration,30);
@@ -31,17 +31,17 @@ test('twenty new melodies retain exact downloadable MIDI notes, source types and
   signatures.add(track.events.map(n=>n.midi+':'+n.time).join(','));notes+=track.events.length;
  }
  assert.equal(signatures.size,20);assert.equal(notes,1209);
- const pickup=NEW_SONGS.find(t=>t.id==='new-kara-sevda-anlatamam');assert.equal(pickup.events[0].time,.46875);
+ const pickup=EXPANSION_SONGS.find(t=>t.id==='new-kara-sevda-anlatamam');assert.equal(pickup.events[0].time,.46875);
 });
 
 test('the requested chorus, series and Uzbek film names resolve to their distinct melodies',()=>{
- const find=q=>NEW_SONGS.filter(t=>matchesPianoSearch(t,q));
+ const find=q=>EXPANSION_SONGS.filter(t=>matchesPianoSearch(t,q));
  const training=find('Dua Lipa Training Season')[0];assert.match(training.section,/Chorus, 21–28/);assert.equal(training.bpm,64);assert.equal(training.album,'Radical Optimism');
  assert.equal(find('Chuqur')[0].series,'Çukur');assert.equal(find('Kara Sevda').length,2);
  assert.equal(find('Ish va qasos').length,2);assert.equal(find('Ishq va Qasos').length,2);
  assert.deepEqual(find('Ishq va qasos').map(t=>t.title),['Tum Hi Aana','Thodi Jagah']);
  assert.ok(find('Kal Ho Naa Ho').length);assert.ok(find('Janam Janam').length);
- assert.equal(NEW_SONGS.filter(t=>t.simplifiedRhythm).length,3);
+ assert.equal(EXPANSION_SONGS.filter(t=>t.simplifiedRhythm).length,3);
 });
 
 test('every new card plays offline and teaches the actual melody; Training Season chorus can be completed',async()=>{
@@ -57,12 +57,12 @@ test('every new card plays offline and teaches the actual melody; Training Seaso
   const {default:Piano}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');
   globalThis.fetch=async url=>{requests.push(String(url));throw Error('Ready lessons must not download remote files');};
   const view=render(React.createElement(Piano,{createAudio:()=>engine})),ui=within(view.container);
-  assert.ok(ui.getByRole('heading',{level:1,name:'Training Season — naqorat'}));
+  assert.ok(ui.getByRole('heading',{level:1,name:NEW_SONGS[0].title}));
   assert.equal(ui.getByRole('button',{name:'Yangi kuylar',exact:true}).getAttribute('aria-pressed'),'true');
-  assert.equal(view.container.querySelectorAll('.cp-track').length,20);
+  assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.length);
   const pointer=(target,type,id)=>{const e=new window.MouseEvent(type,{bubbles:true,button:0});Object.defineProperty(e,'pointerId',{value:id});fireEvent(target,e)};
   let id=1;
-  for(const track of NEW_SONGS){
+  for(const track of EXPANSION_SONGS){
    const card=[...view.container.querySelectorAll('.cp-track-select')].find(b=>b.querySelector('b').textContent===track.title);assert.ok(card);fireEvent.click(card);
    assert.equal(view.container.querySelector('.cp-film-upload'),null);assert.ok(ui.getByRole('heading',{level:1,name:track.title}));
    assert.equal(ui.getByRole('link',{name:track.sourceLabel}).href,track.sourceUrl);
@@ -89,7 +89,7 @@ test('every new card plays offline and teaches the actual melody; Training Seaso
   fireEvent.change(ui.getByRole('textbox',{name:'Piano kuyini qidirish'}),{target:{value:'Ish va qasos'}});
   assert.equal(view.container.querySelectorAll('.cp-track').length,2);
   fireEvent.change(ui.getByRole('textbox',{name:'Piano kuyini qidirish'}),{target:{value:''}});
-  fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Turk seriallari'}});assert.equal(view.container.querySelectorAll('.cp-track').length,9);
+  fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Turk seriallari'}});assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.filter(t=>t.mood==='Turk seriallari').length);
   fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Hindcha'}});assert.equal(view.container.querySelectorAll('.cp-track').length,10);
   assert.deepEqual(requests,[]);
  }finally{globalThis.fetch=previousFetch;cleanup();await vite.close();dom.window.close()}

@@ -1,3 +1,15 @@
+# SinfQuiz 7.40.0 — 5 kuy va balandroq piano
+
+**Mashqlar → Kino Piano → Yangi kuylar** ichiga Belalım, Çalıkuşu, Unutmak İstiyorum (Ufuk Çalışkan), Diet Mountain Dew va Bu Akşam Ölürüm qo‘shildi. Do–Re–Mi darsi, tinglash, tezlikni o‘zgartirish va MIDI yuklab olish darhol ishlaydi. Jami 77 tayyor kuy va 38 mashq bor.
+
+Belalım va Bu Akşam Ölürüm — vokal naqorat; Diet Mountain Dew — naqorat tovushlari, soddalashtirilgan o‘quv ritmi; Çalıkuşu — Esin Engin asosiy mavzusi; Unutmak İstiyorum — ochiq notadagi asosiy takroriy qism. Beshtasi ham notadan tayyorlangan qisqa o‘quv aranjirovka.
+
+**Nahotki shu bo‘lsa sevgi (Alisher Uzoqov) bu versiyaga qo‘shilmadi:** aniq naqorat melodiyasi tasdiqlanmadi. Faqat akorlardan yoki ishonchsiz avtomatik audio tahlilidan haqiqiy kuy deb foydalanilmadi.
+
+Piano chiqishi kuchaytirildi, yangi boshlang‘ich ovoz 90%, Master Gain 1.10×. Oldingi shaxsiy ovoz va mute sozlamalari saqlanadi; kuchaytirish ularga ham tatbiq qilinadi. Kompressor va yumshoq chiqish cheklagichi bor. **Yonlama piano → sozlamalar** orqali ovozni ham boshqaring. Bu Akşam Ölürüm uchun 6/8 metronom urishi moslashtirildi.
+
+**[Yangilash](UPDATE-7.40.md) · [Tekshiruvlar](QA-7.40.md) · [Manbalar](PIANO-SOURCES-7.40.md) · [Fayllar](CHANGED-FILES-7.40.md)**
+
 # SinfQuiz 7.39.0 — 20 yangi kuy va yonlama piano
 
 **Mashqlar → Kino Piano → Yangi kuylar**: Dua Lipa — Training Season’ning aynan naqorati, Çukur, Kara Sevda’dan ikki mavzu, Ezel, Eyşan, Aşk-ı Memnu, Yalı Çapkını, Leyla, Medcezir va 10 ta hindcha kino kuyi. “Ishq va qasos” (Marjaavaan) uchun Tum Hi Aana hamda Thodi Jagah kiritilgan.

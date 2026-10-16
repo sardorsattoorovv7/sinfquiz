@@ -7,7 +7,7 @@ export const pianoNoteLabel=(n,notation='solfege')=>notation==='letters'?noteNam
 export const frequency=n=>440*Math.pow(2,(n-69)/12);
 export const blackNote=n=>[1,3,6,8,10].includes(n%12);
 export const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
-export const DEFAULT_PIANO_SETTINGS={volume:.72,gain:1,reverb:.24,sustain:false,octave:0,labels:true,notation:'solfege',shortcuts:true,follow:true,speed:1,keys:49,hand:'right',metronome:false,loop:false};
+export const DEFAULT_PIANO_SETTINGS={volume:.9,gain:1.1,reverb:.24,sustain:false,octave:0,labels:true,notation:'solfege',shortcuts:true,follow:true,speed:1,keys:49,hand:'right',metronome:false,loop:false};
 export function normalizePianoSettings(value={}){
  const s={...DEFAULT_PIANO_SETTINGS,...value},num=(key,a,b)=>s[key]=Number.isFinite(Number(s[key]))?clamp(Number(s[key]),a,b):DEFAULT_PIANO_SETTINGS[key];
  num('volume',0,1);num('gain',.25,1.5);num('reverb',0,1);num('speed',.5,1.5);

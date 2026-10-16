@@ -36,3 +36,6 @@
 .cp-stage-open.is-narrow .cp-timeline{display:none}.cp-stage-open.is-narrow .cp-transport{justify-content:space-between;gap:3px}.cp-stage-open.is-narrow .cp-transport-main{gap:0}.cp-stage-open.is-narrow .cp-transport-extra{gap:0}
 @media(max-height:400px){.cp-stage-open .cp-stage-title small{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.cp-stage-open,.cp-stage-open *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+.cp-stage-options .cp-range input{box-sizing:border-box;min-height:44px;width:100%;margin:0;accent-color:var(--cp-gold)}
+.cp-stage-options .cp-range>span{display:flex;align-items:center;gap:5px}.cp-stage-options .cp-range output{margin-left:auto}

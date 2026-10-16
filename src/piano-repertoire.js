@@ -2,8 +2,10 @@ import {BELLA_CIAO_EVENTS} from './piano-bella-ciao.js';
 import {READY_TURKISH_SONGS} from './piano-turkish-ready.js';
 import {MODERN_SONGS} from './piano-modern-ready.js';
 import {FOCUS_SONGS} from './piano-focus-ready.js';
-import {NEW_SONGS} from './piano-expansion-ready.js';
-export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS,NEW_SONGS};
+import {NEW_SONGS as EXPANSION_SONGS} from './piano-expansion-ready.js';
+import {REQUESTED_SONGS} from './piano-requested-ready.js';
+export const NEW_SONGS=[...REQUESTED_SONGS,...EXPANSION_SONGS];
+export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS,EXPANSION_SONGS,REQUESTED_SONGS};
 
 export const REPERTOIRE_CHECKED_AT='2026-10-16';
 export const READY_SONGS=[{

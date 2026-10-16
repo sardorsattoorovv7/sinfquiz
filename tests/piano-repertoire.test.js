@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
-import {READY_SONGS,READY_TURKISH_SONGS,TURKISH_CATALOG,SONG_REPERTOIRE,requiresMidi,matchesPianoSearch,linkedPianoImport} from '../src/piano-repertoire.js';
+import {READY_SONGS,READY_TURKISH_SONGS,TURKISH_CATALOG,NEW_SONGS,SONG_REPERTOIRE,requiresMidi,matchesPianoSearch,linkedPianoImport} from '../src/piano-repertoire.js';
 import {parseMidi,guideGroups,encodeMidi} from '../src/piano-music.js';
 
 test('Bella Ciao preserves every verified CC0 source note in a complete 30-second score',()=>{
@@ -28,8 +28,8 @@ test('Bella Ciao preserves every verified CC0 source note in a complete 30-secon
 test('twenty ready Turkish scores contain verified MIDI clips, distinct melodies and source licenses',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/ready-7.36/manifest.json',import.meta.url)));
  const source=JSON.parse(fs.readFileSync(new URL('../data/piano-ready-7.36.json',import.meta.url)));
- assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72);
+ assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,52+NEW_SONGS.length);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,52+NEW_SONGS.length);
  const melodies=new Set();let notes=0;
  for(const track of READY_TURKISH_SONGS){
   const row=manifest.tracks.find(t=>t.id===track.id),original=source.tracks.find(t=>t.id===track.id);
