@@ -1,0 +1,5 @@
+SinfQuiz 7.37.0 — 20 modern piano excerpts
+Source: Free Piano Tutorials, checked 2026-10-15.
+Original compositions and arrangements remain with their rights holders. No public-domain or Creative Commons license is claimed for these modern arrangements.
+Source links and hashes: manifest.json and data/piano-modern-7.37.json.
+Each clip is 30 seconds; source staves are preserved.

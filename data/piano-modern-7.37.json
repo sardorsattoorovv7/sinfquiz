@@ -1,0 +1,489 @@
+{
+  "checkedAt": "2026-10-15",
+  "source": "Free Piano Tutorials",
+  "sourceHome": "https://www.freepianotutorials.net/",
+  "sourceAvailability": "Free Piano MIDI download, no account or payment used.",
+  "rights": "Original compositions and arrangements remain with their rights holders. No public-domain or Creative Commons license is claimed for these modern arrangements.",
+  "tracks": [
+    {
+      "id": "hit-sabrina-carpenter-espresso",
+      "title": "Espresso",
+      "artist": "Sabrina Carpenter",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "sabrina-carpenter-espresso.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/04/sabrina-carpenter-espresso-easy-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Sabrina%20Carpenter%20-%20Espresso%20-%20EASY/Sabrina%20Carpenter%20-%20Espresso%20-%20EASY.mid",
+      "sourceSha256": "4e218d91f765df7d3459f42d1d98c83be248087ded69ea1d7c38ec2215a011e2",
+      "sourceBytes": 3484,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Sabrina Carpenter - Espresso",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-bruno-mars-rose-apt",
+      "title": "APT.",
+      "artist": "ROSÉ, Bruno Mars",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "bruno-mars-rose-apt.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/03/bruno-mars-rose-apt-easy-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Bruno%20Mars%2C%20ROSE%20-%20APT%20-%20EASY/Bruno%20Mars%2C%20ROSE%20-%20APT%20-%20EASY.mid",
+      "sourceSha256": "be02d054204694d68316187e144bfbacd89ad46ce41e2f871826a075890ca899",
+      "sourceBytes": 2523,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Bruno Mars, ROSE - APT",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-lady-gaga-bruno-mars-die-with-a-smile",
+      "title": "Die With A Smile",
+      "artist": "Lady Gaga, Bruno Mars",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 50,
+      "inputFile": "lady-gaga-bruno-mars-die-with-a-smile.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/03/lady-gaga-bruno-mars-die-with-smile.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile/Lady%20Gaga%2C%20Bruno%20Mars%20-%20Die%20With%20A%20Smile.mid",
+      "sourceSha256": "da9824dcf634b0c68594e3318284503f66c0436590e4c41b236642be29cf2711",
+      "sourceBytes": 12162,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Lady Gaga, Bruno Mars - Die With A Smile",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-billie-eilish-birds-of-a-feather",
+      "title": "Birds of a Feather",
+      "artist": "Billie Eilish",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "billie-eilish-birds-of-a-feather.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/03/billie-eilish-birds-of-feather-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Billie%20Eilish%20-%20Birds%20of%20a%20Feather/Billie%20Eilish%20-%20Birds%20of%20a%20Feather.mid",
+      "sourceSha256": "d9c53d4c2bf47068f318dd7c0e71a2320b39e29a9aec7342a2df3c4229097315",
+      "sourceBytes": 2930,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Billie Eilish - Birds of a Feather",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-alex-warren-ordinary",
+      "title": "Ordinary",
+      "artist": "Alex Warren",
+      "year": 2025,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 50,
+      "inputFile": "alex-warren-ordinary.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/10/alex-warren-ordinary-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Alex%20Warren%20-%20Ordinary/Alex%20Warren%20-%20Ordinary.mid",
+      "sourceSha256": "71952657de026f7d0c1985efee7048847e1f758b0b2095361b1a2891ed99d221",
+      "sourceBytes": 12882,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Alex Warren - Ordinary",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-ed-sheeran-azizam",
+      "title": "Azizam",
+      "artist": "Ed Sheeran",
+      "year": 2025,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "ed-sheeran-azizam.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/11/ed-sheeran-azizam-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Ed%20Sheeran%20-%20Azizam/Ed%20Sheeran%20-%20Azizam.mid",
+      "sourceSha256": "01442883603bd05888d7b5629dd2531bc73918322db9bf72086c9eee19bf2b37",
+      "sourceBytes": 15474,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Ed Sheeran - Azizam",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-gigi-perez-sailor-song",
+      "title": "Sailor Song",
+      "artist": "Gigi Perez",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 25,
+      "inputFile": "gigi-perez-sailor-song.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2026/09/gigi-perez-sailor-song-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Gigi%20Perez%20-%20Sailor%20Song/Gigi%20Perez%20-%20Sailor%20Song.mid",
+      "sourceSha256": "67f8cc55a7674f4f7da1c50e74c1c6008ad299423cd4c8f20ea0ff6e99c68dfc",
+      "sourceBytes": 4212,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Gigi Perez - Sailor Song",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-ravyn-lenae-love-me-not",
+      "title": "Love Me Not",
+      "artist": "Ravyn Lenae",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 40,
+      "inputFile": "ravyn-lenae-love-me-not.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/12/ravyn-lenae-love-me-not-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Ravyn%20Lenae%20-%20Love%20Me%20Not/Ravyn%20Lenae%20-%20Love%20Me%20Not.mid",
+      "sourceSha256": "6d7501dddc5ba815b179f42895b0cba4f44a1b9d3b96f5995eee8b0315b7c511",
+      "sourceBytes": 18994,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Ravyn Lenae - Love Me Not",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-sombr-undressed",
+      "title": "Undressed",
+      "artist": "Sombr",
+      "year": 2025,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 40,
+      "inputFile": "sombr-undressed.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/12/sombr-undressed-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Sombr%20-%20Undressed/Sombr%20-%20Undressed.mid",
+      "sourceSha256": "82a6657bfdb35d8b322eff648ea987d69fb8a069c0d684d218352e5a0e484b2e",
+      "sourceBytes": 11070,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Sombr - Undressed",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-doechii-anxiety",
+      "title": "Anxiety",
+      "artist": "Doechii",
+      "year": 2025,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 25,
+      "inputFile": "doechii-anxiety.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2026/01/doechii-anxiety-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Doechii%20-%20Anxiety/Doechii%20-%20Anxiety.mid",
+      "sourceSha256": "86fbde23a6cb9377a4e6d74746bceb3d1e4ea18d3ac053ae6ff9ed7fec448afd",
+      "sourceBytes": 24209,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Doechii - Anxiety",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-dua-lipa-houdini",
+      "title": "Houdini",
+      "artist": "Dua Lipa",
+      "year": 2023,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 45,
+      "inputFile": "dua-lipa-houdini.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/05/dua-lipa-houdini-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Dua%20Lipa%20-%20Houdini/Dua%20Lipa%20-%20Houdini.mid",
+      "sourceSha256": "bf48fd7538b4eb0278b97cfe04f64962ef12e5c9d750fd7a884efeafff27d19f",
+      "sourceBytes": 17570,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Dua Lipa - Houdini",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-taylor-swift-post-malone-fortnight",
+      "title": "Fortnight",
+      "artist": "Taylor Swift, Post Malone",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 40,
+      "inputFile": "taylor-swift-post-malone-fortnight.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/04/taylor-swift-post-malone-fortnight.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Taylor%20Swift%2C%20Post%20Malone%20-%20Fortnight/Taylor%20Swift%2C%20Post%20Malone%20-%20Fortnight.mid",
+      "sourceSha256": "eea83e4cd886cae53ccd6c15af495cb7a9f255f4802a7716d165caf96fae8371",
+      "sourceBytes": 10731,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Taylor Swift, Post Malone - Fortnight",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-hozier-too-sweet",
+      "title": "Too Sweet",
+      "artist": "Hozier",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 50,
+      "inputFile": "hozier-too-sweet.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/04/hozier-too-sweet-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Hozier%20-%20Too%20Sweet/Hozier%20-%20Too%20Sweet.mid",
+      "sourceSha256": "067c2cf39e6e366046d147f8c2bb553d1fb490823861dea21cb0867095f8dfde",
+      "sourceBytes": 12712,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Hozier - Too Sweet",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-lola-young-messy",
+      "title": "Messy",
+      "artist": "Lola Young",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 60,
+      "inputFile": "lola-young-messy.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/03/lola-young-messy-piano-tutorial.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Lola%20Young%20-%20Messy/Lola%20Young%20-%20Messy.mid",
+      "sourceSha256": "e11f7873e385fef29aed99e7ed525c7acd069c86cb02786224aeb507290dee4f",
+      "sourceBytes": 20153,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Lola Young - Messy",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-lady-gaga-abracadabra",
+      "title": "Abracadabra",
+      "artist": "Lady Gaga",
+      "year": 2025,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "lady-gaga-abracadabra.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/03/lady-gaga-abracadabra-easy-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Lady%20Gaga%20-%20Abracadabra%20-%20EASY/Lady%20Gaga%20-%20Abracadabra%20-%20EASY.mid",
+      "sourceSha256": "f2e40c280b398b4b6e7ecc0d833fc6246b6369d5e7529523cf714b81b90c6dca",
+      "sourceBytes": 1077,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Lady Gaga - Abracadabra",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-gracie-abrams-that-s-so-true",
+      "title": "That's So True",
+      "artist": "Gracie Abrams",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 45,
+      "inputFile": "gracie-abrams-that-s-so-true.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/01/gracie-abrams-thats-so-true-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Gracie%20Abrams%20-%20That%27s%20So%20True/Gracie%20Abrams%20-%20That%27s%20So%20True.mid",
+      "sourceSha256": "351f3d53080f5552dbc34cede88e20ab6e92112903bdddc24447a688c93f6003",
+      "sourceBytes": 8268,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Gracie Abrams - That's So True",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-elliot-james-reay-i-think-they-call-this-love",
+      "title": "I Think They Call This Love",
+      "artist": "Elliot James Reay",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 30,
+      "inputFile": "elliot-james-reay-i-think-they-call-this-love.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/05/elliot-james-reay-i-think-they-call.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Elliot%20James%20Reay%20-%20I%20Think%20They%20Call%20This%20Love/Elliot%20James%20Reay%20-%20I%20Think%20They%20Call%20This%20Love.mid",
+      "sourceSha256": "f53148c172b2d5f0b618a1a80039af90b85163b5321469ad986a6e07cfca8f42",
+      "sourceBytes": 13690,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Elliot James Reay - I Think They Call This Love",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-artemas-i-like-the-way-you-kiss-me",
+      "title": "I Like the Way You Kiss Me",
+      "artist": "Artemas",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 0,
+      "inputFile": "artemas-i-like-the-way-you-kiss-me.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2024/07/artemas-i-like-way-you-kiss-me-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Artemas%20-%20I%20Like%20the%20Way%20You%20Kiss%20Me/Artemas%20-%20I%20Like%20the%20Way%20You%20Kiss%20Me.mid",
+      "sourceSha256": "c0d464aa536eb810206c7ce52f446b586471fe9035c55072f2c651c6e43d29c4",
+      "sourceBytes": 7381,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Artemas - I Like the Way You Kiss Me",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-alex-warren-carry-you-home",
+      "title": "Carry You Home",
+      "artist": "Alex Warren",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 40,
+      "inputFile": "alex-warren-carry-you-home.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2025/12/alex-warren-carry-you-home-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Alex%20Warren%20-%20Carry%20You%20Home/Alex%20Warren%20-%20Carry%20You%20Home.mid",
+      "sourceSha256": "98a5bdace7d444aa95b8d4e42b8393a579bbf74099d85e2e6d6ac4b22e476931",
+      "sourceBytes": 11766,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Alex Warren - Carry You Home",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    },
+    {
+      "id": "hit-ariana-grande-we-can-t-be-friends",
+      "title": "we can't be friends",
+      "artist": "Ariana Grande",
+      "year": 2024,
+      "language": "en",
+      "mood": "Pop",
+      "clipStart": 50,
+      "inputFile": "ariana-grande-we-can-t-be-friends.mid",
+      "sourceUrl": "https://www.freepianotutorials.net/2024/12/ariana-grande-we-cant-be-friends-piano.html",
+      "downloadUrl": "https://free-piano-tutorials-midi.s3.us-east-1.amazonaws.com/Ariana%20Grande%20-%20We%20Can%27t%20Be%20Friends/Ariana%20Grande%20-%20We%20Can%27t%20Be%20Friends.mid",
+      "sourceSha256": "cfa8864bf07610ca2e04b357509069a3c363d36ef7396ada550c0fff748cc686",
+      "sourceBytes": 5889,
+      "trackHands": {
+        "0": "right",
+        "1": "left"
+      },
+      "aliases": [
+        "Ariana Grande - We Can't Be Friends",
+        "trend",
+        "hit",
+        "zamonaviy"
+      ]
+    }
+  ]
+}

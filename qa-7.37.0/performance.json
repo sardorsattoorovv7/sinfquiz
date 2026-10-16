@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "description": "Initial HTML scripts, modulepreloads and stylesheets; compressed sizes are estimates.",
+  "javascript": {
+    "files": 6,
+    "bytes": 583479,
+    "gzip": 171606,
+    "brotli": 147358
+  },
+  "css": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "assets": [
+    {
+      "url": "/seo.css",
+      "kind": "css",
+      "bytes": 3679,
+      "gzip": 1362,
+      "brotli": 1118
+    },
+    {
+      "url": "/theme-init.js",
+      "kind": "js",
+      "bytes": 430,
+      "gzip": 273,
+      "brotli": 233
+    },
+    {
+      "url": "/assets/index-19ujGQ_y.js",
+      "kind": "js",
+      "bytes": 116320,
+      "gzip": 37803,
+      "brotli": 33124
+    },
+    {
+      "url": "/assets/rolldown-runtime-hePW80VL.js",
+      "kind": "js",
+      "bytes": 716,
+      "gzip": 428,
+      "brotli": 381
+    },
+    {
+      "url": "/assets/react-CyDUuctK.js",
+      "kind": "js",
+      "bytes": 218833,
+      "gzip": 67383,
+      "brotli": 58045
+    },
+    {
+      "url": "/assets/supabase-VaY9-frs.js",
+      "kind": "js",
+      "bytes": 214172,
+      "gzip": 54418,
+      "brotli": 46158
+    },
+    {
+      "url": "/assets/icons-Cln-bxSu.js",
+      "kind": "js",
+      "bytes": 33008,
+      "gzip": 11301,
+      "brotli": 9417
+    },
+    {
+      "url": "/assets/index-D00TAeD8.css",
+      "kind": "css",
+      "bytes": 310757,
+      "gzip": 53983,
+      "brotli": 44454
+    }
+  ],
+  "budget": {
+    "javascriptBytes": 650000,
+    "javascriptGzip": 200000,
+    "cssBytes": 380000,
+    "cssGzip": 75000,
+    "passed": true
+  }
+}

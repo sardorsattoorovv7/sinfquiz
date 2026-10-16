@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PIANO_LIBRARY,FILM_CATALOG,KEY_CODES,normalizePianoSettings,keyboardGeometry,guideGroups,clipEvents,encodeMidi,parseMidi,frequency} from '../src/piano-music.js';
-import {READY_SONGS,SONG_REPERTOIRE} from '../src/piano-repertoire.js';
+import {READY_SONGS,MODERN_SONGS,FOCUS_SONGS,SONG_REPERTOIRE} from '../src/piano-repertoire.js';
 import {PianoAudio,PianoTransport} from '../src/piano-audio.js';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
@@ -144,7 +144,7 @@ test('Piano clock, auto-follow, pointer release, MIDI input and recording limit 
   const beforeMidi=played.length;act(()=>input.onmidimessage({data:[144,0,100]}));assert.equal(played.length,beforeMidi,'out-of-range MIDI does not create a virtual held note');
   act(()=>input.onmidimessage({data:[144,60,100]}));assert.equal(key.getAttribute('aria-pressed'),'true');act(()=>input.onmidimessage({data:[128,60,0]}));assert.equal(key.getAttribute('aria-pressed'),'false');
   act(()=>input.onmidimessage({data:[144,60,100]}));access.inputs.clear();act(()=>access.onstatechange());assert.equal(key.getAttribute('aria-pressed'),'false','disconnect releases MIDI notes');
-  fireEvent.click(ui.getByRole('button',{name:'Tayyor kuylar',exact:true}));fireEvent.click(ui.getByRole('button',{name:/Sarı Gelin.*Tayyor/}));assert.equal(view.container.querySelector('.cp-film-upload'),null);
+  fireEvent.click(ui.getByRole('button',{name:'Xalq va mumtoz',exact:true}));fireEvent.click(ui.getByRole('button',{name:/Sarı Gelin.*Tayyor/}));assert.equal(view.container.querySelector('.cp-film-upload'),null);
   await act(async()=>fireEvent.click(ui.getByRole('button',{name:'Ijroni yozish',exact:true})));
   now=1300;fireEvent.keyDown(window,{code:'KeyZ'});now=1700;fireEvent.keyUp(window,{code:'KeyZ'});
   await step(2200);assert.ok(ui.getByRole('button',{name:'Yozishni tugatish 00:01',exact:true}));
@@ -171,8 +171,8 @@ test('SinfQuiz opens Kino Piano for guest, student, teacher and admin, then retu
   for(role of [null,'student','teacher','admin']){
    location.hash='kino-piano';sessionStorage.clear();
    const view=render(React.createElement(App)),ui=within(view.container);
-   await ui.findByRole('heading',{level:1,name:READY_SONGS[0].title});
-   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,SONG_REPERTOIRE.length);
+   await ui.findByRole('heading',{level:1,name:FOCUS_SONGS[0].title});
+   assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,FOCUS_SONGS.length);
    fireEvent.click(ui.getByRole('button',{name:'Pianinodan orqaga'}));
    await ui.findByRole('heading',{name:'O‘zingiz sinab ko‘ring.',exact:true});
    assert.equal(location.hash,'#mashqlar');assert.ok(ui.getByRole('heading',{name:'Kino Piano',exact:true}));

@@ -28,8 +28,8 @@ test('Bella Ciao preserves every verified CC0 source note in a complete 30-secon
 test('twenty ready Turkish scores contain verified MIDI clips, distinct melodies and source licenses',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/ready-7.36/manifest.json',import.meta.url)));
  const source=JSON.parse(fs.readFileSync(new URL('../data/piano-ready-7.36.json',import.meta.url)));
- assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,21);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,21);
+ assert.equal(READY_TURKISH_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,52);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,52);
  const melodies=new Set();let notes=0;
  for(const track of READY_TURKISH_SONGS){
   const row=manifest.tracks.find(t=>t.id===track.id),original=source.tracks.find(t=>t.id===track.id);
@@ -75,8 +75,10 @@ test('every ready Turkish card plays and starts Guide immediately, without a fil
   const {default:Module}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');
   globalThis.fetch=async url=>{networkRequests.push(String(url));throw Error('Ready songs must not request an external MIDI');};
   const view=render(React.createElement(Module,{createAudio:()=>engine})),ui=within(view.container);
+  fireEvent.click(ui.getByRole('button',{name:'Xalq va mumtoz',exact:true}));
+  fireEvent.click(ui.getByRole('button',{name:/Bella Ciao.*Tayyor/}));
   assert.ok(ui.getByRole('heading',{level:1,name:'Bella Ciao'}));assert.equal(view.container.querySelectorAll('.cp-track').length,21);
-  assert.equal(ui.getByRole('button',{name:'Tayyor kuylar',exact:true}).getAttribute('aria-pressed'),'true');
+  assert.equal(ui.getByRole('button',{name:'Xalq va mumtoz',exact:true}).getAttribute('aria-pressed'),'true');
   assert.equal(ui.queryByRole('button',{name:'Kino MIDI',exact:true}),null);
   assert.doesNotMatch(view.container.querySelector('.cp-track-list').textContent,/MIDI yuklang|MIDI kutilmoqda/);
   const pointer=(key,type,id)=>{const e=new window.MouseEvent(type,{bubbles:true,button:0});Object.defineProperty(e,'pointerId',{value:id});fireEvent(key,e)};

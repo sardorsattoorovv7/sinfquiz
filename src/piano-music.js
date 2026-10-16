@@ -1,16 +1,20 @@
 // Original practice scores and public-domain melodies. No copyrighted film scores.
 export const NOTE_NAMES=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
 export const noteName=n=>NOTE_NAMES[((n%12)+12)%12]+(Math.floor(n/12)-1);
+export const SOLFEGE_NAMES=['Do','Do♯','Re','Re♯','Mi','Fa','Fa♯','Sol','Sol♯','Lya','Lya♯','Si'];
+export const solfegeName=n=>SOLFEGE_NAMES[((n%12)+12)%12]+(Math.floor(n/12)-1);
+export const pianoNoteLabel=(n,notation='solfege')=>notation==='letters'?noteName(n):solfegeName(n);
 export const frequency=n=>440*Math.pow(2,(n-69)/12);
 export const blackNote=n=>[1,3,6,8,10].includes(n%12);
 export const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
-export const DEFAULT_PIANO_SETTINGS={volume:.72,gain:1,reverb:.24,sustain:false,octave:0,labels:true,shortcuts:true,follow:true,speed:1,keys:49,hand:'right',metronome:false,loop:false};
+export const DEFAULT_PIANO_SETTINGS={volume:.72,gain:1,reverb:.24,sustain:false,octave:0,labels:true,notation:'solfege',shortcuts:true,follow:true,speed:1,keys:49,hand:'right',metronome:false,loop:false};
 export function normalizePianoSettings(value={}){
  const s={...DEFAULT_PIANO_SETTINGS,...value},num=(key,a,b)=>s[key]=Number.isFinite(Number(s[key]))?clamp(Number(s[key]),a,b):DEFAULT_PIANO_SETTINGS[key];
  num('volume',0,1);num('gain',.25,1.5);num('reverb',0,1);num('speed',.5,1.5);
  s.octave=Math.round(clamp(Number(s.octave)||0,-2,2));
  s.keys=[25,37,49,88].includes(Number(s.keys))?Number(s.keys):37;
  s.hand=['right','left','both'].includes(s.hand)?s.hand:'right';
+ s.notation=['solfege','letters'].includes(s.notation)?s.notation:'solfege';
  for(const k of ['sustain','labels','shortcuts','follow','metronome','loop'])s[k]=Boolean(s[k]);
  return s;
 }
@@ -125,7 +129,7 @@ export function keyboardGeometry(count=49,octave=0){
 
 // Standard MIDI File type 0/1 parser: running status, tempo maps, overlapping
 // voices, channel sustain and SMPTE division. Track 10 percussion is excluded.
-export function parseMidi(arrayBuffer){
+export function parseMidi(arrayBuffer,{trackHands={},channelHands={},includeTracks=null,includeChannels=null}={}){
  const a=new Uint8Array(arrayBuffer);let p=0,eventCount=0,songEndTick=0;
  const need=n=>{if(p+n>a.length)throw Error('MIDI fayl tugallanmagan.')};
  const u8=()=>{need(1);return a[p++]},u16=()=>u8()*256+u8(),u32=()=>u8()*16777216+u8()*65536+u8()*256+u8();
@@ -152,7 +156,7 @@ export function parseMidi(arrayBuffer){
    if(status>=240)throw Error('Qo‘llanmaydigan MIDI tizim hodisasi.');
    running=status;const type=status>>4,ch=status&15,b=u8(),c=type===12||type===13?0:u8();
    if(b>127||c>127||p>end)throw Error('MIDI hodisasi noto‘g‘ri.');
-   if(ch!==9&&[8,9,11].includes(type))raw.push({tick,type,ch,b,c});
+   if(ch!==9&&[8,9,11].includes(type)&&(!includeTracks||includeTracks.includes(tr))&&(!includeChannels||includeChannels.includes(ch)))raw.push({tick,type,ch,b,c,track:tr});
   }
   songEndTick=Math.max(songEndTick,tick);p=end;
  }
@@ -171,9 +175,12 @@ export function parseMidi(arrayBuffer){
   const t=tempoMap[lo];return t.seconds+(tick-t.tick)*t.micro/(ppq*1e6);
  };
  const active=new Map(),sustained=Array.from({length:16},()=>[]),pedals=new Set(),notes=[];
- const close=(note,tick)=>{const end=toSeconds(tick),start=toSeconds(note.tick);if(end>start&&note.b>=21&&note.b<=108)notes.push({midi:note.b,time:start,duration:Math.max(.03,end-start),velocity:note.c/127,hand:note.b>=60?'right':'left'})};
+ const close=(note,tick)=>{const end=toSeconds(tick),start=toSeconds(note.tick),hand=trackHands[note.track]||channelHands[note.ch];if(end>start&&note.b>=21&&note.b<=108)notes.push({midi:note.b,time:start,duration:Math.max(.03,end-start),velocity:note.c/127,hand:['left','right'].includes(hand)?hand:note.b>=60?'right':'left'})};
  for(const e of raw.sort((a,b)=>a.tick-b.tick)){
-  const key=e.ch+':'+e.b;
+  // A known two-staff score can reuse one MIDI channel for both hands.
+  // Pair its note-offs within the original staff instead of shortening an
+  // overlapping note of the same pitch in the other hand.
+  const key=(Object.hasOwn(trackHands,e.track)?e.track+':':'')+e.ch+':'+e.b;
   if(e.type===9&&e.c){if(!active.has(key))active.set(key,[]);active.get(key).push(e)}
   else if(e.type===8||e.type===9){const stack=active.get(key),note=stack?.shift();if(note){if(pedals.has(e.ch))sustained[e.ch].push(note);else close(note,e.tick)}}
   else if(e.type===11&&e.b===64){if(e.c>=64)pedals.add(e.ch);else{pedals.delete(e.ch);for(const n of sustained[e.ch])close(n,e.tick);sustained[e.ch]=[]}}

@@ -1,0 +1,52 @@
+{
+  "version": "7.38.0",
+  "date": "2026-10-16",
+  "basedOn": "7.37.0",
+  "addedSongs": 11,
+  "blok3Songs": 6,
+  "hindiFilmSongs": 5,
+  "readyMidiSources": 4,
+  "scoreTranscriptions": 7,
+  "notes": 616,
+  "newMidiBytes": 5869,
+  "durationPerSong": 30,
+  "melodyOnly": true,
+  "solfegeDefault": true,
+  "readySongsTotal": 52,
+  "originalAndClassicPracticeTracks": 38,
+  "newDependencies": false,
+  "newSql": false,
+  "tests": {
+    "passed": 300,
+    "failed": 0,
+    "skipped": 0
+  },
+  "productionBuild": "passed",
+  "initialJavascript": {
+    "files": 6,
+    "bytes": 583479,
+    "gzip": 171612,
+    "brotli": 147297
+  },
+  "initialCss": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "performanceBudgetPassed": true,
+  "pianoChunks": [
+    {
+      "name": "CinemaPiano-hNFsCFt_.js",
+      "bytes": 302836
+    },
+    {
+      "name": "CinemaPiano-8MtG5zCd.css",
+      "bytes": 34703
+    }
+  ],
+  "browserQa": "not run: control-browser unavailable",
+  "realAudioListeningTest": "not run",
+  "fullProjectBaselineFiles": 1227,
+  "protectedPreviousFilesUnchanged": 503
+}

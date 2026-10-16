@@ -1,0 +1,48 @@
+{
+  "version": "7.37.0",
+  "date": "2026-10-15",
+  "basedOn": "7.36.0",
+  "modernSongsAdded": 20,
+  "modernSongsLanguage": "en",
+  "modernNotes": 4434,
+  "modernMidiBytes": 38149,
+  "durationPerSong": 30,
+  "solfegeDefault": true,
+  "readySongsTotal": 41,
+  "originalAndClassicPracticeTracks": 38,
+  "newDependencies": false,
+  "newSql": false,
+  "tests": {
+    "passed": 295,
+    "failed": 0,
+    "skipped": 0
+  },
+  "productionBuild": "passed",
+  "initialJavascript": {
+    "files": 6,
+    "bytes": 583479,
+    "gzip": 171606,
+    "brotli": 147358
+  },
+  "initialCss": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "performanceBudgetPassed": true,
+  "pianoChunks": [
+    {
+      "name": "CinemaPiano-ETSVIIIZ.css",
+      "bytes": 34311
+    },
+    {
+      "name": "CinemaPiano-DNmazuEd.js",
+      "bytes": 277478
+    }
+  ],
+  "browserQa": "not run: control-browser unavailable",
+  "realAudioListeningTest": "not run",
+  "fullProjectBaselineFiles": 1192,
+  "protectedPreviousFilesUnchanged": 480
+}

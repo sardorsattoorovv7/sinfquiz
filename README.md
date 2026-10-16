@@ -1,3 +1,21 @@
+# SinfQuiz 7.38.0 — BLOK3 va Shohruxxon kinolari
+
+**Mashqlar → Kino Piano → BLOK3 va hindcha**: 6 ta BLOK3 qo‘shig‘i va 5 ta hindcha kino melodiyasi qo‘shildi. Kusura Bakma, Git, Sebebi Yar, Napıyosun Mesela, Kırgınım, Kayıp Kalp; “O‘g‘irlanmagan kelin”dan Tujhe Dekha Toh, Kuch Kuch Hota Hai, Main Hoon Na, Baazigar O Baazigar va Yeh Kaali Kaali Aankhen.
+
+Har biri 30 soniyalik **o‘ng qo‘l melodiyasi**: darhol tinglash, Do–Re–Mi bilan yoritib o‘rganish va MIDI eksport. **4 ta parcha tayyor MIDI’dan ajratilgan; 7 tasi notadan tayyorlangan.** BLOK3 uchun bepul tayyor MIDI tasdiqlanmadi. Notadan tayyorlangan parchalar 64 BPM mashq tempida; Tujhe Dekha Toh ritmi soddalashtirilgan. Ularning turi va manbasi trekda ko‘rsatiladi.
+
+**[O‘rnatish](UPDATE-7.38.md) · [Tekshiruvlar](QA-7.38.md) · [11 ta trek va manbalar](PIANO-SOURCES-7.38.md) · [O‘zgargan fayllar](CHANGED-FILES-7.38.md)**
+
+Oldingi 20 ta inglizcha hit “Tayyor hitlar”, Bella Ciao va 20 ta turkcha xalq/mumtoz kuy “Xalq va mumtoz” bo‘limida. 38 ta mashq va shaxsiy MIDIlar mavjud. Yangi to‘plam pianino bilan birga kechiktirib yuklanadi; bosh sahifa uchun yangi musiqa so‘rovi yo‘q.
+
+# SinfQuiz 7.37.0 — zamonaviy hitlar va Do–Re–Mi
+
+**Mashqlar → Kino Piano → Tayyor hitlar**: 20 ta zamonaviy pop qo‘shig‘ining tayyor 30 soniyalik piano parchasi. APT., Espresso, Die With a Smile, Birds of a Feather, Ordinary va boshqalar MIDI yuklamasdan darhol ishlaydi. Bu yangi to‘plam inglizcha hitlardan iborat.
+
+Klavishlar, nota yo‘li va o‘rgatish kartasi **Do–Re–Mi–Fa–Sol–Lya–Si** yozuvida ishlaydi. Joriy nota, kompyuter harfi va keyingi olti qadam ko‘rsatiladi. To‘g‘ri nota yoki akkord chalinmaguncha mashq kutadi. Audio Lab orqali C–D–E yozuviga o‘tish mumkin; ♯ va oktava raqamlari saqlanadi.
+
+**[O‘rnatish](UPDATE-7.37.md) · [Tekshiruvlar](QA-7.37.md) · [20 ta trek va manbalar](PIANO-SOURCES-7.37.md) · [O‘zgargan fayllar](CHANGED-FILES-7.37.md)**
+
 # 7.36.0 — tayyor piano repertuari
 
 20 ta turkcha xalq/mumtoz MIDI melodiyasi qo‘shildi; Bella Ciao bilan 21 ta tayyor kuy. Foydalanuvchidan MIDI ulash yoki obuna talab qilinmaydi. Bu zamonaviy trend hitlar to‘plami emas. Yangi musiqa ma’lumotlari CC BY-NC-SA 4.0 (notijoriy foydalanish); tafsilot: [PIANO-SOURCES-7.36.md](PIANO-SOURCES-7.36.md). [O‘rnatish va yangilash](UPDATE-7.36.md).

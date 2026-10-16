@@ -1,0 +1,1854 @@
+{
+  "version": "7.38.0",
+  "checkedAt": "2026-10-16",
+  "rights": "Original composition and arrangement rights remain with their rights holders. Source availability is not a CC0 or redistribution grant for the original compositions. Only short educational melody excerpts are included; source PDFs, lyrics and commercial recordings are not bundled. Lakh metadata: CC BY 4.0, Colin Raffel.",
+  "tracks": [
+    {
+      "id": "focus-blok3-kusura-bakma",
+      "title": "Kusura Bakma",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Re minor",
+      "aliases": [
+        "kusura bakma",
+        "blok 3"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-kusura-bakma-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2025/12/BLOK3_Kusura_Bakma_nota.pdf",
+      "sourceSha256": "8df400cc1b372755f24300225be9df9653d1fdfd4c9be8d7e269fdc719f77d47",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "1–8-taktlar",
+      "transpose": 0,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            62,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            65,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            70,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            65,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            0.75
+          ],
+          [
+            60,
+            1.25
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            65,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ]
+        ],
+        [
+          [
+            62,
+            0.75
+          ],
+          [
+            58,
+            1.25
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ]
+        ],
+        [
+          [
+            60,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ]
+        ],
+        [
+          [
+            57,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            0.75
+          ],
+          [
+            60,
+            1.25
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            65,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ]
+        ],
+        [
+          [
+            62,
+            0.75
+          ],
+          [
+            58,
+            1.25
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ]
+        ],
+        [
+          [
+            60,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM."
+    },
+    {
+      "id": "focus-blok3-git",
+      "title": "Git",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Mi minor",
+      "aliases": [
+        "git blok3"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-git-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2026/01/Git_nota.pdf",
+      "sourceSha256": "e945d8514652c35b49d0f843453e2065cf559d1878ef309cfdbadbc5323e486c",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "5–8-taktlar, o‘rganish uchun ikki marta",
+      "transpose": 0,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            64,
+            1.5
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            66,
+            0.25
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            67,
+            0.25
+          ]
+        ],
+        [
+          [
+            66,
+            1.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            67,
+            0.25
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ]
+        ],
+        [
+          [
+            66,
+            0.75
+          ],
+          [
+            62,
+            0.75
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            1.5
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            66,
+            0.25
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            67,
+            0.25
+          ]
+        ],
+        [
+          [
+            66,
+            1.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            67,
+            0.25
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ]
+        ],
+        [
+          [
+            66,
+            0.75
+          ],
+          [
+            62,
+            0.75
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM. Qisqa ibora ikki marta takrorlanadi."
+    },
+    {
+      "id": "focus-blok3-sebebi-yar",
+      "title": "Sebebi Yar",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Re minor",
+      "aliases": [
+        "sebebi yar"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-sebebi-yar-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2026/07/Sebebi-Yar-nota.pdf",
+      "sourceSha256": "427ec69cc6e1ce1fc12197a8a3c9d3ecd6fa8fc30deb34fac0803c8c97f4fa43",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "5–12-taktlar",
+      "transpose": 0,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            65,
+            0.3333333333333333
+          ],
+          [
+            64,
+            0.3333333333333333
+          ],
+          [
+            62,
+            0.3333333333333333
+          ],
+          [
+            64,
+            0.6666666666666666
+          ],
+          [
+            60,
+            0.3333333333333333
+          ]
+        ],
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            62,
+            0.3333333333333333
+          ],
+          [
+            60,
+            0.3333333333333333
+          ],
+          [
+            58,
+            0.3333333333333333
+          ],
+          [
+            60,
+            0.3333333333333333
+          ],
+          [
+            58,
+            0.3333333333333333
+          ],
+          [
+            57,
+            0.3333333333333333
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            64,
+            0.75
+          ],
+          [
+            62,
+            0.25
+          ],
+          [
+            64,
+            0.75
+          ],
+          [
+            62,
+            0.25
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            65,
+            1.5
+          ],
+          [
+            64,
+            0.5
+          ]
+        ],
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            65,
+            0.3333333333333333
+          ],
+          [
+            64,
+            0.3333333333333333
+          ],
+          [
+            62,
+            0.3333333333333333
+          ],
+          [
+            64,
+            0.6666666666666666
+          ],
+          [
+            60,
+            0.3333333333333333
+          ]
+        ],
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            62,
+            0.6666666666666666
+          ],
+          [
+            58,
+            0.3333333333333333
+          ],
+          [
+            60,
+            0.3333333333333333
+          ],
+          [
+            58,
+            0.3333333333333333
+          ],
+          [
+            57,
+            0.3333333333333333
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            64,
+            0.75
+          ],
+          [
+            62,
+            0.25
+          ],
+          [
+            64,
+            0.25
+          ],
+          [
+            62,
+            0.75
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            65,
+            1.5
+          ],
+          [
+            64,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM."
+    },
+    {
+      "id": "focus-blok3-napiyosun-mesela",
+      "title": "Napıyosun Mesela",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Sol minor",
+      "aliases": [
+        "napiyosun mesela",
+        "napiyorsun mesela"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-napiyosun-mesela-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2026/07/Napiyosun-Mesela-nota.pdf",
+      "sourceSha256": "0d787592bcfc1928a640094ef429f59f3f4b30648c11f7ef8642b31505a9ba14",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "6–13-taktlar",
+      "transpose": 12,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            55,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            55,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ]
+        ],
+        [
+          [
+            57,
+            0.5
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            55,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            55,
+            1
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            51,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            55,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            55,
+            1
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ]
+        ],
+        [
+          [
+            57,
+            1
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            55,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            51,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            50,
+            1
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            50,
+            0.5
+          ],
+          [
+            58,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM. Pianoga moslash uchun bir oktava yuqoriga ko‘tarilgan."
+    },
+    {
+      "id": "focus-blok3-kirginim",
+      "title": "Kırgınım",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Lya minor",
+      "aliases": [
+        "kirginim"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-kirginim-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2026/07/Kirginim-Nota.pdf",
+      "sourceSha256": "0840ec0d195f58282a9c1292b8059c4384e95a8edce8b9a5169dd97bae73579a",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "7–14-taktlar",
+      "transpose": 12,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            1
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ]
+        ],
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.25
+          ],
+          [
+            62,
+            0.25
+          ],
+          [
+            60,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            57,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            1
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ]
+        ],
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            1
+          ],
+          [
+            55,
+            0.5
+          ],
+          [
+            53,
+            0.5
+          ]
+        ],
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ]
+        ],
+        [
+          [
+            59,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.25
+          ],
+          [
+            62,
+            0.25
+          ],
+          [
+            60,
+            1
+          ],
+          [
+            59,
+            1
+          ]
+        ],
+        [
+          [
+            57,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            1
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM. Pianoga moslash uchun bir oktava yuqoriga ko‘tarilgan."
+    },
+    {
+      "id": "focus-blok3-kayip-kalp",
+      "title": "Kayıp Kalp",
+      "artist": "BLOK3",
+      "language": "tr",
+      "collection": "blok3",
+      "mood": "Turkcha",
+      "key": "Lya minor",
+      "aliases": [
+        "kayip kalp"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://www.gitaregitim.net/blok3-kayip-kalp-gitar-tab/",
+      "sourceDocumentUrl": "https://www.gitaregitim.net/wp-content/uploads/2026/09/Kayip-Kalp-Nota.pdf",
+      "sourceSha256": "9f1d172e5520a98750245ea5615f41889eef214cf619fabe21aa65eed5f4919f",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net",
+      "section": "9–16-taktlar",
+      "transpose": 0,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            1
+          ]
+        ],
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            62,
+            1.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            1.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            62,
+            1
+          ],
+          [
+            null,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            59,
+            0.5
+          ],
+          [
+            60,
+            0.5
+          ]
+        ],
+        [
+          [
+            64,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            65,
+            1
+          ]
+        ],
+        [
+          [
+            62,
+            1.5
+          ],
+          [
+            60,
+            0.5
+          ],
+          [
+            59,
+            1
+          ],
+          [
+            57,
+            0.5
+          ],
+          [
+            57,
+            0.5
+          ]
+        ]
+      ],
+      "description": "Asosiy melodiyadan 30 soniyalik o‘quv parcha. Notadan tayyorlangan; mashq tempi 64 BPM."
+    },
+    {
+      "id": "focus-hindi-tujhe-dekha-toh",
+      "title": "Tujhe Dekha Toh",
+      "artist": "Lata Mangeshkar · Kumar Sanu",
+      "composer": "Jatin–Lalit",
+      "language": "hi",
+      "collection": "shah-rukh",
+      "movie": "Dilwale Dulhania Le Jayenge",
+      "movieAlias": "O‘g‘irlanmagan kelin",
+      "year": 1995,
+      "mood": "Hindcha",
+      "key": "Mi minor",
+      "aliases": [
+        "shoh ruxxon",
+        "shoxruxxon",
+        "shohruxxon",
+        "shahrukh khan",
+        "shah rukh khan",
+        "ddlj",
+        "ogirlanmagan kelin",
+        "ogr lanmagan kelin",
+        "tujhe dekha to ye jana sanam"
+      ],
+      "sourceType": "score-transcription",
+      "sourceUrl": "https://mypianonotes.com/ddlj/",
+      "sourceCredit": "Rohit Tripathi / MyPianoNotes.com",
+      "section": "Asosiy naqorat, to‘rt ibora",
+      "transpose": 0,
+      "bpm": 64,
+      "bars": [
+        [
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            71,
+            0.75
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            71,
+            1
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            72,
+            1
+          ],
+          [
+            71,
+            2
+          ]
+        ],
+        [
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            71,
+            0.75
+          ],
+          [
+            69,
+            0.25
+          ],
+          [
+            71,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            67,
+            1
+          ],
+          [
+            66,
+            2
+          ]
+        ],
+        [
+          [
+            64,
+            0.5
+          ],
+          [
+            66,
+            0.5
+          ],
+          [
+            62,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            66,
+            0.5
+          ],
+          [
+            62,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            67,
+            1.5
+          ],
+          [
+            66,
+            2
+          ]
+        ],
+        [
+          [
+            64,
+            0.5
+          ],
+          [
+            66,
+            0.5
+          ],
+          [
+            62,
+            1
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            66,
+            0.5
+          ],
+          [
+            62,
+            1
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            66,
+            1.5
+          ],
+          [
+            64,
+            2
+          ]
+        ]
+      ],
+      "beatsPerBar": 8,
+      "rhythm": "simplified",
+      "description": "“O‘g‘irlanmagan kelin”dagi asosiy naqorat. Soddalashtirilgan o‘quv ritmi, 64 BPM; notadan tayyorlangan 30 soniyalik melodiya."
+    },
+    {
+      "id": "focus-hindi-kuch-kuch-hota-hai",
+      "title": "Kuch Kuch Hota Hai",
+      "artist": "Udit Narayan · Alka Yagnik",
+      "language": "hi",
+      "collection": "shah-rukh",
+      "movie": "Kuch Kuch Hota Hai",
+      "year": 1998,
+      "mood": "Hindcha",
+      "key": "Do–Re–Mi",
+      "aliases": [
+        "shohruxxon",
+        "shoxruxxon",
+        "shoh ruxxon",
+        "shahrukh khan",
+        "shah rukh khan",
+        "Kuch Kuch Hota Hai"
+      ],
+      "sourceType": "ready-midi",
+      "sourceUrl": "https://github.com/nightingale-ai/midi-data/blob/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/5331908873a3311216d2ff435b7e39e1.mid",
+      "downloadUrl": "https://raw.githubusercontent.com/nightingale-ai/midi-data/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/5331908873a3311216d2ff435b7e39e1.mid",
+      "inputFile": "5331908873a3311216d2ff435b7e39e1.mid",
+      "sourceSha256": "9cd873f1c88ddcb926c07f2642deadd70f3d806ba11c286bfd910eead8c1f011",
+      "sourceMd5": "5331908873a3311216d2ff435b7e39e1",
+      "sourceCredit": "Lakh MIDI Dataset / Nightingale; source track “melody.”",
+      "parseOptions": {
+        "includeTracks": [
+          6
+        ],
+        "trackHands": {
+          "6": "right"
+        }
+      },
+      "clipStart": 34.6813366,
+      "fitTo30": false,
+      "transpose": 0,
+      "description": "Tayyor MIDI’dan ajratilgan asosiy melodiya. Do–Re–Mi bilan o‘ng qo‘lda o‘rganing."
+    },
+    {
+      "id": "focus-hindi-main-hoon-na",
+      "title": "Main Hoon Na",
+      "artist": "Sonu Nigam · Shreya Ghoshal",
+      "language": "hi",
+      "collection": "shah-rukh",
+      "movie": "Main Hoon Na",
+      "year": 2004,
+      "mood": "Hindcha",
+      "key": "Do–Re–Mi",
+      "aliases": [
+        "shohruxxon",
+        "shoxruxxon",
+        "shoh ruxxon",
+        "shahrukh khan",
+        "shah rukh khan",
+        "Main Hoon Na"
+      ],
+      "sourceType": "ready-midi",
+      "sourceUrl": "https://github.com/nightingale-ai/midi-data/blob/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/8c03450e3298f383308348bf967096b6.mid",
+      "downloadUrl": "https://raw.githubusercontent.com/nightingale-ai/midi-data/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/8c03450e3298f383308348bf967096b6.mid",
+      "inputFile": "8c03450e3298f383308348bf967096b6.mid",
+      "sourceSha256": "06ccfff16f6bfc3a1e292a07fdb5c31611e9f666e4d4e46328fca55df1a6b971",
+      "sourceMd5": "8c03450e3298f383308348bf967096b6",
+      "sourceCredit": "PsmPlayer / mrjic.tk; Lakh MIDI Dataset / Nightingale",
+      "parseOptions": {
+        "includeChannels": [
+          10
+        ],
+        "channelHands": {
+          "10": "right"
+        }
+      },
+      "clipStart": 0,
+      "fitTo30": true,
+      "transpose": 0,
+      "description": "Tayyor MIDI’dan ajratilgan asosiy melodiya. Do–Re–Mi bilan o‘ng qo‘lda o‘rganing. Qisqa manba 30 soniyalik mashq tempiga sekinlashtirilgan."
+    },
+    {
+      "id": "focus-hindi-baazigar",
+      "title": "Baazigar O Baazigar",
+      "artist": "Kumar Sanu · Alka Yagnik",
+      "language": "hi",
+      "collection": "shah-rukh",
+      "movie": "Baazigar",
+      "year": 1993,
+      "mood": "Hindcha",
+      "key": "Do–Re–Mi",
+      "aliases": [
+        "shohruxxon",
+        "shoxruxxon",
+        "shoh ruxxon",
+        "shahrukh khan",
+        "shah rukh khan",
+        "Baazigar"
+      ],
+      "sourceType": "ready-midi",
+      "sourceUrl": "https://github.com/nightingale-ai/midi-data/blob/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/6b00c0e573226da443da2f20183d0993.mid",
+      "downloadUrl": "https://raw.githubusercontent.com/nightingale-ai/midi-data/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/lakh/6b00c0e573226da443da2f20183d0993.mid",
+      "inputFile": "6b00c0e573226da443da2f20183d0993.mid",
+      "sourceSha256": "d8cbad1ed5a4afb33f0a7b1647e3a74629ced3c636d2453b668e4d4e6f503443",
+      "sourceMd5": "6b00c0e573226da443da2f20183d0993",
+      "sourceCredit": "Lakh MIDI Dataset / Nightingale; source track “Male lead”",
+      "parseOptions": {
+        "includeTracks": [
+          2
+        ],
+        "trackHands": {
+          "2": "right"
+        }
+      },
+      "clipStart": 0,
+      "fitTo30": true,
+      "transpose": 12,
+      "description": "Tayyor MIDI’dan ajratilgan asosiy melodiya. Do–Re–Mi bilan o‘ng qo‘lda o‘rganing. Qisqa vokal iborasi 30 soniyalik mashq tempiga sekinlashtirilgan; bir oktava yuqoriga ko‘tarilgan."
+    },
+    {
+      "id": "focus-hindi-yeh-kaali-kaali",
+      "title": "Yeh Kaali Kaali Aankhen",
+      "artist": "Kumar Sanu · Anu Malik",
+      "language": "hi",
+      "collection": "shah-rukh",
+      "movie": "Baazigar",
+      "year": 1993,
+      "mood": "Hindcha",
+      "key": "Do–Re–Mi",
+      "aliases": [
+        "shohruxxon",
+        "shoxruxxon",
+        "shoh ruxxon",
+        "shahrukh khan",
+        "shah rukh khan",
+        "Baazigar"
+      ],
+      "sourceType": "ready-midi",
+      "sourceUrl": "https://github.com/nightingale-ai/midi-data/blob/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/largestmidicollection/ye_kaali_kaali_baazigar.mid",
+      "downloadUrl": "https://raw.githubusercontent.com/nightingale-ai/midi-data/088df3a83b4cee8e26d54f1b0ef2dd0cb52c42e1/unsorted/largestmidicollection/ye_kaali_kaali_baazigar.mid",
+      "inputFile": "ye-kaali.mid",
+      "sourceSha256": "60d50692a55f455eb6aeda11a923c28fdf8320b3c4148b2a80c334c928ab0aac",
+      "sourceMd5": "7d47b3a6b4c781b72c6e3e077c75a334",
+      "sourceCredit": "Anha Solutions (1994); Nightingale MIDI collection",
+      "parseOptions": {
+        "includeChannels": [
+          4
+        ],
+        "channelHands": {
+          "4": "right"
+        }
+      },
+      "clipStart": 0,
+      "fitTo30": false,
+      "transpose": 0,
+      "description": "Tayyor MIDI’dan ajratilgan asosiy melodiya. Do–Re–Mi bilan o‘ng qo‘lda o‘rganing."
+    }
+  ]
+}
