@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
 import {pianoStageLayout} from '../src/use-piano-stage.js';
 import {NEW_SONGS} from '../src/piano-repertoire.js';
-import {guideGroups} from '../src/piano-music.js';
+import {guideGroups,PIANO_LIBRARY} from '../src/piano-music.js';
 
 test('stage geometry fills small phones, tablets and wide boards with reversible 90 degree rotation',()=>{
  for(const [w,h] of [[320,640],[390,844],[768,1024],[1024,768],[1920,1080],[3840,2160]]){
@@ -110,5 +110,75 @@ test('closing during a pending fullscreen request cannot reopen or leak an orien
   const view=s.render(),ui=within(view.container);fireEvent.click(ui.getByRole('button',{name:'Pianinoni to‘liq ekran qilish'}));
   fireEvent.click(within(document.body).getByRole('button',{name:'Oddiy piano ko‘rinishiga qaytish'}));
   await act(async()=>complete());assert.equal(locks,0);assert.equal(full,null);assert.equal(exits,1);assert.equal(document.querySelector('.cp-stage-open'),null);
+ }finally{await s.dispose()}
+});
+
+test('rotated phone library selects a real song or practice without leaving stage and resets the old guide safely',async()=>{
+ const s=await setup(),{within,fireEvent,act}=s.lib;
+ try{
+  localStorage.setItem('sq-cinema-piano:guest:favorites',JSON.stringify([NEW_SONGS[0].id]));
+  localStorage.setItem('sq-cinema-piano:guest:progress',JSON.stringify({[NEW_SONGS[0].id]:{steps:49,accuracy:100,date:1}}));
+  const view=s.render(),ui=within(view.container);assert.equal(view.container.querySelector('.cp-brand b').textContent,'PIANO');
+  fireEvent.click(ui.getByRole('button',{name:'O‘rganish',exact:true}));fireEvent.click(ui.getByRole('button',{name:'O‘rganishni boshlash',exact:true}));
+  await act(async()=>fireEvent.click(ui.getByRole('button',{name:'Yonlama piano rejimini ochish'})));
+  const body=within(document.body),dialog=body.getByRole('dialog',{name:'Yonlama piano va tutorial'}),stage=within(dialog);
+  const note=guideGroups(NEW_SONGS[0].events,'right')[0].notes[0],key=dialog.querySelector('[data-note="'+note+'"]');
+  const pointer=(target,type,id)=>{const e=new window.MouseEvent(type,{bubbles:true,button:0});Object.defineProperty(e,'pointerId',{value:id});fireEvent(target,e)};
+  act(()=>{pointer(key,'pointerdown',1);pointer(window,'pointerup',1);pointer(key,'pointerdown',2)});
+  assert.ok(dialog.querySelector('.is-held'));fireEvent.click(stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));
+  const region=stage.getByRole('region',{name:'Yonlama kuylar kutubxonasi'}),library=within(region),search=library.getByRole('textbox',{name:'Yonlama kuyni qidirish'});
+  assert.equal(document.activeElement,search);assert.equal(dialog.querySelector('.is-held'),null);assert.ok(s.released.length>=2);
+  assert.ok(dialog.querySelector('.cp-stage-bar').hasAttribute('inert'));assert.ok(dialog.querySelector('.cp-layout').hasAttribute('inert'));
+  assert.equal(region.querySelectorAll('.cp-stage-song-list button').length,79);assert.equal(region.closest('.cp-stage-open'),dialog);assert.ok(dialog.classList.contains('is-rotated'));
+  fireEvent.change(search,{target:{value:'Tujh Mein Rab'}});const next=NEW_SONGS.find(t=>t.id==='selected-tujh-mein-rab-dikhta-hai-chorus');
+  assert.equal(region.querySelectorAll('.cp-stage-song-list button').length,1);fireEvent.click(library.getByRole('button',{name:new RegExp(next.title)}));
+  assert.equal(document.querySelector('.cp-stage-open'),dialog);assert.equal(stage.queryByRole('region',{name:'Yonlama kuylar kutubxonasi'}),null);
+  assert.equal(dialog.querySelector('#cp-stage-current-song').textContent,next.title);assert.match(dialog.querySelector('.cp-stage-title small').textContent,/0 \/ 32/);
+  assert.equal(dialog.querySelector('.cp-stage-bar').hasAttribute('inert'),false);assert.equal(document.activeElement,stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));
+  assert.ok(stage.getByRole('button',{name:'O‘rganishni boshlash',exact:true}));
+  assert.equal(JSON.parse(localStorage.getItem('sq-cinema-piano:guest:progress'))[NEW_SONGS[0].id].accuracy,100);
+  assert.deepEqual(JSON.parse(localStorage.getItem('sq-cinema-piano:guest:favorites')),[NEW_SONGS[0].id]);
+  fireEvent.click(stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));const picker=within(stage.getByRole('region',{name:'Yonlama kuylar kutubxonasi'}));
+  fireEvent.change(picker.getByRole('textbox'),{target:{value:'no-song-xyz'}});assert.ok(picker.getByText(/Mos kuy topilmadi/));
+  fireEvent.click(picker.getByRole('button',{name:'Meniki',exact:true}));assert.ok(picker.getByText(/Shaxsiy MIDI hali yo‘q/));
+  fireEvent.click(picker.getByRole('button',{name:'Mashqlar',exact:true}));assert.equal(dialog.querySelectorAll('.cp-stage-song-list button').length,38);
+  fireEvent.click(picker.getByRole('button',{name:new RegExp(PIANO_LIBRARY[0].title)}));assert.equal(dialog.querySelector('#cp-stage-current-song').textContent,PIANO_LIBRARY[0].title);assert.ok(dialog.classList.contains('is-rotated'));
+  fireEvent.click(stage.getByRole('button',{name:'Oddiy piano ko‘rinishiga qaytish'}));assert.ok(ui.getByRole('heading',{level:1,name:PIANO_LIBRARY[0].title}));
+ }finally{await s.dispose()}
+});
+
+test('fullscreen song picker traps focus and Escape closes only the picker before restoring the full page',async()=>{
+ const s=await setup(),{within,fireEvent,act}=s.lib;let full=null,locks=0,unlocks=0;
+ try{
+  Object.defineProperty(document,'fullscreenElement',{get:()=>full,configurable:true});
+  window.HTMLElement.prototype.requestFullscreen=async function(){full=this;document.dispatchEvent(new window.Event('fullscreenchange'))};
+  document.exitFullscreen=async()=>{full=null;document.dispatchEvent(new window.Event('fullscreenchange'))};
+  Object.defineProperty(window.screen,'orientation',{value:{async lock(){locks++},unlock(){unlocks++}},configurable:true});
+  const view=s.render(),ui=within(view.container);await act(async()=>fireEvent.click(ui.getByRole('button',{name:'Pianinoni to‘liq ekran qilish'})));
+  const dialog=document.querySelector('.cp-stage-open'),stage=within(dialog);fireEvent.click(stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));
+  const region=stage.getByRole('region',{name:'Yonlama kuylar kutubxonasi'}),library=within(region);
+  for(const node of region.querySelectorAll('button,input'))node.getClientRects=()=>[{width:44,height:44}];
+  const first=library.getByRole('button',{name:'Yonlama kuylar ro‘yxatini yopish'}),last=[...region.querySelectorAll('button')].at(-1);
+  act(()=>last.focus());fireEvent.keyDown(last,{key:'Tab'});assert.equal(document.activeElement,first);
+  fireEvent.keyDown(first,{key:'Tab',shiftKey:true});assert.equal(document.activeElement,last);
+  fireEvent.change(library.getByRole('textbox'),{target:{value:'Belki'}});assert.equal(region.querySelectorAll('.cp-stage-song-list button').length,1);
+  fireEvent.keyDown(library.getByRole('textbox'),{key:'Escape',code:'Escape'});
+  assert.equal(stage.queryByRole('region',{name:'Yonlama kuylar kutubxonasi'}),null);assert.equal(document.querySelector('.cp-stage-open'),dialog);assert.ok(full);assert.equal(locks,1);assert.equal(unlocks,0);
+  assert.equal(document.activeElement,stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));
+  await act(async()=>fireEvent.keyDown(document,{key:'Escape',code:'Escape'}));assert.equal(full,null);assert.equal(unlocks,1);assert.equal(document.querySelector('.cp-stage-open'),null);assert.equal(document.body.style.overflow,'scroll');
+ }finally{await s.dispose()}
+});
+
+test('opening the phone search keyboard resizes the library without flipping its 90 degree orientation',async()=>{
+ const s=await setup(),{within,fireEvent,act}=s.lib;
+ try{
+  const viewport=new window.EventTarget();Object.assign(viewport,{width:390,height:844,offsetLeft:0,offsetTop:0});Object.defineProperty(window,'visualViewport',{value:viewport,configurable:true});
+  const view=s.render(),ui=within(view.container);await act(async()=>fireEvent.click(ui.getByRole('button',{name:'Yonlama piano rejimini ochish'})));
+  const dialog=document.querySelector('.cp-stage-open'),stage=within(dialog);fireEvent.click(stage.getByRole('button',{name:'Yonlama kuyni almashtirish'}));
+  const search=within(stage.getByRole('region',{name:'Yonlama kuylar kutubxonasi'})).getByRole('textbox');assert.equal(document.activeElement,search);
+  viewport.height=280;await act(async()=>{viewport.dispatchEvent(new window.Event('resize'));await new Promise(r=>requestAnimationFrame(r))});
+  assert.ok(dialog.classList.contains('is-rotated'));assert.equal(dialog.style.getPropertyValue('--cp-vh'),'280px');assert.equal(document.activeElement,search);
+  fireEvent.keyDown(search,{key:'Escape',code:'Escape'});viewport.height=844;await act(async()=>{viewport.dispatchEvent(new window.Event('resize'));await new Promise(r=>requestAnimationFrame(r))});
+  assert.ok(dialog.classList.contains('is-rotated'));assert.equal(dialog.style.getPropertyValue('--cp-vh'),'844px');assert.equal(document.querySelector('[data-stage-library]'),null);
  }finally{await s.dispose()}
 });

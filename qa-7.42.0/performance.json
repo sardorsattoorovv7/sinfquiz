@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "description": "Initial HTML scripts, modulepreloads and stylesheets; compressed sizes are estimates.",
+  "javascript": {
+    "files": 6,
+    "bytes": 583779,
+    "gzip": 171671,
+    "brotli": 147434
+  },
+  "css": {
+    "files": 2,
+    "bytes": 314436,
+    "gzip": 55345,
+    "brotli": 45572
+  },
+  "assets": [
+    {
+      "url": "/seo.css",
+      "kind": "css",
+      "bytes": 3679,
+      "gzip": 1362,
+      "brotli": 1118
+    },
+    {
+      "url": "/theme-init.js",
+      "kind": "js",
+      "bytes": 430,
+      "gzip": 273,
+      "brotli": 233
+    },
+    {
+      "url": "/assets/index-CIC2rx5Y.js",
+      "kind": "js",
+      "bytes": 116404,
+      "gzip": 37825,
+      "brotli": 33148
+    },
+    {
+      "url": "/assets/rolldown-runtime-hePW80VL.js",
+      "kind": "js",
+      "bytes": 716,
+      "gzip": 428,
+      "brotli": 381
+    },
+    {
+      "url": "/assets/react-CR5VJ85Q.js",
+      "kind": "js",
+      "bytes": 218840,
+      "gzip": 67387,
+      "brotli": 58048
+    },
+    {
+      "url": "/assets/supabase-VaY9-frs.js",
+      "kind": "js",
+      "bytes": 214172,
+      "gzip": 54418,
+      "brotli": 46158
+    },
+    {
+      "url": "/assets/icons-CYYbiDKL.js",
+      "kind": "js",
+      "bytes": 33217,
+      "gzip": 11340,
+      "brotli": 9466
+    },
+    {
+      "url": "/assets/index-D00TAeD8.css",
+      "kind": "css",
+      "bytes": 310757,
+      "gzip": 53983,
+      "brotli": 44454
+    }
+  ],
+  "budget": {
+    "javascriptBytes": 650000,
+    "javascriptGzip": 200000,
+    "cssBytes": 380000,
+    "cssGzip": 75000,
+    "passed": true
+  }
+}

@@ -63,11 +63,16 @@ export function usePianoStage(root,onRelease,onEscape){
   const node=root.current,body=document.body,oldOverflow=body.style.overflow,oldFocus=document.activeElement;
   const siblings=[...body.children].filter(e=>e!==node&&!e.contains(node)&&!['SCRIPT','STYLE','LINK'].includes(e.tagName)).map(e=>[e,e.hasAttribute('inert')]);
   body.style.overflow='hidden';for(const [element] of siblings)element.setAttribute('inert','');
-  let frame=0,portrait=size.height>size.width;
-  const measure=()=>{
+  let frame=0,portrait=size.height>size.width,lastSize=size;
+  const measure=event=>{
+   const physical=event?.type==='orientationchange';
    cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{
     const next=viewport(),nextPortrait=next.height>next.width;
-    if(nextPortrait!==portrait){portrait=nextPortrait;setRotation('auto')}
+    const previousSize=lastSize,textEntry=node?.querySelector('[data-stage-library] input')===document.activeElement;
+    // A search keyboard resizes the visual viewport without rotating the phone.
+    if(textEntry&&!physical)setRotation(old=>pianoStageLayout(previousSize.width,previousSize.height,old).rotated?'sideways':'upright');
+    else if(physical||nextPortrait!==portrait)setRotation('auto');
+    portrait=nextPortrait;lastSize=next;
     setSize(next);
    });
   };
@@ -75,11 +80,14 @@ export function usePianoStage(root,onRelease,onEscape){
   const key=e=>{
    if(e.key==='Escape'){
     e.preventDefault();e.stopPropagation();
+    const library=node?.querySelector('[data-stage-library]');
+    if(library){library.querySelector('[data-stage-library-close]')?.click();return;}
     const details=node?.querySelector('.cp-stage-options[open]');
     if(details)details.removeAttribute('open');else{escape.current?.();close()}return;
    }
    if(e.key!=='Tab'||!node)return;
-   const items=[...node.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),summary,[tabindex="0"]')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]'));
+   const scope=node.querySelector('[data-stage-library]')||node;
+   const items=[...scope.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),summary,[tabindex="0"]')].filter(e=>e.getClientRects().length&&!e.closest('[hidden],[inert]'));
    if(!items.length){e.preventDefault();node.focus();return}
    const first=items[0],last=items.at(-1);
    if(e.shiftKey&&(document.activeElement===first||document.activeElement===node)){e.preventDefault();last.focus()}

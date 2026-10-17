@@ -1,0 +1,43 @@
+{
+  "version": "7.43.0",
+  "baseVersion": "7.42.0",
+  "checkedAt": "2026-10-17T05:09:31.930697+00:00",
+  "displayName": "PIANO",
+  "landscapeSongPicker": true,
+  "songPickerInRotatedSurface": true,
+  "searchKeyboardPreservesRotation": true,
+  "readySongs": 79,
+  "practicePieces": 38,
+  "uzbekWarmupPreserved": true,
+  "newDependencies": false,
+  "newSqlRequired": false,
+  "validation": {
+    "testsPassed": 326,
+    "failed": 0,
+    "skipped": 0,
+    "newStageTests": 3,
+    "build": "passed",
+    "performanceBudget": "passed",
+    "initialJavascript": {
+      "files": 6,
+      "bytes": 583769,
+      "gzip": 171663,
+      "brotli": 147433
+    },
+    "initialCss": {
+      "files": 2,
+      "bytes": 314436,
+      "gzip": 55345,
+      "brotli": 45572
+    },
+    "initialJavascriptBytesDelta": -10,
+    "browserVisualTest": false,
+    "physicalDeviceTest": false,
+    "liveSupabaseTest": false
+  },
+  "preservation": {
+    "baselineFiles": 1349,
+    "unchangedPublicDataSqlFiles": 553,
+    "zipFiles": 1358
+  }
+}

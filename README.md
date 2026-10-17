@@ -1,3 +1,15 @@
+# SinfQuiz 7.43.0 — PIANO: telefonda yonlama kuy tanlash
+
+Yonlama pianoda yuqoridagi kuy nomini bosing, ro‘yxatdan qidirib boshqa kuyni tanlang. Kuylar, mashqlar va shaxsiy MIDIlar sahnadan chiqmasdan tanlanadi. Bo‘lim nomi endi PIANO.
+
+[O‘rnatish va foydalanish](UPDATE-7.43.md) · [Tekshiruvlar](QA-7.43.md) · [Asosiy fayllar](CHANGED-FILES-7.43.md). Ovoz, 79 tayyor kuy, 38 mashq va o‘zbekcha typing razminkasi saqlangan. Yangi SQL yoki dependency yo‘q.
+
+# SinfQuiz 7.42.0 — qisqa o‘zbekcha typing razminkasi
+
+Typing → O‘zbekcha typing → Razminka. 48 qisqa gap, 1/3/5 gap yoki 15/30/60 soniya, matn ustida yozish, WPM va aniqlik. Besh bosqichli eski mashq va inglizcha typing saqlangan; razminka reytingga yuborilmaydi.
+
+[O‘rnatish va foydalanish](UPDATE-7.42.md) · [Tekshiruvlar](QA-7.42.md) · [Asosiy fayllar](CHANGED-FILES-7.42.md). Yangi SQL yoki dependency yo‘q.
+
 # SinfQuiz 7.41.0 — Belki va Tujh piano darslari
 
 Belki va Tujh Mein Rab Dikhta Hai naqoratlari qo‘shildi: har biri 30 soniya, tinglash va Do–Re–Mi tutoriali bilan. Jami 79 tayyor kuy va 38 mashq. Tujh ritmi o‘quv uchun soddalashtirilgan. Ovoz kuchaytirishi va telefon/planshetdagi yonlama piano saqlangan.

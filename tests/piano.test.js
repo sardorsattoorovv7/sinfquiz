@@ -6,7 +6,7 @@ import {PianoAudio,PianoTransport} from '../src/piano-audio.js';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
 
-test('Kino Piano has 38 distinct playable 30-second scores and 34 film MIDI slots',()=>{
+test('PIANO has 38 distinct playable 30-second scores and 34 film MIDI slots',()=>{
  assert.equal(PIANO_LIBRARY.filter(t=>t.kind==='original').length,32);
  assert.equal(PIANO_LIBRARY.filter(t=>t.kind==='public').length,6);
  assert.equal(FILM_CATALOG.length,34);
@@ -81,7 +81,7 @@ test('Scheduled audio clicks belong to the metronome scope and can be stopped be
  assert.equal(cancels[0],0);assert.ok(stops.at(-1)<osc.startedAt,'pause cancels the lookahead click before its start');osc.onended();assert.equal(audio.voices.size,0);
 });
 
-test('Kino Piano UI searches, teaches a complete melody, toggles labels and imports MIDI',async()=>{
+test('PIANO UI searches, teaches a complete melody, toggles labels and imports MIDI',async()=>{
  const dom=new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>',{url:'http://localhost',pretendToBeVisual:true});
  for(const name of ['window','document','HTMLElement','Element','Node','MutationObserver','localStorage','sessionStorage','history','location','KeyboardEvent','File'])globalThis[name]=dom.window[name];
  Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
@@ -152,7 +152,7 @@ test('Piano clock, auto-follow, pointer release, MIDI input and recording limit 
  }finally{cleanup();await vite.close();dom.window.close()}
 });
 
-test('SinfQuiz opens Kino Piano for guest, student, teacher and admin, then returns to exercises',async()=>{
+test('SinfQuiz opens PIANO for guest, student, teacher and admin, then returns to exercises',async()=>{
  const dom=new JSDOM('<!doctype html><html><body></body></html>',{url:'http://localhost/#kino-piano',pretendToBeVisual:true});
  for(const name of ['window','document','HTMLElement','Element','Node','MutationObserver','localStorage','sessionStorage','history','location'])globalThis[name]=dom.window[name];
  Object.defineProperty(globalThis,'navigator',{value:dom.window.navigator,configurable:true});
@@ -175,7 +175,7 @@ test('SinfQuiz opens Kino Piano for guest, student, teacher and admin, then retu
    assert.equal(location.hash,'#kino-piano');assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.length);
    fireEvent.click(ui.getByRole('button',{name:'Pianinodan orqaga'}));
    await ui.findByRole('heading',{name:'O‘zingiz sinab ko‘ring.',exact:true});
-   assert.equal(location.hash,'#mashqlar');assert.ok(ui.getByRole('heading',{name:'Kino Piano',exact:true}));
+   assert.equal(location.hash,'#mashqlar');assert.ok(ui.getByRole('heading',{name:'PIANO',exact:true}));
    await waitFor(()=>assert.equal(view.container.querySelectorAll('.cinema-piano').length,0));
    cleanup();
   }
