@@ -4,10 +4,11 @@ import {MODERN_SONGS} from './piano-modern-ready.js';
 import {FOCUS_SONGS} from './piano-focus-ready.js';
 import {NEW_SONGS as EXPANSION_SONGS} from './piano-expansion-ready.js';
 import {REQUESTED_SONGS} from './piano-requested-ready.js';
-export const NEW_SONGS=[...REQUESTED_SONGS,...EXPANSION_SONGS];
-export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS,EXPANSION_SONGS,REQUESTED_SONGS};
+import {SELECTED_SONGS} from './piano-selected-ready.js';
+export const NEW_SONGS=[...SELECTED_SONGS,...REQUESTED_SONGS,...EXPANSION_SONGS];
+export {READY_TURKISH_SONGS,MODERN_SONGS,FOCUS_SONGS,EXPANSION_SONGS,REQUESTED_SONGS,SELECTED_SONGS};
 
-export const REPERTOIRE_CHECKED_AT='2026-10-16';
+export const REPERTOIRE_CHECKED_AT='2026-10-17';
 export const READY_SONGS=[{
  id:'song-bella-ciao',title:'Bella Ciao',artist:'Italyan xalq kuyi',aliases:['bella cio','bella chao','çav bella','cav bella','la casa de papel','money heist'],
  kind:'public',mood:'Xalq kuyi',key:'F♯ minor',difficulty:'O‘rta',duration:30,bpm:130,

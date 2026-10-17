@@ -1,0 +1,62 @@
+{
+  "version": "7.41.0",
+  "checkedAt": "2026-10-17T03:07:58.017756+00:00",
+  "baseVersion": "7.40.0",
+  "readySongs": 79,
+  "practicePieces": 38,
+  "songsAdded": 2,
+  "notesAdded": 81,
+  "midiBytesAdded": 808,
+  "newMidiRequiredFromUser": false,
+  "newDependencies": false,
+  "newSqlRequired": false,
+  "louderAudioPreserved": true,
+  "landscapePianoPreserved": true,
+  "sourceType": "score-transcription",
+  "simplifiedRhythm": [
+    "Tujh Mein Rab Dikhta Hai"
+  ],
+  "validation": {
+    "testsPassed": 317,
+    "failed": 0,
+    "skipped": 0,
+    "build": "passed",
+    "performanceBudget": "passed",
+    "initialJavascript": {
+      "files": 6,
+      "bytes": 583481,
+      "gzip": 171596,
+      "brotli": 147367
+    },
+    "initialCss": {
+      "files": 2,
+      "bytes": 314436,
+      "gzip": 55345,
+      "brotli": 45572
+    },
+    "initialJavascriptBytesChange": 0,
+    "lazyPianoAssets": [
+      {
+        "file": "CinemaPiano-BLJqScKp.js",
+        "bytes": 379726
+      },
+      {
+        "file": "CinemaPiano-BFOhtv11.css",
+        "bytes": 42868
+      },
+      {
+        "file": "CinemaPiano-BBQf5r61.js",
+        "bytes": 375357
+      }
+    ],
+    "physicalDeviceTest": false,
+    "browserVisualTest": false,
+    "audioListeningTest": false,
+    "liveSupabaseTest": false
+  },
+  "preservation": {
+    "baselineFiles": 1317,
+    "oldPublicDataSqlFilesUnchanged": 548,
+    "totalArchiveFiles": 1337
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "testFileConcurrency": 2,
+  "domVisibilityChecks": "Unchanged; default Testing Library role queries."
+}

@@ -4,13 +4,13 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
-import {NEW_SONGS,EXPANSION_SONGS,REQUESTED_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
+import {NEW_SONGS,EXPANSION_SONGS,REQUESTED_SONGS,SELECTED_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
 import {parseMidi,guideGroups,solfegeName} from '../src/piano-music.js';
 
 test('twenty new melodies retain exact downloadable MIDI notes, source types and pickup rests',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/expansion-7.39/manifest.json',import.meta.url)));
- assert.equal(EXPANSION_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72+REQUESTED_SONGS.length);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72+REQUESTED_SONGS.length);
+ assert.equal(EXPANSION_SONGS.length,20);assert.equal(SONG_REPERTOIRE.length,72+REQUESTED_SONGS.length+SELECTED_SONGS.length);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,72+REQUESTED_SONGS.length+SELECTED_SONGS.length);
  assert.equal(EXPANSION_SONGS.filter(t=>t.sourceType==='ready-midi').length,5);
  assert.equal(EXPANSION_SONGS.filter(t=>t.sourceType==='score-transcription').length,15);
  assert.equal(EXPANSION_SONGS.filter(t=>t.language==='tr').length,9);assert.equal(EXPANSION_SONGS.filter(t=>t.language==='hi').length,10);
@@ -90,7 +90,7 @@ test('every new card plays offline and teaches the actual melody; Training Seaso
   assert.equal(view.container.querySelectorAll('.cp-track').length,2);
   fireEvent.change(ui.getByRole('textbox',{name:'Piano kuyini qidirish'}),{target:{value:''}});
   fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Turk seriallari'}});assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.filter(t=>t.mood==='Turk seriallari').length);
-  fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Hindcha'}});assert.equal(view.container.querySelectorAll('.cp-track').length,10);
+  fireEvent.change(ui.getByRole('combobox',{name:'Kayfiyat bo‘yicha saralash'}),{target:{value:'Hindcha'}});assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.filter(t=>t.mood==='Hindcha').length);
   assert.deepEqual(requests,[]);
  }finally{globalThis.fetch=previousFetch;cleanup();await vite.close();dom.window.close()}
 });

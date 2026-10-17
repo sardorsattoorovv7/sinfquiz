@@ -4,13 +4,13 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {createServer} from 'vite';
-import {REQUESTED_SONGS,NEW_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
+import {REQUESTED_SONGS,SELECTED_SONGS,NEW_SONGS,SONG_REPERTOIRE,matchesPianoSearch,requiresMidi} from '../src/piano-repertoire.js';
 import {parseMidi,guideGroups,solfegeName} from '../src/piano-music.js';
 
 test('five requested melodies match their downloadable MIDI, written rhythm and source anchors',()=>{
  const manifest=JSON.parse(fs.readFileSync(new URL('../public/piano/requested-7.40/manifest.json',import.meta.url)));
- assert.equal(REQUESTED_SONGS.length,5);assert.equal(NEW_SONGS.length,25);assert.equal(SONG_REPERTOIRE.length,77);
- assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,77);
+ assert.equal(REQUESTED_SONGS.length,5);assert.equal(NEW_SONGS.length,25+SELECTED_SONGS.length);assert.equal(SONG_REPERTOIRE.length,77+SELECTED_SONGS.length);
+ assert.equal(new Set(SONG_REPERTOIRE.map(t=>t.id)).size,77+SELECTED_SONGS.length);
  const anchors={
   'requested-belalim-chorus':[66,67,64,66,67,64,66,67],
   'requested-bu-aksam-olurum-chorus':[64,69,69,69,69,71,72,71],
@@ -65,7 +65,7 @@ test('all five new songs play offline and their complete Do–Re–Mi lessons ad
   const {default:Piano}=await vite.ssrLoadModule('/src/CinemaPiano.jsx');
   globalThis.fetch=async url=>{requests.push(String(url));throw Error('Bundled songs must not fetch external music')};
   const view=render(React.createElement(Piano,{createAudio:()=>engine})),ui=within(view.container);
-  assert.equal(view.container.querySelectorAll('.cp-track').length,25);
+  assert.equal(view.container.querySelectorAll('.cp-track').length,NEW_SONGS.length);
   const pointer=(target,type,id)=>{const e=new window.MouseEvent(type,{bubbles:true,button:0});Object.defineProperty(e,'pointerId',{value:id});fireEvent(target,e)};
   let id=1;
   for(const track of REQUESTED_SONGS){

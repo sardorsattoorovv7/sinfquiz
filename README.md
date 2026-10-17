@@ -1,3 +1,9 @@
+# SinfQuiz 7.41.0 — Belki va Tujh piano darslari
+
+Belki va Tujh Mein Rab Dikhta Hai naqoratlari qo‘shildi: har biri 30 soniya, tinglash va Do–Re–Mi tutoriali bilan. Jami 79 tayyor kuy va 38 mashq. Tujh ritmi o‘quv uchun soddalashtirilgan. Ovoz kuchaytirishi va telefon/planshetdagi yonlama piano saqlangan.
+
+O‘rnatish: [UPDATE-7.41.md](UPDATE-7.41.md). Manbalar: [PIANO-SOURCES-7.41.md](PIANO-SOURCES-7.41.md). Tekshiruvlar: [QA-7.41.md](QA-7.41.md). Fayllar: [CHANGED-FILES-7.41.md](CHANGED-FILES-7.41.md).
+
 # SinfQuiz 7.40.0 — 5 kuy va balandroq piano
 
 **Mashqlar → Kino Piano → Yangi kuylar** ichiga Belalım, Çalıkuşu, Unutmak İstiyorum (Ufuk Çalışkan), Diet Mountain Dew va Bu Akşam Ölürüm qo‘shildi. Do–Re–Mi darsi, tinglash, tezlikni o‘zgartirish va MIDI yuklab olish darhol ishlaydi. Jami 77 tayyor kuy va 38 mashq bor.

@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-17",
+  "audioListeningPerformed": false,
+  "tracks": [
+    {
+      "id": "selected-belki-chorus",
+      "sourceSha256": "106aebf4deaeae10a8536b9e56d7c5139bf8b445e3573e6ac6a421845ceff667",
+      "sourceUrl": "https://www.gitaregitim.net/dedubluman-mavzer-tabancas-belki-gitar-tab/",
+      "sourceCredit": "Musa Çetiner / Gitaregitim.net (ochiq nota)",
+      "section": "Naqorat: 17–24-taktlar va 25-taktning birinchi choragi.",
+      "rhythm": "Manbadagi chorak, sakkizlik, yarim notalar va 24-taktdagi chorak pauza saqlangan. 66 BPM o‘quv tempi.",
+      "simplifiedRhythm": false,
+      "firstEightPitches": [
+        72,
+        72,
+        71,
+        71,
+        71,
+        69,
+        69,
+        71
+      ]
+    },
+    {
+      "id": "selected-tujh-mein-rab-dikhta-hai-chorus",
+      "sourceSha256": "758678ac1c45a33445aa5f5b90a8b0bcfdd6fcf0322b65abaa6395d479181aea",
+      "sourceUrl": "https://www.synthesizernotes.com/tujhme-rab-dikhta-hai-piano.html",
+      "sourceCredit": "SynthesizerNotes.com (ochiq harfli nota)",
+      "section": "Naqoratning dastlabki ikki iborasi va manbada ko‘rsatilgan takrori.",
+      "rhythm": "Manba faqat nota balandliklarini beradi. Davomiyliklar o‘quv uchun soddalashtirilgan; original ijro ritmi emas.",
+      "simplifiedRhythm": true,
+      "firstEightPitches": [
+        60,
+        68,
+        70,
+        68,
+        67,
+        67,
+        65,
+        63
+      ]
+    }
+  ]
+}
