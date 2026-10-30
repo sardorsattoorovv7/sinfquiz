@@ -9,19 +9,20 @@ import ClassJoinForm from './paper/ClassJoinForm.jsx';
 export const studioSections=[
  {id:'home',label:'Bosh sahifa',icon:Home,views:['home']},
  {id:'books',label:'Darsliklar',icon:BookOpen,views:['books','lesson','bookPractice','catalog','englishCourse']},
- {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space']},
+ {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space','informaticsAtlas']},
  {id:'exerciseHub',label:'Mashqlar',icon:Gamepad2,views:['exerciseHub','chat','iq','audioMaze','cinemaPiano','practice','national','nationalExam','cefr','cefrManaged','cefrExam','typing','typingJoin','race','raceJoin','join','play']},
  {id:'competitions',label:'Musobaqalar',icon:Trophy,views:['competitions']},
  {id:'results',label:'Natijalar',icon:BarChart3,views:['profile','result']},
 ];
 export const studioActivities=[
+ {id:'informaticsAtlas',label:'Informatika atlasi',detail:'Kompyuter tarixi, 3D muzey, RAM, ROM, HDD, SSD va OS. Qismlarga ajratish va amaliy mashqlar.',subject:'informatics',type:'atlas'},
  {id:'space',label:'Koinot atlasi',detail:'53 hodisa, meteoritlar, orbitalar va yulduzlar. Fizika tajribalari.',subject:'space',type:'atlas'},
  {id:'mathAtlas',label:'Matematika atlasi',detail:'Son, formula, grafik va fazoviy shakllar.',subject:'math',type:'atlas'},
  {id:'chemistry',label:'Kimyo laboratoriyasi',detail:'Atomlar, molekulalar va boshqariladigan tajribalar.',subject:'chemistry',type:'atlas'},
  {id:'biology',label:'Biologiya atlasi',detail:'Tirik tabiat, odam tanasi va amaliy kuzatishlar.',subject:'biology',type:'atlas'},
  {id:'iq',label:'IQ va mantiq',detail:'32 savol va yechimlar tahlili.',icon:Brain,type:'exercise'},
  {id:'audioMaze',label:'Inglizcha labirint',detail:'Darajani tanlang. Matn yoki ovoz bilan yo‘l toping.',icon:Headphones,type:'exercise'},
- {id:'cinemaPiano',label:'PIANO',detail:'Pianino, musiqa, soundtrack, MIDI va 30 soniyalik kuylarni o‘rganish.',icon:Piano,type:'exercise'},
+ {id:'cinemaPiano',label:'Kino Piano',detail:'Pianino, musiqa, soundtrack, MIDI va 30 soniyalik kuylarni o‘rganish.',icon:Piano,type:'exercise'},
  {id:'englishCourse',label:'Ingliz tili darsi',detail:'108 dars, tinglash, o‘qish va kundalik suhbat.',icon:BookOpen,type:'exercise'},
  {id:'practice',label:'Tayyor testlar',detail:'Python, ingliz tili va matematika.',icon:Code2,type:'exercise'},
  {id:'national',label:'Milliy test',detail:'Ustoz variantlari va javoblar tahlili.',icon:GraduationCap,type:'exercise'},

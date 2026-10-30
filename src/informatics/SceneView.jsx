@@ -1,0 +1,64 @@
+import React,{forwardRef,useEffect,useImperativeHandle,useRef,useState} from 'react';
+import {Expand,Minimize,RotateCcw,ZoomIn,ZoomOut,Layers,Play,Pause} from 'lucide-react';
+import {components,history} from './content.js';
+import {eniacPanels} from './history-sim.js';
+
+const plan={case:[360,245,190,340],motherboard:[306,236,155,235],cpu:[288,160,58,54],cooler:[346,145,75,74],ram:[404,187,35,108],rom:[408,289,38,28],hdd:[493,344,100,49],ssd:[493,277,90,35],nvme:[316,253,77,22],gpu:[334,340,155,36],psu:[284,418,120,48],chipset:[367,285,39,40],cmos:[275,291,26,26],sata:[401,351,32,27],pcie:[311,315,110,15],io:[229,188,22,111],fan:[504,174,67,67],cables:[441,398,31,26]};
+function HardwareFallback({selected,onSelect}){
+ return <svg viewBox="0 0 740 520" className="ia-flat-diagram" role="img" aria-label="Kompyuter qismlarining 2D o‘quv sxemasi. Qismlarni quyidagi ro‘yxatdan ham tanlash mumkin."><rect x="185" y="55" width="385" height="425" rx="12" fill="#233f3a" stroke="#91b1a1" strokeWidth="2"/>{components.map((c,i)=>{const [x,y,w,h]=plan[c.id];return <g key={c.id} onClick={()=>onSelect(c.id)} className="ia-svg-part"><rect x={x-w/2} y={y-h/2} width={w} height={h} rx="5" fill={c.id==='case'?'none':c.id==='motherboard'?'#326a51':c.color} stroke={selected===c.id?'#fff2b0':'#78958a'} strokeWidth={selected===c.id?4:1} fillOpacity={c.id==='cooler'?.5:1}/><text x={x} y={y+4} textAnchor="middle" fill={c.id==='case'?'#d3e6d8':'#142b2b'} fontSize={c.id==='pcie'?10:12} fontWeight="700">{String(i+1).padStart(2,'0')}{w>75?' '+c.short:''}</text></g>})}<text x="370" y="510" textAnchor="middle" fill="#c8ddd4" fontSize="13">2D sxema · joylashuv modelga qarab farq qiladi</text></svg>;
+}
+function HistoryFallback({index,immersive}){
+ const h=history[index];const early=['abacus','gears','engine'].includes(h.kind),pc=['pc','modern'].includes(h.kind);
+ if(immersive&&h.id==='eniac')return <svg viewBox="0 0 740 600" className="ia-flat-diagram" role="img" aria-label="ENIAC xonasi yuqoridan: 40 panel U shaklida, 20 akkumulyator. Xona taxminan 9,14 ga 15,24 metr."><rect x="145" y="35" width="450" height="515" fill="#7a8267" stroke="#d6d7b6" strokeWidth="3"/><text x="370" y="26" textAnchor="middle" fill="#edd9a1" fontSize="16">9,14 m × 15,24 m · 40 panel</text>{eniacPanels.map((label,i)=>{const x=i<16?170:i<24?170+(i-16)*47:550,y=i<16?75+i*25:i<24?50:75+(39-i)*25;return <g key={label}><rect x={x} y={y} width={i>=16&&i<24?42:25} height={i>=16&&i<24?23:22} fill={label.startsWith('Akkumulyator')?'#c3ab6d':'#345847'} stroke="#d2d5b4"/><text x={x+12} y={y+15} fontSize="9" fill={label.startsWith('Akkumulyator')?'#233d30':'#fff5d5'} textAnchor="middle">{i+1}</text></g>;})}<rect x="235" y="465" width="70" height="35" fill="#d2c49d"/><rect x="435" y="465" width="70" height="35" fill="#d2c49d"/><text x="270" y="525" textAnchor="middle" fill="#fff0cf" fontSize="12">Karta o‘qish</text><text x="470" y="525" textAnchor="middle" fill="#fff0cf" fontSize="12">Natija</text><circle cx="370" cy="430" r="10" fill="#d8bc8a"/><text x="370" y="300" textAnchor="middle" fill="#fff0cf" fontSize="19">Xona ichidagi yo‘lak</text><text x="370" y="325" textAnchor="middle" fill="#fff0cf" fontSize="13">Sariq panellar: 20 akkumulyator</text><text x="370" y="578" textAnchor="middle" fill="#e0d5b2" fontSize="13">2D o‘quv rejasi · hisoblash tajribasi pastda ishlaydi</text></svg>;
+ return <svg viewBox="0 0 740 520" className="ia-flat-diagram" role="img" aria-label={`${h.name}: 2D o‘quv tasviri`}><path d="M50 440h640" stroke="#617c70"/><ellipse cx="370" cy="438" rx="230" ry="22" fill="#0c2422"/><g fill={early?'#bca271':'#718c82'} stroke="#c8d4b7" strokeWidth="2">{early?<><rect x="182" y="170" width="376" height="220" rx="8"/>{Array.from({length:9},(_,i)=><g key={i}><path d={`M${220+i*37} 190v180`} stroke="#344f42"/>{Array.from({length:5},(_,j)=><ellipse key={j} cx={220+i*37} cy={215+j*28} rx="12" ry="8" fill={j>2?'#dbbf83':'#637b59'}/>)}</g>)}</>:pc?<><rect x="220" y="145" width="300" height="210" rx="12"/><rect x="245" y="170" width="250" height="155" fill="#214b3f"/><rect x="192" y="365" width="350" height="55" rx="6"/><text x="370" y="257" textAnchor="middle" fill="#d9e8cb" stroke="none" fontSize="22">HELLO, WORLD</text></>:<>{Array.from({length:5},(_,i)=><g key={i}><rect x={145+i*90} y="155" width="80" height="265" rx="3"/>{Array.from({length:9},(_,j)=><g key={j}><circle cx={166+i*90} cy={180+j*24} r="4" fill="#e5bd6e"/><path d={`M${183+i*90} ${180+j*24}h25`} stroke="#2e4840"/></g>)}</g>)}</>}</g><text x="370" y="82" textAnchor="middle" fill="#e7c47e" fontSize="24">{h.year}</text><text x="370" y="478" textAnchor="middle" fill="#d4e4d7" fontSize="22">{h.name}</text></svg>;
+}
+
+const SceneView=forwardRef(function SceneView({mode='history',eraIndex=0,selected='motherboard',explode=0,labels=true,cutaway=true,installed,onSelect,onNext,onPrevious,immersive=false,demonstration,activity},ref){
+ const host=useRef(null),root=useRef(null),engine=useRef(null),latest=useRef(null),callbacks=useRef(null);
+ const [status,setStatus]=useState('loading'),[flat,setFlat]=useState(false),[full,setFull]=useState(false),[motion,setMotion]=useState(false),[walking,setWalking]=useState(false),[roomView,setRoomView]=useState('overview');
+ const reduced=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
+ latest.current={mode,eraIndex,selected,explode,labels,cutaway,installed,immersive,demonstration,activity,motion:(motion||(activity?.running&&activity.ready))&&!reduced,reduced};callbacks.current={onSelect};
+ useImperativeHandle(ref,()=>({focus:id=>engine.current?.focus(id),reset:()=>engine.current?.reset(),angle:angle=>engine.current?.angle(angle)}),[]);
+ useEffect(()=>{
+  if(flat)return;
+  let dead=false,local;setStatus('loading');
+  import('./scene.js').then(({createInformaticsScene})=>{
+   if(dead||!host.current)return;
+   try{local=createInformaticsScene(host.current,latest.current,id=>{if(typeof id==='string'&&latest.current.mode==='history'){engine.current?.station(id);setRoomView(id);setWalking(false);}else callbacks.current.onSelect?.(id);},()=>setStatus('fallback'));engine.current=local;setStatus('ready');}
+   catch{setStatus('fallback');}
+  }).catch(()=>{if(!dead)setStatus('fallback');});
+  return()=>{dead=true;local?.dispose();engine.current=null;};
+ },[flat]);
+ useEffect(()=>{engine.current?.update(latest.current);},[mode,eraIndex,selected,explode,labels,cutaway,installed,motion,reduced,immersive,demonstration,activity]);
+ useEffect(()=>{setWalking(false);setRoomView('overview');},[eraIndex,immersive]);
+ useEffect(()=>{if(status==='fallback'){engine.current?.dispose();engine.current=null;}},[status]);
+ useEffect(()=>{
+  if(!full)return;
+  const previous=document.activeElement,overflow=document.body.style.overflow;document.body.style.overflow='hidden';root.current?.querySelector('button')?.focus();
+  const keys=e=>{if(e.key==='Escape')setFull(false);if(e.key==='Tab'){const items=[...root.current.querySelectorAll('button:not([disabled]),select,input,[tabindex="0"]')].filter(el=>el.offsetParent!==null);if(!items.length)return;const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}};document.addEventListener('keydown',keys);
+  return()=>{document.body.style.overflow=overflow;document.removeEventListener('keydown',keys);previous?.focus();};
+ },[full]);
+ const fallback=flat||status==='fallback';
+ const keys=e=>{if(e.target!==e.currentTarget)return;if(walking&&['w','a','s','d','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const k=e.key;if(k==='ArrowLeft'||k==='ArrowRight')engine.current?.turn(k==='ArrowLeft'?.25:-.25);else engine.current?.walk(({w:'forward',a:'left',s:'back',d:'right',ArrowUp:'forward',ArrowDown:'back'})[k]);return;}if(e.key==='ArrowRight'&&mode==='history'){e.preventDefault();onNext?.();}if(e.key==='ArrowLeft'&&mode==='history'){e.preventDefault();onPrevious?.();}if(e.key==='Home'){e.preventDefault();setWalking(false);setRoomView('overview');engine.current?.reset();}if(e.key==='+'||e.key==='='){e.preventDefault();engine.current?.zoom(.8);}if(e.key==='-'){e.preventDefault();engine.current?.zoom(1.25);}};
+ const station=view=>{setWalking(view==='inside');setRoomView(view);engine.current?.station(view);};
+ return <section ref={root} className={`ia-viewer ${full?'ia-viewer-full':''} ${immersive?'ia-viewer-immersive':''}`} role={full?'dialog':undefined} aria-modal={full?true:undefined} aria-label={full?'Kengaytirilgan atlas sahnasi':undefined}>
+  <div className="ia-viewer-top"><span><i/>{fallback?'2D O‘QUV SXEMASI':'3D '+(mode==='history'?'VAQT MUZEYI':'QISMLAR LABORATORIYASI')}</span><span className="ia-scene-number">{mode==='history'?`${String(eraIndex+1).padStart(2,'0')} / ${history.length}`:'18 QISM'}</span></div>
+  <div className="ia-stage" tabIndex={0} aria-label="Sahna boshqaruvi: aylantirish uchun suring, yaqinlashtirish uchun ikki barmoq yoki + va −. Home boshlang‘ich ko‘rinish." onKeyDown={keys}>
+   <div ref={host} className="ia-canvas-host" hidden={fallback}/>
+   {fallback&&(mode==='history'?<HistoryFallback index={eraIndex} immersive={immersive}/>:<HardwareFallback selected={selected} onSelect={onSelect}/>)}
+   {!fallback&&status==='loading'&&<p className="ia-loading" role="status">3D sahna tayyorlanmoqda…</p>}
+   {fallback&&!flat&&<span className="ia-fallback-note" role="status">3D ushbu qurilmada ochilmadi. Qismlar va darslar 2D rejimda ishlaydi.</span>}
+   <div className="ia-scene-caption"><span>{mode==='history'?history[eraIndex].era:'ATX stol kompyuteri'}</span><small>{immersive&&history[eraIndex].id==='eniac'?'Xona o‘lchami manbadan · detallar o‘quv rekonstruksiyasi':'O‘quv modeli · aniq masshtabda emas'}</small></div>
+  </div>
+  <div className="ia-viewer-toolbar"><span className="ia-drag-tip">{fallback?'Qismni ro‘yxatdan tanlang':'Suring — aylantiring · ikki barmoq — yaqinlashtiring'}</span><div>
+   <button type="button" aria-label="Sahnani yaqinlashtirish" disabled={fallback} onClick={()=>engine.current?.zoom(.8)}><ZoomIn size={17}/></button>
+   <button type="button" aria-label="Sahnani uzoqlashtirish" disabled={fallback} onClick={()=>engine.current?.zoom(1.25)}><ZoomOut size={17}/></button>
+   <button type="button" aria-label="Boshlang‘ich ko‘rinish" disabled={fallback} onClick={()=>engine.current?.reset()}><RotateCcw size={17}/></button>
+   <button type="button" aria-pressed={flat} aria-label={flat?'3D ko‘rinishga o‘tish':'2D sxemaga o‘tish'} onClick={()=>setFlat(!flat)}><Layers size={17}/><span>{flat?'3D':'2D'}</span></button>
+   <button type="button" aria-pressed={motion} aria-label={motion?'Sahna harakatini to‘xtatish':'Sahna harakatini yoqish'} disabled={fallback||reduced} onClick={()=>setMotion(!motion)}>{motion?<Pause size={17}/>:<Play size={17}/>}</button>
+   <button type="button" aria-label={full?'Keng ekranni yopish':'Keng ekranga ochish'} onClick={()=>setFull(!full)}>{full?<Minimize size={17}/>:<Expand size={17}/>}</button>
+  </div></div>
+  {mode==='history'&&immersive&&<div className="ia-room-controls"><label>Ko‘rish nuqtasi<select aria-label="Tarixiy xonani ko‘rish nuqtasi" disabled={fallback} value={roomView} onChange={e=>station(e.target.value)}><option value="overview">Butun xona</option><option value="inside">Xona ichiga kirish · 1,65 m</option><option value="program">Buyruq va kirish</option><option value="accumulators">Xotira / akkumulyator</option><option value="calculator">Hisoblash qismi</option><option value="output">Natija qurilmasi</option><option value="top">Yuqoridan xona rejasi</option></select></label><button className="ia-button" disabled={fallback} aria-pressed={walking} onClick={()=>{station(walking?'overview':'inside');root.current?.querySelector('.ia-stage')?.focus();}}>{walking?'Xonadan umumiy ko‘rinishga':'Xonaga kirib yurish'}</button>{walking&&<><div className="ia-walk-buttons" role="group" aria-label="Xonada yurish"><button className="ia-button" onClick={()=>engine.current?.turn(.25)} aria-label="Xonada chapga qarash">↶</button><button className="ia-button" onClick={()=>engine.current?.walk('forward')} aria-label="Xonada oldinga yurish">↑</button><button className="ia-button" onClick={()=>engine.current?.walk('back')} aria-label="Xonada orqaga yurish">↓</button><button className="ia-button" onClick={()=>engine.current?.turn(-.25)} aria-label="Xonada o‘ngga qarash">↷</button></div><p>W/A/S/D — yurish; ←/→ — qarash. Telefon uchun tugmalarni bosing. Home — umumiy ko‘rinish.</p></>}</div>}
+ </section>;
+});
+export default SceneView;

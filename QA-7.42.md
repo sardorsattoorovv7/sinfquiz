@@ -1,34 +1,37 @@
-# SinfQuiz 7.42.0 — tekshiruvlar
+# QA — SinfQuiz 7.42.0
 
-Tekshiruv sanasi: 2026-10-17T04:38:59.279091+00:00. Linux, Node.js v24.19.0.
+Sana: 2026-10-30.
 
-| Tekshiruv | Natija |
-| --- | --- |
-| `npm test` | **323 o‘tdi, 0 xato, 0 skip**; taxminan 102 soniya |
-| Yangi razminka testlari | **6 o‘tdi**; ma’lumot, vaqt, metrika, UI va kirish oqimlari |
-| `npm run build` | **Muvaffaqiyatli** |
-| `node scripts/measure-performance.mjs dist --check` | **JS/CSS budjeti bajarildi** |
-| Ochiq API va SQL | Implementatsiya o‘zgarmagan; mavjud regressiya/SQL testlari o‘tdi |
-| Resurslar | 1337 eski yo‘l saqlanadi; 553 public/data/SQL fayli baytma-bayt bir xil |
+## Avtomatik tekshiruvlar
 
-## Razminka bo‘yicha tekshirilgan holatlar
+- `npm test`: **326 test, 326 o‘tdi, 0 xato**.
+- Yangi qo‘llanma testlari: 174 mavzu va bo‘limning qamrovi; yo‘llardagi barcha identifikatorlar; mazmuni farqli mavzularning alohida savollari; ikki kuzatuv va to‘g‘ri javob talabi; hisoblar ajratilishi; eskirgan qo‘llanma belgisini bekor qilish; buzilgan va bloklangan qoralamalarni xavfsiz o‘qish.
+- Yakuniy o‘rganish yo‘llari va progress o‘zgarishidan keyin yangi oltita qo‘llanma testi yana bajarildi: **6/6 PASS**.
+- `npm run build`: **PASS**. Mavjud lucide-react `use client` ogohlantirishlari buildni to‘xtatmaydi.
+- `npm run perf`: **PASS**.
 
-48 ta gapning qisqaligi va takrorlanmasligi; 1/3/5 gap tanlash; tinish belgilari va kichik harflar; qayta boshlaganda birinchi gapni almashtirish; apostrof variantlari; Unicode belgi hisoblash; oraliqdagi tanlovni almashtirish; Backspace uchun qo‘shimcha xato yozilmasligi; tuzatilgan xatolarni umumiy aniqlikda saqlash; WPM hisoblash.
+## Yangi o‘rganish tartibi — haqiqiy brauzer
 
-React interfeysida xato harf, nusxa qo‘yishni to‘sish, barcha harflarni yozib tugatish, yakuniy statistika, fokus va Tab → Enter orqali qayta boshlash tekshirildi. Native textarea va composition voqealari qo‘llangan. Vaqtli rejimda matnning davom etishi, yashirin tabdan qaytilganda aniq muddat, kechikkan inputni rad qilish va sozlamadan keyingi yangi sessiya tekshirildi.
+`tests/atlas-learning-browser.mjs`: **PASS**.
 
-Typing kirishida inglizcha yo‘nalish, o‘zbekcha razminka, xona tanlovining saqlanishi va avvalgi `longtext` / `english` so‘rov shartnomalariga o‘tish ishlaydi. Allaqachon kirilgan o‘zbekcha bosqichdan razminkaga o‘tib qaytish rasmiy taymerni boshlamaydi. Razminkada APIga natija yuborish implementatsiyasi yo‘q; jurnal va server baholashiga aralashmaydi.
+Tekshirildi: beshta atlas kartasi; umumiy qidiruv; qidiruvni tozalash; to‘rtta fan uchun kirish xaritasi; fizikadagi 53 hodisa ro‘yxati; har bir atlasda bir qo‘llanmani to‘liq yakunlash; xato javobdan keyin qayta urinish; to‘liq bo‘lmagan qaydni yakunlamaslik; real model boshqaruvining natijaga ta’siri; JSON yuklash; oxirgi mavzuga qaytish; qaydni tiklash; ikkinchi foydalanuvchida ajratilgan progress; WebGLsiz informatika qo‘llanmasi.
 
-Axe bilan komponentning WCAG 2 A/AA semantik tekshiruvi bajarildi; JSDOM’da ishonchli bo‘lmagan rang-kontrast qoidasi bu tekshiruvda o‘chirilgan. Mavjud Paper Workshop testlari kunduzgi/tungi tokenlar kontrastini hisoblab tekshiradi. Yangi CSS shu ink/muted/accent/danger tokenlaridan foydalanadi.
+320, 390 va 768 px o‘lchamlarda mavzu sahifalari va atlaslar markazida yonlama chiqish aniqlanmadi. Tungi ko‘rinish va kamaytirilgan harakat rejimi tekshirildi. Yangi markaz, qo‘llanma va kirish komponentlari uchun axe WCAG 2 A/AA, 2.1 AA va 2.2 AA: **0 avtomatik aniqlangan buzilish**. Brauzer `pageerror`: **0**.
 
-## Yuklanish hajmi
+## Fizika va koinot regressiyasi
 
-Boshlang‘ich JS: **583,779 bayt**, gzip hisobida **171,671 bayt**. Oldingi versiyadan **298 bayt** ko‘p. CSS: **314,436 bayt**, gzip **55,345 bayt**. Razminka kodi va CSS alohida lazy modul sifatida faqat ochilganda yuklanadi. Yangi kutubxona, shrift yoki tashqi kontent so‘rovi qo‘shilmagan. Siqilgan hajmlar hisobiy, haqiqiy tarmoq vaqti emas.
+`tests/space-browser.cjs`: **PASS**. Haqiqiy PGlite SQL fixture va WebGL renderer bilan barcha **53 ta 3D sahna** tekshirildi. Shuningdek, parametrlar, real render farqi, qoralamani tiklash, serverga topshirish, JSON eksport, 2D zaxira, planshet/telefon/proyektor, ustoz topshirig‘i yaratish, guruh ishi, ustoz fikri va boshqa ustozdan ajratish ishladi. Oltita accessibility ko‘rinishi o‘tdi, `pageerror` **0**.
 
-## Tekshiruv chegaralari
+Yangi boshlang‘ich xarita sabab regressiya skripti avval xaritadan hodisani ochadi; model va SQL tekshiruvlari saqlangan.
 
-Bu muhitda boshqariladigan brauzer mavjud emas. Haqiqiy telefon/planshet, brauzer screenshotlari yoki jonli Supabase hisobi bilan sinov bajarilmagan. 320–390 px uchun oqim, kichik ekran qoidalari, 44 px tugmalar va reduced-motion CSS’da mavjud; JSDOM haqiqiy layout yoki mobil klaviaturani tasdiqlamaydi.
+## Informatika regressiyasi
 
-Buildda Lucide’ning `use client` direktivalari haqida bundler ogohlantirishlari bor; build muvaffaqiyatli tugadi. Tekshiruv loglari `qa-7.42.0` ichida. Barcha eski avtomatik testlar saqlangan; ular qisqartirilmagan.
+`tests/informatics-browser.mjs`: **PASS**. 12 tarixiy sahna, 18 qism, qismlarga ajratish, kamera va keng ekran, 6 yuklanish bosqichi, RAM/SSD quvvat tajribasi, 8 bit, 8 yig‘ish qadami, 4 diagnostika holati, 12 savol, progress va yuklab olish, telefon/tungi ko‘rinish, bloklangan localStorage va WebGLsiz 2D rejim tekshirildi.
 
-ZIP skripti CRC, yo‘llar, takroriy nomlar va har bir fayl baytini tekshiradi. Arxiv to‘liq yopilib tekshirilgach atomar tarzda yakuniy nomga o‘tkaziladi. Maxfiy `.env`, `node_modules`, `dist` va vaqtinchalik tadqiqot fayllari kiritilmaydi. O‘rnatish: `UPDATE-7.42.md`.
+## Dastlabki yuklanish
+
+Boshlang‘ich JavaScript: 587,994 bayt; gzip 172,864 bayt. CSS: 314,436 bayt; gzip 55,345 bayt. Atlaslar markazi va qo‘llanma kontenti kerak bo‘lganda yuklanadi.
+
+## Tekshiruv chegarasi
+
+Sinovlar headless Chromium va dasturiy WebGL bilan bajarildi; har bir real telefonning tezligi kafolatlanmaydi. Matnli xulosaning ilmiy to‘g‘riligi avtomatik baholandi deb ko‘rsatilmaydi. 3D modellar o‘quv uchun soddalashtirilgan. Avtomatik axe tekshiruvi qo‘lda to‘liq accessibility auditining o‘rnini bosmaydi. WebGL ataylab o‘chirilgan sinovda rendererning konsol xabari kutilgan; zaxira rejimiga o‘tish va o‘quv materiallari ishlashi tekshirildi.

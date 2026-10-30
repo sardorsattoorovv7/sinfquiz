@@ -2,7 +2,9 @@ import React, {useEffect,useState} from 'react';
 import {Volume2,VolumeX,Sun,Moon} from 'lucide-react';
 
 let ctx; let master;
-let enabled=localStorage.getItem('sq_sound')!=='off';
+const stored=key=>{try{return localStorage.getItem(key)}catch{return null}};
+const remember=(key,value)=>{try{localStorage.setItem(key,value)}catch{}};
+let enabled=stored('sq_sound')!=='off';
 export function unlockAudio(){
   if(!enabled)return;
   try {const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return;ctx ||= new Audio();if(!master){master=ctx.createGain();master.gain.value=.18;master.connect(ctx.destination)}if(ctx.state==='suspended')ctx.resume().catch(()=>{});}catch{}
@@ -25,10 +27,10 @@ export function playSound(type='tap'){
 }
 export function ExperienceControls(){
   const [sound,setSound]=useState(enabled);
-  const [theme,setTheme]=useState(()=>localStorage.getItem('sq_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
-  useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;document.documentElement.removeAttribute('data-motion');document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='dark'?'#302A24':'#EEE5D5');localStorage.setItem('sq_theme',theme)},[theme]);
+  const [theme,setTheme]=useState(()=>stored('sq_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.style.colorScheme=theme;document.documentElement.removeAttribute('data-motion');document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='dark'?'#302A24':'#EEE5D5');remember('sq_theme',theme)},[theme]);
   useEffect(()=>{const tap=e=>{if(e.target.closest('.cinema-piano'))return;unlockAudio();if(e.target.closest('button')&&!e.target.closest('.experience-controls'))playSound('tap')};document.addEventListener('pointerdown',tap);document.addEventListener('keydown',unlockAudio);return()=>{document.removeEventListener('pointerdown',tap);document.removeEventListener('keydown',unlockAudio)}},[]);
-  return <div className="experience-controls" aria-label="Ovoz va rang sozlamalari"><button aria-pressed={sound} onClick={()=>{enabled=!sound;setSound(enabled);localStorage.setItem('sq_sound',enabled?'on':'off');if(master)master.gain.value=enabled?.18:0;if(enabled)playSound('arena')}} title="Ovoz effektlari">{sound?<Volume2 size={17}/>:<VolumeX size={17}/>}<span>Ovoz {sound?'yoqilgan':'o‘chiq'}</span></button><button aria-label={theme==='dark'?'Kunduzgi ko‘rinishga o‘tish':'Tungi ko‘rinishga o‘tish'} onClick={()=>setTheme(theme==='dark'?'light':'dark')} title="Sayt ko‘rinishi">{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}<span>{theme==='dark'?'Kunduzgi':'Tungi'}</span></button></div>
+  return <div className="experience-controls" aria-label="Ovoz va rang sozlamalari"><button aria-pressed={sound} onClick={()=>{enabled=!sound;setSound(enabled);remember('sq_sound',enabled?'on':'off');if(master)master.gain.value=enabled?.18:0;if(enabled)playSound('arena')}} title="Ovoz effektlari">{sound?<Volume2 size={17}/>:<VolumeX size={17}/>}<span>Ovoz {sound?'yoqilgan':'o‘chiq'}</span></button><button aria-label={theme==='dark'?'Kunduzgi ko‘rinishga o‘tish':'Tungi ko‘rinishga o‘tish'} onClick={()=>setTheme(theme==='dark'?'light':'dark')} title="Sayt ko‘rinishi">{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}<span>{theme==='dark'?'Kunduzgi':'Tungi'}</span></button></div>
 }
 
 const colors=['#b4a1ff','#83dbef','#ffc66e','#eaa0ed','#8be0b7','#f6a29a'];

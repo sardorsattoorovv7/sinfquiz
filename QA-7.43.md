@@ -1,29 +1,41 @@
-# SinfQuiz 7.43.0 — tekshiruv natijalari
+# QA — SinfQuiz 7.43.0
 
-Tekshiruv sanasi: 2026-10-17T05:09:31.930697+00:00. Linux, Node.js v24.19.0.
+Sana: 2026-10-30.
 
-| Tekshiruv | Natija |
-| --- | --- |
-| `npm test` | **326 o‘tdi, 0 xato, 0 skip**; taxminan 111 soniya |
-| `npm run build` | **Muvaffaqiyatli** |
-| `node scripts/measure-performance.mjs dist --check` | **Budjetdan o‘tdi** |
-| Yangi yonlama ro‘yxat testlari | **3 o‘tdi**; sahna, tanlov, fokus va qidiruv klaviaturasi |
-| Eski fayllar | Barcha 1349 yo‘l saqlanadi; 553 public/data/SQL fayli baytma-bayt o‘zgarmagan |
+## Hisob va ma’lumot
 
-## Tekshirilgan yangi xatti-harakatlar
+- `npm test`: **333 test, 333 o‘tdi, 0 xato**. Bu oldingi 326 test va 7 yangi amaliy muhit testini o‘z ichiga oladi.
+- Yangi 7 test: 170 fan mavzusining vaziyati, boshqaruvlarning chegaralari va hisoblarning yaroqliligi; aniq matematik misollar va birliklar; simmetriya va parallel tariflar; 12 tarixiy amaliyot; ENIACning 40 paneli/20 akkumulyatori va birlik aylantirishlari; 18 qismning bajariladigan holatlari; noma’lum parametrlarni cheklash.
+- Keyingi integratsiya o‘zgarishlaridan so‘ng amaliy muhit, informatika va qo‘llanma bo‘yicha **19 test qayta bajarildi: 19/19 PASS**. Yakuniy amaliy hisoblar uchun **7/7 PASS**.
+- Haqiqiy muhitdan o‘lchov olinayotgani da’vo qilinmaydi. Hisob va sifat modelining chegaralari mavzuda ochiq yozilgan.
 
-390×844 telefon geometriyasidagi 90° sahnada kuyni tanlash ro‘yxati ochiladi. Ro‘yxat shu portal ichida qoladi. 79 tayyor kuy va 38 mashq, qidiruv natijasi va bo‘sh shaxsiy MIDI holati tekshirildi. Tujh Mein Rab Dikhta Hai tanlanganda sahna yopilmaydi; joriy nom yangilanadi, eski ushlab turilgan notalar bo‘shatiladi va tutorial 0/32 holatiga qaytadi. Yangi avtoijro o‘zidan boshlanmaydi.
+## Yangi amaliy muhit — haqiqiy WebGL brauzer
 
-Sevimlilar va oldindan saqlangan tutorial natijalari tanlovdan keyin saqlandi. Mashq tanlanganda ham yonlama holat saqlanib, oddiy ko‘rinishga qaytganda tanlov o‘zgarmadi. Ro‘yxat ochilganda orqadagi boshqaruvlar inert qilinadi; fokus qidiruvga o‘tadi va Tab/Shift+Tab ro‘yxat chegarasida qoladi. Esc ro‘yxatni yopib, fokusni kuy nomiga qaytaradi; keyingi Esc sahnadan chiqaradi.
+`npm run test:e2e:reality`: **PASS**.
 
-Native fullscreen/orientation lock maketi va qo‘llanmaydigan fullscreen fallback holatlari tekshirildi. Qidiruv klaviaturasi uchun visual viewport balandligi 844 → 280 → 844 px qilib modellashtirildi; 90° holat saqlandi va ko‘rinish yangi o‘lchamga moslandi.
+- Barcha **12 tarixiy bekat**ning xonasi ochildi; har birining bosqichli misoli yakunlandi va hisob javobi tekshirildi.
+- ENIACning **40 panelli**, **9,14 × 15,24 m** xona modeli, ichkariga kirish, yurish, kamera bekatlari, noto‘g‘ri ulanishni bloklash, to‘g‘ri ulash va **23×17=391** tekshirildi. Erkin tushish jadvali ochildi.
+- Barcha **18 kompyuter qismi**ning ishlash mashqi bajarildi.
+- Matematika **62/62** va kimyo **25/25** mavzusining yangi 3D geometriyasi komponent probasida haqiqiy WebGLda chizildi; boshqaruvning yuqori chegarasi, jarayonning oxiri, boshqa kamera bekati va hisobni qayd etish ishladi.
+- Haqiqiy ilova navigatsiyasi orqali matematika/Pifagor, biologiya/nafas, kimyo/filtrlash va fizika/og‘irlik amaliy muhitlari sinovdan o‘tdi. Hisobni jadvalga olish, bir xil sinovni takrorlamaslik va JSON yuklab olish tekshirildi.
+- **320, 390 va 768 px**: to‘rtta fan amaliy muhiti va ENIACda yonlama chiqish yo‘q. Biologiya hujayrasi, kimyo titrlashi va okean modeli mobil holatda ochildi.
+- Tungi rejim, kamaytirilgan harakat, klaviaturadagi kamera ko‘rsatmalari va sensor tugmalar mavjud.
+- Yangi muhit va ENIAC boshqaruvlari uchun axe WCAG 2 A/AA, 2.1 AA va 2.2 AA: **0 avtomatik aniqlangan buzilish**. `pageerror`: **0**.
+- WebGL ataylab o‘chirilganda ENIACning 40 panelli 2D rejasi va **999+1=1000** ishladi; matematik 2D rejimda Pifagor hisobi va sinov qaydi ishladi.
 
-Mavjud rol testlari mehmon, o‘quvchi, ustoz va administratorda PIANO ochilishi va Mashqlarga qaytishini tekshiradi. Bo‘lim kartasi/sarlavhasi PIANO. Eski hash, saqlash kalitlari, ovoz mexanizmi, tayyor notalar va o‘zbekcha typing razminkasi o‘zgarmagan.
+WebGLsiz maxsus sinovdagi `Error creating WebGL context` konsol xabari kutilgan: sinov rendererning ochilmasligini ataylab yaratadi. Foydalanuvchi o‘quvini davom ettira oldi.
 
-## Yuklanish va chegaralar
+## Oldingi funksiyalar regressiyasi
 
-Dastlabki JavaScript: **583,769 bayt**, gzip **171,663 bayt**; 7.42 dan o‘zgarish **-10 bayt**. CSS: **314,436 bayt**, gzip **55,345 bayt**. Yangi ro‘yxat PIANO lazy moduliga kiradi. Yangi dependency yoki tashqi kontent yuklovi yo‘q. Siqilgan hajmlar hisobiy, haqiqiy tarmoq tezligi o‘lchanmagan.
+- `tests/informatics-browser.mjs`: **PASS**. 12 tarixiy mavzu, 18 qism, ajratish/yig‘ish, kamera, keng ekran, 2D/3D, 6 yuklanish bosqichi, RAM/SSD, bitlar, 8 yig‘ish vazifasi, diagnostika, 12 savol, qayta ochilgandagi progress, JSON, mehmon, mobil, tungi rejim, WebGLsiz va bloklangan localStorage holatlari.
+- `tests/atlas-learning-browser.mjs`: **PASS**. Besh atlas markazi/qidiruvi, 174 mavzu va bo‘lim qo‘llanmasi, oldingi qaydlarni tiklash, yakunlash shartlari, hisoblar ajratilishi, JSON, mobil va tungi rejim. Har atlasdan bir qo‘llanma to‘liq bajarildi.
+- Koinot va biologiyaning mavjud barcha 3D aktivlari ushbu versiyada alohida qayta test qilingani da’vo qilinmaydi; yangi integratsiya namunalar orqali, formulalar esa barcha mavzularda tekshirildi. Oldingi to‘liq 53 sahna testi `QA-7.42.md`da.
 
-Sinovlar Node/JSDOM, React va audio/fullscreen maketlariga asoslangan. Boshqariladigan brauzer mavjud bo‘lmagani uchun haqiqiy iPhone/Android/planshet, mobil klaviatura, ekran screenshotlari yoki jonli Supabase bilan sinov bajarilmagan. CSS’da 44 px tugmalar, 16 px qidiruv, scroll, tor ekran va mavjud reduced-motion qo‘llovi saqlangan; JSDOM haqiqiy layoutni tasdiqlamaydi.
+## Build va yuklanish
 
-Builddagi Lucide `use client` ogohlantirishlari fatal emas. Loglar `qa-7.43.0` ichida. ZIP skripti CRC, barcha yo‘llar, takroriy nomlar, avvalgi resurslar va har bir fayl baytini tekshiradi; to‘liq yopilgan arxiv atomar yakunlanadi. Maxfiy `.env`, `node_modules`, `dist` yoki vaqtinchalik tadqiqotlar kiritilmaydi.
+- `npm run build`: **PASS**. Mavjud lucide-react `use client` ogohlantirishi buildni to‘xtatmaydi.
+- `npm run perf`: **PASS**; boshlang‘ich JS va CSS belgilangan limitlar ichida. Aniq miqdorlar `RELEASE-7.43.0.json`da.
+- Amaliy 3D muhiti foydalanuvchi kirish tugmasini bosganda yuklanadi. Render o‘zgarish bo‘lganda chiziladi; ko‘rinmayotgan/berkitilgan sahnalar to‘xtaydi, resurslar chiqishda bo‘shatiladi.
+- Yangi loyiha dependency yoki SQL migratsiyasi yo‘q. GitHubga push va ishlab turgan saytga deploy ushbu ZIP tayyorlash jarayonida bajarilmagan.
+
+Avtomatik accessibility testi qo‘lda ekran o‘quvchi auditi yoki barcha haqiqiy telefonlarning tekshiruvi o‘rnini bosmaydi.

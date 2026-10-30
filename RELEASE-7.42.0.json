@@ -1,63 +1,39 @@
 {
   "version": "7.42.0",
-  "baseVersion": "7.41.0",
-  "checkedAt": "2026-10-17T04:38:59.279091+00:00",
-  "feature": "Uzbek short-sentence typing warmup",
-  "sentences": 48,
-  "sentenceCounts": [
-    1,
-    3,
-    5
-  ],
-  "timerSeconds": [
-    15,
-    30,
-    60
-  ],
-  "default": "3 sentences, lowercase, no punctuation",
-  "officialTypingApiChanged": false,
+  "date": "2026-10-30",
+  "title": "Barcha atlaslar: tushunarli o‘rganish yo‘li",
+  "subjects": {
+    "math": 62,
+    "biology": 30,
+    "chemistry": 25,
+    "space": 53,
+    "informatics": 4
+  },
+  "learningPaths": 26,
+  "guideCount": 174,
+  "sqlChanges": false,
   "newDependencies": false,
-  "newSqlRequired": false,
-  "readyPianoSongsPreserved": 79,
-  "validation": {
-    "testsPassed": 323,
+  "checks": {
+    "automatedTests": 326,
+    "passed": 326,
     "failed": 0,
-    "skipped": 0,
-    "newWarmupTests": 6,
-    "build": "passed",
-    "performanceBudget": "passed",
-    "initialJavascript": {
+    "browserLearning": "passed",
+    "space3DScenes": 53,
+    "informaticsRegression": "passed",
+    "performanceBudget": true
+  },
+  "initialLoad": {
+    "javascript": {
       "files": 6,
-      "bytes": 583779,
-      "gzip": 171671,
-      "brotli": 147434
+      "bytes": 587994,
+      "gzip": 172864,
+      "brotli": 148359
     },
-    "initialCss": {
+    "css": {
       "files": 2,
       "bytes": 314436,
       "gzip": 55345,
       "brotli": 45572
-    },
-    "initialJavascriptBytesDelta": 298,
-    "lazyWarmupAssets": [
-      {
-        "name": "UzbekTypingWarmup-Blfcuhw3.js",
-        "bytes": 10969,
-        "gzip": 4384
-      },
-      {
-        "name": "UzbekTypingWarmup-TwBrfhJz.css",
-        "bytes": 8475,
-        "gzip": 2406
-      }
-    ],
-    "physicalDeviceTest": false,
-    "browserVisualTest": false,
-    "liveSupabaseTest": false
-  },
-  "preservation": {
-    "baselineFiles": 1337,
-    "unchangedPublicDataSqlFiles": 553,
-    "totalZipFiles": 1349
+    }
   }
 }

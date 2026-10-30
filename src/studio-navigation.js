@@ -14,9 +14,10 @@ export function findStudioRoutes(routes,query){
  });
 }
 
-const hashes={cinemaPiano:'kino-piano',space:'koinot',profile:'profil',chat:'suhbatlar',catalog:'informatika',practice:'open-exam',national:'milliy-testlar',cefrManaged:'cefr-test',classroom:'sinfxona'};
+const hashes={informaticsAtlas:'informatika-atlasi',cinemaPiano:'kino-piano',space:'koinot',profile:'profil',chat:'suhbatlar',catalog:'informatika',practice:'open-exam',national:'milliy-testlar',cefrManaged:'cefr-test',classroom:'sinfxona'};
 export const studioViewHash=view=>hashes[view]||null;
 export function restoredStudioView(hash,user){
+ if(hash==='#informatika-atlasi')return 'informaticsAtlas';
  if(!user||!['student','teacher','admin'].includes(user.role))return null;
  const view=Object.keys(hashes).find(key=>`#${hashes[key]}`===hash);
  if(!view)return null;

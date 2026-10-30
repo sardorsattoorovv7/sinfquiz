@@ -23,7 +23,10 @@
     "test:e2e:classroom": "node tests/classroom-browser.cjs",
     "test:e2e:space": "node tests/space-browser.cjs",
     "test:e2e:physical": "node tests/physical-browser.cjs",
-    "perf": "node scripts/measure-performance.mjs dist --check"
+    "perf": "node scripts/measure-performance.mjs dist --check",
+    "test:e2e:informatics": "node tests/informatics-browser.mjs",
+    "test:e2e:atlases": "node tests/atlas-learning-browser.mjs",
+    "test:e2e:reality": "node tests/atlas-reality-browser.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

@@ -1,20 +1,54 @@
-# SinfQuiz 7.43.0 — PIANO: telefonda yonlama kuy tanlash
+# SinfQuiz 7.43.0 — atlasni muhitida ko‘ring, ishlating va tekshiring
 
-Yonlama pianoda yuqoridagi kuy nomini bosing, ro‘yxatdan qidirib boshqa kuyni tanlang. Kuylar, mashqlar va shaxsiy MIDIlar sahnadan chiqmasdan tanlanadi. Bo‘lim nomi endi PIANO.
+**ENIAC xonasiga kiring:** 40 panelning U shaklidagi joylashuvi, odam bo‘yi bilan o‘lchamni solishtirish, xonada yurish, akkumulyator va kirish/chiqishga yaqinlashish. O‘quv ulash panelida yo‘lni ulang, o‘nlik qo‘shish/ko‘paytirishni bajaring va harakat jadvalini hisoblang.
 
-[O‘rnatish va foydalanish](UPDATE-7.43.md) · [Tekshiruvlar](QA-7.43.md) · [Asosiy fayllar](CHANGED-FILES-7.43.md). Ovoz, 79 tayyor kuy, 38 mashq va o‘zbekcha typing razminkasi saqlangan. Yangi SQL yoki dependency yo‘q.
+Barcha **12 tarixiy bekat**da vazifaga mos jonli misol; kompyuterning **18 qismi** uchun ishlash mashqi. Qolgan fanlarda **170 mavzu**ga mos amaliy muhit: matematika 62, biologiya 30, kimyo 25, fizika/koinot 53. Har mavzuda **Amaliy muhitga kirish**ni bosing, parametrni o‘zgartiring, hisoblangan natijani qayd eting va ikki sinovni solishtiring. JSON eksport mavjud.
 
-# SinfQuiz 7.42.0 — qisqa o‘zbekcha typing razminkasi
+Xonalar va jihozlar — original o‘quv rekonstruksiyalari; tarixiy mashinalarning to‘liq emulyatori yoki joylarning skani emas. Har mavzuda modelning farazlari va chegaralari ko‘rsatilgan. Mobil boshqaruv, klaviatura va 2D zaxira rejimi mavjud.
 
-Typing → O‘zbekcha typing → Razminka. 48 qisqa gap, 1/3/5 gap yoki 15/30/60 soniya, matn ustida yozish, WPM va aniqlik. Besh bosqichli eski mashq va inglizcha typing saqlangan; razminka reytingga yuborilmaydi.
+Node.js 22.12+, `npm ci`, `npm run dev`. Yangi SQL yoki dependency yo‘q. Kirish: `/#atlaslar`, informatika: `/#informatika-atlasi`.
 
-[O‘rnatish va foydalanish](UPDATE-7.42.md) · [Tekshiruvlar](QA-7.42.md) · [Asosiy fayllar](CHANGED-FILES-7.42.md). Yangi SQL yoki dependency yo‘q.
+**333 test o‘tdi; yangi 87 matematika/kimyo 3D ko‘rinishi, 12 tarixiy tajriba va 18 qism brauzerda tekshirildi.**
 
-# SinfQuiz 7.41.0 — Belki va Tujh piano darslari
+**[Yangilash va foydalanish](UPDATE-7.43.md) · [QA](QA-7.43.md) · [Manbalar](ATLAS-REALITY-SOURCES-7.43.md)**
 
-Belki va Tujh Mein Rab Dikhta Hai naqoratlari qo‘shildi: har biri 30 soniya, tinglash va Do–Re–Mi tutoriali bilan. Jami 79 tayyor kuy va 38 mashq. Tujh ritmi o‘quv uchun soddalashtirilgan. Ovoz kuchaytirishi va telefon/planshetdagi yonlama piano saqlangan.
+---
 
-O‘rnatish: [UPDATE-7.41.md](UPDATE-7.41.md). Manbalar: [PIANO-SOURCES-7.41.md](PIANO-SOURCES-7.41.md). Tekshiruvlar: [QA-7.41.md](QA-7.41.md). Fayllar: [CHANGED-FILES-7.41.md](CHANGED-FILES-7.41.md).
+# SinfQuiz 7.42.0 — barcha atlaslar, tushunarli o‘rganish yo‘li
+
+**Atlaslar markazi** qayta ishlangan: matematika, biologiya, kimyo, fizika/koinot va informatika bir joyda. Mavzuni barcha atlaslardan qidiring yoki oxirgi qaydingizdan davom eting.
+
+| Atlas | Bosqichli qo‘llanma | O‘rganish yo‘li |
+| --- | ---: | ---: |
+| Matematika | 62 mavzu | 9 |
+| Biologiya | 30 mavzu | 4 |
+| Kimyo | 25 mavzu va virtual tajriba | 4 |
+| Fizika va koinot | 53 hodisa | 8 |
+| Informatika | 4 katta bo‘lim | 1 |
+
+Har bir mavzuda **tushuncha va misol → atamalar → modelda ikki sinov → izohli savol → xulosa** tartibi bor. Shaxsiy qaydlar hisob bo‘yicha shu brauzerda saqlanadi; JSON eksport ishlaydi. Qo‘llanma yakuni rasmiy imtihon bali emas.
+
+**326 avtomatik test o‘tdi.** Yangi o‘rganish tartibi beshala atlasda, fizikaning 53 ta haqiqiy 3D sahnasi, ustoz topshirig‘i va informatika regressiyasi brauzerda tekshirildi. Telefon, planshet, tungi ko‘rinish va 2D zaxira rejimi qo‘llanadi.
+
+Yangi SQL yoki dependency kerak emas. Node.js 22.12+, `npm ci`, `npm run dev`. Kirish: `/#atlaslar`. Tekshiruv: `npm test`, `npm run build`, `npm run perf`, `npm run test:e2e:atlases`.
+
+**[Yangilash](UPDATE-7.42.md) · [QA](QA-7.42.md) · [Manbalar](ATLAS-LEARNING-SOURCES-7.42.md)**
+
+---
+
+# SinfQuiz 7.41.0 — Informatika 3D atlasi
+
+**Atlaslar → Informatika atlasi**: kompyuter tarixiga 12 bekatli 3D sayohat, 18 qismli kompyuter anatomiyasi, qismlarga ajratish, RAM / ROM / HDD / SSD farqlari, OS yuklanishi va amaliy mashqlar.
+
+Bosh sahifadagi **Informatika → Kashf qilish** ham yangi atlasga olib boradi. Bevosita: `/#informatika-atlasi`. Atlas mehmon uchun ham ochiq va uning o‘zi Supabase sozlamasisiz ishlaydi. Oldingi Python va Office amaliyoti Mashqlar bo‘limida saqlangan.
+
+8 qadamli yig‘ish mashqi, 4 diagnostika holati, 12 izohli savol, RAM / SSD quvvat tajribasi va 8 bitli sanoq laboratoriyasi mavjud. Natijalar shu brauzerda saqlanadi; JSON eksport bor. Telefon, planshet, tungi ko‘rinish, klaviatura boshqaruvi va WebGLsiz 2D rejim moslashtirilgan.
+
+Yangi SQL, environment yoki dependency talab qilinmaydi. Ishga tushirish: Node.js 22.12+, `npm ci`, `npm run dev`. Tekshiruvlar: `npm test`, `npm run build`, `npm run perf`, `npm run test:e2e:informatics`.
+
+**[Yangilash](UPDATE-7.41.md) · [Tekshiruvlar](QA-7.41.md) · [Manbalar va model cheklovlari](INFORMATIKA-ATLAS-SOURCES.md)**
+
+---
 
 # SinfQuiz 7.40.0 — 5 kuy va balandroq piano
 

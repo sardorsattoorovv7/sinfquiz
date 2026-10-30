@@ -80,7 +80,11 @@ const StudentProfile=React.lazy(()=>import('./StudentProfile.jsx'));
 
 const SpaceAtlas=React.lazy(()=>import('./space/SpaceAtlas.jsx'));
 
+const AtlasHub=React.lazy(()=>import('./AtlasHub.jsx'));
+
 const MathAtlas=React.lazy(()=>import('./MathAtlas.jsx'));
+
+const InformaticsAtlas=React.lazy(()=>import('./InformaticsAtlas.jsx'));
 
 const EnglishCourse=React.lazy(()=>import('./EnglishCourse.jsx'));
 
@@ -103,7 +107,7 @@ const BookPractice=React.lazy(()=>import('./BookPractice.jsx'));
 function App(){
   useEffect(()=>{document.documentElement.dataset.design='paper'},[]);
   const deploymentReady=supabaseReady()||globalThis.__SINFQUIZ_LEGACY_TEST__===true;
-  const [db,setDb]=useState({quizzes:[],publicQuizzes:[],lessons:[],players:[]});const [catalog,setCatalog]=useState({quizzes:[],lessons:[]});const [view,setView]=useState('home');const [selectedLesson,setSelectedLesson]=useState(null);const [chatLessonId,setChatLessonId]=useState(null);
+  const [db,setDb]=useState({quizzes:[],publicQuizzes:[],lessons:[],players:[]});const [catalog,setCatalog]=useState({quizzes:[],lessons:[]});const [view,setView]=useState(()=>location.hash==='#informatika-atlasi'?'informaticsAtlas':'home');const [selectedLesson,setSelectedLesson]=useState(null);const [chatLessonId,setChatLessonId]=useState(null);
   const [user,setUser]=useState(null);const [authReady,setAuthReady]=useState(false);const [initialDataReady,setInitialDataReady]=useState(false);const [navOpen,setNavOpen]=useState(false);
   useEffect(()=>setNavOpen(false),[view]);
   const [spaceActive,setSpaceActive]=useState(false);
@@ -126,9 +130,11 @@ function App(){
     if(!authReady)return;
     const open=()=>{
       if(inActivity)return;
+      if(location.hash==='#informatika-atlasi'){setView('informaticsAtlas');return;}
+      if(location.hash==='#atlaslar'){setView('atlasHub');return;}
       setView(current=>{
         if(location.hash==='#sinfxona')return canUseClassroom(user)?'classroom':'classroomDenied';
-        if(!['classroom','classroomDenied'].includes(current))return current;
+        if(!['classroom','classroomDenied','informaticsAtlas','atlasHub'].includes(current))return current;
         const publicViews={'#atlaslar':'atlasHub','#mashqlar':'exerciseHub','#ingliz-darsi':'englishCourse','#kino-piano':'cinemaPiano'};
         const accountViews={'#koinot':'space','#matematika':'mathAtlas','#kimyo':'chemistry','#biologiya':'biology','#darsliklar':'books','#iq':'iq','#musobaqa':'competitions','#audio-maze':'audioMaze'};
         return restoredStudioView(location.hash,user)||publicViews[location.hash]||(user&&accountViews[location.hash])||'home';
@@ -166,7 +172,7 @@ function App(){
   const leave=async()=>{try{await api('/api/play/leave',{method:'POST',role:'player'});setGame(null);setPlayerCsrf('');home()}catch(e){notify(e.message)}};
   const leaveRace=async()=>{try{await api('/api/race/leave',{method:'POST',role:'race'});setRaceGame(null);setRaceCsrf('');home()}catch(e){notify(e.message)}};
   const leaveTyping=async()=>{try{await api('/api/typing/leave',{method:'POST',role:'typing'});setTypingGame(null);setTypingCsrf('');home()}catch(e){notify(e.message)}};
-  const openStudio=id=>{
+  const openStudio=(id,initialTopic=null)=>{
     if(inActivity)return;
     if(id==='home')return home();
     if(id==='subjects'){home();requestAnimationFrame(()=>document.getElementById('paper-subjects')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));return;}
@@ -174,6 +180,7 @@ function App(){
     if(id==='books')return openBooks();
     if(id==='iq')return openIQ();
     if(id==='englishCourse')return openEnglish();
+    if(id==='informaticsAtlas'){setAtlasInitialTopic(initialTopic);setView('informaticsAtlas');location.hash='informatika-atlasi';return;}
     if(id==='competitions')return openCompetitions();
     if(id==='cinemaPiano'){setView('cinemaPiano');location.hash='kino-piano';return;}
     if(id==='audioMaze'){setView('audioMaze');location.hash='audio-maze';return;}
@@ -184,28 +191,29 @@ function App(){
     if(id==='admin'||(id==='results'&&['teacher','admin'].includes(user.role))){if(!['teacher','admin'].includes(user.role))return;setAdminInitialSection(id==='results'?'results':null);setView('admin');location.hash='dashboard';return;}
     if(id==='results'){setView('profile');location.hash=studioViewHash('profile');return;}
     if(id==='chat'){setChatLessonId(null);if(user.role==='student'){setView('chat');location.hash=studioViewHash('chat');return;}setAdminInitialSection('chats');setView('admin');location.hash='dashboard';return;}
-    if(id==='space'){setView('space');location.hash='koinot';return;}
-    if(['mathAtlas','biology','chemistry'].includes(id)){setAtlasInitialTopic(null);setView(id);location.hash={mathAtlas:'matematika',biology:'biologiya',chemistry:'kimyo'}[id];return;}
+    if(id==='space'){setAtlasInitialTopic(initialTopic);setView('space');location.hash='koinot';return;}
+    if(['mathAtlas','biology','chemistry'].includes(id)){setAtlasInitialTopic(initialTopic);setView(id);location.hash={mathAtlas:'matematika',biology:'biologiya',chemistry:'kimyo'}[id];return;}
     if(id==='practice')setPracticeSubject('all');
     if(['catalog','practice','national','cefrManaged'].includes(id)){setView(id);location.hash=studioViewHash(id);}
   };
-  if(!deploymentReady)return <SupabaseSetupRequired/>;
+  if(!deploymentReady&&!['informaticsAtlas','atlasHub'].includes(view))return <SupabaseSetupRequired onInformatics={()=>openStudio('informaticsAtlas')}/>;
   return <StudioShell {...{user,view,inActivity,unfinished,authReady}} onNavigate={openStudio} onLogout={logout} onJoin={setEntryAndJoin}>
     {toast&&<PaperNotice className="toast" onDismiss={()=>setToast('')}>{toast}</PaperNotice>}{connection&&<PaperNotice className="connection-banner" kind="warning">{connection}</PaperNotice>}
     {(!authReady||!initialDataReady&&['admin','catalog','race','typing','play','nationalExam','cefrExam'].includes(view))?<PaperSkeleton label="Yuklanmoqda…"/>:<>
-    {view==='atlasHub'&&<StudioHub type="atlas" onNavigate={openStudio}/>}
+    {view==='atlasHub'&&<React.Suspense fallback={<PaperSkeleton label="Atlaslar markazi ochilmoqda…"/>}><AtlasHub user={user} onNavigate={openStudio}/></React.Suspense>}
     {view==='exerciseHub'&&<StudioHub type="exercise" onNavigate={openStudio}/>}
     {view==='classroom'&&canUseClassroom(user)&&<React.Suspense fallback={<PaperSkeleton label="Sinfxona ochilmoqda…"/>}><Classroom user={user} onBack={home}/></React.Suspense>}
     {(view==='classroomDenied'||view==='classroom'&&!canUseClassroom(user))&&<main className="learning-page"><h1>Sinfxona ustozlar uchun</h1><p>Elektron doska va dars vositalaridan faqat o‘qituvchi va administrator foydalanadi.</p><button className="btn btn-primary" onClick={user?home:openAuth}>{user?'Bosh sahifaga qaytish':'Hisobga kirish'}</button></main>}
-    {view==='home'&&<Landing onSpace={()=>openStudio('space')} onAtlasHub={()=>openStudio('atlasHub')} onExerciseHub={()=>openStudio('exerciseHub')} onIQ={openIQ} onEnglishCourse={openEnglish} onCompetitions={openCompetitions} onBiology={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('biology');location.hash='biologiya'}} onChemistry={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('chemistry');location.hash='kimyo'}} user={user} catalog={catalog} onAudioMaze={()=>{setView('audioMaze');location.hash='audio-maze'}} onNational={()=>user?setView('national'):openAuth()} onCefr={()=>{if(!user)return openAuth();setView('cefrManaged')}} onPractice={()=>{if(!user)return openAuth();setPracticeSubject('all');setView('practice')}} onCatalog={openBooks} onInformatics={()=>openStudio('catalog')} onAtlas={()=>{if(!user)return openAuth();setView('mathAtlas');location.hash='matematika'}} onJoin={setEntryAndJoin} onRace={offer=>{setEntry({race:offer});setView('raceJoin')}} onTyping={offer=>{setEntry({typing:offer});setView('typingJoin')}}/>}
+    {view==='home'&&<Landing onSpace={()=>openStudio('space')} onAtlasHub={()=>openStudio('atlasHub')} onExerciseHub={()=>openStudio('exerciseHub')} onIQ={openIQ} onEnglishCourse={openEnglish} onCompetitions={openCompetitions} onBiology={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('biology');location.hash='biologiya'}} onChemistry={()=>{if(!user)return openAuth();setAtlasInitialTopic(null);setView('chemistry');location.hash='kimyo'}} user={user} catalog={catalog} onAudioMaze={()=>{setView('audioMaze');location.hash='audio-maze'}} onNational={()=>user?setView('national'):openAuth()} onCefr={()=>{if(!user)return openAuth();setView('cefrManaged')}} onPractice={()=>{if(!user)return openAuth();setPracticeSubject('all');setView('practice')}} onCatalog={openBooks} onInformatics={()=>openStudio('informaticsAtlas')} onAtlas={()=>{if(!user)return openAuth();setView('mathAtlas');location.hash='matematika'}} onJoin={setEntryAndJoin} onRace={offer=>{setEntry({race:offer});setView('raceJoin')}} onTyping={offer=>{setEntry({typing:offer});setView('typingJoin')}}/>}
+    {view==='informaticsAtlas'&&<React.Suspense fallback={<PaperSkeleton label="Informatika atlasi ochilmoqda…"/>}><InformaticsAtlas key={`${user?.id||'guest'}:${atlasInitialTopic||'home'}`} initialTab={atlasInitialTopic} user={user} onBack={()=>openStudio('atlasHub')} onPractice={deploymentReady?()=>openStudio('catalog'):undefined}/></React.Suspense>}
     {view==='englishCourse'&&<React.Suspense fallback={<PaperSkeleton label="Ingliz tili darsi ochilmoqda…"/>}><EnglishCourse key={user?.id||'guest'} initialLessonId={englishInitialLessonId} user={user} onBack={englishInitialLessonId?openBooks:home} onLogin={openAuth} onMaze={()=>{setEnglishActive(false);setView('audioMaze');location.hash='audio-maze'}} onActive={setEnglishActive}/></React.Suspense>}
     {view==='competitions'&&<React.Suspense fallback={<PaperSkeleton label="Musobaqalar ochilmoqda…"/>}><TeamCompetitions key={user?.id||'guest'} user={user} onBack={home} onLogin={openAuth} onActive={setCompetitionActive}/></React.Suspense>}
-    {view==='space'&&user&&<React.Suspense fallback={<PaperSkeleton label="Koinot atlasi ochilmoqda…"/>}><SpaceAtlas key={user.id} user={user} onBack={home} onActive={setSpaceActive}/></React.Suspense>}
-    {view==='biology'&&user&&<React.Suspense fallback={<PaperSkeleton label="Biologiya atlasi ochilmoqda…"/>}><BiologyAtlas user={user} initialTopicId={atlasInitialTopic} onBack={home}/></React.Suspense>}
-    {view==='chemistry'&&user&&<React.Suspense fallback={<PaperSkeleton label="Kimyo atlasi ochilmoqda…"/>}><ChemistryAtlas user={user} initialTopicId={atlasInitialTopic} onBack={home}/></React.Suspense>}
-    {view==='mathAtlas'&&user&&<React.Suspense fallback={<PaperSkeleton label="Matematika atlasi ochilmoqda…"/>}><MathAtlas user={user} onBack={home}/></React.Suspense>}
+    {view==='space'&&user&&<React.Suspense fallback={<PaperSkeleton label="Koinot atlasi ochilmoqda…"/>}><SpaceAtlas key={`${user.id}:${atlasInitialTopic||'overview'}`} initialTopicId={atlasInitialTopic} user={user} onBack={()=>{setSpaceActive(false);setView('atlasHub');location.hash='atlaslar'}} onActive={setSpaceActive}/></React.Suspense>}
+    {view==='biology'&&user&&<React.Suspense fallback={<PaperSkeleton label="Biologiya atlasi ochilmoqda…"/>}><BiologyAtlas user={user} initialTopicId={atlasInitialTopic} onBack={()=>openStudio('atlasHub')}/></React.Suspense>}
+    {view==='chemistry'&&user&&<React.Suspense fallback={<PaperSkeleton label="Kimyo atlasi ochilmoqda…"/>}><ChemistryAtlas user={user} initialTopicId={atlasInitialTopic} onBack={()=>openStudio('atlasHub')}/></React.Suspense>}
+    {view==='mathAtlas'&&user&&<React.Suspense fallback={<PaperSkeleton label="Matematika atlasi ochilmoqda…"/>}><MathAtlas key={`${user.id}:${atlasInitialTopic||'overview'}`} initialTopicId={atlasInitialTopic} user={user} onBack={()=>openStudio('atlasHub')}/></React.Suspense>}
     {view==='audioMaze'&&<EnglishAudioMaze user={user} notify={notify} onBack={home} onPlayingChange={active=>{setAudioMazePlaying(active);if(active)location.hash='audio-maze';else if(location.hash==='#audio-maze')history.replaceState(null,'',location.pathname)}}/>}
-    {view==='cinemaPiano'&&<React.Suspense fallback={<PaperSkeleton label="PIANO ochilmoqda…"/>}><CinemaPiano key={user?.id||'guest'} user={user} onActive={setPianoActive} onBack={()=>{setPianoActive(false);setView('exerciseHub');location.hash='mashqlar'}}/></React.Suspense>}
+    {view==='cinemaPiano'&&<React.Suspense fallback={<PaperSkeleton label="Kino Piano ochilmoqda…"/>}><CinemaPiano key={user?.id||'guest'} user={user} onActive={setPianoActive} onBack={()=>{setPianoActive(false);setView('exerciseHub');location.hash='mashqlar'}}/></React.Suspense>}
     {view==='login'&&(globalThis.__SINFQUIZ_LEGACY_TEST__===true?<AdminLogin onBack={home} onLogin={login}/>:<AuthPortal onBack={home} onDone={telegramLoggedIn}/>)} 
     {view==='iq'&&user&&<React.Suspense fallback={<PaperSkeleton label="IQ va mantiq mashqlari ochilmoqda…"/>}><IQHub key={user.id} user={user} onBack={home} onActive={setIqActive}/></React.Suspense>}
     {view==='books'&&user&&<React.Suspense fallback={<PaperSkeleton label="Darsliklar ochilmoqda…"/>}><TextbookHub key={user.id} user={user} onBack={home} onEnglish={openEnglish} onCatalog={()=>setView('catalog')} onActivity={bookActivity} onDocument={(lesson,bookId)=>{setSelectedLesson(lesson);setSelectedBookId(bookId);setLessonOrigin('books');setView('lesson')}} onManage={['teacher','admin'].includes(user.role)?()=>{setAdminInitialSection('lessons');setView('admin');location.hash='dashboard'}:null}/></React.Suspense>}
@@ -234,9 +242,9 @@ function App(){
   function setEntryAndJoin(data){setEntry(data);setView('join')}
 }
 
-function SupabaseSetupRequired(){
+function SupabaseSetupRequired({onInformatics}){
  const local=import.meta.env.DEV;
- return <main className="firebase-setup-page paper-workshop"><section><PaperBrand/><div className="firebase-setup-icon"><Settings/></div><span>DASTLABKI SOZLASH</span><h1>Saytni Supabase bilan ulang</h1><p>{local?'Lokal server Supabase loyiha URL manzili va publishable/anon kalitini topolmadi.':'Sayt Supabase loyiha URL manzili va publishable/anon kalitini topolmadi.'}</p><div className="firebase-setup-steps">{local?<><div><b>1</b><span>Loyiha papkasidagi `.env.local` faylini oching.</span></div><div><b>2</b><span>`VITE_SUPABASE_URL` va `VITE_SUPABASE_ANON_KEY` ga haqiqiy qiymatlarni kiriting.</span></div><div><b>3</b><span>Terminalda `npm run dev` jarayonini to‘xtatib, qayta ishga tushiring.</span></div></>:<><div><b>1</b><span>Vercel Environment Variables bo‘limiga `VITE_SUPABASE_URL` ni kiriting.</span></div><div><b>2</b><span>`VITE_SUPABASE_ANON_KEY` ga publishable/anon kalitni kiriting.</span></div><div><b>3</b><span>Saytni qayta deploy qiling.</span></div></>}</div><small>`.env.example` namuna fayl; undagi qiymatlar saytga avtomatik ulanmaydi. Maxfiy server kalitini hech qachon `VITE_` bilan nomlamang.</small></section></main>
+ return <main className="firebase-setup-page paper-workshop"><section><PaperBrand/><div className="firebase-setup-icon"><Settings/></div><span>DASTLABKI SOZLASH</span><h1>Saytni Supabase bilan ulang</h1><p>{local?'Lokal server Supabase loyiha URL manzili va publishable/anon kalitini topolmadi.':'Sayt Supabase loyiha URL manzili va publishable/anon kalitini topolmadi.'}</p><div className="firebase-setup-steps">{local?<><div><b>1</b><span>Loyiha papkasidagi `.env.local` faylini oching.</span></div><div><b>2</b><span>`VITE_SUPABASE_URL` va `VITE_SUPABASE_ANON_KEY` ga haqiqiy qiymatlarni kiriting.</span></div><div><b>3</b><span>Terminalda `npm run dev` jarayonini to‘xtatib, qayta ishga tushiring.</span></div></>:<><div><b>1</b><span>Vercel Environment Variables bo‘limiga `VITE_SUPABASE_URL` ni kiriting.</span></div><div><b>2</b><span>`VITE_SUPABASE_ANON_KEY` ga publishable/anon kalitni kiriting.</span></div><div><b>3</b><span>Saytni qayta deploy qiling.</span></div></>}</div><small>`.env.example` namuna fayl; undagi qiymatlar saytga avtomatik ulanmaydi. Maxfiy server kalitini hech qachon `VITE_` bilan nomlamang.</small><button className="btn btn-primary" onClick={onInformatics} style={{marginTop:20}}>Informatika atlasini ochish</button></section></main>
 }
 
 function Landing(props){

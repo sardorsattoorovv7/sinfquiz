@@ -1,25 +1,72 @@
-# SinfQuiz 7.42.0 — o‘zbekcha typing razminkasi
+# SinfQuiz 7.42.0 — barcha atlaslar uchun tushunarli o‘rganish yo‘li
 
-## Qayerdan ochiladi?
+## Ochish
 
-Ustoz ochgan **Typing / Mashqni boshlash → O‘zbekcha typing → Razminka** yo‘lidan kiring. O‘zbekcha bo‘limda razminka dastlab tanlangan. **5 bosqichli matn** tugmasi avvalgi baholanadigan mashqni ochadi. Allaqachon o‘zbekcha sessiyaga kirgan o‘quvchi bosqichni boshlashdan oldin **Avval razminka** tugmasidan ham foydalanishi mumkin.
+**Atlaslar** menyusidan yangi atlaslar markazi ochiladi. Barcha fanlarning mavzularini bir joydan qidiring, boshlang‘ich mavzuni yoki keyingi o‘rganish yo‘lini tanlang.
 
-## Nimalar ishlaydi?
+| Atlas | Qo‘llanma qamrovi | Tavsiya etilgan yo‘llar |
+| --- | ---: | ---: |
+| Matematika | 62 mavzu | 9 |
+| Biologiya | 30 mavzu | 4 |
+| Kimyo | 12 tushuncha + 13 virtual tajriba | 4 |
+| Fizika va koinot | 53 hodisa | 8 |
+| Informatika | 4 katta bo‘lim | 1 |
 
-- SinfQuiz uchun yozilgan **48 ta qisqa o‘zbekcha gap**: kundalik hayot, maktab, yozish va O‘/G‘ harflari.
-- **Gaplar** rejimi: 1, 3 yoki 5 gap. **Vaqt** rejimi: 15, 30 yoki 60 soniya; gaplar tugay boshlaganda yangi gaplar qo‘shiladi.
-- Monkeytype kabi matnning o‘zida yozish: joriy kursor, yozilgan harflar va osti chizilgan xatolar. Backspace va tanlangan qismni almashtirish ishlaydi.
-- WPM, aniqlik, xatolar va vaqt. Taymer birinchi harfdan boshlanadi; vaqtli rejim tab yashiringanda ham yakunlanadi. Muddatdan keyingi harflar qabul qilinmaydi.
-- Aniqlik hisobida keyin tuzatilgan xatolar ham qoladi; Backspace bosishning o‘zi xato sanalmaydi. WPM = joriy to‘g‘ri belgilar ÷ 5 ÷ daqiqa.
-- **Tinish belgilari** orqali bosh harf va vergul/nuqtalarni yoqish mumkin. Oddiy rejim kichik harflar bilan ishlaydi.
-- O‘ va G‘ yozishda oddiy `'` hamda keng tarqalgan tipografik apostroflar teng qabul qilinadi.
-- Yangi gaplar tugmasi, klaviaturada Tab → Enter orqali qayta boshlash, yakuniy natija va asosiy bosqichga o‘tish.
-- Sichqoncha, kompyuter va mobilning odatiy ekran klaviaturasi bilan yozish; reduced-motion va mavjud dark/light qog‘oz tokenlari.
+Jami 174 mavzu va bo‘lim uchun bosqichli qo‘llanma, 26 o‘rganish yo‘li bor. Har bir mavzu kamida bitta yo‘lga kiritilgan. Qidiruv va asl mavzular xaritalari orqali erkin tanlash ham mumkin.
 
-Razminka **mahalliy erkin mashq**: ustoz reytingi yoki rasmiy typing natijasiga yuborilmaydi. Asosiy 5 bosqich, inglizcha tinglab yozish, xona tanlash, ism/avatar, server tekshiruvi va natijalar saqlanishi avvalgidek ishlaydi. Razminkani ishlatish rasmiy bosqichni boshlamaydi.
+## Har bir mavzudagi yangi tartib
+
+### 1. Tushuncha
+
+Sodda izoh, aniq misol va ochib o‘qiladigan kichik atamalar lug‘ati. **Modelga o‘tish** tugmasi shu mavzudagi modelni topib, unga olib boradi.
+
+### 2. Ikki sinov
+
+Bir safar bitta omilni yoki ko‘rish qatlamini almashtiring. Modeldan kuzatilgan ikki holatni yozing: nimani o‘zgartirdingiz, birinchi natija qanday edi, ikkinchi natija qanday bo‘ldi? O‘lchov birligi va bir xil vaqt/holatni ayting. Bu maydonlar foydalanuvchi tomonidan to‘ldiriladi; avtomatik o‘lchangan qiymat deb ko‘rsatilmaydi.
+
+### 3. Xulosa va savol
+
+Izohli tushuncha savoliga javob bering va ikki sinovga tayangan xulosa yozing. Noto‘g‘ri javobdan keyin izohni o‘qib qayta urinishingiz mumkin. Qo‘llanma belgisi uchun ikki qayd, o‘zgargan omil, kamida 15 belgili xulosa va to‘g‘ri javob talab qilinadi.
+
+Qaydni JSON sifatida yuklab olish, keyingi mavzuga o‘tish va yo‘lga qaytish bor. Qo‘llanma yakuni shaxsiy mashq belgisidir; rasmiy imtihon bali yoki ustozga yuborilgan ish bilan tenglashtirilmaydi. Atlasdagi mavjud yuborish oynasi server topshirig‘i uchun ishlatiladi.
+
+## Fanlar bo‘yicha qayta ishlangan jihatlar
+
+- **Matematika:** sonlardan algebra va grafiklarga, tekis shakllardan fazoviy jismlargacha yo‘llar. Ildiz bilan tenglama yechimlari, logarifm bilan daraja, yuza bilan perimetr, konus bilan silindr kabi tushunchalar alohida misollar bilan tushuntiriladi.
+- **Biologiya:** hujayra → o‘simlik; hayvon → muhit; hujayra → to‘qima → organ; barg → tuproq → ekotizim. Har bir model oilasi uchun kuzatish yo‘nalishi, tushuncha savoli va lug‘at bor.
+- **Kimyo:** zarracha va modda, reaksiyalar va saqlanish, boshlang‘ich laboratoriyalar hamda chuqurroq solishtirish yo‘llari. Atom tarkibi, Mendeleyev jadvali, pH, filtrlash, distillash va boshqa tajribalar izohlanadi.
+- **Fizika/koinot:** yangi kirish xaritasi avval kun–tun singari tanish hodisalardan boshlashni taklif qiladi. Oy fazasi bilan tutilish, nova bilan birlashish, chaqnash bilan CME, disk bilan gorizont kabi tushunchalar alohida ajratilgan.
+- **Informatika:** tarix, qismlar, OS va amaliyot uchun umumiy ketma-ketlik va ochiladigan bosqichli qo‘llanmalar qo‘shildi. Avvalgi tarix muzeyi, 18 qismli kompyuter va amaliy simulyatsiyalar ishlaydi.
+
+## Saqlash va davom ettirish
+
+Yangi qaydlar shu brauzerda foydalanuvchi hisobiga mos kalitda saqlanadi. Atlaslar markazi oxirgi qayd qoldirilgan mavzuni davom ettirishni taklif qiladi. Boshqa qurilmaga avtomatik sinxronlanmaydi.
+
+Qo‘llanma mazmuni o‘zgarsa oldingi yakun belgisi yangilangan savol bilan qayta tekshiriladi. Boshqa foydalanuvchi qaydlari ajratilgan. Brauzer xotirasi bloklansa qaydni yuklab olish haqida xabar chiqadi.
+
+## Telefon va foydalanish qulayligi
+
+320, 390 va 768 px o‘lchamlar tekshirildi. Tungi ko‘rinish kontrasti, tablarni klaviatura bilan almashtirish va kamaytirilgan harakat sozlamasi qo‘llanadi. Mavjud 2D zaxira rejimlari saqlangan; qo‘llanma 3D ochilmaganda ham ishlaydi.
 
 ## O‘rnatish
 
-ZIPni ochib `sinf-quiz` ichida Node.js 22.12+ bilan `npm ci`, keyin `npm run dev` bajaring. Production: `npm run build`, so‘ng `dist`ni hostingga joylashtiring. Mavjud `.env` Supabase sozlamalarini saqlang; misol `.env.example`da. **Yangi SQL va dependency kerak emas.**
+Yangi SQL migratsiyasi, environment o‘zgarishi yoki dependency kerak emas. Mavjud Supabase sozlamalari bilan yangilangan loyiha odatdagi usulda ishga tushadi:
 
-Piano, 79 tayyor kuy, mobil yonlama sahna, balandroq ovoz, boshqa fanlar va boshqaruvlar saqlangan. O‘zgargan fayllar `CHANGED-FILES-7.42.md`, tekshiruvlar va chegaralari `QA-7.42.md` ichida.
+```sh
+npm ci
+npm run dev
+```
+
+To‘liq atlaslar markazi: `/#atlaslar`. Hisob talab qiladigan atlaslar amaldagi autentifikatsiyadan foydalanadi. Informatika avvalgi kabi mehmon uchun ham ochiq: `/#informatika-atlasi`.
+
+```sh
+npm test
+npm run build
+npm run perf
+npx playwright install chromium
+npm run test:e2e:atlases
+npm run test:e2e:informatics
+npm run test:e2e:space
+```
+
+Tekshiruv tafsilotlari: [QA-7.42.md](QA-7.42.md). Manbalar va model chegaralari: [ATLAS-LEARNING-SOURCES-7.42.md](ATLAS-LEARNING-SOURCES-7.42.md).

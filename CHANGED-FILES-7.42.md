@@ -1,34 +1,36 @@
-# SinfQuiz 7.42.0 — asosiy o‘zgarishlar
+# SinfQuiz 7.42.0 — o‘zgargan fayllar
 
-- `src/typing/uzbek-warmup.js`: 48 qisqa gap, tasodifiy to‘plam, normalizatsiya, xato/tezlik/vaqt modeli.
-- `src/typing/UzbekTypingWarmup.jsx`: matn ustida yozish, gap/vaqt tanlovi, IME, klaviatura, natijalar.
-- `src/typing/uzbek-warmup.css`: qog‘oz tokenlari, dark/light, mobil va reduced-motion.
-- `SessionViews.jsx`: o‘zbekcha bo‘limdagi razminka va eski 5 bosqich orasida o‘tish; modul lazy yuklanadi.
-- `PaperHome.jsx`: typing kartasidagi razminka ta’rifi.
-- `uzbek-warmup.test.js`: 6 yangi ma’lumot/vaqt/UI/accessibility va kirish oqimi testi.
+7.41.0 bilan fayl mazmuni bo‘yicha taqqoslandi.
 
-Avvalgi 1337 faylning barchasi mavjud. 553 public/data/SQL fayli baytma-bayt o‘zgarmagan. API, autentifikatsiya, RPC/RLS, server baholashi, piano va fan modullari o‘zgarmagan. Dependency yoki SQL qo‘shilmagan.
+## Yangi fayllar
 
-## Yangilangan
+- `ATLAS-LEARNING-SOURCES-7.42.md`
+- `QA-7.42.md`
+- `RELEASE-7.42.0.json`
+- `UPDATE-7.42.md`
+- `src/AtlasHub.jsx`
+- `src/atlas-learning/AtlasLearning.jsx`
+- `src/atlas-learning/catalog.js`
+- `src/atlas-learning/guides.js`
+- `src/atlas-learning/learning.css`
+- `src/atlas-learning/progress.js`
+- `src/atlas-learning/useLearning.js`
+- `tests/atlas-learning-browser.mjs`
+- `tests/atlas-learning.test.js`
+
+## Yangilangan fayllar
 
 - `README.md`
 - `package-lock.json`
 - `package.json`
-- `src/app-views/SessionViews.jsx`
-- `src/paper/PaperHome.jsx`
+- `src/App.jsx`
+- `src/BiologyAtlas.jsx`
+- `src/ChemistryAtlas.jsx`
+- `src/InformaticsAtlas.jsx`
+- `src/MathAtlas.jsx`
+- `src/space/SpaceAtlas.jsx`
+- `tests/physical-browser.cjs`
+- `tests/space-browser.cjs`
 - `tests/vercel.test.js`
 
-## Qo‘shilgan
-
-- `CHANGED-FILES-7.42.md`
-- `QA-7.42.md`
-- `RELEASE-7.42.0.json`
-- `UPDATE-7.42.md`
-- `qa-7.42.0/all-tests.log`
-- `qa-7.42.0/build-final.log`
-- `qa-7.42.0/performance.json`
-- `scripts/package-warmup-release.py`
-- `src/typing/UzbekTypingWarmup.jsx`
-- `src/typing/uzbek-warmup.css`
-- `src/typing/uzbek-warmup.js`
-- `tests/uzbek-warmup.test.js`
+Avvalgi arxivdan hech bir fayl olib tashlanmadi. Yangi SQL yoki dependency yo‘q. Qayta yaratiladigan Python runtime fayllari `npm ci` orqali tayyorlanadi.

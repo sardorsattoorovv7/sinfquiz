@@ -15,7 +15,7 @@ const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:
   else if(name==='/api/space/action'){const r=route.request().postDataJSON();data=await f.space(uid,r.action,r.payload)}
   await route.fulfill({status:200,json:data});
  }catch(e){await route.fulfill({status:400,json:{error:e.message}})}});
- const open=async()=>{await page.goto('http://127.0.0.1:4199/?qa='+query+++'#koinot');await page.getByRole('heading',{name:'Koinot atlasi',exact:true}).waitFor()};
+ const open=async()=>{await page.goto('http://127.0.0.1:4199/?qa='+query+++'#koinot');await page.locator('.space-atlas').waitFor();if(await page.locator('.space-learning-overview').count())await page.locator('.al-all-topics>button').filter({has:page.getByText(topicById('meteor-impact').title,{exact:true})}).click();await page.getByRole('heading',{name:'Koinot atlasi',exact:true}).waitFor()};
  const choose=async id=>{await page.locator('.space-topic-list button').filter({hasText:topicById(id).title}).click();await page.locator('.space-canvas canvas').waitFor({timeout:25000})};
  const dataset=()=>page.locator('.space-canvas canvas').evaluate(el=>({...el.dataset}));
  const time=v=>page.getByLabel('Koinot vaqt shkalasi').fill(String(v));

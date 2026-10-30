@@ -1,32 +1,40 @@
-# SinfQuiz 7.41.0 — tekshiruv natijalari
+# QA — SinfQuiz 7.41.0
 
-Tekshiruv: 2026-10-17T03:07:58.017756+00:00. Muhit: Node.js v24.19.0, Linux.
+Tekshiruv sanasi: 2026-10-30.
 
-## Yakuniy tekshiruvlar
+## Avtomatik testlar
 
-| Tekshiruv | Natija |
-| --- | --- |
-| `npm test` | **317 o‘tdi, 0 xato, 0 o‘tkazib yuborilgan**; taxminan 105 soniya |
-| `npm run build` | **Muvaffaqiyatli** |
-| `node scripts/measure-performance.mjs dist --check` | **Budjetdan o‘tdi** |
-| Yangi ikki MIDI | 81 nota, 808 bayt; MIDI qayta o‘qilishi, SHA-256 va interfeys notalari mos |
-| Offline avtoijro | Har ikkala yangi kuyda tashqi musiqa so‘rovisiz ishlashi tekshirildi |
-| Do–Re–Mi tutorial | Belki 49 va Tujh 32 qadamining barchasi bajarildi; noto‘g‘ri nota kutishni saqlaydi; natija saqlanadi |
-| Qidiruv | Dedubluman, Tujhme Rab, Shohruxxon, Shah Rukh Khan va film nomi ishlaydi |
-| Oldingi resurslar | 1317 eski fayl saqlanadi; 548 public/data/SQL fayli baytma-bayt o‘zgarmagan |
+`npm test`: **320 test, 320 o‘tdi, 0 xato**. Mavjud piano, Supabase/RLS, testlar, ingliz tili, laboratoriyalar va boshqa regressiya testlari ham shu natijaga kiradi.
 
-## Tezlik va moslik
+Informatika uchun yangi model testlari RAM / SSD quvvat tajribasi, 256 ta bayt qiymati, buzilgan qoralama, saqlash bloklanishi, progress va ball hisoblash, mehmon deep-linki hamda amaliy ishlarning qism identifikatorlarini tekshiradi.
 
-Dastlabki JavaScript **583,481 bayt**, gzip hisobida **171,596 bayt**. CSS **314,436 bayt**, gzip hisobida **55,345 bayt**. Yangi qo‘shiqlar lazy piano modulida; boshlang‘ich JS hajmi 7.40 bilan bir xil. Siqilgan hajmlar hisobiy natija; real tarmoq va qurilmadagi vaqt o‘lchanmagan. Katta tashqi akustik audio banki qo‘shilmagan.
+`npm run build`: muvaffaqiyatli. Oldindan mavjud lucide-react `use client` bundler ogohlantirishlari buildni to‘xtatmaydi.
 
-Mavjud klaviatura/sensor, 90° sahna, fullscreen fallback, fokus, dark/light uslubi va balandroq chiqish/DSP testlari umumiy to‘plam ichida o‘tdi. DOM testlari React va haqiqiy dars holatlarini, audio testlari audio grafi/scheduling shartlarini tekshiradi. Oldingi testlarda faqat yangi umumiy kuy va filtr sanoqlari yangilandi; ko‘rinish tekshiruvlari qisqartirilmadi.
+## Brauzerda haqiqiy WebGL bilan
 
-Ovoz mexanizmi, standart Volume/Master Gain, yonlama sahna kodi va CSS 7.40 dagi holat bilan baytma-bayt bir xil. Autentifikatsiya, rollar, Supabase, API/RPC/RLS va natija saqlash implementatsiyasi o‘zgartirilmagan; mavjud regressiya/SQL testlari bajarildi.
+`tests/informatics-browser.mjs`: **PASS**.
 
-## Manba aniqligi va tekshiruv chegarasi
+- 12 tarixiy sahna: dars, eksponat va o‘rganildi holati.
+- 18 qism: tanlash, ma’lumotlar va o‘rganildi holati.
+- Qismlarga ajratish, kamera burchagi, yaqin ko‘rish va keng ekran.
+- Qo‘lda 2D / 3D o‘tish va WebGLsiz avtomatik 2D zaxira.
+- 6 OS yuklanish bosqichi va Windows misoli.
+- Saqlanmagan RAM o‘zgarishi quvvat uzilganda yo‘qolishi; saqlangan faylning SSDda qolishi va RAMga qayta ochilishi.
+- 8 bitli laboratoriya: bitni o‘zgartirganda qiymat o‘zgarishi.
+- Yig‘ish mashqida noto‘g‘ri tanlovdan keyin to‘g‘ri qayta urinish va 8 qadam yakuni.
+- 4 diagnostika holati va 12 savolning to‘g‘ri javobi.
+- 100% progress, sahifani yangilagandan keyin tiklash va JSON eksport.
+- Atlaslar ro‘yxatidan mehmon navigatsiyasi.
+- 390 px telefon ko‘rinishida sahifa yonlama chiqib ketmasligi.
+- Tungi ko‘rinish, kamaytirilgan harakat va localStorage bloklangan holat.
+- History, anatomy, system, practice, mobile, mobile-dark va WebGLsiz holatlarda axe WCAG 2 A/AA, 2.1 AA hamda 2.2 AA: **0 avtomatik aniqlangan buzilish**.
+- Brauzerning `pageerror` hodisalari: **0**.
 
-Belki PDF notasidagi chorak/sakkizlik/yarim notalar, 24-taktdagi pauza va yakuniy A tekshirildi. Tujh harfli notalar manbasida davomiylik yo‘q: ritm soddalashtirilgani ma’lumotda, kartada va qo‘llanmada belgilangan. Asl audioyozuv bilan tinglab solishtirish bajarilmagan.
+Sinov ish stoli va telefon o‘lchamida headless Chromiumning dasturiy WebGL rendererida bajarildi. Bu barcha real telefonlarda bir xil kadr tezligini kafolatlamaydi. Avtomatik axe testi barcha foydalanish holatlarini yoki qo‘lda accessibility auditini almashtirmaydi.
 
-Bu muhitda brauzer vizual tekshiruvi, haqiqiy telefon/planshet yoki audio karnayida sinash hamda jonli Supabase hisobiga kirish bajarilmagan. Ushbu tekshiruvlar bajarildi degan da’vo yo‘q. `all-tests.log`, `build-final.log`, `performance.json`, `source-fidelity.json` va qayta yaratish hisoboti `qa-7.41.0` ichida.
+## Boshlang‘ich yuklanish
 
-ZIP yig‘ish skripti barcha eski yo‘llar, himoyalangan fayllar, dependency/script mosligi, CRC, takroriy yo‘llar va barcha arxiv baytlarini tekshiradi. To‘liq PDF/HTML manbalar, tadqiqot fayllari, maxfiy `.env`, `node_modules` va `dist` ZIPga kiritilmagan.
+Atlas va 3D sahna alohida kechiktirib yuklanadi. Yangi atlas CSS fayli umumiy boshlang‘ich CSSga qo‘shilmadi. `npm run perf` budjeti o‘tdi.
+
+- Boshlang‘ich JavaScript: 587,011 bayt; gzip: 172,552 bayt.
+- Boshlang‘ich CSS: 314,436 bayt; gzip: 55,345 bayt.

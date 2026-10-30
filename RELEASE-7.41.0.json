@@ -1,62 +1,35 @@
 {
   "version": "7.41.0",
-  "checkedAt": "2026-10-17T03:07:58.017756+00:00",
-  "baseVersion": "7.40.0",
-  "readySongs": 79,
-  "practicePieces": 38,
-  "songsAdded": 2,
-  "notesAdded": 81,
-  "midiBytesAdded": 808,
-  "newMidiRequiredFromUser": false,
+  "title": "Informatika 3D atlasi",
+  "date": "2026-10-30",
+  "historyExhibits": 12,
+  "computerParts": 18,
+  "bootSteps": 6,
+  "assemblySteps": 8,
+  "diagnosticCases": 4,
+  "questions": 12,
+  "sqlChanges": false,
   "newDependencies": false,
-  "newSqlRequired": false,
-  "louderAudioPreserved": true,
-  "landscapePianoPreserved": true,
-  "sourceType": "score-transcription",
-  "simplifiedRhythm": [
-    "Tujh Mein Rab Dikhta Hai"
-  ],
-  "validation": {
-    "testsPassed": 317,
+  "verification": {
+    "tests": 320,
+    "passed": 320,
     "failed": 0,
-    "skipped": 0,
     "build": "passed",
     "performanceBudget": "passed",
-    "initialJavascript": {
+    "browser": "passed"
+  },
+  "initialLoad": {
+    "javascript": {
       "files": 6,
-      "bytes": 583481,
-      "gzip": 171596,
-      "brotli": 147367
+      "bytes": 587011,
+      "gzip": 172552,
+      "brotli": 148102
     },
-    "initialCss": {
+    "css": {
       "files": 2,
       "bytes": 314436,
       "gzip": 55345,
       "brotli": 45572
-    },
-    "initialJavascriptBytesChange": 0,
-    "lazyPianoAssets": [
-      {
-        "file": "CinemaPiano-BLJqScKp.js",
-        "bytes": 379726
-      },
-      {
-        "file": "CinemaPiano-BFOhtv11.css",
-        "bytes": 42868
-      },
-      {
-        "file": "CinemaPiano-BBQf5r61.js",
-        "bytes": 375357
-      }
-    ],
-    "physicalDeviceTest": false,
-    "browserVisualTest": false,
-    "audioListeningTest": false,
-    "liveSupabaseTest": false
-  },
-  "preservation": {
-    "baselineFiles": 1317,
-    "oldPublicDataSqlFilesUnchanged": 548,
-    "totalArchiveFiles": 1337
+    }
   }
 }

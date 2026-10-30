@@ -1,43 +1,82 @@
 {
   "version": "7.43.0",
-  "baseVersion": "7.42.0",
-  "checkedAt": "2026-10-17T05:09:31.930697+00:00",
-  "displayName": "PIANO",
-  "landscapeSongPicker": true,
-  "songPickerInRotatedSurface": true,
-  "searchKeyboardPreservesRotation": true,
-  "readySongs": 79,
-  "practicePieces": 38,
-  "uzbekWarmupPreserved": true,
-  "newDependencies": false,
-  "newSqlRequired": false,
-  "validation": {
-    "testsPassed": 326,
-    "failed": 0,
-    "skipped": 0,
-    "newStageTests": 3,
-    "build": "passed",
-    "performanceBudget": "passed",
-    "initialJavascript": {
-      "files": 6,
-      "bytes": 583769,
-      "gzip": 171663,
-      "brotli": 147433
-    },
-    "initialCss": {
-      "files": 2,
-      "bytes": 314436,
-      "gzip": 55345,
-      "brotli": 45572
-    },
-    "initialJavascriptBytesDelta": -10,
-    "browserVisualTest": false,
-    "physicalDeviceTest": false,
-    "liveSupabaseTest": false
+  "date": "2026-10-30",
+  "title": "Atlaslarni amaliy muhitda ko‘rish va ishlatish",
+  "coverage": {
+    "historyWorkplaces": 12,
+    "hardwareActivities": 18,
+    "math": 62,
+    "biology": 30,
+    "chemistry": 25,
+    "space": 53,
+    "scientificTopics": 170,
+    "priorLessonGuides": 174
   },
-  "preservation": {
-    "baselineFiles": 1349,
-    "unchangedPublicDataSqlFiles": 553,
-    "zipFiles": 1358
+  "eniac": {
+    "roomMeters": [
+      9.144,
+      15.24
+    ],
+    "panels": 40,
+    "accumulators": 20,
+    "metricTonnes": 27.2155422,
+    "representation": "Original procedural educational reconstruction; not a scan or full emulator"
+  },
+  "changes": {
+    "newProjectDependencies": 0,
+    "newSQLMigrations": 0,
+    "liveCalculationSnapshots": true,
+    "jsonExport": true,
+    "webglFallback": true
+  },
+  "validation": {
+    "fullTests": {
+      "passed": 333,
+      "failed": 0
+    },
+    "finalNewModelTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "realityBrowser": {
+      "checks": {
+        "historyActivities": 12,
+        "componentActivities": 18,
+        "mathIntegration": true,
+        "biologyIntegration": true,
+        "chemistryIntegration": true,
+        "spaceIntegration": true,
+        "mathRealWebGLTopics": 62,
+        "chemistryRealWebGLTopics": 25,
+        "responsiveAndDark": true,
+        "noWebGL": true
+      },
+      "errors": [],
+      "violations": []
+    },
+    "informaticsRegression": "PASS",
+    "lessonGuideRegression": "PASS",
+    "build": "PASS",
+    "performance": {
+      "javascript": {
+        "files": 6,
+        "bytes": 588534,
+        "gzip": 173061,
+        "brotli": 148528
+      },
+      "css": {
+        "files": 2,
+        "bytes": 314436,
+        "gzip": 55345,
+        "brotli": 45572
+      },
+      "budget": {
+        "javascriptBytes": 650000,
+        "javascriptGzip": 200000,
+        "cssBytes": 380000,
+        "cssGzip": 75000,
+        "passed": true
+      }
+    }
   }
 }
