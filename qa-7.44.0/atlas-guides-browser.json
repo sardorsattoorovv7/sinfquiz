@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "searchWorks": true,
+    "mathOverview": true,
+    "biologyOverview": true,
+    "chemistryOverview": true,
+    "spaceOverview": true,
+    "mathGuideCompleted": true,
+    "export": true,
+    "chemistryGuideCompleted": true,
+    "biologyGuideCompleted": true,
+    "spaceGuideCompleted": true,
+    "informaticsGuideCompleted": true,
+    "resume": true,
+    "restore": true,
+    "responsiveAndDark": true,
+    "userIsolation": true,
+    "noWebGL": true
+  },
+  "errors": [],
+  "violations": []
+}

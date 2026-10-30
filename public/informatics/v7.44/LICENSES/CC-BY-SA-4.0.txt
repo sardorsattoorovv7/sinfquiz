@@ -1,0 +1,7 @@
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+Authoritative licence and legal text:
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+This notice identifies the licence; it is not a substitute for the authoritative legal text. The converted KiCad SOIC package and battery-holder models retain this licence. The KiCad-specific exception is retained in KiCad-LICENSE.md. Original CAD author notices are retained in CAD-AUTHORS.txt, and source URLs and modifications are recorded in ../SOURCES.json. This licence does not relicense unrelated SinfQuiz source code or models.

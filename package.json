@@ -1,7 +1,7 @@
 {
   "name": "sinf-quiz",
   "private": true,
-  "version": "7.43.0",
+  "version": "7.44.0",
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/copy-python-runtime.mjs",
@@ -26,7 +26,8 @@
     "perf": "node scripts/measure-performance.mjs dist --check",
     "test:e2e:informatics": "node tests/informatics-browser.mjs",
     "test:e2e:atlases": "node tests/atlas-learning-browser.mjs",
-    "test:e2e:reality": "node tests/atlas-reality-browser.mjs"
+    "test:e2e:reality": "node tests/atlas-reality-browser.mjs",
+    "test:e2e:informatics-models": "node tests/informatics-models-browser.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

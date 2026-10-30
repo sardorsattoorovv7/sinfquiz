@@ -15,22 +15,23 @@ function HistoryFallback({index,immersive}){
 
 const SceneView=forwardRef(function SceneView({mode='history',eraIndex=0,selected='motherboard',explode=0,labels=true,cutaway=true,installed,onSelect,onNext,onPrevious,immersive=false,demonstration,activity},ref){
  const host=useRef(null),root=useRef(null),engine=useRef(null),latest=useRef(null),callbacks=useRef(null);
- const [status,setStatus]=useState('loading'),[flat,setFlat]=useState(false),[full,setFull]=useState(false),[motion,setMotion]=useState(false),[walking,setWalking]=useState(false),[roomView,setRoomView]=useState('overview');
+ const [status,setStatus]=useState('loading'),[flat,setFlat]=useState(false),[full,setFull]=useState(false),[motion,setMotion]=useState(false),[walking,setWalking]=useState(false),[roomView,setRoomView]=useState('overview'),[assetMode,setAssetMode]=useState('real'),[isolated,setIsolated]=useState(false),[assetRetry,setAssetRetry]=useState(0),[assets,setAssets]=useState({status:'loading',loaded:0,total:18,failed:[]});
  const reduced=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches||false;
- latest.current={mode,eraIndex,selected,explode,labels,cutaway,installed,immersive,demonstration,activity,motion:(motion||(activity?.running&&activity.ready))&&!reduced,reduced};callbacks.current={onSelect};
- useImperativeHandle(ref,()=>({focus:id=>engine.current?.focus(id),reset:()=>engine.current?.reset(),angle:angle=>engine.current?.angle(angle)}),[]);
+ latest.current={mode,eraIndex,selected,explode,labels,cutaway,installed,immersive,demonstration,activity,assetMode,isolated,assetRetry,motion:(motion||(activity?.running&&activity.ready))&&!reduced,reduced};callbacks.current={onSelect};
+ useImperativeHandle(ref,()=>({focus:id=>engine.current?.focus(id),reset:()=>engine.current?.reset(),angle:angle=>engine.current?.angle(angle),inspect:id=>{setIsolated(true);setAssetMode('real');root.current?.scrollIntoView({behavior:globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});setTimeout(()=>engine.current?.focus(id),80);}}),[]);
  useEffect(()=>{
   if(flat)return;
   let dead=false,local;setStatus('loading');
   import('./scene.js').then(({createInformaticsScene})=>{
    if(dead||!host.current)return;
-   try{local=createInformaticsScene(host.current,latest.current,id=>{if(typeof id==='string'&&latest.current.mode==='history'){engine.current?.station(id);setRoomView(id);setWalking(false);}else callbacks.current.onSelect?.(id);},()=>setStatus('fallback'));engine.current=local;setStatus('ready');}
+   try{local=createInformaticsScene(host.current,latest.current,id=>{if(typeof id==='string'&&latest.current.mode==='history'){engine.current?.station(id);setRoomView(id);setWalking(false);}else callbacks.current.onSelect?.(id);},()=>setStatus('fallback'),value=>{if(!dead)setAssets(value);});engine.current=local;setStatus('ready');}
    catch{setStatus('fallback');}
   }).catch(()=>{if(!dead)setStatus('fallback');});
   return()=>{dead=true;local?.dispose();engine.current=null;};
  },[flat]);
- useEffect(()=>{engine.current?.update(latest.current);},[mode,eraIndex,selected,explode,labels,cutaway,installed,motion,reduced,immersive,demonstration,activity]);
+ useEffect(()=>{engine.current?.update(latest.current);},[mode,eraIndex,selected,explode,labels,cutaway,installed,motion,reduced,immersive,demonstration,activity,assetMode,isolated,assetRetry]);
  useEffect(()=>{setWalking(false);setRoomView('overview');},[eraIndex,immersive]);
+ useEffect(()=>{if(activity?.phase===1)setIsolated(false);},[activity?.phase]);
  useEffect(()=>{if(status==='fallback'){engine.current?.dispose();engine.current=null;}},[status]);
  useEffect(()=>{
   if(!full)return;
@@ -42,13 +43,14 @@ const SceneView=forwardRef(function SceneView({mode='history',eraIndex=0,selecte
  const keys=e=>{if(e.target!==e.currentTarget)return;if(walking&&['w','a','s','d','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const k=e.key;if(k==='ArrowLeft'||k==='ArrowRight')engine.current?.turn(k==='ArrowLeft'?.25:-.25);else engine.current?.walk(({w:'forward',a:'left',s:'back',d:'right',ArrowUp:'forward',ArrowDown:'back'})[k]);return;}if(e.key==='ArrowRight'&&mode==='history'){e.preventDefault();onNext?.();}if(e.key==='ArrowLeft'&&mode==='history'){e.preventDefault();onPrevious?.();}if(e.key==='Home'){e.preventDefault();setWalking(false);setRoomView('overview');engine.current?.reset();}if(e.key==='+'||e.key==='='){e.preventDefault();engine.current?.zoom(.8);}if(e.key==='-'){e.preventDefault();engine.current?.zoom(1.25);}};
  const station=view=>{setWalking(view==='inside');setRoomView(view);engine.current?.station(view);};
  return <section ref={root} className={`ia-viewer ${full?'ia-viewer-full':''} ${immersive?'ia-viewer-immersive':''}`} role={full?'dialog':undefined} aria-modal={full?true:undefined} aria-label={full?'Kengaytirilgan atlas sahnasi':undefined}>
-  <div className="ia-viewer-top"><span><i/>{fallback?'2D O‘QUV SXEMASI':'3D '+(mode==='history'?'VAQT MUZEYI':'QISMLAR LABORATORIYASI')}</span><span className="ia-scene-number">{mode==='history'?`${String(eraIndex+1).padStart(2,'0')} / ${history.length}`:'18 QISM'}</span></div>
+  <div className="ia-viewer-top"><span><i/>{fallback?'2D O‘QUV SXEMASI':'3D '+(mode==='history'?'VAQT MUZEYI':assetMode==='real'?'TAYYOR GLB MODELLAR':'QISMLAR SXEMASI')}</span><span className="ia-scene-number">{mode==='history'?`${String(eraIndex+1).padStart(2,'0')} / ${history.length}`:'18 QISM'}</span></div>
   <div className="ia-stage" tabIndex={0} aria-label="Sahna boshqaruvi: aylantirish uchun suring, yaqinlashtirish uchun ikki barmoq yoki + va −. Home boshlang‘ich ko‘rinish." onKeyDown={keys}>
    <div ref={host} className="ia-canvas-host" hidden={fallback}/>
    {fallback&&(mode==='history'?<HistoryFallback index={eraIndex} immersive={immersive}/>:<HardwareFallback selected={selected} onSelect={onSelect}/>)}
    {!fallback&&status==='loading'&&<p className="ia-loading" role="status">3D sahna tayyorlanmoqda…</p>}
+   {!fallback&&mode!=='history'&&assetMode==='real'&&assets.status==='loading'&&<p className="ia-asset-loading" role="status">Tayyor 3D modellar yuklanmoqda <b>{assets.loaded} / {assets.total}</b></p>}
    {fallback&&!flat&&<span className="ia-fallback-note" role="status">3D ushbu qurilmada ochilmadi. Qismlar va darslar 2D rejimda ishlaydi.</span>}
-   <div className="ia-scene-caption"><span>{mode==='history'?history[eraIndex].era:'ATX stol kompyuteri'}</span><small>{immersive&&history[eraIndex].id==='eniac'?'Xona o‘lchami manbadan · detallar o‘quv rekonstruksiyasi':'O‘quv modeli · aniq masshtabda emas'}</small></div>
+   <div className="ia-scene-caption"><span>{mode==='history'?history[eraIndex].era:isolated?components.find(c=>c.id===selected)?.name:'ATX stol kompyuteri'}</span><small>{mode!=='history'&&assetMode==='real'?'Muallif GLB / CAD modellari · joylashuv ta’limiy yig‘ma':immersive&&history[eraIndex].id==='eniac'?'Xona o‘lchami manbadan · detallar o‘quv rekonstruksiyasi':'O‘quv modeli · aniq masshtabda emas'}</small></div>
   </div>
   <div className="ia-viewer-toolbar"><span className="ia-drag-tip">{fallback?'Qismni ro‘yxatdan tanlang':'Suring — aylantiring · ikki barmoq — yaqinlashtiring'}</span><div>
    <button type="button" aria-label="Sahnani yaqinlashtirish" disabled={fallback} onClick={()=>engine.current?.zoom(.8)}><ZoomIn size={17}/></button>
@@ -58,6 +60,7 @@ const SceneView=forwardRef(function SceneView({mode='history',eraIndex=0,selecte
    <button type="button" aria-pressed={motion} aria-label={motion?'Sahna harakatini to‘xtatish':'Sahna harakatini yoqish'} disabled={fallback||reduced} onClick={()=>setMotion(!motion)}>{motion?<Pause size={17}/>:<Play size={17}/>}</button>
    <button type="button" aria-label={full?'Keng ekranni yopish':'Keng ekranga ochish'} onClick={()=>setFull(!full)}>{full?<Minimize size={17}/>:<Expand size={17}/>}</button>
   </div></div>
+  {mode!=='history'&&<div className="ia-real-controls"><div role="group" aria-label="Kompyuter modeli turi"><button className="ia-button" aria-pressed={assetMode==='real'} onClick={()=>setAssetMode('real')}>Tayyor 3D modellar</button><button className="ia-button" aria-pressed={assetMode==='schematic'} onClick={()=>setAssetMode('schematic')}>Izohli 3D sxema</button></div><label><input type="checkbox" checked={isolated} onChange={e=>setIsolated(e.target.checked)}/> Faqat tanlangan qism</label>{assetMode==='real'&&!fallback&&<span className="ia-loaded-assets" role="status">{assets.status==='ready'?`${assets.loaded} ta GLB yuklandi`:assets.status==='partial'?`${assets.failed.length} model ochilmadi`: `${assets.loaded} / ${assets.total} model`}</span>}{assetMode==='real'&&assets.status==='partial'&&<div className="ia-asset-error" role="status"><p>Ochilmadi: {assets.failed.map(id=>components.find(c=>c.id===id)?.short||id).join(', ')}. Mavjud fayllar ko‘rinishda qoladi.</p><button className="ia-button" onClick={()=>setAssetRetry(v=>v+1)}>Modellarni qayta yuklash</button></div>}</div>}
   {mode==='history'&&immersive&&<div className="ia-room-controls"><label>Ko‘rish nuqtasi<select aria-label="Tarixiy xonani ko‘rish nuqtasi" disabled={fallback} value={roomView} onChange={e=>station(e.target.value)}><option value="overview">Butun xona</option><option value="inside">Xona ichiga kirish · 1,65 m</option><option value="program">Buyruq va kirish</option><option value="accumulators">Xotira / akkumulyator</option><option value="calculator">Hisoblash qismi</option><option value="output">Natija qurilmasi</option><option value="top">Yuqoridan xona rejasi</option></select></label><button className="ia-button" disabled={fallback} aria-pressed={walking} onClick={()=>{station(walking?'overview':'inside');root.current?.querySelector('.ia-stage')?.focus();}}>{walking?'Xonadan umumiy ko‘rinishga':'Xonaga kirib yurish'}</button>{walking&&<><div className="ia-walk-buttons" role="group" aria-label="Xonada yurish"><button className="ia-button" onClick={()=>engine.current?.turn(.25)} aria-label="Xonada chapga qarash">↶</button><button className="ia-button" onClick={()=>engine.current?.walk('forward')} aria-label="Xonada oldinga yurish">↑</button><button className="ia-button" onClick={()=>engine.current?.walk('back')} aria-label="Xonada orqaga yurish">↓</button><button className="ia-button" onClick={()=>engine.current?.turn(-.25)} aria-label="Xonada o‘ngga qarash">↷</button></div><p>W/A/S/D — yurish; ←/→ — qarash. Telefon uchun tugmalarni bosing. Home — umumiy ko‘rinish.</p></>}</div>}
  </section>;
 });

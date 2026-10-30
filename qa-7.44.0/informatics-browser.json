@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "history": 12,
+    "components": 18,
+    "boot": 6,
+    "assembly": 8,
+    "questions": 12,
+    "diagnostics": 4
+  },
+  "errors": [],
+  "violations": []
+}

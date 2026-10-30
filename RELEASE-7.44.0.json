@@ -1,0 +1,197 @@
+{
+  "version": "7.44.0",
+  "date": "2026-10-30",
+  "title": "Informatika: tayyor GLB va CAD modellar",
+  "coverage": {
+    "localHardwareGLBs": 18,
+    "authoredSourceModels": 11,
+    "motherboardFragments": 4,
+    "cadPackages": 2,
+    "originalCableModels": 1,
+    "localGLBBytes": 13098236,
+    "optionalHistoricalViewers": 7,
+    "existingHistoryLessons": 12,
+    "existingHardwareActivities": 18,
+    "existingLessonGuides": 174
+  },
+  "representation": {
+    "hardware": "Authored textured models and CAD shells, adapted into an educational assembly; not all scans or an engineering compatibility model.",
+    "history": "Seven optional remote Sketchfab viewers; remaining exhibits use existing educational rooms.",
+    "eniac": "Archival educational reconstruction, not an external scan or full emulator."
+  },
+  "changes": {
+    "newProjectDependencies": 0,
+    "newSQLMigrations": 0,
+    "embeddedGLBResources": true,
+    "meshoptCompression": true,
+    "webglFallback": true,
+    "attributionAndGLBDownload": true,
+    "onlyAddedFrameOrigin": "https://sketchfab.com"
+  },
+  "validation": {
+    "fullTests": {
+      "passed": 339,
+      "failed": 0
+    },
+    "newAssetTests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "modelsBrowser": {
+      "checks": {
+        "rendered": {
+          "case": 215645,
+          "motherboard": 363399,
+          "cpu": 26238,
+          "cooler": 36962,
+          "ram": 56094,
+          "rom": 1942,
+          "hdd": 105219,
+          "ssd": 277,
+          "nvme": 2040,
+          "gpu": 79456,
+          "psu": 11531,
+          "chipset": 24962,
+          "cmos": 2466,
+          "sata": 5977,
+          "pcie": 14339,
+          "io": 12588,
+          "fan": 8784,
+          "cables": 8474
+        },
+        "glbDownload": true,
+        "actualModels": 18,
+        "modesAndCache": true,
+        "mobileAndDark": true,
+        "historicalViewerIntegrations": 7,
+        "failureAndRetry": true,
+        "noWebGL": true
+      },
+      "errors": [],
+      "violations": [],
+      "historicalTestScope": "Poster, attribution, allowlisted iframe URL and mocked iframe integration; external live Sketchfab geometry was not rendered by this test."
+    },
+    "informaticsRegression": {
+      "status": "PASS",
+      "counts": {
+        "history": 12,
+        "components": 18,
+        "boot": 6,
+        "assembly": 8,
+        "questions": 12,
+        "diagnostics": 4
+      },
+      "errors": [],
+      "violations": []
+    },
+    "lessonGuideRegression": {
+      "status": "PASS",
+      "checks": {
+        "searchWorks": true,
+        "mathOverview": true,
+        "biologyOverview": true,
+        "chemistryOverview": true,
+        "spaceOverview": true,
+        "mathGuideCompleted": true,
+        "export": true,
+        "chemistryGuideCompleted": true,
+        "biologyGuideCompleted": true,
+        "spaceGuideCompleted": true,
+        "informaticsGuideCompleted": true,
+        "resume": true,
+        "restore": true,
+        "responsiveAndDark": true,
+        "userIsolation": true,
+        "noWebGL": true
+      },
+      "errors": [],
+      "violations": []
+    },
+    "build": "PASS",
+    "performance": {
+      "schemaVersion": 1,
+      "description": "Initial HTML scripts, modulepreloads and stylesheets; compressed sizes are estimates.",
+      "javascript": {
+        "files": 6,
+        "bytes": 588534,
+        "gzip": 173064,
+        "brotli": 148557
+      },
+      "css": {
+        "files": 2,
+        "bytes": 314436,
+        "gzip": 55345,
+        "brotli": 45572
+      },
+      "assets": [
+        {
+          "url": "/seo.css",
+          "kind": "css",
+          "bytes": 3679,
+          "gzip": 1362,
+          "brotli": 1118
+        },
+        {
+          "url": "/theme-init.js",
+          "kind": "js",
+          "bytes": 430,
+          "gzip": 273,
+          "brotli": 233
+        },
+        {
+          "url": "/assets/index-BIjLXWj-.js",
+          "kind": "js",
+          "bytes": 118566,
+          "gzip": 38420,
+          "brotli": 33660
+        },
+        {
+          "url": "/assets/rolldown-runtime-hePW80VL.js",
+          "kind": "js",
+          "bytes": 716,
+          "gzip": 428,
+          "brotli": 381
+        },
+        {
+          "url": "/assets/react-CR5VJ85Q.js",
+          "kind": "js",
+          "bytes": 218840,
+          "gzip": 67387,
+          "brotli": 58048
+        },
+        {
+          "url": "/assets/supabase-VaY9-frs.js",
+          "kind": "js",
+          "bytes": 214172,
+          "gzip": 54418,
+          "brotli": 46158
+        },
+        {
+          "url": "/assets/icons-JkuCioSj.js",
+          "kind": "js",
+          "bytes": 35810,
+          "gzip": 12138,
+          "brotli": 10077
+        },
+        {
+          "url": "/assets/index-D00TAeD8.css",
+          "kind": "css",
+          "bytes": 310757,
+          "gzip": 53983,
+          "brotli": 44454
+        }
+      ],
+      "budget": {
+        "javascriptBytes": 650000,
+        "javascriptGzip": 200000,
+        "cssBytes": 380000,
+        "cssGzip": 75000,
+        "passed": true
+      }
+    }
+  },
+  "delivery": {
+    "githubPush": false,
+    "deployment": false
+  }
+}

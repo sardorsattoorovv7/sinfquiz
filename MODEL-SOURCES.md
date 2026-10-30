@@ -1,4 +1,10 @@
-# SinfQuiz 7.14 — 3D model manbalari
+# SinfQuiz — 3D model manbalari
+
+## 7.44 Informatika
+
+18 ta mahalliy apparat GLB va 7 ta tarixiy tashqi ko‘ruvchining mualliflari, litsenziyalari, o‘zgarishlari va aniqlik chegaralari: [INFORMATIKA-3D-MODELS-7.44.md](INFORMATIKA-3D-MODELS-7.44.md).
+
+To‘liq fayl/hash/manba ro‘yxati: `public/informatics/v7.44/SOURCES.json`; tarixiy posterlar va ko‘ruvchilar: `public/informatics/v7.44/history/SOURCES.json`. Apparat GLBlari mahalliy; tarixiy ko‘ruvchilar foydalanuvchi bosgach Sketchfabdan ochiladi. ENIAC original o‘quv rekonstruksiyasidir.
 
 ## Qal’a va labirint
 

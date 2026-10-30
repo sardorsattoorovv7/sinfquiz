@@ -1,0 +1,1 @@
+The ATX connector and wire model in cables.glb was created for SinfQuiz. It is an original project asset. Rights in this original asset remain with the project owner; this notice does not apply a public-domain dedication or a third-party asset licence to it. External GLB and CAD assets remain under their own licences listed in SOURCES.json.

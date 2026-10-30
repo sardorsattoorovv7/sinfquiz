@@ -1,3 +1,19 @@
+# SinfQuiz 7.44.0 — Informatika uchun tayyor 3D modellar
+
+**Informatika atlasi → Kompyuter ichida**: 18 ta mahalliy GLB bilan teksturali kompyuter yig‘masi. Ona plata, CPU, RAM, ROM, HDD, SSD, videokarta, portlar va boshqa qismlarni aylantiring, ajrating va alohida kattalashtiring. Har qismda muallif, litsenziya, asl manba va GLB yuklab olish havolasi bor.
+
+11 ta tayyor muallif modeli, 4 ta ona plata fragmenti, 2 ta CAD aktiv va 1 ta original kabel modeli. O‘lchamlar moslashtirilgan, joylashuv — ta’limiy yig‘ma. Apparat modellari sayt bilan tarqatiladi; tashqi viewer yoki hisob talab qilinmaydi. Izohli 3D sxema va WebGLsiz 2D rejim saqlangan.
+
+**Vaqt muzeyi**dagi 7 bekatda internet orqali tayyor tarixiy 3D modelni ochish mumkin. ENIACning 40 panelli amaliy xonasi arxiv asosidagi o‘quv rekonstruksiyasi sifatida qoladi; tashqi skan deb ko‘rsatilmaydi.
+
+Node.js 22.12+, `npm ci`, `npm run dev`. Yangi SQL yoki dependency yo‘q. Kirish: `/#informatika-atlasi`.
+
+**339/339 test o‘tdi.** 18 haqiqiy GLB, eski informatika mashqlari va beshala atlas qo‘llanmalari brauzerda tekshirildi.
+
+**[Yangilash va foydalanish](UPDATE-7.44.md) · [Modellar va manbalar](INFORMATIKA-3D-MODELS-7.44.md) · [QA](QA-7.44.md)**
+
+---
+
 # SinfQuiz 7.43.0 — atlasni muhitida ko‘ring, ishlating va tekshiring
 
 **ENIAC xonasiga kiring:** 40 panelning U shaklidagi joylashuvi, odam bo‘yi bilan o‘lchamni solishtirish, xonada yurish, akkumulyator va kirish/chiqishga yaqinlashish. O‘quv ulash panelida yo‘lni ulang, o‘nlik qo‘shish/ko‘paytirishni bajaring va harakat jadvalini hisoblang.

@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "rendered": {
+      "case": 215645,
+      "motherboard": 363399,
+      "cpu": 26238,
+      "cooler": 36962,
+      "ram": 56094,
+      "rom": 1942,
+      "hdd": 105219,
+      "ssd": 277,
+      "nvme": 2040,
+      "gpu": 79456,
+      "psu": 11531,
+      "chipset": 24962,
+      "cmos": 2466,
+      "sata": 5977,
+      "pcie": 14339,
+      "io": 12588,
+      "fan": 8784,
+      "cables": 8474
+    },
+    "glbDownload": true,
+    "actualModels": 18,
+    "modesAndCache": true,
+    "mobileAndDark": true,
+    "historicalViewerIntegrations": 7,
+    "failureAndRetry": true,
+    "noWebGL": true
+  },
+  "errors": [],
+  "violations": [],
+  "historicalTestScope": "Poster, attribution, allowlisted iframe URL and mocked iframe integration; external live Sketchfab geometry was not rendered by this test."
+}

@@ -1,0 +1,1129 @@
+{
+  "version": "7.44.0",
+  "checkedAt": "2026-10-30",
+  "unit": "1 scene unit = 100 mm, visual teaching assembly",
+  "assets": [
+    {
+      "id": "case",
+      "name": "Fractal Design. Meshify C  -  PC Case",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/fractal-design-meshify-c-pc-case-a46526af2ac84fa098edc3f01c012450",
+      "api": "https://api.sketchfab.com/v3/models/a46526af2ac84fa098edc3f01c012450",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/models-staging/case.glb",
+      "rawSha256": "bc459f3cefe029bd3ef41180b99ead27365a7797acba08e3a3c3c23b53eaab4a",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "case.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -1.9911331608891487,
+            -13.912824749952108,
+            -1.7259616860476477
+          ],
+          "max": [
+            2.0345633924007416,
+            -9.345905303955078,
+            0.42941087157962476
+          ]
+        },
+        "anchor": [
+          0.021715115755796432,
+          -11.629365026953593,
+          -0.6482754072340114
+        ],
+        "scale": 0.991915897262127,
+        "rotation": [
+          0,
+          0.7071067811865476,
+          0,
+          0.7071067811865476
+        ]
+      },
+      "bounds": {
+        "min": [
+          -1.06899795555277,
+          -2.2649784077309625,
+          -1.9965822840288365
+        ],
+        "max": [
+          1.0690250768620395,
+          2.264947817170871,
+          1.996558339662526
+        ]
+      },
+      "sourceFile": "case",
+      "bytes": 1195860,
+      "sha256": "15f75ec3d947d0d55e4e4034702c381767103426f3305f5b7ba94db8bc7759dc",
+      "faces": 182918
+    },
+    {
+      "id": "motherboard",
+      "name": "Asus Strix b-550-f Gaming Motherboard Realistic",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/asus-strix-b-550-f-gaming-motherboard-realistic-3eba5f45bed74fbeb2647de38047000f",
+      "api": "https://api.sketchfab.com/v3/models/3eba5f45bed74fbeb2647de38047000f",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/motherboard.glb",
+      "rawSha256": "d100590563e86c13d74eb38dc5be3599c7aee4b221a04a33a6e94895861190b4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "motherboard.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -11.160080989048563,
+            11.79768548801439,
+            -25.464582443237305
+          ],
+          "max": [
+            12.139620846677454,
+            16.75185764638501,
+            2.5173887656839042
+          ]
+        },
+        "anchor": [
+          1.1223079299007281,
+          12.170986656733001,
+          -10.953932154363173
+        ],
+        "scale": 0.1132034496877438,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.04225898007141331,
+          -1.525,
+          -1.2472443740643973
+        ],
+        "max": [
+          0.5185703986031163,
+          1.6426556699130082,
+          1.3904087959634133
+        ]
+      },
+      "sourceFile": "motherboard",
+      "bytes": 6035040,
+      "sha256": "c71a05359427a4b46da0b83872f44a7f65f932251ee2c8f2cc2b0b93435b6f45",
+      "faces": 363397
+    },
+    {
+      "id": "cpu",
+      "name": "CPU Ryzen 5 3600",
+      "author": "Fochdog",
+      "authorUrl": "https://sketchfab.com/bazyaev08",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/cpu-ryzen-5-3600-249fb5e8c1e94686a2c2b1cd6df72bc5",
+      "api": "https://api.sketchfab.com/v3/models/249fb5e8c1e94686a2c2b1cd6df72bc5",
+      "downloadSource": "https://raw.githubusercontent.com/brickshow/pc-anatomy/377dfd450bf8697c83d5edd8cae13276b173438e/public/models/cpu.glb",
+      "rawSha256": "744bcaee8e886966aca5e5da2371e878d2856f4b64cdf24c0cf24b8381092181",
+      "commit": "377dfd450bf8697c83d5edd8cae13276b173438e",
+      "file": "cpu.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -12.132061958312988,
+            -0.9749905376923451,
+            -12.119158773321093
+          ],
+          "max": [
+            12.132061958312988,
+            1.4281094745436325,
+            12.119158743185107
+          ]
+        },
+        "anchor": [
+          0,
+          0.22655946842564367,
+          -1.506799307549045e-8
+        ],
+        "scale": 0.016485243867631123,
+        "rotation": [
+          0,
+          0,
+          -0.7071067811865476,
+          0.7071067811865476
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.019812624691799306,
+          -0.20000000000000007,
+          -0.19979247435729267
+        ],
+        "max": [
+          0.019812624691719072,
+          0.20000000000000007,
+          0.19979247435725728
+        ]
+      },
+      "sourceFile": "amd-cpu",
+      "bytes": 945268,
+      "sha256": "ea58995c25d05d73e88aa83d4c7e5385e305b16fdebe33a903b64d961d953821",
+      "faces": 26236
+    },
+    {
+      "id": "cooler",
+      "name": "(Free) AMD Wraith Stealth CPU Cooler",
+      "author": "PolyDavid",
+      "authorUrl": "https://sketchfab.com/PolyDavid",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/free-amd-wraith-stealth-cpu-cooler-ff1e128c191c4f808e60e7a7a523c9cc",
+      "api": "https://api.sketchfab.com/v3/models/ff1e128c191c4f808e60e7a7a523c9cc",
+      "downloadSource": "https://raw.githubusercontent.com/brickshow/pc-anatomy/377dfd450bf8697c83d5edd8cae13276b173438e/public/models/cpu_fan.glb",
+      "rawSha256": "4361e9f8d8171078e9b959b02721c20dcb5b7b67ca4ec52a1f3f1894a1da2701",
+      "commit": "377dfd450bf8697c83d5edd8cae13276b173438e",
+      "file": "cooler.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -7.5357036183714925,
+            -5.076375317528425,
+            -7.534576194082547
+          ],
+          "max": [
+            8.64719474844037,
+            3.027125456599265,
+            7.534576194082547
+          ]
+        },
+        "anchor": [
+          0.5557455650344387,
+          -1.0246249304645803,
+          0
+        ],
+        "scale": 0.061793627898622625,
+        "rotation": [
+          0,
+          0,
+          -0.7071067811865476,
+          0.7071067811865476
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.2503723557563236,
+          -0.500001420706946,
+          -0.4655887977109571
+        ],
+        "max": [
+          0.2503743677650668,
+          0.5000019725656581,
+          0.4655887977109571
+        ]
+      },
+      "sourceFile": "air-cooler",
+      "bytes": 641536,
+      "sha256": "b46458bf7815520cfef9038fa1e95d9f422ed80c3549d2b45070c6c74516e474",
+      "faces": 16488
+    },
+    {
+      "id": "ram",
+      "name": "Corsairn VENGEANCE RGB PRO",
+      "author": "Nouraiz",
+      "authorUrl": "https://sketchfab.com/Nouraiz",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/corsairn-vengeance-rgb-pro-9b163c4d5ad34edca58488500b5f4daf",
+      "api": "https://api.sketchfab.com/v3/models/9b163c4d5ad34edca58488500b5f4daf",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/ram.glb",
+      "rawSha256": "6a8533f4272f540d7213b82e7dd541c07e0c0856ba81d0a70ba6755fe68c63e4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "ram.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -0.01647358003202487,
+            0.0008556367913022667,
+            -0.30417313310507116
+          ],
+          "max": [
+            0.016473593070540624,
+            0.22653223534475592,
+            0.3041730804194343
+          ]
+        },
+        "anchor": [
+          6.519257876591578e-9,
+          0.11369393606802909,
+          -2.6342818426616788e-8
+        ],
+        "scale": 2.1862550804656644,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.2466737499238311,
+          -0.6650000000000001,
+          -0.036012789926293136
+        ],
+        "max": [
+          0.24667301025615748,
+          0.665,
+          0.036012789926293136
+        ]
+      },
+      "sourceFile": "ram",
+      "bytes": 227432,
+      "sha256": "f3ea043746d5e8e4c4d623fbb0597206941355e7db5f1a98e7d3fd82cf8c659d",
+      "faces": 28046
+    },
+    {
+      "id": "rom",
+      "name": "SOIC-8 3.9×4.9 mm chip package",
+      "author": "KiCad library contributors / original STEP authors",
+      "authorUrl": "https://github.com/KiCad/kicad-packages3D",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://github.com/KiCad/kicad-packages3D/blob/b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "api": "",
+      "downloadSource": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+      "rawSha256": "d9b46f6dd6cf8c5e2028838eed38e2a6a7f26235856078511e5a71a594ca809e",
+      "commit": "b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a",
+      "file": "rom.glb",
+      "kind": "CAD",
+      "changes": [
+        "STEP triangulated to GLB",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -3,
+            -2.450000047683716,
+            5.551115123125783e-17
+          ],
+          "max": [
+            3,
+            2.450000047683716,
+            1.75
+          ]
+        },
+        "anchor": [
+          0,
+          0,
+          0.875
+        ],
+        "scale": 0.01,
+        "rotation": [
+          0,
+          0.7071067811865476,
+          0,
+          0.7071067811865476
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.008749046296578883,
+          -0.024499343852046263,
+          -0.030000000000000006
+        ],
+        "max": [
+          0.00874904629657888,
+          0.024499343852046263,
+          0.03000000000000001
+        ]
+      },
+      "sourceFile": "rom",
+      "bytes": 15308,
+      "sha256": "e5140781dae9e889273d3a443d664440b7c91c80d0a914b910691fa4b0800d59",
+      "faces": 1940
+    },
+    {
+      "id": "hdd",
+      "name": "WD Green 1TB Hard Disk HDD",
+      "author": "MajdyModels",
+      "authorUrl": "https://sketchfab.com/MG990",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/wd-green-1tb-hard-disk-hdd-e9244f56e0724dd097570e29bae4b7c6",
+      "api": "https://api.sketchfab.com/v3/models/e9244f56e0724dd097570e29bae4b7c6",
+      "downloadSource": "https://raw.githubusercontent.com/brickshow/pc-anatomy/377dfd450bf8697c83d5edd8cae13276b173438e/public/models/hdd.glb",
+      "rawSha256": "d9228cb29979765bea5cf12c9f2ce46b4f10fe53684c6e37a7071b9c468fd284",
+      "commit": "377dfd450bf8697c83d5edd8cae13276b173438e",
+      "file": "hdd.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -1.7259861528873444,
+            0.008100628852844238,
+            -2.4867441654205322
+          ],
+          "max": [
+            1.7812109056844414,
+            0.7272220849990845,
+            2.5024037435650826
+          ]
+        },
+        "anchor": [
+          0.02761237639854852,
+          0.36766135692596436,
+          0.007829789072275162
+        ],
+        "scale": 0.294639490914367,
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.5167009444996469,
+          -0.10594078987226326,
+          -0.735
+        ],
+        "max": [
+          0.5166782245590287,
+          0.10594078987226324,
+          0.7350042554841637
+        ]
+      },
+      "sourceFile": "hdd",
+      "bytes": 876560,
+      "sha256": "8e7155d5cbf12e3ec31655dcd17611c180d9e5a7d00a83f98a77e4e89d296942",
+      "faces": 84501
+    },
+    {
+      "id": "ssd",
+      "name": "(SSD) Solid State Drive",
+      "author": "MarkCP",
+      "authorUrl": "https://sketchfab.com/MarkCP",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/ssd-solid-state-drive-dc92372c89f54d82ab378599d3170065",
+      "api": "https://api.sketchfab.com/v3/models/dc92372c89f54d82ab378599d3170065",
+      "downloadSource": "https://raw.githubusercontent.com/brickshow/pc-anatomy/377dfd450bf8697c83d5edd8cae13276b173438e/public/models/ssd_solid_state_drive.glb",
+      "rawSha256": "67881d897b53028c2fa3a1d7fb2f923d493ee44a0f7261caed5c910c630f1b3e",
+      "commit": "377dfd450bf8697c83d5edd8cae13276b173438e",
+      "file": "ssd.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            1.9919684918529867,
+            0.1699999962002039,
+            -3.2601326785951983
+          ],
+          "max": [
+            2.6919683236188803,
+            0.24999999441206455,
+            -2.26013270094694
+          ]
+        },
+        "anchor": [
+          2.3419684077359335,
+          0.20999999530613422,
+          -2.760132689771069
+        ],
+        "scale": 1.004500022452325,
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.35157653279213796,
+          -0.04018980986968596,
+          -0.50225
+        ],
+        "max": [
+          0.35157653279213885,
+          0.04018980986968596,
+          0.50225
+        ]
+      },
+      "sourceFile": "ssd",
+      "bytes": 48732,
+      "sha256": "e100c97d19097f3587318d4bc7f53ec9b54c20be7540fa7cea9234fdb3455dbe",
+      "faces": 275
+    },
+    {
+      "id": "nvme",
+      "name": "M.2 NVME SSD Samsung 990 Pro 1TB 3D model",
+      "author": "lime.ball.animations",
+      "authorUrl": "https://sketchfab.com/lime.ball.animations.official",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/m2-nvme-ssd-samsung-990-pro-1tb-3d-model-41b7bfda7eab40f8b13330913fd66fc2",
+      "api": "https://api.sketchfab.com/v3/models/41b7bfda7eab40f8b13330913fd66fc2",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/storage.glb",
+      "rawSha256": "6f0657646486fc7eb5cdc4cfc7b7ec2ea8bd767a04123d770340f55e85eaa22a",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "nvme.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -2.165832232702547,
+            0.00023425648341768925,
+            -0.6002843262971882
+          ],
+          "max": [
+            2.1664373390427816,
+            0.00930061174451429,
+            0.6008835898289382
+          ]
+        },
+        "anchor": [
+          0.0003025531701172923,
+          0.00476743411396599,
+          0.00029963176587499696
+        ],
+        "scale": 0.18466071576374837,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.0008370998239524235,
+          -0.11089205616835988,
+          -0.4
+        ],
+        "max": [
+          0.0008370998239524241,
+          0.11089205616835988,
+          0.4
+        ]
+      },
+      "sourceFile": "storage",
+      "bytes": 381964,
+      "sha256": "b4f61dd1ee62fe76e87f782ae3eabbf6f68b9cce4410e5ad74ff65fa89d70259",
+      "faces": 2038
+    },
+    {
+      "id": "gpu",
+      "name": "GeForce RTX 3080 Graphics Card",
+      "author": "_surovic_",
+      "authorUrl": "https://sketchfab.com/samuelsurovic",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/geforce-rtx-3080-graphics-card-8b947ee1bf7a4e3d8ffa1c24893ac160",
+      "api": "https://api.sketchfab.com/v3/models/8b947ee1bf7a4e3d8ffa1c24893ac160",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/gpu.glb",
+      "rawSha256": "027b9135933e71839572007c5cd5208a137da598ab8d122f64bacaaf3682522b",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "gpu.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            0.09246747008058742,
+            -14.301611050641885,
+            -7.560726479858415
+          ],
+          "max": [
+            4.473929160180029,
+            15.885303844422785,
+            5.257979938098671
+          ]
+        },
+        "anchor": [
+          2.283198315130308,
+          0.7918463968904499,
+          -1.1513732708798718
+        ],
+        "scale": 0.09441176781089192,
+        "rotation": [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.6051183669840773,
+          -0.2068307718734612,
+          -1.4250000000000003
+        ],
+        "max": [
+          0.6050771932182013,
+          0.20681289875512998,
+          1.4250000000000003
+        ]
+      },
+      "sourceFile": "gpu",
+      "bytes": 984300,
+      "sha256": "8ab9769b4fe07ea36e7a2db162f09d8da99f644b8d8b3a615516711874f3fd6b",
+      "faces": 79454
+    },
+    {
+      "id": "psu",
+      "name": "PSU Power Supply Unit",
+      "author": "Groovex",
+      "authorUrl": "https://sketchfab.com/dhafintaufiqi21",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/psu-power-supply-unit-69ccd1be3a77497cb2acc9e39e7c52b3",
+      "api": "https://api.sketchfab.com/v3/models/69ccd1be3a77497cb2acc9e39e7c52b3",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/psu.glb",
+      "rawSha256": "60aa4b6c959cdc0cde5b99c7979066ac1dcfe24e8cdbe951f061cbec8db65f04",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "psu.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -10.138499496355335,
+            -5.218856553302232,
+            -10.92144075657906
+          ],
+          "max": [
+            10.306375589117643,
+            5.281200508325122,
+            11.808066725730896
+          ]
+        },
+        "anchor": [
+          0.08393804638115387,
+          0.031171977511444737,
+          0.4433129845759183
+        ],
+        "scale": 0.07336801979611109,
+        "rotation": [
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.7499999411968135,
+          -0.38518419717888586,
+          -0.8338094774589859
+        ],
+        "max": [
+          0.75,
+          0.3851841971788858,
+          0.8338094774589859
+        ]
+      },
+      "sourceFile": "psu",
+      "bytes": 89900,
+      "sha256": "915763c6e2a0fcf4f4530d90ef11bfeb5524dbbf9375d4c441931f5eeed6bdc9",
+      "faces": 8871
+    },
+    {
+      "id": "chipset",
+      "name": "Asus Strix b-550-f Gaming Motherboard Realistic",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/asus-strix-b-550-f-gaming-motherboard-realistic-3eba5f45bed74fbeb2647de38047000f",
+      "api": "https://api.sketchfab.com/v3/models/3eba5f45bed74fbeb2647de38047000f",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/motherboard.glb",
+      "rawSha256": "d100590563e86c13d74eb38dc5be3599c7aee4b221a04a33a6e94895861190b4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "chipset.glb",
+      "kind": "source-model fragment",
+      "changes": [
+        "Named submeshes extracted",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            2.6072431409215824,
+            12.51080614419816,
+            -9.126624323988507
+          ],
+          "max": [
+            10.293357083066894,
+            13.200627630795106,
+            -1.6616939112029616
+          ]
+        },
+        "anchor": [
+          6.450300111994238,
+          12.855716887496634,
+          -5.394159117595734
+        ],
+        "scale": 0.1132034496877438,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.03904508597575109,
+          -0.42252793720313847,
+          -0.4350473064719565
+        ],
+        "max": [
+          0.039045085975750966,
+          0.42252793720313847,
+          0.4350473064719565
+        ]
+      },
+      "sourceFile": "motherboard",
+      "bytes": 461988,
+      "sha256": "058793893b82f31b43168f037444f80f216845efe3c82b09872b3a23cdf34914",
+      "faces": 24960
+    },
+    {
+      "id": "cmos",
+      "name": "Keystone 1060 CR2032 holder",
+      "author": "KiCad library contributors / original STEP authors",
+      "authorUrl": "https://github.com/KiCad/kicad-packages3D",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://github.com/KiCad/kicad-packages3D/blob/b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a/Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.step",
+      "api": "",
+      "downloadSource": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a/Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.step",
+      "rawSha256": "221c5c6510ed7e6fa3bd621ccee0bb883d86eb1e0e34ab2e2a32fb4d4ae7548d",
+      "commit": "b8b3cfdfad88ba66f21002b3de51dc6f7d55ba5a",
+      "file": "cmos.glb",
+      "kind": "CAD",
+      "changes": [
+        "STEP triangulated to GLB",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -15.930000305175781,
+            -10,
+            0.10000000149011612
+          ],
+          "max": [
+            15.930000305175781,
+            10,
+            5.179999852180481
+          ]
+        },
+        "anchor": [
+          0,
+          0,
+          2.6399999268352987
+        ],
+        "scale": 0.01,
+        "rotation": [
+          0,
+          0.7071067811865476,
+          0,
+          0.7071067811865476
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.02539699148071276,
+          -0.1,
+          -0.15930000305175784
+        ],
+        "max": [
+          0.025397801682350996,
+          0.1,
+          0.15930000305175784
+        ]
+      },
+      "sourceFile": "cmos",
+      "bytes": 18840,
+      "sha256": "ad33c7c12dbc9ad2756ad43e393127fec3e8dc57a3eeb36a58de6b8c2e928aef",
+      "faces": 2464
+    },
+    {
+      "id": "sata",
+      "name": "Asus Strix b-550-f Gaming Motherboard Realistic",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/asus-strix-b-550-f-gaming-motherboard-realistic-3eba5f45bed74fbeb2647de38047000f",
+      "api": "https://api.sketchfab.com/v3/models/3eba5f45bed74fbeb2647de38047000f",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/motherboard.glb",
+      "rawSha256": "d100590563e86c13d74eb38dc5be3599c7aee4b221a04a33a6e94895861190b4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "sata.glb",
+      "kind": "source-model fragment",
+      "changes": [
+        "Physical connector region extracted from the motherboard",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            10.20493751895533,
+            12.50756281455199,
+            -7.499603510764896
+          ],
+          "max": [
+            12.139620662503646,
+            13.688983063066793,
+            -3.508532500299591
+          ]
+        },
+        "anchor": [
+          11.172279090729488,
+          13.09827293880939,
+          -5.504068005532243
+        ],
+        "scale": 0.1132034496877438,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.06687037507827867,
+          -0.22590150316776564,
+          -0.10950964000543367
+        ],
+        "max": [
+          0.06686826950971293,
+          0.22590150316707105,
+          0.10949906386409379
+        ]
+      },
+      "sourceFile": "motherboard",
+      "sourceRegion": {
+        "min": [
+          10.2,
+          12.3,
+          -7.5
+        ],
+        "max": [
+          12.3,
+          14.5,
+          -3.5
+        ]
+      },
+      "bytes": 273344,
+      "sha256": "f764ebde36d374e1861bfc8b9cc13c92454d9483de708f648c69c466d496d398",
+      "faces": 5975
+    },
+    {
+      "id": "pcie",
+      "name": "Asus Strix b-550-f Gaming Motherboard Realistic",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/asus-strix-b-550-f-gaming-motherboard-realistic-3eba5f45bed74fbeb2647de38047000f",
+      "api": "https://api.sketchfab.com/v3/models/3eba5f45bed74fbeb2647de38047000f",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/motherboard.glb",
+      "rawSha256": "d100590563e86c13d74eb38dc5be3599c7aee4b221a04a33a6e94895861190b4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "pcie.glb",
+      "kind": "source-model fragment",
+      "changes": [
+        "Physical connector region extracted from the motherboard",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -6.071863147743624,
+            12.328846320729609,
+            -8.999875848336771
+          ],
+          "max": [
+            4.799288018020482,
+            13.233412265286466,
+            -7.004951810840582
+          ]
+        },
+        "anchor": [
+          -0.6362875648615711,
+          12.781129293008037,
+          -8.002413829588676
+        ],
+        "scale": 0.1132034496877438,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.05120723535259374,
+          -0.11291708220098176,
+          -0.6153259070207173
+        ],
+        "max": [
+          0.051207235343207126,
+          0.11291524439037402,
+          0.6153254884314094
+        ]
+      },
+      "sourceFile": "motherboard",
+      "sourceRegion": {
+        "min": [
+          -7,
+          12.3,
+          -9
+        ],
+        "max": [
+          4.8,
+          14.5,
+          -7
+        ]
+      },
+      "bytes": 456872,
+      "sha256": "d4762bf5993ba6e58ed4805d1250c1e4796c4a47b34c17c4776713660da29e32",
+      "faces": 14337
+    },
+    {
+      "id": "io",
+      "name": "Asus Strix b-550-f Gaming Motherboard Realistic",
+      "author": "MUSHROOM_BUILDS",
+      "authorUrl": "https://sketchfab.com/MUSHROOM_BUILDS",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/asus-strix-b-550-f-gaming-motherboard-realistic-3eba5f45bed74fbeb2647de38047000f",
+      "api": "https://api.sketchfab.com/v3/models/3eba5f45bed74fbeb2647de38047000f",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/motherboard.glb",
+      "rawSha256": "d100590563e86c13d74eb38dc5be3599c7aee4b221a04a33a6e94895861190b4",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "io.glb",
+      "kind": "source-model fragment",
+      "changes": [
+        "Named submeshes extracted",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -11.160080989048563,
+            12.443857851066861,
+            -25.464582443237305
+          ],
+          "max": [
+            -5.540112117031915,
+            16.67693634111578,
+            -11.076759477966693
+          ]
+        },
+        "anchor": [
+          -8.350096553040238,
+          14.560397096091322,
+          -18.270670960601997
+        ],
+        "scale": 0.1132034496877438,
+        "rotation": [
+          0.5,
+          0.5,
+          -0.5,
+          0.5
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.23957539531202357,
+          -0.8143755965804281,
+          -0.31807514389446206
+        ],
+        "max": [
+          0.2395738575056042,
+          0.8143755965825886,
+          0.31809993165684686
+        ]
+      },
+      "sourceFile": "motherboard",
+      "bytes": 335204,
+      "sha256": "f168a08b2aada7ce486481c75d1ea33aacdaee9f8eaad4b57a3685136ba82abe",
+      "faces": 12586
+    },
+    {
+      "id": "fan",
+      "name": "120mm Computer Fans",
+      "author": "kusuma844",
+      "authorUrl": "https://sketchfab.com/kusuma844",
+      "license": "http://creativecommons.org/licenses/by/4.0/",
+      "source": "https://sketchfab.com/3d-models/120mm-computer-fans-6c17bfc4a2a5438eb9996fb3c73e1a91",
+      "api": "https://api.sketchfab.com/v3/models/6c17bfc4a2a5438eb9996fb3c73e1a91",
+      "downloadSource": "https://raw.githubusercontent.com/Jacob-Baker-Git/CustomPc/45995ba9341a685d71946bc87bbd907b0f60af06/public/models/fan.glb",
+      "rawSha256": "6f176d1d32ecc955a4df8869b483d9125b41bb9562997e5b975e2e4a48f5e39b",
+      "commit": "45995ba9341a685d71946bc87bbd907b0f60af06",
+      "file": "fan.glb",
+      "kind": "authored 3D model",
+      "changes": [
+        "Geometry optimized",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -1.2842085074437737,
+            -1.2842085074437737,
+            -0.2761558701049718
+          ],
+          "max": [
+            1.2842085074437737,
+            1.2842085074437737,
+            0.2761558701049718
+          ]
+        },
+        "anchor": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.467213849248129,
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.6,
+          -0.6,
+          -0.1290238470642102
+        ],
+        "max": [
+          0.6,
+          0.6,
+          0.1290238470642102
+        ]
+      },
+      "sourceFile": "fan",
+      "bytes": 47772,
+      "sha256": "41140a5a586feeb3b71c0a449034bb47ab220c54ed356d75a3000a7e8a2e15d1",
+      "faces": 4391
+    },
+    {
+      "id": "cables",
+      "name": "ATX connector and wire teaching model",
+      "author": "SinfQuiz",
+      "authorUrl": "",
+      "license": "/informatics/v7.44/LICENSES/SINFQUIZ-ORIGINAL.txt",
+      "source": "",
+      "api": "",
+      "downloadSource": "",
+      "rawSha256": "",
+      "commit": "",
+      "file": "cables.glb",
+      "kind": "original model",
+      "changes": [
+        "Original geometry",
+        "Centered, oriented and uniformly scaled",
+        "Meshopt compression; textures at most 1024 px"
+      ],
+      "calibration": {
+        "sourceBounds": {
+          "min": [
+            -0.07999999821186066,
+            -1.6599999986588956,
+            -0.27000001072883606
+          ],
+          "max": [
+            0.4160880744457245,
+            0.08999999955296517,
+            0.27000001072883606
+          ]
+        },
+        "anchor": [
+          0.16804403811693192,
+          -0.7849999995529652,
+          0
+        ],
+        "scale": 1,
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "bounds": {
+        "min": [
+          -0.24803793759370857,
+          -0.8750036650525034,
+          -0.27000001072883606
+        ],
+        "max": [
+          0.24801953020479314,
+          0.8749999991059303,
+          0.27000001072883606
+        ]
+      },
+      "sourceFile": "cables",
+      "bytes": 62316,
+      "sha256": "76d0b8a709c0e1951c14d8cc2ed3a20567f7ed6e9180a135dbc3553aba4900a1",
+      "faces": 6956
+    }
+  ]
+}

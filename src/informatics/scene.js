@@ -1,17 +1,21 @@
 import * as T from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {components,history} from './content.js';
 import {clamp} from './model.js';
 import {buildHistoryEnvironment} from './history-environment.js';
+import {createRealHardware} from './real-hardware.js';
+import {REAL_PART_POS,REAL_PART_OFFSETS} from './asset-catalog.js';
 
 // Procedural teaching models: no external downloads and no photogrammetric claims.
-export function createInformaticsScene(host,initial,onSelect,onLost){
+export function createInformaticsScene(host,initial,onSelect,onLost,onAssets=()=>{}){
  const scene=new T.Scene();scene.background=new T.Color('#142b2b');scene.fog=new T.Fog('#142b2b',22,52);
  const renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.6));renderer.outputColorSpace=T.SRGBColorSpace;
  renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.45;
+ const environmentScene=new RoomEnvironment(),pmrem=new T.PMREMGenerator(renderer),environmentTarget=pmrem.fromScene(environmentScene,.04);scene.environment=environmentTarget.texture;environmentScene.dispose?.();pmrem.dispose();
  renderer.domElement.setAttribute('aria-hidden','true');host.appendChild(renderer.domElement);
- const camera=new T.PerspectiveCamera(38,1,.1,130);camera.position.set(9,6.5,10);
+ const camera=new T.PerspectiveCamera(38,1,.005,130);camera.position.set(9,6.5,10);
  const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=false;controls.minDistance=3;controls.maxDistance=25;controls.maxPolarAngle=Math.PI*.88;controls.target.set(0,1.8,0);
  scene.add(new T.HemisphereLight('#dbefe4','#2a3136',2.9));
  const sun=new T.DirectionalLight('#fff1d1',3.7);sun.position.set(4,10,6);scene.add(sun);
@@ -21,7 +25,7 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
  const world=new T.Group();scene.add(world);
  const overlay=document.createElement('div');overlay.className='ia-label-layer';overlay.setAttribute('aria-hidden','true');host.appendChild(overlay);
  let state={...initial},disposed=false,frame=null,visible=true,move=null,lastTime=0;
- let parts=new Map(),markers=[],animations=[],signature='',environment=null;
+ let parts=new Map(),markers=[],animations=[],signature='',environment=null,realLayer=null;
  const bronze='#bd9556',beige='#c1b59a',ink='#263536',green='#327764',metal='#a1b5b9';
  function material(color,extras={}){return new T.MeshStandardMaterial({color,roughness:.48,metalness:.28,...extras});}
  function box(parent,pos,size,color,extras={}){const m=new T.Mesh(new T.BoxGeometry(...size),material(color,extras));m.position.set(...pos);parent.add(m);return m;}
@@ -32,7 +36,7 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
   const cvs=document.createElement('canvas');cvs.width=768;cvs.height=160;const ctx=cvs.getContext('2d');ctx.fillStyle=color;ctx.font='600 66px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(value,384,80,740);
   const tex=new T.CanvasTexture(cvs);tex.colorSpace=T.SRGBColorSpace;const m=new T.Sprite(new T.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));m.scale.set(width,width*160/768,1);m.position.set(...pos);parent.add(m);return m;
  }
- function clear(){world.traverse(m=>{m.geometry?.dispose();const materials=Array.isArray(m.material)?m.material:[m.material];for(const mt of materials){if(!mt)continue;mt.map?.dispose();mt.dispose();}});world.clear();overlay.replaceChildren();parts=new Map();markers=[];animations=[];environment=null;}
+ function clear(){realLayer?.dispose();realLayer=null;const geometries=new Set(),materials=new Set(),textures=new Set();world.traverse(m=>{if(m.geometry)geometries.add(m.geometry);for(const mt of Array.isArray(m.material)?m.material:[m.material]){if(!mt)continue;materials.add(mt);for(const value of Object.values(mt))if(value?.isTexture)textures.add(value);}});for(const geometry of geometries)geometry.dispose();for(const mt of materials)mt.dispose();for(const texture of textures){texture.dispose();texture.source?.data?.close?.();}world.clear();overlay.replaceChildren();parts=new Map();markers=[];animations=[];environment=null;delete host.dataset.importedModels;delete host.dataset.assetsStatus;}
  function fan(parent,pos,size,axis='x'){
   const g=new T.Group();g.position.set(...pos);if(axis==='x')g.rotation.z=-Math.PI/2;else if(axis==='z')g.rotation.x=Math.PI/2;parent.add(g);
   const ring=new T.Mesh(new T.TorusGeometry(size*.41,size*.055,8,32),material(metal));ring.rotation.x=Math.PI/2;g.add(ring);
@@ -112,6 +116,11 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
  const partPos={case:[0,0,0],motherboard:[-1.2,2.45,-.25],cpu:[-1.02,3,-.5],cooler:[-.35,3,-.5],ram:[-1,2.85,.65],rom:[-1.03,1.94,.74],hdd:[0,.95,1.27],ssd:[0,1.52,1.3],nvme:[-1.01,2.18,-.35],gpu:[-.05,1.65,-.35],psu:[0,.45,-1.2],chipset:[-1.02,2.05,.4],cmos:[-1.01,1.47,.55],sata:[-1.01,1.25,.85],pcie:[-1.03,1.6,-.32],io:[-1.02,3.1,-1.75],fan:[0,2.95,1.85],cables:[0,0,0]};
  const partOffsets={case:[-.8,0,0],motherboard:[-1.2,.1,-.1],cpu:[1.1,1.25,-.45],cooler:[3,1.6,-.7],ram:[1.7,1.1,1.2],rom:[2,-.15,1.9],hdd:[.2,-.25,2.25],ssd:[.4,1.15,2.5],nvme:[2,.4,.9],gpu:[2,-.3,-1.2],psu:[-.5,-.1,-2.6],chipset:[1.1,.2,1.35],cmos:[1.5,-.75,1.15],sata:[.3,-.6,1.9],pcie:[1.1,-.2,-1.8],io:[-.2,.8,-1.8],fan:[-.6,.9,1.9],cables:[0,-.4,0]};
  function hardware(){
+  if(state.assetMode!=='schematic'){
+   realLayer=createRealHardware({world,getState:()=>state,animations,onStatus:status=>{host.dataset.importedModels=String(status.loaded);host.dataset.assetsStatus=status.status;onAssets(status);},onChange:id=>{applyHardware();if(state.isolated&&state.selected===id)focusPart(id);request();}});parts=realLayer.parts;
+   for(const [index,c]of components.entries()){const el=document.createElement('button');el.type='button';el.className='ia-scene-marker';el.tabIndex=-1;el.title=c.name;el.textContent=String(index+1).padStart(2,'0');el.addEventListener('click',()=>onSelect(c.id));overlay.appendChild(el);markers.push({el,group:parts.get(c.id),id:c.id,offset:c.id==='case'?new T.Vector3(1,2.2,0):new T.Vector3(.2,.15,.1)});}
+   const dot=ball(world,[0,0,0],.07,'#f5d182',{emissive:'#c9993f',emissiveIntensity:1.5});dot.visible=false;animations.push(t=>{const activity=state.activity,path=activity?.path||[],a=parts.get(path[Math.max(0,(activity?.phase||1)-1)]),b=parts.get(path[Math.min(path.length-1,activity?.phase||1)]);dot.visible=Boolean(!state.isolated&&activity?.running&&activity.ready&&a&&b);if(dot.visible)dot.position.lerpVectors(a.position,b.position,(t*.8)%1);});return;
+  }
   for(const [index,c] of components.entries()){
    const g=new T.Group();g.position.set(...partPos[c.id]);g.userData.part=c.id;world.add(g);parts.set(c.id,g);
    const k=c.id,col=c.color;
@@ -168,20 +177,21 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
  function applyHardware(){
   const amount=clamp(state.explode);
   for(const [id,g] of parts){
-   const p=partPos[id],offset=partOffsets[id];g.position.set(p[0]+offset[0]*amount,p[1]+offset[1]*amount,p[2]+offset[2]*amount);
-   g.visible=!state.installed||['case','motherboard','rom','chipset','cmos','sata','pcie','io','fan','cables'].includes(id)||state.installed.includes(id);
+   const p=(realLayer?REAL_PART_POS:partPos)[id],offset=(realLayer?REAL_PART_OFFSETS:partOffsets)[id];g.position.set(p[0]+offset[0]*amount,p[1]+offset[1]*amount,p[2]+offset[2]*amount);
+   g.visible=state.isolated?id===state.selected:!state.installed||['case','motherboard','rom','chipset','cmos','sata','pcie','io','fan','cables'].includes(id)||state.installed.includes(id);
    g.traverse(m=>{if(!m.isMesh)return;if(m.userData.panel)m.visible=!state.cutaway;
     const active=state.activity?.phase>0&&state.activity?.ready&&state.activity.path?.[Math.min(2,state.activity.phase-1)]===id;
-    m.material.emissive?.setHex(active?0x8b712d:id===state.selected?0x276953:(m.userData.baseEmissive||0));
-    if(id===state.selected)m.material.emissiveIntensity=.55;
+    for(const mt of Array.isArray(m.material)?m.material:[m.material]){const base=mt.userData.baseEmissive??m.userData.baseEmissive??0;mt.emissive?.setHex(active?0x8b712d:id===state.selected?0x276953:base);mt.emissiveIntensity=active?.4:id===state.selected?(realLayer?.12:.55):(mt.userData.baseEmissiveIntensity??1);}
    });
   }
+  realLayer?.update();
  }
+ function focusPart(id){const g=parts.get(id);if(!g)return;world.updateMatrixWorld(true);const bounds=realLayer?.bounds(id),center=bounds?bounds.getCenter(new T.Vector3()):g.getWorldPosition(new T.Vector3()),size=bounds?Math.max(...bounds.getSize(new T.Vector3()).toArray()):0;const dir=camera.position.clone().sub(controls.target).normalize();controls.minDistance=realLayer?.04:3;travel(center.clone().add(dir.multiplyScalar(bounds?Math.max(.24,size*1.8):id==='case'||id==='motherboard'?7:4)),center);}
  function labels(){
   const vec=new T.Vector3();
   for(const marker of markers){
    marker.group.getWorldPosition(vec);vec.add(marker.offset);vec.project(camera);
-   const show=state.labels&&marker.group.visible&&vec.z>-1&&vec.z<1&&Math.abs(vec.x)<.96&&Math.abs(vec.y)<.94;
+   const show=state.labels&&marker.group.visible&&(!realLayer||realLayer.loaded.has(marker.id))&&vec.z>-1&&vec.z<1&&Math.abs(vec.x)<.96&&Math.abs(vec.y)<.94;
    marker.el.hidden=!show;if(show){marker.el.style.left=`${(vec.x*.5+.5)*100}%`;marker.el.style.top=`${(-vec.y*.5+.5)*100}%`;marker.el.classList.toggle('selected',marker.id===state.selected);}
   }
  }
@@ -189,7 +199,7 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
   frame=null;if(disposed||!visible||document.hidden)return;
   if(move){const u=clamp((time-move.start)/move.duration),smooth=u*u*(3-2*u);camera.position.lerpVectors(move.from,move.to,smooth);controls.target.lerpVectors(move.targetFrom,move.targetTo,smooth);if(u>=1)move=null;}
   animations.forEach(fn=>fn(time/1000));controls.update();renderer.render(scene,camera);labels();lastTime=time;
-  host.dataset.meshes=String(renderer.info.render.calls);host.dataset.ready='true';
+  host.dataset.meshes=String(renderer.info.render.calls);host.dataset.triangles=String(renderer.info.render.triangles);host.dataset.selectedPart=state.selected||'';host.dataset.assetMode=state.assetMode||'';host.dataset.ready=(!realLayer||realLayer.loaded.size>0)?'true':'false';
   if(move||state.motion)request();
  }
  function request(){if(!disposed&&frame===null&&visible&&!document.hidden)frame=requestAnimationFrame(render);}
@@ -200,9 +210,9 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
   else {const k=clamp(state.explode);travel(new T.Vector3(8+k*3,5.8+k*2,9+k*3),new T.Vector3(k*.5,2.1,k*.4),instant);controls.maxDistance=25;}
  }
  function update(next){
-  const previous=state;state={...state,...next};const sig=state.mode==='history'?`museum:${state.eraIndex}:${Boolean(state.immersive)}`:'hardware';
+  const previous=state;state={...state,...next};const sig=state.mode==='history'?`museum:${state.eraIndex}:${Boolean(state.immersive)}`:`hardware:${state.assetMode}:${state.assetRetry||0}`;
   if(signature!==sig){clear();signature=sig;if(state.mode==='history')museum();else hardware();reset(!previous.mode);}
-  if(state.mode!=='history'){applyHardware();if(previous.explode!==state.explode&&!move)reset();}
+  if(state.mode!=='history'){applyHardware();if(state.isolated&&(previous.selected!==state.selected||!previous.isolated))focusPart(state.selected);else if(previous.isolated&&!state.isolated)reset();else if(previous.explode!==state.explode&&!move)reset();}
   environment?.update(state);
   request();
  }
@@ -222,9 +232,9 @@ export function createInformaticsScene(host,initial,onSelect,onLost){
   station(id){const view=environment?.views[id];if(!view)return;travel(new T.Vector3(...view.position),new T.Vector3(...view.target),id==='inside');},
   walk(direction){if(!environment)return;move=null;const bounds=environment.bounds,forward=controls.target.clone().sub(camera.position);forward.y=0;forward.normalize();const right=forward.clone().cross(new T.Vector3(0,1,0));const v=direction==='forward'?forward:direction==='back'?forward.negate():direction==='left'?right.negate():right;v.multiplyScalar(.55);const next=camera.position.clone().add(v);next.x=clamp(next.x,bounds.minX,bounds.maxX);next.z=clamp(next.z,bounds.minZ,bounds.maxZ);next.y=1.65;const delta=next.clone().sub(camera.position);camera.position.copy(next);controls.target.add(delta);controls.update();host.dataset.walkPosition=`${next.x.toFixed(2)},${next.z.toFixed(2)}`;request();},
   turn(angle){if(!environment)return;move=null;const dir=controls.target.clone().sub(camera.position).applyAxisAngle(new T.Vector3(0,1,0),angle);dir.y=0;dir.normalize().multiplyScalar(3);controls.target.copy(camera.position).add(dir);controls.update();request();},
-  focus(id){const g=parts.get(id);if(!g)return;const center=g.getWorldPosition(new T.Vector3());const dir=camera.position.clone().sub(controls.target).normalize();travel(center.clone().add(dir.multiplyScalar(id==='case'||id==='motherboard'?7:4)),center);},
-  angle(view){if(state.mode==='history')return reset();const target=new T.Vector3(0,2.1,0),k=1+clamp(state.explode)*.3;const pos={top:[.1,12,.1],front:[7,3,8],back:[8,4,-9],iso:[9,6.5,10]}[view]||[9,6.5,10];travel(new T.Vector3(...pos).multiplyScalar(k),target);},
+  focus:focusPart,
+  angle(view){if(state.mode==='history')return reset();if(realLayer&&state.isolated){const bounds=realLayer.bounds(state.selected);if(bounds){const center=bounds.getCenter(new T.Vector3()),distance=Math.max(.24,Math.max(...bounds.getSize(new T.Vector3()).toArray())*1.8),v={front:[1,0,0],back:[-1,0,0],top:[.01,1,.01],iso:[.8,.55,.8]}[view]||[.8,.55,.8];travel(center.clone().add(new T.Vector3(...v).normalize().multiplyScalar(distance)),center);return;}}const target=new T.Vector3(0,2.1,0),k=1+clamp(state.explode)*.3;const pos={top:[.1,12,.1],front:[7,3,8],back:[8,4,-9],iso:[9,6.5,10]}[view]||[9,6.5,10];travel(new T.Vector3(...pos).multiplyScalar(k),target);},
   zoom(factor){const d=camera.position.clone().sub(controls.target).multiplyScalar(factor);d.clampLength(controls.minDistance,controls.maxDistance);camera.position.copy(controls.target).add(d);move=null;request();},
-  dispose(){if(disposed)return;disposed=true;if(frame!==null)cancelAnimationFrame(frame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);controls.dispose();renderer.domElement.removeEventListener('webglcontextlost',lost);renderer.domElement.removeEventListener('pointerdown',pointerDown);renderer.domElement.removeEventListener('pointerup',pointerUp);clear();floor.geometry.dispose();floor.material.dispose();grid.geometry.dispose();grid.material.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();overlay.remove();},
+  dispose(){if(disposed)return;disposed=true;if(frame!==null)cancelAnimationFrame(frame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);controls.dispose();renderer.domElement.removeEventListener('webglcontextlost',lost);renderer.domElement.removeEventListener('pointerdown',pointerDown);renderer.domElement.removeEventListener('pointerup',pointerUp);clear();environmentTarget.dispose();floor.geometry.dispose();floor.material.dispose();grid.geometry.dispose();grid.material.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();overlay.remove();},
  };
 }
