@@ -1,5 +1,5 @@
 import {guideFor} from './guides.js';
-export const subjects=['math','biology','chemistry','space','informatics'];
+export const subjects=['math','biology','chemistry','space','informatics','history'];
 export const progressStorageKey=owner=>`sq:atlas-learning:v742:${owner||'guest'}`;
 export const emptyLearning=()=>({version:1,entries:{},last:null});
 const text=(v,max)=>typeof v==='string'?v.slice(0,max):'';

@@ -1,3 +1,11 @@
+# Yangilash: 7.46.0
+
+7.31–7.45 bazasida **supabase-migration-7.46.sql**ni to‘liq RUN qiling. Faqat yangi Speaking jadvallari, service-role RPC funksiyalari, owner RLS va private audio bucket qo‘shiladi; mavjud fan / foydalanuvchi jadvallari o‘zgarmaydi. Barcha tarixiy fayllarni ishlab turgan bazaga qaytadan bajarish kerak emas. Yangi o‘rnatishda `migration-chain.json`dagi tartibni bajaring.
+
+Speaking AI uchun server Groq kaliti, service-role va doimiy Node worker (`ffprobe`) ham kerak. [UPDATE-7.46.md](UPDATE-7.46.md)ni o‘qing. Faqat SQL qo‘llash AI xizmatini ishga tushirmaydi. `.env.local` va mavjud ma’lumotlar saqlansin.
+
+---
+
 # Yangilash: 7.30.0
 
 Koinot atlasi uchun [UPDATE-7.30.md](UPDATE-7.30.md)ni o‘qing. 7.29 dan: `supabase-office-amaliy-fix.sql`, keyin `supabase-migration-7.30.sql`. Mavjud login va environment qiymatlari saqlanadi. To‘liq ketma-ketlik `migration-chain.json`da.

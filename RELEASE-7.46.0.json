@@ -1,0 +1,85 @@
+{
+  "version": "7.46.0",
+  "date": "2026-11-02",
+  "timezone": "Asia/Tashkent",
+  "baseline": "7.45.0",
+  "modules": [
+    "AI Speaking",
+    "AI yo‘lko‘rsatuvchi"
+  ],
+  "preserved": {
+    "atlases": 6,
+    "baselineSourceFiles": 1439
+  },
+  "speakingContent": {
+    "ieltsMocks": 6,
+    "multilevelMocks": 6,
+    "mockPoolQuestions": 156,
+    "transferQuestions": 54,
+    "imagePairs": 12,
+    "contextImages": 6,
+    "svgAssets": 30
+  },
+  "migration": "supabase-migration-7.46.sql",
+  "freshMigrationChainFiles": 53,
+  "runtime": {
+    "newNpmDependencies": 0,
+    "node": ">=22.12.0",
+    "backgroundWorker": "scripts/speaking-worker.mjs",
+    "systemDependency": "ffprobe",
+    "providerKey": "server GROQ_API_KEY only"
+  },
+  "scores": {
+    "pronunciation": null,
+    "fullFluency": null,
+    "overallIELTS": null,
+    "officialMultilevel75": null,
+    "partialTranscriptFeedback": true
+  },
+  "validation": {
+    "version": "7.46.0",
+    "date": "2026-11-02",
+    "fullSuite": {
+      "passed": 388,
+      "failed": 0
+    },
+    "finalSpeakingSuite": {
+      "passed": 47,
+      "failed": 0
+    },
+    "build": "PASS",
+    "performance": "PASS",
+    "sql": "PGlite migration replay, ownership, immutable originals, durable job lease, budgets",
+    "audioProbe": "real generated WAV and corrupt-file rejection",
+    "assets": {
+      "localSvgCount": 30,
+      "shaAndCaptionValidation": "PASS"
+    },
+    "browser": {
+      "publicSpeaking": "PASS",
+      "publicGuide": "PASS",
+      "separateSidebarRoutes": "PASS",
+      "manualBiologyGuide": "PASS",
+      "realAuthenticatedStorageAndMicrophone": "NOT RUN",
+      "physicalMobile": "NOT RUN"
+    },
+    "provider": {
+      "controlledHttpFixtures": "PASS",
+      "realGroq": "NOT RUN: new server key not configured"
+    },
+    "delivery": {
+      "productionDeployment": false,
+      "githubPush": false
+    },
+    "baselinePaginationRegression": "PASS: 65 newer practice assessments retain baseline"
+  },
+  "documentation": [
+    "UPDATE-7.46.md",
+    "QA-7.46.md",
+    "SPEAKING-SOURCES-7.46.md"
+  ],
+  "delivery": {
+    "deployment": false,
+    "githubPush": false
+  }
+}

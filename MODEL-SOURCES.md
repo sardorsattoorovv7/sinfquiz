@@ -1,5 +1,9 @@
 # SinfQuiz — 3D model manbalari
 
+## 7.45 Biologiya va tarix
+
+Biologiya 7.21 tayyor anatomik GLBlarni yangi izohlash/ko‘rish boshqaruvlari bilan qayta ishlatadi. 12 tarixiy diorama — original ta’limiy rekonstruksiya; qal’a Kenney Castle Kit CC0 modellaridan ham foydalanadi. Xarita Natural Earth public domain qirg‘oq chiziqlaridan olingan. Tafsilot: [ATLAS-SOURCES-7.45.md](ATLAS-SOURCES-7.45.md).
+
 ## 7.44 Informatika
 
 18 ta mahalliy apparat GLB va 7 ta tarixiy tashqi ko‘ruvchining mualliflari, litsenziyalari, o‘zgarishlari va aniqlik chegaralari: [INFORMATIKA-3D-MODELS-7.44.md](INFORMATIKA-3D-MODELS-7.44.md).

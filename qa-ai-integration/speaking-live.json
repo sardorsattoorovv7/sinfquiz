@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-02T08:25:11.021Z",
+  "source": "synthetic_typed_memory_only",
+  "modelId": "openai/gpt-oss-120b",
+  "status": "completed",
+  "errorCode": null,
+  "providerCode": null,
+  "assessmentCount": 1,
+  "validatedErrorCount": 2,
+  "generatedErrorCount": 2,
+  "generatedEvidenceValid": false,
+  "validatedEvidenceValid": true,
+  "overallBand": null,
+  "pronunciationScore": null,
+  "usage": [
+    {
+      "modelId": "openai/gpt-oss-120b",
+      "kind": "chat",
+      "promptTokens": 2177,
+      "completionTokens": 1513
+    }
+  ]
+}

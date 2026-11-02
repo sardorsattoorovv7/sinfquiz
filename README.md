@@ -1,3 +1,31 @@
+# SinfQuiz 7.46.0 — AI yordamchi va AI Speaking
+
+**AI yordamchi** (`/#ai-yordamchi`): dastur bo‘yicha yo‘lko‘rsatish, mavzularni misol bilan tushuntirish, suhbatni davom ettirish va izohli mashq savollari. Matnli yordamchi alohida worker yoki yangi SQLsiz ishlaydi; SinfQuiz hisobiga kirish talab qilinadi.
+
+**AI Speaking** (`/#ai-speaking`): IELTS / Multilevel mock, private audio, Groq transkripsiyasi, dalilli tahlil, shaxsiy roadmap va kundalik mashq. Server Supabase kaliti, 7.46 migratsiyasi va doimiy worker kerak. `ffprobe` npm orqali platformaga mos o‘rnatiladi.
+
+**Ishga tushirish:** `npm ci` → `npm run ai:check` → `npm run dev`. Web va sozlangan Speaking worker bitta buyruqda ochiladi. Faqat web: `npm run dev:web`. Kalitlar faqat serverning `.env.local` yoki hosting environmentida saqlanadi; `.env.example`da faqat namunalar bor. Mikrofon uchun HTTPS yoki localhost ishlating.
+
+**[AI sozlash va tekshirish](AI-INTEGRATION.md) · [Speaking qo‘llanmasi](UPDATE-7.46.md) · [Manbalar](SPEAKING-SOURCES-7.46.md)**
+
+Quyida oldingi relizlar tarixi:
+
+---
+
+# SinfQuiz 7.45.0 — aniq biologiya va qiziqarli tarix atlasi
+
+**Biologiya**: 11 organ/tayanch tizimning tayyor anatomik sirtlarini alohida ochish, raqamli qismlar, yaqinlashtirish, ajratish, old/yon/ko‘ndalang kesimlar. Barcha **30 mavzuda** to‘rttadan tuzilma va to‘rttadan jarayon bosqichi, tekshirilgan manbalar va aniq cheklovlar. Hujayra sxemasiga ER, ribosoma, Golji, yadrocha va organoidlarning ichki belgilari qo‘shildi.
+
+**Yangi Tarix atlasi**: 12 bekat va 48 tanlanadigan qism, o‘quv 3D rekonstruksiyalari, jahon xaritasi, xronologiya, dalil ustaxonasi, amaliy savollar va shaxsiy JSON qaydlar. Samarqand, Buxoro, Ulug‘bek va O‘zbekiston mustaqilligi jahon tarixi bilan bog‘langan. Umumiy markazda **6 atlas, 186 mavzu/bo‘lim qo‘llanmasi**.
+
+**345/345 test**, yakuniy tegishli **23/23 test**, build va perf o‘tdi. Ushbu tekshiruv brauzerida WebGL o‘chirilgan; yangi GPU renderi tasdiqlanmagan. 3D geometriya testda, 2D zaxira rejimi, barcha tarixiy bekatlar va organ izohlari brauzerda tekshirildi.
+
+Node.js 22.12+, `npm ci`, `npm run dev`. Yangi SQL yoki dependency yo‘q. Biologiya `/#biologiya`, tarix `/#tarix-atlasi`; tayyor mavzular mehmon uchun ham ochiq.
+
+**[Yangilash](UPDATE-7.45.md) · [QA](QA-7.45.md) · [Manbalar va aniqlik](ATLAS-SOURCES-7.45.md)**
+
+---
+
 # SinfQuiz 7.44.0 — Informatika uchun tayyor 3D modellar
 
 **Informatika atlasi → Kompyuter ichida**: 18 ta mahalliy GLB bilan teksturali kompyuter yig‘masi. Ona plata, CPU, RAM, ROM, HDD, SSD, videokarta, portlar va boshqa qismlarni aylantiring, ajrating va alohida kattalashtiring. Har qismda muallif, litsenziya, asl manba va GLB yuklab olish havolasi bor.

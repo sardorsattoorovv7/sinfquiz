@@ -1,0 +1,43 @@
+{
+  "checks": [
+    {
+      "mode": "guide",
+      "ok": true,
+      "model": "openai/gpt-oss-20b",
+      "answerCharacters": 438,
+      "questions": 0,
+      "routes": [
+        "biology"
+      ]
+    },
+    {
+      "mode": "tutor",
+      "ok": true,
+      "model": "openai/gpt-oss-20b",
+      "answerCharacters": 1655,
+      "questions": 0,
+      "routes": [
+        "biology"
+      ]
+    },
+    {
+      "mode": "quiz",
+      "ok": true,
+      "model": "openai/gpt-oss-20b",
+      "answerCharacters": 111,
+      "questions": 3,
+      "routes": [
+        "biology"
+      ]
+    },
+    {
+      "mode": "transcription",
+      "ok": true,
+      "model": "whisper-large-v3",
+      "seconds": 25.632,
+      "characters": 410,
+      "words": 71,
+      "uncertain": false
+    }
+  ]
+}

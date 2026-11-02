@@ -1,3 +1,5 @@
+> 7.45 yangilanishi: quyidagi ayrim bayonlar eski versiyalarga tegishli. Hozirgi atlas 7.21 dan beri tayyor GLB sirtlardan foydalanadi. Yangi aniqlik va manbalar: [ATLAS-SOURCES-7.45.md](ATLAS-SOURCES-7.45.md).
+
 # Biologiya: manbalar va model chegaralari
 
 Matn, SVG tasvirlar va protsedurali tana modeli loyiha uchun original yaratildi. Tashqi anatomik GLB, ko‘chirilgan rasmlar yoki CDN model fayllari ishlatilmadi. Three.js — MIT (https://github.com/mrdoob/three.js/blob/dev/LICENSE); Lucide — ISC (https://lucide.dev/license).

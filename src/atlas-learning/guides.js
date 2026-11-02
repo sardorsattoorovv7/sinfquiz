@@ -1,7 +1,9 @@
+import {historyTopics} from '../history-atlas/content.js';
 // Original short explanations and formative questions; existing scientific models stay authoritative.
 // A guide is selected by the actual scene/family, then enriched with that topic's own task and definition.
 const g=(idea,example,observe,question,options,answer,why,words=[])=>({idea,example,observe,check:{question,options,answer,why},words});
 export const subjectInfo={
+ history:{title:'Tarix atlasi',label:'Tarix',kicker:'DAVR, JOY VA DALIL',intro:'Qadimgi hayotdan zamonaviy O‘zbekistongacha sayohat qiling. Voqeani joylashtiring, manbani tekshiring va dalildan xulosa chiqaring.',start:historyTopics[0].id,route:'historyAtlas',color:'#8b693f',source:'https://whc.unesco.org/en/list/'},
  math:{title:'Matematika atlasi',label:'Matematika',kicker:'SONDAN SHAKLGACHA',intro:'Son, ifoda va shaklni bir qadamdan tushuning. Formulani misol va model bilan bog‘lang.',start:'son-chizigi',route:'mathAtlas',color:'#376c65',source:'https://openstax.org/details/books/prealgebra-2e'},
  biology:{title:'Biologiya atlasi',label:'Biologiya',kicker:'HUJAYRADAN EKOTIZIMGACHA',intro:'Tirik tuzilmaning qismlarini ajrating. Sharoit o‘zgarsa jarayon qanday o‘zgarishini kuzating.',start:'plant-cell',route:'biology',color:'#55753c',source:'https://openstax.org/details/books/biology-2e'},
  chemistry:{title:'Kimyo atlasi',label:'Kimyo',kicker:'ATOMDAN TAJRIBAGACHA',intro:'Zarracha, modda va reaksiyani ajrating. Taxminni modelda tekshirib, atomlar va miqdorlarni kuzating.',start:'atom',route:'chemistry',color:'#936342',source:'https://openstax.org/details/books/chemistry-2e'},
@@ -9,6 +11,7 @@ export const subjectInfo={
  informatics:{title:'Informatika atlasi',label:'Informatika',kicker:'HISOBDAN DASTURGACHA',intro:'Tarixni tushuning, qismlarni toping va kompyuter qanday ishlashini o‘zingiz sinab ko‘ring.',start:'history',route:'informaticsAtlas',color:'#285c4b',source:'https://www.computerhistory.org/timeline/computers/'},
 };
 export const learningPaths={
+ history:[{id:'ancient',name:'Ilk qishloqlardan qadimgi shaharlarga',why:'Dehqonchilik, yozuv, qurilish va jamoat hayotining izlarini taqqoslang.',ids:historyTopics.slice(0,4).map(t=>t.id)},{id:'connections',name:'Yo‘llar, shaharlar va bilim',why:'Samarqand va Buxoroni yo‘llar, ilm va kitob tarixi bilan bog‘lang.',ids:historyTopics.slice(4,8).map(t=>t.id)},{id:'modern',name:'Sanoatdan mustaqillikkacha',why:'Transport, urush davri tajribasi va davlat hujjatlarini dalil bilan o‘rganing.',ids:historyTopics.slice(8).map(t=>t.id)}],
  math:[
   {id:'foundation',name:'Avval sonlarni tushuning',why:'Son chizig‘i, manfiy son va ulush — keyingi mavzularning tayanchi.',ids:['son-chizigi','manfiy-sonlar','ulush-foiz','onli-kasr','nisbat']},
   {id:'algebra',name:'Ifodadan tenglamagacha',why:'O‘zgaruvchi qiymatini almashtiring, tenglikni saqlang va grafikni o‘qing.',ids:['amal-tartibi','ozgaruvchi','ifoda','tenglik','tengsizlik','chiziqli-funksiya','sistema','kvadrat-funksiya','kvadrat-tenglama']},
@@ -235,6 +238,7 @@ export const spaceOverrides={
 };
 
 export function guideFor(subject,topic){
+ if(subject==='history')return {...g(topic.definition,topic.life||topic.facts[0],'3D sahnaning old va yuqori ko‘rinishini solishtiring. Bir qismni tanlang; uning vazifasini va xaritadagi joyini ikki kuzatuvda qayd eting.',topic.check.question,topic.check.options,topic.check.answer,topic.check.why,[['Dalil','Manbada tekshiriladigan belgi yoki ma’lumot.'],['Xulosa','Dalilga asoslangan, tekshirishga ochiq izoh.'],['Rekonstruksiya','Manbalar va taxminlar bilan qayta qurilgan ko‘rinish.']]),title:topic.title,task:topic.activity.prompt,definition:topic.definition,life:topic.life||'',misconception:topic.misconception,controls:['Kamera','Jarayon bosqichi','Qismlarni ajratish'],source:topic.sources[0].url};
  const guides={math:mathGuides,biology:biologyGuides,chemistry:chemistryGuides,space:spaceGuides,informatics:informaticsGuides}[subject];
  const id=topic.templateId||topic.id,kind=topic.family||topic.scene||topic.id;
  const guide=subject==='math'?(mathOverrides[id]||guides?.[kind]):subject==='space'?(spaceOverrides[id]||guides?.[kind]):subject==='biology'?(biologyOverrides[id]||guides?.[kind]):guides?.[kind];

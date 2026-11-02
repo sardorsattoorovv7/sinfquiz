@@ -1,0 +1,23 @@
+{
+  "version": "7.45.0",
+  "map": {
+    "source": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson",
+    "author": "Natural Earth contributors",
+    "license": "Public domain",
+    "licenseUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "rawSha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+    "changes": "Land coastline only; equirectangular SVG, rounded coordinates. No historical or political boundaries."
+  },
+  "reusedModels": {
+    "source": "https://kenney.nl/assets/castle-kit",
+    "author": "Kenney",
+    "license": "CC0 1.0",
+    "localLicense": "public/models/castle/LICENSE.txt",
+    "files": [
+      "gate.glb",
+      "tower-square.glb",
+      "wall-half.glb"
+    ]
+  },
+  "scenes": "Original educational reconstructions; not archaeological scans."
+}

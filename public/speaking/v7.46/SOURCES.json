@@ -1,0 +1,741 @@
+{
+  "version": "7.46.0",
+  "checkedAt": "2026-11-02",
+  "kind": "Original local SVG practice illustrations; not official exam photographs",
+  "assets": [
+    {
+      "id": "sp746-pair-01-a",
+      "file": "pair-01-a.svg",
+      "caption": "Three students sit around a table with notebooks and discuss a task.",
+      "visibleObjects": [
+        "students",
+        "table",
+        "notebooks",
+        "classroom"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "17f900fd7196e5b00b356382c4ad24d2cfd1a8a53b2fd22d91850fb1db3ccdd5",
+      "bytes": 11002,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-01-b",
+      "file": "pair-01-b.svg",
+      "caption": "One student studies at a desk using a laptop with a lesson on the screen.",
+      "visibleObjects": [
+        "student",
+        "desk",
+        "laptop",
+        "headphones"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "f8c7a00ffde5a2acda495b1c133855d318d095fa747599cb8dc1fda1fb9d2553",
+      "bytes": 6178,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-02-a",
+      "file": "pair-02-a.svg",
+      "caption": "Passengers sit inside a train carriage with bags beside them.",
+      "visibleObjects": [
+        "passengers",
+        "train seats",
+        "window",
+        "bags"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "a01ae10e5ab193f8af3b1c559f6d888a2a42c67ad3cdc2a22e3b6fc92637f381",
+      "bytes": 7411,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-02-b",
+      "file": "pair-02-b.svg",
+      "caption": "A person rides a bicycle along a marked cycle path.",
+      "visibleObjects": [
+        "cyclist",
+        "bicycle",
+        "cycle path",
+        "trees"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "aeba19d2e9cd99e8c4e3064c1e3922c0a4ae4f74dd26c8e27a47a50b649368b2",
+      "bytes": 3981,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-03-a",
+      "file": "pair-03-a.svg",
+      "caption": "Friends sit on a picnic blanket in a park with a food basket.",
+      "visibleObjects": [
+        "friends",
+        "blanket",
+        "basket",
+        "park"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "b47ca4a73cd4972cc85d1bcc2db4baecd6595b0889216d0ba9a47cbaef6c6fce",
+      "bytes": 9215,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-03-b",
+      "file": "pair-03-b.svg",
+      "caption": "Visitors look at paintings in an indoor art museum.",
+      "visibleObjects": [
+        "visitors",
+        "paintings",
+        "museum walls",
+        "bench"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "2725acd1eae9f521d74102a16fdc29ef82d4b464194e39ea69201defeed14eb1",
+      "bytes": 5021,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-04-a",
+      "file": "pair-04-a.svg",
+      "caption": "A shopper chooses vegetables at an outdoor market stall.",
+      "visibleObjects": [
+        "shopper",
+        "vegetables",
+        "stall",
+        "market"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "1de0cc35ae9b4a4e79d6c92ac2c84c18a3c9571e97a131a53d190995b7cdcc47",
+      "bytes": 6622,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-04-b",
+      "file": "pair-04-b.svg",
+      "caption": "A shopper pushes a trolley between shelves in a supermarket.",
+      "visibleObjects": [
+        "shopper",
+        "trolley",
+        "shelves",
+        "supermarket"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "3c4a8ce946abfe0dbce0b1228d67d5e78fed75d1d32719f79d763e379445f3e1",
+      "bytes": 9207,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-05-a",
+      "file": "pair-05-a.svg",
+      "caption": "Two people run along a path in a park.",
+      "visibleObjects": [
+        "runners",
+        "path",
+        "trees",
+        "running shoes"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "e8efb3668c88b4b8e771445e4b732d5a250ba5f4151858b32a66708517e18ef3",
+      "bytes": 5237,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-05-b",
+      "file": "pair-05-b.svg",
+      "caption": "A person exercises on a stationary bicycle in a gym.",
+      "visibleObjects": [
+        "person",
+        "stationary bicycle",
+        "gym",
+        "water bottle"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "eb9ca710fb8fb932f476e70d2b37882199d52942be99c9c13cbe35920b6e7bd1",
+      "bytes": 4311,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-06-a",
+      "file": "pair-06-a.svg",
+      "caption": "Family members talk while sitting together around a dining table.",
+      "visibleObjects": [
+        "family members",
+        "dining table",
+        "chairs",
+        "plates"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "8567159459f4fdcdd5c0bac597d2a40ef39a804d779f71f998d7b7b2c39a0922",
+      "bytes": 9580,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-06-b",
+      "file": "pair-06-b.svg",
+      "caption": "A person talks to someone on a laptop video call.",
+      "visibleObjects": [
+        "person",
+        "laptop",
+        "video call screen",
+        "desk"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "01092a442220d27ef77c45f28b771d9285708fca059b55843012c32ed8ee2dfb",
+      "bytes": 5655,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-07-a",
+      "file": "pair-07-a.svg",
+      "caption": "A reader holds a paper book while sitting beside a window.",
+      "visibleObjects": [
+        "reader",
+        "paper book",
+        "chair",
+        "window"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "c23973ea9b0a21fab1d48a278e081857e7037901d6223af334a0b6fd7286a833",
+      "bytes": 5489,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-07-b",
+      "file": "pair-07-b.svg",
+      "caption": "A reader holds a tablet displaying a page of text.",
+      "visibleObjects": [
+        "reader",
+        "tablet",
+        "chair",
+        "reading lamp"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "afe0b221eb9606377ff4dd4e86ca171dffaff061c30ea03cc3da97d47db19274",
+      "bytes": 4507,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-08-a",
+      "file": "pair-08-a.svg",
+      "caption": "A person prepares vegetables in a home kitchen.",
+      "visibleObjects": [
+        "cook",
+        "vegetables",
+        "kitchen worktop",
+        "pan"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "baaaaa4ebc8cccf983012c2da5006d6e339db93220c254f4b50f6bb814882b51",
+      "bytes": 4272,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-08-b",
+      "file": "pair-08-b.svg",
+      "caption": "Two people eat a meal at a restaurant table.",
+      "visibleObjects": [
+        "diners",
+        "restaurant table",
+        "plates",
+        "menu"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "15deb2fa102d36586c25d0474e428f77dc9edd747ecf938136859fd07f94d443",
+      "bytes": 8036,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-09-a",
+      "file": "pair-09-a.svg",
+      "caption": "Several people wait at a bus stop beside a timetable.",
+      "visibleObjects": [
+        "people",
+        "bus stop",
+        "timetable",
+        "bus"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "d2f9ea64c9c916171be6ce883c71e468e63be8ad015f6aa6395924a4752d3928",
+      "bytes": 13661,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-09-b",
+      "file": "pair-09-b.svg",
+      "caption": "Two people walk along a pavement carrying small bags.",
+      "visibleObjects": [
+        "pedestrians",
+        "pavement",
+        "bags",
+        "street"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "c1a874b7678d482d999949d87608bf233dbf4599bc4af4078aab28243064d6ee",
+      "bytes": 10724,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-10-a",
+      "file": "pair-10-a.svg",
+      "caption": "Colleagues discuss a plan around a meeting table.",
+      "visibleObjects": [
+        "colleagues",
+        "meeting table",
+        "plan",
+        "office"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "d4b5d1ffbe14a93f9646a0b4be52ceb6d5dfb144c1a1c6de228ad26476de8698",
+      "bytes": 8819,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-10-b",
+      "file": "pair-10-b.svg",
+      "caption": "Volunteers work together to plant young trees outdoors.",
+      "visibleObjects": [
+        "volunteers",
+        "young trees",
+        "spades",
+        "outdoor ground"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "8997377045f490084fe94eb39e71220ca4e147ad85bb657cbb5bb7f6333811f0",
+      "bytes": 7024,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-11-a",
+      "file": "pair-11-a.svg",
+      "caption": "People relax in a city park surrounded by tall buildings.",
+      "visibleObjects": [
+        "people",
+        "park bench",
+        "trees",
+        "city buildings"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "02f1841d91a0d907a9330729a4efb62be9f3d86abba55555f02cd16bdb982079",
+      "bytes": 11580,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-11-b",
+      "file": "pair-11-b.svg",
+      "caption": "People walk on a path through open countryside.",
+      "visibleObjects": [
+        "walkers",
+        "footpath",
+        "hills",
+        "fields"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "62bb13eec1988fe4a44888084d8c7eb4ef92eda4d5982dc948b7989f04ad7f40",
+      "bytes": 4968,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-12-a",
+      "file": "pair-12-a.svg",
+      "caption": "A learner draws a picture at a table with pencils and paper.",
+      "visibleObjects": [
+        "learner",
+        "pencils",
+        "paper",
+        "table"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "00bda2b6ea6471bca33a9b99c31eec3ffbd8ac47844da0225e8dd8c8f5fa2deb",
+      "bytes": 4911,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-pair-12-b",
+      "file": "pair-12-b.svg",
+      "caption": "A learner practises a musical instrument in a room.",
+      "visibleObjects": [
+        "learner",
+        "musical instrument",
+        "music stand",
+        "chair"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "d21b6a5d51278bc1e0cc43dfdd31caac8e3de6b0134265e3b07ac865db0a3900",
+      "bytes": 5534,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-01",
+      "file": "context-01.svg",
+      "caption": "A learner practises a new skill using notes and simple tools.",
+      "visibleObjects": [
+        "learner",
+        "notes",
+        "tools",
+        "practice desk"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "e4755ffeedf52424ef0462c41a47041fee1caa6691bc13e9256d914ffe7268e4",
+      "bytes": 5699,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-02",
+      "file": "context-02.svg",
+      "caption": "People organise boxes of useful supplies at a community collection point.",
+      "visibleObjects": [
+        "people",
+        "boxes",
+        "supplies",
+        "collection point"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "7813033babef4b02be46a80d8641d9bbe6ba849c134b187af24b368c43032198",
+      "bytes": 4756,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-03",
+      "file": "context-03.svg",
+      "caption": "A person looks at a planner with two possible routes drawn on a separate map.",
+      "visibleObjects": [
+        "person",
+        "planner",
+        "map",
+        "two routes"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "74729b4eb77586785ce14c95797e7be6d70e9deac2216f1ffd3775e9efa155dc",
+      "bytes": 5306,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-04",
+      "file": "context-04.svg",
+      "caption": "A small group moves an outdoor activity into an indoor room as rain begins.",
+      "visibleObjects": [
+        "group",
+        "rain outside",
+        "indoor room",
+        "activity materials"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "155035125aa2f5afec9c0e2c911aa38aa1b701c1d6b63e6d2e6ca2e196c35f48",
+      "bytes": 9501,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-05",
+      "file": "context-05.svg",
+      "caption": "A team checks a completed project displayed on a table.",
+      "visibleObjects": [
+        "team",
+        "completed project",
+        "table",
+        "notes"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "d6924c5dae141d1f13ab060bf85071617dc7f338a1d4918c1de6c3ac03d83370",
+      "bytes": 9121,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    },
+    {
+      "id": "sp746-context-06",
+      "file": "context-06.svg",
+      "caption": "A person arranges study, work and leisure cards on a weekly planner.",
+      "visibleObjects": [
+        "person",
+        "weekly planner",
+        "study card",
+        "leisure card"
+      ],
+      "license": "Original project asset; rights retained",
+      "author": "SinfQuiz",
+      "source": "Original programmatic SVG illustration; no third-party image copied",
+      "sha256": "217fa8f68dfb32070803052fcd76d8adcb37126bb9308fd51a9672576f8bf490",
+      "bytes": 6426,
+      "width": 800,
+      "height": 540,
+      "validatedAt": "2026-11-02",
+      "validation": {
+        "xmlParsed": true,
+        "externalResources": false,
+        "captionObjectPlanMatched": true
+      }
+    }
+  ],
+  "visualQA": {
+    "renderer": "Inkscape headless SVG-to-PNG",
+    "renderedAssets": 30,
+    "contactSheetsInspected": 3,
+    "correctedScenesReviewed": 10,
+    "checks": [
+      "Visible scene and objects; no caption-only placeholder",
+      "People count consistent with captions",
+      "Reading/learning/transport contexts distinguishable",
+      "Revised planner/map occlusion and shoe placement",
+      "All scene content stays inside rounded image frame"
+    ],
+    "scope": "Illustration review; not a claim of official exam photograph or psychometric equivalence"
+  }
+}

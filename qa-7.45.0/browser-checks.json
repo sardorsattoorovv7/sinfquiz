@@ -1,0 +1,12 @@
+{
+  "sixAtlasHub": "PASS",
+  "historyStops2D": 12,
+  "historyParts2D": 48,
+  "anatomyProfileSelections2D": 11,
+  "mapAndChronology": "PASS",
+  "historyDecisionAndEvidence": "PASS",
+  "historyLocalCompletionAndRestore": "PASS",
+  "guestBiology": "PASS",
+  "newLive3DRendering": "NOT VERIFIED: cloud browser WebGL is disabled",
+  "mobileAndNewColorContrastAudit": "NOT VERIFIED in this release"
+}

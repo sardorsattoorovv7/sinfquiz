@@ -4,8 +4,8 @@ import {atlasCatalog,topicCount} from '../src/atlas-learning/catalog.js';
 import {guideFor,learningPaths,subjectInfo} from '../src/atlas-learning/guides.js';
 import {sanitizeLearning,readLearning,emptyLearning,progressStorageKey,lessonRevision,lessonRow,canComplete,updateLearning,completedFor,nextInPath} from '../src/atlas-learning/progress.js';
 
-test('all five atlases have usable teaching guides, valid formative questions and reachable learning paths',()=>{
- assert.equal(topicCount,174);
+test('all six atlases have usable teaching guides, valid formative questions and reachable learning paths',()=>{
+ assert.equal(topicCount,186);
  for(const [subject,topics] of Object.entries(atlasCatalog)){
   assert.ok(subjectInfo[subject].route);assert.equal(new Set(topics.map(t=>t.id)).size,topics.length);
   for(const topic of topics){const guide=guideFor(subject,topic);assert.ok(guide,`${subject}/${topic.id}`);for(const key of ['idea','example','observe','task'])assert.ok(guide[key]?.length>=20,`${topic.id}: ${key}`);assert.ok(guide.words.length>0,topic.id);assert.ok(guide.check.answer>=0&&guide.check.answer<guide.check.options.length);assert.equal(new Set(guide.check.options).size,guide.check.options.length);assert.ok(guide.check.why.length>15);assert.equal(new URL(guide.source).protocol,'https:');}

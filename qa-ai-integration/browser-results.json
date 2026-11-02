@@ -1,0 +1,63 @@
+{
+  "checks": [
+    "desktop 1440px",
+    "guide renders permitted route and filters staff routes",
+    "tutor follows prior conversation",
+    "quiz reveals explanations after choice and scores practice",
+    "assistant 390px",
+    "assistant 320px",
+    "assistant 768px",
+    "provider failure preserves question",
+    "cancel preserves draft",
+    "dark assistant 390px"
+  ],
+  "errors": [],
+  "accessibility": [
+    {
+      "label": "desktop guide",
+      "violations": []
+    },
+    {
+      "label": "desktop completed quiz",
+      "violations": []
+    },
+    {
+      "label": "assistant 390px",
+      "violations": []
+    },
+    {
+      "label": "assistant 320px",
+      "violations": []
+    },
+    {
+      "label": "assistant 768px",
+      "violations": []
+    },
+    {
+      "label": "mobile dark assistant",
+      "violations": []
+    }
+  ],
+  "aiRequests": [
+    {
+      "mode": "guide",
+      "historyLength": 0
+    },
+    {
+      "mode": "tutor",
+      "historyLength": 2
+    },
+    {
+      "mode": "quiz",
+      "historyLength": 4
+    },
+    {
+      "mode": "quiz",
+      "historyLength": 6
+    },
+    {
+      "mode": "quiz",
+      "historyLength": 6
+    }
+  ]
+}

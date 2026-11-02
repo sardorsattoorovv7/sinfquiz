@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle,Presentation,Piano} from 'lucide-react';
+import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,Menu,X,ArrowRight,Shield,Keyboard,Brain,Code2,Headphones,GraduationCap,MessageCircle,Presentation,Piano,Mic,Sparkles} from 'lucide-react';
 import {ExperienceControls} from './effects.jsx';
 import StudioArt from './StudioArt.jsx';
 import {findStudioRoutes,normalizeStudioSearch} from './studio-navigation.js';
@@ -9,12 +9,15 @@ import ClassJoinForm from './paper/ClassJoinForm.jsx';
 export const studioSections=[
  {id:'home',label:'Bosh sahifa',icon:Home,views:['home']},
  {id:'books',label:'Darsliklar',icon:BookOpen,views:['books','lesson','bookPractice','catalog','englishCourse']},
- {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space','informaticsAtlas']},
+ {id:'atlasHub',label:'Atlaslar',icon:Compass,views:['atlasHub','mathAtlas','chemistry','biology','space','informaticsAtlas','historyAtlas']},
  {id:'exerciseHub',label:'Mashqlar',icon:Gamepad2,views:['exerciseHub','chat','iq','audioMaze','cinemaPiano','practice','national','nationalExam','cefr','cefrManaged','cefrExam','typing','typingJoin','race','raceJoin','join','play']},
+ {id:'speaking',label:'AI Speaking',icon:Mic,views:['speaking']},
+ {id:'aiGuide',label:'AI yordamchi',icon:Sparkles,views:['aiGuide']},
  {id:'competitions',label:'Musobaqalar',icon:Trophy,views:['competitions']},
  {id:'results',label:'Natijalar',icon:BarChart3,views:['profile','result']},
 ];
 export const studioActivities=[
+ {id:'historyAtlas',label:'Tarix atlasi',detail:'12 davrga 3D sayohat, O‘zbekiston va jahon tarixi, xarita, manba va dalil ustaxonasi.',subject:'history',type:'atlas'},
  {id:'informaticsAtlas',label:'Informatika atlasi',detail:'Kompyuter tarixi, 3D muzey, RAM, ROM, HDD, SSD va OS. Qismlarga ajratish va amaliy mashqlar.',subject:'informatics',type:'atlas'},
  {id:'space',label:'Koinot atlasi',detail:'53 hodisa, meteoritlar, orbitalar va yulduzlar. Fizika tajribalari.',subject:'space',type:'atlas'},
  {id:'mathAtlas',label:'Matematika atlasi',detail:'Son, formula, grafik va fazoviy shakllar.',subject:'math',type:'atlas'},
@@ -86,6 +89,7 @@ export default function StudioShell({children,user,view,onNavigate,onLogout,onJo
  </header><div ref={mainRef} id="studio-main" className="studio-content" tabIndex={-1} inert={blocked?true:undefined}>{children}</div></div>
  {drawerOpen&&<><div className="studio-drawer-shade" onClick={()=>setDrawer(false)} aria-hidden="true"/><aside id="studio-drawer" ref={drawerRef} className="studio-drawer" role="dialog" aria-modal="true" aria-label="Bo‘limlar menyusi"><div><PaperBrand className="studio-brand"/><button aria-label="Menyuni yopish" onClick={()=>setDrawer(false)}><X size={22}/></button></div>{links(true)}<PaperButton className="pw-drawer-join" variant="primary" onClick={()=>{setDrawer(false);setJoinOpen(true)}}>Sinfga qo‘shilish <ArrowRight size={17}/></PaperButton>{user&&<PaperButton className="pw-drawer-logout" variant="quiet" onClick={()=>{setDrawer(false);onLogout()}}><LogOut size={17}/> Hisobdan chiqish</PaperButton>}<p>{roleLabel(user)} · {user?.name||'SinfQuiz'}</p></aside></>}
  {!inActivity&&<nav className="studio-bottom-nav" aria-label="Tezkor bo‘limlar" inert={blocked?true:undefined}>{studioSections.filter(s=>['home','books','atlasHub','exerciseHub','results'].includes(s.id)).map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{id==='home'?'Bosh':id==='books'?'Darslar':label}</span></button>)}</nav>}
+ {user&&!inActivity&&view!=='aiGuide'&&<button className="sp-guide-float" onClick={()=>navigate('aiGuide')} aria-label="AI yordamchi: dasturdan foydalanish"><Sparkles size={17}/>Yordamchi</button>}
  <PaperDialog open={joinOpen&&!inActivity} onClose={()=>setJoinOpen(false)} title="Sinfga qo‘shilish" description="Ustoz bergan olti xonali kodni kiriting. Hisob ochmasdan ham sinf testiga qo‘shilishingiz mumkin."><ClassJoinForm compact autoFocus onResolved={async entry=>{setJoinOpen(false);await onJoin(entry)}}/></PaperDialog>
  </div>;
 }
