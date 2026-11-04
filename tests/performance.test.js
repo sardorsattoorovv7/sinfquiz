@@ -13,26 +13,48 @@ function environment(){
  return dom;
 }
 
-test('home and navigation remain available while the teacher catalog is still loading',async()=>{
+test('home and its code form paint before auth, then navigation remains available while the teacher catalog loads',async()=>{
  const dom=environment();globalThis.__SINFQUIZ_LEGACY_TEST__=true;
- let resolveCatalog;
+ let resolveCatalog,resolveSession;
  globalThis.fetch=async path=>{
   if(path==='/api/quizzes')return new Promise(resolve=>{resolveCatalog=value=>resolve(new Response(JSON.stringify(value),{status:200,headers:{'Content-Type':'application/json'}}))});
-  const data=path==='/auth/session'?{user:{id:'performance-teacher',name:'Ustoz',role:'teacher'},csrf:'fixture'}:{active:false};
+  if(path==='/auth/session')return new Promise(resolve=>{resolveSession=()=>resolve(new Response(JSON.stringify({user:{id:'performance-teacher',name:'Ustoz',role:'teacher'},csrf:'fixture'}),{status:200,headers:{'Content-Type':'application/json'}}));});
+  const data={active:false};
   return new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}});
  };
  const React=(await import('react')).default,{render,within,fireEvent,act,cleanup,waitFor}=await import('@testing-library/react');
- const vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
+ const vite=await createServer({configFile:false,cacheDir:'node_modules/.vite-tests/performance',optimizeDeps:{noDiscovery:true,include:[]},root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
  try{
   const {default:App}=await vite.ssrLoadModule('/src/App.jsx'),view=render(React.createElement(App)),ui=within(view.container);
-  await ui.findByRole('heading',{level:1,name:/Bilimni/});
-  assert.equal(typeof resolveCatalog,'function');
+  await ui.findByRole('heading',{level:1,name:/Test ishlang|Bilimni/});
+  assert.equal(typeof resolveSession,'function');
+  assert.ok(ui.getByRole('textbox',{name:/Test(?: yoki xona)? kodi|O‘YIN KODI/i}));
+  assert.equal(ui.queryByRole('button',{name:'Boshqaruv paneli'}),null,'private controls stay hidden until the session resolves');
+  await act(async()=>resolveSession());
+  assert.equal(typeof resolveCatalog,'undefined','the home page does not fetch every teacher record');
   fireEvent.click(ui.getByRole('button',{name:'Boshqaruv paneli'}));
+  await waitFor(()=>assert.equal(typeof resolveCatalog,'function'));
   assert.equal(ui.queryByRole('heading',{name:'Barcha testlar'}),null);
   assert.ok(ui.getByRole('navigation',{name:'Asosiy bo‘limlar'}));
   await act(async()=>resolveCatalog({quizzes:[],publicQuizzes:[],lessons:[],players:[],nationalSections:[]}));
-  await waitFor(()=>assert.ok(ui.getByRole('heading',{name:'Barcha testlar'})));
+  await waitFor(()=>assert.ok(ui.getByRole('heading',{name:'Barcha testlar'})),{timeout:20000});
  }finally{cleanup();await vite.close();dom.window.close();delete globalThis.__SINFQUIZ_LEGACY_TEST__}
+});
+
+test('AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened',async()=>{
+ const dom=environment();globalThis.__SINFQUIZ_LEGACY_TEST__=true;location.hash='ai-yordamchi';
+ const requests=[];let attached=0,detached=0;
+ globalThis.__panelApi=async path=>{requests.push(path);if(path==='/auth/session')return {user:{id:'lazy-teacher',role:'teacher',name:'Ustoz'},csrf:'fixture'};return {quizzes:[],publicQuizzes:[],lessons:[],players:[],nationalSections:[]}};
+ globalThis.__panelSubscribe=()=>{attached++;return()=>{detached++}};
+ globalThis.fetch=async()=>Response.json({providerConfigured:true});
+ const React=(await import('react')).default,{render,within,fireEvent,cleanup,waitFor}=await import('@testing-library/react');
+ const vite=await createServer({configFile:false,cacheDir:'node_modules/.vite-tests/performance',optimizeDeps:{noDiscovery:true,include:[]},root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom',plugins:[{name:'panel-transport',enforce:'pre',load(id){if(id.endsWith('/src/api.js'))return 'export const api=(...a)=>globalThis.__panelApi(...a);export const subscribeRealtime=(...a)=>globalThis.__panelSubscribe(...a);export const setPlayerCsrf=()=>{};export const setTeacherCsrf=()=>{};export const setRaceCsrf=()=>{};export const setTypingCsrf=()=>{};';}}]});
+ try{
+  const {default:App}=await vite.ssrLoadModule('/src/App.jsx'),v=render(React.createElement(App)),ui=within(v.container);
+  await ui.findByRole('heading',{name:'Qayerdan boshlaymiz?'});assert.equal(requests.includes('/api/quizzes'),false);assert.equal(requests.includes('/api/catalog'),false);assert.equal(attached,0);
+  fireEvent.click(ui.getByRole('button',{name:'Boshqaruv paneli'}));await ui.findByRole('heading',{name:'Barcha testlar'},{timeout:20000});await waitFor(()=>assert.equal(attached,1));assert.equal(requests.filter(p=>p==='/api/quizzes').length,1);
+  fireEvent.click(ui.getByRole('button',{name:'Bosh sahifaga qaytish'}));await ui.findByRole('heading',{name:'Test ishlang. Mavzuni o‘rganing.'});assert.equal(detached,1);assert.equal(requests.filter(p=>p==='/api/quizzes').length,1);
+ }finally{cleanup();await vite.close();dom.window.close();delete globalThis.__SINFQUIZ_LEGACY_TEST__;delete globalThis.__panelApi;delete globalThis.__panelSubscribe;}
 });
 
 test('the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live',async()=>{
@@ -42,7 +64,7 @@ test('the piano reuses a static canvas, redraws on resize/theme and keeps playba
  dom.window.HTMLCanvasElement.prototype.getContext=()=>context;
  const React=(await import('react')).default,{render,within,fireEvent,act,cleanup}=await import('@testing-library/react');
  const engine={ctx:{currentTime:0,state:'running'},ensure(){return this.ctx},apply(){},setSustain(){},noteOn(){return 1},release(){},stopScope(){},allOff(){},schedule(){},tick(){},dispose(){}};
- const vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
+ const vite=await createServer({configFile:false,cacheDir:'node_modules/.vite-tests/performance',optimizeDeps:{noDiscovery:true,include:[]},root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom'});
  try{
   const {default:Piano}=await vite.ssrLoadModule('/src/CinemaPiano.jsx'),view=render(React.createElement(Piano,{createAudio:()=>engine})),ui=within(view.container);
   fireEvent.click(ui.getByRole('button',{name:'Tayyor hitlar',exact:true}));

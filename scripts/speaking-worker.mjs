@@ -32,7 +32,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
  const controller=new AbortController(),stop=()=>controller.abort();
  for(const signal of ['SIGINT','SIGTERM'])process.once(signal,stop);
  try{
-  const worker=new SpeakingWorker(new SpeakingStore(serverClient()));
+  const worker=new SpeakingWorker(new SpeakingStore(serverClient(process.env,{timeoutMs:45000})));
   process.exitCode=await runSpeakingWorker(worker,{once:process.argv.includes('--once'),cleanup:process.argv.includes('--cleanup'),isStopped:()=>controller.signal.aborted,sleep:ms=>delay(ms,undefined,{signal:controller.signal}).catch(error=>{if(error.name!=='AbortError')throw error;})});
  }catch{console.error(JSON.stringify({code:'WORKER_START_FAILED'}));process.exitCode=1;}
  finally{for(const signal of ['SIGINT','SIGTERM'])process.removeListener(signal,stop);}

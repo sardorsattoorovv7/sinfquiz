@@ -1,0 +1,48 @@
+{
+  "questions": {
+    "q1": {
+      "prompt": "Tell me about a hobby you have started recently and why you chose it."
+    },
+    "q2": {
+      "prompt": "Describe a memorable event you attended with friends and what made it special."
+    },
+    "q3": {
+      "prompt": "Explain how you usually prepare for a presentation or speech."
+    },
+    "q4": {
+      "prompt": "Look at the first picture. What do you think the students are discussing and why might they need to collaborate?"
+    },
+    "q5": {
+      "prompt": "Look at the second picture. What tools does the student use and how do they help in learning?"
+    },
+    "q6": {
+      "prompt": "Look at the third picture. Describe the learner’s practice session and explain what skill they are developing."
+    },
+    "q7": {
+      "prompt": "You are given a topic to discuss. What strategies will you use to keep the conversation engaging?",
+      "taskPoints": {
+        "p1": "Use open-ended questions",
+        "p2": "Show active listening cues",
+        "p3": "Share personal experiences"
+      }
+    },
+    "q8": {
+      "againstPoints": {
+        "p1": "Risk of unequal participation",
+        "p2": "Potential for conflict",
+        "p3": "Time-consuming coordination"
+      },
+      "forPoints": {
+        "p1": "Encourage diverse ideas",
+        "p2": "Improve communication skills",
+        "p3": "Build social confidence"
+      },
+      "prompt": "Do you think group projects are more effective than individual assignments?",
+      "taskPoints": {
+        "p1": "Explain benefits of teamwork",
+        "p2": "Highlight challenges of coordination"
+      }
+    }
+  },
+  "title": "English Speaking Practice – Part 1 & 2"
+}

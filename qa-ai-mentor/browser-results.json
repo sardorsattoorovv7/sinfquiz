@@ -1,0 +1,80 @@
+{
+  "checks": [
+    "location question names the actual AI page",
+    "guide selection cannot masquerade as current location",
+    "unknown subject gets one clarification",
+    "five choices produce a topic estimate without an extra AI call",
+    "teacher follow-up receives exact missed skills and choices",
+    "next practice uses the completed diagnostic context",
+    "mentor 320px",
+    "mentor 390px",
+    "mentor 768px",
+    "floating teacher knows the page underneath the dialog"
+  ],
+  "errors": [],
+  "accessibility": [
+    {
+      "label": "diagnostic first question",
+      "violations": []
+    },
+    {
+      "label": "diagnostic result",
+      "violations": []
+    },
+    {
+      "label": "mentor 320px",
+      "violations": []
+    },
+    {
+      "label": "mentor dark 390px",
+      "violations": []
+    },
+    {
+      "label": "compact dark teacher",
+      "violations": []
+    }
+  ],
+  "requests": [
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "learningReports": 0
+    },
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "focusView": "atlasHub",
+      "learningReports": 0
+    },
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "focusView": "atlasHub",
+      "learningReports": 0
+    },
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "focusView": "atlasHub",
+      "learningReports": 0
+    },
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "focusView": "atlasHub",
+      "learningReports": 1
+    },
+    {
+      "mode": "mentor",
+      "view": "aiGuide",
+      "focusView": "atlasHub",
+      "learningReports": 1
+    },
+    {
+      "mode": "mentor",
+      "view": "home",
+      "focusView": "home",
+      "learningReports": 0
+    }
+  ]
+}

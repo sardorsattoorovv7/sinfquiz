@@ -1,0 +1,49 @@
+{
+  "answerUz": "Siz 3‑shaxs birlik va odatiy harakat bo‘yicha xatolar qilgansiz. Quyidagi 3 ta yangi mashq bu nuqtalarni mustahkamlashga yordam beradi.",
+  "routeIds": [],
+  "questions": [
+    {
+      "question": "He ___ (watch) TV every evening.",
+      "options": [
+        "watch",
+        "watches",
+        "watched",
+        "watching"
+      ],
+      "correctIndex": 1,
+      "skillUz": "Present Simple – 3‑shaxs birlik",
+      "difficulty": "foundation",
+      "explanationUz": "3‑shaxs birlikda fe’lga -s qo‘shiladi, shuning uchun \"watches\" to‘g‘ri."
+    },
+    {
+      "question": "Which sentence correctly shows a habitual action?",
+      "options": [
+        "She goes to the gym on Mondays.",
+        "She went to the gym on Monday.",
+        "She is going to the gym on Monday.",
+        "She will go to the gym on Monday."
+      ],
+      "correctIndex": 0,
+      "skillUz": "Present Simple – odatiy harakat",
+      "difficulty": "application",
+      "explanationUz": "Odatiy harakat doimiy ravishda sodir bo‘lganda Present Simple ishlatiladi; \"She goes to the gym on Mondays.\" bu holatga mos."
+    },
+    {
+      "question": "Fill in the blank with the correct Present Simple form: \"My brother ___ (play) the piano, but he ___ (like) jazz music.\"",
+      "options": [
+        "play / likes",
+        "plays / like",
+        "plays / likes",
+        "play / like"
+      ],
+      "correctIndex": 2,
+      "skillUz": "Present Simple – birinchi shaxs birlik & 3‑shaxs birlik kombinatsiyasi",
+      "difficulty": "challenge",
+      "explanationUz": "Birinchi fe’l \"play\" 3‑shaxs birlikda \"plays\" bo‘ladi, ikkinchi fe’l \"like\" ham 3‑shaxs birlikda \"likes\" bo‘ladi, shuning uchun \"plays / likes\" to‘g‘ri."
+    }
+  ],
+  "quizType": "practice",
+  "subjectUz": "Ingliz tili",
+  "topicUz": "Present Simple",
+  "model": "openai/gpt-oss-120b"
+}

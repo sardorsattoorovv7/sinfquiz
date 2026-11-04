@@ -1,0 +1,13 @@
+{
+  "javascript": {
+    "before": 593748,
+    "after": 355760,
+    "percentSaved": 40.1
+  },
+  "css": {
+    "before": 314436,
+    "after": 259027,
+    "percentSaved": 17.6
+  },
+  "budgetPassed": true
+}

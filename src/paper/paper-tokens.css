@@ -1,75 +1,35 @@
-/* Paper Workshop: one palette and one spacing/type system for every workspace. */
-:root[data-design="paper"] {
- --pw-page:#EEE5D5;
- --pw-paper:#F8F2E7;
- --pw-ink:#38382B;
- --pw-muted:#68604F;
- --pw-border:#BEB29B;
- --pw-control-border:#8A7B63;
- --pw-accent:#C74B2D;
- --pw-accent-ink:#AD3E25;
- --pw-tape:#E7CC73;
- --pw-blue:#B8C6E3;
- --pw-paper-alt:#F1E8D9;
- --pw-accent-soft:#F1DFD2;
- --pw-blue-soft:#E4E5E7;
- --pw-on-accent:#FFFFFF;
- --pw-on-tape:#38382B;
- --pw-success:#315C3D;
- --pw-success-soft:#E3E9D7;
- --pw-danger:#A43223;
- --pw-danger-soft:#F3DDD2;
- --pw-focus:#9C3D25;
- --pw-shadow:0 3px 3px #59422A08,0 12px 28px #59422A0D;
- --pw-shadow-lift:0 5px 8px #59422A0D,0 18px 38px #59422A14;
- --pw-shadow-sheet:1px 1px 0 #F8F2E7,3px 4px 0 #BEB29B70,0 14px 35px #59422A14;
- --pw-scrim:#2A231CB3;
- --pw-font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- --pw-serif:Georgia,"Times New Roman",serif;
- --pw-mono:ui-monospace,SFMono-Regular,Consolas,monospace;
- --pw-text:1rem;
- --pw-reading:1.0625rem;
- --pw-leading:1.75;
- --pw-space-1:4px;
- --pw-space-2:8px;
- --pw-space-3:12px;
- --pw-space-4:16px;
- --pw-space-5:24px;
- --pw-space-6:32px;
- --pw-space-7:48px;
- --pw-space-8:64px;
- --pw-radius:7px;
- --pw-radius-panel:11px;
- --pw-rule:1px solid var(--pw-border);
- --pw-duration:180ms;
- --pw-ease:cubic-bezier(.2,.65,.3,1);
- --pw-grain:radial-gradient(#38382B0A .55px,transparent .75px),radial-gradient(#38382B07 .6px,transparent .8px);
- --surface:var(--pw-paper);--surface-soft:var(--pw-paper-alt);--page:var(--pw-page);--text:var(--pw-ink);--text-secondary:var(--pw-muted);--border:var(--pw-border);--accent:var(--pw-accent);--ink:var(--pw-ink);--muted:var(--pw-muted);--line:var(--pw-border);--purple:var(--pw-accent);--purple2:var(--pw-accent);--green:var(--pw-success);
+/* Ilmiy daftar. Shared tokens; retained component aliases use this same palette. */
+:root {
+ --sq-paper:#F8F7F2;--sq-surface:#FFFFFF;--sq-ink:#111827;--sq-navy:#102039;
+ --sq-muted:#526174;--sq-line:#CBD5E1;--sq-grid:rgba(16,32,57,.055);--sq-grid-major:rgba(16,32,57,.085);
+ --sq-orange:#F45A21;--sq-action:#C2410C;--sq-action-hover:#9A3412;--sq-on-action:#FFFFFF;
+ --sq-success:#166534;--sq-error:#B91C1C;--sq-warning:#92400E;
+ --sq-soft:#F1F5F9;--sq-accent-soft:#FFF0E7;--sq-success-soft:#ECFDF3;--sq-error-soft:#FEF2F2;
+ --sq-control-line:#7B899B;--sq-on-navy:#FFFFFF;--sq-muted-on-navy:#CBD5E1;--sq-on-navy-muted:var(--sq-muted-on-navy);--sq-on-navy-line:rgba(255,255,255,.25);--sq-on-navy-grid:rgba(255,255,255,.03);
+ --sq-radius-input:8px;--sq-radius-panel:12px;--sq-page-max:1440px;
+ --sq-font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ --sq-mono:ui-monospace,SFMono-Regular,Consolas,monospace;
+ --sq-space-1:4px;--sq-space-2:8px;--sq-space-3:12px;--sq-space-4:16px;--sq-space-5:24px;--sq-space-6:32px;--sq-space-7:40px;--sq-space-8:48px;--sq-space-9:64px;
+ --sq-shadow:0 2px 8px rgba(16,32,57,.045);--sq-shadow-lift:0 8px 24px rgba(16,32,57,.09);
+ --sq-grid-image:linear-gradient(var(--sq-grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--sq-grid-major) 1px,transparent 1px),linear-gradient(var(--sq-grid) 1px,transparent 1px),linear-gradient(90deg,var(--sq-grid) 1px,transparent 1px);
+ --sq-grid-size:120px 120px,120px 120px,24px 24px,24px 24px;
 }
-:root[data-design="paper"][data-theme="dark"] {
- --pw-page:#302A24;
- --pw-paper:#494034;
- --pw-ink:#F2E6CF;
- --pw-muted:#C8BCA3;
- --pw-border:#756951;
- --pw-control-border:#AC9D80;
- --pw-accent:#FFAF83;
- --pw-accent-ink:#FFAF83;
- --pw-tape:#74612B;
- --pw-blue:#4D607E;
- --pw-paper-alt:#3B342B;
- --pw-accent-soft:#594439;
- --pw-blue-soft:#3E4854;
- --pw-on-accent:#302A24;
- --pw-on-tape:#F2E6CF;
- --pw-success:#B7D5A5;
- --pw-success-soft:#35462F;
- --pw-danger:#FFB39E;
- --pw-danger-soft:#594036;
- --pw-focus:#FFAF83;
- --pw-shadow:0 3px 4px #100D0926,0 12px 28px #100D0933;
- --pw-shadow-lift:0 5px 8px #100D0933,0 18px 38px #100D0940;
- --pw-shadow-sheet:1px 1px 0 #494034,3px 4px 0 #75695199,0 14px 35px #100D0940;
- --pw-scrim:#15120FD1;
- --pw-grain:radial-gradient(#F2E6CF0A .55px,transparent .75px),radial-gradient(#F2E6CF06 .6px,transparent .8px);
+:root[data-theme="dark"] {
+ --sq-paper:#0B1422;--sq-surface:#122238;--sq-ink:#EEF3F9;--sq-muted:#B8C6D8;--sq-line:#45566D;
+ --sq-grid:rgba(203,213,225,.035);--sq-grid-major:rgba(203,213,225,.065);
+ --sq-action:#FFA77D;--sq-action-hover:#FFC09E;--sq-on-action:#102039;
+ --sq-soft:#1B2D44;--sq-accent-soft:#342A27;--sq-success:#A7E0B8;--sq-error:#FFB4B4;--sq-warning:#F5D491;
+ --sq-success-soft:#183A2C;--sq-error-soft:#3C252D;--sq-control-line:#8799B1;
+ --sq-shadow:0 2px 8px rgba(0,0,0,.12);--sq-shadow-lift:0 8px 24px rgba(0,0,0,.2);
+}
+:root[data-design="paper"],:root[data-design="paper"][data-theme] {
+ --pw-page:var(--sq-paper);--pw-paper:var(--sq-surface);--pw-ink:var(--sq-ink);--pw-muted:var(--sq-muted);
+ --pw-border:var(--sq-line);--pw-control-border:var(--sq-control-line);--pw-accent:var(--sq-action);--pw-accent-ink:var(--sq-action);
+ --pw-tape:var(--sq-accent-soft);--pw-blue:var(--sq-line);--pw-paper-alt:var(--sq-soft);--pw-accent-soft:var(--sq-accent-soft);--pw-blue-soft:var(--sq-soft);
+ --pw-on-accent:var(--sq-on-action);--pw-on-tape:var(--sq-ink);--pw-success:var(--sq-success);--pw-success-soft:var(--sq-success-soft);--pw-danger:var(--sq-error);--pw-danger-soft:var(--sq-error-soft);--pw-focus:var(--sq-action);
+ --pw-shadow:var(--sq-shadow);--pw-shadow-lift:var(--sq-shadow-lift);--pw-shadow-sheet:var(--sq-shadow);--pw-scrim:rgba(7,17,32,.68);
+ --pw-font:var(--sq-font);--pw-serif:var(--sq-font);--pw-mono:var(--sq-mono);--pw-text:1rem;--pw-reading:1.0625rem;--pw-leading:1.75;
+ --pw-space-1:var(--sq-space-1);--pw-space-2:var(--sq-space-2);--pw-space-3:var(--sq-space-3);--pw-space-4:var(--sq-space-4);--pw-space-5:var(--sq-space-5);--pw-space-6:var(--sq-space-6);--pw-space-7:var(--sq-space-8);--pw-space-8:var(--sq-space-9);
+ --pw-radius:var(--sq-radius-input);--pw-radius-panel:var(--sq-radius-panel);--pw-rule:1px solid var(--sq-line);--pw-duration:160ms;--pw-ease:cubic-bezier(.2,.65,.3,1);--pw-grain:var(--sq-grid-image);
+ --surface:var(--sq-surface);--surface-soft:var(--sq-soft);--page:var(--sq-paper);--text:var(--sq-ink);--text-secondary:var(--sq-muted);--border:var(--sq-line);--accent:var(--sq-action);--ink:var(--sq-ink);--muted:var(--sq-muted);--line:var(--sq-line);--purple:var(--sq-action);--purple2:var(--sq-action);--green:var(--sq-success);
 }

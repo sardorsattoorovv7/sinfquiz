@@ -1,0 +1,331 @@
+✔ assistant input keeps six recent turns and refuses system history or oversized text (6.0674ms)
+✔ assistant response is strict JSON and suggests only actor-approved routes (4.6791ms)
+✔ quiz output requires 3–5 valid questions with four distinct options and a valid answer (4.5454ms)
+✔ real Groq request contract keeps secrets on server and handles malformed output (83.4723ms)
+✔ assistant handler validates origin, authentication and byte limits before AI use (4.0181ms)
+✔ provider status never exposes credentials and unknown failures are sanitized (1.4759ms)
+✔ limiter isolates users, resets minutes and days, and bounds the number of actors (1.705ms)
+✔ handler throttles repeated calls and sends retry guidance (1.5928ms)
+✔ shared assistant quotas reserve daily and minute budgets across server instances (1.1729ms)
+✔ shared quota falls back only for absent credentials or schema, and fails closed otherwise (2.5743ms)
+✔ handler never calls AI after shared quota rejection and accepts an injected reserve hook (2.0378ms)
+✔ runtime verifies a real structured request, authentication, both tables and private bucket (97.7697ms)
+✔ assistant remains usable without service key; --speaking requires the missing server setup (17.718ms)
+✔ offline validates configurations without network and does not claim live readiness (1.3087ms)
+✔ live invalid key is blocked without exposing provider body, keys or URLs (8.352ms)
+✔ missing migration, public audio bucket and ffprobe each prevent full Speaking readiness (12.9305ms)
+✔ legacy service-role JWT is supported while malformed configuration does not send secrets (3.1435ms)
+✔ environment loader keeps external values above local values above base .env (14.7508ms)
+✔ development starts direct Node children hidden on Windows and stops web when worker fails (2.6863ms)
+✔ development without service key runs the assistant web server and explains missing Speaking setup (0.9056ms)
+✔ synchronous worker spawn failure terminates an already started web server (0.9489ms)
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (11091.1116ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (8240.4607ms)
+✔ Scientific notebook tokens keep readable text, actions, status and focus in both themes (79.811ms)
+WebSocket server error: Port 24678 is already in use
+✔ Public home presents code entry first and routes all real subjects, atlas and Speaking actions (16087.4702ms)
+✔ Notebook navigation retains role-specific controls, mobile routes, search, theme and focus restoration (11950.107ms)
+✔ Code dialog preserves failed input and leading zeroes, deduplicates submit, cancels late navigation and restores focus (10065.2501ms)
+✔ Home and code dialog keep accessible form names and modal semantics (7348.7113ms)
+WebSocket server error: Port 24678 is already in use
+A suspended resource finished loading inside a test, but the event was not wrapped in act(...).
+
+When testing, code that resolves suspended data should be wrapped into act(...):
+
+act(() => {
+  /* finish loading suspended data */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+A suspended resource finished loading inside a test, but the event was not wrapped in act(...).
+
+When testing, code that resolves suspended data should be wrapped into act(...):
+
+act(() => {
+  /* finish loading suspended data */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+✖ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (15633.8015ms)
+WebSocket server error: Port 24678 is already in use
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (8190.5686ms)
+WebSocket server error: Port 24678 is already in use
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (15253.4814ms)
+✔ I good at is corrected from an exact quote and leads to its own drill (6.8145ms)
+✔ nonexistent quotes, wrong UTF-16 offsets and changed city names are rejected (4.994ms)
+✔ grammatical to take photos is not automatically a learner error (1.8297ms)
+✔ transcripts, prompt injection, silence and timestamps cannot manufacture a full score (2.3442ms)
+✔ ASR uncertainty reduces confidence and prevents a provisional score (1.9617ms)
+✔ two different error profiles receive different evidence priorities and drills (2.2658ms)
+✔ roadmaps require seven days, real source IDs and exactly the selected time budget (2.8097ms)
+✔ local dates cross midnight in the account timezone and respect selected weekdays (71.6658ms)
+✔ strict schema rejects extra fields including invented overall scores (1.8512ms)
+✔ provider retries 429 but not an invalid key; no response leaks provider text or secret (72.3802ms)
+✔ malformed structured output is rejected instead of displayed as a result (2.0004ms)
+✔ 12 complete original mocks and all 30 assets match their actual bytes and metadata (89.459ms)
+✔ AI guide role registry and route restoration cannot open a staff route for a student (1.3255ms)
+✔ a first-turn insert safely retries a lost response and preserves one trusted clock (8.6012ms)
+✔ an acknowledged-by-read update is not replayed after its response is lost (3.0176ms)
+✔ an uncommitted revision-guarded update retries once, and a later writer is protected (1.8185ms)
+✔ budget charges and real database failures are never blindly replayed (0.7847ms)
+✔ server reads retry one disconnected connection; mutations and caller cancellation do not (38.003ms)
+✔ client session recovery retries only connection failures, keeping the same question and token (6.6788ms)
+✔ authentication transport failure stays retryable; an invalid identity remains unauthorized (1.4535ms)
+▶ real service and durable worker flow, with controlled Groq HTTP fixtures
+  ✔ no baseline means no fake roadmap or practice diagnosis (66.8637ms)
+  ✔ server starts timing when the question is revealed; reload does not restart it (1.2492ms)
+  ✔ finish is idempotent and another user cannot read private entities (4.7091ms)
+  ✔ private audio -> original transcript -> validated partial assessment -> queued roadmap (93.8468ms)
+  ✔ personal roadmap and user-local daily plan persist without repeat AI GET calls (27.9352ms)
+  ✔ today vocabulary is an explicit idempotent job; viewing/recall cannot grant mastery (15.0439ms)
+  ✔ manual transcript revision preserves original baseline and creates a separate analysis (10.3651ms)
+  ✔ typed practice stays separate; a model-viewed repeat cannot become a fresh diagnosis (29.8489ms)
+  ✔ guide AI is grounded in student routes and has durable history (7.3138ms)
+  ✔ weekly mini-check has three fresh timed tasks and its own attempt kind (10.0748ms)
+  ✔ audio deletion removes private object but explicitly retains transcript (4.8114ms)
+  ✔ export is owner-scoped and privacy purge preserves another account (6.4747ms)
+✔ real service and durable worker flow, with controlled Groq HTTP fixtures (330.6377ms)
+✔ missing provider key cannot enqueue fake assessments and keeps the recorded attempt (0.8438ms)
+✔ baseline survives long practice history and is never reclassified by pagination (12.2392ms)
+✔ 429/timeout retry reuses original ASR and fails in bounded durable attempts (2.2486ms)
+✔ ffprobe checks real WAV bytes and rejects corrupt recordings without asking a model (215.932ms)
+✔ retention sweep deletes only expired audio while transcripts survive (1.8394ms)
+✔ corrected transcript and rehearsed answer never award active mastery (1.4846ms)
+▶ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery
+  ✔ old data is intact; private audio bucket has no public access (29.4579ms)
+  ✔ authenticated SQL reads only its own records and cannot invoke server writes (42.0222ms)
+  ✔ cross-owner parent and queue targets are rejected (50.2067ms)
+  ✔ immutable answer original and concurrent daily writes return one stored record (33.776ms)
+  ✔ revision conflicts roll back the entire batch (13.2219ms)
+  ✔ parallel finish calls enqueue one job; cancelled/stale leases cannot publish (51.5824ms)
+  ✔ daily user and site budgets are enforced atomically (21.9269ms)
+✔ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery (7927.9349ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (22.2221ms)
+9:06:38 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+9:06:44 AM [vite] (client) [optimizer] scanning dependencies...
+9:06:50 AM [vite] (client) [optimizer] bundling dependencies...
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (3119.5118ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (1803.2429ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (1888.7002ms)
+  ✔ welcome is per account and routes to the separate guide (103.3965ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (239.122ms)
+  ✔ compact help keeps the current section, has no nested main and uses only navigation mode (1743.4204ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (300.6172ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (219.8885ms)
+  ✔ Enter sends once, Shift+Enter and IME composition keep editing, and the robot follows real request state (619.3892ms)
+  ✔ expired recordings cannot open the microphone, but a saved audio draft remains uploadable (117.2275ms)
+  ✔ an expired mock offers a fresh test without deleting saved work or silently restarting its clock (1214.6102ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (436.4542ms)
+  ✔ progress excludes rehearsed, typed and revised samples (40.0266ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (25132.0333ms)
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (330.8099ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (112.9687ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (16.241ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (65.8569ms)
+✔ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (13.2569ms)
+✔ a pending generated practice question survives an interrupted exposure write without a second AI call (9.0832ms)
+WebSocket server error: Port 24678 is already in use
+9:06:46 AM [vite] (client) [optimizer] scanning dependencies...
+9:06:57 AM [vite] (client) [optimizer] bundling dependencies...
+UI checks: local admin, code-only quiz, no-code 1v1 race, split runners, typing ACTIVE/PASSIVE, typing join, answer, winner, theme, 3D fallback and result.
+✔ UI: local admin, code-only student, ready 3D fallback, theme, quiz and result (51633.1421ms)
+✔ Theme semantic text contrast meets 4.5:1 for body text (2.7205ms)
+ℹ tests 101
+ℹ suites 0
+ℹ pass 100
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123814.042
+
+✖ failing tests:
+
+test at tests\performance.test.js:16:1
+✖ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (15633.8015ms)
+  Error: Unable to find role="heading" and name "Barcha testlar"
+
+  Ignored nodes: comments, script, style
+  <div>
+    <div
+      class="app-shell studio-app paper-workshop "
+    >
+      <a
+        class="studio-skip"
+        href="#studio-main"
+      >
+        Asosiy mazmunga o‘tish
+      </a>
+      <div
+        class="studio-body"
+      >
+        <header
+          aria-label="Asosiy navigatsiya"
+          class="site-nav studio-topbar"
+        >
+          <button
+            aria-controls="studio-drawer"
+            aria-expanded="false"
+            aria-label="Menyuni ochish"
+            class="studio-menu-toggle"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-menu"
+              fill="none"
+              height="22"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 5h16"
+              />
+              <path
+                d="M4 12h16"
+              />
+              <path
+                d="M4 19h16"
+              />
+            </svg>
+          </button>
+          <button
+            aria-label="Bosh sahifaga qaytish"
+            class="pw-brand-link pw-header-brand"
+            type="button"
+          >
+            <span
+              aria-label="SinfQuiz"
+              class="paper-brand studio-mobile-brand nav-brand"
+              role="img"
+            >
+              <span
+                aria-hidden="true"
+                class="paper-brand-mark"
+              >
+                SQ
+              </span>
+              <span>
+                SinfQuiz
+              </span>
+            </span>
+            <span
+              class="sq-brand-note"
+            />
+          </button>
+          <nav
+            aria-label="Asosiy bo‘limlar"
+            class="pw-top-links"
+          >
+            <button
+              type="button"
+            >
+              Fanlar
+            </button>
+            <button
+              type="button"
+            >
+              3D Atlas
+            </button>
+            <button
+              type="button"
+            >
+              AI Speaking
+            </button>
+            <button
+              type="button"
+            >
+              Natijalar
+            </button>
+          </nav>
+          <div
+            class="nav-actions studio-top-actions"
+          >
+            <button
+              class="pw-button pw-button--secondary pw-join-trigger"
+              type="button"
+            >
+              Kod bilan kirish
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-arrow-right"
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h14"
+                />
+                <path
+                  d="m12 5 7 7-7 7"
+                />
+              </svg>
+            </button>
+            <button
+              class="pw-button pw-button--primary sq-create-trigger"
+              type="button"
+            >
+              Test yaratish
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-arrow-right"
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h14"
+                />
+                <path
+                  d="m12 5 7 7-7 7"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="Boshqaruv paneli"
+              class="studio-profile"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-user-round lucide-user-2"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="5"[39...
+      at waitForWrapper (C:\Users\HP\OneDrive\Desktop\sinf-quiz\node_modules\@testing-library\dom\dist\wait-for.js:163:27)
+      at TestContext.<anonymous> (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/tests/performance.test.js:40:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    name: 'TestingLibraryElementError'
+  }

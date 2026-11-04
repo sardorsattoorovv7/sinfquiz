@@ -1,5 +1,6 @@
 import {secureActivityPath,secureActivityApi} from './secure-activities.js';
 import {securePlayPath,securePlayApi,playRpc} from './secure-play-service.js';
+import {userProfile} from './session-profile.js';
 import {quizRanking} from './quiz-ranking.js';
 import {publicationError} from './national-validation.js';
 import {cefrResult} from './cefr-grading.js';
@@ -41,13 +42,6 @@ const cefrState=current=>{
  return {mock:cefrInfo(current.mock),skill,index,question,answers:{listening:current.answers.listening.map(value=>value===null?null:true),reading:current.answers.reading.map(value=>value===null?null:true)},selected:current.answers[skill]?.[index]??null,plays:current.plays,writingTasks:current.mock.writing,writingResponses:current.writingResponses,speaking:current.mock.speaking,speakingNotes:current.speakingNotes,writingScore:current.writingScore,speakingScore:current.speakingScore,startedAt:current.startedAt,endsAt:current.endsAt,serverNow:Date.now(),finished:!!current.finished,finishReason:current.finishReason||null,result:current.finished?cefrResult({listeningCorrect,readingCorrect,writingScore:current.writingScore,speakingScore:current.speakingScore}):null};
 };
 
-async function userProfile(sdk,user=sdk.auth.currentUser){
- if(!user||user.isAnonymous)return null;
- if(user.email&&user.email.toLowerCase()===adminEmail().toLowerCase())return {id:user.uid,uid:user.uid,role:'admin',name:user.displayName||'Administrator',email:user.email,username:'admin'};
- const snap=await sdk.getDoc(sdk.doc(sdk.db,'profiles',user.uid));
- if(snap.exists())return {id:user.uid,...snap.data()};
- return null;
-}
 async function isTeacher(sdk,user=sdk.auth.currentUser){return ['teacher','admin'].includes((await userProfile(sdk,user))?.role)}
 
 async function seedQuizzes(sdk){
@@ -204,7 +198,7 @@ export async function supabaseApi(path,{method='GET',data={}}={}){
 export function subscribeSupabase(handlers){
  let stopped=false,unsubs=[];
  const listen=async()=>{try{const sdk=await waitForAuth();if(stopped)return;const user=sdk.auth.currentUser;
-  if(await isTeacher(sdk,user)){
+  if(handlers.teacherState!==false&&await isTeacher(sdk,user)){
    let timer,inFlight=false,dirty=false;const profile=await userProfile(sdk,user);
    const refresh=()=>{clearTimeout(timer);timer=setTimeout(async()=>{
     if(stopped)return;if(inFlight){dirty=true;return}inFlight=true;
@@ -217,10 +211,11 @@ export function subscribeSupabase(handlers){
     const row=payload.new?.data||payload.old?.data;
     if(row&&!['live','settings','profiles','userActivity'].includes(collection)&&profile?.role!=='admin'&&row.ownerId!==user.uid)return;
     refresh();
-   },()=>{}));const roomTimer=setInterval(refresh,15000);unsubs.push(()=>clearInterval(roomTimer));refresh();
+   },()=>{}));const roomTimer=setInterval(refresh,15000);unsubs.push(()=>clearInterval(roomTimer));if(!handlers.initialStateLoaded)refresh();
   }
-  const game=runtime.game||load('game');if(game){unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'leaderboards',game.quiz.id),snapshot=>handlers.onRanking?.(quizRanking(snapshot.data()?.rows,game.quiz.id)),error=>handlers.onError?.(error)));const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/play/session').catch(e=>{if(/testni to‘xtatgan/.test(e.message))handlers.onClosed?.()})},15000);unsubs.push(()=>clearInterval(timer))}
-  const race=runtime.race||load('race');if(race){let pending=false;const refresh=async()=>{if(stopped||pending||document.hidden)return;pending=true;try{handlers.onRace?.(await supabaseApi('/api/race/session'))}catch(error){if(/Poyga yopilgan|Poyga almashtirilgan/.test(error.message))handlers.onRaceClosed?.();else handlers.onError?.(error)}finally{pending=false}};const timer=setInterval(refresh,1000);unsubs.push(()=>clearInterval(timer));refresh();}
-  const typing=runtime.typing||load('typing');if(typing){const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/typing/session').catch(error=>{if(/hozir yopiq/.test(error.message))handlers.onTypingClosed?.()})},15000);unsubs.push(()=>clearInterval(timer));}
+  const watch=kind=>!handlers.sessionKinds||handlers.sessionKinds.includes(kind);
+  const game=runtime.game||load('game');if(game&&watch('play')){unsubs.push(sdk.onSnapshot(sdk.doc(sdk.db,'leaderboards',game.quiz.id),snapshot=>handlers.onRanking?.(quizRanking(snapshot.data()?.rows,game.quiz.id)),error=>handlers.onError?.(error)));const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/play/session').catch(e=>{if(/testni to‘xtatgan/.test(e.message))handlers.onClosed?.()})},15000);unsubs.push(()=>clearInterval(timer))}
+  const race=runtime.race||load('race');if(race&&watch('race')){let pending=false;const refresh=async()=>{if(stopped||pending||document.hidden)return;pending=true;try{handlers.onRace?.(await supabaseApi('/api/race/session'))}catch(error){if(/Poyga yopilgan|Poyga almashtirilgan/.test(error.message))handlers.onRaceClosed?.();else handlers.onError?.(error)}finally{pending=false}};const timer=setInterval(refresh,1000);unsubs.push(()=>clearInterval(timer));refresh();}
+  const typing=runtime.typing||load('typing');if(typing&&watch('typing')){const timer=setInterval(()=>{if(!stopped&&!document.hidden)supabaseApi('/api/typing/session').catch(error=>{if(/hozir yopiq/.test(error.message))handlers.onTypingClosed?.()})},15000);unsubs.push(()=>clearInterval(timer));}
  }catch(error){handlers.onError?.(error)}};listen();return()=>{stopped=true;unsubs.forEach(stop=>stop())};
 }

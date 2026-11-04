@@ -1,0 +1,11 @@
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (13481.6575ms)
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (10968.9006ms)
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (14044.2744ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43464.8148

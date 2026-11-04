@@ -56,17 +56,19 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
  };
  try{
   const {default:App,StudentCatalog,LessonReader}=await vite.ssrLoadModule('/src/App.jsx');render(React.createElement(App));
-  assert.ok((await screen.findAllByRole('button',{name:'Kirish'})).length>=1);
+  assert.ok((await screen.findAllByRole('button',{name:'Hisobga kirish',exact:true})).length>=1);
   assert.equal(screen.queryByText(/Google/),null);
   assert.equal(screen.queryByText(/Faol testlar/),null);
   assert.equal(document.querySelector('.active-lessons'),null);
   assert.equal(document.querySelector('.nav-brand').tagName,'SPAN');
   assert.equal(within(document.querySelector('.site-nav')).queryByText('CEFR Mock'),null);
-  assert.ok(screen.getByText(/Faqat o‘qituvchi bergan kod yetarli/i));
-  const nav=document.querySelector('.site-nav');assert.ok(within(nav).getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));
-  await user.click(screen.getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));assert.equal(document.documentElement.dataset.theme,'dark');
-  await user.click(within(nav).getByRole('button',{name:'Kirish'}));await screen.findByRole('heading',{name:'Tizimga kirish'});
-  assert.ok(screen.getByText(/Parol Supabase Authentication’da belgilanadi/));
+  assert.ok(screen.getByText('Kod bilan testga kirish uchun hisob ochish shart emas.'));
+  const nav=document.querySelector('.site-nav');
+  await user.click(within(nav).getByRole('button',{name:'Menyuni ochish'}));
+  await user.click(within(screen.getByRole('dialog',{name:'Bo‘limlar menyusi'})).getByRole('button',{name:'Tungi ko‘rinishga o‘tish'}));
+  assert.equal(document.documentElement.dataset.theme,'dark');await user.keyboard('{Escape}');
+  await user.click(within(nav).getByRole('button',{name:'Hisobga kirish',exact:true}));await screen.findByRole('heading',{name:'Tizimga kirish'});
+  assert.ok(screen.getByText('Ustoz hisobingizning login va parolini kiriting.'));
   await user.type(screen.getByLabelText('Parol'),'wrong');await user.click(screen.getAllByRole('button',{name:'Kirish'}).at(-1));await screen.findByText('Login yoki parol noto‘g‘ri.');
   await user.clear(screen.getByLabelText('Parol'));await user.type(screen.getByLabelText('Parol'),'admin123');await user.click(screen.getAllByRole('button',{name:'Kirish'}).at(-1));await screen.findByRole('heading',{name:'Sinf testlarini boshqarish'});
   assert.equal(document.documentElement.dataset.theme,'dark');
@@ -85,8 +87,8 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   assert.equal(JSON.parse(officeAnswer).wrap,'right');assert.equal(JSON.parse(officeAnswer).table.length,2);
   officeRender.unmount();
 
-  cleanup();account=null;stage=0;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByLabelText('O‘YIN KODI');
-  await user.type(screen.getByLabelText('O‘YIN KODI'),'123456');await user.click(screen.getByRole('button',{name:'Qo‘shilish'}));
+  cleanup();account=null;stage=0;history.replaceState(null,'',location.pathname);render(React.createElement(App));await screen.findByLabelText('Test yoki xona kodi');
+  await user.type(screen.getByLabelText('Test yoki xona kodi'),'123456');await user.click(screen.getByRole('button',{name:'Testga kirish',exact:true}));
   await screen.findByRole('heading',{name:'Testga tayyorlaning'});await user.type(screen.getByPlaceholderText('Ismingizni kiriting'),'Sinov');await user.click(screen.getByRole('button',{name:'Avatar 3',exact:true}));await user.click(screen.getByRole('button',{name:'Testni boshlash',exact:true}));
   await screen.findByRole('heading',{name:q.text});assert.ok(await screen.findByRole('img',{name:/Harakatlanuvchi 3D arena/}));assert.ok(screen.getByText('BILIM MAYDONI'));
   await user.click(document.querySelector('.nav-brand'));assert.ok(screen.getByRole('heading',{name:q.text}));
@@ -111,7 +113,7 @@ test('UI: local admin, code-only student, ready 3D fallback, theme, quiz and res
   await user.click(screen.getByRole('button',{name:'Testni tugatish'}));await screen.findByRole('heading',{name:'Xatolar tahlili'});
   assert.ok(screen.getByText('Incorrect fixture'));assert.ok(screen.getByText('Correct fixture'));assert.ok(screen.getByText('Explanation fixture'));assert.equal(screen.queryByText('Correct question'),null);
   await user.click(screen.getByRole('button',{name:'Barcha javoblar'}));assert.ok(screen.getByText('Correct question'));
-  await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(within(screen.getByRole('navigation',{name:'Asosiy bo‘limlar'})).getByRole('button',{name:'Bosh sahifa',exact:true}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
+  await user.click(screen.getByRole('button',{name:'Bo‘limlarga qaytish'}));await user.click(within(screen.getByRole('navigation',{name:'Tezkor bo‘limlar'})).getByRole('button',{name:'Bosh',exact:true}));assert.equal(sessionStorage.getItem('sq_active_hash'),null);
   // Native sourced reading: no upload or external redirect is required.
   await user.click(screen.getByRole('button',{name:/Tayyor testlar/}));
   await screen.findByRole('button',{name:'Boshlash: Ingliz tili — aralash Reading'});

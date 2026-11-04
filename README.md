@@ -1,3 +1,15 @@
+# SinfQuiz — Ilmiy daftar interfeysi
+
+Katakli fon, umumiy light/dark tokenlar, kod bilan kirish, fanlar va robot AI ustoz. Yordamchi hozirgi sahifani tushunadi, mavzuni izohlaydi, 5 savolli mini-testdan keyin xatolarni tushuntirib, mos mashq beradi. Enter so‘rov yuboradi, Shift+Enter yangi qator ochadi. Yangi Speaking sinovlari ko‘rilmagan savollarni tanlaydi; tayyor variantlar tugasa AI yangi savollar yaratadi. Typing matnlarida oddiy ASCII `'` ishlatiladi.
+
+Dastlabki CSS oxirgi daftar versiyasiga nisbatan yana 54,4% kamaydi. Ustoz ma’lumotlari va o‘quvchi katalogi tegishli sahifa ochilganda yuklanadi; AI sahifalarida ularning davriy so‘rovlari ishlamaydi. 67 ta tegishli test, build va 44 ta brauzer tekshiruvi o‘tdi.
+
+**[AI ustoz va mini-test tekshiruvlari](QA-AI-MENTOR.md) · [Robot va tezlik](QA-AI-UPGRADE.md) · [Daftar interfeysi](QA-NOTEBOOK.md) · [Sahifalar inventari](NOTEBOOK-PAGES.md)**
+
+`npm run dev` yoki `node scripts/dev-ai.mjs` → `http://localhost:5173`. Build: `npm run build`; hajm budjeti: `npm run perf`.
+
+---
+
 # SinfQuiz 7.46.0 — AI yordamchi va AI Speaking
 
 **AI yordamchi** (`/#ai-yordamchi`): dastur bo‘yicha yo‘lko‘rsatish, mavzularni misol bilan tushuntirish, suhbatni davom ettirish va izohli mashq savollari. Matnli yordamchi alohida worker yoki yangi SQLsiz ishlaydi; SinfQuiz hisobiga kirish talab qilinadi.

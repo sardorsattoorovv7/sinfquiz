@@ -63,7 +63,7 @@ export default function KurashArena({state='idle',compact=false,label}){
  },[]);
 
  return <div className={`solo-arena ${compact?'compact':''} state-${state}`} ref={host} role="img" aria-label="Harakatlanuvchi 3D arena qahramoni">
-  <div className="solo-arena-brand" aria-hidden="true"><b>BILIM ARENA</b><span>READY-MADE 3D MOTION</span></div>
+  <div className="solo-arena-brand" aria-hidden="true"><b>BILIM ARENA</b><span>3D MASHQ MAYDONI</span></div>
   <div className="solo-arena-state" aria-hidden="true"><i/><span>{label||labels[state]||labels.idle}</span></div>
   {status==='loading'&&<div className="arena-loader"><i/><span>3D qahramon yuklanmoqda…</span></div>}
   {status==='fallback'&&<div className="arena-fallback"><span>3D ARENA</span><p>Bu qurilmada WebGL ishlamadi.<br/>Test ishlashda davom etadi.</p></div>}

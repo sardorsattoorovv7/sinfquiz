@@ -4,7 +4,7 @@ import {createServer} from 'vite';
 
 test('assistant browser transport authenticates, propagates cancellation and preserves useful errors',async t=>{
  const originalFetch=globalThis.fetch;
- const vite=await createServer({root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom',plugins:[{name:'assistant-auth-test',enforce:'pre',load(id){if(id.endsWith('/src/supabase-sdk.js'))return 'export const getSupabase=async()=>({auth:globalThis.__assistantAuthForTest});';}}]});
+ const vite=await createServer({configFile:false,cacheDir:'node_modules/.vite-tests/assistant-transport',optimizeDeps:{noDiscovery:true,include:[]},root:process.cwd(),server:{middlewareMode:true,hmr:false},appType:'custom',plugins:[{name:'assistant-auth-test',enforce:'pre',load(id){if(id.endsWith('/src/supabase-sdk.js'))return 'export const getSupabase=async()=>({auth:globalThis.__assistantAuthForTest});';}}]});
  try{
   const {assistantApi}=await vite.ssrLoadModule('/src/speaking/assistant-client.js');
   await t.test('anonymous and signed-out users never send a provider request',async()=>{
@@ -23,6 +23,12 @@ test('assistant browser transport authenticates, propagates cancellation and pre
    await assert.rejects(assistantApi({}),e=>e.message==='AI limiti tugadi.'&&e.code==='AI_RATE_LIMIT'&&e.status===429&&e.retryable);
    globalThis.fetch=async()=>Response.json({answerUz:'Incomplete'});
    await assert.rejects(assistantApi({}),/to‘liq olinmadi/);
+  });
+  await t.test('long multilingual conversations keep the current question and exact quiz choices within the server byte limit',async()=>{
+   const items=Array.from({length:5},(_,i)=>({question:'学'.repeat(240),skillUz:'学'.repeat(80),difficulty:['foundation','foundation','application','application','challenge'][i],chosen:'学'.repeat(299)+'A',expected:'学'.repeat(299)+'B'}));
+   const data={mode:'mentor',message:'学'.repeat(1500),view:'aiGuide',history:Array.from({length:6},(_,i)=>({role:i%2?'assistant':'user',content:'学'.repeat(1500)})),learning:[{subjectUz:'学'.repeat(100),topicUz:'学'.repeat(160),correct:99,band:'untrusted',items}]};
+   globalThis.fetch=async(_url,options)=>{const sent=JSON.parse(options.body);assert.ok(new TextEncoder().encode(options.body).byteLength<=19000);assert.equal(sent.message,data.message);assert.ok(sent.history.length<6);assert.equal(sent.learning[0].items[0].chosen,items[0].chosen);assert.equal(sent.learning[0].items[0].expected,items[0].expected);assert.equal(sent.learning[0].band,undefined);return Response.json({answerUz:'Davom etamiz.',routeIds:[],questions:[]})};
+   await assistantApi(data);
   });
   await t.test('cancellation stays distinct from network failures',async()=>{
    globalThis.fetch=async()=>{throw new DOMException('Stopped','AbortError');};

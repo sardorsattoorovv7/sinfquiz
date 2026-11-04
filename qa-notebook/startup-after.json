@@ -1,0 +1,32 @@
+{
+  "scenario": "Cold Chromium desktop, local production build, 1500 ms delayed account lookup, guest fixture, three isolated contexts",
+  "samples": [
+    {
+      "homeContentVisibleMs": 382,
+      "firstContentfulPaintMs": null,
+      "javascriptBytes": 113155,
+      "cssBytes": 48244,
+      "errors": []
+    },
+    {
+      "homeContentVisibleMs": 462,
+      "firstContentfulPaintMs": 140,
+      "javascriptBytes": 113155,
+      "cssBytes": 48244,
+      "errors": []
+    },
+    {
+      "homeContentVisibleMs": 306,
+      "firstContentfulPaintMs": 140,
+      "javascriptBytes": 113155,
+      "cssBytes": 48244,
+      "errors": []
+    }
+  ],
+  "median": {
+    "homeContentVisibleMs": 382,
+    "firstContentfulPaintMs": 140,
+    "javascriptBytes": 113155,
+    "cssBytes": 48244
+  }
+}

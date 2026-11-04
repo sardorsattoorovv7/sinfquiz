@@ -1,0 +1,82 @@
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (3748.6613ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (3530.2544ms)
+✔ Scientific notebook tokens keep readable text, actions, status and focus in both themes (13.515ms)
+WebSocket server error: Port 24678 is already in use
+✔ Public home presents code entry first and routes all real subjects, atlas and Speaking actions (5621.6245ms)
+WebSocket server error: Port 24678 is already in use
+✔ Notebook navigation retains role-specific controls, mobile routes, search, theme and focus restoration (4806.8016ms)
+WebSocket server error: Port 24678 is already in use
+✔ Code dialog preserves failed input and leading zeroes, deduplicates submit, cancels late navigation and restores focus (3556.0455ms)
+WebSocket server error: Port 24678 is already in use
+✔ Home and code dialog keep accessible form names and modal semantics (4223.5183ms)
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (5650.1282ms)
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (4269.1353ms)
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (6306.7345ms)
+✔ a first-turn insert safely retries a lost response and preserves one trusted clock (2.996ms)
+✔ an acknowledged-by-read update is not replayed after its response is lost (1.3939ms)
+✔ an uncommitted revision-guarded update retries once, and a later writer is protected (1.1408ms)
+✔ budget charges and real database failures are never blindly replayed (0.5481ms)
+✔ server reads retry one disconnected connection; mutations and caller cancellation do not (25.7911ms)
+✔ client session recovery retries only connection failures, keeping the same question and token (3.1415ms)
+✔ authentication transport failure stays retryable; an invalid identity remains unauthorized (0.8973ms)
+▶ real service and durable worker flow, with controlled Groq HTTP fixtures
+  ✔ no baseline means no fake roadmap or practice diagnosis (29.279ms)
+  ✔ server starts timing when the question is revealed; reload does not restart it (0.7175ms)
+  ✔ finish is idempotent and another user cannot read private entities (1.785ms)
+  ✔ private audio -> original transcript -> validated partial assessment -> queued roadmap (42.2499ms)
+  ✔ personal roadmap and user-local daily plan persist without repeat AI GET calls (11.9662ms)
+  ✔ today vocabulary is an explicit idempotent job; viewing/recall cannot grant mastery (7.0158ms)
+  ✔ manual transcript revision preserves original baseline and creates a separate analysis (5.1227ms)
+  ✔ typed practice stays separate; a model-viewed repeat cannot become a fresh diagnosis (15.2776ms)
+  ✔ guide AI is grounded in student routes and has durable history (4.1158ms)
+  ✔ weekly mini-check has three fresh timed tasks and its own attempt kind (5.3484ms)
+  ✔ audio deletion removes private object but explicitly retains transcript (1.5971ms)
+  ✔ export is owner-scoped and privacy purge preserves another account (3.2035ms)
+✔ real service and durable worker flow, with controlled Groq HTTP fixtures (152.7416ms)
+✔ missing provider key cannot enqueue fake assessments and keeps the recorded attempt (0.4656ms)
+✔ baseline survives long practice history and is never reclassified by pagination (5.056ms)
+✔ 429/timeout retry reuses original ASR and fails in bounded durable attempts (1.7881ms)
+✔ ffprobe checks real WAV bytes and rejects corrupt recordings without asking a model (108.3277ms)
+✔ retention sweep deletes only expired audio while transcripts survive (0.9113ms)
+✔ corrected transcript and rehearsed answer never award active mastery (0.6584ms)
+▶ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery
+  ✔ old data is intact; private audio bucket has no public access (5.2258ms)
+  ✔ authenticated SQL reads only its own records and cannot invoke server writes (11.7332ms)
+  ✔ cross-owner parent and queue targets are rejected (6.85ms)
+  ✔ immutable answer original and concurrent daily writes return one stored record (8.411ms)
+  ✔ revision conflicts roll back the entire batch (2.8621ms)
+  ✔ parallel finish calls enqueue one job; cancelled/stale leases cannot publish (14.3054ms)
+  ✔ daily user and site budgets are enforced atomically (6.9929ms)
+✔ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery (2640.0967ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (6.6199ms)
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (499.6245ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (298.4917ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (230.3937ms)
+  ✔ welcome is per account and routes to the separate guide (45.3194ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (66.5495ms)
+  ✔ compact help keeps the current section, has no nested main and uses only navigation mode (137.7172ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (21.3819ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (42.0691ms)
+  ✔ Enter sends once, Shift+Enter and IME composition keep editing, and the robot follows real request state (109.2831ms)
+  ✔ a new-question request archives the active mock and asks for fresh consent before creating another (137.4654ms)
+  ✔ retrying a failed mock start keeps the same creation token instead of regenerating and charging for another variant (158.0843ms)
+  ✔ expired recordings cannot open the microphone, but a saved audio draft remains uploadable (34.1259ms)
+  ✔ an expired mock offers a fresh test without deleting saved work or silently restarting its clock (130.5417ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (34.8504ms)
+  ✔ progress excludes rehearsed, typed and revised samples (6.4737ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (5372.5199ms)
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (94.2995ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (44.6019ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (3.278ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (16.2211ms)
+✔ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (3.975ms)
+✔ a pending generated practice question survives an interrupted exposure write without a second AI call (2.8651ms)
+ℹ tests 67
+ℹ suites 0
+ℹ pass 67
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30731.8266

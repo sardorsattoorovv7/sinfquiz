@@ -1,0 +1,175 @@
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 2213 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/robots.txt                                      0.08 kB │ gzip:  0.09 kB
+dist/sitemap.xml                                     0.63 kB │ gzip:  0.21 kB
+dist/assets/competition-typing.worker-CfOR_1rR.js    2.00 kB
+dist/index.html                                      3.77 kB │ gzip:  1.31 kB
+dist/ingliz-tili.html                                4.17 kB │ gzip:  1.50 kB
+dist/fanlar/kimyo.html                               4.20 kB │ gzip:  1.55 kB
+dist/darsliklar.html                                 4.25 kB │ gzip:  1.51 kB
+dist/ustozlar/sinfxona.html                          4.28 kB │ gzip:  1.57 kB
+dist/fanlar/fizika.html                              4.32 kB │ gzip:  1.53 kB
+dist/fanlar/matematika.html                          4.33 kB │ gzip:  1.53 kB
+dist/fanlar/biologiya.html                           4.37 kB │ gzip:  1.57 kB
+dist/fanlar/informatika.html                         4.55 kB │ gzip:  1.61 kB
+dist/assets/admin-overrides-C4A2WBY2.css             1.57 kB │ gzip:  0.69 kB
+dist/assets/AiGuide-CW6qZj5v.css                     1.63 kB │ gzip:  0.62 kB
+dist/assets/PythonWorkbench-BOr2MbJe.css             1.92 kB │ gzip:  0.71 kB
+dist/assets/GuideWelcome-DH7EvaaF.css                2.00 kB │ gzip:  0.78 kB
+dist/assets/ExperimentManager-B3xF1fUf.css           2.15 kB │ gzip:  0.82 kB
+dist/assets/StudentProfile-eOwzo5FU.css              2.86 kB │ gzip:  0.95 kB
+dist/assets/OfficeLab-Ds88crtG.css                   3.79 kB │ gzip:  1.22 kB
+dist/assets/course-Db6Nb0qM.css                      4.88 kB │ gzip:  1.51 kB
+dist/assets/CefrAdmin-BzZFDIeu.css                   6.12 kB │ gzip:  1.93 kB
+dist/assets/ClassroomChat-DYJEpeIj.css               6.66 kB │ gzip:  1.83 kB
+dist/assets/ScienceStudio-Drp3nmOI.css               8.14 kB │ gzip:  2.13 kB
+dist/assets/AtlasLearning-DoGb446k.css               8.40 kB │ gzip:  2.29 kB
+dist/assets/SpaceAtlas-B8uVAavw.css                  9.01 kB │ gzip:  2.42 kB
+dist/assets/practice-0yq3EH5A.css                   10.11 kB │ gzip:  2.49 kB
+dist/assets/HistoryAtlas-nx4PkUcT.css               11.21 kB │ gzip:  2.72 kB
+dist/assets/EnglishCourse-zg2xI6HX.css              13.32 kB │ gzip:  3.32 kB
+dist/assets/OpenExamHub-D7lqSddM.css                14.04 kB │ gzip:  3.28 kB
+dist/assets/TeamCompetitions-BTpopAw-.css           16.02 kB │ gzip:  3.79 kB
+dist/assets/MathAtlas-Cn0l0apf.css                  16.28 kB │ gzip:  3.70 kB
+dist/assets/learning-hub-CNujoVa-.css               17.30 kB │ gzip:  3.95 kB
+dist/assets/discovery-theme-8KkuWhZT.css            17.79 kB │ gzip:  4.24 kB
+dist/assets/Classroom-zauQ0so2.css                  23.15 kB │ gzip:  5.64 kB
+dist/assets/BiologyAtlas-CMIqlZ_X.css               25.99 kB │ gzip:  5.43 kB
+dist/assets/learning-OJsETR8a.css                   26.53 kB │ gzip:  5.12 kB
+dist/assets/speaking-CqMMYXcP.css                   28.42 kB │ gzip:  5.79 kB
+dist/assets/ChemistryAtlas-CFHvE2lc.css             33.66 kB │ gzip:  7.18 kB
+dist/assets/EnglishAudioMaze-CfN3PsTe.css           40.49 kB │ gzip:  8.22 kB
+dist/assets/CinemaPiano-BFOhtv11.css                42.86 kB │ gzip:  9.11 kB
+dist/assets/InformaticsAtlas-CurbYdpQ.css           52.54 kB │ gzip: 10.24 kB
+dist/assets/styles-DQWpKe0M.css                     53.08 kB │ gzip: 12.56 kB
+dist/assets/theme-COX0BSsp.css                      93.26 kB │ gzip: 17.41 kB
+dist/assets/index-C-jaxPTi.css                     114.18 kB │ gzip: 19.94 kB
+dist/assets/national-review-CCYoRaNu.js              0.13 kB │ gzip:  0.13 kB
+dist/assets/grading-BhzfUFuj.js                      0.18 kB │ gzip:  0.16 kB
+dist/assets/SkeletonUtils-CHxfGqZJ.js                0.44 kB │ gzip:  0.25 kB
+dist/assets/quiz-ranking-BJhbAyZq.js                 0.54 kB │ gzip:  0.35 kB
+dist/assets/session-profile-CgpCZ9xu.js              0.54 kB │ gzip:  0.34 kB
+dist/assets/rolldown-runtime-hePW80VL.js             0.71 kB │ gzip:  0.42 kB
+dist/assets/SharedViews-Bsa0KkMm.js                  0.79 kB │ gzip:  0.50 kB
+dist/assets/national-validation-BzM-oCwf.js          0.80 kB │ gzip:  0.47 kB
+dist/assets/classroom-service-CWN-AJWF.js            0.99 kB │ gzip:  0.55 kB
+dist/assets/service-DtY9xApw.js                      1.11 kB │ gzip:  0.73 kB
+dist/assets/GuideWelcome-DRXQIMba.js                 1.20 kB │ gzip:  0.65 kB
+dist/assets/atlas-experiment-math-CqPVQS11.js        1.26 kB │ gzip:  0.72 kB
+dist/assets/LessonText-UcQfPVxk.js                   1.62 kB │ gzip:  0.82 kB
+dist/assets/math-atlas-math-B5WGCZOT.js              1.76 kB │ gzip:  0.83 kB
+dist/assets/computer-course-seed-CtDIGqZ7.js         1.86 kB │ gzip:  0.87 kB
+dist/assets/RoomEnvironment-DKCFoOWV.js              1.99 kB │ gzip:  0.85 kB
+dist/assets/BookPractice-WbSxm7ey.js                 2.28 kB │ gzip:  1.07 kB
+dist/assets/national-defaults-Dh7IKUKv.js            2.62 kB │ gzip:  1.36 kB
+dist/assets/biology-asset-loader-D9LqMa75.js         2.65 kB │ gzip:  1.32 kB
+dist/assets/math-solid-models-CpJoKp9m.js            3.00 kB │ gzip:  1.39 kB
+dist/assets/ShortcutInput-B4Rt_gMb.js                3.83 kB │ gzip:  1.78 kB
+dist/assets/WorldView-CV6avMp2.js                    4.19 kB │ gzip:  1.81 kB
+dist/assets/experiment-service-y3u_nVfj.js           4.38 kB │ gzip:  1.57 kB
+dist/assets/KurashArena-BqwaMW6E.js                  4.57 kB │ gzip:  2.27 kB
+dist/assets/excel-basics-BUDov5lZ.js                 4.97 kB │ gzip:  2.02 kB
+dist/assets/profile-service-C8REh1J8.js              5.43 kB │ gzip:  2.28 kB
+dist/assets/AtlasHub-DiGSQ6po.js                     5.93 kB │ gzip:  2.27 kB
+dist/assets/StudentProfile-D-x-S3ZO.js               6.96 kB │ gzip:  2.52 kB
+dist/assets/PythonWorkbench-BPMJQZUP.js              7.13 kB │ gzip:  2.86 kB
+dist/assets/biology-anatomy-3d-C5ulZx-v.js           7.94 kB │ gzip:  3.50 kB
+dist/assets/StudentViews-BcvecqRY.js                 8.25 kB │ gzip:  2.89 kB
+dist/assets/chemistry-content-CUABbilP.js            8.68 kB │ gzip:  3.74 kB
+dist/assets/AuthViews-BZeLHcQ4.js                    8.90 kB │ gzip:  2.93 kB
+dist/assets/ScenicMaze-DocLUCL1.js                   8.98 kB │ gzip:  2.91 kB
+dist/assets/discovery-theme-D_2xUMrp.js              9.19 kB │ gzip:  3.34 kB
+dist/assets/speaking-jvysY18J.js                     9.53 kB │ gzip:  4.24 kB
+dist/assets/OfficeLab-BZ_DTI-V.js                   10.24 kB │ gzip:  3.35 kB
+dist/assets/NationalViews-nWcMaJll.js               10.70 kB │ gzip:  3.41 kB
+dist/assets/learning-3d-q9zlwMEn.js                 10.82 kB │ gzip:  4.84 kB
+dist/assets/office-lab-model-Bn922gkK.js            10.95 kB │ gzip:  4.31 kB
+dist/assets/office-729-DlyE6ieA.js                  12.25 kB │ gzip:  4.51 kB
+dist/assets/scene-0m8mxLIS.js                       13.11 kB │ gzip:  5.91 kB
+dist/assets/SpaceScene-ChDG1_xL.js                  14.17 kB │ gzip:  5.24 kB
+dist/assets/ExperimentManager-Bnct5BM_.js           14.30 kB │ gzip:  4.95 kB
+dist/assets/CefrHub-D3i9VURz.js                     14.90 kB │ gzip:  5.08 kB
+dist/assets/TextbookHub-BrR0QCAU.js                 15.30 kB │ gzip:  5.61 kB
+dist/assets/ClassroomChat-BGxJ4jIa.js               16.42 kB │ gzip:  5.53 kB
+dist/assets/chemistry-bench-3d-ECoPGSeT.js          17.18 kB │ gzip:  7.21 kB
+dist/assets/model-D6biMsDl.js                       17.25 kB │ gzip:  8.09 kB
+dist/assets/CefrWorkspace-CxKu2ckW.js               17.27 kB │ gzip:  6.43 kB
+dist/assets/AiGuide-CHRrWYeZ.js                     17.39 kB │ gzip:  5.96 kB
+dist/assets/CefrAdmin-odfdouuI.js                   17.99 kB │ gzip:  6.00 kB
+dist/assets/OpenExamHub-BY3ojur8.js                 18.55 kB │ gzip:  6.12 kB
+dist/assets/HistoryAtlas-Nn1_0zot.js                18.62 kB │ gzip:  6.70 kB
+dist/assets/OrbitControls-Cmn9Ytaz.js               19.02 kB │ gzip:  4.25 kB
+dist/assets/world-3d-BONyfzBD.js                    19.93 kB │ gzip:  8.55 kB
+dist/assets/python-course-D9udbcGA.js               21.93 kB │ gzip:  8.51 kB
+dist/assets/audio-maze-content-CWt02n81.js          22.37 kB │ gzip:  6.77 kB
+dist/assets/AtlasLearning-CS2l0Wld.js               23.24 kB │ gzip:  8.80 kB
+dist/assets/ScenarioExperiment-ypRvm-X6.js          24.04 kB │ gzip:  9.69 kB
+dist/assets/chemistry-lab-model-C030HxWU.js         25.12 kB │ gzip: 11.37 kB
+dist/assets/catalog-_eaAkJnw.js                     25.21 kB │ gzip:  6.29 kB
+dist/assets/math-atlas-content-BeEt8peb.js          25.47 kB │ gzip:  9.21 kB
+dist/assets/supabase-data-CA_VjnDM.js               25.77 kB │ gzip:  8.67 kB
+dist/assets/IQHub-KoHFiZB4.js                       26.45 kB │ gzip:  8.85 kB
+dist/assets/SpaceAtlas-D8XTSuSQ.js                  27.66 kB │ gzip:  8.89 kB
+dist/assets/question-bank-CAbKKc3Q.js               28.27 kB │ gzip:  7.40 kB
+dist/assets/content-BUSfPg9u.js                     28.65 kB │ gzip: 10.19 kB
+dist/assets/EnglishAudioMaze-C6RAEF3z.js            29.38 kB │ gzip:  8.99 kB
+dist/assets/open-exams-CPKBaGIA.js                  31.00 kB │ gzip: 11.79 kB
+dist/assets/biology-world-3d-pNDJPt9y.js            32.24 kB │ gzip: 13.74 kB
+dist/assets/renderer-UKm98bg-.js                    33.77 kB │ gzip: 13.77 kB
+dist/assets/BiologyAtlas-CoXM4rnK.js                34.03 kB │ gzip: 10.97 kB
+dist/assets/icons-VO5gUM4F.js                       38.05 kB │ gzip: 12.93 kB
+dist/assets/chemistry-labs-CI1wTJSi.js              39.81 kB │ gzip: 14.28 kB
+dist/assets/GLTFLoader-Dq2bVULh.js                  44.28 kB │ gzip: 12.90 kB
+dist/assets/ScienceStudio-BieNHcqL.js               47.69 kB │ gzip: 18.14 kB
+dist/assets/scene-BeAy8rmf.js                       51.55 kB │ gzip: 18.26 kB
+dist/assets/Classroom-DkpvgA8d.js                   56.70 kB │ gzip: 18.32 kB
+dist/assets/SpeakingHub-ClhPEk45.js                 57.78 kB │ gzip: 16.36 kB
+dist/assets/course-guides-BCwT6oGe.js               59.18 kB │ gzip: 19.39 kB
+dist/assets/TeamCompetitions-Xom4unWb.js            62.81 kB │ gzip: 18.43 kB
+dist/assets/AdminViews-DprddYD1.js                  66.03 kB │ gzip: 19.18 kB
+dist/assets/SessionViews-L5pvw9_L.js                72.31 kB │ gzip: 22.64 kB
+dist/assets/MathAtlas-CUGfJg2G.js                   74.59 kB │ gzip: 23.17 kB
+dist/assets/EnglishCourse-C_xGkVLh.js               77.70 kB │ gzip: 22.37 kB
+dist/assets/index-DU-4Pdpg.js                      103.84 kB │ gzip: 33.49 kB
+dist/assets/BiologyScenes-ZzY3wV9_.js              104.96 kB │ gzip: 34.36 kB
+dist/assets/learning-DwDWItWb.js                   126.59 kB │ gzip: 42.83 kB
+dist/assets/ChemistryAtlas-CBqp13ha.js             130.23 kB │ gzip: 39.64 kB
+dist/assets/InformaticsAtlas-xus2uKuv.js           135.95 kB │ gzip: 44.25 kB
+dist/assets/supabase-C0Wx_2zP.js                   214.90 kB │ gzip: 55.26 kB
+dist/assets/react-CR5VJ85Q.js                      218.84 kB │ gzip: 68.25 kB
+dist/assets/three.core-B8KqT7Hv.js                 266.29 kB │ gzip: 73.68 kB
+dist/assets/three.module-4Uufg0_N.js               318.57 kB │ gzip: 75.77 kB
+dist/assets/CinemaPiano-CXbycVZP.js                375.35 kB │ gzip: 85.27 kB
+
+✓ built in 6.96s
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/context.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/lucide-react/dist/esm/context.mjs:2:1 ]
+   │
+ 2 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/lucide-react/dist/esm/Icon.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/lucide-react/dist/esm/Icon.mjs:2:1 ]
+   │
+ 2 │ "use client";
+   │ ──────┬──────
+   │       ╰──────── module level directive may not be preserved
+   │
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[PLUGIN_TIMINGS] Plugin hooks ran for 4.4s of this 6.9s build (63%).
+The slowest hooks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - vite:prepare-out-dir renderStart (48%, 3.3s, 1 call)
+Additional hook time came from the hooks below and from hooks under 1s.
+2 hooks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - vite:css transform (43 calls)
+  - vite:worker-import-meta-url transform (2 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.

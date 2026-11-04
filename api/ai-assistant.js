@@ -1,6 +1,6 @@
 import {createClient} from '@supabase/supabase-js';
 import {AiError,requireGroq} from '../server/speaking/groq.js';
-import {assistantInput,assistantModes,createAssistantLimiter,runAssistant} from '../server/assistant/service.js';
+import {assistantInput,assistantLocalAnswer,assistantModes,createAssistantLimiter,runAssistant} from '../server/assistant/service.js';
 import {SpeakingStore,serverClient} from '../server/speaking/store.js';
 
 export const config={maxDuration:30};
@@ -52,6 +52,8 @@ export function createAssistantHandler({env=process.env,authenticate=authenticat
    if(!actor?.id)throw new AiError('AUTH_REQUIRED','AI yordamchi uchun hisobga kiring.',401);
    const timestamp=now();
    limiter(actor.id,timestamp);
+   const local=assistantLocalAnswer(req.body,actor);
+   if(local)return res.status(200).json(local);
    await reserve(actor.id,env,timestamp);
    const result=await respond(req.body,actor,{env});
    return res.status(200).json(result);

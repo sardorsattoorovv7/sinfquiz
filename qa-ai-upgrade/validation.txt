@@ -1,0 +1,85 @@
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (8756.5408ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (6712.4835ms)
+✔ Scientific notebook tokens keep readable text, actions, status and focus in both themes (35.6478ms)
+WebSocket server error: Port 24678 is already in use
+✔ Public home presents code entry first and routes all real subjects, atlas and Speaking actions (13010.9585ms)
+✔ Notebook navigation retains role-specific controls, mobile routes, search, theme and focus restoration (13149.3814ms)
+✔ Code dialog preserves failed input and leading zeroes, deduplicates submit, cancels late navigation and restores focus (9010.7473ms)
+✔ Home and code dialog keep accessible form names and modal semantics (10809.8007ms)
+WebSocket server error: Port 24678 is already in use
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (15319.388ms)
+WebSocket server error: Port 24678 is already in use
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (10138.8887ms)
+WebSocket server error: Port 24678 is already in use
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (17334.6325ms)
+✔ a first-turn insert safely retries a lost response and preserves one trusted clock (8.2137ms)
+✔ an acknowledged-by-read update is not replayed after its response is lost (3.1336ms)
+✔ an uncommitted revision-guarded update retries once, and a later writer is protected (2.5788ms)
+✔ budget charges and real database failures are never blindly replayed (1.1868ms)
+✔ server reads retry one disconnected connection; mutations and caller cancellation do not (59.8656ms)
+✔ client session recovery retries only connection failures, keeping the same question and token (7.7253ms)
+✔ authentication transport failure stays retryable; an invalid identity remains unauthorized (1.5531ms)
+▶ real service and durable worker flow, with controlled Groq HTTP fixtures
+  ✔ no baseline means no fake roadmap or practice diagnosis (76.1687ms)
+  ✔ server starts timing when the question is revealed; reload does not restart it (1.1493ms)
+  ✔ finish is idempotent and another user cannot read private entities (4.0126ms)
+  ✔ private audio -> original transcript -> validated partial assessment -> queued roadmap (167.2521ms)
+  ✔ personal roadmap and user-local daily plan persist without repeat AI GET calls (46.4135ms)
+  ✔ today vocabulary is an explicit idempotent job; viewing/recall cannot grant mastery (25.4788ms)
+  ✔ manual transcript revision preserves original baseline and creates a separate analysis (22.2689ms)
+  ✔ typed practice stays separate; a model-viewed repeat cannot become a fresh diagnosis (62.0794ms)
+  ✔ guide AI is grounded in student routes and has durable history (17.9852ms)
+  ✔ weekly mini-check has three fresh timed tasks and its own attempt kind (27.6544ms)
+  ✔ audio deletion removes private object but explicitly retains transcript (7.0265ms)
+  ✔ export is owner-scoped and privacy purge preserves another account (11.9032ms)
+✔ real service and durable worker flow, with controlled Groq HTTP fixtures (519.761ms)
+✔ missing provider key cannot enqueue fake assessments and keeps the recorded attempt (2.2011ms)
+✔ baseline survives long practice history and is never reclassified by pagination (12.6414ms)
+✔ 429/timeout retry reuses original ASR and fails in bounded durable attempts (3.5024ms)
+✔ ffprobe checks real WAV bytes and rejects corrupt recordings without asking a model (2907.045ms)
+✔ retention sweep deletes only expired audio while transcripts survive (2.9907ms)
+✔ corrected transcript and rehearsed answer never award active mastery (2.8062ms)
+▶ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery
+  ✔ old data is intact; private audio bucket has no public access (19.8861ms)
+  ✔ authenticated SQL reads only its own records and cannot invoke server writes (23.1597ms)
+  ✔ cross-owner parent and queue targets are rejected (19.6014ms)
+  ✔ immutable answer original and concurrent daily writes return one stored record (30.1803ms)
+  ✔ revision conflicts roll back the entire batch (7.5391ms)
+  ✔ parallel finish calls enqueue one job; cancelled/stale leases cannot publish (45.0606ms)
+  ✔ daily user and site budgets are enforced atomically (23.5515ms)
+✔ additive Speaking SQL: replay, owner RLS, immutable originals, idempotency, limits and lease recovery (7881.9042ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (16.4141ms)
+9:16:42 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+9:16:50 AM [vite] (client) [optimizer] scanning dependencies...
+9:19:37 AM [vite] (ssr) Error when evaluating SSR module /src/speaking/AiGuide.jsx: transport invoke timed out after 60000ms (data: {"type":"custom","event":"vite:invoke","data":{"name":"fetchModule","id":"send:E3F5vxbNjlJo2ZBMku0Ey","data":["/src/speaking/AiGuide.jsx",null,{"cached":false,"startOffset":3}]}})
+      at reviveInvokeError (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/node_modules/vite/dist/node/module-runner.js:540:14)
+      at Object.invoke (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/node_modules/vite/dist/node/module-runner.js:614:11)
+      at runNextTicks (node:internal/process/task_queues:64:5)
+      at process.processTimers (node:internal/timers:538:9)
+      at async SSRCompatModuleRunner.getModuleInformation (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/node_modules/vite/dist/node/module-runner.js:1210:7)
+      at async SSRCompatModuleRunner.import (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/node_modules/vite/dist/node/module-runner.js:1131:23)
+      at async instantiateModule (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/node_modules/vite/dist/node/chunks/node.js:15487:10)
+      at async TestContext.<anonymous> (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/tests/speaking-ui.test.js:17:37)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7)
+✖ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (182137.4305ms)
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (233.9493ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (93.6987ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (6.3539ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (42.7168ms)
+✔ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (10.2183ms)
+✔ a pending generated practice question survives an interrupted exposure write without a second AI call (6.9142ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 250442.7562
+
+✖ failing tests:
+
+test at tests\speaking-ui.test.js:10:1
+✖ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (182137.4305ms)
+  'test timed out after 90000ms'

@@ -1,0 +1,74 @@
+{
+  "answerUz": "Present Simple zamoni bo‘yicha 5 ta diagnostik savolni tayyorladim. Birinchi ikki savol asosiy tushunchani tekshiradi, keyingi ikkitasi qo‘llashni, oxirgi savol esa bir nechta g‘oyalarni birlashtiradi. Javoblaringizni yuboring, keyin natijalar asosida keyingi mashg‘ulotni belgilaymiz.",
+  "routeIds": [],
+  "quizType": "diagnostic",
+  "subjectUz": "Ingliz tili",
+  "topicUz": "Present Simple",
+  "questions": [
+    {
+      "question": "Quyidagi jumlalar qaysi biri Present Simple zamonida to‘g‘ri?",
+      "options": [
+        "She go to school every day.",
+        "She goes to school every day.",
+        "She going to school every day.",
+        "She gone to school every day."
+      ],
+      "correctIndex": 1,
+      "skillUz": "Present Simple – 3‑shaxs birlik",
+      "difficulty": "foundation",
+      "explanationUz": "3‑shaxs birlikda verbga -s qo‘shiladi: \"goes\"."
+    },
+    {
+      "question": "\"I ___ (like) coffee\" gapini Present Simple bilan to‘ldiring.",
+      "options": [
+        "liked",
+        "likes",
+        "like",
+        "liking"
+      ],
+      "correctIndex": 2,
+      "skillUz": "Present Simple – birinchi shaxs birlik",
+      "difficulty": "foundation",
+      "explanationUz": "Birlik birinchi shaxsda verb o‘zgarmas holda \"like\" bo‘ladi."
+    },
+    {
+      "question": "Quyidagi gaplardan qaysi biri odatiy harakatni ifodalaydi?",
+      "options": [
+        "He is reading a book now.",
+        "He reads a book every night.",
+        "He read a book yesterday.",
+        "He will read a book tomorrow."
+      ],
+      "correctIndex": 1,
+      "skillUz": "Present Simple – odatiy harakat",
+      "difficulty": "application",
+      "explanationUz": "Har kuni yoki har kecha kabi takrorlanuvchi harakat Present Simple bilan ifodalanadi."
+    },
+    {
+      "question": "Quyidagi gapni Present Simple ga o‘zgartiring: \"They are playing football on Sundays.\"",
+      "options": [
+        "They play football on Sundays.",
+        "They plays football on Sundays.",
+        "They playing football on Sundays.",
+        "They played football on Sundays."
+      ],
+      "correctIndex": 0,
+      "skillUz": "Present Simple – odatiy harakatni o‘zgartirish",
+      "difficulty": "application",
+      "explanationUz": "Odatiy harakat uchun \"are playing\" → \"play\" (ko‘plikda -s qo‘shilmaydi)."
+    },
+    {
+      "question": "Agar \"She always ___ (be) late for class\" gapini Present Simple bilan to‘ldirsak, qaysi variant to‘g‘ri va nega?",
+      "options": [
+        "is",
+        "are",
+        "am",
+        "be"
+      ],
+      "correctIndex": 0,
+      "skillUz": "Present Simple – doimiy holat va to‘g‘ri fe’l shakli",
+      "difficulty": "challenge",
+      "explanationUz": "\"She\" 3‑shaxs birlik, shuning uchun \"be\" fe’lining Present Simple shakli \"is\" bo‘ladi. \"Always\" so‘zi doimiy holatni ko‘rsatadi, lekin zamonga ta’sir qilmaydi."
+    }
+  ]
+}

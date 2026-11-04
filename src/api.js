@@ -1,5 +1,8 @@
 import {supabaseReady} from './supabase-sdk.js';
-import {supabaseApi,subscribeSupabase} from './supabase-data.js';
+let providerModule;
+const loadProvider=()=>providerModule||(providerModule=import('./supabase-data.js').catch(error=>{providerModule=null;throw error;}));
+let sessionModule;
+const loadSession=()=>sessionModule||(sessionModule=import('./session-profile.js').catch(error=>{sessionModule=null;throw error;}));
 
 let teacherCsrf='',playerCsrf='',raceCsrf='',typingCsrf='';
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -14,8 +17,9 @@ export async function api(path,{method='GET',data,role='teacher'}={}){
  if(typeof navigator!=='undefined'&&navigator.onLine===false)throw Error('Internet aloqasi yo‘q. Ulanishni tekshirib, qayta urinib ko‘ring.');
  if(supabaseReady()){
   const timeout=method==='GET'?10000:18000;
-  try{return await withTimeout(supabaseApi(path,{method,data,role}),timeout)}catch(error){
-   if(method==='GET'&&transient(error)){await wait(450);return withTimeout(supabaseApi(path,{method,data,role}),timeout)}
+  const request=()=>path==='/auth/session'?loadSession().then(({sessionProfile})=>sessionProfile()):loadProvider().then(({supabaseApi})=>supabaseApi(path,{method,data,role}));
+  try{return await withTimeout(request(),timeout)}catch(error){
+   if(method==='GET'&&transient(error)){await wait(450);return withTimeout(request(),timeout)}
    throw error;
   }
  }
@@ -26,6 +30,8 @@ export async function api(path,{method='GET',data,role='teacher'}={}){
 }
 
 export function subscribeRealtime(handlers){
- if(supabaseReady())return subscribeSupabase(handlers);
- return null;
+ if(!supabaseReady())return null;
+ let disposed=false,stop;
+ loadProvider().then(({subscribeSupabase})=>{if(!disposed)stop=subscribeSupabase(handlers);}).catch(error=>{if(!disposed)handlers.onError?.(error);});
+ return()=>{disposed=true;stop?.();};
 }

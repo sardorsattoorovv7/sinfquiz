@@ -1,0 +1,31 @@
+✔ English typing bank has five complete lessons for every A1-C2 level (1.4097ms)
+✔ Adaptive placement bank has 276 unique A1-C2 questions including reading (3.476ms)
+✔ Long-text typing course remains available through the 300-500 word stage (2.0174ms)
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (3476.5461ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (3384.8201ms)
+✔ 7.28 fresh-install SQL chain compiles in order without cron and preserves all content banks (4423.6183ms)
+✔ Scientific notebook tokens keep readable text, actions, status and focus in both themes (10.9138ms)
+✔ Public home presents code entry first and routes all real subjects, atlas and Speaking actions (5192.287ms)
+✔ Notebook navigation retains role-specific controls, mobile routes, search, theme and focus restoration (4740.014ms)
+✔ Code dialog preserves failed input and leading zeroes, deduplicates submit, cancels late navigation and restores focus (3542.7049ms)
+✔ Home and code dialog keep accessible form names and modal semantics (4889.9283ms)
+WebSocket server error: Port 24678 is already in use
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (5411.1876ms)
+WebSocket server error: Port 24678 is already in use
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (6818.5946ms)
+✔ 7.26.2: students cannot fetch answer keys, forge scores, impersonate sessions or bypass server deadlines (3168.1438ms)
+✔ 7.26.2: split race grades on the server, rejects unrelated writes and duplicate/replayed answers (2620.8204ms)
+✔ Studio search accepts whitespace and Uzbek apostrophe variants and finds practical tools (2.3767ms)
+✔ Studio restores top-level routes on reload without granting guest or staff a student profile (0.5457ms)
+✔ typing course prompts use a keyboard apostrophe and preserve exact non-apostrophe grading (5.0719ms)
+✔ fresh Supabase typing seeds agree with the canonical local long-text course (4.6176ms)
+✔ existing-database content patch is repeatable and preserves active attempts and result history (2904.5297ms)
+✔ editors preserve unsaved text when leaving is cancelled and release guards after unmount (3994.5051ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33385.5408

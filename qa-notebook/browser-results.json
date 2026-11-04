@@ -1,0 +1,179 @@
+{
+  "checks": [
+    {
+      "label": "guest-home-1440",
+      "overflow": false
+    },
+    {
+      "label": "guest-code-resolved",
+      "overflow": false
+    },
+    {
+      "label": "test-question",
+      "overflow": false
+    },
+    {
+      "label": "test-result",
+      "overflow": false
+    },
+    {
+      "label": "guest wrong/valid code → name → actual answer request → result fixture",
+      "passed": true
+    },
+    {
+      "label": "home-1024",
+      "overflow": false
+    },
+    {
+      "label": "home-768",
+      "overflow": false
+    },
+    {
+      "label": "home-390",
+      "overflow": false
+    },
+    {
+      "label": "home-360",
+      "overflow": false
+    },
+    {
+      "label": "atlas-catalog",
+      "overflow": false
+    },
+    {
+      "label": "atlas-mobile",
+      "overflow": false
+    },
+    {
+      "label": "speaking-mobile",
+      "overflow": false
+    },
+    {
+      "label": "teacher-new-quiz",
+      "overflow": false
+    },
+    {
+      "label": "teacher-editor-mobile",
+      "overflow": false
+    },
+    {
+      "label": "unsaved editor survives cancelled shell and hash navigation; confirmed exit works",
+      "passed": true
+    },
+    {
+      "label": "math-desktop",
+      "overflow": false
+    },
+    {
+      "label": "math-mobile",
+      "overflow": false
+    },
+    {
+      "label": "biology-desktop",
+      "overflow": false
+    },
+    {
+      "label": "biology-mobile",
+      "overflow": false
+    },
+    {
+      "label": "chemistry-desktop",
+      "overflow": false
+    },
+    {
+      "label": "chemistry-mobile",
+      "overflow": false
+    },
+    {
+      "label": "space-desktop",
+      "overflow": false
+    },
+    {
+      "label": "space-mobile",
+      "overflow": false
+    },
+    {
+      "label": "informatics-desktop",
+      "overflow": false
+    },
+    {
+      "label": "informatics-mobile",
+      "overflow": false
+    },
+    {
+      "label": "history-desktop",
+      "overflow": false
+    },
+    {
+      "label": "history-mobile",
+      "overflow": false
+    },
+    {
+      "label": "textbooks-desktop",
+      "overflow": false
+    },
+    {
+      "label": "textbooks-mobile",
+      "overflow": false
+    },
+    {
+      "label": "classroom-mobile",
+      "overflow": false
+    },
+    {
+      "label": "student classroom role restriction retained",
+      "passed": true
+    },
+    {
+      "label": "account-login-mobile",
+      "overflow": false
+    },
+    {
+      "label": "login-dark",
+      "overflow": false
+    }
+  ],
+  "accessibility": [
+    {
+      "label": "guest home desktop",
+      "violations": []
+    },
+    {
+      "label": "guest home mobile",
+      "violations": []
+    },
+    {
+      "label": "atlas catalog",
+      "violations": []
+    },
+    {
+      "label": "guest speaking mobile",
+      "violations": []
+    },
+    {
+      "label": "teacher quiz editor",
+      "violations": []
+    },
+    {
+      "label": "account login mobile",
+      "violations": []
+    }
+  ],
+  "errors": [],
+  "requestCounts": {
+    "/auth/session": 18,
+    "/api/race/active": 9,
+    "/api/typing/active": 9,
+    "/api/resolve": 2,
+    "/api/play/join": 1,
+    "/api/play/answer": 1,
+    "/api/play/next": 1,
+    "/api/ai-speaking": 1,
+    "/api/quizzes": 1,
+    "/api/biology/concepts": 1,
+    "/api/chemistry/concepts": 1,
+    "/api/space/action": 1,
+    "/api/catalog": 1,
+    "/api/books/home": 1
+  }
+}

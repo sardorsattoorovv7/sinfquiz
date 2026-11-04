@@ -1,0 +1,78 @@
+9:12:16 PM [vite] (client) Re-optimizing dependencies because vite config has changed
+9:12:19 PM [vite] (client) [optimizer] scanning dependencies...
+▶ assistant browser transport authenticates, propagates cancellation and preserves useful errors
+  ✔ anonymous and signed-out users never send a provider request (2.8738ms)
+  ✔ sends the signed-in session only to the same-origin server endpoint (8.777ms)
+  ✔ keeps retry metadata and rejects malformed successful responses (2.8255ms)
+  ✔ cancellation stays distinct from network failures (0.9257ms)
+✔ assistant browser transport authenticates, propagates cancellation and preserves useful errors (5199.7141ms)
+✔ assistant input keeps six recent turns and refuses system history or oversized text (3.9734ms)
+✔ assistant response is strict JSON and suggests only actor-approved routes (2.4682ms)
+✔ quiz output requires 3–5 valid questions with four distinct options and a valid answer (1.6159ms)
+✔ real Groq request contract keeps secrets on server and handles malformed output (47.4528ms)
+✔ assistant handler validates origin, authentication and byte limits before AI use (2.5246ms)
+✔ provider status never exposes credentials and unknown failures are sanitized (0.9655ms)
+✔ limiter isolates users, resets minutes and days, and bounds the number of actors (0.9043ms)
+✔ handler throttles repeated calls and sends retry guidance (1.0218ms)
+✔ shared assistant quotas reserve daily and minute budgets across server instances (0.6915ms)
+✔ shared quota falls back only for absent credentials or schema, and fails closed otherwise (1.5452ms)
+✔ handler never calls AI after shared quota rejection and accepts an injected reserve hook (1.0957ms)
+✔ provider schema generation failures are retried while invalid request parameters are not (63.1069ms)
+✔ interactive AI stops before a provider retry would exceed its total deadline (1.6325ms)
+✔ structured calls forward attempt limits and cancel a stalled provider request (66.6029ms)
+✔ I good at is corrected from an exact quote and leads to its own drill (7.2819ms)
+✔ nonexistent quotes, wrong UTF-16 offsets and changed city names are rejected (2.262ms)
+✔ grammatical to take photos is not automatically a learner error (0.7825ms)
+✔ transcripts, prompt injection, silence and timestamps cannot manufacture a full score (1.0001ms)
+✔ ASR uncertainty reduces confidence and prevents a provisional score (1.6205ms)
+✔ two different error profiles receive different evidence priorities and drills (10.8783ms)
+✔ roadmaps require seven days, real source IDs and exactly the selected time budget (2.2438ms)
+✔ local dates cross midnight in the account timezone and respect selected weekdays (52.0511ms)
+✔ strict schema rejects extra fields including invented overall scores (1.723ms)
+✔ provider retries 429 but not an invalid key; no response leaks provider text or secret (54.7861ms)
+✔ malformed structured output is rejected instead of displayed as a result (2.0178ms)
+✔ 12 complete original mocks and all 30 assets match their actual bytes and metadata (77.8146ms)
+✔ AI guide role registry and route restoration cannot open a staff route for a student (0.6655ms)
+▶ real service and durable worker flow, with controlled Groq HTTP fixtures
+  ✔ no baseline means no fake roadmap or practice diagnosis (47.0846ms)
+  ✔ server starts timing when the question is revealed; reload does not restart it (0.7378ms)
+  ✔ finish is idempotent and another user cannot read private entities (2.9579ms)
+  ✔ private audio -> original transcript -> validated partial assessment -> queued roadmap (77.9089ms)
+  ✔ personal roadmap and user-local daily plan persist without repeat AI GET calls (25.1376ms)
+  ✔ today vocabulary is an explicit idempotent job; viewing/recall cannot grant mastery (27.116ms)
+  ✔ manual transcript revision preserves original baseline and creates a separate analysis (17.4528ms)
+  ✔ typed practice stays separate; a model-viewed repeat cannot become a fresh diagnosis (31.1889ms)
+  ✔ guide AI is grounded in student routes and has durable history (14.3663ms)
+  ✔ weekly mini-check has three fresh timed tasks and its own attempt kind (16.746ms)
+  ✔ audio deletion removes private object but explicitly retains transcript (7.8414ms)
+  ✔ export is owner-scoped and privacy purge preserves another account (7.3244ms)
+✔ real service and durable worker flow, with controlled Groq HTTP fixtures (314.8221ms)
+✔ missing provider key cannot enqueue fake assessments and keeps the recorded attempt (0.7125ms)
+✔ baseline survives long practice history and is never reclassified by pagination (10.0033ms)
+✔ 429/timeout retry reuses original ASR and fails in bounded durable attempts (3.3633ms)
+✔ ffprobe checks real WAV bytes and rejects corrupt recordings without asking a model (1701.5665ms)
+✔ retention sweep deletes only expired audio while transcripts survive (1.4529ms)
+✔ corrected transcript and rehearsed answer never award active mastery (1.2403ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (11.6209ms)
+9:12:24 PM [vite] (client) [optimizer] scanning dependencies...
+9:12:29 PM [vite] (client) [optimizer] bundling dependencies...
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (1421.8123ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (886.5585ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (786.6842ms)
+  ✔ welcome is per account and routes to the separate guide (53.0528ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (130.3955ms)
+  ✔ compact help keeps the current section, has no nested main and uses only navigation mode (296.8836ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (59.7049ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (66.2746ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (77.1372ms)
+  ✔ progress excludes rehearsed, typed and revised samples (15.2373ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (11339.7875ms)
+ℹ tests 63
+ℹ suites 0
+ℹ pass 63
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17515.4188

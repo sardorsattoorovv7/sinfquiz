@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checks": [
+    "desktop 1440px",
+    "robot, Enter submit and Shift+Enter newline work in the browser",
+    "guide renders permitted route and filters staff routes",
+    "tutor follows prior conversation",
+    "quiz reveals explanations after choice and scores practice",
+    "assistant 390px",
+    "assistant 320px",
+    "assistant 768px",
+    "provider failure preserves question",
+    "cancel preserves draft",
+    "dark assistant 390px"
+  ],
+  "accessibilityChecks": 6,
+  "aiRequests": 5
+}

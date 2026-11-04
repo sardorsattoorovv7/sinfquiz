@@ -1,6 +1,7 @@
 {
   "checks": [
     "desktop 1440px",
+    "robot, Enter submit and Shift+Enter newline work in the browser",
     "guide renders permitted route and filters staff routes",
     "tutor follows prior conversation",
     "quiz reveals explanations after choice and scores practice",
@@ -40,7 +41,7 @@
   ],
   "aiRequests": [
     {
-      "mode": "guide",
+      "mode": "mentor",
       "historyLength": 0
     },
     {

@@ -1,17 +1,27 @@
 import {orderedPages} from './ordered-pages.js';
-import {createClient} from '@supabase/supabase-js';
 
 const SUPABASE_URL=String(import.meta.env.VITE_SUPABASE_URL||'').trim().replace(/\/+$/,'');
 const SUPABASE_ANON_KEY=String(import.meta.env.VITE_SUPABASE_ANON_KEY||'').trim();
 const ADMIN_EMAIL='admin@sinfquiz.uz';
 let client=null;
+let clientLoadPromise=null;
 let channelCounter=0;
 let authLoaded=false;
 let authLoadPromise=null;
 let anonymousPromise=null;
 
 const fail=error=>{if(error)throw Error(error.message||String(error))};
-const getClient=()=>{if(!supabaseReady())throw Error('Supabase sozlanmagan. VITE_SUPABASE_URL va VITE_SUPABASE_ANON_KEY qiymatlarini kiriting.');if(!client)client=createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true},realtime:{params:{eventsPerSecond:12}}});return client};
+const getClient=()=>{if(!client)throw Error('Hisob bilan aloqa hali tayyor emas. Qayta urinib ko‘ring.');return client};
+const loadClient=()=>{
+ if(!supabaseReady())return Promise.reject(Error('Supabase sozlanmagan. VITE_SUPABASE_URL va VITE_SUPABASE_ANON_KEY qiymatlarini kiriting.'));
+ if(client)return Promise.resolve(client);
+ // Public content can paint while the database library arrives. Concurrent
+ // auth/API calls share one client; a failed module load can be retried.
+ if(!clientLoadPromise)clientLoadPromise=import('@supabase/supabase-js').then(({createClient})=>{
+  client=createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true},realtime:{params:{eventsPerSecond:12}}});return client;
+ }).catch(error=>{clientLoadPromise=null;throw error;});
+ return clientLoadPromise;
+};
 const mapUser=user=>user?{...user,uid:user.id,isAnonymous:user.is_anonymous===true,displayName:user.user_metadata?.name||user.user_metadata?.full_name||'',getIdToken:async()=>{const {data,error}=await getClient().auth.getSession();fail(error);return data.session?.access_token||''},delete:async()=>{await getClient().auth.signOut()}}:null;
 
 export const supabaseConfig={url:SUPABASE_URL,anonKey:SUPABASE_ANON_KEY};
@@ -53,7 +63,7 @@ const auth={currentUser:null};
 async function syncAuth(){const {data,error}=await getClient().auth.getSession();fail(error);auth.currentUser=mapUser(data.session?.user);authLoaded=true;return auth.currentUser}
 
 export async function getSupabase(){
- const supabase=getClient();if(!authLoaded){if(!authLoadPromise)authLoadPromise=syncAuth().finally(()=>{authLoadPromise=null});await authLoadPromise}
+ const supabase=await loadClient();if(!authLoaded){if(!authLoadPromise)authLoadPromise=syncAuth().finally(()=>{authLoadPromise=null});await authLoadPromise}
  return {app:supabase,db:supabase,auth,doc:(_db,collection,id)=>docRef(collection,id),collection:(_db,collection)=>collectionRef(collection),query,where,getDoc,getDocs,setDoc,updateDoc,deleteDoc,writeBatch:()=>writeBatch(),onSnapshot,onChanges,
   onAuthStateChanged:(_auth,callback,error)=>{let active=true;syncAuth().then(()=>active&&callback(auth.currentUser)).catch(error);const {data}=supabase.auth.onAuthStateChange((_event,session)=>{auth.currentUser=mapUser(session?.user);active&&callback(auth.currentUser)});return()=>{active=false;data.subscription.unsubscribe()}},
   signInWithEmailAndPassword:async(_auth,email,password)=>{const {data,error}=await supabase.auth.signInWithPassword({email,password});fail(error);auth.currentUser=mapUser(data.user);return {user:auth.currentUser}},

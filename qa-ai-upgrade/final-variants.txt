@@ -1,0 +1,14 @@
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (333.4613ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (113.4939ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (9.176ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (62.3213ms)
+✔ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (12.9053ms)
+✔ a pending generated practice question survives an interrupted exposure write without a second AI call (9.4105ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 935.5035

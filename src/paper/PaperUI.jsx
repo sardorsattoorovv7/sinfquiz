@@ -2,7 +2,7 @@ import React,{forwardRef,useEffect,useId,useRef} from 'react';
 import {X} from 'lucide-react';
 
 export function PaperBrand({className=''}){
- return <span className={'paper-brand '+className} role="img" aria-label="SinfQuiz"><span className="paper-brand-star" aria-hidden="true">✦</span><span>sinfquiz<span className="paper-brand-period">.</span></span></span>;
+ return <span className={'paper-brand '+className} role="img" aria-label="SinfQuiz"><span className="paper-brand-mark" aria-hidden="true">SQ</span><span>SinfQuiz</span></span>;
 }
 export const PaperButton=forwardRef(function PaperButton({variant='secondary',className='',children,type='button',...props},ref){
  return <button ref={ref} type={type} className={'pw-button pw-button--'+variant+' '+className} {...props}>{children}</button>;
@@ -11,7 +11,7 @@ export const PaperInput=forwardRef(function PaperInput({className='',...props},r
 export const PaperBookmark=forwardRef(function PaperBookmark({selected=false,className='',children,...props},ref){
  return <button ref={ref} type="button" className={'pw-bookmark '+(selected?'is-selected ':'')+className} {...props}>{children}</button>;
 });
-export function NotebookPanel({as:Tag='section',className='',children,decoration=true,...props}){
+export function NotebookPanel({as:Tag='section',className='',children,decoration=false,...props}){
  return <Tag className={'pw-notebook '+className} {...props}>{decoration&&<><span className="pw-tape" aria-hidden="true"/><span className="pw-spiral" aria-hidden="true">{Array.from({length:12},(_,i)=><i key={i}/>)}</span></>}<div className="pw-notebook-content">{children}</div></Tag>;
 }
 export function PaperNotice({children,kind='info',className='',onDismiss,...props}){
@@ -31,5 +31,5 @@ export function PaperDialog({open,onClose,title,description,children,className='
   document.addEventListener('keydown',key,true);return()=>{document.removeEventListener('keydown',key,true);document.body.style.overflow=overflow;if(previous?.isConnected)previous.focus()};
  },[open]);
  if(!open)return null;
- return <div className="pw-dialog-shade" onPointerDown={e=>{if(e.target===e.currentTarget)onClose?.()}}><section ref={panel} className={'pw-dialog '+className} role="dialog" aria-modal="true" aria-labelledby={id+'-title'} aria-describedby={description?id+'-description':undefined} tabIndex={-1}><PaperButton className="pw-dialog-close" variant="quiet" onClick={onClose} aria-label="Oynani yopish"><X size={20}/></PaperButton><span className="pw-overline">SINFQUIZ / QOG‘OZ USTAXONASI</span><h2 id={id+'-title'}>{title}</h2>{description&&<p id={id+'-description'}>{description}</p>}{children}</section></div>;
+ return <div className="pw-dialog-shade" onPointerDown={e=>{if(e.target===e.currentTarget)onClose?.()}}><section ref={panel} className={'pw-dialog '+className} role="dialog" aria-modal="true" aria-labelledby={id+'-title'} aria-describedby={description?id+'-description':undefined} tabIndex={-1}><PaperButton className="pw-dialog-close" variant="quiet" onClick={onClose} aria-label="Oynani yopish"><X size={20}/></PaperButton><span className="pw-overline">SINFQUIZ / BILIM LABORATORIYASI</span><h2 id={id+'-title'}>{title}</h2>{description&&<p id={id+'-description'}>{description}</p>}{children}</section></div>;
 }

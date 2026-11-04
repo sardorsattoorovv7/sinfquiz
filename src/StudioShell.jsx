@@ -3,8 +3,13 @@ import {Home,BookOpen,Compass,Gamepad2,Trophy,BarChart3,Search,UserRound,LogOut,
 import {ExperienceControls} from './effects.jsx';
 import StudioArt from './StudioArt.jsx';
 import {findStudioRoutes,normalizeStudioSearch} from './studio-navigation.js';
-import {PaperBrand,PaperButton,PaperDialog} from './paper/PaperUI.jsx';
+import {PaperBrand,PaperButton,PaperDialog,PaperSkeleton} from './paper/PaperUI.jsx';
 import ClassJoinForm from './paper/ClassJoinForm.jsx';
+import RobotAssistant from './speaking/RobotAssistant.jsx';
+import {uiCopy} from './ui-copy.js';
+import './paper/notebook-home.css';
+
+const CompactGuide=React.lazy(()=>import('./speaking/AiGuide.jsx'));
 
 export const studioSections=[
  {id:'home',label:'Bosh sahifa',icon:Home,views:['home']},
@@ -37,60 +42,42 @@ export const studioActivities=[
 const roleLabel=u=>u?.role==='admin'?'Administrator':u?.role==='teacher'?'O‘qituvchi':u?'O‘quvchi':'Mehmon';
 
 export default function StudioShell({children,user,view,onNavigate,onLogout,onJoin,inActivity,unfinished,authReady}){
- const [drawer,setDrawer]=useState(false),[query,setQuery]=useState(''),[searchOpen,setSearchOpen]=useState(false),[joinOpen,setJoinOpen]=useState(false);
- const drawerRef=useRef(null),menuRef=useRef(null),mainRef=useRef(null),searchRef=useRef(null),searchInputRef=useRef(null);
- const drawerOpen=drawer&&!inActivity;
- const homeView=view==='home',blocked=drawerOpen||joinOpen;
+ const [drawer,setDrawer]=useState(false),[query,setQuery]=useState(''),[joinOpen,setJoinOpen]=useState(false),[helpOpen,setHelpOpen]=useState(false);
+ const drawerRef=useRef(null),menuRef=useRef(null);
+ const drawerOpen=drawer&&!inActivity,homeView=view==='home',blocked=drawerOpen||joinOpen||helpOpen;
  const staff=['teacher','admin'].includes(user?.role);
  const active=studioSections.find(s=>s.views.includes(view))?.id||(['admin','classroom'].includes(view)?view:'home');
- const routes=[...studioSections,...studioActivities,...(staff?[{id:'admin',label:roleLabel(user)+' paneli'},{id:'classroom',label:'Sinfxona',detail:'Elektron doska, dars taymeri, shovqin nazorati, raqam tanlash'}]:[])];
+ const routes=[...studioSections,...studioActivities,...(staff?[{id:'admin',label:roleLabel(user)+' paneli'},{id:'classroom',label:'Sinfxona',detail:'Dars doskasi, taymer va dars vositalari'}]:[])];
  const matches=findStudioRoutes(routes,query),hasQuery=!!normalizeStudioSearch(query);
- const navigate=id=>{setDrawer(false);setSearchOpen(false);setQuery('');onNavigate(id);};
- const closeSearch=()=>{searchInputRef.current?.focus();setSearchOpen(false);};
- const searchKeys=e=>{
-  if(e.key==='Escape'){e.preventDefault();closeSearch();return;}
-  if(!hasQuery||!['ArrowDown','ArrowUp'].includes(e.key))return;
-  e.preventDefault();const step=e.key==='ArrowDown'?1:-1;
-  const focusChoice=()=>{
-   const items=[...searchRef.current?.querySelectorAll('.studio-search-results button:not(.studio-search-close)')||[]];
-   if(!items.length)return;
-   const index=items.indexOf(document.activeElement);
-   if(index===0&&step<0){searchInputRef.current?.focus();return;}
-   items[index<0?(step>0?0:items.length-1):Math.min(items.length-1,index+step)]?.focus();
-  };
-  if(searchOpen)focusChoice();else{setSearchOpen(true);window.requestAnimationFrame(focusChoice);}
- };
- useEffect(()=>{
-  if(!searchOpen)return;
-  const dismiss=e=>{if(!searchRef.current?.contains(e.target))setSearchOpen(false);};
-  document.addEventListener('pointerdown',dismiss);
-  return()=>document.removeEventListener('pointerdown',dismiss);
- },[searchOpen]);
-
- useEffect(()=>{setDrawer(false);setSearchOpen(false);setJoinOpen(false);},[view,inActivity]);
+ const navigate=id=>{setDrawer(false);setJoinOpen(false);setHelpOpen(false);setQuery('');onNavigate(id);};
+ useEffect(()=>{setDrawer(false);setJoinOpen(false);setHelpOpen(false);},[view,inActivity]);
  useEffect(()=>{
   if(!drawerOpen)return;
   const old=document.activeElement;drawerRef.current?.querySelector('button')?.focus();
-  const esc=e=>{if(e.key==='Escape'){e.preventDefault();setDrawer(false);}if(e.key==='Tab'){const items=[...drawerRef.current?.querySelectorAll('button,a,[tabindex="0"]')||[]].filter(el=>el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}};
+  const esc=e=>{if(e.key==='Escape'){e.preventDefault();setDrawer(false);}if(e.key==='Tab'){const items=[...drawerRef.current?.querySelectorAll('button,a,input,[tabindex="0"]')||[]].filter(el=>el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}};
   document.addEventListener('keydown',esc);const previous=document.body.style.overflow;document.body.style.overflow='hidden';
   return()=>{document.removeEventListener('keydown',esc);document.body.style.overflow=previous;(old?.isConnected?old:menuRef.current)?.focus();};
  },[drawerOpen]);
- const links=(mobile=false)=><nav className="studio-main-nav" aria-label={mobile?'Mobil bo‘limlar':'Asosiy bo‘limlar'}>{studioSections.map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}{staff&&<><span className="studio-nav-caption">BOSHQARUV</span><button className={active==='classroom'?'is-current':''} aria-current={active==='classroom'?'page':undefined} onClick={()=>navigate('classroom')}><Presentation size={20}/><span>Sinfxona</span></button><button className={active==='admin'?'is-current':''} onClick={()=>navigate('admin')}><Shield size={20}/><span>{roleLabel(user)} paneli</span></button></>}</nav>;
- return <div className={`app-shell studio-app paper-workshop ${homeView?'pw-home-shell':''} ${inActivity?'studio-in-activity':''}`}>
- <a className="studio-skip" href="#studio-main">Asosiy mazmunga o‘tish</a>
- {!inActivity&&<aside className="studio-sidebar" inert={blocked?true:undefined}><button className="pw-brand-link" aria-label="Bosh sahifaga qaytish" onClick={()=>navigate('home')}><PaperBrand className="studio-brand nav-brand"/></button>{links()}<div className="studio-sidebar-foot"><span className="studio-person-icon"><UserRound size={20}/></span><div><b>{user?.name||'Xush kelibsiz'}</b><small>{roleLabel(user)}</small></div></div></aside>}
- <div className="studio-body"><header className="site-nav studio-topbar" aria-label="Asosiy navigatsiya" inert={blocked?true:undefined}>
- {!inActivity&&<button ref={menuRef} className="studio-menu-toggle" aria-expanded={drawer} aria-controls="studio-drawer" aria-label="Menyuni ochish" onClick={()=>setDrawer(true)}><Menu size={22}/></button>}
- <button className="pw-brand-link pw-header-brand" aria-label="Bosh sahifaga qaytish" disabled={inActivity} onClick={()=>navigate('home')}><PaperBrand className="studio-mobile-brand nav-brand"/></button>
- {!inActivity&&<nav className="pw-top-links" aria-label="Ustaxona yo‘llari"><button onClick={()=>navigate('subjects')}>Fanlar</button><button onClick={()=>navigate('atlasHub')}>Tajribalar</button><button onClick={()=>navigate('competitions')}>Musobaqalar</button></nav>}
- {!inActivity&&<div className="studio-search" ref={searchRef} onKeyDown={searchKeys}><form role="search" onSubmit={e=>{e.preventDefault();if(hasQuery&&matches[0])navigate(matches[0].id);}}><Search size={18}/><input ref={searchInputRef} type="search" maxLength={100} aria-label="Bo‘lim qidirish" aria-controls={searchOpen&&hasQuery?'studio-search-results':undefined} placeholder="Bo‘lim yoki mashq qidirish…" value={query} onFocus={()=>setSearchOpen(true)} onChange={e=>{setQuery(e.target.value);setSearchOpen(true);}}/></form>{searchOpen&&hasQuery&&<div id="studio-search-results" className="studio-search-results" role="region" aria-label="Qidiruv natijalari"><p className="studio-search-status" role="status">{matches.length?`${matches.length} ta mos bo‘lim`:'Bo‘lim topilmadi.'}</p>{matches.map(r=><button key={r.id} onClick={()=>navigate(r.id)}>{r.label}<ArrowRight size={16}/></button>)}<button className="studio-search-close" onClick={closeSearch}>Qidiruvni yopish</button></div>}</div>}
- {inActivity&&<span className="session-label">{unfinished?'Mashq davom etmoqda':'Natijalar'}</span>}
- <div className="nav-actions studio-top-actions"><ExperienceControls/>{!inActivity&&<PaperButton variant="primary" className="pw-join-trigger" onClick={()=>setJoinOpen(true)}>Sinfga qo‘shilish <ArrowRight size={16}/></PaperButton>}{!inActivity&&authReady&&(user?<><button className="studio-profile" onClick={()=>navigate(staff?'admin':'results')} aria-label={staff?'Boshqaruv paneli':'Profilim'}><UserRound size={18}/><span>{user.name}<small>{roleLabel(user)}</small></span></button><button className="nav-logout" aria-label="Tizimdan chiqish" title="Hisobdan chiqish" onClick={onLogout}><LogOut size={19}/></button></>:<button className="btn btn-outline teacher-entry" onClick={()=>navigate('login')}>Kirish <ArrowRight size={16}/></button>)}</div>
- </header><div ref={mainRef} id="studio-main" className="studio-content" tabIndex={-1} inert={blocked?true:undefined}>{children}</div></div>
- {drawerOpen&&<><div className="studio-drawer-shade" onClick={()=>setDrawer(false)} aria-hidden="true"/><aside id="studio-drawer" ref={drawerRef} className="studio-drawer" role="dialog" aria-modal="true" aria-label="Bo‘limlar menyusi"><div><PaperBrand className="studio-brand"/><button aria-label="Menyuni yopish" onClick={()=>setDrawer(false)}><X size={22}/></button></div>{links(true)}<PaperButton className="pw-drawer-join" variant="primary" onClick={()=>{setDrawer(false);setJoinOpen(true)}}>Sinfga qo‘shilish <ArrowRight size={17}/></PaperButton>{user&&<PaperButton className="pw-drawer-logout" variant="quiet" onClick={()=>{setDrawer(false);onLogout()}}><LogOut size={17}/> Hisobdan chiqish</PaperButton>}<p>{roleLabel(user)} · {user?.name||'SinfQuiz'}</p></aside></>}
- {!inActivity&&<nav className="studio-bottom-nav" aria-label="Tezkor bo‘limlar" inert={blocked?true:undefined}>{studioSections.filter(s=>['home','books','atlasHub','exerciseHub','results'].includes(s.id)).map(({id,label,icon:Icon})=><button key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{id==='home'?'Bosh':id==='books'?'Darslar':label}</span></button>)}</nav>}
- {user&&!inActivity&&view!=='aiGuide'&&<button className="sp-guide-float" onClick={()=>navigate('aiGuide')} aria-label="AI yordamchi: dasturdan foydalanish"><Sparkles size={17}/>Yordamchi</button>}
- <PaperDialog open={joinOpen&&!inActivity} onClose={()=>setJoinOpen(false)} title="Sinfga qo‘shilish" description="Ustoz bergan olti xonali kodni kiriting. Hisob ochmasdan ham sinf testiga qo‘shilishingiz mumkin."><ClassJoinForm compact autoFocus onResolved={async entry=>{setJoinOpen(false);await onJoin(entry)}}/></PaperDialog>
+ const links=()=> <nav className="studio-main-nav" aria-label="Barcha bo‘limlar">{studioSections.map(({id,label,icon:Icon})=><button type="button" key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{label}</span></button>)}{staff&&<><span className="studio-nav-caption">BOSHQARUV</span><button type="button" onClick={()=>navigate('createQuiz')}><GraduationCap size={20}/><span>Test yaratish</span></button><button type="button" className={active==='classroom'?'is-current':''} aria-current={active==='classroom'?'page':undefined} onClick={()=>navigate('classroom')}><Presentation size={20}/><span>Sinfxona</span></button><button type="button" className={active==='admin'?'is-current':''} onClick={()=>navigate('admin')}><Shield size={20}/><span>{roleLabel(user)} paneli</span></button></>}</nav>;
+ const topLinks=[{id:'subjects',label:'Fanlar',current:homeView||active==='books'},{id:'atlasHub',label:'3D Atlas',current:active==='atlasHub'},{id:'speaking',label:'AI Speaking',current:active==='speaking'},{id:'results',label:'Natijalar',current:active==='results'}];
+ const login=()=>{setHelpOpen(false);try{sessionStorage.setItem('sq_ai_return','aiGuide');}catch{}navigate('login');};
+ return <div className={'app-shell studio-app paper-workshop '+(homeView?'pw-home-shell ':'')+(inActivity?'studio-in-activity':'')}>
+  <a className="studio-skip" href="#studio-main">Asosiy mazmunga o‘tish</a>
+  <div className="studio-body"><header className="site-nav studio-topbar" aria-label="Asosiy navigatsiya" inert={blocked?true:undefined}>
+   {!inActivity&&<button type="button" ref={menuRef} className="studio-menu-toggle" aria-expanded={drawerOpen} aria-controls="studio-drawer" aria-label="Menyuni ochish" onClick={()=>setDrawer(true)}><Menu size={22}/></button>}
+   <button type="button" className="pw-brand-link pw-header-brand" aria-label="Bosh sahifaga qaytish" disabled={inActivity} onClick={()=>navigate('home')}><PaperBrand className="studio-mobile-brand nav-brand"/><span className="sq-brand-note">{uiCopy.brand.tagline}</span></button>
+   {!inActivity&&<nav className="pw-top-links" aria-label="Asosiy bo‘limlar">{topLinks.map(link=><button type="button" key={link.id} aria-current={link.current?'page':undefined} onClick={()=>navigate(link.id)}>{link.label}</button>)}</nav>}
+   {inActivity&&<span className="session-label">{unfinished?'Mashq davom etmoqda':'Natijalar'}</span>}
+   {!inActivity&&<div className="nav-actions studio-top-actions">
+    <PaperButton variant="secondary" className="pw-join-trigger" onClick={()=>setJoinOpen(true)}>Kod bilan kirish <ArrowRight size={16}/></PaperButton>
+    {!authReady?<span role="status" className="sq-auth-loading">Hisob tekshirilmoqda…</span>:user?<>{staff&&<PaperButton variant="primary" className="sq-create-trigger" onClick={()=>navigate('createQuiz')}>Test yaratish <ArrowRight size={16}/></PaperButton>}<button type="button" className="studio-profile" onClick={()=>navigate(staff?'admin':'results')} aria-label={staff?'Boshqaruv paneli':'Profilim'}><UserRound size={18}/><span className="sq-header-profile-name">{user.name}<small>{roleLabel(user)}</small></span></button><button type="button" className="nav-logout" aria-label="Tizimdan chiqish" title="Hisobdan chiqish" onClick={onLogout}><LogOut size={19}/></button></>:<PaperButton variant="primary" className="teacher-entry" aria-label={uiCopy.auth.submit} onClick={()=>navigate('login')}><UserRound size={18}/><span className="sq-header-login-text">{uiCopy.auth.submit}</span></PaperButton>}
+   </div>}
+  </header><div id="studio-main" className="studio-content" tabIndex={-1} inert={blocked?true:undefined}>{children}</div></div>
+  {drawerOpen&&<><div className="studio-drawer-shade" onClick={()=>setDrawer(false)} aria-hidden="true"/><aside id="studio-drawer" ref={drawerRef} className="studio-drawer" role="dialog" aria-modal="true" aria-label="Bo‘limlar menyusi"><div><PaperBrand className="studio-brand"/><button type="button" aria-label="Menyuni yopish" onClick={()=>setDrawer(false)}><X size={22}/></button></div><form role="search" onSubmit={e=>{e.preventDefault();if(hasQuery&&matches[0])navigate(matches[0].id);}}><label className="sq-menu-search">Bo‘limni topish<input type="search" maxLength={100} placeholder="Fan, atlas yoki mashq…" value={query} onChange={e=>setQuery(e.target.value)}/></label></form>{hasQuery?<div className="sq-menu-results" aria-label="Qidiruv natijalari"><p role="status">{matches.length?matches.length+' ta mos bo‘lim':'Bo‘lim topilmadi.'}</p>{matches.map(r=><button type="button" key={r.key||r.id} onClick={()=>navigate(r.id)}>{r.label}<ArrowRight size={16}/></button>)}</div>:links()}<PaperButton className="pw-drawer-join" variant="primary" onClick={()=>{setDrawer(false);setJoinOpen(true)}}>Kod bilan kirish <ArrowRight size={17}/></PaperButton><div className="sq-drawer-settings"><ExperienceControls/></div><div className="sq-drawer-account"><UserRound size={20}/><span>{user?.name||'SinfQuiz'}<small>{roleLabel(user)}</small></span>{user?<PaperButton variant="quiet" onClick={()=>{setDrawer(false);onLogout()}} aria-label="Hisobdan chiqish"><LogOut size={18}/></PaperButton>:authReady&&<PaperButton variant="quiet" onClick={()=>navigate('login')}>Hisobga kirish</PaperButton>}</div></aside></>}
+  {!inActivity&&<nav className="studio-bottom-nav" aria-label="Tezkor bo‘limlar" inert={blocked?true:undefined}>{studioSections.filter(s=>['home','books','atlasHub','exerciseHub','results'].includes(s.id)).map(({id,label,icon:Icon})=><button type="button" key={id} className={active===id?'is-current':''} aria-current={active===id?'page':undefined} onClick={()=>navigate(id)}><Icon size={20}/><span>{id==='home'?'Bosh':id==='books'?'Darslar':label}</span></button>)}</nav>}
+  {!inActivity&&!['aiGuide','speaking'].includes(view)&&<button type="button" className="sp-guide-float sp-guide-float--robot" aria-label={uiCopy.help.title} aria-haspopup="dialog" onClick={()=>setHelpOpen(true)}><RobotAssistant size="mini"/><span>{uiCopy.help.title}<small>AI robot</small></span></button>}
+  <PaperDialog open={joinOpen&&!inActivity} onClose={()=>setJoinOpen(false)} title={uiCopy.join.title} description="Ustozingiz bergan 6 xonali kodni kiriting. Test kodi shaxsiy hisob paroli emas."><ClassJoinForm compact autoFocus onResolved={async entry=>{setJoinOpen(false);await onJoin(entry)}}/></PaperDialog>
+  <PaperDialog open={helpOpen&&!inActivity} onClose={()=>setHelpOpen(false)} title={uiCopy.help.title} className="sq-help-dialog">{helpOpen&&<React.Suspense fallback={<PaperSkeleton label="Yordam ochilmoqda…"/>}><CompactGuide compact user={user} currentView={view} onNavigate={navigate} onLogin={login}/></React.Suspense>}</PaperDialog>
  </div>;
 }
 

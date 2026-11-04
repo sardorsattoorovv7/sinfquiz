@@ -1,0 +1,32 @@
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (62.7141ms)
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (488.8431ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (351.0506ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (197.8245ms)
+  ✔ welcome is per account and routes to the separate guide (31.4257ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (53.4354ms)
+  ✔ compact help keeps the current section, has no nested main and uses only navigation mode (132.7ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (18.7182ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (44.1428ms)
+  ✔ Enter sends once, Shift+Enter and IME composition keep editing, and the robot follows real request state (93.9392ms)
+  ✔ a new-question request archives the active mock and asks for fresh consent before creating another (119.7685ms)
+  ✔ retrying a failed mock start keeps the same creation token instead of regenerating and charging for another variant (137.9358ms)
+  ✔ expired recordings cannot open the microphone, but a saved audio draft remains uploadable (19.6766ms)
+  ✔ an expired mock offers a fresh test without deleting saved work or silently restarting its clock (104.9419ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (43.4977ms)
+  ✔ progress excludes rehearsed, typed and revised samples (7.0349ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (6192.1872ms)
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (283.4271ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (51.0631ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (5.9208ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (27.7935ms)
+✔ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (6.7861ms)
+✔ a pending generated practice question survives an interrupted exposure write without a second AI call (5.5194ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9333.7623

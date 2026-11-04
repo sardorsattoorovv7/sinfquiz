@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "description": "Initial HTML scripts, modulepreloads and stylesheets; compressed sizes are estimates.",
+  "javascript": {
+    "files": 5,
+    "bytes": 361879,
+    "gzip": 114082,
+    "brotli": 98221
+  },
+  "css": {
+    "files": 2,
+    "bytes": 118025,
+    "gzip": 21147,
+    "brotli": 18135
+  },
+  "assets": [
+    {
+      "url": "/seo.css",
+      "kind": "css",
+      "bytes": 3840,
+      "gzip": 1366,
+      "brotli": 1125
+    },
+    {
+      "url": "/theme-init.js",
+      "kind": "js",
+      "bytes": 430,
+      "gzip": 273,
+      "brotli": 214
+    },
+    {
+      "url": "/assets/index-DU-4Pdpg.js",
+      "kind": "js",
+      "bytes": 103840,
+      "gzip": 33294,
+      "brotli": 29029
+    },
+    {
+      "url": "/assets/rolldown-runtime-hePW80VL.js",
+      "kind": "js",
+      "bytes": 716,
+      "gzip": 428,
+      "brotli": 381
+    },
+    {
+      "url": "/assets/react-CR5VJ85Q.js",
+      "kind": "js",
+      "bytes": 218840,
+      "gzip": 67387,
+      "brotli": 58048
+    },
+    {
+      "url": "/assets/icons-VO5gUM4F.js",
+      "kind": "js",
+      "bytes": 38053,
+      "gzip": 12700,
+      "brotli": 10549
+    },
+    {
+      "url": "/assets/index-C-jaxPTi.css",
+      "kind": "css",
+      "bytes": 114185,
+      "gzip": 19781,
+      "brotli": 17010
+    }
+  ],
+  "budget": {
+    "javascriptBytes": 420000,
+    "javascriptGzip": 135000,
+    "cssBytes": 150000,
+    "cssGzip": 30000,
+    "passed": true
+  }
+}

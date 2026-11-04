@@ -7,3 +7,5 @@ public/python-runtime/*
 !.env.example
 data/db.json
 data/db.json.tmp
+# Local database snapshot generated during QA.
+qa-notebook/typing-normalization-plan.json

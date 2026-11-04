@@ -1,0 +1,244 @@
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (7589.7816ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (8377.2337ms)
+WebSocket server error: Port 24678 is already in use
+✖ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (15451.7179ms)
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (12261.74ms)
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (19989.6283ms)
+▶ real service and durable worker flow, with controlled Groq HTTP fixtures
+  ✔ no baseline means no fake roadmap or practice diagnosis (75.0766ms)
+  ✔ server starts timing when the question is revealed; reload does not restart it (1.9875ms)
+  ✔ finish is idempotent and another user cannot read private entities (3.7762ms)
+  ✔ private audio -> original transcript -> validated partial assessment -> queued roadmap (103.495ms)
+  ✔ personal roadmap and user-local daily plan persist without repeat AI GET calls (26.1742ms)
+  ✔ today vocabulary is an explicit idempotent job; viewing/recall cannot grant mastery (15.9439ms)
+  ✔ manual transcript revision preserves original baseline and creates a separate analysis (17.1384ms)
+  ✔ typed practice stays separate; a model-viewed repeat cannot become a fresh diagnosis (33.9052ms)
+  ✔ guide AI is grounded in student routes and has durable history (9.3062ms)
+  ✔ weekly mini-check has three fresh timed tasks and its own attempt kind (12.0111ms)
+  ✔ audio deletion removes private object but explicitly retains transcript (4.0772ms)
+  ✔ export is owner-scoped and privacy purge preserves another account (6.7886ms)
+✔ real service and durable worker flow, with controlled Groq HTTP fixtures (378.7325ms)
+✔ missing provider key cannot enqueue fake assessments and keeps the recorded attempt (0.8028ms)
+✔ baseline survives long practice history and is never reclassified by pagination (11.7259ms)
+✔ 429/timeout retry reuses original ASR and fails in bounded durable attempts (2.9194ms)
+✔ ffprobe checks real WAV bytes and rejects corrupt recordings without asking a model (2963.4509ms)
+✔ retention sweep deletes only expired audio while transcripts survive (2.2869ms)
+✔ corrected transcript and rehearsed answer never award active mastery (1.3587ms)
+✔ ielts: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (230.0273ms)
+✔ multilevel: fresh mocks remain different beyond six variants; reload preserves the active question and deadline (101.8277ms)
+✔ generated format is fixed by server slots, and duplicate or malformed questions are rejected (6.6628ms)
+✔ a failed question registry write reuses the cached generated variant without another model call (44.2805ms)
+✖ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (23.5664ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 27
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55846.3925
+
+✖ failing tests:
+
+test at tests\performance.test.js:16:1
+✖ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (15451.7179ms)
+  Error: Unable to find role="heading" and name "Barcha testlar"
+
+  Ignored nodes: comments, script, style
+  <div>
+    <div
+      class="app-shell studio-app paper-workshop "
+    >
+      <a
+        class="studio-skip"
+        href="#studio-main"
+      >
+        Asosiy mazmunga o‘tish
+      </a>
+      <div
+        class="studio-body"
+      >
+        <header
+          aria-label="Asosiy navigatsiya"
+          class="site-nav studio-topbar"
+        >
+          <button
+            aria-controls="studio-drawer"
+            aria-expanded="false"
+            aria-label="Menyuni ochish"
+            class="studio-menu-toggle"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-menu"
+              fill="none"
+              height="22"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 5h16"
+              />
+              <path
+                d="M4 12h16"
+              />
+              <path
+                d="M4 19h16"
+              />
+            </svg>
+          </button>
+          <button
+            aria-label="Bosh sahifaga qaytish"
+            class="pw-brand-link pw-header-brand"
+            type="button"
+          >
+            <span
+              aria-label="SinfQuiz"
+              class="paper-brand studio-mobile-brand nav-brand"
+              role="img"
+            >
+              <span
+                aria-hidden="true"
+                class="paper-brand-mark"
+              >
+                SQ
+              </span>
+              <span>
+                SinfQuiz
+              </span>
+            </span>
+            <span
+              class="sq-brand-note"
+            />
+          </button>
+          <nav
+            aria-label="Asosiy bo‘limlar"
+            class="pw-top-links"
+          >
+            <button
+              type="button"
+            >
+              Fanlar
+            </button>
+            <button
+              type="button"
+            >
+              3D Atlas
+            </button>
+            <button
+              type="button"
+            >
+              AI Speaking
+            </button>
+            <button
+              type="button"
+            >
+              Natijalar
+            </button>
+          </nav>
+          <div
+            class="nav-actions studio-top-actions"
+          >
+            <button
+              class="pw-button pw-button--secondary pw-join-trigger"
+              type="button"
+            >
+              Kod bilan kirish
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-arrow-right"
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h14"
+                />
+                <path
+                  d="m12 5 7 7-7 7"
+                />
+              </svg>
+            </button>
+            <button
+              class="pw-button pw-button--primary sq-create-trigger"
+              type="button"
+            >
+              Test yaratish
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-arrow-right"
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h14"
+                />
+                <path
+                  d="m12 5 7 7-7 7"
+                />
+              </svg>
+            </button>
+            <button
+              aria-label="Boshqaruv paneli"
+              class="studio-profile"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-user-round lucide-user-2"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="5"[39...
+      at waitForWrapper (C:\Users\HP\OneDrive\Desktop\sinf-quiz\node_modules\@testing-library\dom\dist\wait-for.js:163:27)
+      at TestContext.<anonymous> (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/tests/performance.test.js:40:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    name: 'TestingLibraryElementError'
+  }
+
+test at tests\speaking-variants.test.js:58:1
+✖ practice gets a new generated prompt after the original pool, and aided re-recording still resolves its question (23.5664ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert.ok(fresh.question.id.startsWith('sp-new-'))
+
+      at TestContext.<anonymous> (file:///C:/Users/HP/OneDrive/Desktop/sinf-quiz/tests/speaking-variants.test.js:62:58)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

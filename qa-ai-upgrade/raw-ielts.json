@@ -1,0 +1,65 @@
+{
+  "title": "IELTS Speaking Practice",
+  "questions": {
+    "q1": {
+      "prompt": "What is your favorite season and why?"
+    },
+    "q2": {
+      "prompt": "Describe a memorable meal you had recently."
+    },
+    "q3": {
+      "prompt": "What kind of music do you enjoy listening to?"
+    },
+    "q4": {
+      "prompt": "Do you prefer reading books or watching movies? Explain."
+    },
+    "q5": {
+      "prompt": "What is a hobby you would like to try in the future?"
+    },
+    "q6": {
+      "prompt": "Describe a person who has influenced you."
+    },
+    "q7": {
+      "prompt": "What is the most useful skill you have learned?"
+    },
+    "q8": {
+      "prompt": "Do you think technology has made life easier or more complicated?"
+    },
+    "q9": {
+      "prompt": "What is a tradition in your family that you cherish?"
+    },
+    "q10": {
+      "prompt": "Describe a place you would like to visit and explain why."
+    },
+    "q11": {
+      "prompt": "Talk about a time when you helped someone in need.",
+      "taskPoints": {
+        "p1": "Describe the situation and your role.",
+        "p2": "Explain why you decided to help.",
+        "p3": "Describe the outcome and how it made you feel.",
+        "p4": "Reflect on what you learned from the experience."
+      }
+    },
+    "q12": {
+      "prompt": "What are the benefits of learning a second language?"
+    },
+    "q13": {
+      "prompt": "How does the environment affect people's health?"
+    },
+    "q14": {
+      "prompt": "Do you think schools should teach financial literacy? Why?"
+    },
+    "q15": {
+      "prompt": "What are the advantages and disadvantages of working from home?"
+    },
+    "q16": {
+      "prompt": "How can cities reduce traffic congestion?"
+    },
+    "q17": {
+      "prompt": "What role does art play in society?"
+    },
+    "q18": {
+      "prompt": "Do you believe that volunteering is important for personal growth? Explain."
+    }
+  }
+}

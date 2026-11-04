@@ -1,0 +1,66 @@
+▶ assistant browser transport authenticates, propagates cancellation and preserves useful errors
+  ✔ anonymous and signed-out users never send a provider request (4.5114ms)
+  ✔ sends the signed-in session only to the same-origin server endpoint (11.8191ms)
+  ✔ keeps retry metadata and rejects malformed successful responses (3.9001ms)
+  ✔ long multilingual conversations keep the current question and exact quiz choices within the server byte limit (3.526ms)
+  ✔ cancellation stays distinct from network failures (0.9767ms)
+✔ assistant browser transport authenticates, propagates cancellation and preserves useful errors (8325.8861ms)
+✔ assistant input keeps six recent turns and refuses system history or oversized text (5.1829ms)
+✔ assistant response is strict JSON and suggests only actor-approved routes (4.4447ms)
+✔ quiz output requires 3–5 valid questions with four distinct options and a valid answer (4.3764ms)
+✔ real Groq request contract keeps secrets on server and handles malformed output (62.0941ms)
+✔ assistant handler validates origin, authentication and byte limits before AI use (3.9363ms)
+✔ provider status never exposes credentials and unknown failures are sanitized (1.5036ms)
+✔ limiter isolates users, resets minutes and days, and bounds the number of actors (1.6452ms)
+✔ handler throttles repeated calls and sends retry guidance (1.7904ms)
+✔ shared assistant quotas reserve daily and minute budgets across server instances (0.9293ms)
+✔ shared quota falls back only for absent credentials or schema, and fails closed otherwise (2.0601ms)
+✔ handler never calls AI after shared quota rejection and accepts an injected reserve hook (1.6597ms)
+WebSocket server error: Port 24678 is already in use
+▶ AI teacher uses actual location and turns completed diagnostic answers into the next lesson
+  ✔ selecting an atlas cannot change the actual page sent to the teacher (1573.6531ms)
+  ✔ five answers are collected before revealing feedback, and a follow-up sends exact mistakes (2397.9879ms)
+  ✔ compact help can request a diagnostic without switching modes (365.3115ms)
+✔ AI teacher uses actual location and turns completed diagnostic answers into the next lesson (13189.107ms)
+✔ current page, previous page and guide selection remain distinct and role-scoped (6.6042ms)
+✔ where am I answers the real page immediately, without a model or a fabricated atlas lesson (4.7296ms)
+✔ local location help still authenticates, but skips paid/shared AI quotas (1.9436ms)
+✔ mentor diagnostic enforces five distinct questions with reviewed difficulty order and topic metadata (10.6436ms)
+✔ a vague level-check request asks for the subject, while an established topic remains available to the teacher (1.1973ms)
+✔ a diagnostic is scored only after five choices, and a foundation gap is reflected in the next step (1.8224ms)
+✔ next teacher turn receives actual missed skills and choices; inflated totals and claimed level are discarded (5.9328ms)
+✔ teacher replies replace internal camelCase route identifiers with visible page labels (1.1544ms)
+✔ a generic question stem with new answer content is a new exercise, not a technical failure (1.5967ms)
+✔ an accidental repeated exercise is regenerated once within the original time budget (2.9778ms)
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (7487.4307ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (6454.3651ms)
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (9632.5936ms)
+✔ AI screens avoid the teaching catalog and live subscriptions; the dashboard loads them only when opened (7956.5553ms)
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (11270.2082ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (10.0329ms)
+WebSocket server error: Port 24678 is already in use
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (1072.6637ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (538.3149ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (500.2092ms)
+  ✔ welcome is per account and routes to the separate guide (34.5686ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (97.2482ms)
+  ✔ compact help keeps the current section, has no nested main and starts a context-aware teacher conversation (434.8934ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (40.7231ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (70.1155ms)
+  ✔ Enter sends once, Shift+Enter and IME composition keep editing, and the robot follows real request state (260.3058ms)
+  ✔ a new-question request archives the active mock and asks for fresh consent before creating another (360.2774ms)
+  ✔ retrying a failed mock start keeps the same creation token instead of regenerating and charging for another variant (334.3372ms)
+  ✔ expired recordings cannot open the microphone, but a saved audio draft remains uploadable (47.2825ms)
+  ✔ an expired mock offers a fresh test without deleting saved work or silently restarting its clock (206.5429ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (62.998ms)
+  ✔ progress excludes rehearsed, typed and revised samples (9.4374ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (12083.0001ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52817.2522

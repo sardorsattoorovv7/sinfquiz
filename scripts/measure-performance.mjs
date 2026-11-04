@@ -21,7 +21,7 @@ const assets=[...urls].map(url=>{
 const sum=kind=>assets.filter(a=>a.kind===kind).reduce((out,a)=>({files:out.files+1,bytes:out.bytes+a.bytes,gzip:out.gzip+a.gzip,brotli:out.brotli+a.brotli}),{files:0,bytes:0,gzip:0,brotli:0});
 const report={schemaVersion:1,description:'Initial HTML scripts, modulepreloads and stylesheets; compressed sizes are estimates.',javascript:sum('js'),css:sum('css'),assets};
 if(process.argv.includes('--check')){
- report.budget={javascriptBytes:650000,javascriptGzip:200000,cssBytes:380000,cssGzip:75000};
+ report.budget={javascriptBytes:420000,javascriptGzip:135000,cssBytes:150000,cssGzip:30000};
  report.budget.passed=report.javascript.bytes<=report.budget.javascriptBytes&&report.javascript.gzip<=report.budget.javascriptGzip&&report.css.bytes<=report.budget.cssBytes&&report.css.gzip<=report.budget.cssGzip;
  if(!report.budget.passed)process.exitCode=1;
 }

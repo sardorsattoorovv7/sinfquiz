@@ -1,0 +1,18 @@
+.sp-current-page{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin:0 0 20px;padding:12px 16px;border:1px solid var(--sp-line);border-radius:10px;color:var(--sp-muted);font-size:14px;background:var(--sp-tint)}
+.sp-current-page strong{color:var(--sp-ink)}
+.sp-guide :is(button,input,textarea,legend,[tabindex="-1"]){scroll-margin-block:110px 24px}
+.sp-diagnostic h3{margin:18px 0 8px;font-size:22px;line-height:1.4;color:var(--sp-ink)}
+.sp-diagnostic-band{font-weight:700;color:var(--sp-ink)}
+.sp-diagnostic-progress{display:flex;align-items:center;gap:16px;margin:20px 0;color:var(--sp-ink);font-size:14px;font-weight:600}
+.sp-diagnostic-progress progress{flex:1;min-width:40px;max-width:220px;height:8px;accent-color:var(--sp-action)}
+.sp-diagnostic legend:focus,.sp-diagnostic h3:focus{outline:2px solid var(--sp-orange);outline-offset:5px}
+.sp-diagnostic .sp-actions{margin-top:16px}
+.sp-diagnostic-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.sp-diagnostic-skills>div,.sp-diagnostic-plan{padding:16px;background:var(--sp-tint);border:1px solid var(--sp-line);border-radius:10px}
+.sp-diagnostic-skills ul{padding-left:20px;margin:10px 0 0;line-height:1.7}
+.sp-diagnostic-plan p{margin:10px 0 0;line-height:1.7}
+.sp-diagnostic details{margin-top:24px}
+.sp-diagnostic summary{cursor:pointer;font-weight:600;padding:8px 0;color:var(--sp-ink)}
+.sp-diagnostic-review{padding:16px 0;border-bottom:1px solid var(--sp-line)}
+.sp-diagnostic-review p{margin:8px 0 0;line-height:1.6}
+@media(max-width:600px){.sp-diagnostic-skills{grid-template-columns:1fr}.sp-diagnostic .sp-actions .sp-btn{width:100%}}

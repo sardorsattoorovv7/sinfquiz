@@ -1,0 +1,47 @@
+✔ database SDK is deferred, retries client initialization, and shares concurrent auth work (9645.0383ms)
+✔ deferred API transport preserves requests and never attaches a cancelled subscription (10215.3412ms)
+✔ Scientific notebook tokens keep readable text, actions, status and focus in both themes (114.1818ms)
+WebSocket server error: Port 24678 is already in use
+8:45:00 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+8:45:08 AM [vite] (client) [optimizer] scanning dependencies...
+✔ Public home presents code entry first and routes all real subjects, atlas and Speaking actions (19203.7205ms)
+8:45:15 AM [vite] (client) [optimizer] bundling dependencies...
+8:45:18 AM [vite] (client) [optimizer] scanning dependencies...
+✔ Notebook navigation retains role-specific controls, mobile routes, search, theme and focus restoration (12834.9014ms)
+8:45:28 AM [vite] (client) [optimizer] bundling dependencies...
+8:45:31 AM [vite] (client) [optimizer] scanning dependencies...
+✔ Code dialog preserves failed input and leading zeroes, deduplicates submit, cancels late navigation and restores focus (9338.1975ms)
+8:45:38 AM [vite] (client) [optimizer] bundling dependencies...
+8:45:42 AM [vite] (client) [optimizer] scanning dependencies...
+8:45:49 AM [vite] (client) [optimizer] bundling dependencies...
+✔ Home and code dialog keep accessible form names and modal semantics (13290.2183ms)
+WebSocket server error: Port 24678 is already in use
+✔ home and its code form paint before auth, then navigation remains available while the teacher catalog loads (13998.3417ms)
+WebSocket server error: Port 24678 is already in use
+✔ the piano reuses a static canvas, redraws on resize/theme and keeps playback progress live (18064.2607ms)
+✔ speaking styles parse and retain keyboard, small-screen and reduced-motion rules (21.4394ms)
+8:46:01 AM [vite] (client) [optimizer] scanning dependencies...
+8:46:07 AM [vite] (client) [optimizer] bundling dependencies...
+▶ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report
+  ✔ direct guide uses an allowed route, filters staff routes and sends only conversational context (1776.2228ms)
+  ✔ quiz hides explanations until a choice, then locks the answer and reports practice score (1146.76ms)
+  ✔ failed and cancelled AI requests preserve the draft and never append a late answer (719.0682ms)
+  ✔ welcome is per account and routes to the separate guide (74.2464ms)
+  ✔ missing key shows honest setup state and no invented baseline plan (143.2994ms)
+  ✔ compact help keeps the current section, has no nested main and uses only navigation mode (482.778ms)
+  ✔ guest Speaking starts through sign-in and does not pretend personal practice is already available (70.817ms)
+  ✔ switching exam mode aborts old loading and a late previous response cannot replace the current screen (128.484ms)
+  ✔ Enter sends once, Shift+Enter and IME composition keep editing, and the robot follows real request state (312.4454ms)
+  ✔ expired recordings cannot open the microphone, but a saved audio draft remains uploadable (69.0396ms)
+  ✔ an expired mock offers a fresh test without deleting saved work or silently restarting its clock (435.0821ms)
+  ✔ report renders exact correction and labels pronunciation unavailable without an overall score (101.9797ms)
+  ✔ progress excludes rehearsed, typed and revised samples (18.4924ms)
+✔ actual React screens: role-aware guide, per-account welcome, onboarding and evidence report (17535.3637ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81573.8214
