@@ -28,5 +28,23 @@ export async function groqRequest(path,body,{fetcher=fetch,env=process.env,sleep
  }
  throw new AiError('GROQ_FAILED','AI so‘rovi tugamadi.',503,true);
 }
-export async function structured(prompt,data,schema,{model,env=process.env,fetcher=fetch,maxTokens=7000,totalTimeoutMs=Infinity,maxAttempts=3}={}){const c=requireGroq(env),result=await groqRequest('/chat/completions',{model:model||c.assessment,messages:[{role:'system',content:prompt},{role:'user',content:JSON.stringify(data)}],temperature:.2,max_completion_tokens:maxTokens,reasoning_effort:'low',response_format:{type:'json_schema',json_schema:{name:'sinfquiz_response',strict:true,schema}}},{env,fetcher,totalTimeoutMs,maxAttempts});let value;try{value=JSON.parse(result.choices?.[0]?.message?.content||'');validateSchema(value,schema);}catch{throw new AiError('AI_INVALID_OUTPUT','AI javobi tekshiruvdan o‘tmadi. Saqlangan javob bilan qayta urinib ko‘ring.',502,true);}return {value,usage:result.usage||{},model:model||c.assessment};}
+export async function structured(prompt,data,schema,{model,env=process.env,fetcher=fetch,messages=[{role:'user',content:JSON.stringify(data)}],maxTokens=7000,totalTimeoutMs=Infinity,maxAttempts=3}={}){
+ const chosenModel=model||requireGroq(env).assessment;
+ const result=await groqRequest('/chat/completions',{
+  model:chosenModel,
+  messages:[{role:'system',content:prompt},...messages],
+  temperature:.2,
+  max_completion_tokens:maxTokens,
+  reasoning_effort:'low',
+  response_format:{type:'json_schema',json_schema:{name:'sinfquiz_response',strict:true,schema}},
+ },{env,fetcher,totalTimeoutMs,maxAttempts});
+ let value;
+ try{
+  value=JSON.parse(result.choices?.[0]?.message?.content||'');
+  validateSchema(value,schema);
+ }catch{
+  throw new AiError('AI_INVALID_OUTPUT','AI javobi tekshiruvdan o‘tmadi. Saqlangan javob bilan qayta urinib ko‘ring.',502,true);
+ }
+ return {value,usage:result.usage||{},model:chosenModel};
+}
 export async function transcribe(bytes,{mime,name,practice=false,env=process.env,fetcher=fetch}={}){const c=requireGroq(env),form=new FormData(),model=practice?c.practiceTranscription:c.transcription;form.set('file',new Blob([bytes],{type:mime}),name);form.set('model',model);form.set('language','en');form.set('response_format','verbose_json');form.append('timestamp_granularities[]','segment');form.append('timestamp_granularities[]','word');form.set('temperature','0');const data=await groqRequest('/audio/transcriptions',form,{env,fetcher,timeoutMs:120000});if(typeof data.text!=='string'||data.text.length>60000)throw new AiError('ASR_INVALID','Transkript to‘liq olinmadi.',502,true);return {text:data.text,words:Array.isArray(data.words)?data.words:[],segments:Array.isArray(data.segments)?data.segments:[],model,uncertain:!data.text.trim()||(data.segments||[]).some(s=>Number(s.no_speech_prob)>.6||Number(s.avg_logprob)<-1)};}

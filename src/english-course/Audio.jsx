@@ -10,13 +10,39 @@ export function Audio({src,transcript='',onHeard=()=>{},label='Tinglash',synthet
  return <div className="en-audio"><b>{label}</b><audio ref={ref} src={src} preload="none" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onEnded={()=>{setPlaying(false);onHeard()}} onLoadedMetadata={()=>setDuration(ref.current.duration)} onTimeUpdate={()=>setTime(ref.current.currentTime)} onError={()=>{setError('Audio yuklanmadi. Qayta urinib ko‘ring.');setPlaying(false)}}/><div className="en-audio-row"><button className="en-primary" type="button" onClick={play}>{playing?<Pause size={17}/>:<Play size={17}/>} {playing?'To‘xtatish':'Tinglash'}</button><button type="button" onClick={()=>{ref.current.load();setError('');ref.current.currentTime=0;playIfPaused()}}><RotateCcw size={16}/> Qayta tinglash</button><button type="button" onClick={repeat}>6 soniya orqaga</button></div><label>Tinglash jarayoni <input aria-label="Audio vaqtini tanlash" type="range" min="0" max={duration||1} value={time} step="0.1" onChange={e=>{ref.current.currentTime=+e.target.value}}/></label><div className="en-audio-row"><label>Tezlik <select value={rate} onChange={e=>{setRate(+e.target.value);ref.current.playbackRate=+e.target.value}}>{[.75,1,1.25,1.5].map(v=><option key={v} value={v}>{v}×</option>)}</select></label><label>Ovoz <input type="range" min="0" max="1" step=".1" value={volume} onChange={e=>{setVolume(+e.target.value);ref.current.volume=+e.target.value}}/></label><span>{Math.floor(time)} / {Math.floor(duration)} s</span></div>{synthetic&&<small>Flite sun’iy ovozi. Asosiy mashq uchun original yozuv.</small>}{error&&<p role="alert" className="en-error">{error}</p>}{transcript&&<><button type="button" className="en-link" aria-expanded={text} onClick={()=>setText(!text)}>{text?'Transkriptni yopish':'Transkriptni ochish'}</button>{text&&<p lang="en">{transcript}</p>}</>}</div>
 }
 const noop = () => {};
-export function Recorder({uid, id, value = {}, onChange = noop, onUploaded, onBusyChange = noop, readonly = false, disabled = false}) {
+const duration = seconds => Number.isFinite(seconds) && seconds > 0 ? Math.min(240, Math.ceil(seconds)) : 120;
+const clockLabel = seconds => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+
+export function SpeakingTask({task, criteria, title = 'Gapirish topshirig‘i', ...recording}) {
+ const seconds = duration(task.seconds);
+ return <div className="en-oral-task">
+  <header className="en-oral-card">
+   <div><span className="en-eyebrow">OG‘ZAKI JAVOB</span><h2>{title}</h2></div>
+   <span className="en-oral-time">{clockLabel(seconds)} <small>javob vaqti</small></span>
+   <p>{task.task}</p>
+   {Array.isArray(task.prompts) && task.prompts.length > 0 && <ul>{task.prompts.map(prompt => <li key={prompt}>{prompt}</li>)}</ul>}
+  </header>
+  <Recorder {...recording} responseSeconds={seconds}/>
+  {Array.isArray(criteria) && criteria.length > 0 && <details>
+   <summary>Ustoz tekshiradigan mezonlar</summary>
+   <ul>{criteria.map(criterion => <li key={criterion}>{criterion}</li>)}</ul>
+  </details>}
+ </div>;
+}
+
+export function Recorder({uid, id, value = {}, onChange = noop, onUploaded, onBusyChange = noop, readonly = false, disabled = false, responseSeconds = 240}) {
  const key = `${uid}:${id}`, recorder = useRef(null), stream = useRef(null), clock = useRef(null);
+ const deadlineTimer = useRef(null), limit = duration(responseSeconds);
  const alive = useRef(false), generation = useRef(0), lock = useRef(false), pendingUpload = useRef(null);
  const callbacks = useRef({onChange, onUploaded, onBusyChange}); callbacks.current = {onChange, onUploaded, onBusyChange};
  const [blob, setBlob] = useState(null), [localUrl, setLocalUrl] = useState(''), [remoteUrl, setRemoteUrl] = useState('');
  const [status, setStatus] = useState('idle'), [seconds, setSeconds] = useState(0), [error, setError] = useState(''), [note, setNote] = useState(value.note || '');
- const stopTracks = () => { clearInterval(clock.current); stream.current?.getTracks().forEach(track => track.stop()); stream.current = null; };
+ const stopTracks = () => {
+  clearInterval(clock.current);
+  clearTimeout(deadlineTimer.current);
+  stream.current?.getTracks().forEach(track => track.stop());
+  stream.current = null;
+ };
  const markBusy = active => callbacks.current.onBusyChange(active);
  useEffect(() => {
   alive.current = true; const current = ++generation.current; setBlob(null); setRemoteUrl(''); setStatus('idle'); pendingUpload.current = null;
@@ -59,7 +85,12 @@ export function Recorder({uid, id, value = {}, onChange = noop, onUploaded, onBu
    const activeRecorder = new MediaRecorder(microphone, type ? {mimeType: type} : {}), chunks = []; recorder.current = activeRecorder;
    activeRecorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
    activeRecorder.onstop = async () => {
-    clearInterval(clock.current); microphone.getTracks().forEach(track => track.stop());
+    if (recorder.current === activeRecorder) {
+     clearInterval(clock.current);
+     clearTimeout(deadlineTimer.current);
+    }
+    microphone.getTracks().forEach(track => track.stop());
+    if (stream.current === microphone) stream.current = null;
     const recording = new Blob(chunks, {type: activeRecorder.mimeType || 'audio/webm'});
     if (!recording.size) { if (alive.current && generation.current === current) { setError('Yozuv bo‘sh. Mikrofonni tekshirib, qayta yozing.'); setStatus('idle'); lock.current = false; markBusy(false); } return; }
     // Save the clip even if a browser navigation interrupted the component.
@@ -70,8 +101,16 @@ export function Recorder({uid, id, value = {}, onChange = noop, onUploaded, onBu
     setStatus('idle'); lock.current = false; markBusy(false);
    };
    activeRecorder.onerror = () => { if (alive.current) setError('Mikrofon bilan aloqa uzildi. Yozuvni tekshirib, qayta urinib ko‘ring.'); finish(); };
-   activeRecorder.start(); setStatus('recording'); setSeconds(0); let elapsed = 0;
-   clock.current = setInterval(() => { elapsed++; if (alive.current) setSeconds(elapsed); if (elapsed >= 240) finish(); }, 1000);
+   activeRecorder.start();
+   setStatus('recording');
+   setSeconds(limit);
+   const deadline = performance.now() + limit * 1000;
+   clock.current = setInterval(() => {
+    const remaining = Math.max(0, Math.ceil((deadline - performance.now()) / 1000));
+    if (alive.current) setSeconds(remaining);
+    if (remaining === 0) finish();
+   }, 200);
+   deadlineTimer.current = setTimeout(finish, limit * 1000);
   } catch (e) {
    if (!alive.current || generation.current !== current) return;
    stopTracks(); lock.current = false; markBusy(false); setStatus('idle');
@@ -95,7 +134,9 @@ export function Recorder({uid, id, value = {}, onChange = noop, onUploaded, onBu
  const extension = {'audio/mp4': 'm4a', 'audio/ogg': 'ogg', 'audio/wav': 'wav'}[blob?.type.split(';')[0]] || 'webm';
  const busy = status !== 'idle';
  return <div className="en-recorder">
-  {!readonly && <><p>Yozuv avval shu brauzerda qoladi. “Yozuvni yuborish”ni bosgach hisobingizga saqlanadi.</p><div className="en-actions">
+  {!readonly && <><p>Yozish boshlangach vaqt hisoblanadi. Muddat tugasa yozuv to‘xtaydi. Tayyor audioni ustoz tekshiruviga yuborishingiz mumkin.</p>
+  {status === 'recording' && <div className="en-oral-clock"><span>Qolgan vaqt</span><strong role="timer" aria-label="Javob uchun qolgan vaqt">{clockLabel(seconds)}</strong></div>}
+  <div className="en-actions">
    <button type="button" disabled={disabled || busy && status !== 'recording'} onClick={status === 'recording' ? finish : start}>{status === 'recording' ? <Square size={17}/> : <Mic size={17}/>} {status === 'recording' ? `To‘xtatish · ${seconds}s` : status === 'requesting' ? 'Mikrofon ruxsati kutilmoqda…' : 'Ovoz yozish'}</button>
    {status === 'requesting' && <button type="button" onClick={cancelRequest}>Yozishni bekor qilish</button>}
    {blob && status !== 'recording' && <><button type="button" disabled={disabled || busy} onClick={send}><Upload size={16}/>{status === 'uploading' ? 'Yuborilmoqda…' : 'Yozuvni yuborish'}</button><a className="en-button" href={localUrl} download={`speaking.${extension}`}><Download size={16}/> Yuklab olish</a><button type="button" disabled={disabled || busy} onClick={async () => { try { await clip(key, null); setBlob(null); pendingUpload.current = null; } catch (e) { setError(e.message); } }}><Trash2 size={16}/> Lokal yozuvni o‘chirish</button></>}

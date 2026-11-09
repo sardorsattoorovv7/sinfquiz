@@ -4,11 +4,13 @@ import {mkdirSync,writeFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {chromium} from 'playwright';
 
-const origin=process.env.AI_QA_URL||'http://127.0.0.1:5173',out=join(process.cwd(),'qa-ai-integration');mkdirSync(out,{recursive:true});
+const origin=process.env.AI_QA_URL||'http://127.0.0.1:5173',out=process.env.AI_QA_DIR||join(process.cwd(),'qa-ai-integration');mkdirSync(out,{recursive:true});
 const installedChrome='C:/Program Files/Google/Chrome/Application/chrome.exe';
 const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:existsSync(installedChrome)?{executablePath:installedChrome}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
 const page=await browser.newPage({viewport:{width:1440,height:1050},reducedMotion:'reduce'}),errors=[],requests=[],checks=[],accessibility=[];
 const actor={id:'c44dd92f-2ca0-4f56-ae39-daf493b5d50a',name:'AI sinov o‘quvchisi',role:'student'};
+const openQuestion='Answer in English. Give Python code and a table of examples.';
+const formattedAnswer=['### Doubling numbers','','```python','def double(number):','    return number * 2','```','','| Input | Output |','| --- | --- |','| 2 | 4 |','','![External image](/blocked-image.png)'].join('\n');
 let failNext=false,delayNext=false;
 page.on('pageerror',e=>errors.push(e.message));
 await page.addInitScript(()=>{window.__SINFQUIZ_LEGACY_TEST__=true;localStorage.setItem('sq_theme','light');});
@@ -21,7 +23,7 @@ await page.route(/\/(auth|api)\//,async route=>{
    const input=request.postDataJSON();requests.push(input);assert.match(request.headers().authorization||'',/^Bearer /);
    if(failNext){failNext=false;return route.fulfill({status:503,json:{error:'Sinov: aloqa vaqtincha uzildi.',code:'GROQ_NETWORK',retryable:true}});}
    if(delayNext){delayNext=false;await new Promise(resolve=>setTimeout(resolve,1000));}
-   data={answerUz:input.mode==='quiz'?'Hujayra bo‘yicha uchta mashq savoli.':input.mode==='tutor'?'Hujayra tirik organizmning asosiy tuzilish birligi. Uni kichik ustaxona deb tasavvur qiling.':'Biologiya bo‘limini oching va organ yoki mavzuni tanlang.',routeIds:['guide','mentor'].includes(input.mode)?['biology','admin','invented']:[],questions:input.mode==='quiz'?Array.from({length:3},(_,i)=>({question:`Hujayra mashqi ${i+1}: energiya ishlab chiqaruvchi organoid qaysi?`,options:['Yadro','Mitoxondriya','Ribosoma','Golji apparati'],correctIndex:1,explanationUz:`${i+1}-izoh: mitoxondriya hujayrada energiya almashinuvida qatnashadi.`})):[]};
+   data=input.message===openQuestion?{answerUz:formattedAnswer,routeIds:[],questions:[]}:{answerUz:input.mode==='quiz'?'Hujayra bo‘yicha uchta mashq savoli.':input.mode==='tutor'?'Hujayra tirik organizmning asosiy tuzilish birligi. Uni kichik ustaxona deb tasavvur qiling.':'Biologiya bo‘limini oching va organ yoki mavzuni tanlang.',routeIds:['guide','mentor'].includes(input.mode)?['biology','admin','invented']:[],questions:input.mode==='quiz'?Array.from({length:3},(_,i)=>({question:`Hujayra mashqi ${i+1}: energiya ishlab chiqaruvchi organoid qaysi?`,options:['Yadro','Mitoxondriya','Ribosoma','Golji apparati'],correctIndex:1,explanationUz:`${i+1}-izoh: mitoxondriya hujayrada energiya almashinuvida qatnashadi.`})):[]};
   }
  }
  try{await route.fulfill({json:data});}catch(error){if(!/closed|cancel|abort/i.test(error.message))throw error;}
@@ -37,11 +39,21 @@ try{
  const input=page.getByRole('textbox',{name:'Savolingiz',exact:true}),send=page.getByRole('button',{name:'Yordamchidan so‘rash',exact:true});
  assert.ok(await page.locator('.sp-guide-robot .sq-robot').isVisible());
  await input.fill('Biologiya bo‘limini qanday ishlataman?');await input.press('Shift+Enter');assert.ok((await input.inputValue()).endsWith('\n'));assert.equal(requests.length,0);await input.press('Backspace');await input.press('Enter');await page.getByText('Biologiya bo‘limini oching va organ yoki mavzuni tanlang.',{exact:true}).waitFor();assert.equal(await input.inputValue(),'');assert.equal(requests.length,1);checks.push('robot, Enter submit and Shift+Enter newline work in the browser');
- await page.keyboard.press('Control+Home');await page.screenshot({path:join(process.cwd(),'qa-ai-upgrade/robot-desktop.png'),fullPage:false});
+ await page.keyboard.press('Control+Home');await page.screenshot({path:join(out,'robot-desktop.png'),fullPage:false});
  assert.equal(await page.locator('.sp-guide-conversation').getByRole('button',{name:'Biologiya',exact:true}).count(),1);assert.equal(await page.locator('.sp-guide-conversation').getByRole('button',{name:'Ustoz boshqaruvi',exact:true}).count(),0);checks.push('guide renders permitted route and filters staff routes');
  await page.getByRole('button',{name:'Mavzuni tushuntirish',exact:true}).click();await input.fill('Hujayrani sodda tushuntiring.');await send.click();await page.getByText(/Hujayra tirik organizmning asosiy/).waitFor();assert.equal(requests.at(-1).mode,'tutor');assert.equal(requests.at(-1).history.length,2);checks.push('tutor follows prior conversation');
  await page.getByRole('button',{name:'Mashq savollari',exact:true}).click();await input.fill('Hujayra bo‘yicha 3 ta savol bering.');await send.click();await page.getByText('Hujayra bo‘yicha uchta mashq savoli.',{exact:true}).waitFor();assert.equal(await page.locator('.sp-assistant-quiz fieldset').count(),3);assert.equal(await page.getByText('1-izoh:',{exact:false}).count(),0);
  for(const item of await page.locator('.sp-assistant-quiz fieldset').all())await item.getByRole('button',{name:'B. Mitoxondriya',exact:true}).click();await page.getByText('Mashq yakuni: 3 / 3 ta to‘g‘ri javob.',{exact:true}).waitFor();assert.ok(await page.locator('.sp-assistant-quiz fieldset').first().getByRole('button',{name:'A. Yadro',exact:true}).isDisabled());checks.push('quiz reveals explanations after choice and scores practice');
+ await page.getByRole('button',{name:'AI ustoz',exact:true}).click();
+ await input.fill(openQuestion);await input.press('Enter');
+ await page.getByRole('heading',{name:'Doubling numbers',exact:true}).waitFor();
+ const formatted=page.locator('.sp-ai-answer').last();
+ assert.equal(await formatted.locator('pre code').textContent(),'def double(number):\n    return number * 2\n');
+ assert.equal(await formatted.getByRole('columnheader',{name:'Output'}).count(),1);
+ assert.equal(await formatted.locator('img').count(),0);
+ assert.equal(requests.at(-1).mode,'mentor');
+ assert.equal(requests.at(-1).history.length,6);
+ checks.push('the general assistant renders code and a table without loading external images');
  await page.screenshot({path:join(out,'assistant-desktop.png'),fullPage:true});await axe('desktop completed quiz');
  for(const width of [390,320,768]){await page.setViewportSize({width,height:900});await page.keyboard.press('Control+Home');await fits('assistant '+width+'px');await axe('assistant '+width+'px');}
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:join(out,'assistant-mobile.png'),fullPage:true});

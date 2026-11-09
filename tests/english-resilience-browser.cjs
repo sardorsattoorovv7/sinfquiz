@@ -114,7 +114,7 @@ const fs = require('node:fs'), path = require('node:path'), assert = require('no
   await p.getByLabel('Matningiz', {exact: true}).fill('First draft during a slow connection.'); await seen;
   await p.getByLabel('Matningiz', {exact: true}).fill('Newest draft typed while the first save is still running.');
   await p.getByRole('button', {name: 'Darsni saqlab chiqish', exact: true}).click(); released();
-  await p.getByRole('heading', {name: /Noldan C1/}).waitFor(); assert.equal((await run(work.id)).state.writing, 'Newest draft typed while the first save is still running.');
+  await p.getByRole('heading', {name: 'Ingliz tili darslari', exact: true}).waitFor(); assert.equal((await run(work.id)).state.writing, 'Newest draft typed while the first save is still running.');
   await p.getByRole('button', {name: 'Bugungi darsni boshlash', exact: true}).click(); await p.getByLabel('Matningiz', {exact: true}).waitFor();
 
   lostSave = true; await p.getByLabel('Matningiz', {exact: true}).fill('The server saved this draft but its response was lost.');
@@ -167,7 +167,7 @@ const fs = require('node:fs'), path = require('node:path'), assert = require('no
   const late = await make(ids.student, 'student'); page = late; await late.goto('http://127.0.0.1:4184/#ingliz-darsi/lesson/en-pre-02'); await step(late, 'Gapirish');
   await late.evaluate(() => { const original = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices); navigator.mediaDevices.getUserMedia = () => new Promise(resolve => { window.releaseMicrophone = () => original({audio: true}).then(stream => { window.lateTracks = stream.getTracks(); resolve(stream); }); }); });
   await late.getByRole('button', {name: 'Ovoz yozish', exact: true}).click(); await late.getByRole('button', {name: 'Yozishni bekor qilish', exact: true}).click();
-  await late.getByRole('button', {name: 'Darsni saqlab chiqish', exact: true}).click(); await late.getByRole('heading', {name: /Noldan C1/}).waitFor();
+  await late.getByRole('button', {name: 'Darsni saqlab chiqish', exact: true}).click(); await late.getByRole('heading', {name: 'Ingliz tili darslari', exact: true}).waitFor();
   await late.evaluate(() => window.releaseMicrophone()); await late.waitForFunction(() => window.lateTracks?.every(track => track.readyState === 'ended'));
   checks.push('cancelled late microphone permission stops every track after navigation'); console.log('PASS cancelled late microphone request cleanup');
   assert.deepEqual(errors, []);

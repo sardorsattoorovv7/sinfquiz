@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {course} from './service.js';
 import {useDraft, DraftNotice} from './useDraft.jsx';
-import {Audio, Recorder} from './Audio.jsx';
+import {Audio, SpeakingTask} from './Audio.jsx';
 import Exercise from './Exercise.jsx';
 import Writing from './Writing.jsx';
 import {levels} from './catalog.js';
@@ -61,8 +61,9 @@ export default function Assessment({initial, uid, onBack, onUpdated, onActive, o
    {task && <>
     {editable && <p className="en-sync" role="status">{sync}</p>}
     <Writing task={task} value={writing} onChange={setWriting} readonly={!editable || busy}/>
-    <h2>Speaking namunasi</h2><p>{check.speakingTask.task}</p>
-    <Recorder uid={uid} id={check.id} value={speaking} onChange={setSpeaking} onUploaded={saveRecording} onBusyChange={setVoiceBusy} readonly={!editable} disabled={busy}/>
+    <SpeakingTask title="Speaking namunasi" task={check.speakingTask} criteria={check.rubrics?.speaking}
+     uid={uid} id={check.id} value={speaking} onChange={setSpeaking} onUploaded={saveRecording}
+     onBusyChange={setVoiceBusy} readonly={!editable} disabled={busy}/>
     {editable && <button type="button" disabled={busy || voiceBusy} className="en-primary" onClick={() => act(async () => { await flush(); const c = await course('checkSubmit', {id: check.id, writing, speaking, expectedDraftVersion: draft.store.version}); setCheck(c); onUpdated() })}>Amaliy namunalarni ustozga topshirish</button>}
    </>}
    {check.status === 'submitted' && <p className="en-success">Namunalar topshirildi. Ustozning rubrika bahosi kutilmoqda.</p>}

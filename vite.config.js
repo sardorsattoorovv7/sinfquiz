@@ -3,7 +3,7 @@ import {localAdminApi} from './local-admin-api.js';
 import {seoPlugin} from './seo-pages.js';
 export default defineConfig(({mode})=>{
  const env=loadEnv(mode,process.cwd(),'');
- for(const name of ['VITE_SUPABASE_URL','SUPABASE_URL','SUPABASE_SECRET_KEY','SUPABASE_SERVICE_ROLE_KEY','TELEGRAM_BOT_TOKEN']){
+ for(const name of ['VITE_SUPABASE_URL','SUPABASE_URL','VITE_SUPABASE_ANON_KEY','SUPABASE_ANON_KEY','SUPABASE_PUBLISHABLE_KEY','SUPABASE_SECRET_KEY','SUPABASE_SERVICE_ROLE_KEY','TELEGRAM_BOT_TOKEN']){
   if(!process.env[name]&&env[name])process.env[name]=env[name];
  }
  for(const [name,value] of Object.entries(env))if(/^(GROQ_|SPEAKING_)/.test(name)&&!process.env[name])process.env[name]=value;
@@ -15,7 +15,7 @@ export default defineConfig(({mode})=>{
   chunkSizeWarningLimit:650,
   rolldownOptions:{output:{codeSplitting:{groups:[
    {name:'supabase',test:/node_modules[\\/]@supabase/,priority:30},
-   {name:'react',test:/node_modules[\\/](react|react-dom|scheduler)/,priority:20},
+   {name:'react',test:/node_modules[\\/](react|react-dom|scheduler)(?:[\\/]|$)/,priority:20},
    {name:'icons',test:/node_modules[\\/]lucide-react/,priority:15},
   ]}}},
  },

@@ -30,11 +30,16 @@ export class SpeakingService{
    const available=sets.filter(set=>variantQuestions(set).every(q=>!history.ids.has(q.id)&&!history.fingerprints.has(questionFingerprint(q))));
    const set=available.length?this.pick(available):await this.freshVariant(user,'mock-variant:'+p.token,this.pick(sets),history,exam);
    const queue=sessionQuestions(set),kind=(receipts.some(r=>r.record_key==='baseline:'+exam)||assessments.some(a=>a.payload.attemptKind==='baseline'))?'recheck':'baseline';
-   const rows=await this.repo.write(user,[op('session','mock:'+p.token,{examMode:exam,attemptKind:kind,title:set.title,setId:set.id,formatVersion:set.formatVersion,bankVersion:SPEAKING_BANK_VERSION,queue,cursor:0,revealedIds:[queue[0].id],sectionUsed:{},status:'started',profileId:profile.id,consentAt:now.toISOString(),imageDescriptionShown:true},{exam,mode:'insert'})]);return this.sessionView(user,rows[0]);
+   const rows=await this.repo.write(user,[op('session','mock:'+p.token,{examMode:exam,attemptKind:kind,title:set.title,setId:set.id,formatVersion:set.formatVersion,bankVersion:SPEAKING_BANK_VERSION,queue,cursor:0,revealedIds:[queue[0].id],sectionUsed:{},status:'started',profileId:profile.id,consentAt:now.toISOString(),imageDescriptionShown:true,examRoom:p.examRoom===true},{exam,mode:'insert'})]);return this.sessionView(user,rows[0]);
   }
   if(action==='session')return this.sessionView(user,await by(p.id,'session'));
   if(action==='begin_turn'){
-   const session=await by(p.sessionId,'session');if(session.payload.status!=='started')throw new AiError('SESSION_CLOSED','Mock yakunlangan.');const current=session.payload.queue[session.payload.cursor];if(!current||current.id!==p.questionId)throw new AiError('QUESTION_ORDER','Savollar ketma-ketligi o‘zgardi. Sahifani yangilang.');const turn=await this.makeTurn(user,session,current,now);return {turn,serverNow:now.toISOString()};
+   const session=await by(p.sessionId,'session');
+   if(session.payload.status!=='started')throw new AiError('SESSION_CLOSED','Mock yakunlangan.');
+   const current=session.payload.queue[session.payload.cursor];
+   if(!current||current.id!==p.questionId)throw new AiError('QUESTION_ORDER','Savollar ketma-ketligi o‘zgardi. Sahifani yangilang.');
+   const turn=await this.makeTurn(user,session,current,this.now());
+   return {turn,question:this.questionView(current),serverNow:this.now().toISOString()};
   }
   if(action==='stop_turn'){const turn=await by(p.id,'turn');if(await this.repo.read(user,'answer',turn.record_key))throw new AiError('TURN_CLOSED','Ushbu javob original sifatida saqlangan.');if(turn.payload.stoppedAt&&!['technical_error','skipped'].includes(p.technicalStatus))return {turn};if(p.sha256!==null&&!/^[a-f0-9]{64}$/.test(p.sha256||''))throw new AiError('AUDIO_HASH','Audio imzosi to‘liq emas.');const payload={...turn.payload,stoppedAt:now.toISOString(),sha256:p.sha256,technicalStatus:p.technicalStatus==='technical_error'?'technical_error':p.technicalStatus==='skipped'?'skipped':'recorded'};const rows=await this.repo.write(user,[op('turn',turn.record_key,payload,{expectedRevision:turn.revision})]);return {turn:rows[0]};}
   if(action==='prepare_audio'){
@@ -92,8 +97,45 @@ export class SpeakingService{
   return variant;
  }
  async history(user,exam,sessions,receipts,answers=[]){const history=questionHistory(sessions,receipts,answers);if(this.repo.fingerprints)for(const value of await this.repo.fingerprints(user,exam))history.fingerprints.add(value);return history;}
- async makeTurn(user,session,current,now){const key=session.id+':'+current.id,existing=await this.repo.read(user,'turn',key);if(existing)return existing;const responseMax=current.responseMaxSeconds??Math.max(1,Math.ceil(270-(session.payload.sectionUsed[current.section]||0))),prepUntil=new Date(now.getTime()+current.prepSeconds*1000),deadline=new Date(prepUntil.getTime()+responseMax*1000);return (await this.repo.write(user,[op('turn',key,{sessionId:session.id,questionId:current.id,index:session.payload.cursor,startedAt:now.toISOString(),prepUntil:prepUntil.toISOString(),deadline:deadline.toISOString(),responseMax,stoppedAt:null,sha256:null,technicalStatus:null},{exam:session.exam_mode,parentId:session.id,mode:'insert'}),seenOp(current,session.exam_mode,now)]))[0];}
+ async makeTurn(user,session,current,now){
+  const key=session.id+':'+current.id;
+  const existing=await this.repo.read(user,'turn',key);
+  if(existing)return existing;
+  const responseMax=current.responseMaxSeconds??Math.max(1,Math.ceil(270-(session.payload.sectionUsed[current.section]||0)));
+  const presentationSeconds=session.payload.examRoom
+   ? Math.min(18,Math.max(4,Math.ceil(current.prompt.trim().split(/\s+/).length/2)+1))
+   : 0;
+  const promptUntil=new Date(now.getTime()+presentationSeconds*1000);
+  const prepUntil=new Date(promptUntil.getTime()+current.prepSeconds*1000);
+  const deadline=new Date(prepUntil.getTime()+responseMax*1000);
+  const payload={
+   sessionId:session.id,questionId:current.id,index:session.payload.cursor,startedAt:now.toISOString(),
+   ...(presentationSeconds?{promptUntil:promptUntil.toISOString()}:{}),
+   prepUntil:prepUntil.toISOString(),deadline:deadline.toISOString(),responseMax,
+   stoppedAt:null,sha256:null,technicalStatus:null,
+  };
+  const rows=await this.repo.write(user,[op('turn',key,payload,{exam:session.exam_mode,parentId:session.id,mode:'insert'}),seenOp(current,session.exam_mode,now)]);
+  return rows[0];
+ }
  questionView(q){return {id:q.id,prompt:q.prompt,part:q.part,section:q.section,taskType:q.taskType,taskPoints:q.taskPoints,prepSeconds:q.prepSeconds,responseMaxSeconds:q.responseMaxSeconds,timerScope:q.timerScope,forPoints:q.argumentFor||q.forPoints||[],againstPoints:q.argumentAgainst||q.againstPoints||[],images:(q.imageIds||[]).map(id=>speakingImageAssets.find(a=>a.id===id)).filter(Boolean).map(a=>({id:a.id,src:a.src,caption:a.caption,alt:a.alt})),formatVersion:q.formatVersion};}
- async sessionView(user,session){const answers=(await this.repo.list(user,'answer',session.exam_mode,500)).filter(a=>a.parent_id===session.id),s=session.payload,q=s.queue[s.cursor],turn=q&&s.status==='started'?await this.makeTurn(user,session,q,this.now()):null;return {session:{id:session.id,status:s.status,title:s.title,attemptKind:s.attemptKind,examMode:s.examMode,cursor:s.cursor,questionCount:s.queue.length,current:q?this.questionView(q):null,sectionRemaining:q?.timerScope==='section'?Math.max(0,270-(s.sectionUsed[q.section]||0)):null,formatVersion:s.formatVersion,imageDescriptionShown:s.imageDescriptionShown},answers,turn,serverNow:this.now().toISOString()};}
+ async sessionView(user,session){
+  const s=session.payload,q=s.queue[s.cursor];
+  const answers=(await this.repo.list(user,'answer',session.exam_mode,500)).filter(a=>a.parent_id===session.id);
+  let turn=null,current=null;
+  if(q){
+   if(s.status==='started'){
+    turn=s.examRoom?await this.repo.read(user,'turn',session.id+':'+q.id):await this.makeTurn(user,session,q,this.now());
+   }
+   current=s.examRoom&&!turn
+    ? {id:q.id,part:q.part,section:q.section,taskType:q.taskType,prepSeconds:q.prepSeconds,responseMaxSeconds:q.responseMaxSeconds}
+    : this.questionView(q);
+  }
+  return {session:{
+   id:session.id,status:s.status,title:s.title,attemptKind:s.attemptKind,examMode:s.examMode,examRoom:s.examRoom===true,
+   cursor:s.cursor,questionCount:s.queue.length,current,
+   sectionRemaining:q?.timerScope==='section'?Math.max(0,270-(s.sectionUsed[q.section]||0)):null,
+   formatVersion:s.formatVersion,imageDescriptionShown:s.imageDescriptionShown,
+  },answers,turn,serverNow:this.now().toISOString()};
+ }
 }
 export const publicSpeakingStatus=env=>({version:'7.46.0',providerConfigured:hasProvider(env),formats:speakingFormat,sources:speakingSources,counts:{ieltsMocks:6,multilevelMocks:6,picturePairs:12,practiceQuestions:practiceTransferQuestions.length},privacy:'Audio private saqlanadi va transkripsiya/tahlil uchun Groqga yuboriladi. Standart saqlash muddati30kun; transkript va xulosalar audio o‘chirilgandan keyin alohida saqlanadi.'});

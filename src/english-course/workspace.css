@@ -1,0 +1,63 @@
+.en-course .en-course-overview {
+ grid-template-columns: minmax(0, 1fr) minmax(225px, 310px);
+ align-items: center;
+ border-radius: 10px;
+}
+.en-course-details {margin: 0; padding-inline-start: 20px; border-inline-start: 1px solid var(--en-line);}
+.en-course-details div {padding: 8px 0;}
+.en-course-details dt {font-size: 13px; color: var(--en-muted);}
+.en-course-details dd {margin: 0; font-weight: 700;}
+.en-lesson .en-chapter {
+ border-radius: 10px;
+ padding: clamp(18px, 4vw, 38px);
+}
+.en-chapter :is(p, li) {max-width: 73ch;}
+.en-textbook-rules, .en-textbook-examples {padding-inline-start: 24px; margin-block: 16px 24px;}
+.en-textbook-rules li {padding: 8px 0 8px 6px; line-height: 1.75;}
+.en-textbook-examples {
+ padding: 16px 20px 16px 42px;
+ border-inline-start: 3px solid var(--en-accent);
+ background: var(--en-bg);
+}
+.en-textbook-examples li {padding: 6px 0;}
+.en-chapter .en-reading {
+ background: var(--en-panel);
+ border: 1px solid var(--en-line);
+ border-radius: 8px;
+ font-family: Georgia, Cambria, serif;
+ font-size: 19px;
+}
+.en-chapter .en-reading p {margin: 0;}
+.en-chapter .en-reading button {min-height: 24px; line-height: 1.7;}
+.en-oral-card {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) auto;
+ align-items: start;
+ gap: 10px 18px;
+ padding: 20px;
+ margin-bottom: 20px;
+ background: var(--en-bg);
+ border: 1px solid var(--en-line);
+ border-radius: 8px;
+}
+.en-oral-card h2 {margin: 5px 0 0;}
+.en-oral-card :is(p, ul) {grid-column: 1 / -1; margin: 0;}
+.en-oral-card ul {padding-inline-start: 23px;}
+.en-oral-time {
+ text-align: end;
+ font: 700 26px var(--sq-mono, monospace);
+ color: var(--en-ink);
+ font-variant-numeric: tabular-nums;
+}
+.en-oral-time small {display: block; font: 500 13px var(--sq-font, sans-serif);}
+.en-oral-clock {display: flex; gap: 12px; align-items: baseline; margin: 12px 0; color: var(--en-muted);}
+.en-oral-clock strong {font: 700 24px var(--sq-mono, monospace); color: var(--en-ink);}
+@media (max-width: 760px) {
+ .en-course .en-course-overview {grid-template-columns: minmax(0, 1fr);}
+ .en-course-details {padding: 12px 0 0; border-inline-start: 0; border-top: 1px solid var(--en-line);}
+}
+@media (max-width: 390px) {
+ .en-oral-card {grid-template-columns: minmax(0, 1fr);}
+ .en-oral-time {text-align: start;}
+ .en-oral-time small {display: inline; margin-inline-start: 6px;}
+}

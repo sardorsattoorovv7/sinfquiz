@@ -1,43 +1,332 @@
-import React,{useEffect,useRef,useState} from 'react';
-import {Mic,Square,Upload,RotateCcw,Volume2} from 'lucide-react';
-import {loadDraft,saveDraft,removeDraft,blobHash} from './drafts.js';
-import {newToken,timeLabel} from './client.js';
-const chooseMime=()=>['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus','audio/webm'].find(m=>MediaRecorder.isTypeSupported(m));
-export default function Recorder({draftKey,limit=120,prep=0,onBegin,onStop,onSubmit,onActive,onExpired,test=false,externalTurn=null,serverOffset=0}){
- const [state,setState]=useState('loading'),[draft,setDraft]=useState(null),[url,setUrl]=useState(''),[error,setError]=useState(''),[tick,setTick]=useState(Date.now()),[turn,setTurn]=useState(externalTurn);
- const recorder=useRef(null),stream=useRef(null),chunks=useRef([]),timer=useRef(null),saveChain=useRef(Promise.resolve()),mounted=useRef(true),stopping=useRef(false),latest=useRef(null),activeRef=useRef(onActive);
- activeRef.current=onActive;
- useEffect(()=>{mounted.current=true;loadDraft(draftKey).then(d=>{if(!mounted.current)return;latest.current=d||null;setDraft(d||null);setState(d?.blob?.size?'ready':'idle');}).catch(e=>{setError(e.message);setState('idle');});return()=>{mounted.current=false;clearInterval(timer.current);if(recorder.current?.state==='recording')recorder.current.stop();stream.current?.getTracks().forEach(t=>t.stop());activeRef.current?.(false);};},[draftKey]);
- useEffect(()=>{if(!draft?.blob)return;const src=URL.createObjectURL(draft.blob);setUrl(src);return()=>URL.revokeObjectURL(src);},[draft]);
- useEffect(()=>{if(externalTurn)setTurn(externalTurn);},[externalTurn]);
- const now=tick+serverOffset,preparing=state==='recording'&&turn&&now<Date.parse(turn.prepUntil),remaining=turn?Math.ceil(((preparing?Date.parse(turn.prepUntil):Date.parse(turn.deadline))-now)/1000):limit;
- const expired=!!turn&&now>=Date.parse(turn.deadline);
- useEffect(()=>{onExpired?.(expired)},[expired,onExpired]);
- useEffect(()=>{if(state!=='recording'&&(!turn||turn.stoppedAt||expired))return;timer.current=setInterval(()=>setTick(Date.now()),200);return()=>clearInterval(timer.current);},[state,turn,expired]);
- useEffect(()=>{if(state==='recording'&&!preparing&&remaining<=0)stop();},[state,preparing,remaining]);
- async function start(){setError('');if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){setError('Audio yozish uchun HTTPS, mikrofonli Chrome, Edge, Firefox yoki Safari kerak.');return;}
-  setState('opening');try{stream.current=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true},video:false});const mime=chooseMime();if(!mime)throw Error('Bu brauzer audio formatini qo‘llamaydi. Boshqa brauzerda urinib ko‘ring.');
-   const info=onBegin?await onBegin():{prepUntil:new Date(Date.now()+prep*1000).toISOString(),deadline:new Date(Date.now()+(prep+limit)*1000).toISOString()};setTurn(info);if(Date.parse(info.deadline)<=Date.now()+serverOffset)throw Error('Bu savolning vaqti tugagan. Javobsiz davom eting yoki yangi sinov boshlang.');
-   const token=newToken();chunks.current=[];latest.current={token,blob:null,complete:false};stopping.current=false;
-   recorder.current=new MediaRecorder(stream.current,{mimeType:mime});
-   recorder.current.ondataavailable=e=>{if(e.data.size){chunks.current.push(e.data);const d={...latest.current,blob:new Blob(chunks.current,{type:mime.split(';')[0]}),complete:stopping.current};latest.current=d;saveChain.current=saveChain.current.catch(()=>{}).then(()=>saveDraft(draftKey,d)).catch(e=>{if(mounted.current)setError(e.message);});}};
-   recorder.current.onstop=async()=>{stream.current?.getTracks().forEach(t=>t.stop());await saveChain.current;const d=latest.current;if(d?.blob?.size){try{const hash=await blobHash(d.blob);const saved={...d,sha256:hash,complete:true};latest.current=saved;await saveDraft(draftKey,saved);await onStop?.(saved);if(mounted.current){setDraft(saved);setState('ready');}}catch(e){if(mounted.current){setDraft(d);setError(e.message);setState('ready');}}}else if(mounted.current){setError('Audio olinmadi. Mikrofon sozlamasini tekshiring.');setState('idle');}activeRef.current?.(false);};
-   // Preparation uses the same trusted deadline but the microphone starts only
-   // after preparation, so preparation silence is not sent to ASR.
-   const beginAudio=()=>{if(!mounted.current)return;if(Date.now()+serverOffset<Date.parse(info.prepUntil)){setTimeout(beginAudio,100);return;}if(!stopping.current){recorder.current.start(1000);}};beginAudio();setTick(Date.now());setState('recording');activeRef.current?.(true);
-  }catch(e){stream.current?.getTracks().forEach(t=>t.stop());setError(e.name==='NotAllowedError'?'Mikrofonga ruxsat berilmadi. Brauzerning sayt sozlamasidan mikrofonni yoqing.':e.message);setState('idle');activeRef.current?.(false);}}
- function stop(){if(stopping.current)return;stopping.current=true;clearInterval(timer.current);if(recorder.current?.state==='recording'){setState('saving');recorder.current.stop();}else{stream.current?.getTracks().forEach(t=>t.stop());setState('idle');activeRef.current?.(false);}}
- async function submit(){setError('');setState('uploading');try{const d=latest.current||draft;if(!d?.blob?.size)throw Error('Yozuv topilmadi.');const saved={...d,sha256:d.sha256||await blobHash(d.blob),complete:true};await saveDraft(draftKey,saved);await onStop?.(saved);await onSubmit(saved);await removeDraft(draftKey);latest.current=null;if(mounted.current){setDraft(null);setState('idle');}}catch(e){if(mounted.current){setError(e.message);setState('ready');}}}
- async function reset(){await removeDraft(draftKey);latest.current=null;setDraft(null);setState('idle');setError('');}
- return <div className="sp-recorder">
-  <div className={`sp-mic-orb ${state==='recording'&&!preparing?'is-recording':''}`}><Mic size={28}/></div>
-  <div className="sp-record-status" role="status">{state==='recording'?preparing?'Tayyorlanish vaqti':'Audio yozilmoqda':state==='saving'?'Qurilmada saqlanmoqda…':state==='uploading'?'Audio yuborilmoqda…':state==='opening'?'Mikrofon ochilmoqda…':state==='ready'?test?'Mikrofon sinovi tayyor':'Saqlangan audio tayyor':expired?'Savol vaqti tugagan':'Mikrofon tayyor'}</div>
-  {state==='recording'&&<><strong className="sp-clock" aria-label={preparing?'Tayyorlanish uchun qolgan vaqt':'Javob uchun qolgan vaqt'}>{timeLabel(Math.max(0,remaining))}</strong><button className="sp-btn sp-danger" onClick={stop}><Square size={16}/>{preparing?'Tayyorgarlikni to‘xtatish':'Yozuvni tugatish'}</button></>}
-  {state==='idle'&&turn&&!turn.stoppedAt&&!expired&&<p className="sp-note">Taymer allaqachon boshlandi. {now<Date.parse(turn.prepUntil)?'Tayyorlanish':'Javob'} uchun {timeLabel(Math.max(0,Math.ceil(((now<Date.parse(turn.prepUntil)?Date.parse(turn.prepUntil):Date.parse(turn.deadline))-now)/1000)))} qoldi.</p>}
-  {state==='idle'&&(expired||turn?.stoppedAt)&&<p className="sp-note" role="status">Bu savol uchun yozuv vaqti yakunlangan. Saqlangan javob bilan davom eting yoki yangi sinovni tanlang.</p>}
-  {state==='idle'&&!expired&&!turn?.stoppedAt&&<button className="sp-btn sp-primary" onClick={start}><Mic size={18}/>{test?'10 soniyalik sinov':onBegin?'Ovoz yozishni boshlash':'Ovozli javob yozish'}</button>}
-  {state==='ready'&&draft?.blob&&<><audio controls src={url||undefined} aria-label={test?'Sinov audiosini tinglash':'O‘z javobingizni tinglash'}/>{!draft.complete&&<p className="sp-note">Oldingi yozuv uzilgan. Saqlangan qismini tinglab, yuborish yoki texnik holatni qayd etishni tanlang.</p>}<div className="sp-actions">{onSubmit&&<button className="sp-btn sp-primary" onClick={submit}><Upload size={16}/>Audioni yuborish</button>}{test&&<button className="sp-btn" onClick={reset}><RotateCcw size={16}/>Qayta sinash</button>}</div></>}
-  {error&&<p className="sp-error" role="alert">{error}</p>}
-  {test&&<p className="sp-note"><Volume2 size={14}/> Yozuvni tinglang. Ovoz tushunarli bo‘lsa, sinovga o‘ting. Sinov AI baholashiga yuborilmaydi.</p>}
+import React, {useEffect, useRef, useState} from 'react';
+import {Mic, Square, Upload, RotateCcw, Volume2} from 'lucide-react';
+import {loadDraft, saveDraft, removeDraft, blobHash} from './drafts.js';
+import {newToken, timeLabel} from './client.js';
+
+const formats = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/webm'];
+
+function turnTime(turn, now, fallback) {
+ if (!turn) return {phase: 'answer', seconds: fallback};
+ const promptEnd = Date.parse(turn.promptUntil);
+ const prepEnd = Date.parse(turn.prepUntil);
+ const end = Date.parse(turn.deadline);
+ if (now < promptEnd) return {phase: 'prompt', seconds: Math.ceil((promptEnd - now) / 1000)};
+ if (now < prepEnd) return {phase: 'prep', seconds: Math.ceil((prepEnd - now) / 1000)};
+ return {phase: 'answer', seconds: Math.ceil((end - now) / 1000)};
+}
+
+const phaseNames = {prompt: 'Savol taqdimoti', prep: 'Tayyorlanish vaqti', answer: 'Javob vaqti'};
+
+export default function Recorder({
+ draftKey, limit = 120, prep = 0, onBegin, onStop, onSubmit, onActive, onExpired,
+ test = false, externalTurn = null, serverOffset = 0, examRoom = false, readPrompt = false, disabled = false,
+}) {
+ const [state, setState] = useState('loading');
+ const [draft, setDraft] = useState(null);
+ const [url, setUrl] = useState('');
+ const [error, setError] = useState('');
+ const [tick, setTick] = useState(Date.now());
+ const [turn, setTurn] = useState(externalTurn);
+ const recorder = useRef(null);
+ const stream = useRef(null);
+ const startTimer = useRef(null);
+ const voiceTimer = useRef(null);
+ const utterance = useRef(null);
+ const saveChain = useRef(Promise.resolve());
+ const mounted = useRef(false);
+ const locked = useRef(false);
+ const stopping = useRef(false);
+ const latest = useRef(null);
+ const callbacks = useRef({});
+ callbacks.current = {onActive, onStop, onSubmit};
+
+ function silence() {
+  clearTimeout(voiceTimer.current);
+  if (utterance.current) {
+   window.speechSynthesis?.cancel();
+   utterance.current = null;
+  }
+ }
+
+ function releaseMic() {
+  clearTimeout(startTimer.current);
+  silence();
+  stream.current?.getTracks().forEach(track => track.stop());
+  stream.current = null;
+ }
+
+ function unlock() {
+  locked.current = false;
+  callbacks.current.onActive?.(false);
+ }
+
+ function showError(cause) {
+  if (mounted.current) setError(cause.message);
+ }
+
+ useEffect(() => {
+  mounted.current = true;
+  let alive = true;
+  loadDraft(draftKey).then(saved => {
+   if (!alive) return;
+   latest.current = saved || null;
+   setDraft(saved || null);
+   setState(saved?.blob?.size ? 'ready' : 'idle');
+  }).catch(cause => {
+   if (!alive) return;
+   showError(cause);
+   setState('idle');
+  });
+  return () => {
+   alive = false;
+   mounted.current = false;
+   if (recorder.current?.state === 'recording') recorder.current.stop();
+   releaseMic();
+   unlock();
+  };
+ }, [draftKey]);
+
+ useEffect(() => {
+  if (!draft?.blob || examRoom) return;
+  const src = URL.createObjectURL(draft.blob);
+  setUrl(src);
+  return () => URL.revokeObjectURL(src);
+ }, [draft, examRoom]);
+
+ useEffect(() => {
+  if (externalTurn) {
+   setTurn(externalTurn);
+   setTick(Date.now());
+  }
+ }, [externalTurn]);
+
+ const time = turnTime(turn, tick + serverOffset, limit);
+ const expired = !!turn && !turn.stoppedAt && time.phase === 'answer' && time.seconds <= 0;
+ useEffect(() => {onExpired?.(expired);}, [expired, onExpired]);
+
+ useEffect(() => {
+  if (state !== 'recording' && (!turn || turn.stoppedAt || expired)) return;
+  const timer = setInterval(() => setTick(Date.now()), 200);
+  return () => clearInterval(timer);
+ }, [state, turn, expired]);
+
+ useEffect(() => {
+  if (state === 'recording' && expired) stop();
+ }, [state, expired]);
+
+ async function complete(saved) {
+  const completeDraft = {...saved, sha256: saved.sha256 || await blobHash(saved.blob), complete: true};
+  latest.current = completeDraft;
+  try { await saveDraft(draftKey, completeDraft); }
+  catch { showError(Error('Qurilma xotirasiga yozilmadi. Audioni yuborib bo‘lguncha sahifani ochiq tuting.')); }
+  return completeDraft;
+ }
+
+ async function transmit(saved) {
+  if (mounted.current) setState('uploading');
+  await callbacks.current.onSubmit(saved);
+  await removeDraft(draftKey).catch(() => {});
+  latest.current = null;
+  if (mounted.current) {
+   setDraft(null);
+   setState('idle');
+  }
+ }
+
+ async function finishCapture(automatic) {
+  releaseMic();
+  await saveChain.current;
+  const captured = latest.current;
+  if (!mounted.current) return;
+  try {
+   if (!captured?.blob?.size) throw Error('Audio olinmadi. Mikrofon sozlamasini tekshiring.');
+   const saved = await complete(captured);
+   await callbacks.current.onStop?.(saved);
+   if (automatic && examRoom && callbacks.current.onSubmit) await transmit(saved);
+   else {
+    setDraft(saved);
+    setState('ready');
+   }
+  } catch (cause) {
+   showError(cause);
+   if (mounted.current) {
+    setDraft(latest.current?.blob?.size ? latest.current : null);
+    setState(latest.current?.blob?.size ? 'ready' : 'idle');
+   }
+  } finally {
+   if (mounted.current) unlock();
+  }
+ }
+
+ function speak(info, offset) {
+  const milliseconds = Date.parse(info.promptUntil) - (Date.now() + offset);
+  if (!readPrompt || !info.prompt || !(milliseconds > 0) || !window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
+  try {
+   const speech = new SpeechSynthesisUtterance(info.prompt);
+   speech.lang = 'en-GB';
+   const voices = window.speechSynthesis.getVoices();
+   const englishVoice = voices.find(voice => /^en-GB/i.test(voice.lang)) || voices.find(voice => /^en(?:-|$)/i.test(voice.lang));
+   if (englishVoice) speech.voice = englishVoice;
+   utterance.current = speech;
+   window.speechSynthesis.speak(speech);
+   voiceTimer.current = setTimeout(silence, milliseconds);
+  } catch {
+   silence();
+  }
+ }
+
+ async function start() {
+  if (locked.current || disabled || expired || turn?.stoppedAt) return;
+  setError('');
+  if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+   setError('Audio yozish uchun HTTPS va mikrofonli brauzer kerak.');
+   return;
+  }
+  locked.current = true;
+  callbacks.current.onActive?.(true);
+  setState('opening');
+  try {
+   const microphone = await navigator.mediaDevices.getUserMedia({audio: {echoCancellation: true, noiseSuppression: true}, video: false});
+   if (!mounted.current) {
+    microphone.getTracks().forEach(track => track.stop());
+    return;
+   }
+   stream.current = microphone;
+   const mimeType = formats.find(type => MediaRecorder.isTypeSupported(type));
+   if (!mimeType) throw Error('Brauzer audio formatini qo‘llamaydi. Boshqa brauzerda urinib ko‘ring.');
+   const media = new MediaRecorder(microphone, {mimeType});
+   recorder.current = media;
+   const info = onBegin ? await onBegin() : {
+    prepUntil: new Date(Date.now() + prep * 1000).toISOString(),
+    deadline: new Date(Date.now() + (prep + limit) * 1000).toISOString(),
+   };
+   if (!mounted.current) return;
+   const offset = info.serverOffset ?? serverOffset;
+   setTurn(info);
+   setTick(Date.now());
+   if (Date.parse(info.deadline) <= Date.now() + offset) throw Error('Bu savolning vaqti tugagan. Saqlangan javob bilan davom eting.');
+
+   const chunks = [];
+   const token = newToken();
+   let interrupted = false;
+   latest.current = null;
+   stopping.current = false;
+   media.ondataavailable = event => {
+    if (!event.data.size) return;
+    chunks.push(event.data);
+    const partial = {token, blob: new Blob(chunks, {type: mimeType.split(';')[0]}), complete: stopping.current};
+    latest.current = partial;
+    saveChain.current = saveChain.current.then(() => saveDraft(draftKey, partial)).catch(showError);
+   };
+   media.onstop = () => finishCapture(!interrupted);
+   media.onerror = () => {
+    interrupted = true;
+    showError(Error('Mikrofon bilan aloqa uzildi. Saqlangan yozuvni tekshiring.'));
+    stop();
+   };
+
+   const beginAudio = () => {
+    if (!mounted.current || stopping.current) return;
+    silence();
+    try {
+     if (Date.now() + offset >= Date.parse(info.deadline)) throw Error('Bu savolning vaqti tugagan.');
+     media.start(1000);
+    } catch (cause) {
+     releaseMic();
+     showError(cause);
+     setTick(Date.now());
+     setState('idle');
+     unlock();
+    }
+   };
+   const wait = Date.parse(info.prepUntil) - (Date.now() + offset);
+   setState('recording');
+   if (examRoom) speak(info, offset);
+   if (wait > 0) startTimer.current = setTimeout(beginAudio, wait);
+   else beginAudio();
+  } catch (cause) {
+   releaseMic();
+   if (mounted.current) {
+    setError(cause.name === 'NotAllowedError' ? 'Mikrofonga ruxsat berilmadi. Sayt sozlamasidan mikrofonni yoqing.' : cause.message);
+    setState('idle');
+    unlock();
+   }
+  }
+ }
+
+ function stop() {
+  if (stopping.current) return;
+  stopping.current = true;
+  if (recorder.current?.state === 'recording') {
+   setState('saving');
+   recorder.current.stop();
+  } else {
+   releaseMic();
+   setState('idle');
+   unlock();
+  }
+ }
+
+ async function submit() {
+  if (locked.current || disabled) return;
+  locked.current = true;
+  callbacks.current.onActive?.(true);
+  setState('uploading');
+  setError('');
+  try {
+   const saved = await complete(latest.current || draft);
+   await callbacks.current.onStop?.(saved);
+   await transmit(saved);
+  } catch (cause) {
+   if (mounted.current) {
+    showError(cause);
+    setState('ready');
+   }
+  } finally {
+   if (mounted.current) unlock();
+  }
+ }
+
+ async function reset() {
+  try {
+   await removeDraft(draftKey);
+   latest.current = null;
+   setDraft(null);
+   setTurn(null);
+   setState('idle');
+   setError('');
+  } catch (cause) {
+   showError(cause);
+  }
+ }
+
+ const recording = state === 'recording' && time.phase === 'answer';
+ const status = state === 'recording'
+  ? recording ? 'Audio yozilmoqda' : phaseNames[time.phase]
+  : {loading: 'Saqlangan yozuv tekshirilmoqda…', saving: 'Qurilmada saqlanmoqda…', uploading: 'Audio yuborilmoqda…', opening: 'Mikrofon ochilmoqda…', ready: test ? 'Mikrofon sinovi tayyor' : 'Saqlangan audio tayyor'}[state]
+    || (expired ? 'Savol vaqti tugagan' : examRoom ? 'Mikrofonni oching' : 'Mikrofon tayyor');
+ const runningTurn = state === 'idle' && turn && !turn.stoppedAt && !expired;
+ return <div className="sp-recorder" data-phase={state === 'recording' ? time.phase : state}>
+  {!examRoom && <div className={`sp-mic-orb ${recording ? 'is-recording' : ''}`}><Mic size={28}/></div>}
+  <div className="sp-record-status" role="status">{recording && examRoom && <span className="sp-live-dot" aria-hidden="true"/>}{status}</div>
+  {(state === 'recording' || runningTurn) && <strong className="sp-clock" role="timer" aria-label={phaseNames[time.phase]}>{timeLabel(Math.max(0, time.seconds))}</strong>}
+  {state === 'recording' && (recording || !examRoom) && <button type="button" className="sp-btn sp-danger" onClick={stop}>
+   <Square size={16}/>{recording ? examRoom ? 'Javobni topshirish' : 'Yozuvni tugatish' : 'Tayyorgarlikni to‘xtatish'}
+  </button>}
+  {runningTurn && <p className="sp-note">Taymer allaqachon boshlangan. Qolgan vaqtda yozishni davom ettiring.</p>}
+  {state === 'idle' && (expired || turn?.stoppedAt) && <p className="sp-note" role="status">Bu savol uchun yozuv vaqti yakunlangan. Saqlangan javob bilan davom eting yoki yangi sinovni tanlang.</p>}
+  {state === 'idle' && !expired && !turn?.stoppedAt && <button type="button" className="sp-btn sp-primary" disabled={disabled} onClick={start}>
+   <Mic size={18}/>{test ? '10 soniyalik sinov' : examRoom ? runningTurn ? 'Yozishni davom ettirish' : 'Savolni boshlash' : onBegin ? 'Ovoz yozishni boshlash' : 'Ovozli javob yozish'}
+  </button>}
+  {state === 'ready' && draft?.blob && <>
+   {!examRoom && <audio controls src={url || undefined} aria-label={test ? 'Sinov audiosini tinglash' : 'O‘z javobingizni tinglash'}/>}
+   {!draft.complete && <p className="sp-note">Oldingi yozuv uzilgan. Saqlangan qismini yuborishingiz mumkin.</p>}
+   <div className="sp-actions">
+    {onSubmit && <button type="button" className="sp-btn sp-primary" disabled={disabled} onClick={submit}><Upload size={16}/>Audioni yuborish</button>}
+    {test && <button type="button" className="sp-btn" onClick={reset}><RotateCcw size={16}/>Qayta sinash</button>}
+   </div>
+  </>}
+  {error && <p className="sp-error" role="alert">{error}</p>}
+  {test && <p className="sp-note"><Volume2 size={14}/> Yozuvni tinglang. Ovoz tushunarli bo‘lsa, sinovga o‘ting.</p>}
  </div>;
 }

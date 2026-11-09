@@ -1,0 +1,19 @@
+.sp-ai-answer.sp-ai-markdown {
+  white-space: normal;
+  line-height: 1.65;
+}
+
+.sp-ai-markdown > :first-child { margin-top: 0; }
+.sp-ai-markdown > :last-child { margin-bottom: 0; }
+.sp-ai-markdown p { color: inherit; white-space: pre-line; }
+.sp-ai-markdown :is(ul, ol) { margin: .65em 0; padding-inline-start: 1.5em; }
+.sp-ai-markdown :is(h1, h2, h3, h4, h5, h6) { font-size: 1.1em; margin: 1em 0 .4em; }
+.sp-ai-markdown blockquote { margin: .75em 0; padding-inline-start: .8em; border-inline-start: 3px solid var(--sp-line); }
+.sp-ai-markdown :is(pre, .sp-answer-scroll) { max-width: 100%; overflow-x: auto; }
+.sp-ai-markdown :is(pre, .sp-answer-scroll):focus-visible { outline: 3px solid var(--sp-action); outline-offset: 2px; }
+.sp-ai-markdown pre { background: var(--sp-tint); border: 1px solid var(--sp-line); border-radius: 8px; padding: .8em; }
+.sp-ai-markdown code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; }
+.sp-ai-markdown :not(pre) > code { background: var(--sp-tint); border-radius: 3px; padding: .08em .25em; }
+.sp-ai-markdown table { border-collapse: collapse; width: 100%; }
+.sp-ai-markdown :is(th, td) { color: inherit; border: 1px solid var(--sp-line); padding: .4em .6em; }
+.sp-ai-markdown th { background: var(--sp-tint); }

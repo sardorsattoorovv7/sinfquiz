@@ -1,5 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {Sparkles,ArrowRight,Compass,Send,CheckCircle2,MessageCircle,BookOpen,ClipboardList,LoaderCircle,X,GraduationCap,ClipboardCheck} from 'lucide-react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {allowedFeatures,assistantPage} from './features.js';
 import {assistantApi} from './assistant-client.js';
 import {Notice} from './Common.jsx';
@@ -8,15 +10,20 @@ import RobotAssistant from './RobotAssistant.jsx';
 import DiagnosticQuiz from './DiagnosticQuiz.jsx';
 import {reportContext} from './learning.js';
 import './speaking.css';
+import './assistant-answer.css';
 
 const modes=[
- {id:'mentor',title:'AI ustoz',icon:GraduationCap,description:'Savolingizni oddiy yozing. Birga tushunamiz, bilimni tekshiramiz va keyingi qadamni tanlaymiz.'},
+ {id:'mentor',title:'AI ustoz',icon:GraduationCap,description:'Istalgan mavzuda yozing. Javobni qaysi tilda, uslubda yoki shaklda xohlashingizni ham aytishingiz mumkin.'},
  {id:'guide',title:'Yo‘l ko‘rsatish',icon:Compass,description:'Dasturdagi bo‘limlarni toping va ulardan foydalanishni o‘rganing.'},
  {id:'tutor',title:'Mavzuni tushuntirish',icon:BookOpen,description:'Mavzuni sodda izoh, misol va bosqichlar orqali o‘rganing.'},
  {id:'quiz',title:'Mashq savollari',icon:ClipboardList,description:'Mavzu bo‘yicha savollar oling, javobni tanlang va izohini tekshiring.'},
  {id:'diagnostic',title:'Darajani aniqlash',icon:ClipboardCheck,description:'Fan va mavzuni ayting. 5 ta savol bilan shu mavzuda nimadan boshlashni aniqlaymiz.'},
 ];
-const suggestions={mentor:['Hozir qayerdaman?','Bilimimni qisqa test bilan tekshiring.','Speakingni qayerdan boshlayman?'],guide:copy.helperQuestions,tutor:['Fotosintezni oddiy misol bilan tushuntiring.','Kasrlarni qo‘shishni bosqichma-bosqich tushuntiring.'],quiz:['Hujayra mavzusidan 3 ta savol tuzing.','Present Simple bo‘yicha 3 ta mashq savoli bering.'],diagnostic:['Matematika: kasrlar bo‘yicha darajamni tekshiring.','Ingliz tili: Present Simple bo‘yicha bilimimni tekshiring.']};
+const suggestions={mentor:['Hozir qayerdaman?','Bilimimni qisqa test bilan tekshiring.','Speakingni qayerdan boshlayman?','Ingliz tilida qisqa hikoya yozing.'],guide:copy.helperQuestions,tutor:['Fotosintezni oddiy misol bilan tushuntiring.','Kasrlarni qo‘shishni bosqichma-bosqich tushuntiring.'],quiz:['Hujayra mavzusidan 3 ta savol tuzing.','Present Simple bo‘yicha 3 ta mashq savoli bering.'],diagnostic:['Matematika: kasrlar bo‘yicha darajamni tekshiring.','Ingliz tili: Present Simple bo‘yicha bilimimni tekshiring.']};
+const replyComponents={
+ table:({children})=><div className="sp-answer-scroll" role="region" aria-label="Javobdagi jadval" tabIndex={0}><table>{children}</table></div>,
+ pre:({children})=><pre tabIndex={0}>{children}</pre>,
+};
 
 export default function AiGuide({user,onNavigate,onLogin,currentView='aiGuide',originView=null,compact=false}){
  const features=allowedFeatures(user?.role),[selectedId,setSelectedId]=useState(originView||currentView),[query,setQuery]=useState(''),[message,setMessage]=useState(''),[mode,setMode]=useState('mentor'),[turns,setTurns]=useState([]),[error,setError]=useState(''),[busy,setBusy]=useState(false),[providerConfigured,setProviderConfigured]=useState(null),request=useRef(null),requestId=useRef(0);
@@ -26,7 +33,7 @@ export default function AiGuide({user,onNavigate,onLogin,currentView='aiGuide',o
  async function ask(e,nextMessage,nextMode=mode){
   e?.preventDefault();const text=(nextMessage??message).trim();if(!user)return onLogin();if(busy||request.current||!text)return;
   const id=++requestId.current,controller=new AbortController();request.current=controller;setBusy(true);setError('');if(nextMessage)setMessage(text);if(nextMode!==mode)setMode(nextMode);
-  const history=turns.flatMap(t=>[{role:'user',content:t.message},{role:'assistant',content:(t.report?t.answerUz.slice(0,700)+'\n'+reportContext(t.report):t.answerUz).slice(0,1500)}]).slice(-6),learning=turns.filter(t=>t.report).slice(-1).map(t=>t.report);
+  const history=turns.flatMap(t=>[{role:'user',content:t.message},{role:'assistant',content:(t.report?t.answerUz.slice(0,700)+'\n'+reportContext(t.report):t.answerUz).slice(0,4000)}]).slice(-6),learning=turns.filter(t=>t.report).slice(-1).map(t=>t.report);
   const context={...(originView?{originView}:{}),...(selected?{focusView:selected.id}:{}),...(learning.length?{learning}:{})};
   try{const result=await assistantApi({mode:nextMode,message:text,view:currentView,...context,history},controller.signal);if(id!==requestId.current)return;setTurns(t=>[...t,{...result,id,message:text,mode:nextMode}].slice(-12));setMessage('');}
   catch(e){if(id===requestId.current&&e.name!=='AbortError')setError(e.message);}
@@ -44,7 +51,7 @@ export default function AiGuide({user,onNavigate,onLogin,currentView='aiGuide',o
  <section className="sp-card sp-ai-box"><h2><Sparkles size={20}/> AI bilan birga o‘rganing</h2>{!compact&&<div className="sp-assistant-modes" role="group" aria-label="AI yordamchi vazifasi">{modes.map(m=><button key={m.id} className={'sp-btn'+(mode===m.id?' sp-primary':'')} aria-pressed={mode===m.id} disabled={busy} onClick={()=>{setMode(m.id);setError('');}}><m.icon size={16}/>{m.title}</button>)}</div>}<p>{activeMode.description}</p>
  {!user&&<Notice>Shaxsiy AI yordamchi uchun hisobga kiring. Bo‘limlar qo‘llanmasi hozir ochiq.</Notice>}{providerConfigured===false&&<Notice>AI xizmati hali administrator tomonidan sozlanmagan. Hozirgi sahifangizni aniqlash va bo‘limlar qo‘llanmasi ishlaydi.</Notice>}
  <div className="sp-assistant-suggestions" aria-label="Savol namunalari">{suggestions[mode].map(s=><button key={s} className="sp-btn sp-quiet" disabled={busy} onClick={()=>setMessage(s)}>{s}<ArrowRight size={13}/></button>)}</div>
- <div className="sp-guide-conversation" aria-live="polite" aria-relevant="additions">{turns.map(t=><article key={t.id}><p className="sp-user-question"><MessageCircle size={15}/> {t.message}</p><div className="sp-robot-reply"><RobotAssistant size="mini" mood="happy"/><p className="sp-ai-answer">{t.answerUz}</p></div>{t.questions.length>0&&(t.quizType==='diagnostic'?<DiagnosticQuiz key={t.id} questions={t.questions} subjectUz={t.subjectUz} topicUz={t.topicUz} busy={busy} onComplete={report=>setTurns(old=>old.map(turn=>turn.id===t.id?{...turn,report}:turn))} onFollowup={text=>ask(null,text,'mentor')}/>:<AssistantQuiz key={t.id} questions={t.questions}/>)}<div className="sp-actions">{t.routeIds.filter(id=>features.some(f=>f.id===id)).map(id=><button className="sp-btn" key={id} onClick={()=>onNavigate(id)}>{features.find(f=>f.id===id).title}<ArrowRight size={15}/></button>)}</div></article>)}</div>
+ <div className="sp-guide-conversation" aria-live="polite" aria-relevant="additions">{turns.map(t=><article key={t.id}><p className="sp-user-question"><MessageCircle size={15}/> {t.message}</p><div className="sp-robot-reply"><RobotAssistant size="mini" mood="happy"/><div className="sp-ai-answer sp-ai-markdown"><Markdown remarkPlugins={[remarkGfm]} skipHtml disallowedElements={['img']} components={replyComponents}>{t.answerUz}</Markdown></div></div>{t.questions.length>0&&(t.quizType==='diagnostic'?<DiagnosticQuiz key={t.id} questions={t.questions} subjectUz={t.subjectUz} topicUz={t.topicUz} busy={busy} onComplete={report=>setTurns(old=>old.map(turn=>turn.id===t.id?{...turn,report}:turn))} onFollowup={text=>ask(null,text,'mentor')}/>:<AssistantQuiz key={t.id} questions={t.questions}/>)}<div className="sp-actions">{t.routeIds.filter(id=>features.some(f=>f.id===id)).map(id=><button className="sp-btn" key={id} onClick={()=>onNavigate(id)}>{features.find(f=>f.id===id).title}<ArrowRight size={15}/></button>)}</div></article>)}</div>
  <form onSubmit={ask} aria-busy={busy}><label className="sp-field">Savolingiz<textarea maxLength={1500} rows={3} value={message} disabled={busy} onKeyDown={keyDown} onChange={e=>setMessage(e.target.value)} placeholder={mode==='guide'?'Dasturdan foydalanish haqida so‘rang…':mode==='tutor'?'Qaysi mavzuni tushuntirib beray?':mode==='mentor'?'Masalan: qayerdaman, buni tushunmadim yoki bilimimni tekshiring…':'Fan va mavzuni yozing…'} required={!!user}/></label><span className="sp-robot-key-hint">Enter — yuborish. Shift+Enter — yangi qator.</span><div className="sp-assistant-submit"><span className="sp-note">{message.length} / 1500</span><button className="sp-btn sp-primary" disabled={busy||(!message.trim()&&!!user)}>{busy?<><LoaderCircle className="sp-spinner" size={16}/>AI javob tayyorlamoqda…</>:<>{user?'Yordamchidan so‘rash':'Hisobga kirish'}<Send size={16}/></>}</button>{busy&&<button type="button" className="sp-btn sp-quiet" onClick={cancel}><X size={15}/>Bekor qilish</button>}</div></form>{error&&<Notice error>{error} Savolingiz shu yerda saqlandi; qayta yuborishingiz mumkin.</Notice>}
  <p className="sp-note"><CheckCircle2 size={14}/> Savolingiz, suhbatning oxirgi javoblari va shu suhbatdagi mini-test natijalari AI ustozga yuboriladi. Suhbat faqat shu sahifada saqlanadi. Ovoz va Speaking javoblaringiz yuborilmaydi.</p></section>{selected&&<section className="sp-card sp-tour"><span className="sp-pill">Qo‘llanma · tekshirilgan qadamlar</span><h2>{selected.title}</h2><p>{selected.description}</p><ol className="sp-steps">{selected.steps.map((s,i)=><li key={s}><span>{i+1}</span><p>{s}</p></li>)}</ol><button className="sp-btn sp-primary" onClick={()=>onNavigate(selected.id)}>{selected.title}ni ochish <ArrowRight size={17}/></button></section>}</div></div></Container>;
 }

@@ -1,0 +1,62 @@
+.iq-exam-intro {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+ align-items: center;
+ gap: 28px;
+ margin: 16px 0 24px;
+ padding: clamp(20px, 4vw, 36px);
+ background: var(--lh-surface);
+ border: 1px solid var(--lh-line);
+ border-radius: 10px;
+}
+.iq-exam-intro h1 {
+ margin: 6px 0 12px;
+ font-size: clamp(28px, 4vw, 43px);
+ line-height: 1.16;
+}
+.iq-exam-intro p {max-width: 59ch; margin: 0; line-height: 1.6; color: var(--lh-muted);}
+.iq-exam-intro dl {margin: 0; padding-inline-start: 24px; border-inline-start: 1px solid var(--lh-line);}
+.iq-exam-intro dl div {display: flex; justify-content: space-between; gap: 12px; padding: 7px 0;}
+.iq-exam-intro dt {color: var(--lh-muted);}
+.iq-exam-intro dd {margin: 0; font-weight: 700;}
+.iq-start .iq-practice-link {margin: 10px 0 0; display: flex; width: fit-content;}
+.iq-hub[data-exam] {
+ max-width: 1220px;
+ border-radius: 0;
+}
+.iq-hub[data-exam] .learning-top {
+ margin-bottom: 24px;
+ border-bottom: 1px solid var(--lh-line);
+ padding-bottom: 12px;
+}
+.iq-hub[data-exam] .iq-timer {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ font: 700 20px var(--sq-mono, monospace);
+ font-variant-numeric: tabular-nums;
+}
+.iq-hub[data-exam] .iq-question h1 {font-size: clamp(22px, 3vw, 30px); line-height: 1.35;}
+.iq-hub[data-exam] .iq-question-map nav button {position: relative;}
+.iq-question-map .flagged svg {position: absolute; inset-block-start: 3px; inset-inline-end: 3px;}
+.iq-question-top .iq-flag {min-height: 36px; font-size: 13px;}
+.iq-question-top .iq-flag[aria-pressed="true"] {background: var(--sq-accent-soft); border-color: var(--sq-action); color: var(--sq-ink);}
+.iq-hub[data-exam] .iq-model {color: var(--lh-ink); background: var(--lh-surface); border: 1px solid var(--lh-line);}
+.iq-hub[data-exam] :is(.iq-cell, .iq-sequence > span) {fill: var(--lh-surface); background: var(--lh-surface);}
+.iq-submit-dialog {width: min(620px, 100%); max-height: 88vh; overflow: auto;}
+.iq-submit-questions {
+ display: grid;
+ gap: 14px;
+ margin-block: 16px;
+ padding-block: 14px;
+ border-block: 1px solid var(--lh-line);
+}
+.iq-submit-questions h3 {margin: 0 0 8px; font-size: 16px;}
+.iq-submit-questions p {margin: 0; color: var(--lh-muted);}
+.iq-submit-grid {display: flex; flex-wrap: wrap; gap: 6px;}
+.iq-submit-grid button {min-width: 38px; min-height: 38px; padding: 5px 8px;}
+@media (max-width: 720px) {
+ .iq-exam-intro {grid-template-columns: 1fr; gap: 16px;}
+ .iq-exam-intro dl {padding: 10px 0 0; border-inline-start: 0; border-top: 1px solid var(--lh-line);}
+ .iq-hub[data-exam] .learning-top .learning-kicker {order: -1; flex: 1 1 100%;}
+}

@@ -7,6 +7,45 @@ import {MemoryRepo,profile,uid,otherUid,testEnv,assessmentFixture,planFixture} f
 import {AiError} from '../server/speaking/groq.js';
 const actor={id:uid,role:'student'},other={id:otherUid,role:'student'};
 const op=(kind,key,payload,extra={})=>({kind,key,payload,...extra});
+test('the full exam room holds each question and clock until the microphone starts its turn', async () => {
+ const repo = new MemoryRepo();
+ let clock = new Date('2026-11-02T06:00:00Z');
+ const service = new SpeakingService(repo, {env: testEnv, now: () => clock});
+ const run = (action, data = {}) => service.run(actor, action, {examMode: 'multilevel', ...data});
+ await run('profile', {profile: profile('multilevel')});
+ const creation = {token: randomUUID(), consent: true, examRoom: true};
+ let snapshot = await run('start_mock', creation);
+ const sessionId = snapshot.session.id;
+ assert.equal(snapshot.session.examRoom, true);
+ assert.equal(snapshot.turn, null);
+ assert.equal(snapshot.session.current.prompt, undefined);
+ clock = new Date(clock.getTime() + 180_000);
+ snapshot = await run('session', {id: sessionId});
+ assert.equal(snapshot.turn, null);
+ assert.equal((await run('start_mock', creation)).session.id, sessionId);
+
+ while (snapshot.session.current) {
+  const {id: questionId, prepSeconds, responseMaxSeconds} = snapshot.session.current;
+  assert.equal(snapshot.session.current.prompt, undefined);
+  assert.equal(snapshot.turn, null);
+  const started = await run('begin_turn', {sessionId, questionId});
+  const {promptUntil, prepUntil, deadline} = started.turn.payload;
+  assert.ok(started.question.prompt);
+  assert.ok(Date.parse(promptUntil) > clock.getTime());
+  assert.equal(Date.parse(prepUntil) - Date.parse(promptUntil), prepSeconds * 1000);
+  assert.equal(Date.parse(deadline) - Date.parse(prepUntil), responseMaxSeconds * 1000);
+  clock = new Date(Date.parse(prepUntil) + 2000);
+  const resumed = await run('session', {id: sessionId});
+  assert.equal(resumed.session.current.prompt, started.question.prompt);
+  assert.equal(resumed.turn.payload.deadline, deadline);
+  assert.equal((await run('begin_turn', {sessionId, questionId})).turn.id, started.turn.id);
+  await run('stop_turn', {id: started.turn.id, sha256: null, technicalStatus: 'skipped'});
+  snapshot = await run('submit_answer', {sessionId, questionId});
+ }
+ assert.equal(snapshot.answers.length, 8);
+ assert.ok(snapshot.answers.every(answer => answer.payload.elapsedSeconds === 2));
+});
+
 test('real service and durable worker flow, with controlled Groq HTTP fixtures',async t=>{
  const repo=new MemoryRepo();let clock=new Date('2026-11-02T06:00:00Z');const service=new SpeakingService(repo,{env:testEnv,now:()=>clock}),run=(a,p={})=>service.run(actor,a,{examMode:'multilevel',...p});
  await t.test('no baseline means no fake roadmap or practice diagnosis',async()=>{await run('profile',{profile:profile('multilevel')});const h=await run('home');assert.equal(h.baseline,null);assert.equal(h.roadmap,null);assert.equal(h.today,null);await assert.rejects(run('practice_question'),{code:'BASELINE_REQUIRED'});await assert.rejects(run('replan'),{code:'BASELINE_REQUIRED'});});

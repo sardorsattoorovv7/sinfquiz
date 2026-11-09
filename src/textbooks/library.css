@@ -1,0 +1,84 @@
+.textbook-hub {border-radius: 0;}
+.library-heading {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) minmax(250px, 365px);
+ gap: 24px;
+ align-items: end;
+ padding-block: 16px 24px;
+ margin-bottom: 24px;
+ border-bottom: 1px solid var(--lh-line);
+}
+.library-heading h1 {margin: 0 0 8px; font-size: clamp(30px, 4vw, 46px); line-height: 1.2;}
+.library-heading p {margin: 0; color: var(--lh-muted);}
+.library-heading .learning-search {margin: 0; min-width: 0; max-width: none;}
+.library-layout {display: grid; grid-template-columns: 224px minmax(0, 1fr); align-items: start; gap: 24px;}
+.library-index {position: sticky; top: 84px;}
+.library-index h2 {margin-top: 0; font-size: 19px;}
+.library-index .book-subjects {display: grid; grid-template-columns: 1fr; gap: 6px; margin: 8px 0 16px;}
+.library-index .book-subjects .book-subject {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: flex-start;
+ text-align: start;
+ min-height: 54px;
+ gap: 10px;
+ padding: 8px 11px;
+ border: 1px solid transparent;
+ border-radius: 7px;
+ background: var(--lh-surface);
+ box-shadow: none;
+}
+.library-index .book-subject b {font-size: 15px;}
+.library-index .book-subject small {display: block; color: var(--lh-muted);}
+.library-index .book-subject svg {flex: 0 0 auto; margin: 0;}
+.library-index :is(.book-subject, .library-all)[aria-pressed="true"] {
+ border-color: var(--sq-control-line);
+ background: var(--lh-soft);
+ color: var(--lh-ink);
+}
+.library-group {display: grid; gap: 6px; margin-bottom: 14px; color: var(--lh-muted);}
+.library-group select {width: 100%; min-width: 0;}
+.library-results {min-width: 0;}
+.library-result-count {margin: 0 0 12px; font-size: 14px; color: var(--lh-muted);}
+.library-results .books-sections {display: grid; grid-template-columns: 1fr; gap: 16px;}
+.library-results .book-section {border-radius: 9px; box-shadow: none;}
+.library-results .book-section header {border-bottom: 1px solid var(--lh-line); padding-bottom: 14px;}
+.library-results .book-section ol {margin-bottom: 0;}
+.library-results .book-section li button {border-radius: 0; box-shadow: none; scroll-margin-block: 84px;}
+.library-results .book-number {font: 700 14px var(--sq-mono, monospace); color: var(--lh-muted); background: transparent;}
+.library-reader .library-reader-head {
+ padding: clamp(18px, 4vw, 36px);
+ margin-bottom: 20px;
+ border: 1px solid var(--lh-line);
+ border-radius: 10px;
+ box-shadow: none;
+}
+.library-reader-head .learning-kicker {margin-top: 18px;}
+.library-reader-head h1 {margin-top: 6px;}
+.book-metadata {display: flex; flex-wrap: wrap; gap: 16px 26px; margin: 18px 0 0;}
+.book-metadata dt {font-size: 13px; color: var(--lh-muted);}
+.book-metadata dd {margin: 2px 0 0; font-weight: 700; font-size: 14px;}
+.library-reader .book-reader-grid {grid-template-columns: minmax(205px, 240px) minmax(0, 1fr); align-items: start;}
+.library-reader .book-roadmap {position: sticky; top: 84px;}
+.library-reader .book-roadmap h2 {font-size: 19px; margin-top: 0;}
+.library-reader .book-roadmap nav {display: grid; gap: 4px;}
+.library-reader .book-roadmap nav button {gap: 10px; min-height: 42px; margin: 0; justify-content: flex-start; text-align: start;}
+.library-reader .book-roadmap nav span {font: 700 12px var(--sq-mono, monospace); color: var(--lh-muted);}
+.library-reader .book-content {background: var(--lh-surface); box-shadow: none;}
+.book-chapter {scroll-margin-top: 90px; padding: 0 0 22px;}
+.book-chapter + .book-chapter {padding-top: 20px; border-top: 1px solid var(--lh-line);}
+.book-chapter h2 {line-height: 1.25;}
+.book-chapter p {max-width: 73ch;}
+.book-worked-example {padding: 15px 18px; background: var(--lh-soft); border-inline-start: 3px solid var(--lh-blue);}
+.book-worked-example h3, .book-worked-example p {margin: 0;}
+.book-worked-example p {margin-top: 7px;}
+.book-reader-footer {padding-top: 14px; border-top: 1px solid var(--lh-line);}
+@media (max-width: 790px) {
+ .library-heading, .library-layout, .library-reader .book-reader-grid {grid-template-columns: minmax(0, 1fr); gap: 16px;}
+ .library-index, .library-reader .book-roadmap {position: static;}
+ .library-index .book-subjects {grid-template-columns: repeat(2, minmax(0, 1fr));}
+}
+@media (max-width: 370px) {
+ .library-index .book-subjects {grid-template-columns: 1fr;}
+}
