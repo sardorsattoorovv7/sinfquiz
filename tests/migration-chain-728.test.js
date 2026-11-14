@@ -10,7 +10,8 @@ test('7.28 fresh-install SQL chain compiles in order without cron and preserves 
   // Supabase supplies these platform primitives. Realtime publication delivery and
   // object storage are not emulated; only their SQL schema is provided here.
   await db.exec(`create role anon;create role authenticated;create role service_role bypassrls;create schema auth;
-   create table auth.users(id uuid primary key);
+   create table auth.users(id uuid primary key,last_sign_in_at timestamptz);
+   create table auth.sessions(id uuid primary key,user_id uuid not null references auth.users(id) on delete cascade,created_at timestamptz not null default now());
    create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.uid',true),'')::uuid$$;
    create function auth.jwt() returns jsonb language sql stable as $$select '{}'::jsonb$$;
    grant usage on schema auth to authenticated;

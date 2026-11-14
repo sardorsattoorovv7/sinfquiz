@@ -10,7 +10,7 @@ export default defineConfig(({mode})=>{
  return {
  plugins:[localAdminApi(),seoPlugin({url:env.VITE_PUBLIC_SITE_URL,verification:env.VITE_GOOGLE_SITE_VERIFICATION})],
  optimizeDeps:{include:['three','three/addons/controls/OrbitControls.js','three/addons/environments/RoomEnvironment.js','three/addons/loaders/GLTFLoader.js']},
- server:{host:process.env.VITE_HOST||'0.0.0.0',strictPort:true,allowedHosts:['terminal.local']},
+ server:{host:process.env.VITE_HOST||(process.env.SPEAKING_PROVIDER==='local'?'127.0.0.1':'0.0.0.0'),strictPort:true,allowedHosts:['terminal.local']},
  build:{
   chunkSizeWarningLimit:650,
   rolldownOptions:{output:{codeSplitting:{groups:[

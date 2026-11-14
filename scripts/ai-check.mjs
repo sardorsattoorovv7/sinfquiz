@@ -1,9 +1,11 @@
 import {execFile} from 'node:child_process';
+import {access} from 'node:fs/promises';
 import {promisify} from 'node:util';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {requireGroq,structured} from '../server/speaking/groq.js';
 import {ffprobePath} from '../server/speaking/audio-tool.js';
+import {localProcessEnv,speakingProvider,usesLocalSpeaking} from '../server/speaking/provider.js';
 
 const runFile=promisify(execFile);
 const configured=value=>typeof value==='string'&&!!value.trim()&&!/^(replace|your[_ -]|changeme|example)/i.test(value.trim());
@@ -27,8 +29,9 @@ export async function checkAiRuntime({env=process.env,fetcher=fetch,probe=runFil
  const add=(id,status,code,message,requiredFor=both)=>checks.push({id,status,code,message,requiredFor});
  const url=normalUrl(env.SUPABASE_URL||env.VITE_SUPABASE_URL),browserUrl=normalUrl(env.VITE_SUPABASE_URL),anon=env.VITE_SUPABASE_ANON_KEY||env.SUPABASE_ANON_KEY;
  const service=env.SUPABASE_SECRET_KEY||env.SUPABASE_SERVICE_ROLE_KEY;
+ const local=usesLocalSpeaking(env),groqFeatures=local?['assistant']:both;
  let groq;
- try{groq=requireGroq(env);add('groqConfig','ready','GROQ_CONFIGURED','Groq server kaliti sozlangan.');}catch{add('groqConfig','blocked','GROQ_NOT_CONFIGURED','GROQ_API_KEY va Groq server manzilini tekshiring.');}
+ try{groq=requireGroq(env);add('groqConfig','ready','GROQ_CONFIGURED','Groq server kaliti sozlangan.',groqFeatures);}catch{add('groqConfig','blocked','GROQ_NOT_CONFIGURED','GROQ_API_KEY va Groq server manzilini tekshiring.',groqFeatures);}
  const urlOk=validUrl(url)&&validUrl(browserUrl)&&url===browserUrl;
  add('supabaseUrl',urlOk?'ready':'blocked',urlOk?'SUPABASE_URL_CONFIGURED':'SUPABASE_URL_INVALID',urlOk?'Supabase server va brauzer manzillari mos.':'VITE_SUPABASE_URL ni tekshiring; SUPABASE_URL berilgan bo‘lsa, ular mos bo‘lsin.');
  const anonOk=configured(anon)&&configured(env.VITE_SUPABASE_ANON_KEY)&&env.VITE_SUPABASE_ANON_KEY.length>40;
@@ -41,14 +44,29 @@ export async function checkAiRuntime({env=process.env,fetcher=fetch,probe=runFil
   return response.json();
  };
  const work=[];
- if(!groq)add('groq','skipped','GROQ_NOT_CONFIGURED','Groq so‘rovi sozlama kutilgani uchun bajarilmadi.');
- else if(offline)add('groq','configured','OFFLINE_NOT_VERIFIED','Groq tarmoq so‘rovi bajarilmadi.');
+ if(!groq)add('groq','skipped','GROQ_NOT_CONFIGURED','Groq so‘rovi sozlama kutilgani uchun bajarilmadi.',groqFeatures);
+ else if(offline||local&&speaking)add('groq','configured','OFFLINE_NOT_VERIFIED','Groq tarmoq so‘rovi bajarilmadi.',groqFeatures);
  else work.push((async()=>{try{
   const schema={type:'object',properties:{answerUz:{type:'string'}},required:['answerUz'],additionalProperties:false};
   const result=await structured('Return a short Uzbek greeting in answerUz. Return only the supplied JSON schema.',{request:'Salom'},schema,{env,fetcher,model:groq.practice,maxTokens:512,totalTimeoutMs:timeoutMs,maxAttempts:1});
   if(!result.value.answerUz.trim())throw Error('Empty answer');
-  add('groq','ready','GROQ_LIVE_OK','Groq haqiqiy so‘rov va JSON tekshiruvidan o‘tdi.');
- }catch(error){const code=/^(GROQ|AI)_[A-Z0-9_]{1,48}$/.test(error.code||'')?error.code:'GROQ_CHECK_FAILED';add('groq','blocked',code,'Groq bilan jonli aloqa tasdiqlanmadi.');}})());
+  add('groq','ready','GROQ_LIVE_OK','Groq haqiqiy so‘rov va JSON tekshiruvidan o‘tdi.',groqFeatures);
+ }catch(error){const code=/^(GROQ|AI)_[A-Z0-9_]{1,48}$/.test(error.code||'')?error.code:'GROQ_CHECK_FAILED';add('groq','blocked',code,'Groq bilan jonli aloqa tasdiqlanmadi.',groqFeatures);}})());
+ if(local)work.push((async()=>{
+  const required=['speaking'];
+  let config;
+  try{
+   config=speakingProvider(env);
+   await Promise.all([access(config.whisperPath),access(config.whisperModel),probe(config.ffmpegPath,['-version'],{env:localProcessEnv(),timeout:5000,maxBuffer:16384,windowsHide:true})]);
+   add('localAudio','ready','LOCAL_WHISPER_READY','Lokal Whisper modeli va FFmpeg fayllari tayyor.',required);
+  }catch{add('localAudio','blocked','LOCAL_ASR_CONFIG','Whisper modeli, dasturi va FFmpeg manzilini tekshiring.',required);}
+  if(offline&&config){add('localLlm','configured','OFFLINE_NOT_VERIFIED','Lokal Qwen manzili sozlangan.',required);return;}
+  try{
+   const response=await fetcher(config.base+'/health',{signal:AbortSignal.timeout(timeoutMs),redirect:'error'});
+   if(!response.ok)throw Error('Qwen is unavailable');
+   add('localLlm','ready','LOCAL_QWEN_READY','Lokal Qwen serveri javob berdi.',required);
+  }catch{add('localLlm','blocked','LOCAL_AI_OFFLINE','Vite serveri va lokal Qwen modelini ishga tushiring.',required);}
+ })());
  if(!urlOk||!anonOk)add('supabaseAuth','skipped','SUPABASE_AUTH_CONFIG_REQUIRED','Autentifikatsiya sozlamalari to‘ldirilishi kerak.');
  else if(offline)add('supabaseAuth','configured','OFFLINE_NOT_VERIFIED','Supabase autentifikatsiyasi tarmoqda tekshirilmadi.');
  else work.push((async()=>{try{const data=await request('/auth/v1/settings',anon);if(!data||typeof data!=='object'||Array.isArray(data))throw Error('Invalid settings');add('supabaseAuth','ready','SUPABASE_AUTH_OK','Supabase autentifikatsiya xizmati javob berdi.');}catch{add('supabaseAuth','blocked','SUPABASE_AUTH_UNAVAILABLE','Supabase ochiq kaliti yoki autentifikatsiya aloqasini tekshiring.');}})());
@@ -64,7 +82,7 @@ export async function checkAiRuntime({env=process.env,fetcher=fetch,probe=runFil
  }
  work.push((async()=>{try{const result=await probe(ffprobePath(env),['-version'],{timeout:5000,maxBuffer:16384,windowsHide:true});if(!/^ffprobe version\s/m.test(String(result.stdout||'')))throw Error('Invalid binary');add('ffprobe','ready','FFPROBE_OK','Audio tekshirish dasturi tayyor.',['speaking']);}catch{add('ffprobe','blocked','FFPROBE_MISSING','ffprobe o‘rnating yoki SPEAKING_FFPROBE_PATH ni kiriting.',['speaking']);}})());
  await Promise.all(work);
- const order=['groqConfig','groq','supabaseUrl','supabaseAnonKey','supabaseAuth','supabaseServiceKey','speakingRecords','speakingJobs','speakingStorage','ffprobe'];checks.sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id));
+ const order=['groqConfig','groq','localLlm','localAudio','supabaseUrl','supabaseAnonKey','supabaseAuth','supabaseServiceKey','speakingRecords','speakingJobs','speakingStorage','ffprobe'];checks.sort((a,b)=>order.indexOf(a.id)-order.indexOf(b.id));
  const passes=feature=>checks.filter(c=>c.requiredFor.includes(feature)).every(c=>['ready','configured'].includes(c.status));
  const assistantConfigured=passes('assistant'),speakingConfigured=passes('speaking');
  return {checks,offline,assistantConfigured,speakingConfigured,assistantReady:!offline&&assistantConfigured,speakingReady:!offline&&speakingConfigured,exitCode:(speaking?speakingConfigured:assistantConfigured)?0:1};

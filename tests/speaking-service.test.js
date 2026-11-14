@@ -3,10 +3,151 @@ import assert from 'node:assert/strict';
 import {randomUUID,createHash} from 'node:crypto';
 import {SpeakingService} from '../server/speaking/service.js';
 import {SpeakingWorker,probeAudio} from '../server/speaking/worker.js';
+import {speakingMockSets} from '../server/speaking/questions.js';
+import {guideSchema} from '../server/speaking/schema.js';
 import {MemoryRepo,profile,uid,otherUid,testEnv,assessmentFixture,planFixture} from './speaking-fixtures.js';
 import {AiError} from '../server/speaking/groq.js';
 const actor={id:uid,role:'student'},other={id:otherUid,role:'student'};
 const op=(kind,key,payload,extra={})=>({kind,key,payload,...extra});
+test('a local written interview produces feedback with Qwen under a full Groq quota',async()=>{
+ const repo=new MemoryRepo(),exam='ielts',question=speakingMockSets.find(set=>set.exam===exam).sections[0].questions[0];
+ const env={SPEAKING_PROVIDER:'local',SPEAKING_LOCAL_WHISPER_PATH:'whisper',SPEAKING_LOCAL_WHISPER_MODEL:'model'};
+ const [session]=await repo.write(uid,[op('session','local-test',{cursor:1,queue:[question],status:'started',processingProvider:'local',attemptKind:'baseline'},{exam})]);
+ await repo.write(uid,[op('answer','local-answer',{question,questionId:question.id,sourceKind:'typed',text:'I good at explaining my ideas.',status:'answered',processingProvider:'local'},{exam,parentId:session.id})]);
+ const cloud=new SpeakingService(repo,{env:testEnv});
+ await assert.rejects(cloud.run(actor,'finish_mock',{id:session.id}),{code:'LOCAL_AI_REQUIRED'});
+ const local=new SpeakingService(repo,{env});
+ const {job}=await local.run(actor,'finish_mock',{id:session.id});
+ const worker=new SpeakingWorker(repo,{env,fetcher:async(url,options)=>{
+  assert.ok(url.startsWith('http://127.0.0.1:17863/'));
+  const data=JSON.parse(JSON.parse(options.body).messages[1].content);
+  assert.equal(data.a1.answer,'I good at explaining my ideas.');
+  const value={summaryUz:'Bitta grammatik tuzatish.',strengthUz:'Fikr aniq.',priorityUz:'Be fe‘lini ishlating.',answers:{a1:{
+   relevance:'on_topic',missingPoints:[],corrections:[{category:'missing_be',quote:'I good at',replacement:'I am good at',reasonUz:'Be fe‘lini qo‘shing.'}],
+   adviceUz:'Bitta misol keltiring.',exampleEn:'I am good at explaining my ideas.',nextQuestionEn:'Which skill do you want to improve?',
+  }}};
+  return Response.json({choices:[{message:{content:JSON.stringify(value)}}]});
+ }});
+ assert.equal((await worker.once()).status,'completed');
+ const state=await repo.job(uid,job.id),report=await repo.byId(uid,state.result_id,'assessment');
+ assert.equal(report.payload.modelId,'qwen3.5-4b-local');
+ assert.equal(report.payload.processingProvider,'local');
+ assert.equal(report.payload.answerAnalyses[0].errors[0].minimalCorrection,'I am good at');
+ assert.equal(repo.reservations.some(([,metric])=>metric==='groq-calls'||metric==='reserved-tokens'),false);
+});
+
+test('Speaking reserves budget per provider attempt and checks the limit before sending',async()=>{
+ const repo=new MemoryRepo(),job={id:randomUUID(),user_id:uid},input={message:'Study question'},response={answerUz:'Speaking mashqini oching.',routeIds:[]};
+ let sent=0;
+ const worker=new SpeakingWorker(repo,{env:testEnv,fetcher:async()=>{
+  if(++sent===1)return Response.json({},{status:429,headers:{'retry-after':'0'}});
+  return Response.json({choices:[{message:{content:JSON.stringify(response)}}]});
+ }});
+ const ask=()=>worker.ask(job,'Guide',input,guideSchema,'openai/gpt-oss-20b',100);
+ assert.deepEqual(await ask(),response);
+ assert.equal(sent,2);
+ const estimatedTokens=Math.ceil(JSON.stringify(input).length/3)+100;
+ assert.deepEqual(repo.reservations.map(([,metric,amount])=>[metric,amount]),[
+  ['reserved-tokens',estimatedTokens],['groq-calls',1],['reserved-tokens',estimatedTokens],['groq-calls',1],
+ ]);
+ repo.reserve=async()=>{throw new AiError('AI_RATE_LIMIT','Daily budget reached.',429,true);};
+ await assert.rejects(ask(),{code:'AI_RATE_LIMIT'});
+ assert.equal(sent,2);
+});
+
+test('the saved report supplies a seven-day study plan after the AI budget is exhausted',async()=>{
+ const repo=new MemoryRepo(),exam='ielts',now=()=>new Date('2026-11-09T06:00:00Z');
+ const service=new SpeakingService(repo,{env:testEnv,now});
+ await service.run(actor,'profile',{examMode:exam,profile:profile(exam)});
+ const error={errorId:randomUUID(),category:'missing_be',confidence:'high',severity:'high',startOffset:0,sourceQuote:'I good at',minimalCorrection:'I am good at',explanationUz:'Ega bilan sifat orasiga be fe‘lini qo‘shing.'};
+ const [assessment]=await repo.write(uid,[op('assessment','saved-report',{
+  summaryUz:'Fe’l shaklini yangi javobda mashq qiling.',attemptKind:'baseline',answerAnalyses:[{answerId:randomUUID(),errors:[error]}],
+ },{exam})]);
+ await repo.enqueue(uid,'plan',assessment.id,'plan');
+ const reserve=repo.reserve.bind(repo);
+ repo.reserve=async(user,metric,...limits)=>{
+  if(metric==='reserved-tokens')throw new AiError('AI_RATE_LIMIT','Daily budget reached.',429,true);
+  await reserve(user,metric,...limits);
+ };
+ let providerCalls=0;
+ const worker=new SpeakingWorker(repo,{env:testEnv,now,fetcher:async()=>{providerCalls++;throw Error('Unexpected provider call');}});
+ assert.equal((await worker.once()).status,'completed');
+ const home=await service.run(actor,'home',{examMode:exam});
+ const plan=home.roadmap.payload;
+ assert.equal(providerCalls,0);
+ assert.equal(plan.source,'report');
+ assert.equal(plan.assessmentId,assessment.id);
+ assert.equal(plan.weeks.length,8);
+ assert.equal(plan.days.length,7);
+ assert.equal(new Set(plan.days.map(day=>day.tasks[3].promptsEn[0])).size,7);
+ assert.deepEqual(plan.focus[0].sourceErrorIds,[error.errorId]);
+ assert.deepEqual(home.today.payload.tasks.map(task=>task.minutes),[3,5,3,6,3]);
+});
+
+test('short IELTS answers finish the mock after the three planned parts', async () => {
+ const repo=new MemoryRepo(),service=new SpeakingService(repo,{env:testEnv,now:()=>new Date('2026-11-09T06:00:00Z')});
+ const run=(action,data={})=>service.run(actor,action,{examMode:'ielts',...data});
+ await run('profile',{profile:profile('ielts')});
+ let mock=await run('start_mock',{token:randomUUID(),consent:true});
+ const sessionId=mock.session.id,questions=[];
+ assert.equal(mock.session.questionCount,10);
+ for(let i=0;i<10;i++){
+  const question=mock.session.current;
+  assert.ok(question);
+  questions.push(question);
+  await run('stop_turn',{id:mock.turn.id,technicalStatus:'skipped',sha256:null});
+  mock=await run('submit_answer',{sessionId,questionId:question.id});
+  assert.equal(mock.session.questionCount,10);
+ }
+ assert.equal(mock.session.current,null);
+ assert.equal(mock.answers.length,10);
+ assert.deepEqual(questions.map(question=>question.section),['part1','part1','part1','part1','part2','part2','part3','part3','part3','part3']);
+ assert.equal(questions[4].prepSeconds,60);
+ assert.equal(questions[4].responseMaxSeconds,120);
+ assert.equal(questions[5].responseMaxSeconds,30);
+ assert.equal((await run('finish_mock',{id:sessionId})).job.status,'queued');
+});
+
+test('a stored 33-answer IELTS mock produces a bounded report and preserves its answers', async () => {
+ const repo=new MemoryRepo(),exam='ielts',set=speakingMockSets.find(item=>item.exam===exam),sectionSizes=[14,2,17];
+ const queue=set.sections.flatMap(({questions},index)=>Array.from({length:sectionSizes[index]},(_,i)=>({
+  ...questions[i%questions.length],id:`legacy-${index}-${i}`,
+ })));
+ const [session]=await repo.write(uid,[op('session','legacy',{queue,cursor:33,status:'queued',attemptKind:'baseline'},{exam})]);
+ const saved=await repo.write(uid,queue.map((question,i)=>op('answer',question.id,{
+  question,questionId:question.id,status:'answered',sourceKind:'audio',elapsedSeconds:i+1,attemptKind:'baseline',
+ },{exam,parentId:session.id})));
+ const job=await repo.enqueue(uid,'assess',session.id,'legacy');
+ let calls=0,transcriptions=0,active=0,peak=0;
+ const worker=new SpeakingWorker(repo,{env:testEnv,fetcher:async(url,options)=>{
+  assert.ok(url.endsWith('/chat/completions'));
+  calls++;
+  const data=JSON.parse(JSON.parse(options.body).messages[1].content);
+  assert.deepEqual(data.answers.map(answer=>answer.question.section),['part1','part1','part1','part1','part2','part2','part3','part3','part3','part3']);
+  assert.equal(data.answers[4].question.taskType,'cue_card');
+  return Response.json({choices:[{message:{content:JSON.stringify(assessmentFixture(data.answers))}}]});
+ }});
+ worker.transcript=async (_job,answer)=>{
+  transcriptions++;
+  active++;
+  peak=Math.max(peak,active);
+  await new Promise(resolve=>setImmediate(resolve));
+  active--;
+  return (await repo.write(uid,[op('transcript','original:'+answer.id,{
+   text:'I good at explaining ideas and helping other people.',durationVerified:true,durationSeconds:answer.payload.elapsedSeconds,
+  },{exam,parentId:answer.id,mode:'insert'})]))[0];
+ };
+ assert.equal((await worker.once()).status,'completed');
+ const finished=await repo.job(uid,job.id),report=await repo.byId(uid,finished.result_id,'assessment');
+ assert.equal(calls,1);
+ assert.equal(transcriptions,10);
+ assert.equal(peak,3);
+ assert.equal(report.payload.answerAnalyses.length,10);
+ assert.equal(report.payload.coverage.submittedAnswerCount,33);
+ assert.equal(report.payload.comparisonGroup,'legacy_full_mock');
+ assert.deepEqual((await repo.list(uid,'answer',exam)).reverse(),saved);
+});
+
 test('the full exam room holds each question and clock until the microphone starts its turn', async () => {
  const repo = new MemoryRepo();
  let clock = new Date('2026-11-02T06:00:00Z');
@@ -44,6 +185,151 @@ test('the full exam room holds each question and clock until the microphone star
  }
  assert.equal(snapshot.answers.length, 8);
  assert.ok(snapshot.answers.every(answer => answer.payload.elapsedSeconds === 2));
+});
+
+test('the interviewer starts the prep and response clocks once, within the server presentation bound', async () => {
+ const repo = new MemoryRepo();
+ let clock = new Date('2026-11-02T06:00:00Z');
+ const service = new SpeakingService(repo, {env: testEnv, now: () => clock});
+ const run = (action, data = {}) => service.run(actor, action, {examMode: 'multilevel', ...data});
+ await run('profile', {profile: profile('multilevel')});
+ let snapshot = await run('start_mock', {token: randomUUID(), consent: true, examRoom: true});
+ const sessionId = snapshot.session.id;
+
+ while (snapshot.session.current.part !== '2') {
+  const questionId = snapshot.session.current.id;
+  const {turn} = await run('begin_turn', {sessionId, questionId, interviewer: true});
+  assert.equal(turn.payload.examinerPending, true);
+  if (snapshot.session.cursor === 0) assert.match(turn.payload.interviewerCue, /I'm Alex/);
+  if (snapshot.session.cursor === 3) assert.match(turn.payload.interviewerCue, /two pictures/);
+  clock = new Date(clock.getTime() + 2500);
+  const [first, concurrent] = await Promise.all([run('finish_prompt', {id: turn.id}), run('finish_prompt', {id: turn.id})]);
+  assert.deepEqual(first.turn, concurrent.turn);
+  assert.equal(first.turn.payload.promptUntil, clock.toISOString());
+  assert.equal(first.turn.payload.prepUntil, clock.toISOString());
+  assert.equal(first.turn.payload.examinerPending, false);
+  assert.equal(Date.parse(first.turn.payload.deadline) - clock.getTime(), turn.payload.responseMax * 1000);
+  clock = new Date(clock.getTime() + 2000);
+  assert.equal((await run('finish_prompt', {id: turn.id})).turn.payload.deadline, first.turn.payload.deadline);
+  await run('stop_turn', {id: turn.id, sha256: null, technicalStatus: 'skipped'});
+  snapshot = await run('submit_answer', {sessionId, questionId});
+ }
+
+ const {turn} = await run('begin_turn', {sessionId, questionId: snapshot.session.current.id, interviewer: true});
+ assert.match(turn.payload.interviewerCue, /one minute to prepare/);
+ await assert.rejects(service.run(other, 'finish_prompt', {id: turn.id}), {code: 'NOT_FOUND'});
+ clock = new Date(Date.parse(turn.payload.promptUntil) + 5000);
+ const {turn: late} = await run('finish_prompt', {id: turn.id});
+ assert.equal(late.payload.prepUntil, turn.payload.prepUntil);
+ assert.equal(late.payload.deadline, turn.payload.deadline);
+ assert.equal(Date.parse(late.payload.prepUntil) - Date.parse(late.payload.promptUntil), 60_000);
+ assert.equal(Date.parse(late.payload.deadline) - Date.parse(late.payload.prepUntil), 120_000);
+});
+
+test('written interview answers keep the server clock and receive text feedback without an audio baseline', async () => {
+ const repo = new MemoryRepo();
+ let clock = new Date('2026-11-02T06:00:00Z');
+ const service = new SpeakingService(repo, {env: testEnv, now: () => clock});
+ const run = (action, data = {}) => service.run(actor, action, {examMode: 'multilevel', ...data});
+ await run('profile', {profile: profile('multilevel')});
+ let snapshot = await run('start_mock', {token: randomUUID(), consent: true, examRoom: true, answerMode: 'typed'});
+ const sessionId = snapshot.session.id;
+ assert.equal(snapshot.session.answerMode, 'typed');
+ const text = 'I good at explaining ideas. I use a clear example and give a practical reason for my opinion. '.repeat(2).trim();
+ while (snapshot.session.current) {
+  const {id: questionId, prepSeconds} = snapshot.session.current;
+  const first = snapshot.session.cursor === 0;
+  const input = {sessionId, questionId, text};
+  const started = await run('begin_turn', {sessionId, questionId, interviewer: true});
+  assert.equal(started.turn.payload.answerMode, 'typed');
+  assert.equal((await run('session', {id: sessionId})).turn.id, started.turn.id);
+  await assert.rejects(run('submit_answer', input), {code: 'ANSWER_NOT_OPEN'});
+  if (first) {
+   await assert.rejects(run('submit_answer', {...input, text: '   '}), {code: 'WRITTEN_ANSWER'});
+   await assert.rejects(run('submit_answer', {...input, text: 'x'.repeat(4001)}), {code: 'WRITTEN_ANSWER'});
+   await assert.rejects(run('submit_answer', {...input, audioId: randomUUID()}), {code: 'ANSWER_MODE'});
+  }
+  clock = new Date(clock.getTime() + 2500);
+  const {turn} = await run('finish_prompt', {id: started.turn.id});
+  if (prepSeconds > 0) await assert.rejects(run('submit_answer', input), {code: 'ANSWER_NOT_OPEN'});
+  clock = new Date(Date.parse(turn.payload.deadline) + 3000);
+  if (first) {
+   const [saved, repeated] = await Promise.all([run('submit_answer', input), run('submit_answer', input)]);
+   assert.equal(saved.answers.length, 1);
+   assert.equal(repeated.answers[0].id, saved.answers[0].id);
+   assert.equal((await run('submit_answer', {...input, text: 'Changed later.'})).answers[0].payload.text, text);
+   snapshot = saved;
+  } else snapshot = await run('submit_answer', input);
+  const answer = snapshot.answers.find(row => row.payload.questionId === questionId);
+  assert.equal(answer.payload.sourceKind, 'typed');
+  assert.equal(answer.payload.audioId, null);
+  assert.equal(answer.payload.recordedAt, turn.payload.deadline);
+ }
+ assert.equal(snapshot.answers.length, 8);
+
+ let feedbackCalls = 0;
+ const worker = new SpeakingWorker(repo, {env: testEnv, now: () => clock, fetcher: async (url, options) => {
+  assert.ok(url.endsWith('/chat/completions'));
+  feedbackCalls++;
+  const data = JSON.parse(JSON.parse(options.body).messages[1].content);
+  assert.equal(data.assessmentConstraints.writtenInterview, true);
+  assert.ok(data.answers.every(answer => answer.transcript === text && !answer.durationVerified));
+  return Response.json({choices: [{message: {content: JSON.stringify(assessmentFixture(data.answers))}}]});
+ }});
+ await run('finish_mock', {id: sessionId});
+ assert.equal((await worker.once()).status, 'completed');
+ assert.equal(feedbackCalls, 1);
+ const home = await run('home');
+ assert.equal(home.baseline, null);
+ const assessment = home.assessments[0].payload;
+ assert.equal(assessment.attemptKind, 'written_mock');
+ assert.equal(assessment.textProfile, null);
+ assert.ok(assessment.wordCount > 150);
+ assert.ok(assessment.criterionResults.every(criterion => criterion.score === null));
+ assert.ok(assessment.answerAnalyses.every(answer => answer.errors.length === 1));
+ assert.equal(repo.jobRows.some(job => job.kind === 'plan'), false);
+});
+
+test('one audio preparation closes the turn, binds the clip and recovers a lost signing response', async () => {
+ const repo = new MemoryRepo();
+ let clock = new Date('2026-11-02T06:00:00Z');
+ const service = new SpeakingService(repo, {env: testEnv, now: () => clock});
+ const run = (action, data = {}) => service.run(actor, action, {examMode: 'multilevel', ...data});
+ await run('profile', {profile: profile('multilevel')});
+ const {session} = await run('start_mock', {token: randomUUID(), consent: true, examRoom: true});
+ const questionId = session.current.id;
+ const {turn} = await run('begin_turn', {sessionId: session.id, questionId, interviewer: true});
+ const sha256 = createHash('sha256').update('fixture voice').digest('hex');
+ const prepare = {parentKind: 'session', parentId: session.id, turnId: turn.id, sha256, token: randomUUID(), bytes: 512, mime: 'audio/webm'};
+ await assert.rejects(run('prepare_audio', prepare), {code: 'ANSWER_NOT_OPEN'});
+ const {turn: ready} = await run('finish_prompt', {id: turn.id});
+ clock = new Date(Date.parse(ready.payload.prepUntil) + 4000);
+ const originalSign = repo.signedUpload.bind(repo);
+ let signCalls = 0;
+ repo.signedUpload = async path => {
+  if (++signCalls === 1) throw new AiError('SPEAKING_NETWORK', 'Lost signing response.', 503, true);
+  return originalSign(path);
+ };
+ await assert.rejects(run('prepare_audio', prepare), {code: 'SPEAKING_NETWORK'});
+ const stored = await repo.read(uid, 'audio', 'audio:' + prepare.token);
+ const firstStop = await repo.byId(uid, turn.id, 'turn');
+ assert.equal(firstStop.payload.stoppedAt, clock.toISOString());
+ assert.equal(firstStop.payload.sha256, sha256);
+ assert.equal(stored.payload.turnId, turn.id);
+ clock = new Date(clock.getTime() + 8000);
+ assert.equal((await run('prepare_audio', prepare)).assetId, stored.id);
+ assert.equal((await repo.byId(uid, turn.id, 'turn')).payload.stoppedAt, firstStop.payload.stoppedAt);
+ await assert.rejects(run('prepare_audio', {...prepare, bytes: 513}), {code: 'AUDIO_OWNER'});
+ await assert.rejects(run('prepare_audio', {...prepare, token: randomUUID(), sha256: 'a'.repeat(64)}), {code: 'AUDIO_HASH'});
+
+ const next = await run('submit_answer', {sessionId: session.id, questionId, audioId: stored.id});
+ assert.equal(next.answers[0].payload.elapsedSeconds, 4);
+ assert.deepEqual(await run('prepare_audio', prepare), {assetId: stored.id, submitted: true});
+ const nextQuestion = next.session.current.id;
+ const {turn: nextTurn} = await run('begin_turn', {sessionId: session.id, questionId: nextQuestion});
+ await run('stop_turn', {id: nextTurn.id, sha256, technicalStatus: 'recorded'});
+ await assert.rejects(run('submit_answer', {sessionId: session.id, questionId: nextQuestion, audioId: stored.id}), {code: 'AUDIO_OWNER'});
+ assert.equal((await run('session', {id: session.id})).answers.length, 1);
 });
 
 test('real service and durable worker flow, with controlled Groq HTTP fixtures',async t=>{

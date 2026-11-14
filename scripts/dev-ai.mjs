@@ -2,6 +2,7 @@ import {spawn} from 'node:child_process';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {loadAiEnv} from './ai-check.mjs';
+import {usesLocalSpeaking} from '../server/speaking/provider.js';
 
 export function startAiDevelopment({env=process.env,cwd=process.cwd(),viteArgs=[],spawnProcess=spawn,log=console.log,registerSignals=true}={}){
  const children=new Set();let stopping=false,exitCode=0,finished;
@@ -23,9 +24,10 @@ export function startAiDevelopment({env=process.env,cwd=process.cwd(),viteArgs=[
  launch('Web server','node_modules/vite/bin/vite.js',viteArgs);
  const serverKey=env.SUPABASE_SECRET_KEY||env.SUPABASE_SERVICE_ROLE_KEY;
  const workerConfigured=!!serverKey&&!!(env.SUPABASE_URL||env.VITE_SUPABASE_URL);
- const workerStarted=workerConfigured&&!!launch('Speaking worker','scripts/speaking-worker.mjs');
+ const workerStarted=workerConfigured&&!usesLocalSpeaking(env)&&!!launch('Speaking worker','scripts/speaking-worker.mjs');
  if(workerStarted)log('[AI] Web server va AI Speaking worker birga ishga tushmoqda.');
  else if(!workerConfigured)log('[AI] AI yordamchi web serverda ishlaydi. AI Speaking uchun SUPABASE_SECRET_KEY yoki SUPABASE_SERVICE_ROLE_KEY va Supabase manzilini sozlang.');
+ else if(usesLocalSpeaking(env))log('[AI] Lokal Speaking topshiriqlarini Vite serveri bajaradi.');
  if(!env.GROQ_API_KEY)log('[AI] GROQ_API_KEY kiritilmagan. AI so‘rovlari uchun server kalitini sozlang.');
  return {children,done,stop,workerStarted};
 }

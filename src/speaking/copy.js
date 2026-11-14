@@ -3,14 +3,14 @@ import {uiCopy} from '../ui-copy.js';
 // Shared UI language for Speaking and the assistant. Exam content stays in English.
 export const speakingCopy={
  title:'Inglizcha gapirishni mashq qiling.',
- description:'Savollarga ovozli javob bering. So‘ng javoblaringiz tahlili va mashqlarni ko‘ring.',
+ description:'Savollarga ovozli yoki yozma javob bering. So‘ng javoblaringiz tahlili va mashqlarni ko‘ring.',
  start:'Speaking sinovini boshlash',
  practice:'Alohida qismni mashq qilish',
  login:'Speaking mashqlari va hisobotlaringizni saqlash uchun hisobingizga kiring.',
  helperDescription:uiCopy.help.description,
  helperQuestions:uiCopy.help.suggestions,
  criterionNames:{fluency_coherence:'Ravonlik va fikrlar bog‘liqligi',lexical_resource:'Lug‘at boyligi',grammatical_range_accuracy:'Grammatika va aniqlik',pronunciation:'Talaffuz'},
- attemptNames:{weekly_check:'Haftalik tekshiruv',baseline:'Boshlang‘ich sinov',recheck:'Yangi to‘liq sinov',transfer:'Yangi savol',aided_repeat:'Yordamli qayta aytish',practice:'Mashq',transcript_revision:'Tuzatilgan matn tahlili'},
+ attemptNames:{weekly_check:'Haftalik tekshiruv',baseline:'Boshlang‘ich sinov',recheck:'Yangi to‘liq sinov',written_mock:'Yozma javobli suhbat',transfer:'Yangi savol',aided_repeat:'Yordamli qayta aytish',practice:'Mashq',transcript_revision:'Tuzatilgan matn tahlili'},
  sessionNames:{started:'Davom etmoqda',queued:'Tahlil kutilmoqda',completed:'Yakunlangan',abandoned:'Tugallanmagan',cancelled:'Bekor qilingan'},
  questionKinds:{personal_interview:'Shaxsiy savollar',personal_questions:'Shaxsiy savollar',long_turn:'Kengroq javob',long_turn_follow_up:'Qo‘shimcha savol',three_question_long_turn:'Uch savol asosida javob',abstract_discussion:'Muhokama',picture_comparison:'Rasmlarni solishtirish',balanced_argument:'Fikrni ikki tomondan asoslash'},
 };

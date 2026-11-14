@@ -1,3 +1,7 @@
+# Foydalanuvchilar faolligi
+
+7.46 bazasida [supabase-user-activity.sql](supabase-user-activity.sql) faylini Supabase SQL Editor’da to‘liq RUN qiling, keyin yangi kodni joylang. Yangilanish kirish tarixini saqlaydi va onlayn holatni Supabase hisob sessiyasi orqali aniqlaydi.
+
 # Yangilash: 7.46.0
 
 7.31–7.45 bazasida **supabase-migration-7.46.sql**ni to‘liq RUN qiling. Faqat yangi Speaking jadvallari, service-role RPC funksiyalari, owner RLS va private audio bucket qo‘shiladi; mavjud fan / foydalanuvchi jadvallari o‘zgarmaydi. Barcha tarixiy fayllarni ishlab turgan bazaga qaytadan bajarish kerak emas. Yangi o‘rnatishda `migration-chain.json`dagi tartibni bajaring.

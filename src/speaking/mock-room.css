@@ -80,6 +80,10 @@
 .sp-room-times dd {margin: 0; font: 700 16px var(--sq-mono, monospace);}
 .sp-room-voice {display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 12px 0;}
 .sp-room-voice input {inline-size: 18px; block-size: 18px; accent-color: var(--sp-action);}
+.sp-room-voice-choice {margin: -6px 0 18px;}
+.sp-room-voice-choice .sp-field {margin: 0;}
+.sp-room-voice-choice select {min-height: 44px;}
+.sp-room-voice-choice p {margin: 6px 0 0;}
 .sp-exam-room .sp-recorder {
  margin: 12px 0 16px;
  padding: 18px;
@@ -92,27 +96,26 @@
 .sp-room-support {border-top: 1px solid var(--sp-line); margin-top: 16px; padding-top: 12px;}
 .sp-room-support summary {min-height: 32px; cursor: pointer; color: var(--sp-muted); font-size: 14px;}
 .sp-room-support .sp-actions {margin-top: 8px;}
-.sp-exam-overview {padding: 18px 22px; border: 1px solid var(--sp-line); border-radius: 8px; background: var(--sp-paper);}
-.sp-exam-overview h3 {margin-top: 0;}
-.sp-exam-overview ol {margin-bottom: 0; padding-inline-start: 22px;}
-.sp-exam-overview li {padding-block: 5px;}
-.sp-exam-ready {padding: 16px 0; margin: 16px 0; border-block: 1px solid var(--sp-line);}
-.sp-exam-ready p {margin: 0;}
-.sp-entry :is(.sp-intro, .sp-dashboard-hero) {
- --sp-navy: var(--sp-paper);
- --sp-on-navy: var(--sp-ink);
- --sp-navy-muted: var(--sp-muted);
- background: var(--sp-paper);
- color: var(--sp-ink);
+.sp-written-answer {
+ margin: 12px 0 16px;
+ padding: 16px;
+ background: var(--sq-soft);
  border: 1px solid var(--sp-line);
- box-shadow: none;
+ border-radius: 8px;
+ scroll-margin-block: 84px 24px;
 }
+.sp-written-clock {display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px;}
+.sp-written-clock > span {font-size: 14px; font-weight: 650;}
+.sp-written-answer .sp-field {margin: 0 0 12px;}
+.sp-written-answer textarea {min-height: 125px; font-size: 16px; line-height: 1.5;}
+.sp-written-actions {display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 10px;}
 @media (max-width: 780px) {
  .sp-exam-room .sp-mock-layout {grid-template-columns: 1fr;}
  .sp-room-question {min-height: 0;}
  .sp-exam-room .sp-room-parts li {padding: 10px 12px;}
- .sp-exam-room:has(.sp-recorder:is([data-phase="prompt"], [data-phase="prep"], [data-phase="answer"])) {padding-bottom: 130px;}
- .sp-exam-room .sp-recorder:is([data-phase="prompt"], [data-phase="prep"], [data-phase="answer"]) {
+ .sp-exam-room:has(.sp-recorder:is([data-phase="prompt"], [data-phase="prep"], [data-phase="answer"], [data-phase="saving"], [data-phase="preparing-upload"], [data-phase="uploading"], [data-phase="registering"])) {padding-bottom: 130px;}
+ .sp-exam-room:has(.sp-recorder[data-phase="ready"]) {padding-bottom: 190px;}
+ .sp-exam-room .sp-recorder:is([data-phase="prompt"], [data-phase="prep"], [data-phase="answer"], [data-phase="saving"], [data-phase="preparing-upload"], [data-phase="uploading"], [data-phase="registering"], [data-phase="ready"]) {
   position: fixed;
   inset: auto 0 0;
   z-index: 35;
@@ -127,4 +130,5 @@
  }
  .sp-exam-room .sp-recorder .sp-clock {font-size: 29px;}
  .sp-exam-room .sp-recorder[data-phase="answer"] .sp-btn {grid-column: 1 / -1;}
+ .sp-exam-room .sp-recorder[data-phase="ready"] :is(.sp-actions, .sp-note, .sp-error) {grid-column: 1 / -1; margin: 0;}
 }

@@ -1,5 +1,5 @@
 import {speakingError} from './copy.js';
-const reads=new Set(['home','session','begin_turn','job','assessment','audio_url']);
+const reads=new Set(['home','session','begin_turn','finish_prompt','job','assessment','audio_url']);
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const offline=()=>Object.assign(Error('Speaking serveri bilan aloqa uzildi. Yozuvingiz shu qurilmada saqlanadi; qayta urinib ko‘ring.'),{code:'SPEAKING_NETWORK',retryable:true});
 

@@ -1,25 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Mic, Square, Upload, RotateCcw, Volume2} from 'lucide-react';
 import {loadDraft, saveDraft, removeDraft, blobHash} from './drafts.js';
-import {newToken, timeLabel} from './client.js';
+import {newToken, phaseNames, timeLabel, turnTime} from './client.js';
 
 const formats = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/webm'];
-
-function turnTime(turn, now, fallback) {
- if (!turn) return {phase: 'answer', seconds: fallback};
- const promptEnd = Date.parse(turn.promptUntil);
- const prepEnd = Date.parse(turn.prepUntil);
- const end = Date.parse(turn.deadline);
- if (now < promptEnd) return {phase: 'prompt', seconds: Math.ceil((promptEnd - now) / 1000)};
- if (now < prepEnd) return {phase: 'prep', seconds: Math.ceil((prepEnd - now) / 1000)};
- return {phase: 'answer', seconds: Math.ceil((end - now) / 1000)};
-}
-
-const phaseNames = {prompt: 'Savol taqdimoti', prep: 'Tayyorlanish vaqti', answer: 'Javob vaqti'};
+const checkpointMs = 2000;
 
 export default function Recorder({
  draftKey, limit = 120, prep = 0, onBegin, onStop, onSubmit, onActive, onExpired,
- test = false, externalTurn = null, serverOffset = 0, examRoom = false, readPrompt = false, disabled = false,
+ test = false, externalTurn = null, serverOffset = 0, examRoom = false, disabled = false,
+ onPresent, onPromptEnd, onPhase, autoStart = false, startLabel,
 }) {
  const [state, setState] = useState('loading');
  const [draft, setDraft] = useState(null);
@@ -30,8 +20,7 @@ export default function Recorder({
  const recorder = useRef(null);
  const stream = useRef(null);
  const startTimer = useRef(null);
- const voiceTimer = useRef(null);
- const utterance = useRef(null);
+ const autoStarted = useRef(false);
  const saveChain = useRef(Promise.resolve());
  const mounted = useRef(false);
  const locked = useRef(false);
@@ -40,17 +29,8 @@ export default function Recorder({
  const callbacks = useRef({});
  callbacks.current = {onActive, onStop, onSubmit};
 
- function silence() {
-  clearTimeout(voiceTimer.current);
-  if (utterance.current) {
-   window.speechSynthesis?.cancel();
-   utterance.current = null;
-  }
- }
-
  function releaseMic() {
   clearTimeout(startTimer.current);
-  silence();
   stream.current?.getTracks().forEach(track => track.stop());
   stream.current = null;
  }
@@ -102,7 +82,15 @@ export default function Recorder({
 
  const time = turnTime(turn, tick + serverOffset, limit);
  const expired = !!turn && !turn.stoppedAt && time.phase === 'answer' && time.seconds <= 0;
+ const phase = state === 'presenting' ? 'prompt' : state === 'recording' ? time.phase : state;
  useEffect(() => {onExpired?.(expired);}, [expired, onExpired]);
+ useEffect(() => {onPhase?.(phase);}, [phase, onPhase]);
+
+ useEffect(() => {
+  if (!autoStart || autoStarted.current || disabled || state !== 'idle' || turn) return;
+  autoStarted.current = true;
+  void start();
+ }, [autoStart, disabled, state, turn]);
 
  useEffect(() => {
   if (state !== 'recording' && (!turn || turn.stoppedAt || expired)) return;
@@ -114,17 +102,25 @@ export default function Recorder({
   if (state === 'recording' && expired) stop();
  }, [state, expired]);
 
+ async function persist(saved) {
+  latest.current = saved;
+  try { await saveDraft(draftKey, saved); }
+  catch { showError(Error('Qurilma xotirasiga yozilmadi. Audioni yuborib bo‘lguncha sahifani ochiq tuting.')); }
+ }
+
  async function complete(saved) {
   const completeDraft = {...saved, sha256: saved.sha256 || await blobHash(saved.blob), complete: true};
-  latest.current = completeDraft;
-  try { await saveDraft(draftKey, completeDraft); }
-  catch { showError(Error('Qurilma xotirasiga yozilmadi. Audioni yuborib bo‘lguncha sahifani ochiq tuting.')); }
+  await saveChain.current;
+  await persist(completeDraft);
   return completeDraft;
  }
 
  async function transmit(saved) {
   if (mounted.current) setState('uploading');
-  await callbacks.current.onSubmit(saved);
+  await callbacks.current.onSubmit(saved, {
+   rememberUpload: assetId => persist({...saved, assetId}),
+   onStage: stage => {if (mounted.current) setState(stage);},
+  });
   await removeDraft(draftKey).catch(() => {});
   latest.current = null;
   if (mounted.current) {
@@ -135,15 +131,14 @@ export default function Recorder({
 
  async function finishCapture(automatic) {
   releaseMic();
-  await saveChain.current;
   const captured = latest.current;
   if (!mounted.current) return;
   try {
    if (!captured?.blob?.size) throw Error('Audio olinmadi. Mikrofon sozlamasini tekshiring.');
    const saved = await complete(captured);
-   await callbacks.current.onStop?.(saved);
    if (automatic && examRoom && callbacks.current.onSubmit) await transmit(saved);
    else {
+    await callbacks.current.onStop?.(saved);
     setDraft(saved);
     setState('ready');
    }
@@ -158,23 +153,6 @@ export default function Recorder({
   }
  }
 
- function speak(info, offset) {
-  const milliseconds = Date.parse(info.promptUntil) - (Date.now() + offset);
-  if (!readPrompt || !info.prompt || !(milliseconds > 0) || !window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
-  try {
-   const speech = new SpeechSynthesisUtterance(info.prompt);
-   speech.lang = 'en-GB';
-   const voices = window.speechSynthesis.getVoices();
-   const englishVoice = voices.find(voice => /^en-GB/i.test(voice.lang)) || voices.find(voice => /^en(?:-|$)/i.test(voice.lang));
-   if (englishVoice) speech.voice = englishVoice;
-   utterance.current = speech;
-   window.speechSynthesis.speak(speech);
-   voiceTimer.current = setTimeout(silence, milliseconds);
-  } catch {
-   silence();
-  }
- }
-
  async function start() {
   if (locked.current || disabled || expired || turn?.stoppedAt) return;
   setError('');
@@ -186,7 +164,7 @@ export default function Recorder({
   callbacks.current.onActive?.(true);
   setState('opening');
   try {
-   const microphone = await navigator.mediaDevices.getUserMedia({audio: {echoCancellation: true, noiseSuppression: true}, video: false});
+   const microphone = await navigator.mediaDevices.getUserMedia({audio: {channelCount: {ideal: 1}, echoCancellation: true, noiseSuppression: true}, video: false});
    if (!mounted.current) {
     microphone.getTracks().forEach(track => track.stop());
     return;
@@ -194,17 +172,31 @@ export default function Recorder({
    stream.current = microphone;
    const mimeType = formats.find(type => MediaRecorder.isTypeSupported(type));
    if (!mimeType) throw Error('Brauzer audio formatini qo‘llamaydi. Boshqa brauzerda urinib ko‘ring.');
-   const media = new MediaRecorder(microphone, {mimeType});
+   const media = new MediaRecorder(microphone, {mimeType, audioBitsPerSecond: mimeType === 'audio/mp4' ? 64_000 : 48_000});
    recorder.current = media;
-   const info = onBegin ? await onBegin() : {
+   let info = onBegin ? await onBegin() : {
     prepUntil: new Date(Date.now() + prep * 1000).toISOString(),
     deadline: new Date(Date.now() + (prep + limit) * 1000).toISOString(),
    };
    if (!mounted.current) return;
-   const offset = info.serverOffset ?? serverOffset;
+   let offset = info.serverOffset ?? serverOffset;
    setTurn(info);
    setTick(Date.now());
-   if (Date.parse(info.deadline) <= Date.now() + offset) throw Error('Bu savolning vaqti tugagan. Saqlangan javob bilan davom eting.');
+   if (info.stoppedAt || Date.parse(info.deadline) <= Date.now() + offset) throw Error('Bu savolning vaqti tugagan. Saqlangan javob bilan davom eting.');
+
+   const presentationTime = Date.parse(info.promptUntil) - (Date.now() + offset);
+   if (onPresent && presentationTime > 0) {
+    setState('presenting');
+    await onPresent(info, presentationTime);
+    if (!mounted.current) return;
+   }
+   if (info.examinerPending && onPromptEnd) {
+    info = await onPromptEnd();
+    if (!mounted.current) return;
+    offset = info.serverOffset ?? serverOffset;
+    setTurn(info);
+    setTick(Date.now());
+   }
 
    const chunks = [];
    const token = newToken();
@@ -216,7 +208,7 @@ export default function Recorder({
     chunks.push(event.data);
     const partial = {token, blob: new Blob(chunks, {type: mimeType.split(';')[0]}), complete: stopping.current};
     latest.current = partial;
-    saveChain.current = saveChain.current.then(() => saveDraft(draftKey, partial)).catch(showError);
+    if (!stopping.current || !mounted.current) saveChain.current = saveChain.current.then(() => saveDraft(draftKey, partial)).catch(showError);
    };
    media.onstop = () => finishCapture(!interrupted);
    media.onerror = () => {
@@ -227,10 +219,9 @@ export default function Recorder({
 
    const beginAudio = () => {
     if (!mounted.current || stopping.current) return;
-    silence();
     try {
-     if (Date.now() + offset >= Date.parse(info.deadline)) throw Error('Bu savolning vaqti tugagan.');
-     media.start(1000);
+     if (info.stoppedAt || Date.now() + offset >= Date.parse(info.deadline)) throw Error('Bu savolning vaqti tugagan.');
+     media.start(checkpointMs);
     } catch (cause) {
      releaseMic();
      showError(cause);
@@ -241,7 +232,6 @@ export default function Recorder({
    };
    const wait = Date.parse(info.prepUntil) - (Date.now() + offset);
    setState('recording');
-   if (examRoom) speak(info, offset);
    if (wait > 0) startTimer.current = setTimeout(beginAudio, wait);
    else beginAudio();
   } catch (cause) {
@@ -275,11 +265,11 @@ export default function Recorder({
   setError('');
   try {
    const saved = await complete(latest.current || draft);
-   await callbacks.current.onStop?.(saved);
    await transmit(saved);
   } catch (cause) {
    if (mounted.current) {
     showError(cause);
+    setDraft(latest.current || draft);
     setState('ready');
    }
   } finally {
@@ -300,13 +290,13 @@ export default function Recorder({
   }
  }
 
- const recording = state === 'recording' && time.phase === 'answer';
+ const recording = phase === 'answer';
  const status = state === 'recording'
   ? recording ? 'Audio yozilmoqda' : phaseNames[time.phase]
-  : {loading: 'Saqlangan yozuv tekshirilmoqda…', saving: 'Qurilmada saqlanmoqda…', uploading: 'Audio yuborilmoqda…', opening: 'Mikrofon ochilmoqda…', ready: test ? 'Mikrofon sinovi tayyor' : 'Saqlangan audio tayyor'}[state]
+  : {loading: 'Saqlangan yozuv tekshirilmoqda…', saving: 'Qurilmada saqlanmoqda…', 'preparing-upload': 'Audio tayyorlanmoqda…', uploading: 'Audio yuborilmoqda…', registering: 'Javob qayd etilmoqda…', opening: 'Mikrofon ochilmoqda…', presenting: 'Suhbat oluvchining navbati', ready: test ? 'Mikrofon sinovi tayyor' : 'Saqlangan audio tayyor'}[state]
     || (expired ? 'Savol vaqti tugagan' : examRoom ? 'Mikrofonni oching' : 'Mikrofon tayyor');
  const runningTurn = state === 'idle' && turn && !turn.stoppedAt && !expired;
- return <div className="sp-recorder" data-phase={state === 'recording' ? time.phase : state}>
+ return <div className="sp-recorder" data-phase={phase}>
   {!examRoom && <div className={`sp-mic-orb ${recording ? 'is-recording' : ''}`}><Mic size={28}/></div>}
   <div className="sp-record-status" role="status">{recording && examRoom && <span className="sp-live-dot" aria-hidden="true"/>}{status}</div>
   {(state === 'recording' || runningTurn) && <strong className="sp-clock" role="timer" aria-label={phaseNames[time.phase]}>{timeLabel(Math.max(0, time.seconds))}</strong>}
@@ -316,13 +306,13 @@ export default function Recorder({
   {runningTurn && <p className="sp-note">Taymer allaqachon boshlangan. Qolgan vaqtda yozishni davom ettiring.</p>}
   {state === 'idle' && (expired || turn?.stoppedAt) && <p className="sp-note" role="status">Bu savol uchun yozuv vaqti yakunlangan. Saqlangan javob bilan davom eting yoki yangi sinovni tanlang.</p>}
   {state === 'idle' && !expired && !turn?.stoppedAt && <button type="button" className="sp-btn sp-primary" disabled={disabled} onClick={start}>
-   <Mic size={18}/>{test ? '10 soniyalik sinov' : examRoom ? runningTurn ? 'Yozishni davom ettirish' : 'Savolni boshlash' : onBegin ? 'Ovoz yozishni boshlash' : 'Ovozli javob yozish'}
+   <Mic size={18}/>{test ? '10 soniyalik sinov' : examRoom ? runningTurn ? 'Yozishni davom ettirish' : startLabel || 'Savolni boshlash' : onBegin ? 'Ovoz yozishni boshlash' : 'Ovozli javob yozish'}
   </button>}
   {state === 'ready' && draft?.blob && <>
    {!examRoom && <audio controls src={url || undefined} aria-label={test ? 'Sinov audiosini tinglash' : 'O‘z javobingizni tinglash'}/>}
    {!draft.complete && <p className="sp-note">Oldingi yozuv uzilgan. Saqlangan qismini yuborishingiz mumkin.</p>}
    <div className="sp-actions">
-    {onSubmit && <button type="button" className="sp-btn sp-primary" disabled={disabled} onClick={submit}><Upload size={16}/>Audioni yuborish</button>}
+    {onSubmit && <button type="button" className="sp-btn sp-primary" disabled={disabled} onClick={submit}><Upload size={16}/>{error ? 'Audioni qayta yuborish' : 'Audioni yuborish'}</button>}
     {test && <button type="button" className="sp-btn" onClick={reset}><RotateCcw size={16}/>Qayta sinash</button>}
    </div>
   </>}

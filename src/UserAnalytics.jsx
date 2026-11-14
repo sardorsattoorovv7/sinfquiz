@@ -1,18 +1,138 @@
-import React,{useState,useEffect,useRef} from 'react';
+import React,{useEffect,useState} from 'react';
 import {Activity,Users,Radio,LogOut,ArrowLeft,Search,LockKeyhole} from 'lucide-react';
 import {api} from './api.js';
 import {adminResetPassword} from './profile-service.js';
-export default function UserAnalytics({analytics,Stat}){
- const [query,setQuery]=useState(''),[role,setRole]=useState('all'),[target,setTarget]=useState(null),[resetResult,setResetResult]=useState(null),[resetError,setResetError]=useState(''),[resetBusy,setResetBusy]=useState(false),now=Date.now();
- const [page,setPage]=useState(null),[pageError,setPageError]=useState(''),[pageBusy,setPageBusy]=useState(false),seq=useRef(0);
- const users=page?.users||analytics?.users||[];
- const fetchPage=async(after='',request=++seq.current)=>{setPageBusy(true);setPageError('');try{const next=await api('/api/admin/analytics',{method:'POST',data:{after,search:query,role:role==='all'?'':role}});if(request!==seq.current)return;setPage(previous=>({...next,users:after?[...(previous?.users||[]),...next.users]:next.users}));}catch(e){if(request===seq.current)setPageError(e.message);}finally{if(request===seq.current)setPageBusy(false)}};
- useEffect(()=>{const request=++seq.current,t=setTimeout(()=>fetchPage('',request),250);return()=>{clearTimeout(t);seq.current++;}},[query,role]);
- const visible=users;
- const date=value=>value?new Date(value).toLocaleString('uz-UZ',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
- const close=()=>{if(resetBusy)return;setTarget(null);setResetResult(null);setResetError('')};
- const reset=async()=>{setResetBusy(true);setResetError('');try{setResetResult(await adminResetPassword(target.uid||target.id))}catch(e){setResetError(e.message)}finally{setResetBusy(false)}};
- if(!analytics)return <section className="panel-card analytics-loading"><Activity/><h2>Statistika tayyorlanmoqda</h2><p>Foydalanuvchilar ma’lumoti bir necha soniyada ko‘rinadi.</p></section>;
- return <div className="user-analytics"><div className="stats-grid analytics-stats"><Stat icon={<Users/>} label="Jami foydalanuvchi" value={analytics.totalUsers} color="purple"/><Stat icon={<Radio/>} label="Hozir faol" value={analytics.activeUsers} color="green"/><Stat icon={<LogOut/>} label="Jami kirish" value={analytics.totalLogins} color="blue"/><Stat icon={<ArrowLeft/>} label="Jami chiqish" value={analytics.totalLogouts} color="orange"/></div><section className="panel-card analytics-summary"><div><b>{analytics.students}</b><span>O‘quvchi</span></div><div><b>{analytics.teachers}</b><span>O‘qituvchi</span></div><div><b>{analytics.admins||0}</b><span>Administrator</span></div><div><b>{analytics.todayUsers||0}</b><span>Bugun faol</span></div></section><section className="panel-card users-panel"><div className="panel-head"><div><h2>Foydalanuvchilar</h2><p>Oxirgi faollik va tizimga kirishlar bo‘yicha ro‘yxat</p></div><div className="user-filters"><label><Search/><input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Ism yoki email"/></label><select value={role} onChange={event=>setRole(event.target.value)}><option value="all">Barcha rollar</option><option value="student">O‘quvchilar</option><option value="teacher">O‘qituvchilar</option><option value="admin">Administratorlar</option></select></div></div><div className="table-wrap" tabIndex={0} role="region" aria-label="Testlar va natijalar jadvali"><table className="users-table"><thead><tr><th>FOYDALANUVCHI</th><th>ROL</th><th>HOLAT</th><th>KIRISHLAR</th><th>CHIQISHLAR</th><th>OXIRGI FAOLLIK</th><th>PAROL</th></tr></thead><tbody>{visible.map(user=>{const active=user.activity?.online!==false&&user.activity?.lastSeenAt&&now-user.activity.lastSeenAt<5*60*1000;return <tr key={user.uid||user.id}><td><span className="user-initial">{(user.name||'?').slice(0,1).toUpperCase()}</span><div><b>{user.name||'Nomsiz foydalanuvchi'}</b><small>{user.email||user.provider||'Email ko‘rsatilmagan'}</small></div></td><td><span className={`role-badge ${user.role}`}>{user.role==='admin'?'Administrator':user.role==='teacher'?'O‘qituvchi':'O‘quvchi'}</span></td><td><span className={`online-badge ${active?'online':'offline'}`}><i/>{active?'Faol':'Oflayn'}</span></td><td>{user.activity?.loginCount||0}</td><td>{user.activity?.logoutCount||0}</td><td>{date(user.activity?.lastSeenAt)}</td><td>{user.provider==='email'&&user.role!=='admin'?<button className="reset-link" onClick={()=>{setTarget(user);setResetResult(null);setResetError('')}}><LockKeyhole size={15}/> Yangilash</button>:'—'}</td></tr>})}</tbody></table></div><p>{visible.length} ta hisob ko‘rsatilmoqda. Umumiy statistika barcha hisoblarni qamraydi.</p>{pageError&&<p role="alert" className="form-error">{pageError}</p>}{(page?.nextCursor||(page===null&&analytics.nextCursor))&&<button className="btn btn-outline" disabled={pageBusy} onClick={()=>fetchPage(page?.nextCursor||analytics.nextCursor)}>{pageBusy?'Yuklanmoqda…':'Keyingi 50 ta hisob'}</button>}{!visible.length&&<div className="empty-card compact"><Users/><h3>Foydalanuvchi topilmadi</h3><p>Qidiruv yoki rol filtrini o‘zgartirib ko‘ring.</p></div>}</section>{target&&<div className="password-modal-backdrop" role="presentation"><section className="password-modal" role="dialog" aria-modal="true" aria-labelledby="reset-heading"><h2 id="reset-heading">Email hisob parolini yangilash</h2><p><b>{target.name}</b> · {target.email}</p>{resetResult?<><p>Yangi parol faqat shu oynada ko‘rinadi. O‘quvchiga shaxsan yetkazing.</p><code>{resetResult.password}</code>{resetResult.warning&&<p role="status" className="form-error">{resetResult.warning}</p>}<button className="btn btn-outline" onClick={()=>navigator.clipboard?.writeText(resetResult.password)}>Nusxa olish</button></>:<p>Parol serverda tasodifiy yaratiladi. Eski parol bilan keyingi kirish ishlamaydi.</p>}{resetError&&<p role="alert" className="form-error">{resetError}</p>}<div className="password-modal-actions"><button className="btn btn-outline" disabled={resetBusy} onClick={close}>Yopish</button>{!resetResult&&<button className="btn btn-primary" disabled={resetBusy} onClick={reset}>{resetBusy?'Yangilanmoqda…':'Parolni yangilash'}</button>}</div></section></div>}</div>;
-}
 
+const dateFormat=new Intl.DateTimeFormat('uz-UZ',{
+ day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'
+});
+const date=value=>Number.isFinite(value)&&value>0?dateFormat.format(value):'—';
+const roles={student:'O‘quvchi',teacher:'O‘qituvchi',admin:'Administrator'};
+
+export default function UserAnalytics({Stat}){
+ const [query,setQuery]=useState(''),[role,setRole]=useState(''),[page,setPage]=useState(1),[snapshot,setSnapshot]=useState(null);
+ const [pageError,setPageError]=useState(''),[retry,setRetry]=useState(0);
+ const [target,setTarget]=useState(null),[resetResult,setResetResult]=useState(null),[resetError,setResetError]=useState(''),[resetBusy,setResetBusy]=useState(false);
+ const search=query.trim();
+ const result=snapshot?.search===search&&snapshot.role===role&&snapshot.page===page?snapshot.data:null;
+
+ useEffect(()=>{
+  let disposed=false,inFlight=false;
+  async function load(){
+   if(disposed||inFlight||document.hidden)return;
+   inFlight=true;
+   try{
+    const data=await api('/api/admin/analytics',{method:'POST',data:{search,role,page}});
+    if(disposed)return;
+    setSnapshot({search,role,page,data});
+    setPageError('');
+   }catch(error){
+    if(!disposed)setPageError(error.message);
+   }finally{
+    inFlight=false;
+   }
+  }
+  const initial=setTimeout(load,200);
+  const refresh=setInterval(load,15000);
+  document.addEventListener('visibilitychange',load);
+  window.addEventListener('online',load);
+  return()=>{
+   disposed=true;
+   clearTimeout(initial);
+   clearInterval(refresh);
+   document.removeEventListener('visibilitychange',load);
+   window.removeEventListener('online',load);
+  };
+ },[search,role,page,retry]);
+
+ function changeFilter(setValue,value){
+  setPageError('');
+  setPage(1);
+  setValue(value);
+ }
+
+ function goToPage(nextPage){
+  setPageError('');
+  setPage(nextPage);
+ }
+
+ const close=()=>{if(resetBusy)return;setTarget(null);setResetResult(null);setResetError('');};
+ const reset=async()=>{
+  setResetBusy(true);
+  setResetError('');
+  try{setResetResult(await adminResetPassword(target.id));}
+  catch(error){setResetError(error.message);}
+  finally{setResetBusy(false);}
+ };
+ const counts=snapshot?.data;
+
+ return <div className="user-analytics">
+  {counts&&<>
+   <div className="stats-grid analytics-stats">
+    <Stat icon={<Users/>} label="Jami foydalanuvchi" value={counts.totalUsers} color="purple"/>
+    <Stat icon={<Radio/>} label="Hozir onlayn" value={counts.activeUsers} color="green"/>
+    <Stat icon={<LogOut/>} label="Jami kirish" value={counts.totalLogins} color="blue"/>
+    <Stat icon={<ArrowLeft/>} label="Jami chiqish" value={counts.totalLogouts} color="orange"/>
+   </div>
+   <section className="panel-card analytics-summary">
+    <div><b>{counts.students}</b><span>O‘quvchi</span></div>
+    <div><b>{counts.teachers}</b><span>O‘qituvchi</span></div>
+    <div><b>{counts.admins}</b><span>Administrator</span></div>
+    <div><b>{counts.todayUsers}</b><span>Bugun faol</span></div>
+   </section>
+  </>}
+  <section className="panel-card users-panel">
+   <div className="panel-head">
+    <div><h2>Foydalanuvchilar</h2><p>Avval onlayn hisoblar, har guruhda oxirgi kirganlar yuqorida.</p></div>
+    <div className="user-filters">
+     <label><Search aria-hidden="true"/><input aria-label="Ism yoki email" value={query} onChange={event=>changeFilter(setQuery,event.target.value)} placeholder="Ism yoki email" maxLength={100}/></label>
+     <select aria-label="Rol bo‘yicha filtrlash" value={role} onChange={event=>changeFilter(setRole,event.target.value)}>
+      <option value="">Barcha rollar</option><option value="student">O‘quvchilar</option><option value="teacher">O‘qituvchilar</option><option value="admin">Administratorlar</option>
+     </select>
+    </div>
+   </div>
+   {pageError&&<div role="alert" className="form-error">{pageError} <button type="button" className="btn btn-outline" onClick={()=>{setPageError('');setRetry(value=>value+1);}}>Qayta urinish</button></div>}
+   {!result&&!pageError&&<div className="analytics-loading" role="status"><Activity aria-hidden="true"/><p>Foydalanuvchilar yuklanmoqda…</p></div>}
+   {result?.users.length>0&&<>
+    <div className="table-wrap" tabIndex={0} role="region" aria-label="Foydalanuvchilar jadvali">
+     <table className="users-table">
+      <thead><tr><th>FOYDALANUVCHI</th><th>ROL</th><th>HOLAT</th><th>KIRISHLAR</th><th>CHIQISHLAR</th><th>OXIRGI KIRISH</th><th>OXIRGI FAOLLIK</th><th>PAROL</th></tr></thead>
+      <tbody>{result.users.map(user=>{
+       const {activity}=user;
+       return <tr key={user.id}>
+        <td><span className="user-initial">{(user.name||'?').slice(0,1).toUpperCase()}</span><div><b>{user.name||'Nomsiz foydalanuvchi'}</b><small>{user.email||user.provider||'Email ko‘rsatilmagan'}</small></div></td>
+        <td><span className={`role-badge ${user.role}`}>{roles[user.role]||'—'}</span></td>
+        <td><span className={`online-badge ${activity.online?'online':'offline'}`}><i/>{activity.online?'Onlayn':'Oflayn'}</span></td>
+        <td>{activity.loginCount}</td><td>{activity.logoutCount}</td>
+        <td>{date(activity.lastLoginAt)}</td><td>{date(activity.lastSeenAt)}</td>
+        <td>{user.provider==='email'&&user.role!=='admin'?<button className="reset-link" onClick={()=>{setTarget(user);setResetResult(null);setResetError('');}}><LockKeyhole size={15}/> Yangilash</button>:'—'}</td>
+       </tr>;
+      })}</tbody>
+     </table>
+    </div>
+    <p>{result.filteredUsers} ta hisob · {result.page} / {result.pageCount} sahifa</p>
+    {result.pageCount>1&&<nav aria-label="Foydalanuvchilar sahifalari">
+     <button className="btn btn-outline" disabled={result.page===1} onClick={()=>goToPage(result.page-1)}>Oldingi sahifa</button>{' '}
+     <button className="btn btn-outline" disabled={result.page===result.pageCount} onClick={()=>goToPage(result.page+1)}>Keyingi sahifa</button>
+    </nav>}
+   </>}
+   {result?.users.length===0&&<div className="empty-card compact"><Users/><h3>Foydalanuvchi topilmadi</h3><p>Qidiruv yoki rol filtrini o‘zgartirib ko‘ring.</p></div>}
+  </section>
+  {target&&<div className="password-modal-backdrop" role="presentation">
+   <section className="password-modal" role="dialog" aria-modal="true" aria-labelledby="reset-heading">
+    <h2 id="reset-heading">Email hisob parolini yangilash</h2>
+    <p><b>{target.name}</b> · {target.email}</p>
+    {resetResult?<>
+     <p>Yangi parol faqat shu oynada ko‘rinadi. O‘quvchiga shaxsan yetkazing.</p>
+     <code>{resetResult.password}</code>
+     {resetResult.warning&&<p role="status" className="form-error">{resetResult.warning}</p>}
+     <button className="btn btn-outline" onClick={()=>navigator.clipboard?.writeText(resetResult.password)}>Nusxa olish</button>
+    </>:<p>Parol serverda tasodifiy yaratiladi. Eski parol bilan keyingi kirish ishlamaydi.</p>}
+    {resetError&&<p role="alert" className="form-error">{resetError}</p>}
+    <div className="password-modal-actions"><button className="btn btn-outline" disabled={resetBusy} onClick={close}>Yopish</button>
+     {!resetResult&&<button className="btn btn-primary" disabled={resetBusy} onClick={reset}>{resetBusy?'Yangilanmoqda…':'Parolni yangilash'}</button>}
+    </div>
+   </section>
+  </div>}
+ </div>;
+}

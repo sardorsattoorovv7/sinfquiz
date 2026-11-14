@@ -84,9 +84,7 @@ async function adminState(sdk){
   isAdmin?sdk.getDocs(sdk.collection(sdk.db,'nationalSections')):sdk.getDocs(sdk.query(sdk.collection(sdk.db,'nationalSections'),sdk.where('ownerId','==',uid))),
  ]);
  const settings=settingsSnap.data()||{},race=raceSnap.race;
- let analytics=null;
- if(isAdmin)analytics=await playRpc(sdk,'sq_admin_analytics');
- return {quizzes:queryData(quizSnap),publicQuizzes:publicQuizSnap,lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),courseSeedError,nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race,typing:{...raceSnap.typing,studentCount:0,stageCount:5,results:queryData(resultSnap).filter(r=>r.verified===true).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)},analytics};
+ return {quizzes:queryData(quizSnap),publicQuizzes:publicQuizSnap,lessons:queryData(lessonSnap).sort((a,b)=>b.updatedAt-a.updatedAt),courseSeedError,nationalSections:queryData(nationalSnap).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)),players:queryData(playerSnap),race,typing:{...raceSnap.typing,studentCount:0,stageCount:5,results:queryData(resultSnap).filter(r=>r.verified===true).sort((a,b)=>b.completedAt-a.completedAt).slice(0,50)}};
 }
 
 const raceSummary=race=>race?{id:race.id,active:!!race.active,phase:race.phase,title:race.title,sourceQuizId:race.sourceQuizId||null,questionCount:race.questionCount||race.questionsByLane?.[0]?.length||race.questions?.length||0,startsAt:race.startsAt||null,startedAt:race.startedAt||null,winnerId:race.winnerId||null,createdAt:race.createdAt,racers:(race.racers||[]).map(({answer,...player})=>player)}:null;
@@ -206,10 +204,9 @@ export function subscribeSupabase(handlers){
     finally{inFlight=false;if(dirty){dirty=false;refresh()}}
    },120)};
    const targets=['quizzes','players','typingResults','lessons','nationalSections','live','settings'];
-   if(profile?.role==='admin')targets.push('profiles','userActivity');
    for(const collection of targets)unsubs.push(sdk.onChanges(collection,payload=>{
     const row=payload.new?.data||payload.old?.data;
-    if(row&&!['live','settings','profiles','userActivity'].includes(collection)&&profile?.role!=='admin'&&row.ownerId!==user.uid)return;
+    if(row&&!['live','settings'].includes(collection)&&profile?.role!=='admin'&&row.ownerId!==user.uid)return;
     refresh();
    },()=>{}));const roomTimer=setInterval(refresh,15000);unsubs.push(()=>clearInterval(roomTimer));if(!handlers.initialStateLoaded)refresh();
   }

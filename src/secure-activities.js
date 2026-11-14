@@ -3,7 +3,12 @@ import {playRpc} from './secure-play-service.js';
 export const secureActivityPath=path=>/^\/api\/typing\//.test(path)||/^\/api\/national\/(start|session|answer|navigate|finish|leave)$/.test(path)||/^\/api\/race\/(activate|stop)$/.test(path)||path==='/api/admin/analytics';
 export async function secureActivityApi(path,payload,{runtime,load,save}){
  const typing=path.startsWith('/api/typing/'),sdk=typing?await ensureAnonymous():await waitForAuth(),action=path.split('/').at(-1);
- if(path==='/api/admin/analytics')return playRpc(sdk,'sq_admin_analytics',{p_after:payload.after||'',p_search:payload.search||'',p_role:payload.role||''});
+ if(path==='/api/admin/analytics'){
+  const {data,error}=await sdk.app.rpc('sq_admin_user_page',{p_search:payload.search||'',p_role:payload.role||'',p_page:payload.page||1});
+  if(error?.code==='PGRST202')throw Error('Supabase SQL Editor’da supabase-user-activity.sql faylini RUN qiling.');
+  if(error)throw Error(error.message||'Foydalanuvchilar ro‘yxatini yuklab bo‘lmadi.');
+  return data;
+ }
  if(path.startsWith('/api/race/'))return playRpc(sdk,'sq_room_manage',{p_kind:'race',p_active:action==='activate',p_payload:payload});
  if(typing&&action==='active')return playRpc(sdk,'sq_room_catalog',{p_kind:'typing'});
  if(typing&&action==='status'){await playRpc(sdk,'sq_room_manage',{p_kind:'typing',p_active:!!payload.active});return {typing:(await playRpc(sdk,'sq_room_staff')).typing};}

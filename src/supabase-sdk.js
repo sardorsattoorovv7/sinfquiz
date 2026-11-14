@@ -82,4 +82,17 @@ export async function signInWithTelegram(telegram,role){const response=await fet
 export async function signInWithEmail(email,password){const sdk=await getSupabase(),credential=await sdk.signInWithEmailAndPassword(sdk.auth,email.trim(),password);if(credential.user.email?.toLowerCase()===ADMIN_EMAIL)await sdk.setDoc(sdk.doc(sdk.db,'profiles',credential.user.uid),{uid:credential.user.uid,email:credential.user.email,name:credential.user.displayName||'Administrator',role:'admin',provider:'email',updatedAt:Date.now()},{merge:true});return credential.user}
 export async function registerWithEmail({email,password,name,role}){if(password.length<12)throw Error('Parol kamida 12 belgidan iborat bo‘lsin.');const sdk=await getSupabase(),credential=await sdk.createUserWithEmailAndPassword(sdk.auth,email.trim(),password),safeRole=credential.user.email?.toLowerCase()===ADMIN_EMAIL?'admin':role==='teacher'?'teacher':'student',profile={uid:credential.user.uid,email:credential.user.email,name:safeRole==='admin'?'Administrator':name.trim(),role:safeRole,provider:'email',updatedAt:Date.now(),createdAt:Date.now()};await sdk.setDoc(sdk.doc(sdk.db,'profiles',credential.user.uid),profile);return profile}
 
-export async function recordActivity(event){const sdk=await getSupabase(),user=sdk.auth.currentUser;if(!user||user.isAnonymous)return null;const key='sinfquiz_session_id';let id=sessionStorage.getItem(key);if(!id){id=globalThis.crypto.randomUUID();sessionStorage.setItem(key,id)}const {data,error}=await sdk.app.rpc('sq_record_activity',{p_event:event,p_session:id});fail(error);if(event==='logout')sessionStorage.removeItem(key);return data}
+export async function recordActivity(event,userId){
+ const sdk=await getSupabase(),user=sdk.auth.currentUser;
+ if(!user||user.isAnonymous||user.uid!==userId)return null;
+ const {data:{session},error:sessionError}=await sdk.app.auth.getSession();
+ fail(sessionError);
+ if(session?.user.id!==userId)return null;
+ const key='sinfquiz_session_id';
+ let id=sessionStorage.getItem(key);
+ if(!id){id=globalThis.crypto.randomUUID();sessionStorage.setItem(key,id)}
+ const {data,error}=await sdk.app.rpc('sq_record_activity',{p_event:event,p_session:id}).abortSignal(AbortSignal.timeout(4500));
+ fail(error);
+ if(event==='logout')sessionStorage.removeItem(key);
+ return data;
+}

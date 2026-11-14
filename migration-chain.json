@@ -53,7 +53,8 @@
     "supabase-office-amaliy-fix.sql",
     "supabase-migration-7.30.sql",
     "supabase-migration-7.31.sql",
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
   ],
   "upgradeFrom7.27": [
     "supabase-migration-7.28.sql",
@@ -61,26 +62,34 @@
     "supabase-office-amaliy-fix.sql",
     "supabase-migration-7.30.sql",
     "supabase-migration-7.31.sql",
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
   ],
   "upgradeFrom7.28": [
     "supabase-migration-7.29.sql",
     "supabase-office-amaliy-fix.sql",
     "supabase-migration-7.30.sql",
     "supabase-migration-7.31.sql",
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
   ],
   "upgradeFrom7.29": [
     "supabase-office-amaliy-fix.sql",
     "supabase-migration-7.30.sql",
     "supabase-migration-7.31.sql",
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
   ],
   "upgradeFrom7.30": [
     "supabase-migration-7.31.sql",
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
   ],
   "upgradeFrom7.31Through7.45": [
-    "supabase-migration-7.46.sql"
+    "supabase-migration-7.46.sql",
+    "supabase-user-activity.sql"
+  ],
+  "upgradeFrom7.46": [
+    "supabase-user-activity.sql"
   ]
 }

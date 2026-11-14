@@ -4,7 +4,9 @@ import {SpeakingStore} from '../server/speaking/store.js';
 import {speakingFetch} from '../server/speaking/transport.js';
 import {speakingRequest} from '../src/speaking/request.js';
 import {createSpeakingHandler} from '../api/ai-speaking.js';
-import {MemoryRepo,uid} from './speaking-fixtures.js';
+import {speakingStructured} from '../server/speaking/provider.js';
+import {guideSchema} from '../server/speaking/schema.js';
+import {MemoryRepo,uid,otherUid} from './speaking-fixtures.js';
 
 const lost={message:'TypeError: fetch failed',code:''};
 function database(repo,{when='before',error=lost}={}){
@@ -73,4 +75,75 @@ test('authentication transport failure stays retryable; an invalid identity rema
   await handler({method:'POST',headers:{host:'localhost',authorization:'Bearer fixture'},body:{action:'session',data:{}}},res);
   assert.equal(res.statusCode,status);assert.equal(res.body.code,code);assert.equal(res.body.retryable,status===503);
  }
+});
+
+test('a local job claim belongs to the owner and survives a lost response without a duplicate lease',async()=>{
+ const row={id:'job',user_id:uid,status:'queued',attempts:0,available_at:new Date(Date.now()-1000).toISOString()};
+ let updates=0;
+ const store=new SpeakingStore({from(table){
+  assert.equal(table,'sq_sp_jobs');
+  const conditions=[];
+  let changes;
+  const query={
+   select(){return query;},
+   eq(key,value){conditions.push(()=>row[key]===value);return query;},
+   lte(key,value){conditions.push(()=>row[key]<=value);return query;},
+   update(payload){changes=payload;return query;},
+   async maybeSingle(){
+    if(!conditions.every(check=>check()))return {data:null,error:null};
+    if(!changes)return {data:{...row},error:null};
+    updates++;
+    Object.assign(row,changes);
+    return {data:null,error:lost};
+   },
+  };
+  return query;
+ }});
+ assert.equal(await store.claimJob(otherUid,row.id),null);
+ const results=await Promise.all([store.claimJob(uid,row.id),store.claimJob(uid,row.id)]);
+ assert.equal(results.filter(Boolean).length,1);
+ assert.equal(results.find(Boolean).lease_token,row.lease_token);
+ assert.equal(row.attempts,1);
+ assert.equal(updates,1);
+ assert.equal(await store.claimJob(uid,row.id),null);
+});
+
+test('Speaking schedules only the active job returned for an authenticated request',async()=>{
+ const jobs=[],actors=[];
+ const handler=createSpeakingHandler({
+  client:()=>({auth:{getUser:async token=>({data:{user:token==='owner'?{id:uid}:null}})}}),
+  service:()=>({run:async(actor,action)=>{
+   actors.push(actor.id);
+   return {job:{id:'saved-job',status:action==='job'?'running':action==='finish_mock'?'queued':'completed'}};
+  }}),
+  onJob:job=>jobs.push(job),
+ });
+ const request=(token,action)=>{
+  const res={setHeader(){},status(code){this.statusCode=code;return this;},json(body){this.body=body;return this;}};
+  return handler({method:'POST',headers:{host:'localhost',authorization:'Bearer '+token},body:{action,data:{id:'untrusted-id'}}},res);
+ };
+ assert.equal((await request('unknown','job')).statusCode,401);
+ for(const action of ['job','finish_mock','assessment'])assert.equal((await request('owner',action)).statusCode,200);
+ assert.deepEqual(jobs,[{userId:uid,jobId:'saved-job'},{userId:uid,jobId:'saved-job'}]);
+ assert.deepEqual(actors,[uid,uid,uid]);
+});
+
+test('local Speaking sends structured model input only to the numeric loopback endpoint',async()=>{
+ const env={SPEAKING_PROVIDER:'local',SPEAKING_LOCAL_WHISPER_PATH:'whisper',SPEAKING_LOCAL_WHISPER_MODEL:'model',GROQ_API_KEY:'fixture-server-key'};
+ const value={answerUz:'Salom.',routeIds:[]};
+ let requests=0;
+ const fetcher=async(url,options)=>{
+  requests++;
+  assert.equal(url,'http://127.0.0.1:17863/v1/chat/completions');
+  assert.equal(options.redirect,'error');
+  assert.equal(options.headers.Authorization,undefined);
+  const body=JSON.parse(options.body);
+  assert.equal(body.chat_template_kwargs.enable_thinking,false);
+  assert.deepEqual(body.response_format,{type:'json_schema',json_schema:{name:'sinfquiz_response',strict:true,schema:guideSchema}});
+  assert.equal(body.model,'qwen3.5-4b-local');
+  return Response.json({choices:[{message:{content:JSON.stringify(value)}}]});
+ };
+ assert.deepEqual((await speakingStructured('Guide',{},guideSchema,{env,fetcher})).value,value);
+ await assert.rejects(speakingStructured('Guide',{},guideSchema,{env:{...env,SPEAKING_LOCAL_LLM_URL:'http://127.0.0.1.example.test'},fetcher}),{code:'LOCAL_AI_CONFIG'});
+ assert.equal(requests,1);
 });

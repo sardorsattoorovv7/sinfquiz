@@ -167,7 +167,30 @@ function App(){
   },[]);
   useEffect(()=>{const staffLive=view==='admin'&&dbReady&&['teacher','admin'].includes(user?.role),sessionKinds=['play','result'].includes(view)?['play']:view==='race'?['race']:view==='typing'?['typing']:[];if(!staffLive&&!sessionKinds.length)return;const stop=subscribeRealtime({teacherState:staffLive,initialStateLoaded:dbReady,sessionKinds,onState:setDb,onRanking:ranking=>setGame(g=>g?{...g,ranking}:g),onRace:applyRace,onTyping:applyTyping,onClosed:()=>{setGame(null);setView('home');notify('O‘qituvchi testni yakunladi.')},onRaceClosed:()=>{setRaceGame(null);setRaceCsrf('');setView('home');notify('O‘qituvchi 1v1 poygani yopdi.')},onTypingClosed:()=>{setTypingGame(null);setTypingCsrf('');setView('home');notify('Matn terish mashqi yopildi.')},onError:()=>setConnection('Jonli natijalar vaqtincha yangilanmayapti. Internet aloqasini tekshiring.')});if(stop){setConnection('');return stop}},[user?.id,view,dbReady,game?.player?.id,raceGame?.playerId,typingGame?.playerId]);
   useEffect(()=>{if(!toast)return;const t=setTimeout(()=>setToast(''),5000);return()=>clearTimeout(t)},[toast]);
-  useEffect(()=>{if(!user||globalThis.__SINFQUIZ_LEGACY_TEST__===true)return;let stopped=false;recordActivity('login').catch(()=>{});const beat=()=>{if(!stopped&&!document.hidden)recordActivity('heartbeat').catch(()=>{})},timer=setInterval(beat,120000);document.addEventListener('visibilitychange',beat);return()=>{stopped=true;clearInterval(timer);document.removeEventListener('visibilitychange',beat)}},[user?.id]);
+  useEffect(()=>{
+    const userId=user?.id;
+    if(!userId||!supabaseReady())return;
+    let recordedLogin=false,inFlight=false,lastAttempt=-Infinity;
+    const beat=()=>{
+      const now=performance.now();
+      if(document.hidden||!navigator.onLine||inFlight||now-lastAttempt<20000)return;
+      lastAttempt=now;
+      inFlight=true;
+      recordActivity(recordedLogin?'heartbeat':'login',userId)
+        .then(result=>{if(result?.ok)recordedLogin=true;})
+        .catch(()=>{})
+        .finally(()=>{inFlight=false;});
+    };
+    beat();
+    const timer=setInterval(beat,60000);
+    document.addEventListener('visibilitychange',beat);
+    window.addEventListener('online',beat);
+    return()=>{
+      clearInterval(timer);
+      document.removeEventListener('visibilitychange',beat);
+      window.removeEventListener('online',beat);
+    };
+  },[user?.id]);
   const resetHome=()=>{setView('home');history.replaceState(null,'',location.pathname)};
   const home=()=>{if(confirmUnsavedNavigation())resetHome()};
   const openAuth=()=>{if(confirmUnsavedNavigation())setView('login')};
@@ -178,7 +201,7 @@ function App(){
   const openCompetitions=()=>{if(!confirmUnsavedNavigation())return;setView('competitions');location.hash='musobaqa'};
   const login=async credentials=>{const info=await api('/auth/login',{method:'POST',data:credentials});setTeacherCsrf(info.csrf);setUser(info.user);setView('admin');location.hash='dashboard'};
   const telegramLoggedIn=async()=>{const info=await api('/auth/session');setTeacherCsrf(info.csrf);setUser(info.user);const returnView=sessionStorage.getItem('sq_ai_return');if(['speaking','aiGuide'].includes(returnView)){sessionStorage.removeItem('sq_ai_return');setView(returnView);location.hash=returnView==='speaking'?'ai-speaking':'ai-yordamchi';return;}if(['teacher','admin'].includes(info.user?.role)){setView('admin');location.hash='dashboard'}else{setView('home');history.replaceState(null,'',location.pathname)}};
-  const logout=async()=>{if(!confirmUnsavedNavigation())return;try{if(user&&globalThis.__SINFQUIZ_LEGACY_TEST__!==true)await recordActivity('logout').catch(()=>{});await api('/auth/logout',{method:'POST'});setUser(null);setDb({quizzes:[],publicQuizzes:[],lessons:[],players:[]});setCatalog({quizzes:[],lessons:[]});setTeacherCsrf('');setGame(null);setRaceGame(null);setTypingGame(null);setNationalGame(null);setCefrGame(null);resetHome()}catch(e){notify(e.message)}};
+  const logout=async()=>{if(!confirmUnsavedNavigation())return;try{if(user&&supabaseReady())await recordActivity('logout',user.id).catch(()=>{});await api('/auth/logout',{method:'POST'});setUser(null);setDb({quizzes:[],publicQuizzes:[],lessons:[],players:[]});setCatalog({quizzes:[],lessons:[]});setTeacherCsrf('');setGame(null);setRaceGame(null);setTypingGame(null);setNationalGame(null);setCefrGame(null);resetHome()}catch(e){notify(e.message)}};
   const leave=async()=>{try{await api('/api/play/leave',{method:'POST',role:'player'});setGame(null);setPlayerCsrf('');home()}catch(e){notify(e.message)}};
   const leaveRace=async()=>{try{await api('/api/race/leave',{method:'POST',role:'race'});setRaceGame(null);setRaceCsrf('');home()}catch(e){notify(e.message)}};
   const leaveTyping=async()=>{try{await api('/api/typing/leave',{method:'POST',role:'typing'});setTypingGame(null);setTypingCsrf('');home()}catch(e){notify(e.message)}};
@@ -213,8 +236,8 @@ function App(){
   return <StudioShell {...{user,view,inActivity,unfinished,authReady}} onNavigate={openStudio} onLogout={logout} onJoin={setEntryAndJoin}>
     {toast&&<PaperNotice className="toast" onDismiss={()=>setToast('')}>{toast}</PaperNotice>}{connection&&<PaperNotice className="connection-banner" kind="warning">{connection}</PaperNotice>}
     {panelError&&<PaperNotice kind="error">{panelError}<button className="btn btn-outline" onClick={retryPanel}>Qayta urinish</button></PaperNotice>}
-    {(!authReady&&(view!=='home'||!!location.hash&&location.hash!=='#home')||panelPending||!initialDataReady&&['race','typing','play','nationalExam','cefrExam'].includes(view))?<PaperSkeleton label="Yuklanmoqda…"/>:<>
-    {view==='speaking'&&<SpeakingHub key={user?.id||'guest'} user={user} onNavigate={openStudio} onActive={setSpeakingActive} onLogin={()=>{sessionStorage.setItem('sq_ai_return','speaking');openAuth();}}/>}
+    {view!=='speaking'&&(!authReady&&(view!=='home'||!!location.hash&&location.hash!=='#home')||panelPending||!initialDataReady&&['race','typing','play','nationalExam','cefrExam'].includes(view))?<PaperSkeleton label="Yuklanmoqda…"/>:<>
+    {view==='speaking'&&<SpeakingHub key={user?.id||'guest'} user={user} authReady={authReady} onNavigate={openStudio} onActive={setSpeakingActive} onLogin={()=>{sessionStorage.setItem('sq_ai_return','speaking');openAuth();}}/>}
     {view==='aiGuide'&&<AiGuide key={user?.id||'guest'} user={user} currentView="aiGuide" originView={guideOrigin} onNavigate={openStudio} onLogin={()=>{sessionStorage.setItem('sq_ai_return','aiGuide');openAuth();}}/>}
     {user&&<React.Suspense fallback={null}><GuideWelcome user={user} hidden={inActivity||['aiGuide','speaking','englishCourse','books','bookPractice','lesson','iq'].includes(view)} onNavigate={openStudio}/></React.Suspense>}
     {view==='atlasHub'&&<React.Suspense fallback={<PaperSkeleton label="Atlaslar markazi ochilmoqda…"/>}><AtlasHub user={user} onNavigate={openStudio}/></React.Suspense>}

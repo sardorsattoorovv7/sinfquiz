@@ -20,3 +20,21 @@
 @media(max-width:768px){.sp-page{padding-top:24px}.sp-page-head{align-items:flex-start;flex-direction:column;gap:16px}.sp-intro,.sp-dashboard-hero,.sp-mock-layout,.sp-guide-layout,.sp-two-cols,.sp-grid-three{grid-template-columns:1fr}.sp-intro{gap:32px}.sp-process{padding:24px 0 0;border-left:0;border-top:1px solid color-mix(in srgb,var(--sp-on-navy) 28%,transparent);gap:24px}.sp-speaking-art{display:none}.sp-guide-index{position:static}.sp-guide-index nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.sp-vocab-grid{grid-template-columns:1fr}.sp-criteria article{align-items:flex-start;flex-direction:column}.sp-job{flex-wrap:wrap}.sp-job>div{flex-basis:calc(100% - 40px)}.sp-job>.sp-btn{margin-left:36px}.sp-welcome{bottom:88px;right:16px;left:16px;max-width:none;padding:20px}.sp-guide-float{bottom:88px;right:16px}.sp-help-panel .sp-guide-index nav{max-height:180px}}
 @media(max-width:480px){.sp-page h1{font-size:32px}.sp-page h2{font-size:25px}.sp-intro h2{font-size:34px}.sp-intro,.sp-dashboard-hero{padding:24px 20px}.sp-form-grid,.sp-date-list,.sp-pictures,.sp-sides{grid-template-columns:1fr}.sp-exam-switch{width:100%;gap:4px}.sp-exam-switch button{flex:1;padding:10px 8px}.sp-card{padding:20px}.sp-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.sp-tabs button{text-align:left;font-size:14px;padding:12px 8px}.sp-task-list details>div{padding-left:0}.sp-task-list summary{flex-wrap:wrap}.sp-task-list summary strong{flex-basis:calc(100% - 48px)}.sp-task-list summary small{margin-left:44px}.sp-evidence-stats{grid-template-columns:1fr;gap:20px}.sp-evidence-stats>div{padding-bottom:12px;border-bottom:1px solid var(--sp-line)}.sp-evidence-stats>div:last-child{padding:0;border:0}.sp-answer-report summary,.sp-error-bank summary{flex-direction:column;align-items:flex-start}.sp-week-list li{gap:16px;flex-direction:column}.sp-week-list li>span{margin:0}.sp-actions .sp-btn,.sp-intro .sp-actions .sp-btn{width:100%}.sp-assistant-modes{display:grid;grid-template-columns:1fr}.sp-assistant-modes .sp-btn{justify-content:flex-start}.sp-assistant-submit>.sp-btn{width:100%}.sp-assistant-submit>.sp-note{width:100%;text-align:right}.sp-assistant-quiz fieldset{padding:16px 12px}.sp-guide-index nav{grid-template-columns:1fr}.sp-help-panel .sp-guide-index nav{grid-template-columns:1fr}.sp-welcome-icon{display:none}.sp-welcome .sp-actions{align-items:stretch}.sp-welcome .sp-btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.sp-page *,.sp-welcome *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+.sp-exam-overview {padding: 18px 22px; border: 1px solid var(--sp-line); border-radius: 8px; background: var(--sp-paper);}
+.sp-exam-overview h3 {margin-top: 0;}
+.sp-exam-overview ol {margin-bottom: 0; padding-inline-start: 22px;}
+.sp-exam-overview li {padding-block: 5px;}
+.sp-exam-ready {padding: 16px 0; margin: 16px 0; border-block: 1px solid var(--sp-line);}
+.sp-exam-ready p {margin: 0;}
+.sp-exam-switch.sp-response-modes {margin: 10px 0 16px;}
+.sp-response-modes button {display: inline-flex; align-items: center; justify-content: center; gap: 7px;}
+.sp-entry :is(.sp-intro, .sp-dashboard-hero) {
+ --sp-navy: var(--sp-paper);
+ --sp-on-navy: var(--sp-ink);
+ --sp-navy-muted: var(--sp-muted);
+ background: var(--sp-paper);
+ color: var(--sp-ink);
+ border: 1px solid var(--sp-line);
+ box-shadow: none;
+}

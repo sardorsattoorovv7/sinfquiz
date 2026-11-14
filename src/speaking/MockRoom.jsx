@@ -3,21 +3,30 @@ import {ArrowRight, CheckCircle2, ChevronLeft, FileText, Headphones} from 'lucid
 import {speakingApi, timeLabel, uploadSpeaking} from './client.js';
 import {removeDraft} from './drafts.js';
 import Recorder from './Recorder.jsx';
-import {JobPanel, Notice, Question} from './Common.jsx';
+import WrittenAnswer from './WrittenAnswer.jsx';
+import {AnswerMode, JobPanel, Notice, Question} from './Common.jsx';
+import {normalizeAnswerMode} from './answer-mode.js';
+import {getInterviewer} from './interviewer.js';
+import {ExaminerStage, ExaminerVoice, useExaminerSpeech, voicePreview} from './Examiner.jsx';
 import './mock-room.css';
 
 const parts = {
  ielts: [['1', 'Suhbat'], ['2', 'Mavzu kartasi'], ['3', 'Muhokama']],
  multilevel: [['1.1', 'Suhbat'], ['1.2', 'Rasmlar'], ['2', 'Mavzu'], ['3', 'Munozara']],
 };
+const closingLine = 'That’s the end of our speaking interview. Thank you for your time.';
 
-export default function MockRoom({initial, user, exam, onActive, onExit, onRestart, onReport}) {
+export default function MockRoom({initial, user, exam, preference, onVoiceChange, onActive, onExit, onRestart, onReport}) {
  const [data, setData] = useState(initial);
  const [error, setError] = useState('');
  const [busy, setBusy] = useState(false);
  const [recorderBusy, setRecorderBusy] = useState(false);
  const [expired, setExpired] = useState(false);
  const [voice, setVoice] = useState(true);
+ const [selectedMode, setSelectedMode] = useState(() => normalizeAnswerMode(initial.session.answerMode));
+ const [caption, setCaption] = useState('');
+ const [phase, setPhase] = useState('idle');
+ const [automaticQuestion, setAutomaticQuestion] = useState(null);
  const [job, setJob] = useState(null);
  const turn = useRef(initial.turn);
  const offset = useRef(Date.parse(initial.serverNow) - Date.now());
@@ -25,8 +34,16 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
  const roomTitle = useRef(null);
  const questionPane = useRef(null);
  const {session, answers} = data;
+ const examiner = getInterviewer(session.interviewerId);
+ const roomVoice = {
+  interviewerId: examiner.id, voiceId: preference?.interviewerId === examiner.id ? preference.voiceId : '',
+ };
+ const {speech, mouth, error: voiceError, play: narrate, stop: silence} = useExaminerSpeech(roomVoice);
  const question = session.current;
  const draftKey = `${user.id}:mock:${session.id}:${question?.id}`;
+ const textDraftKey = `${draftKey}:text`;
+ const answerMode = !session.examRoom ? 'audio' : data.turn ? normalizeAnswerMode(data.turn.payload.answerMode) : selectedMode;
+ const written = answerMode === 'typed';
  const examName = exam === 'ielts' ? 'IELTS Speaking' : 'Multilevel Speaking';
  const sectionName = parts[exam]?.find(([part]) => part === question?.part)?.[1];
  const locked = busy || recorderBusy;
@@ -38,14 +55,31 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
   return () => onActive?.(false);
  }, [onActive]);
  useEffect(() => {
-  if (question?.prompt && session.examRoom) questionPane.current?.scrollIntoView?.({block: 'nearest'});
+  if (question?.prompt && session.examRoom) questionPane.current?.scrollIntoView?.({block: matchMedia('(max-width: 780px)').matches ? 'start' : 'nearest'});
  }, [question?.prompt, session.examRoom]);
 
- function adopt(next) {
+ function preview() {
+  const line = voicePreview(examiner.name);
+  setCaption(line);
+  void narrate([line], 12_000);
+ }
+
+ async function present(info, milliseconds) {
+  setCaption(info.interviewerCue || '');
+  if (voice) await narrate([info.interviewerCue, info.prompt], milliseconds);
+ }
+
+ function adopt(next, continueInterview = false) {
   turn.current = next.turn;
   offset.current = Date.parse(next.serverNow) - Date.now();
   setData(next);
+  setSelectedMode(normalizeAnswerMode(next.session.answerMode));
   setExpired(false);
+  setPhase('idle');
+  const continueByVoice = continueInterview && next.session.examRoom && voice && !voiceError;
+  setAutomaticQuestion(continueByVoice ? next.session.current?.id : null);
+  setCaption(continueInterview && !next.session.current ? closingLine : '');
+  if (continueByVoice && !next.session.current) void narrate([closingLine], 12_000);
  }
 
  async function perform(action) {
@@ -59,12 +93,26 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
  }
 
  async function begin() {
-  const response = await speakingApi('begin_turn', {sessionId: session.id, questionId: question.id});
+  silence();
+  const response = await speakingApi('begin_turn', {sessionId: session.id, questionId: question.id, interviewer: session.examRoom, answerMode});
   turn.current = response.turn;
   offset.current = Date.parse(response.serverNow) - Date.now();
   const visibleQuestion = response.question || question;
   setData(previous => ({...previous, turn: response.turn, session: {...previous.session, current: visibleQuestion}}));
+  if (normalizeAnswerMode(response.turn.payload.answerMode) !== answerMode) {
+   const message = 'Bu savol boshqa javob shaklida boshlangan. Ko‘rsatilgan shaklda davom eting.';
+   setError(message);
+   throw Error(message);
+  }
   return {...response.turn.payload, prompt: visibleQuestion.prompt, serverOffset: offset.current};
+ }
+
+ async function finishPrompt() {
+  const response = await speakingApi('finish_prompt', {id: turn.current.id});
+  turn.current = response.turn;
+  offset.current = Date.parse(response.serverNow) - Date.now();
+  setData(previous => ({...previous, turn: response.turn}));
+  return {...response.turn.payload, serverOffset: offset.current};
  }
 
  async function stop(draft) {
@@ -76,22 +124,37 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
   setData(previous => ({...previous, turn: response.turn}));
  }
 
- async function submit(draft) {
-  const audioId = await uploadSpeaking(draft.blob, {
-   parentKind: 'session', parentId: session.id, examMode: exam, token: draft.token,
-  });
+ async function submit(draft, {rememberUpload, onStage}) {
+  let audioId = draft.assetId;
+  if (!audioId) {
+   const current = turn.current;
+   if (!current) throw Error('Savol holatini yangilang va saqlangan audioni qayta yuboring.');
+   audioId = await uploadSpeaking(draft.blob, {
+    parentKind: 'session', parentId: session.id, examMode: exam, token: draft.token,
+    turnId: current.id, sha256: draft.sha256,
+   }, onStage);
+   await rememberUpload(audioId);
+  }
+  onStage('registering');
   const next = await speakingApi('submit_answer', {sessionId: session.id, questionId: question.id, examMode: exam, audioId});
-  adopt(next);
+  adopt(next, true);
+  setError('');
+ }
+
+ async function submitWritten(text) {
+  const next = await speakingApi('submit_answer', {sessionId: session.id, questionId: question.id, examMode: exam, text});
+  adopt(next, true);
   setError('');
  }
 
  function skip(technicalStatus) {
   return perform(async () => {
-   const current = turn.current || (await speakingApi('begin_turn', {sessionId: session.id, questionId: question.id})).turn;
+   silence();
+   const current = turn.current || (await speakingApi('begin_turn', {sessionId: session.id, questionId: question.id, answerMode})).turn;
    await speakingApi('stop_turn', {id: current.id, sha256: null, technicalStatus});
    const next = await speakingApi('submit_answer', {sessionId: session.id, questionId: question.id, examMode: exam});
    adopt(next);
-   await removeDraft(draftKey).catch(() => {});
+   await Promise.allSettled([removeDraft(draftKey), removeDraft(textDraftKey)]);
   });
  }
 
@@ -105,10 +168,15 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
 
  function finish() {
   return perform(async () => {
+   silence();
    const response = await speakingApi('finish_mock', {id: session.id});
    setJob(response.job);
   });
  }
+
+ const interviewer = <ExaminerStage examiner={examiner} phase={question ? phase : 'complete'} speech={speech} mouth={mouth} caption={caption} error={voiceError}
+  canPreview={!!question && !question.prompt && !locked && voice} onPreview={preview} onSilence={silence}/>;
+ const startLabel = session.cursor === 0 && voice ? 'Suhbatni boshlash' : undefined;
 
  return <main className="sp-page sp-mock sp-exam-room">
   <header className="sp-room-header">
@@ -129,45 +197,63 @@ export default function MockRoom({initial, user, exam, onActive, onExit, onResta
   </div>
   {error && <Notice error>{error}</Notice>}
   {expired && !recorderBusy && <Notice>
-   Bu savolning vaqti tugagan. Saqlangan audio bo‘lsa, uni yuborishingiz mumkin.
+   Bu savolning vaqti tugagan. {written ? 'Saqlangan matn bo‘lsa, uni yuborishingiz mumkin.' : 'Saqlangan audio bo‘lsa, uni yuborishingiz mumkin.'}
    <button type="button" className="sp-btn" disabled={locked} onClick={restart}>Yangi sinov boshlash</button>
   </Notice>}
   {job ? <>
    <JobPanel job={job} onComplete={result => onReport(result.result_id)}/>
    <button type="button" className="sp-btn" onClick={onExit}>Shaxsiy sahifaga qaytish</button>
   </> : question ? <div className="sp-mock-layout">
-   <section ref={questionPane} className="sp-card sp-room-question" aria-label="Joriy topshiriq" aria-live="polite">
-    <span className="sp-eyebrow">{session.cursor + 1}-savol{sectionName ? ` · ${sectionName}` : ''}</span>
-    {question.prompt ? <Question question={question}/> : <>
-     <h2>{question.part}-qism. {sectionName || 'Ovozli javob'}</h2>
-     <p>Mikrofonni oching. Savol ekranda paydo bo‘ladi va ajratilgan vaqt yurishni boshlaydi.</p>
+   <section ref={questionPane} className="sp-card sp-room-question" aria-label="Joriy topshiriq">
+    {session.examRoom && <>
+     {interviewer}
+     {onVoiceChange && <div className="sp-room-voice-choice">
+      <ExaminerVoice preference={roomVoice} onChange={next => {if (!locked) silence(); onVoiceChange(next);}}/>
+      {locked && <p className="sp-note">Tanlangan ovoz keyingi savoldan ishlaydi.</p>}
+     </div>}
     </>}
+    <div aria-live="polite">
+     <span className="sp-eyebrow">{session.cursor + 1}-savol{sectionName ? ` · ${sectionName}` : ''}</span>
+     {question.prompt ? <Question question={question}/> : <>
+      <h2>{question.part}-qism. {sectionName || (written ? 'Yozma javob' : 'Ovozli javob')}</h2>
+      <p>{session.examRoom && voice ? `Suhbatni boshlang. ${examiner.name} savolni inglizcha beradi, so‘ng navbat sizga o‘tadi.` : written ? 'Savolni oching va javobingizni ingliz tilida yozing.' : 'Mikrofonni oching. Savol ekranda paydo bo‘ladi va ajratilgan vaqt yurishni boshlaydi.'}</p>
+     </>}
+    </div>
    </section>
-   <section className="sp-card sp-mock-controls" aria-label="Ovoz yozuvi">
+   <section className="sp-card sp-mock-controls" aria-label={written ? 'Yozma javob maydoni' : 'Ovoz yozuvi'}>
     <h2>Javob vaqti</h2>
+    {session.examRoom && !data.turn && <AnswerMode value={answerMode} disabled={locked} onChange={setSelectedMode}/>}
     <dl className="sp-room-times">
      {question.prepSeconds > 0 && <div><dt>Tayyorgarlik</dt><dd>{timeLabel(question.prepSeconds)}</dd></div>}
      <div><dt>{question.responseMaxSeconds ? 'Javob chegarasi' : 'Qism uchun qolgan vaqt'}</dt>
       <dd>{timeLabel(question.responseMaxSeconds ?? Math.ceil(session.sectionRemaining || 0))}</dd></div>
     </dl>
     {session.examRoom && !question.prompt && <label className="sp-room-voice">
-     <input type="checkbox" checked={voice} disabled={locked} onChange={event => setVoice(event.target.checked)}/>
-     <Headphones size={17}/>Savolni inglizcha ovozda eshitish
+     <input type="checkbox" checked={voice} disabled={locked} onChange={event => {silence(); setCaption(''); setVoice(event.target.checked);}}/>
+     <Headphones size={17}/>{examiner.name} savollarni ovozda bersin
     </label>}
-    <Recorder key={question.id} draftKey={draftKey} limit={question.responseMaxSeconds || Math.ceil(session.sectionRemaining)}
+    {written ? <WrittenAnswer key={question.id} draftKey={textDraftKey} turn={data.turn?.payload} serverOffset={offset.current}
+     onBegin={begin} onPresent={present} onPromptEnd={finishPrompt} onSubmit={submitWritten} onSkip={() => skip('skipped')}
+     onActive={setRecorderBusy} onPhase={setPhase} onExpired={setExpired} autoStart={automaticQuestion === question.id}
+     disabled={busy} startLabel={startLabel}/>
+    : <Recorder key={question.id} draftKey={draftKey} limit={question.responseMaxSeconds || Math.ceil(session.sectionRemaining)}
      prep={question.prepSeconds} onBegin={begin} onStop={stop} onSubmit={submit}
      onActive={setRecorderBusy} onExpired={setExpired} externalTurn={data.turn?.payload} serverOffset={offset.current}
-     examRoom={session.examRoom} readPrompt={voice} disabled={busy}/>
-    <p className="sp-note">{session.examRoom ? 'Vaqt tugaganda yozuv yuboriladi. Javobni oldinroq topshirish ham mumkin.' : 'Yozuv tugagach audioni yuboring.'} Sahifa yangilanganda boshlangan taymer davom etadi.</p>
+     examRoom={session.examRoom} disabled={busy} onPresent={session.examRoom ? present : undefined}
+     onPromptEnd={finishPrompt} onPhase={setPhase} autoStart={automaticQuestion === question.id}
+     startLabel={startLabel}/>}
+    {written && <p className="sp-note">Javobingiz qurilmada saqlanadi. Vaqt tugaganda yozilgan matn yuboriladi.</p>}
+    <p className="sp-note">{session.examRoom && voice ? `Javob yuborilgach ${examiner.name} keyingi savolni o‘zi boshlaydi.` : session.examRoom ? 'Vaqt tugaganda yozuv yuboriladi. Javobni oldinroq topshirish ham mumkin.' : 'Yozuv tugagach audioni yuboring.'} Sahifa yangilanganda boshlangan taymer davom etadi.</p>
     <details className="sp-room-support">
      <summary>Texnik yordam va o‘tkazish</summary>
      <div className="sp-actions">
-      <button type="button" className="sp-btn" disabled={locked} onClick={() => skip('technical_error')}>Yozuv ishlamasa, o‘tkazish</button>
+      {!written && <button type="button" className="sp-btn" disabled={locked} onClick={() => skip('technical_error')}>Yozuv ishlamasa, o‘tkazish</button>}
       <button type="button" className="sp-btn" disabled={locked} onClick={() => skip('skipped')}>Javobsiz o‘tish</button>
      </div>
     </details>
    </section>
   </div> : <section className="sp-card sp-mock-finish">
+   {session.examRoom && interviewer}
    <CheckCircle2 size={28}/>
    <h2>Javoblaringiz saqlandi.</h2>
    <p>Tahlilga yuboring. Hisobotda javoblaringizdan misollar va keyingi mashqlar beriladi.</p>
