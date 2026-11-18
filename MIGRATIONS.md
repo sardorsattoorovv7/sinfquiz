@@ -1,3 +1,25 @@
+# Speaking tariflari va to‘lovlar
+
+[supabase-speaking-billing.sql](supabase-speaking-billing.sql) migratsiyasini 7.46 bazasiga qo‘llang. U to‘lov buyurtmalari va Speaking tahlillari qoldig‘ini saqlaydi. Faylning oldingi nusxasini bajargan bo‘lsangiz, yangisini yana to‘liq bajaring.
+
+## Kartaga o‘tkazma va qo‘lda tasdiqlash
+
+1. Server sozlamalariga `SPEAKING_TRANSFER_CARD` (qabul qiluvchi karta raqami), `SPEAKING_TRANSFER_RECIPIENT` (karta egasi) va `SPEAKING_TRANSFER_TELEGRAM` (Telegram foydalanuvchi nomi, @ belgisiz) ni kiriting. Mahalliy ishda `.env.local`, Vercel’da **Settings → Environment Variables** ishlatiladi.
+2. Mahalliy sinov uchun `SPEAKING_TRANSFER_MODE=test` va sinov rekvizitlarini ishlating. Jonli rekvizitlar bilan savdoga o‘tishda `SPEAKING_TRANSFER_MODE=live` ni belgilang. Serverni qayta ishga tushiring yoki Vercel’da yangi deploy qiling.
+3. Xaridor **Tariflar** sahifasida buyurtma ochadi va chekni Telegram’da buyurtma raqami bilan yuboradi. Administrator bankdagi haqiqiy kirim va summani tekshiradi.
+4. **Administrator paneli → Foydalanuvchilar → Tariflar** orqali xaridorni toping. Buyurtma raqamini solishtiring, bank tarixidagi operatsiya raqamini kiriting va tanlangan tarif uchun **Faollashtirish** tugmasini bosing.
+
+Kartaga o‘tkazma sozlanganda, yangi xarid sahifasi shu usulni ko‘rsatadi. Tasdiqlangan tarif 30 kun amal qiladi. Sinov buyurtmalari va tahlil qoldig‘i jonli hisobdan alohida yuritiladi.
+
+## Payme
+
+1. Payme Business veb-kassasida hisob maydonini `order_id`, hisob turini bir martalik va Merchant API manzilini `https://saytingiz/api/payme` qilib sozlang.
+2. Sinov muhitining server o‘zgaruvchilariga `PAYME_MODE=test`, `PAYME_MERCHANT_ID`, `PAYME_MERCHANT_LOGIN`, `PAYME_MERCHANT_KEY` (TEST_KEY) va `PAYME_SITE_URL` (saytning HTTPS manzili) ni kiriting. Supabase server kaliti ham ishlashi kerak.
+3. Payme sandbox’da buyurtma ochilishi, to‘lov tasdig‘i, ikki marta kelgan tasdiq va bekor qilishni sinang. Ovozli Speaking’ni navbatdan tayyor hisobotgacha tekshiring.
+4. Jonli veb-kassa ma’lumotlari tayyor bo‘lgach, ishlab turgan saytda `PAYME_MODE=live` va jonli kalitdan foydalaning. Sinov va jonli tranzaksiyalar alohida yuritiladi.
+
+Tarif 30 kun amal qiladi va navbatdagi muddat uchun xaridor o‘zi yangidan to‘laydi. Sozlamalar bo‘lmaganda bepul o‘quv yo‘llari va Speaking namunasi ochiladi.
+
 # Foydalanuvchilar faolligi
 
 7.46 bazasida [supabase-user-activity.sql](supabase-user-activity.sql) faylini Supabase SQL Editor’da to‘liq RUN qiling, keyin yangi kodni joylang. Yangilanish kirish tarixini saqlaydi va onlayn holatni Supabase hisob sessiyasi orqali aniqlaydi.

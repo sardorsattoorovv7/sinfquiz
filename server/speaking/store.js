@@ -3,6 +3,7 @@ import {randomUUID} from 'node:crypto';
 import {AiError} from './groq.js';
 import {isDeepStrictEqual} from 'node:util';
 import {networkFailure,speakingFetch} from './transport.js';
+import {sumSpeakingCredits} from '../../src/billing/plans.js';
 export function serverClient(env=process.env,{timeoutMs=6000,fetcher=fetch}={}){const url=env.SUPABASE_URL||env.VITE_SUPABASE_URL,key=env.SUPABASE_SECRET_KEY||env.SUPABASE_SERVICE_ROLE_KEY;if(!url||!key)throw new AiError('SERVER_NOT_CONFIGURED','AI bo‘limi uchun serverning Supabase sozlamalari kerak.',503);return createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false},db:{retry:false},global:{fetch:speakingFetch({fetcher,timeoutMs})}});}
 const check=r=>{if(r.error){const m=r.error.message||'';if(networkFailure(r.error))throw new AiError('SPEAKING_NETWORK','Speaking serveri bilan aloqa uzildi. Yozuvingiz saqlanadi; qayta urinib ko‘ring.',503,true);if(/AI_RATE_LIMIT/.test(m))throw new AiError('AI_RATE_LIMIT','AI limiti tugadi. Saqlangan javob bilan keyinroq urinib ko‘ring.',429,true);if(/REVISION_CONFLICT/.test(m))throw new AiError('REVISION_CONFLICT','Boshqa oynada o‘zgarish saqlandi. Sahifani yangilang.',409,true);if(['42P01','42883','PGRST202','PGRST205'].includes(r.error.code))throw new AiError('MIGRATION_REQUIRED','AI Speaking uchun supabase-migration-7.46.sql migratsiyasini bajaring.',503);throw new AiError('SPEAKING_DATABASE','Speaking ma’lumoti saqlanmadi. Keyinroq urinib ko‘ring.',503,true);}return r.data;};
 const localJobPrefix='local:';
@@ -11,8 +12,19 @@ const leaseMs=300000;
 const isLocalJob=job=>job.job_key?.startsWith(localJobPrefix)===true;
 const jobColumns='id,job_key,kind,target_id,status,attempts,last_error,result_id,created_at,updated_at';
 const jobView=({job_key,...row})=>({...row,provider:isLocalJob({job_key})?'local':'groq'});
+const noCredits=()=>new AiError('SPEAKING_CREDITS','Bu turdagi tahlil uchun urinish qolmadi. Speaking tariflarini ko‘ring.',402);
+function billingResult(result){
+ if(result.error?.message==='SPEAKING_CREDITS')throw noCredits();
+ if(result.error?.message==='BILLING_JOB_NOT_FOUND')throw new AiError('NOT_FOUND','Ish topilmadi.',404);
+ return check(result);
+}
 export class SpeakingStore{
- constructor(db,{local=false}={}){Object.assign(this,{db,local});}
+ constructor(db,{local=false,billingScope=null}={}){Object.assign(this,{db,local,billingScope});}
+ async assertCredits(user,kind){
+  if(!this.billingScope)return;
+  const {balances}=billingResult(await this.db.rpc('sq_speaking_billing_status',{p_user:user,p_scope:this.billingScope}));
+  if(sumSpeakingCredits(balances,kind)<1)throw noCredits();
+ }
  async read(user,kind,key){return check(await this.db.from('sq_sp_records').select('*').eq('user_id',user).eq('kind',kind).eq('record_key',key).maybeSingle());}
  async byId(user,id,kind){let q=this.db.from('sq_sp_records').select('*').eq('user_id',user).eq('id',id);if(kind)q=q.eq('kind',kind);const r=check(await q.maybeSingle());if(!r)throw new AiError('NOT_FOUND','Bu yozuv topilmadi yoki sizga tegishli emas.',404);return r;}
  async list(user,kind,exam,limit=200){let q=this.db.from('sq_sp_records').select('*').eq('user_id',user).eq('kind',kind).order('created_at',{ascending:false}).limit(limit);if(exam)q=q.eq('exam_mode',exam);return check(await q)||[];}
@@ -39,6 +51,13 @@ export class SpeakingStore{
   return check(result);
  }
  async enqueue(user,kind,target,key){
+  if(this.billingScope&&['assess','practice'].includes(kind)){
+   const send=()=>this.db.rpc('sq_speaking_billed_job',{
+    p_user:user,p_scope:this.billingScope,p_local:this.local,p_kind:kind,p_target:target,p_key:this.local?localJobPrefix+key:key,
+   });
+   const result=await send();
+   return billingResult(networkFailure(result.error)?await send():result);
+  }
   if(!this.local){const send=()=>this.db.rpc('sq_sp_enqueue',{p_user:user,p_kind:kind,p_target:target,p_key:key}),result=await send();return check(networkFailure(result.error)?await send():result);}
   // Local jobs stay outside the shared Groq worker's ready queue, even during a local restart.
   const row={user_id:user,kind,target_id:target,job_key:localJobPrefix+key,available_at:parkedUntil,lease_until:new Date().toISOString()};
@@ -51,6 +70,10 @@ export class SpeakingStore{
  async retry(user,id){
   const job=await this.job(user,id),local=job.provider==='local',now=new Date().toISOString();
   if(local&&!this.local)throw new AiError('LOCAL_AI_REQUIRED','Bu tahlilni localhostdagi Speaking sahifasidan davom ettiring.',409);
+  if(this.billingScope&&['assess','practice'].includes(job.kind)){
+   const result=await this.db.rpc('sq_speaking_billed_job',{p_user:user,p_scope:this.billingScope,p_local:local,p_retry:id});
+   return jobView(billingResult(result));
+  }
   return check(await this.db.from('sq_sp_jobs').update({status:'queued',attempts:0,last_error:null,available_at:local?parkedUntil:now,lease_token:null,lease_until:local?now:null,updated_at:now}).eq('id',id).eq('user_id',user).in('status',['failed','cancelled']).select('id,status').maybeSingle());
  }
  async cancel(user,id){await this.job(user,id);return check(await this.db.from('sq_sp_jobs').update({status:'cancelled',lease_token:null,lease_until:null}).eq('id',id).eq('user_id',user).in('status',['queued','running']).select('id,status').maybeSingle());}

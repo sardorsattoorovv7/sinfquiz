@@ -26,6 +26,7 @@ test('Studio restores top-level routes on reload without granting guest or staff
  assert.equal(restoredStudioView('#suhbatlar',teacher),null);
  assert.equal(restoredStudioView('#informatika',teacher),'catalog');
  assert.equal(restoredStudioView('#profil',{id:'guest',role:'anonymous'}),null);
- for(const hash of ['#dashboard','#play','#race','#typing','#national-test','#iq','#unknown'])assert.equal(restoredStudioView(hash,student),null);
+ for(const hash of ['#dashboard','#play','#race','#typing','#national-test','#unknown'])assert.equal(restoredStudioView(hash,student),null);
+ for(const view of ['iq','pricing','livePractice'])assert.equal(restoredStudioView('#'+studioViewHash(view),null),view);
  assert.equal(studioViewHash('untrusted'),null);
 });

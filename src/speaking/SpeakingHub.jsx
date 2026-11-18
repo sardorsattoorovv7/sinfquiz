@@ -3,6 +3,7 @@ import {Mic,Sparkles,ArrowRight,ShieldCheck,Clock3,BookOpen,Check,Settings2,Targ
 import {speakingApi,newToken,categoryNames,taskNames} from './client.js';
 import {AnswerMode,JobPanel,Notice,Empty} from './Common.jsx';
 import {ExaminerPicker} from './Examiner.jsx';
+import SpeakingSample from './SpeakingSample.jsx';
 import {getInterviewer,readInterviewerPreference,saveInterviewerPreference} from './interviewer.js';
 import {IELTS_MOCK_QUESTION_LIMIT} from './format-limits.js';
 import {speakingCopy as copy} from './copy.js';
@@ -15,8 +16,8 @@ const panel=name=>React.lazy(()=>import('./SpeakingPanels.jsx').then(module=>({d
 const Roadmap=panel('Roadmap'),Report=panel('Report'),Practice=panel('Practice'),Vocabulary=panel('Vocabulary'),
  ErrorBank=panel('ErrorBank'),Progress=panel('Progress'),SpeakingSettings=panel('SpeakingSettings');
 
-export default function SpeakingHub({user,authReady=true,onLogin,onNavigate,onActive}){
- const [exam,setExam]=useState('ielts'),[home,setHome]=useState(null),[tab,setTab]=useState('today'),[loading,setLoading]=useState(!!user),[error,setError]=useState(''),[session,setSession]=useState(null),[job,setJob]=useState(null),[reportId,setReportId]=useState(null),[editing,setEditing]=useState(false),[micTest,setMicTest]=useState(false),[checkMode,setCheckMode]=useState(false),[consent,setConsent]=useState(false),[busy,setBusy]=useState(false),[publicStatus,setPublicStatus]=useState(null);
+export default function SpeakingHub({user,authReady=true,initialExam='ielts',onLogin,onNavigate,onActive}){
+ const [exam,setExam]=useState(initialExam),[home,setHome]=useState(null),[tab,setTab]=useState('today'),[loading,setLoading]=useState(!!user),[error,setError]=useState(''),[session,setSession]=useState(null),[job,setJob]=useState(null),[reportId,setReportId]=useState(null),[editing,setEditing]=useState(false),[micTest,setMicTest]=useState(false),[checkMode,setCheckMode]=useState(false),[consent,setConsent]=useState(false),[busy,setBusy]=useState(false),[publicStatus,setPublicStatus]=useState(null);
  const token=useRef(newToken()),mounted=useRef(true),homeRequest=useRef(null),homeVersion=useRef(0);
  const startRequest=useRef(null);
  const [answerMode,setAnswerMode]=useState('audio');
@@ -34,7 +35,7 @@ export default function SpeakingHub({user,authReady=true,onLogin,onNavigate,onAc
  useEffect(()=>{if(micTest)loadRoom().catch(()=>{});},[micTest]);
  useEffect(()=>{if(!user||!home?.jobs.some(j=>['queued','running'].includes(j.status)))return;const t=setInterval(()=>{if(!document.hidden)refresh();},30000);return()=>clearInterval(t);},[home?.jobs,user?.id,exam]);
  async function start(id){
-  if(!user)return onLogin();
+  if(!user)return onLogin(exam);
   if(startRequest.current)return;
   const request=new AbortController();
   startRequest.current=request;
@@ -61,13 +62,14 @@ export default function SpeakingHub({user,authReady=true,onLogin,onNavigate,onAc
  async function replan(){setBusy(true);setError('');try{const r=await speakingApi('replan',{examMode:exam});setJob(r.job);}catch(e){setError(e.message);}finally{setBusy(false);}}
  const latest=home?.assessments?.[0],active=home?.sessions.find(s=>s.status==='started'),pending=home?.jobs.filter(j=>j.kind!=='guide'&&['queued','running','failed'].includes(j.status))||[];
  if(session)return <Suspense fallback={<main className="sp-page"><Notice>Suhbat xonasi ochilmoqda…</Notice></main>}><MockRoom key={session.session.id} initial={session} user={user} exam={exam} preference={preference} onVoiceChange={chooseExaminer} onActive={onActive} onExit={()=>{setSession(null);onActive?.(false);refresh();}} onRestart={()=>{setSession(null);setConsent(false);token.current=newToken();setMicTest(true);onActive?.(false);refresh();}} onReport={showReport}/></Suspense>;
- return <main className="sp-page sp-speaking-page sp-entry"><div className="sp-eyebrow"><Mic size={14}/> AI SPEAKING · {home?.provider==='local'?'LOKAL TAHLIL':'OVOZLI MASHQ'}</div><header className="sp-page-head"><div><h1>{copy.title}</h1><p>{copy.description}</p></div><button className="sp-btn" onClick={()=>onNavigate('aiGuide')}><Sparkles size={16}/>Qanday ishlatiladi?</button></header>
+ return <main className="sp-page sp-speaking-page sp-entry"><div className="sp-eyebrow"><Mic size={14}/> AI SPEAKING · {home?.provider==='local'?'LOKAL TAHLIL':'OVOZLI MASHQ'}</div><header className="sp-page-head"><div><h1>{copy.title}</h1><p>{copy.description}</p></div><div className="sp-actions"><button className="sp-btn" onClick={()=>onNavigate('aiGuide')}><Sparkles size={16}/>Qanday ishlatiladi?</button><button className="sp-btn" onClick={()=>onNavigate('pricing')}>Tariflar</button></div></header>
  <div className="sp-exam-switch" role="group" aria-label="Speaking yo‘nalishi">{[['ielts','IELTS Speaking'],['multilevel','Multilevel Speaking']].map(([id,label])=><button className={exam===id?'is-current':''} aria-pressed={exam===id} key={id} onClick={()=>{setExam(id);setTab('today');setJob(null);setEditing(false);}}>{label}</button>)}</div>
+ {!user&&<SpeakingSample exam={exam} onStart={authReady?()=>onLogin(exam):null}/>}
  <section className="sp-examiner-settings" aria-label="Examiner sozlamalari">
   <ExaminerPicker preference={preference} onChange={chooseExaminer} disabled={busy}/>
  </section>
  {(!authReady||user&&loading&&!home)&&<SpeakingIntro exam={exam} pending={authReady?'Shaxsiy ma’lumotlar tekshirilmoqda…':'Hisob tekshirilmoqda…'}/>}
- {!user? <>{authReady&&<SpeakingIntro exam={exam} onStart={onLogin}/>}<section className="sp-card sp-intro-footer"><ShieldCheck size={24}/><div><h2>Yozuvlaringiz faqat hisobingizda ochiladi.</h2><p>Audio yopiq saqlanadi. Standart audio saqlash muddati 30 kun. Yozuvni hisobingizdan o‘chirishingiz mumkin.</p></div></section></>:<>
+ {!user? <>{authReady&&<SpeakingIntro exam={exam} onStart={()=>onLogin(exam)}/>}<section className="sp-card sp-intro-footer"><ShieldCheck size={24}/><div><h2>Yozuvlaringiz faqat hisobingizda ochiladi.</h2><p>Audio odatda 30 kun saqlanadi. Yozuvni tarix va sozlamalardan o‘chirishingiz mumkin. Audio o‘chirilganda transkript hisobda qoladi.</p></div></section></>:<>
  {loading&&<Notice>Shaxsiy Speaking ma’lumotlari yuklanmoqda…</Notice>}{error&&<Notice error>{error}<button className="sp-btn" onClick={refresh}>Qayta yuklash</button></Notice>}
  {home?.providerConfigured===false&&<Notice>AI xizmati hali administrator tomonidan sozlanmagan. Maqsad va yozuvlaringiz saqlanadi; tahlilni xizmat yoqilgach yuborishingiz mumkin.</Notice>}
  {home&&(!home.profile||editing)?<ProfileForm key={exam} exam={exam} current={home.profile?.payload} onCancel={home.profile?()=>setEditing(false):null} onSaved={async()=>{token.current=newToken();setConsent(false);setEditing(false);setMicTest(true);await refresh();}}/>:home&&<>

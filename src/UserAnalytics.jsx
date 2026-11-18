@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from 'react';
-import {Activity,Users,Radio,LogOut,ArrowLeft,Search,LockKeyhole} from 'lucide-react';
+import {Activity,Users,Radio,LogOut,ArrowLeft,Search,LockKeyhole,Mic} from 'lucide-react';
 import {api} from './api.js';
 import {adminResetPassword} from './profile-service.js';
+import TransferAdmin from './billing/TransferAdmin.jsx';
 
 const dateFormat=new Intl.DateTimeFormat('uz-UZ',{
  day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Tashkent'
@@ -12,6 +13,7 @@ const roles={student:'O‘quvchi',teacher:'O‘qituvchi',admin:'Administrator'};
 export default function UserAnalytics({Stat}){
  const [query,setQuery]=useState(''),[role,setRole]=useState(''),[page,setPage]=useState(1),[snapshot,setSnapshot]=useState(null);
  const [pageError,setPageError]=useState(''),[retry,setRetry]=useState(0);
+ const [billingUser,setBillingUser]=useState(null);
  const [target,setTarget]=useState(null),[resetResult,setResetResult]=useState(null),[resetError,setResetError]=useState(''),[resetBusy,setResetBusy]=useState(false);
  const search=query.trim();
  const result=snapshot?.search===search&&snapshot.role===role&&snapshot.page===page?snapshot.data:null;
@@ -100,7 +102,16 @@ export default function UserAnalytics({Stat}){
       <tbody>{result.users.map(user=>{
        const {activity}=user;
        return <tr key={user.id}>
-        <td><span className="user-initial">{(user.name||'?').slice(0,1).toUpperCase()}</span><div><b>{user.name||'Nomsiz foydalanuvchi'}</b><small>{user.email||user.provider||'Email ko‘rsatilmagan'}</small></div></td>
+        <td>
+         <span className="user-initial">{(user.name||'?').slice(0,1).toUpperCase()}</span>
+         <div>
+          <b>{user.name||'Nomsiz foydalanuvchi'}</b>
+          <small>{user.email||user.provider||'Email ko‘rsatilmagan'}</small>
+          <button type="button" className="reset-link user-tariff" onClick={()=>setBillingUser(user)}>
+           <Mic size={15} aria-hidden="true"/> Tariflar
+          </button>
+         </div>
+        </td>
         <td><span className={`role-badge ${user.role}`}>{roles[user.role]||'—'}</span></td>
         <td><span className={`online-badge ${activity.online?'online':'offline'}`}><i/>{activity.online?'Onlayn':'Oflayn'}</span></td>
         <td>{activity.loginCount}</td><td>{activity.logoutCount}</td>
@@ -118,6 +129,7 @@ export default function UserAnalytics({Stat}){
    </>}
    {result?.users.length===0&&<div className="empty-card compact"><Users/><h3>Foydalanuvchi topilmadi</h3><p>Qidiruv yoki rol filtrini o‘zgartirib ko‘ring.</p></div>}
   </section>
+  {billingUser&&<TransferAdmin key={billingUser.id} user={billingUser} onClose={()=>setBillingUser(null)}/>}
   {target&&<div className="password-modal-backdrop" role="presentation">
    <section className="password-modal" role="dialog" aria-modal="true" aria-labelledby="reset-heading">
     <h2 id="reset-heading">Email hisob parolini yangilash</h2>

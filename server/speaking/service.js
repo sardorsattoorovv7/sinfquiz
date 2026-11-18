@@ -94,6 +94,7 @@ export class SpeakingService{
    const sessions=await this.repo.list(user,'session',exam,150);
    const active=sessions.find(session=>session.payload.status==='started');
    if(active)return this.sessionView(user,active);
+   await this.repo.assertCredits?.(user,'short');
    const [answers,receipts]=await Promise.all([this.repo.list(user,'answer',exam,500),this.repo.list(user,'receipt',exam,400)]);
    const seen=new Set([...answers.map(answer=>answer.payload.questionId),...exposureIds(receipts),...sessions.flatMap(session=>session.payload.revealedIds||[])]);
    const history=await this.history(user,exam,sessions,receipts,answers);
@@ -122,6 +123,7 @@ export class SpeakingService{
     this.repo.list(user,'session',exam,150),this.repo.list(user,'assessment',exam,50),this.repo.list(user,'receipt',exam,400),
    ]);
    const active=old.find(s=>s.payload.status==='started');if(active)return this.sessionView(user,active);
+   await this.repo.assertCredits?.(user,'full');
    const history=await this.history(user,exam,old,receipts),sets=speakingMockSets.filter(s=>s.exam===exam).map(mockTemplate);
    const available=sets.filter(set=>variantQuestions(set).every(q=>!history.ids.has(q.id)&&!history.fingerprints.has(questionFingerprint(q))));
    const set=available.length?this.pick(available):await this.freshVariant(user,'mock-variant:'+p.token,this.pick(sets),history,exam);

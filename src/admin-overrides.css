@@ -3,9 +3,19 @@
 .admin-shell>aside nav{min-height:0;flex:1 1 auto;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#a78bfa #2b1d4b;padding-right:4px;padding-bottom:12px}
 .admin-shell>aside .aside-bottom{flex:none;margin-top:0;background:#21143f}
 .reset-link{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--border);border-radius:8px;padding:8px;background:var(--surface);color:var(--accent);font-weight:700;white-space:nowrap;cursor:pointer}
+.users-table .user-tariff{align-self:flex-start;margin-top:6px}
 .password-modal-backdrop{position:fixed;inset:0;z-index:250;background:#150f27b8;display:flex;align-items:center;justify-content:center;padding:18px}
 .password-modal{width:min(480px,100%);background:var(--surface);color:var(--text);border-radius:17px;padding:26px;box-shadow:0 22px 70px #0005;display:flex;flex-direction:column;gap:12px}
 .password-modal h2{font-size:22px;margin:0}.password-modal p{margin:0;line-height:1.6;color:var(--text-secondary);overflow-wrap:anywhere}
 .password-modal code{display:block;overflow-wrap:anywhere;background:var(--surface-soft);border:1px solid var(--border);border-radius:9px;padding:13px;font-size:19px;letter-spacing:1px;color:var(--text)}
 .password-modal>.btn{align-self:flex-start}.password-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.transfer-admin-modal:not([open]){display:none}
+.transfer-admin-modal{width:min(540px,calc(100% - 28px));max-height:calc(100dvh - 28px);margin:auto;padding:clamp(16px,4vw,26px);border:1px solid var(--border);overflow:auto}
+.transfer-admin-modal::backdrop{background:#150f27b8}
+.transfer-admin-plan{display:grid;gap:9px;border:1px solid var(--border);border-radius:10px;padding:14px}
+.transfer-admin-plan h3{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:0;font-size:16px}
+.transfer-admin-plan form,.transfer-admin-plan label{display:grid;gap:8px}
+.transfer-admin-plan label input{min-width:0;padding:9px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}
+.transfer-admin-plan code{margin-top:4px;padding:8px;font-size:13px;letter-spacing:0;user-select:all}
+.transfer-admin-plan button{justify-self:start}
 @media(max-width:600px){.site-nav .nav-actions>button.btn.profile-link{display:inline-flex}.site-nav .nav-actions>button.btn:nth-of-type(3){display:none}}

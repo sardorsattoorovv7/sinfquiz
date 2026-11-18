@@ -6,7 +6,7 @@ export default defineConfig(({mode})=>{
  for(const name of ['VITE_SUPABASE_URL','SUPABASE_URL','VITE_SUPABASE_ANON_KEY','SUPABASE_ANON_KEY','SUPABASE_PUBLISHABLE_KEY','SUPABASE_SECRET_KEY','SUPABASE_SERVICE_ROLE_KEY','TELEGRAM_BOT_TOKEN']){
   if(!process.env[name]&&env[name])process.env[name]=env[name];
  }
- for(const [name,value] of Object.entries(env))if(/^(GROQ_|SPEAKING_)/.test(name)&&!process.env[name])process.env[name]=value;
+ for(const [name,value] of Object.entries(env))if(/^(GROQ_|SPEAKING_|PAYME_)/.test(name)&&!process.env[name])process.env[name]=value;
  return {
  plugins:[localAdminApi(),seoPlugin({url:env.VITE_PUBLIC_SITE_URL,verification:env.VITE_GOOGLE_SITE_VERIFICATION})],
  optimizeDeps:{include:['three','three/addons/controls/OrbitControls.js','three/addons/environments/RoomEnvironment.js','three/addons/loaders/GLTFLoader.js']},

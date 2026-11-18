@@ -4,6 +4,8 @@ import resetPassword from './api/admin-reset-password.js';
 import telegramAuth from './api/telegram-auth.js';
 import {createSpeakingHandler} from './api/ai-speaking.js';
 import aiAssistant from './api/ai-assistant.js';
+import speakingBilling from './api/speaking-billing.js';
+import payme from './api/payme.js';
 import {serverClient,SpeakingStore} from './server/speaking/store.js';
 import {SpeakingWorker} from './server/speaking/worker.js';
 import {usesLocalSpeaking} from './server/speaking/provider.js';
@@ -23,7 +25,11 @@ export function localAdminApi(){
     server.config.logger.error(`Lokal Speaking worker xatosi (${error.code||'WORKER_FAILED'})`);
    }).finally(()=>scheduledJobs.delete(jobId));
   }});
-  for(const [path,handler] of [['/api/admin-reset-password',resetPassword],['/api/telegram-auth',telegramAuth],['/api/ai-speaking',aiSpeaking],['/api/ai-assistant',aiAssistant]])server.middlewares.use(path,async(req,res,next)=>{
+  for(const [path,handler] of [
+   ['/api/admin-reset-password',resetPassword],['/api/telegram-auth',telegramAuth],
+   ['/api/ai-speaking',aiSpeaking],['/api/ai-assistant',aiAssistant],
+   ['/api/speaking-billing',speakingBilling],['/api/payme',payme],
+  ])server.middlewares.use(path,async(req,res,next)=>{
    if(req.url!=='/'&&req.url!=='')return next();
    res.setHeader('Content-Type','application/json; charset=utf-8');
    res.status=function(code){res.statusCode=code;return res};
