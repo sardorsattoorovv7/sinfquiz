@@ -19,6 +19,28 @@ async function request(handler,{method='POST',authorization,body}={}){
  return {status:response.statusCode,data:response.data};
 }
 
+test('complete card transfer details enable payments when the optional mode is omitted',async()=>{
+ const transferEnv={
+  SPEAKING_TRANSFER_CARD:'4111 1111 1111 1111',
+  SPEAKING_TRANSFER_RECIPIENT:'Sinov hisobi',
+  SPEAKING_TRANSFER_TELEGRAM:'fixture_receipts',
+  GROQ_API_KEY:'local-fixture-key',
+ };
+ const status=async config=>request(createSpeakingBillingHandler({env:config}),{method:'GET'});
+ for(const mode of [undefined,'','   ','live',' live ']){
+  const config={...transferEnv,SPEAKING_TRANSFER_MODE:mode};
+  assert.deepEqual((await status(config)).data,{available:true,mode:'live',method:'transfer'});
+  assert.equal(speakingBillingScope(config),'live');
+ }
+ assert.deepEqual((await status({...transferEnv,SPEAKING_TRANSFER_MODE:'test'})).data,
+  {available:true,mode:'test',method:'transfer'});
+ assert.deepEqual((await status({...transferEnv,SPEAKING_TRANSFER_MODE:'invalid'})).data,
+  {available:false,mode:null});
+ for(const field of ['SPEAKING_TRANSFER_CARD','SPEAKING_TRANSFER_RECIPIENT','SPEAKING_TRANSFER_TELEGRAM']){
+  assert.deepEqual((await status({...transferEnv,[field]:''})).data,{available:false,mode:null});
+ }
+});
+
 test('Payme callback, purchase ownership, timed access and successful-analysis credits',async t=>{
  const db=new PGlite(),owner=randomUUID(),other=randomUUID(),admin=randomUUID();
  try{

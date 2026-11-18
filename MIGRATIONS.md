@@ -5,7 +5,7 @@
 ## Kartaga o‘tkazma va qo‘lda tasdiqlash
 
 1. Server sozlamalariga `SPEAKING_TRANSFER_CARD` (qabul qiluvchi karta raqami), `SPEAKING_TRANSFER_RECIPIENT` (karta egasi) va `SPEAKING_TRANSFER_TELEGRAM` (Telegram foydalanuvchi nomi, @ belgisiz) ni kiriting. Mahalliy ishda `.env.local`, Vercel’da **Settings → Environment Variables** ishlatiladi.
-2. Mahalliy sinov uchun `SPEAKING_TRANSFER_MODE=test` va sinov rekvizitlarini ishlating. Jonli rekvizitlar bilan savdoga o‘tishda `SPEAKING_TRANSFER_MODE=live` ni belgilang. Serverni qayta ishga tushiring yoki Vercel’da yangi deploy qiling.
+2. To‘liq rekvizitlar kiritilganda kartaga to‘lov `live` rejimida ishlaydi. Mahalliy sinov uchun `SPEAKING_TRANSFER_MODE=test` va sinov rekvizitlarini ishlating. `SPEAKING_TRANSFER_MODE=live` ni ham aniq belgilash mumkin. Serverni qayta ishga tushiring yoki Vercel’da yangi deploy qiling.
 3. Xaridor **Tariflar** sahifasida buyurtma ochadi va chekni Telegram’da buyurtma raqami bilan yuboradi. Administrator bankdagi haqiqiy kirim va summani tekshiradi.
 4. **Administrator paneli → Foydalanuvchilar → Tariflar** orqali xaridorni toping. Buyurtma raqamini solishtiring, bank tarixidagi operatsiya raqamini kiriting va tanlangan tarif uchun **Faollashtirish** tugmasini bosing.
 

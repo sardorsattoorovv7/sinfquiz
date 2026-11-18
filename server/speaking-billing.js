@@ -18,7 +18,7 @@ export function paymeConfig(env=process.env){
 }
 
 function transferConfig(env){
- const scope=env.SPEAKING_TRANSFER_MODE;
+ const scope=env.SPEAKING_TRANSFER_MODE?.trim()||'live';
  const card=(env.SPEAKING_TRANSFER_CARD||'').replace(/\s/g,'');
  const recipient=env.SPEAKING_TRANSFER_RECIPIENT?.trim();
  const telegram=env.SPEAKING_TRANSFER_TELEGRAM?.trim();
