@@ -3,12 +3,13 @@ import {SpeakingService,publicSpeakingStatus} from '../server/speaking/service.j
 import {AiError} from '../server/speaking/groq.js';
 import {networkFailure} from '../server/speaking/transport.js';
 import {usesLocalSpeaking} from '../server/speaking/provider.js';
-import {speakingBillingScope} from '../server/speaking-billing.js';
+import {getSpeakingBillingConfig} from '../server/speaking-billing.js';
 export const config={maxDuration:30};
 
-export function createSpeakingHandler({client=serverClient,service=db=>new SpeakingService(new SpeakingStore(db,{
- local:usesLocalSpeaking(),billingScope:speakingBillingScope(),
-})),onJob}={}){
+export function createSpeakingHandler({client=serverClient,service=async db=>{
+ const billing=await getSpeakingBillingConfig({db});
+ return new SpeakingService(new SpeakingStore(db,{local:usesLocalSpeaking(),billingScope:billing?.scope}));
+},onJob}={}){
  return async function handler(req,res){
   res.setHeader('Cache-Control','no-store');res.setHeader('Content-Type','application/json; charset=utf-8');
   if(req.method==='GET')return res.status(200).json(publicSpeakingStatus(process.env));
@@ -30,7 +31,8 @@ export function createSpeakingHandler({client=serverClient,service=db=>new Speak
     if(networkFailure(error))throw new AiError('SPEAKING_NETWORK','Speaking serveri bilan aloqa uzildi. Qayta urinib ko‘ring.',503,true);
     if(['admin','teacher','student'].includes(profile?.data?.role))role=profile.data.role;
    }
-   const result=await service(db).run({id,role},action,data||{});
+   const activeService=await service(db);
+   const result=await activeService.run({id,role},action,data||{});
    const job=result?.job;
    if(onJob&&job?.id&&['queued','running'].includes(job.status))onJob({userId:id,jobId:job.id});
    return res.status(200).json(result);

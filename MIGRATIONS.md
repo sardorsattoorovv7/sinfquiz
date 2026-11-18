@@ -11,6 +11,8 @@
 
 Kartaga o‘tkazma sozlanganda, yangi xarid sahifasi shu usulni ko‘rsatadi. Tasdiqlangan tarif 30 kun amal qiladi. Sinov buyurtmalari va tahlil qoldig‘i jonli hisobdan alohida yuritiladi.
 
+Kartaga o‘tkazma rekvizitlarini bazadagi `documents` jadvalining `collection='serverSettings'`, `id='speakingTransfer'` yozuvida ham saqlash mumkin. `data` ichida `SPEAKING_TRANSFER_MODE`, `SPEAKING_TRANSFER_CARD`, `SPEAKING_TRANSFER_RECIPIENT` va `SPEAKING_TRANSFER_TELEGRAM` maydonlari ishlatiladi. Bu kolleksiyani faqat server kaliti orqali o‘qing va yangilang. Server muhitidagi sozlamalar ustun turadi. Speaking urinishlari ham shu sozlamadagi rejim bo‘yicha hisoblanadi.
+
 ## Payme
 
 1. Payme Business veb-kassasida hisob maydonini `order_id`, hisob turini bir martalik va Merchant API manzilini `https://saytingiz/api/payme` qilib sozlang.

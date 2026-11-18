@@ -1,6 +1,7 @@
 import {timingSafeEqual} from 'node:crypto';
 import {serverClient} from './speaking/store.js';
 import {speakingProvider} from './speaking/provider.js';
+import {AiError} from './speaking/groq.js';
 import {speakingPlan} from '../src/billing/plans.js';
 
 const endpoints={test:'https://test.paycom.uz',live:'https://checkout.paycom.uz'};
@@ -28,6 +29,22 @@ function transferConfig(env){
 
 const billingConfig=env=>transferConfig(env)||paymeConfig(env);
 export const speakingBillingScope=(env=process.env)=>billingConfig(env)?.scope;
+
+export async function getSpeakingBillingConfig({env=process.env,db,client=serverClient}={}){
+ const configured=billingConfig(env);
+ if(configured)return configured;
+ const url=env.SUPABASE_URL||env.VITE_SUPABASE_URL;
+ const key=env.SUPABASE_SECRET_KEY||env.SUPABASE_SERVICE_ROLE_KEY;
+ if(!db&&(!url||!key))return null;
+ const {data,error}=await (db||client(env)).from('documents').select('data')
+  .eq('collection','serverSettings').eq('id','speakingTransfer').maybeSingle();
+ if(error)throw new AiError('BILLING_CONFIG_UNAVAILABLE','To‘lov sozlamalarini olib bo‘lmadi. Qayta urinib ko‘ring.',503,true);
+ if(!data?.data)return null;
+ const fields=['SPEAKING_TRANSFER_MODE','SPEAKING_TRANSFER_CARD','SPEAKING_TRANSFER_RECIPIENT','SPEAKING_TRANSFER_TELEGRAM'];
+ if(fields.some(name=>data.data[name]!==undefined&&typeof data.data[name]!=='string'))return null;
+ const overrides=Object.fromEntries(Object.entries(env).filter(([name])=>name.startsWith('SPEAKING_TRANSFER_')));
+ return transferConfig({...data.data,...overrides});
+}
 
 function checkoutUrl(config,order){
  const returnUrl=new URL('/#tariflar',config.site);
@@ -70,10 +87,13 @@ function liveSalesPaused(config,env){
 export function createSpeakingBillingHandler({env=process.env,client=serverClient}={}){
  return async function speakingBilling(req,res){
   res.setHeader('Cache-Control','no-store');
-  const config=billingConfig(env),mode=config?.scope||null;
+  if(req.method!=='GET'&&req.method!=='POST')return res.status(405).json({error:'Bu amal mavjud emas.'});
+  let config;
+  try{config=await getSpeakingBillingConfig({env,client});}
+  catch{return res.status(503).json({error:'To‘lov sozlamalarini olib bo‘lmadi. Qayta urinib ko‘ring.'});}
+  const mode=config?.scope||null;
   const salesPaused=liveSalesPaused(config,env);
   if(req.method==='GET')return res.status(200).json({available:!!config,mode,...(config?{method:config.method}:{}),...(salesPaused?{salesPaused:true}:{})});
-  if(req.method!=='POST')return res.status(405).json({error:'Bu amal mavjud emas.'});
   if(!config)return res.status(503).json({error:'To‘lov hozircha ochilmagan.'});
   const body=parseBody(req.body);
   if(!body||!billingActions.has(body.action))return res.status(400).json({error:'So‘rovni tekshiring.'});

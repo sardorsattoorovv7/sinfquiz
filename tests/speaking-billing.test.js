@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {PGlite} from '@electric-sql/pglite';
-import {createPaymeHandler,createSpeakingBillingHandler,speakingBillingScope} from '../server/speaking-billing.js';
+import {createPaymeHandler,createSpeakingBillingHandler,getSpeakingBillingConfig,speakingBillingScope} from '../server/speaking-billing.js';
 import {SpeakingStore} from '../server/speaking/store.js';
+import {createSpeakingHandler} from '../api/ai-speaking.js';
 
 const sql=name=>readFileSync(new URL('../'+name,import.meta.url),'utf8');
 const env={
@@ -38,6 +39,132 @@ test('complete card transfer details enable payments when the optional mode is o
   {available:false,mode:null});
  for(const field of ['SPEAKING_TRANSFER_CARD','SPEAKING_TRANSFER_RECIPIENT','SPEAKING_TRANSFER_TELEGRAM']){
   assert.deepEqual((await status({...transferEnv,[field]:''})).data,{available:false,mode:null});
+ }
+});
+
+test('private server settings provide transfer configuration without production environment values',async t=>{
+ const stored={
+  SPEAKING_TRANSFER_MODE:'live',
+  SPEAKING_TRANSFER_CARD:'4111 1111 1111 1111',
+  SPEAKING_TRANSFER_RECIPIENT:'Sinov hisobi',
+  SPEAKING_TRANSFER_TELEGRAM:'fixture_receipts',
+ };
+ const serverEnv={
+  SUPABASE_URL:'https://database.example.test',
+  SUPABASE_SECRET_KEY:'fixture-server-key',
+  GROQ_API_KEY:'fixture-provider-key',
+ };
+ let reads=0;
+ let databaseResult={data:{data:stored}};
+ const filters=[];
+ const client=()=>({
+  from(table){
+   assert.equal(table,'documents');
+   return {
+    select(columns){assert.equal(columns,'data');return this;},
+    eq(column,value){filters.push([column,value]);return this;},
+    async maybeSingle(){reads++;return databaseResult;},
+   };
+  },
+ });
+ const status=config=>request(createSpeakingBillingHandler({env:config,client}),{method:'GET'});
+
+ await t.test('missing environment values use the private document without exposing receiver details',async()=>{
+  assert.deepEqual(await status(serverEnv),{status:200,data:{available:true,mode:'live',method:'transfer'}});
+  assert.equal(reads,1);
+  assert.deepEqual(filters,[['collection','serverSettings'],['id','speakingTransfer']]);
+ });
+
+ await t.test('complete environment configuration takes priority and avoids a database lookup',async()=>{
+  const previousReads=reads;
+  assert.deepEqual(await status({...serverEnv,...stored,SPEAKING_TRANSFER_MODE:'test'}),
+   {status:200,data:{available:true,mode:'test',method:'transfer'}});
+  assert.equal(reads,previousReads);
+ });
+
+ await t.test('an explicit invalid environment value cannot be replaced by stored receiver details',async()=>{
+  assert.deepEqual(await status({...serverEnv,SPEAKING_TRANSFER_CARD:'invalid-card'}),
+   {status:200,data:{available:false,mode:null}});
+ });
+
+ await t.test('malformed stored receiver values leave payments unavailable without throwing',async()=>{
+  const invalidValues={
+   SPEAKING_TRANSFER_MODE:123,
+   SPEAKING_TRANSFER_CARD:4111111111111111,
+   SPEAKING_TRANSFER_RECIPIENT:{name:'Sinov hisobi'},
+   SPEAKING_TRANSFER_TELEGRAM:['fixture_receipts'],
+  };
+  for(const [field,value] of Object.entries(invalidValues)){
+   databaseResult={data:{data:{...stored,[field]:value}}};
+   assert.deepEqual(await status(serverEnv),{status:200,data:{available:false,mode:null}},field);
+  }
+ });
+
+ await t.test('database failures fail closed with a retryable configuration error',async()=>{
+  databaseResult={error:{code:'08006',message:'fixture-database-error'}};
+  const result=await status(serverEnv);
+  assert.equal(result.status,503);
+  assert.match(result.data.error,/To‘lov sozlamalarini olib bo‘lmadi/);
+  assert.doesNotMatch(JSON.stringify(result.data),/fixture-database-error|4111/);
+  await assert.rejects(getSpeakingBillingConfig({env:serverEnv,client}),
+   error=>error.code==='BILLING_CONFIG_UNAVAILABLE'&&error.status===503&&error.retryable===true);
+ });
+});
+
+test('the Speaking API enforces live credits from private transfer settings before starting a mock',async()=>{
+ const savedEnv=Object.fromEntries(Object.entries(process.env)
+  .filter(([name])=>name.startsWith('PAYME_')||name.startsWith('SPEAKING_TRANSFER_')));
+ const owner=randomUUID(),billingCalls=[];
+ const profile={id:randomUUID(),payload:{examMode:'ielts',timezone:'Asia/Tashkent'}};
+ const stored={
+  SPEAKING_TRANSFER_MODE:'live',
+  SPEAKING_TRANSFER_CARD:'4111111111111111',
+  SPEAKING_TRANSFER_RECIPIENT:'Sinov hisobi',
+  SPEAKING_TRANSFER_TELEGRAM:'fixture_receipts',
+ };
+ const db={
+  auth:{getUser:async()=>({data:{user:{id:owner,is_anonymous:false}}})},
+  async rpc(name,args){
+   if(name==='sq_sp_reserve')return {data:true};
+   assert.equal(name,'sq_speaking_billing_status');
+   billingCalls.push(args);
+   return {data:{balances:[{plan:'free',full:0,short:0}]}};
+  },
+  from(table){
+   assert.ok(['documents','sq_sp_records'].includes(table));
+   const filters={};
+   const query={
+    select(){return query;},
+    eq(name,value){filters[name]=value;return query;},
+    order(){return query;},
+    limit(){return query;},
+    async maybeSingle(){
+     if(table==='documents'){
+      assert.deepEqual(filters,{collection:'serverSettings',id:'speakingTransfer'});
+      return {data:{data:stored}};
+     }
+     assert.equal(filters.user_id,owner);
+     return {data:filters.kind==='profile'?profile:null};
+    },
+    then(resolve,reject){return Promise.resolve({data:[]}).then(resolve,reject);},
+   };
+   return query;
+  },
+ };
+ try{
+  for(const name of Object.keys(savedEnv))delete process.env[name];
+  const result=await request(createSpeakingHandler({client:()=>db}),{
+   authorization:'Bearer fixture-user',
+   body:{action:'start_mock',data:{examMode:'ielts',consent:true,token:randomUUID()}},
+  });
+  assert.equal(result.status,402);
+  assert.equal(result.data.code,'SPEAKING_CREDITS');
+  assert.deepEqual(billingCalls,[{p_user:owner,p_scope:'live'}]);
+ }finally{
+  for(const name of Object.keys(process.env)){
+   if(name.startsWith('PAYME_')||name.startsWith('SPEAKING_TRANSFER_'))delete process.env[name];
+  }
+  Object.assign(process.env,savedEnv);
  }
 });
 
